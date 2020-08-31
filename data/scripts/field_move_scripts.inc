@@ -301,3 +301,29 @@ EventScript_FailSweetScent:: @ 8290CAE
 
 Text_FailSweetScent: @ 8290CB7
 	.string "Looks like there's nothing here…$"
+
+
+EventScript_UseRockClimb::
+	lockall
+	checkpartymove MOVE_ROCK_CLIMB
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_eq EventScript_CantRockClimb
+	bufferpartymonnick 0, VAR_RESULT
+	setfieldeffectargument 0, VAR_RESULT
+	msgbox Text_WantToRockClimb, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_EndRockClimb
+	msgbox Text_MonUsedRockClimb, MSGBOX_DEFAULT
+	dofieldeffect FLDEFF_USE_ROCK_CLIMB
+	goto EventScript_EndRockClimb
+EventScript_CantRockClimb:: @ 8290A84
+	msgbox Text_CantRockClimb, MSGBOX_DEFAULT
+EventScript_EndRockClimb:: @ 8290A8C
+	releaseall
+	end
+Text_WantToRockClimb:
+    .string "The cliff is steep.\nWould you like to use Rock Climb?$"
+Text_MonUsedRockClimb:
+    .string "{STR_VAR_1} used Rock Climb!$"
+Text_CantRockClimb:
+    .string "The cliff is steep.\nA Pokémon may be able to climb it.$"

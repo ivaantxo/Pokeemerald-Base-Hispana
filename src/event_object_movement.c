@@ -681,10 +681,10 @@ const u8 gFaceDirectionAnimNums[] = {
     [DIR_NORTH] = 1,
     [DIR_WEST] = 2,
     [DIR_EAST] = 3,
-    [DIR_SOUTHWEST] = 0,
-    [DIR_SOUTHEAST] = 0,
-    [DIR_NORTHWEST] = 1,
-    [DIR_NORTHEAST] = 1,
+    [DIR_SOUTHWEST] = 2,
+    [DIR_SOUTHEAST] = 3,
+    [DIR_NORTHWEST] = 2,
+    [DIR_NORTHEAST] = 3,
 };
 const u8 gMoveDirectionAnimNums[] = {
     [DIR_NONE] = 4,
@@ -692,10 +692,10 @@ const u8 gMoveDirectionAnimNums[] = {
     [DIR_NORTH] = 5,
     [DIR_WEST] = 6,
     [DIR_EAST] = 7,
-    [DIR_SOUTHWEST] = 4,
-    [DIR_SOUTHEAST] = 4,
-    [DIR_NORTHWEST] = 5,
-    [DIR_NORTHEAST] = 5,
+    [DIR_SOUTHWEST] = 6,
+    [DIR_SOUTHEAST] = 7,
+    [DIR_NORTHWEST] = 6,
+    [DIR_NORTHEAST] = 7,
 };
 const u8 gMoveDirectionFastAnimNums[] = {
     [DIR_NONE] = 8,
@@ -703,10 +703,10 @@ const u8 gMoveDirectionFastAnimNums[] = {
     [DIR_NORTH] = 9,
     [DIR_WEST] = 10,
     [DIR_EAST] = 11,
-    [DIR_SOUTHWEST] = 8,
-    [DIR_SOUTHEAST] = 8,
-    [DIR_NORTHWEST] = 9,
-    [DIR_NORTHEAST] = 9,
+    [DIR_SOUTHWEST] = 10,
+    [DIR_SOUTHEAST] = 11,
+    [DIR_NORTHWEST] = 10,
+    [DIR_NORTHEAST] = 11,
 };
 const u8 gMoveDirectionFasterAnimNums[] = {
     [DIR_NONE] = 12,
@@ -736,10 +736,10 @@ const u8 gJumpSpecialDirectionAnimNums[] = { // used for jumping onto surf mon
     [DIR_NORTH] = 21,
     [DIR_WEST] = 22,
     [DIR_EAST] = 23,
-    [DIR_SOUTHWEST] = 20,
-    [DIR_SOUTHEAST] = 20,
-    [DIR_NORTHWEST] = 21,
-    [DIR_NORTHEAST] = 21,
+    [DIR_SOUTHWEST] = 22,
+    [DIR_SOUTHEAST] = 23,
+    [DIR_NORTHWEST] = 22,
+    [DIR_NORTHEAST] = 23,
 };
 const u8 gAcroWheelieDirectionAnimNums[] = {
     [DIR_NONE] = 20,
@@ -967,6 +967,10 @@ const u8 gJumpSpecialMovementActions[] = {
     MOVEMENT_ACTION_JUMP_SPECIAL_DOWN,
     MOVEMENT_ACTION_JUMP_SPECIAL_DOWN,
     MOVEMENT_ACTION_JUMP_SPECIAL_UP,
+    MOVEMENT_ACTION_JUMP_SPECIAL_LEFT,
+    MOVEMENT_ACTION_JUMP_SPECIAL_RIGHT,
+    MOVEMENT_ACTION_JUMP_SPECIAL_LEFT,
+    MOVEMENT_ACTION_JUMP_SPECIAL_RIGHT,
     MOVEMENT_ACTION_JUMP_SPECIAL_LEFT,
     MOVEMENT_ACTION_JUMP_SPECIAL_RIGHT,
 };
@@ -9006,3 +9010,40 @@ u8 MovementAction_Fly_Finish(struct ObjectEvent *objectEvent, struct Sprite *spr
 {
     return TRUE;
 }
+
+// fast diagonal
+bool8 MovementAction_WalkFastDiagonalUpLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    do_go_anim(objectEvent, sprite, DIR_NORTHWEST, 1);
+    return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkFastDiagonalUpRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    do_go_anim(objectEvent, sprite, DIR_NORTHEAST, 1);
+    return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkFastDiagonalDownLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    do_go_anim(objectEvent, sprite, DIR_SOUTHWEST, 1);
+    return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkFastDiagonalDownRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    do_go_anim(objectEvent, sprite, DIR_SOUTHEAST, 1);
+    return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkFastDiagonal_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (npc_obj_ministep_stop_on_arrival(objectEvent, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
