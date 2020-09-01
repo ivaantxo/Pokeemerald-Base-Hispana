@@ -4033,7 +4033,7 @@ static bool8 RockClimb_WaitJumpOnRockClimbBlob(struct Task *task, struct ObjectE
             break;
         }
         
-        task->tState++;
+        task->tState = STATE_ROCK_CLIMB_CONTINUE_RIDE;
     }
     
     return FALSE;
