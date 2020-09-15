@@ -1013,10 +1013,10 @@ static void SynchroniseSurfAnim(struct ObjectEvent *objectEvent, struct Sprite *
         [DIR_NORTH] = 1,
         [DIR_WEST] = 2,
         [DIR_EAST] = 3,
-        [DIR_SOUTHWEST] = 0,
-        [DIR_SOUTHEAST] = 0,
-        [DIR_NORTHWEST] = 1,
-        [DIR_NORTHEAST] = 1,
+        [DIR_SOUTHWEST] = 2,
+        [DIR_SOUTHEAST] = 3,
+        [DIR_NORTHWEST] = 2,
+        [DIR_NORTHEAST] = 3,
     };
 
     if (GetSurfBobWhileFlyingOutState(sprite) == 0)
