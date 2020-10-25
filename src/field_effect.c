@@ -4155,7 +4155,7 @@ bool8 IsRockClimbActive(void)
 #if FOLLOW_ME_IMPLEMENTED
 static void TryAttachFollowerToPlayer(void)
 {
-    if (gFollowerState.inProgress)
+    if (PlayerHasFollower())
     {
         //Keep the follow close by while its hidden to prevent it from going too far out of view
         struct ObjectEvent* player = &gObjectEvents[gPlayerAvatar.eventObjectId];
