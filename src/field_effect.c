@@ -4158,7 +4158,7 @@ static void TryAttachFollowerToPlayer(void)
     if (PlayerHasFollower())
     {
         //Keep the follow close by while its hidden to prevent it from going too far out of view
-        struct ObjectEvent* player = &gObjectEvents[gPlayerAvatar.eventObjectId];
+        struct ObjectEvent* player = &gObjectEvents[gPlayerAvatar.objectEventId];
         struct ObjectEvent* follower = &gObjectEvents[GetFollowerMapObjId()];
         MoveObjectEventToMapCoords(follower, player->currentCoords.x, player->currentCoords.y);
     }
