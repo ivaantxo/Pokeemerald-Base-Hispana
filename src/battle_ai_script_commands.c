@@ -14,7 +14,6 @@
 #include "constants/battle_ai.h"
 #include "constants/battle_move_effects.h"
 #include "constants/moves.h"
-#include "constants/species.h"
 
 #define AI_ACTION_DONE          0x0001
 #define AI_ACTION_FLEE          0x0002
@@ -451,7 +450,16 @@ static u8 ChooseMoveOrAction_Doubles(void)
 {
     s32 i;
     s32 j;
+#ifndef BUGFIX
     s32 scriptsToRun;
+#else
+    // the value assigned to this is a u32 (aiFlags)
+    // this becomes relevant because aiFlags can have bit 31 set
+    // and scriptsToRun is shifted
+    // this never happens in the vanilla game because bit 31 is
+    // only set when it's the first battle
+    u32 scriptsToRun;
+#endif
     s16 bestMovePointsForTarget[MAX_BATTLERS_COUNT];
     s8 mostViableTargetsArray[MAX_BATTLERS_COUNT];
     u8 actionOrMoveIndex[MAX_BATTLERS_COUNT];

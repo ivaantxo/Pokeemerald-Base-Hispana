@@ -900,7 +900,7 @@ static void sub_8020D8C(void)
 void sub_8020E1C(void)
 {
     DestroyTask(gUnknown_02022C90->unkA);
-    ChooseBerrySetCallback(sub_8020D8C);
+    ChooseBerryForMachine(sub_8020D8C);
 }
 
 static void sub_8020E3C(void)
@@ -1665,7 +1665,7 @@ static void Task_ShowBerryCrushRankings(u8 taskId)
         CopyWindowToVram(data[1], 3);
         break;
     case 2:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        if (JOY_NEW(A_BUTTON | B_BUTTON))
             break;
         else
             return;
@@ -1986,29 +1986,29 @@ static u32 BerryCrushCommand_BeginNormalPaletteFade(struct BerryCrushGame *game,
     // byte 9: if TRUE, communicate on fade complete
 
     u16 color;
-    u32 selectedPals;
-    selectedPals = ({
-#ifndef NONMATCHING
-        register u32 value asm("r2");
-        register u32 b asm("r3");
-#else
-        u32 value;
-        u32 b;
-#endif //NONMATCHING
-        value  =      params[0] << 0;
-        value |= (b = params[1] << 8);
-        value |= (b = params[2] << 16);
-        value |= (b = params[3] << 24);
-        value;
-    });
+    u32 selectedPals[2];
 
+    selectedPals[0] = (u32)params[0];
+    selectedPals[1] = (u32)params[1];
+    selectedPals[1] <<= 8;
+
+    selectedPals[0] |= selectedPals[1];
+    selectedPals[1] = (u32)params[2];
+    selectedPals[1] <<= 16;
+
+    selectedPals[0] |= selectedPals[1];
+    selectedPals[1] = (u32)params[3];
+    selectedPals[1] <<= 24;
+
+    selectedPals[0] |= selectedPals[1];
     params[0] = params[9];
 
-    color  = params[8] << 8;
-    color |= params[7] << 0;
+    color = params[8];
+    color <<= 8;
+    color |= params[7];
 
     gPaletteFade.bufferTransferDisabled = FALSE;
-    BeginNormalPaletteFade(selectedPals, params[4], params[5], params[6], color);
+    BeginNormalPaletteFade(selectedPals[0], params[4], params[5], params[6], color);
     UpdatePaletteFade();
     game->unkE = 2;
     return 0;
@@ -2357,7 +2357,7 @@ void sub_802339C(struct BerryCrushGame *r4)
     for (r7 = 0; r7 < r4->unk9; ++r7)
     {
         r2 = gRecvCmds[r7];
-        if ((r2[0] & 0xFF00) == 0x2F00
+        if ((r2[0] & 0xFF00) == RFUCMD_SEND_PACKET
          && r2[1] == 2)
         {
             if ((u8)r2[2] & 4)
@@ -2498,9 +2498,9 @@ void sub_8023558(struct BerryCrushGame *r3)
 
 void sub_80236B8(struct BerryCrushGame *r5)
 {
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
         r5->unk5C.unk02_2 = 1;
-    if (gMain.heldKeys & A_BUTTON)
+    if (JOY_HELD(A_BUTTON))
     {
         if (r5->unk68.as_four_players.others[r5->unk8].unk4.as_hwords[5] < r5->unk28)
             ++r5->unk68.as_four_players.others[r5->unk8].unk4.as_hwords[5];
@@ -2559,7 +2559,7 @@ void sub_80236B8(struct BerryCrushGame *r5)
     r5->unk5C.unk02_1 = r5->unk25_4;
     r5->unk5C.unk0A = r5->unk25_5;
     memcpy(r5->unk40.unk2, &r5->unk5C, sizeof(r5->unk40.unk2));
-    sub_800FE50(r5->unk40.unk2);
+    Rfu_SendPacket(r5->unk40.unk2);
 }
 
 void sub_802385C(struct BerryCrushGame *r5)
@@ -2580,7 +2580,7 @@ void sub_802385C(struct BerryCrushGame *r5)
     for (r4 = 0; r4 < r5->unk9; ++r4)
         r5->unk68.as_four_players.others[r4].unk4.as_2d_bytes[1][5] = 0;
 #endif
-    if ((gRecvCmds[0][0] & 0xFF00) != 0x2F00
+    if ((gRecvCmds[0][0] & 0xFF00) != RFUCMD_SEND_PACKET
      || gRecvCmds[0][1] != 2)
     {
         r5->unk25_2 = 0;
@@ -2966,7 +2966,7 @@ static u32 sub_8024048(struct BerryCrushGame *r5, u8 *r6)
             --r5->unk138.unk0;
             return 0;
         }
-        if (!(gMain.newKeys & A_BUTTON))
+        if (!(JOY_NEW(A_BUTTON)))
             return 0;
         PlaySE(SE_SELECT);
         sub_802222C(r5);
@@ -3271,7 +3271,7 @@ static void BerryCrush_SetPaletteFadeParams(u8 *params, bool8 communicateAfter, 
 
 void sub_8024644(u8 *r0, u32 r1, u32 r2, u32 r3, u32 r5)
 {
-    u8 sp[2];
+    u8 sp[4];
 
     0[(u16 *)sp] = r3;
     r0[0] = r1;

@@ -17,7 +17,6 @@
 #include "sound.h"
 #include "party_menu.h"
 #include "m4a.h"
-#include "constants/species.h"
 #include "decompress.h"
 #include "data.h"
 #include "palette.h"
@@ -1014,12 +1013,15 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
         palOffset = (battlerId * 16) + 0x100;
         LoadCompressedPalette(gSubstituteDollPal, palOffset, 32);
     }
-    else if (!IsContest())
+    else
     {
-        if (GetBattlerSide(battlerId) != B_SIDE_PLAYER)
-            BattleLoadOpponentMonSpriteGfx(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId);
-        else
-            BattleLoadPlayerMonSpriteGfx(&gPlayerParty[gBattlerPartyIndexes[battlerId]], battlerId);
+        if (!IsContest())
+        {
+            if (GetBattlerSide(battlerId) != B_SIDE_PLAYER)
+                BattleLoadOpponentMonSpriteGfx(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId);
+            else
+                BattleLoadPlayerMonSpriteGfx(&gPlayerParty[gBattlerPartyIndexes[battlerId]], battlerId);
+        }
     }
 }
 

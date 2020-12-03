@@ -22,7 +22,6 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
-#include "constants/species.h"
 
 // this file's functions
 static void ClearDaycareMonMail(struct DayCareMail *mail);
@@ -549,7 +548,12 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     {
         // Randomly pick an IV from the available list and stop from being chosen again.
         selectedIvs[i] = availableIVs[Random() % (NUM_STATS - i)];
-        RemoveIVIndexFromList(availableIVs, i);
+        // BUG: Instead of removing the IV that was just picked (like in RS and FRLG), this
+        // removes position 0 (HP) then position 1 (DEF), then position 2. This is why HP and DEF
+        // have a lower chance to be inherited in Emerald and why the IV picked for inheritance can
+        // be repeated. Uncomment the inline comment and remove the existing expression to get the
+        // intended behavior and  to match the other Gen 3 games. 
+        RemoveIVIndexFromList(availableIVs, i /*selectedIvs[i]*/);
     }
 
     // Determine which parent each of the selected IVs should inherit from.
@@ -1237,7 +1241,7 @@ static void Task_HandleDaycareLevelMenuInput(u8 taskId)
 {
     u32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuListTaskId);
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         switch (input)
         {
@@ -1255,7 +1259,7 @@ static void Task_HandleDaycareLevelMenuInput(u8 taskId)
         DestroyTask(taskId);
         EnableBothScriptContexts();
     }
-    else if (gMain.newKeys & B_BUTTON)
+    else if (JOY_NEW(B_BUTTON))
     {
         gSpecialVar_Result = DAYCARE_EXITED_LEVEL_MENU;
         DestroyListMenuTask(gTasks[taskId].tMenuListTaskId, NULL, NULL);
