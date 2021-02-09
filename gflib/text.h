@@ -263,6 +263,16 @@
 #define PLACEHOLDER_ID_KYOGRE        0xC
 #define PLACEHOLDER_ID_GROUDON       0xD
 
+// Géneros
+#define PLACEHOLDER_ID_OA            0xE
+#define PLACEHOLDER_ID_A             0xF
+#define PLACEHOLDER_ID_ELLA          0x10
+#define PLACEHOLDER_ID_ElLa          0x11
+#define PLACEHOLDER_ID_ITA           0x12
+#define PLACEHOLDER_ID_ITOITA        0x13
+#define PLACEHOLDER_ID_EA            0x14
+
+
 // battle placeholders are located in battle_message.h
 
 #define NUM_TEXT_PRINTERS 32

@@ -16,6 +16,17 @@ const u8 gText_ExpandedPlaceholder_Kyogre[] = _("KYOGRE");
 const u8 gText_ExpandedPlaceholder_Groudon[] = _("GROUDON");
 const u8 gText_ExpandedPlaceholder_Brendan[] = _("BRENDAN");
 const u8 gText_ExpandedPlaceholder_May[] = _("MAY");
+// Género
+const u8 gText_ExpandedPlaceholder_O[] = _("o");
+const u8 gText_ExpandedPlaceholder_A[] = _("a");
+const u8 gText_ExpandedPlaceholder_E[] = _("e");
+const u8 gText_ExpandedPlaceholder_EL[] = _("el");
+const u8 gText_ExpandedPlaceholder_LA[] = _("la");
+const u8 gText_ExpandedPlaceholder_El[] = _("El");
+const u8 gText_ExpandedPlaceholder_La[] = _("La");
+const u8 gText_ExpandedPlaceholder_ITA[] = _("ita");
+const u8 gText_ExpandedPlaceholder_ITO[] = _("ito");
+
 const u8 gText_EggNickname[] = _("EGG");
 const u8 gText_Pokemon[] = _("POKéMON");
 const u8 gText_ProfBirchMatchCallName[] = _("PROF. BIRCH");

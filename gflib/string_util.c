@@ -453,6 +453,64 @@ static const u8 *ExpandPlaceholder_KunChan(void)
         return gText_ExpandedPlaceholder_Chan;
 }
 
+//Género
+static const u8 *ExpandPlaceholder_OA(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_O;
+    else
+        return gText_ExpandedPlaceholder_A;
+}
+
+static const u8 *ExpandPlaceholder_A(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_Kun;
+    else
+        return gText_ExpandedPlaceholder_A;
+}
+
+static const u8 *ExpandPlaceholder_ElLa(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_El;
+    else
+        return gText_ExpandedPlaceholder_La;
+}
+
+static const u8 *ExpandPlaceholder_ELLA(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_EL;
+    else
+        return gText_ExpandedPlaceholder_LA;
+}
+
+static const u8 *ExpandPlaceholder_ITA(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_Kun;
+    else
+        return gText_ExpandedPlaceholder_ITA;
+}
+
+static const u8 *ExpandPlaceholder_ITOITA(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_ITO;
+    else
+        return gText_ExpandedPlaceholder_ITA;
+}
+
+static const u8 *ExpandPlaceholder_EA(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_E;
+    else
+        return gText_ExpandedPlaceholder_A;
+}
+
+
 static const u8 *ExpandPlaceholder_RivalName(void)
 {
     if (gSaveBlock2Ptr->playerGender == MALE)
@@ -516,6 +574,16 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_MAXIE]        = ExpandPlaceholder_Maxie,
         [PLACEHOLDER_ID_KYOGRE]       = ExpandPlaceholder_Kyogre,
         [PLACEHOLDER_ID_GROUDON]      = ExpandPlaceholder_Groudon,
+
+        // Género
+        [PLACEHOLDER_ID_OA] = ExpandPlaceholder_OA,
+        [PLACEHOLDER_ID_A] = ExpandPlaceholder_A,
+        [PLACEHOLDER_ID_ELLA] = ExpandPlaceholder_ELLA,
+        [PLACEHOLDER_ID_ElLa] = ExpandPlaceholder_ElLa,
+        [PLACEHOLDER_ID_ITA] = ExpandPlaceholder_ITA,
+        [PLACEHOLDER_ID_ITOITA] = ExpandPlaceholder_ITOITA,
+        [PLACEHOLDER_ID_EA] = ExpandPlaceholder_EA,
+        
     };
 
     if (id >= ARRAY_COUNT(funcs))
