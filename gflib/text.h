@@ -271,6 +271,8 @@
 #define PLACEHOLDER_ID_ITA           0x12
 #define PLACEHOLDER_ID_ITOITA        0x13
 #define PLACEHOLDER_ID_EA            0x14
+#define PLACEHOLDER_ID_COLOR_PLAYER  0x15
+#define PLACEHOLDER_ID_COLOR_RIVAL   0x16
 
 
 // battle placeholders are located in battle_message.h
