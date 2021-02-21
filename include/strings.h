@@ -26,6 +26,8 @@ extern const u8 gText_ExpandedPlaceholder_El[];
 extern const u8 gText_ExpandedPlaceholder_La[];
 extern const u8 gText_ExpandedPlaceholder_ITA[];
 extern const u8 gText_ExpandedPlaceholder_ITO[];
+extern const u8 gText_ExpandedPlaceholder_COLOR_MALE[];
+extern const u8 gText_ExpandedPlaceholder_COLOR_FEMALE[];
 
 extern const u8 gText_FromSpace[];
 

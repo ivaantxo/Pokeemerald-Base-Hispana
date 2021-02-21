@@ -354,6 +354,10 @@ ITA           = FD 12
 ITOITA        = FD 13
 EA            = FD 14
 
+@ Colores según género
+COLOR_PLAYER  = FD 15
+COLOR_RIVAL   = FD 16
+
 @ battle string placeholders
 
 B_BUFF1 = FD 00

@@ -510,6 +510,21 @@ static const u8 *ExpandPlaceholder_EA(void)
         return gText_ExpandedPlaceholder_A;
 }
 
+static const u8 *ExpandPlaceholder_COLOR_PLAYER(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_COLOR_MALE;
+    else
+        return gText_ExpandedPlaceholder_COLOR_FEMALE;
+}
+
+static const u8 *ExpandPlaceholder_COLOR_RIVAL(void)
+{
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        return gText_ExpandedPlaceholder_COLOR_FEMALE;
+    else
+        return gText_ExpandedPlaceholder_COLOR_MALE;
+}
 
 static const u8 *ExpandPlaceholder_RivalName(void)
 {
@@ -583,6 +598,8 @@ const u8 *GetExpandedPlaceholder(u32 id)
         [PLACEHOLDER_ID_ITA] = ExpandPlaceholder_ITA,
         [PLACEHOLDER_ID_ITOITA] = ExpandPlaceholder_ITOITA,
         [PLACEHOLDER_ID_EA] = ExpandPlaceholder_EA,
+        [PLACEHOLDER_ID_COLOR_PLAYER] = ExpandPlaceholder_COLOR_PLAYER,
+        [PLACEHOLDER_ID_COLOR_RIVAL] = ExpandPlaceholder_COLOR_RIVAL,
         
     };
 

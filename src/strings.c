@@ -26,6 +26,8 @@ const u8 gText_ExpandedPlaceholder_El[] = _("El");
 const u8 gText_ExpandedPlaceholder_La[] = _("La");
 const u8 gText_ExpandedPlaceholder_ITA[] = _("ita");
 const u8 gText_ExpandedPlaceholder_ITO[] = _("ito");
+const u8 gText_ExpandedPlaceholder_COLOR_MALE[] = _("{COLOR BLUE}");
+const u8 gText_ExpandedPlaceholder_COLOR_FEMALE[] = _("{COLOR RED}");
 
 const u8 gText_EggNickname[] = _("EGG");
 const u8 gText_Pokemon[] = _("POKéMON");
