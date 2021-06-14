@@ -4023,7 +4023,7 @@ static bool8 RockClimb_WaitJumpOnRockClimbBlob(struct Task *task, struct ObjectE
 {
     if (ObjectEventClearHeldMovementIfFinished(objectEvent))
     {
-        SetSurfBobState(objectEvent->fieldEffectSpriteId, 1);
+        SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
         switch (objectEvent->facingDirection)
         {
         case DIR_EAST:
@@ -4124,7 +4124,7 @@ static bool8 RockClimb_StopRockClimbInit(struct Task *task, struct ObjectEvent *
     
     RockClimbDust(objectEvent, DIR_NONE);   //dust on final spot
     ObjectEventSetHeldMovement(objectEvent, GetJumpSpecialMovementAction(sRockClimbMovement[objectEvent->movementDirection].jumpDir));
-    SetSurfBobState(objectEvent->fieldEffectSpriteId, 0);
+    SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_NONE);
     task->tState++;
     return TRUE;
 }

@@ -9025,31 +9025,31 @@ u8 MovementAction_Fly_Finish(struct ObjectEvent *objectEvent, struct Sprite *spr
 // fast diagonal
 bool8 MovementAction_WalkFastDiagonalUpLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    do_go_anim(objectEvent, sprite, DIR_NORTHWEST, 1);
+    InitMovementNormal(objectEvent, sprite, DIR_NORTHWEST, 1);
     return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
 }
 
 bool8 MovementAction_WalkFastDiagonalUpRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    do_go_anim(objectEvent, sprite, DIR_NORTHEAST, 1);
+    InitMovementNormal(objectEvent, sprite, DIR_NORTHEAST, 1);
     return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
 }
 
 bool8 MovementAction_WalkFastDiagonalDownLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    do_go_anim(objectEvent, sprite, DIR_SOUTHWEST, 1);
+    InitMovementNormal(objectEvent, sprite, DIR_SOUTHWEST, 1);
     return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
 }
 
 bool8 MovementAction_WalkFastDiagonalDownRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    do_go_anim(objectEvent, sprite, DIR_SOUTHEAST, 1);
+    InitMovementNormal(objectEvent, sprite, DIR_SOUTHEAST, 1);
     return MovementAction_WalkFastDiagonal_Step1(objectEvent, sprite);
 }
 
 bool8 MovementAction_WalkFastDiagonal_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-    if (npc_obj_ministep_stop_on_arrival(objectEvent, sprite))
+    if (UpdateMovementNormal(objectEvent, sprite))
     {
         sprite->data[2] = 2;
         return TRUE;
