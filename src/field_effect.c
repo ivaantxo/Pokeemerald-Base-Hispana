@@ -4140,6 +4140,7 @@ static bool8 RockClimb_WaitStopRockClimb(struct Task *task, struct ObjectEvent *
         ScriptContext2_Disable();
         DestroySprite(&gSprites[objectEvent->fieldEffectSpriteId]);
         FieldEffectActiveListRemove(FLDEFF_USE_ROCK_CLIMB);
+        objectEvent->triggerGroundEffectsOnMove = TRUE; // e.g. if dismount on grass
         DestroyTask(FindTaskIdByFunc(Task_UseRockClimb));
     }
     
