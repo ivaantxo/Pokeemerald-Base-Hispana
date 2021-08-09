@@ -64,6 +64,50 @@ def apply_front_palettes(ow_dir, project_root=''):
         except Exception as e:
             t.write(f'{name}: {e.__class__.__name__}: {e}', file=sys.stderr)
 
+# Resize pokesprite icons from https://github.com/msikma/pokesprite/tree/master/icons/pokemon/regular
+def resize_icons(icon_dir, root=''):
+    t = tqdm(sorted(glob(joinp(icon_dir, '*.png'))))
+    for path in t:
+        name, ext = os.path.splitext(os.path.basename(path))
+        if not os.path.isfile(joinp('graphics', 'object_events', 'pics', 'pokemon', f'{name}.png')):
+            continue
+        t.set_description(name)
+        try:
+            subprocess.run(['magick', 'convert', path, '-define', 'png:color-type=2', '-background', 'none', '-compose', 'Copy',
+                            '-gravity', 'center', '-extent', '32x32',
+                            joinp(icon_dir, 'resized', name + ext)], check=True, encoding='utf-8')
+        except Exception as e:
+            t.write(f'{name}: {e.__class__.__name__}: {e} {e.stderr}', file=sys.stderr)
+
+def gba_color(color, drop_bits=3):
+    gba_channels = []
+    for c in color:
+        high, low = (c >> drop_bits) << drop_bits, c & (-1 + 2**drop_bits)
+        if low >= 2**(drop_bits-1):  # Round up
+            high = min(0xFF, high + 2**drop_bits)
+        gba_channels.append(high)
+    return tuple(gba_channels)
+
+def detect_colors(icon_dir):
+    t = tqdm(sorted(glob(joinp(icon_dir, '*.png'))))
+    all_colors = set()
+    name_map = {}
+    for path in t:
+        name, ext = os.path.splitext(os.path.basename(path))
+        inp = png.Reader(path)
+        w, h, rows, info = inp.read()
+        i = 0
+        path_colors = set()
+        for row in rows:
+            for color in zip(*[iter(row)] * 3):
+                path_colors.add(gba_color(color))
+
+        all_colors |= path_colors
+        t.write(f'{name:10s}: {len(path_colors):02d} colors, {len(all_colors):04d} total')
+
+
 
 if __name__ == '__main__':
-    apply_front_palettes('overworld')
+    # apply_front_palettes('overworld')
+    resize_icons('icons')
+    # detect_colors(joinp('icons', 'resized'))
