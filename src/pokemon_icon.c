@@ -1192,6 +1192,7 @@ const u8* GetMonIconTiles(u16 species, bool32 handleDeoxys)
     return iconSprite;
 }
 
+// Loads pokemon icon palettes into the BG palettes, in the PC. Changed to always load an all-white palette.
 void sub_80D304C(u16 offset)
 {
     s32 i;
@@ -1199,10 +1200,13 @@ void sub_80D304C(u16 offset)
 
     if (offset <= 0xA0)
     {
+        u16 whitePalette[16];
+        for (i = 0; i < 16; i++)
+          whitePalette[i] = 0xFFFF;
         monIconPalettePtr = gMonIconPaletteTable;
         for(i = 5; i >= 0; i--)
         {
-            LoadPalette(monIconPalettePtr->data, offset, 0x20);
+            LoadPalette(&whitePalette[0], offset, 0x20);
             offset += 0x10;
             monIconPalettePtr++;
         }

@@ -15,7 +15,6 @@
 #include "field_player_avatar.h"
 #include "field_weather.h"
 #include "fieldmap.h"
-#include "gpu_regs.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -1821,20 +1820,9 @@ struct SpecialEmote { // Used for storing conditional emotes
   u8 emotion;
 };
 
-static void HBlankCB_PaletteSwap(void) {
-  u8 vCount = REG_VCOUNT;
-  if (vCount >= 160)
-    return;
-  if (vCount == 50) {
-    u16* color = (u16*) (0x05000000 + (6)*16*2);
-    CpuFill16(0x001F, color, 32);
-  }
-}
-
 // Call an applicable follower message script
 bool8 ScrFunc_getfolloweraction(struct ScriptContext *ctx) // Essentially a big switch for follower messages
 {
-  u32* debugPtr = (u32*) 0x0203df00;
   u16 species;
   u32 behavior;
   s16 health_percent;
@@ -1852,9 +1840,6 @@ bool8 ScrFunc_getfolloweraction(struct ScriptContext *ctx) // Essentially a big 
   // If map is not flyable, set the script to jump past the fly check TODO: Should followers ask to fly?
   if (TRUE || !Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType))
     ScriptJump(ctx, EventScript_FollowerEnd);
-  EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK);
-  SetHBlankCallback(HBlankCB_PaletteSwap);
-  *debugPtr = (u32) &gMain.hblankCallback;
   behavior = MapGridGetMetatileBehaviorAt(objEvent->currentCoords.x, objEvent->currentCoords.y);
   species = GetMonData(mon, MON_DATA_SPECIES);
   friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
