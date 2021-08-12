@@ -4,6 +4,7 @@ import os.path
 from os.path import join as joinp
 import subprocess
 import sys
+import shutil
 from glob import glob
 
 import png
@@ -64,18 +65,68 @@ def apply_front_palettes(ow_dir, project_root=''):
         except Exception as e:
             t.write(f'{name}: {e.__class__.__name__}: {e}', file=sys.stderr)
 
+# Apply front palettes to pokemon icons
+def apply_front_icon_palette(icon_dir, root=''):
+    mon_graphics = joinp(root, 'graphics', 'pokemon')
+    t = tqdm(sorted(glob(joinp(icon_dir, '*.png'))))
+    spaces = 0
+    for path in t:
+        name, _ = os.path.splitext(os.path.basename(path))
+        spaces = min(max(len(name), spaces), 10)
+        t.set_description(name + ' '*(spaces-len(name)))
+        if 'unown' in name:
+            letter = 'a' if name == 'unown' else name.split('_')[-1]
+            if letter in ('exclamation', 'question'):
+                letter += '_mark'
+            palette_path = joinp(mon_graphics, 'unown', 'a', 'anim_front.png')
+            output_path = joinp(root, 'graphics', 'pokemon', 'unown', letter, 'icon.png')
+        elif name == 'deoxys_speed':
+            palette_path = joinp(mon_graphics, 'deoxys', 'anim_front.png')
+            output_path = joinp(root, 'graphics', 'pokemon', 'deoxys', 'icon_speed.png')
+        elif name == 'castform':
+            palette_path = joinp(mon_graphics, name, 'anim_front_normal_form.png')
+            output_path = joinp(root, 'graphics', 'pokemon', name, 'icon.png')
+        else:
+            palette_path = joinp(mon_graphics, name, 'anim_front.png')
+            output_path = joinp(root, 'graphics', 'pokemon', name, 'icon.png')
+        try:
+            apply_palette(palette_path, path, output_path)
+            shutil.copy(output_path, joinp(icon_dir, '..', 'vanilla', f'{name}.png'))
+        except Exception as e:
+            t.write(f'{name}: {e.__class__.__name__}: {e}', file=sys.stderr)
+
 # Resize pokesprite icons from https://github.com/msikma/pokesprite/tree/master/icons/pokemon/regular
+# Extracts and stacks icons in a paletted form ready to be re-paletted into graphics/
 def resize_icons(icon_dir, root=''):
     t = tqdm(sorted(glob(joinp(icon_dir, '*.png'))))
     for path in t:
         name, ext = os.path.splitext(os.path.basename(path))
-        if not os.path.isfile(joinp('graphics', 'object_events', 'pics', 'pokemon', f'{name}.png')):
+        name = name.replace('-', '_')  # Rewrite Unown name
+        if 'unown' in name:
+            palette_path = joinp('graphics', 'pokemon', 'unown', 'a', 'anim_front.png')
+        elif name == 'deoxys_speed':
+            palette_path = joinp('graphics', 'pokemon', 'deoxys', 'anim_front.png')
+        else:
+            palette_path = joinp('graphics', 'pokemon', name, 'anim_front.png')
+        if not os.path.isfile(palette_path):
+            t.write(f'{name} not found')
             continue
+        front = png.Reader(palette_path)
+        front.read()
+        target_palette = tuple(c[:3] for c in front.palette())
+        r, g, b = target_palette[0]
+        color = f'rgb({r},{g},{b})'
         t.set_description(name)
         try:
-            subprocess.run(['magick', 'convert', path, '-define', 'png:color-type=2', '-background', 'none', '-compose', 'Copy',
+            output_path = joinp(icon_dir, 'resized', name + ext)
+            # Remove palette at first, to get the right background color
+            subprocess.run(['magick', 'convert', path, '-define', 'png:color-type=2',
+                            '-background', color, '-alpha', 'remove', '-compose', 'Copy',
                             '-gravity', 'center', '-extent', '32x32',
-                            joinp(icon_dir, 'resized', name + ext)], check=True, encoding='utf-8')
+                            output_path], check=True, encoding='utf-8')
+            subprocess.run(['magick', 'convert', output_path, output_path, '-define', 'png:color-type=3',
+                            '-append', output_path],
+                           check=True, encoding='utf-8')
         except Exception as e:
             t.write(f'{name}: {e.__class__.__name__}: {e} {e.stderr}', file=sys.stderr)
 
@@ -109,5 +160,5 @@ def detect_colors(icon_dir):
 
 if __name__ == '__main__':
     # apply_front_palettes('overworld')
-    resize_icons('icons')
-    # detect_colors(joinp('icons', 'resized'))
+    # resize_icons('icons')
+    apply_front_icon_palette(joinp('icons', 'resized'))
