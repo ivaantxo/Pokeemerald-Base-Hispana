@@ -3850,10 +3850,13 @@ static bool8 SetUpFieldMove_Dive(void)
     return FALSE;
 }
 
+#define POKE_ICON_BASE_PAL_TAG 56000
+
 static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox, u32 slot)
 {
     bool32 handleDeoxys = TRUE;
     u16 species2;
+    u8 index = slot < PARTY_SIZE ? IndexOfSpritePaletteTag(POKE_ICON_BASE_PAL_TAG + slot) : 0xFF;
 
     // If in a multi battle, show partners Deoxys icon as Normal forme
     if (IsMultiBattle() == TRUE && gMain.inBattle)
@@ -3861,6 +3864,7 @@ static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *m
 
     species2 = GetMonData(mon, MON_DATA_SPECIES2);
     CreatePartyMonIconSpriteParameterized(species2, GetMonData(mon, MON_DATA_PERSONALITY), menuBox, 1, handleDeoxys);
+    SetMonIconPalette(mon, &gSprites[menuBox->monSpriteId], index);
     UpdatePartyMonHPBar(menuBox->monSpriteId, mon);
 }
 

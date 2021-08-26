@@ -917,6 +917,11 @@ const struct SpritePalette gMonIconPaletteTable[] =
     { gMonIconPalettes[0], POKE_ICON_BASE_PAL_TAG + 0 },
     { gMonIconPalettes[1], POKE_ICON_BASE_PAL_TAG + 1 },
     { gMonIconPalettes[2], POKE_ICON_BASE_PAL_TAG + 2 },
+
+    // There are only 3 actual palettes, but we repurpose the last 3 as duplicates for the new icon system
+    { gMonIconPalettes[3 % 3], POKE_ICON_BASE_PAL_TAG + 3 },
+    { gMonIconPalettes[4 % 3], POKE_ICON_BASE_PAL_TAG + 4 },
+    { gMonIconPalettes[5 % 3], POKE_ICON_BASE_PAL_TAG + 5 },
 };
 
 const struct OamData sMonIconOamData =
@@ -1045,6 +1050,16 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
     return spriteId;
 }
 
+u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum) {
+  if (paletteNum < 16) {
+    LoadCompressedPalette(GetMonFrontSpritePal(mon), paletteNum*16 + 0x100, 32);
+    if (sprite)
+      sprite->oam.paletteNum = paletteNum;
+  }
+  return paletteNum;
+}
+
+// Only used with mail and mystery event
 u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 handleDeoxys)
 {
     u8 spriteId;
