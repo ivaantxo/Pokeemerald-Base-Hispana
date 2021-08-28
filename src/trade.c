@@ -7,7 +7,6 @@
 #include "data.h"
 #include "daycare.h"
 #include "decompress.h"
-#include "dma3.h"
 #include "event_data.h"
 #include "evolution_scene.h"
 #include "field_screen_effect.h"
@@ -190,13 +189,9 @@ static EWRAM_DATA struct {
     /*0xFE*/ u8 wirelessWinBottom;
 } *sTradeData = {NULL};
 
-EWRAM_DATA static u16 *sPaletteSwapBuffer = NULL; // dynamically-allocated buffer to hold icon palettes
-EWRAM_DATA static bool8 disablePaletteSwap = 0;
-
 static bool32 IsWirelessTrade(void);
 static void CB2_CreateTradeMenu(void);
 static void VBlankCB_TradeMenu(void);
-static void HBlankCB_TradeMenu(void);
 static void CB2_TradeMenu(void);
 static void LoadTradeBgGfx(u8);
 static void SetTradePartyMonsVisible(void);
@@ -339,13 +334,6 @@ static void InitTradeMenu(void)
     gPaletteFade.bufferTransferDisabled = TRUE;
 
     SetVBlankCallback(VBlankCB_TradeMenu);
-    if (!sPaletteSwapBuffer)
-      sPaletteSwapBuffer = AllocZeroed(32*12); // 6 player party, 6 trade partner party
-    if (sPaletteSwapBuffer) {
-      EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK);
-      SetHBlankCallback(HBlankCB_TradeMenu);
-      disablePaletteSwap = FALSE;
-    }
     LoadPalette(gUnknown_0860F074, 0xF0, 20);
     LoadPalette(gUnknown_0860F074, 0xD0, 20);
     ResetBgsAndClearDma3BusyFlags(0);
@@ -367,7 +355,7 @@ static void InitTradeMenu(void)
         FillBgTilemapBufferRect(0, 0, 0, 0, 30, 20, 15);
         LoadUserWindowBorderGfx_(0, 20, 0xC0);
         LoadUserWindowBorderGfx(2, 1, 0xE0);
-        LoadMonIconPalettes();
+        // LoadMonIconPalettes();
         sTradeMenuData->bufferPartyState = 0;
         sTradeMenuData->tradeMenuFunc = 0;
         sTradeMenuData->neverRead_70 = 0;
@@ -392,6 +380,7 @@ static void CB2_CreateTradeMenu(void)
     struct SpriteTemplate temp;
     u8 id;
     u32 xPos;
+    u16 paletteData[16*2]; // temporarily holds decompressed palettes
 
     switch (gMain.state)
     {
@@ -508,6 +497,10 @@ static void CB2_CreateTradeMenu(void)
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PLAYER]; i++)
         {
             struct Pokemon *mon = &gPlayerParty[i];
+            struct SpritePalette palette = {.data = paletteData, .tag = 56000 + i};
+            u32 index;
+            LZDecompressWram(GetMonFrontSpritePal(mon), paletteData);
+            index = LoadSpritePalette(&palette);
             sTradeMenuData->partySpriteIds[TRADE_PLAYER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES2),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i][0] * 8) + 14,
@@ -515,13 +508,17 @@ static void CB2_CreateTradeMenu(void)
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY),
                                                          TRUE);
-            LZDecompressWram(GetMonFrontSpritePal(mon), &sPaletteSwapBuffer[(i / 2 * 4 + i % 2)*16]);
-            gSprites[sTradeMenuData->partySpriteIds[TRADE_PLAYER][i]].oam.paletteNum = i % 2;
+
+            gSprites[sTradeMenuData->partySpriteIds[TRADE_PLAYER][i]].oam.paletteNum = index;
         }
 
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PARTNER]; i++)
         {
             struct Pokemon *mon = &gEnemyParty[i];
+            struct SpritePalette palette = {.data = paletteData, .tag = 56000 + i + PARTY_SIZE};
+            u32 index;
+            LZDecompressWram(GetMonFrontSpritePal(mon), paletteData);
+            index = LoadSpritePalette(&palette);
             sTradeMenuData->partySpriteIds[TRADE_PARTNER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES2, NULL),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][0] * 8) + 14,
@@ -529,8 +526,7 @@ static void CB2_CreateTradeMenu(void)
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY),
                                                          FALSE);
-            LZDecompressWram(GetMonFrontSpritePal(mon), &sPaletteSwapBuffer[(i / 2 * 4 + i % 2 + 2)*16]);
-            gSprites[sTradeMenuData->partySpriteIds[TRADE_PARTNER][i]].oam.paletteNum = i % 2 + 2;
+            gSprites[sTradeMenuData->partySpriteIds[TRADE_PARTNER][i]].oam.paletteNum = index;
         }
         gMain.state++;
         break;
@@ -660,6 +656,7 @@ static void CB2_ReturnToTradeMenu(void)
     struct SpriteTemplate temp;
     u8 id;
     u32 xPos;
+    u16 paletteData[16*2]; // temporarily holds decompressed palettes
 
     switch (gMain.state)
     {
@@ -703,6 +700,10 @@ static void CB2_ReturnToTradeMenu(void)
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PLAYER]; i++)
         {
             struct Pokemon *mon = &gPlayerParty[i];
+            struct SpritePalette palette = {.data = paletteData, .tag = 56000 + i};
+            u32 index;
+            LZDecompressWram(GetMonFrontSpritePal(mon), paletteData);
+            index = LoadSpritePalette(&palette);
             sTradeMenuData->partySpriteIds[TRADE_PLAYER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES2, NULL),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i][0] * 8) + 14,
@@ -710,13 +711,16 @@ static void CB2_ReturnToTradeMenu(void)
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY),
                                                          TRUE);
-            LZDecompressWram(GetMonFrontSpritePal(mon), &sPaletteSwapBuffer[(i / 2 * 4 + i % 2)*16]);
-            gSprites[sTradeMenuData->partySpriteIds[TRADE_PLAYER][i]].oam.paletteNum = i % 2;
+            gSprites[sTradeMenuData->partySpriteIds[TRADE_PLAYER][i]].oam.paletteNum = index;
         }
 
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PARTNER]; i++)
         {
             struct Pokemon *mon = &gEnemyParty[i];
+            struct SpritePalette palette = {.data = paletteData, .tag = 56000 + i};
+            u32 index;
+            LZDecompressWram(GetMonFrontSpritePal(mon), paletteData);
+            index = LoadSpritePalette(&palette);
             sTradeMenuData->partySpriteIds[TRADE_PARTNER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES2, NULL),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][0] * 8) + 14,
@@ -724,8 +728,7 @@ static void CB2_ReturnToTradeMenu(void)
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY),
                                                          FALSE);
-            LZDecompressWram(GetMonFrontSpritePal(mon), &sPaletteSwapBuffer[(i / 2 * 4 + i % 2 + 2)*16]);
-            gSprites[sTradeMenuData->partySpriteIds[TRADE_PARTNER][i]].oam.paletteNum = i % 2 + 2;
+            gSprites[sTradeMenuData->partySpriteIds[TRADE_PARTNER][i]].oam.paletteNum = index;
         }
         gMain.state++;
         break;
@@ -845,35 +848,8 @@ static void VBlankCB_TradeMenu(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
-    if (sPaletteSwapBuffer && !gPaletteFade.bufferTransferDisabled && !gPaletteFade.active && !disablePaletteSwap) {
-      RequestDma3Copy(gPlttBufferFaded, (void*)PLTT, 32*16, 0);
-      // Skip the 6 dynamically swapped palettes
-      RequestDma3Copy(&gPlttBufferFaded[(6+16)*16], (void*) 0x050002C0, 32*10, 0);
-    } else {
-      TransferPlttBuffer();
-    }
+    TransferPlttBuffer();
 
-}
-
-static void HBlankCB_TradeMenu(void) { // Dynamically copy trade menu icon palettes into place
-  u32 i;
-  u8 vCount = REG_VCOUNT;
-  if (vCount >= DISPLAY_HEIGHT || !sPaletteSwapBuffer || disablePaletteSwap)
-    return;
-  for (i = 0; i < 3; i++) { // for each row
-    if (vCount == i*40+12-4) {
-      CpuFastCopy(&sPaletteSwapBuffer[i*16*4], (void*) 0x05000200, 32*4);
-      // u32 j;
-      // u16* color = (u16*) (0x05000200 + 0*16*2);
-      // for (j = 0; j < 4; j++, color += 16) { // column
-      //   u32 position = (i * 2 + j % 2 + (j < 2 ? 0 : 6)) * 16;
-      //   if ((sPaletteSwapBuffer[position] & 0x7FFF) == 0)
-      //     continue;
-      //   CpuFastCopy(&sPaletteSwapBuffer[position], color, 32);
-      // }
-      break;
-    }
-  }
 }
 
 static void LinkTradeFadeOut(void)
@@ -916,7 +892,6 @@ static void SetLinkTradeCallbacks(void)
             Free(sMenuTextAllocBuffer);
             FreeAllWindowBuffers();
             Free(sTradeMenuData);
-            FREE_AND_SET_NULL(sPaletteSwapBuffer);
             gMain.callback1 = NULL;
             DestroyWirelessStatusIndicatorSprite();
             SetMainCallback2(CB2_LinkTrade);
@@ -930,7 +905,6 @@ static void SetLinkTradeCallbacks(void)
             Free(sMenuTextAllocBuffer);
             FreeAllWindowBuffers();
             Free(sTradeMenuData);
-            FREE_AND_SET_NULL(sPaletteSwapBuffer);
             gMain.callback1 = NULL;
             SetMainCallback2(CB2_LinkTrade);
         }
@@ -1750,7 +1724,6 @@ static void CancelTrade_2(void)
         {
             Free(sMenuTextAllocBuffer);
             Free(sTradeMenuData);
-            FREE_AND_SET_NULL(sPaletteSwapBuffer);
             FreeAllWindowBuffers();
             DestroyWirelessStatusIndicatorSprite();
             SetMainCallback2(CB2_ReturnToFieldFromMultiplayer);
@@ -1762,7 +1735,6 @@ static void CancelTrade_2(void)
         {
             Free(sMenuTextAllocBuffer);
             Free(sTradeMenuData);
-            FREE_AND_SET_NULL(sPaletteSwapBuffer);
             FreeAllWindowBuffers();
             SetMainCallback2(CB2_ReturnToFieldFromMultiplayer);
         }
@@ -1867,7 +1839,6 @@ static void DrawTradeMenuParty(u8 whichParty)
     u8 partyIdx;
     u8 selectedMonParty;
     u8 selectedMonIdx = sTradeMenuData->selectedMonIdx[whichParty];
-    u32 dIndex, sIndex;
 
     selectedMonParty = TRADE_PARTNER;
     if (sTradeMenuData->selectedMonIdx[whichParty] < PARTY_SIZE)
@@ -1889,12 +1860,6 @@ static void DrawTradeMenuParty(u8 whichParty)
         }
 
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].invisible = FALSE;
-        // Load palette into free slot and disable palette swap
-        dIndex = (selectedMonParty == TRADE_PLAYER) ? 14 : 15;
-        gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].oam.paletteNum = dIndex;
-        sIndex = partyIdx / 2 * 4 + partyIdx % 2 + ((selectedMonParty == TRADE_PLAYER) ? 0 : 2);
-        LoadPalette(&sPaletteSwapBuffer[sIndex*16], dIndex*16 + 0x100, 32);
-        disablePaletteSwap = TRUE;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].data[0] = 20;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].data[2] = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][0]
                                                                                                          + sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
@@ -2113,7 +2078,6 @@ static void ResetTradeMenuPartyPositions(u8 whichParty)
         gSprites[sTradeMenuData->partySpriteIds[whichParty][i]].pos1.y = sTradeMonSpriteCoords[(whichParty * PARTY_SIZE) + i][1] * 8 - 12;
         gSprites[sTradeMenuData->partySpriteIds[whichParty][i]].pos2.x = 0;
         gSprites[sTradeMenuData->partySpriteIds[whichParty][i]].pos2.y = 0;
-        gSprites[sTradeMenuData->partySpriteIds[whichParty][i]].oam.paletteNum = i % 2 + (whichParty == TRADE_PLAYER ? 0 : 2);
     }
 }
 
@@ -2133,7 +2097,6 @@ static void RedrawTradeMenuParty(u8 whichParty)
     ResetTradeMenuPartyPositions(whichParty);
     DrawBottomRowText(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], (void *)(OBJ_VRAM0 + (sTradeMenuData->bottomTextTileStart * 32)), 24);
     sTradeMenuData->drawPartyState[whichParty] = 0;
-    disablePaletteSwap = FALSE;
 }
 
 static void Task_DrawSelectionSummary(u8 taskId)
