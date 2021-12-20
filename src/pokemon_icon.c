@@ -1076,7 +1076,7 @@ u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s1
     };
 
     if (index < 16)
-      LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, 0xFFFFFFFF), index*16 + 0x100, 32);
+      LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, 0xFFFF), index*16 + 0x100, 32);
 
     iconTemplate.image = GetMonIconTiles(species, handleDeoxys);
     spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
