@@ -2157,7 +2157,7 @@ static void SetPokeStorageTask(TaskFunc newFunc)
 static void HBlankCB_PokeStorage(void) {
   u8 vCount = REG_VCOUNT;
   u32 i;
-  if (vCount >= DISPLAY_HEIGHT || !sPaletteSwapBuffer)
+  if (vCount >= DISPLAY_HEIGHT || !sPaletteSwapBuffer || (gPaletteFade.active && gPaletteFade.y == 16 && gPaletteFade.mode == 2)) // HARDWARE_FADE
     return;
   // For each row in the pc box
   for (i = 0; i < IN_BOX_ROWS; i++) {
@@ -2333,15 +2333,20 @@ static void Task_ShowPokeStorage(u8 taskId)
 
 static void Task_ReshowPokeStorage(u8 taskId)
 {
+    s32 *debugPtr = (s32*) 0x0203df00;
     switch (sStorage->state)
     {
     case 0:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 0x10, 0, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 0, RGB_BLACK);
+        BeginHardwarePaletteFade(0xFF, 0, 16, 0, TRUE);
         EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK);
         SetHBlankCallback(HBlankCB_PokeStorage);
         sStorage->state++;
         break;
     case 1:
+        debugPtr[0] = gPaletteFade.y;
+        debugPtr[1] = 0xFF;
+        debugPtr[2] = gPaletteFade.active;
         if (!UpdatePaletteFade())
         {
             if (sWhichToReshow == SCREEN_CHANGE_ITEM_FROM_BAG - 1 && gSpecialVar_ItemId != ITEM_NONE)
@@ -3672,12 +3677,15 @@ static void Task_NameBox(u8 taskId)
     {
     case 0:
         SaveMovingMon();
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        BeginHardwarePaletteFade(0xFF, 0, 0, 16, TRUE);
         sStorage->state++;
         break;
     case 1:
+        if (gPaletteFade.y == 16) // blend last frame of hardware fade
+            BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
         if (!UpdatePaletteFade())
         {
+            SetHBlankCallback(NULL); // avoid palette flickering
             sWhichToReshow = SCREEN_CHANGE_NAME_BOX - 1;
             sStorage->screenChangeType = SCREEN_CHANGE_NAME_BOX;
             SetPokeStorageTask(Task_ChangeScreen);
@@ -3692,12 +3700,15 @@ static void Task_ShowMonSummary(u8 taskId)
     {
     case 0:
         InitSummaryScreenData();
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        BeginHardwarePaletteFade(0xFF, 0, 0, 16, TRUE);
         sStorage->state++;
         break;
     case 1:
+        if (gPaletteFade.y == 16) // blend last frame of hardware fade
+            BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
         if (!UpdatePaletteFade())
         {
+            SetHBlankCallback(NULL); // avoid palette flickering
             sWhichToReshow = SCREEN_CHANGE_SUMMARY_SCREEN - 1;
             sStorage->screenChangeType = SCREEN_CHANGE_SUMMARY_SCREEN;
             SetPokeStorageTask(Task_ChangeScreen);
@@ -3711,12 +3722,15 @@ static void Task_GiveItemFromBag(u8 taskId)
     switch (sStorage->state)
     {
     case 0:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        BeginHardwarePaletteFade(0xFF, 0, 0, 16, TRUE);
         sStorage->state++;
         break;
     case 1:
+        if (gPaletteFade.y == 16) // blend last frame of hardware fade
+            BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
         if (!UpdatePaletteFade())
         {
+            SetHBlankCallback(NULL); // avoid palette flickering
             sWhichToReshow = SCREEN_CHANGE_ITEM_FROM_BAG - 1;
             sStorage->screenChangeType = SCREEN_CHANGE_ITEM_FROM_BAG;
             SetPokeStorageTask(Task_ChangeScreen);
