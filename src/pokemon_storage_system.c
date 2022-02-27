@@ -2141,7 +2141,7 @@ static void SetMonIconTransparency(void)
 {
     if (sStorage->boxOption == OPTION_MOVE_ITEMS)
     {
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(7, 11));
     }
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_BG_ALL_ON | DISPCNT_OBJ_1D_MAP);
@@ -2333,7 +2333,6 @@ static void Task_ShowPokeStorage(u8 taskId)
 
 static void Task_ReshowPokeStorage(u8 taskId)
 {
-    s32 *debugPtr = (s32*) 0x0203df00;
     switch (sStorage->state)
     {
     case 0:
@@ -2344,9 +2343,6 @@ static void Task_ReshowPokeStorage(u8 taskId)
         sStorage->state++;
         break;
     case 1:
-        debugPtr[0] = gPaletteFade.y;
-        debugPtr[1] = 0xFF;
-        debugPtr[2] = gPaletteFade.active;
         if (!UpdatePaletteFade())
         {
             if (sWhichToReshow == SCREEN_CHANGE_ITEM_FROM_BAG - 1 && gSpecialVar_ItemId != ITEM_NONE)
@@ -2358,6 +2354,7 @@ static void Task_ReshowPokeStorage(u8 taskId)
             {
                 SetPokeStorageTask(Task_PokeStorageMain);
             }
+            SetMonIconTransparency(); // Set transparency after fade-in
         }
         break;
     case 2:
@@ -3181,7 +3178,6 @@ static void Task_ShowMarkMenu(u8 taskId)
             SetMonMarkings(sStorage->markMenu.markings);
             RefreshDisplayMonData();
             SetPokeStorageTask(Task_PokeStorageMain);
-            sStorage->state++;
         }
         break;
     }
