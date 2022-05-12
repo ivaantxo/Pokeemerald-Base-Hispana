@@ -717,7 +717,7 @@ static void CB2_ReturnToTradeMenu(void)
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PARTNER]; i++)
         {
             struct Pokemon *mon = &gEnemyParty[i];
-            struct SpritePalette palette = {.data = paletteData, .tag = 56000 + i};
+            struct SpritePalette palette = {.data = paletteData, .tag = 56000 + i + PARTY_SIZE};
             u32 index;
             LZDecompressWram(GetMonFrontSpritePal(mon), paletteData);
             index = LoadSpritePalette(&palette);
