@@ -4116,8 +4116,8 @@ static void LoadDisplayMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE);
         // LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
-        CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
-        LoadCompressedPalette(sStorage->displayMonPalette, sStorage->displayMonPalOffset, 0x20);
+        CpuFastCopy(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
+        LoadCompressedPaletteFast(sStorage->displayMonPalette, sStorage->displayMonPalOffset, 0x20);
         // LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);
         sStorage->displayMonSprite->invisible = FALSE;
     }
@@ -4616,12 +4616,26 @@ static void CreateMovingMonIcon(void)
     sStorage->movingMonSprite->callback = SpriteCB_HeldMon;
 }
 
+// helper that also returns the species
+static const u32 *_GetMonFrontSpritePal(struct Pokemon *mon, u16 *species)
+{
+    u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
+    *species = GetMonData(mon, MON_DATA_SPECIES2, 0);
+    return GetMonSpritePalFromSpeciesAndPersonality(*species, otId, personality);
+}
+
 static void SetBoxMonDynamicPalette(u8 boxId, u8 position) {
-  u8 i = position / 6;
-  u8 j = position % 6;
+  u16 species;
+  const u32 *palette = _GetMonFrontSpritePal((struct Pokemon *)&gPokemonStoragePtr->boxes[boxId][position], &species);
   // Decompress species palette into swap buffer
-  LZ77UnCompWram(GetMonFrontSpritePal((struct Pokemon *)&gPokemonStoragePtr->boxes[boxId][position]), &sPaletteSwapBuffer[(position)*16]);
-  sStorage->boxMonsSprites[position]->oam.paletteNum = (i & 1 ? 6 : 0) + j + 1;
+  if (species == SPECIES_CASTFORM) { // needs more than 32 bytes of space; so decompress and copy
+      LZ77UnCompWram(palette, gDecompressionBuffer);
+      CpuFastCopy(gDecompressionBuffer, &sPaletteSwapBuffer[(position)*16], 32);
+  } else {
+      LZ77UnCompWram(palette, &sPaletteSwapBuffer[(position)*16]);
+  }
+  sStorage->boxMonsSprites[position]->oam.paletteNum = ((position / 6) & 1 ? 6 : 0) + (position % 6) + 1;
 }
 
 static void InitBoxMonSprites(u8 boxId)
@@ -4943,13 +4957,11 @@ static void CreatePartyMonsSprites(bool8 visible)
     u16 i, count;
     u16 species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2);
     u32 personality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
-    u16 palette[16] = {0}; // temporarily hold party sprite palette
     u8 paletteNum;
 
     sStorage->transferWholePlttFrames = -1; // keep transferring entire palette buffer until done with party menu
     sStorage->partySprites[0] = CreateMonIconSprite(species, personality, 104, 64, 1, 12);
-    LZ77UnCompWram(GetMonFrontSpritePal(&gPlayerParty[0]), palette);
-    LoadPalette(palette, (0+1)* 16 + 0x100, 32);
+    LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[0]), (0+1)* 16 + 0x100, 32);
     sStorage->partySprites[0]->oam.paletteNum = 0+1;
     count = 1;
     for (i = 1; i < PARTY_SIZE; i++)
@@ -4960,8 +4972,7 @@ static void CreatePartyMonsSprites(bool8 visible)
         {
             personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
             sStorage->partySprites[i] = CreateMonIconSprite(species, personality, 152,  8 * (3 * (i - 1)) + 16, 1, 12);
-            LZ77UnCompWram(GetMonFrontSpritePal(&gPlayerParty[i]), palette);
-            LoadPalette(palette, paletteNum*16 + 0x100, 32);
+            LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[i]), paletteNum*16 + 0x100, 32);
             sStorage->partySprites[i]->oam.paletteNum = paletteNum;
             count++;
         }
@@ -5160,7 +5171,6 @@ static void SetPlacedMonSprite(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT) // party mon
     {
-        u16 palette[16] = {0};
         u8 paletteNum = (position >= 3 ? position + 3 : position) + 1;
         sStorage->partySprites[position] = sStorage->movingMonSprite;
         sStorage->partySprites[position]->oam.priority = 1;
@@ -5168,8 +5178,7 @@ static void SetPlacedMonSprite(u8 boxId, u8 position)
 
         // If currently using displayed mon palette, load party sprite palette into proper slot
         if (sStorage->partySprites[position]->oam.paletteNum == IndexOfSpritePaletteTag(PALTAG_DISPLAY_MON)) {
-          LZ77UnCompWram(GetMonFrontSpritePal(&gPlayerParty[position]), palette);
-          LoadPalette(palette, paletteNum*16 + 0x100, 32);
+          LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[position]), paletteNum*16 + 0x100, 32);
           sStorage->partySprites[position]->oam.paletteNum = paletteNum;
         }
     }
@@ -5339,7 +5348,7 @@ static u16 TryLoadMonIconTiles(u16 species)
     sStorage->iconSpeciesList[i] = species;
     sStorage->numIconsPerSpecies[i]++;
     offset = 16 * i;
-    CpuCopy32(GetMonIconTiles(species, TRUE), (void*)(OBJ_VRAM0) + offset * 32, 0x200);
+    CpuFastCopy(GetMonIconTiles(species, TRUE), (void*)(OBJ_VRAM0) + offset * TILE_SIZE_4BPP, 0x200);
 
     return offset;
 }
@@ -6631,7 +6640,6 @@ static void SetShiftedMonData(u8 boxId, u8 position)
 }
 
 static void SetShiftedMonSprites(u8 boxId, u8 position) {
-    u16 palette[16]; // temporary decompressed palette
     u8 displayIndex = IndexOfSpritePaletteTag(PALTAG_DISPLAY_MON);
     if (boxId == TOTAL_BOXES_COUNT) { // party
       u8 paletteNum = (position >= 3 ? position + 3 : position) + 1;
@@ -6651,7 +6659,7 @@ static void SetShiftedMonSprites(u8 boxId, u8 position) {
     SetDisplayMonData(&sStorage->movingMon, MODE_PARTY);
     // Set moving sprite palette to currently displayed pokemon's palette
     sStorage->displayMonSprite->invisible = TRUE;
-    LoadCompressedPalette(sStorage->displayMonPalette, sStorage->displayMonPalOffset, 0x20);
+    LoadCompressedPaletteFast(sStorage->displayMonPalette, sStorage->displayMonPalOffset, 0x20);
     sStorage->movingMonSprite->oam.paletteNum = displayIndex;
     sMovingMonOrigBoxId = boxId;
     sMovingMonOrigBoxPos = position;
