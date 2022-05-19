@@ -157,7 +157,6 @@ static void LoadObjectRegularReflectionPalette(struct ObjectEvent *objectEvent, 
       }
       paletteNum = LoadSpritePalette(&filteredPalette);
       UpdateSpritePaletteWithWeather(paletteNum);
-      UpdateSpritePaletteWithTime(paletteNum);
     }
     sprite->oam.paletteNum = paletteNum;
     sprite->oam.objMode = 1; // Alpha blending
@@ -210,7 +209,6 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
         }
         paletteNum = LoadSpritePalette(&filteredPalette);
         UpdateSpritePaletteWithWeather(paletteNum);
-        UpdateSpritePaletteWithTime(paletteNum);
       }
       reflectionSprite->oam.paletteNum = paletteNum;
     }
@@ -261,6 +259,8 @@ u8 CreateWarpArrowSprite(void)
     if (spriteId != MAX_SPRITES)
     {
         sprite = &gSprites[spriteId];
+        // Can use either gender's palette, so try to use the one that should be loaded
+        sprite->oam.paletteNum = LoadObjectEventPalette(gSaveBlock2Ptr->playerGender ? FLDEFF_PAL_TAG_MAY : FLDEFF_PAL_TAG_BRENDAN);
         sprite->oam.priority = 1;
         sprite->coordOffsetEnabled = TRUE;
         sprite->invisible = TRUE;
@@ -354,8 +354,7 @@ void UpdateShadowFieldEffect(struct Sprite *sprite)
         sprite->x = linkedSprite->x;
         sprite->y = linkedSprite->y + sprite->data[3];
         sprite->invisible = linkedSprite->invisible;
-        if (!objectEvent->active
-         || objectEvent->noShadow
+        if (!objectEvent->active || !objectEvent->hasShadow
          || MetatileBehavior_IsPokeGrass(objectEvent->currentMetatileBehavior)
          || MetatileBehavior_IsSurfableWaterOrUnderwater(objectEvent->currentMetatileBehavior)
          || MetatileBehavior_IsSurfableWaterOrUnderwater(objectEvent->previousMetatileBehavior))
@@ -684,6 +683,42 @@ u32 FldEff_DeepSandFootprints(void)
     return spriteId;
 }
 
+u32 FldEff_TracksBug(void)
+{
+	u8 spriteId;
+	struct Sprite *sprite;
+
+	SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
+	spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_TRACKS_BUG], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
+	if (spriteId != MAX_SPRITES)
+	{
+		sprite = &gSprites[spriteId];
+		sprite->coordOffsetEnabled = TRUE;
+		sprite->oam.priority = gFieldEffectArguments[3];
+		sprite->data[7] = FLDEFF_TRACKS_BUG;
+		StartSpriteAnim(sprite, gFieldEffectArguments[4]);
+	}
+	return 0;
+}
+
+u32 FldEff_TracksSpot(void)
+{
+	u8 spriteId;
+	struct Sprite *sprite;
+
+	SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
+	spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_TRACKS_SPOT], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
+	if (spriteId != MAX_SPRITES)
+	{
+		sprite = &gSprites[spriteId];
+		sprite->coordOffsetEnabled = TRUE;
+		sprite->oam.priority = gFieldEffectArguments[3];
+		sprite->data[7] = FLDEFF_TRACKS_SPOT;
+		StartSpriteAnim(sprite, gFieldEffectArguments[4]);
+	}
+	return 0;
+}
+
 u32 FldEff_BikeTireTracks(void)
 {
     u8 spriteId;
@@ -700,6 +735,24 @@ u32 FldEff_BikeTireTracks(void)
         StartSpriteAnim(sprite, gFieldEffectArguments[4]);
     }
     return spriteId;
+}
+
+u32 FldEff_TracksSlither(void)
+{
+	u8 spriteId;
+	struct Sprite *sprite;
+
+	SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
+	spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_TRACKS_SLITHER], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
+	if (spriteId != MAX_SPRITES)
+	{
+		sprite = &gSprites[spriteId];
+		sprite->coordOffsetEnabled = TRUE;
+		sprite->oam.priority = gFieldEffectArguments[3];
+		sprite->data[7] = FLDEFF_TRACKS_SLITHER;
+		StartSpriteAnim(sprite, gFieldEffectArguments[4]);
+	}
+	return spriteId;
 }
 
 void (*const gFadeFootprintsTireTracksFuncs[])(struct Sprite *) = {
@@ -1102,6 +1155,8 @@ u32 FldEff_SurfBlob(void)
         sprite = &gSprites[spriteId];
         sprite->coordOffsetEnabled = TRUE;
         sprite->tPlayerObjId = gFieldEffectArguments[2];
+        // Can use either gender's palette, so try to use the one that should be loaded
+        sprite->oam.paletteNum = LoadObjectEventPalette(gSaveBlock2Ptr->playerGender ? FLDEFF_PAL_TAG_MAY : FLDEFF_PAL_TAG_BRENDAN);
         sprite->data[3] = -1;
         sprite->data[6] = -1;
         sprite->data[7] = -1;
@@ -1383,7 +1438,7 @@ u32 FldEff_BerryTreeGrowthSparkle(void)
         sprite = &gSprites[spriteId];
         sprite->coordOffsetEnabled = TRUE;
         sprite->oam.priority = gFieldEffectArguments[3];
-        sprite->oam.paletteNum = 5; // TODO: What paletteTag does this use?
+        UpdateSpritePaletteByTemplate(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_SPARKLE], sprite);
         sprite->data[0] = FLDEFF_BERRY_TREE_GROWTH_SPARKLE;
     }
     return 0;

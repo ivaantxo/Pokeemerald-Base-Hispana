@@ -688,12 +688,8 @@ static void Task_DoDoorWarp(u8 taskId)
         PlayerGetDestCoords(x, y);
         PlaySE(GetDoorSoundEffect(*x, *y - 1));
         if (followerObject) { // Put follower into pokeball
-          // TODO: ClearObjectEventMovement (
-          followerObject->singleMovementActive = 0;
-          ObjectEventClearHeldMovement(followerObject);
-          gSprites[followerObject->spriteId].data[1] = 0;
+          ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
           gSprites[followerObject->spriteId].animCmdIndex = 0; // Needed because of weird animCmdIndex stuff
-          // )
           ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
         }
         task->data[1] = FieldAnimateDoorOpen(*x, *y - 1);
@@ -1174,6 +1170,9 @@ static void Task_OrbEffect(u8 taskId)
         tState = 4;
         break;
     case 4:
+        // If the caller script is delayed after starting the orb effect, a `waitstate` might be reached *after*
+        // we enable the ScriptContext in case 2; enabling it here as well avoids softlocks in this scenario
+        EnableBothScriptContexts();
         if (--tShakeDelay == 0)
         {
             s32 panning;

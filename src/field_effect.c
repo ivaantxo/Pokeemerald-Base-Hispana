@@ -771,7 +771,6 @@ void FieldEffectScript_LoadFadedPalette(u8 **script)
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
     LoadSpritePalette(palette);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
-    UpdateSpritePaletteWithTime(IndexOfSpritePaletteTag(palette->tag)); // Ensure field effects are blended
     (*script) += 4;
 }
 
@@ -2999,12 +2998,8 @@ static void SurfFieldEffect_Init(struct Task *task)
     FreezeObjectEvents();
     // Put follower into pokeball before using Surf
     if (followerObject && !followerObject->invisible) {
-      // TODO: ClearObjectEventMovement (
-      followerObject->singleMovementActive = 0;
-      ObjectEventClearHeldMovement(followerObject);
-      gSprites[followerObject->spriteId].data[1] = 0;
+      ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
       gSprites[followerObject->spriteId].animCmdIndex = 0; // Needed because of weird animCmdIndex stuff
-      // )
       ObjectEventSetHeldMovement(followerObject, MOVEMENT_ACTION_ENTER_POKEBALL);
     }
     gPlayerAvatar.preventStep = TRUE;
@@ -3124,6 +3119,7 @@ u8 FldEff_NPCFlyOut(void)
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_NPCFlyOut;
     sprite->data[1] = gFieldEffectArguments[0];
+    sprite->oam.paletteNum = LoadObjectEventPalette(gSaveBlock2Ptr->playerGender ? FLDEFF_PAL_TAG_MAY : FLDEFF_PAL_TAG_BRENDAN);
     PlaySE(SE_M_FLY);
     return spriteId;
 }
@@ -3271,7 +3267,7 @@ static void FlyOutFieldEffect_FlyOffWithBird(struct Task *task)
         struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
         ObjectEventClearHeldMovementIfActive(objectEvent);
         objectEvent->inanimate = FALSE;
-        objectEvent->noShadow = TRUE; // TODO: Make shadow smaller instead of disappearing completely ?
+        objectEvent->hasShadow = FALSE;
         SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, objectEvent->spriteId);
         CameraObjectReset2();
         task->tState++;
@@ -3304,6 +3300,7 @@ static u8 CreateFlyBirdSprite(void)
     sprite = &gSprites[spriteId];
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_FlyBirdLeaveBall;
+    sprite->oam.paletteNum = LoadObjectEventPalette(gSaveBlock2Ptr->playerGender ? FLDEFF_PAL_TAG_MAY : FLDEFF_PAL_TAG_BRENDAN);
     return spriteId;
 }
 
@@ -3491,7 +3488,6 @@ static void FlyInFieldEffect_BirdSwoopDown(struct Task *task)
         ObjectEventTurn(objectEvent, DIR_WEST);
         StartSpriteAnim(&gSprites[objectEvent->spriteId], ANIM_GET_ON_OFF_POKEMON_WEST);
         objectEvent->invisible = FALSE;
-        objectEvent->noShadow = TRUE;
         task->tBirdSpriteId = CreateFlyBirdSprite();
         StartFlyBirdSwoopDown(task->tBirdSpriteId);
         SetFlyBirdPlayerSpriteId(task->tBirdSpriteId, objectEvent->spriteId);
