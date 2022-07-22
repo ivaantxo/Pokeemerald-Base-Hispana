@@ -918,17 +918,6 @@ static const u8 sUnused[] =
     0x05, 0x03, 0x03, 0x03, 0x02, 0x02, 0x03, 0x03, 0x03, 0x03, 0x02
 };
 
-static const struct WindowTemplate sBlenderRecordWindowTemplate =
-{
-    .bg = 0,
-    .tilemapLeft = 6,
-    .tilemapTop = 4,
-    .width = 18,
-    .height = 11,
-    .paletteNum = 15,
-    .baseBlock = 8
-};
-
 static void UpdateHitPitch(void)
 {
     m4aMPlayPitchControl(&gMPlayInfo_SE2, TRACKS_ALL, 2 * (sBerryBlender->speed - MIN_ARROW_SPEED));
@@ -2849,12 +2838,12 @@ static void CB2_CheckPlayAgainLink(void)
     case 1:
         sBerryBlender->gameEndState = 3;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-        sub_81DB2D8(gStringVar4, sText_ApostropheSPokeblockCaseIsFull, gStringVar4);
+        StringAppendWithPlaceholder(gStringVar4, sText_ApostropheSPokeblockCaseIsFull, gStringVar4);
         break;
     case 2:
         sBerryBlender->gameEndState++;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-        sub_81DB2D8(gStringVar4, sText_HasNoBerriesToPut, gStringVar4);
+        StringAppendWithPlaceholder(gStringVar4, sText_HasNoBerriesToPut, gStringVar4);
         break;
     case 3:
         if (Blender_PrintText(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
@@ -3513,9 +3502,7 @@ static bool8 PrintBlendingResults(void)
 
                 StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
                 ConvertInternationalString(sBerryBlender->stringVar, gLinkPlayers[place].language);
-                // FR version
-                sub_81DB2D8(sBerryBlender->stringVar, sText_SpaceBerry, sBerryBlender->stringVar);
-                // StringAppend(sBerryBlender->stringVar, sText_SpaceBerry); ENGLISH VERSION
+                StringAppendWithPlaceholder(sBerryBlender->stringVar, sText_SpaceBerry, sBerryBlender->stringVar);
                 Blender_AddTextPrinter(5, sBerryBlender->stringVar, 0x54, yPos, TEXT_SKIP_DRAW, 3);
             }
 
@@ -3606,7 +3593,7 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
     dst[0] = EOS;
     StringCopy(dst, gPokeblockNames[pokeblock->color]);
     // FR difference
-    sub_81DB2D8(dst, sText_WasMade, dst);
+    StringAppendWithPlaceholder(dst, sText_WasMade, dst);
     StringAppend(dst, sText_NewLine);
 
     flavorLvl = GetHighestPokeblocksFlavorLevel(pokeblock);
@@ -3761,6 +3748,17 @@ static bool8 PrintBlendingRanking(void)
 
     return FALSE;
 }
+
+static const struct WindowTemplate sBlenderRecordWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 6,
+    .tilemapTop = 4,
+    .width = 18,
+    .height = 11,
+    .paletteNum = 15,
+    .baseBlock = 8
+};
 
 void ShowBerryBlenderRecordWindow(void)
 {

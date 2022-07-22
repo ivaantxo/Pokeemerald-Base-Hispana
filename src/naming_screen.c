@@ -1721,7 +1721,7 @@ static void DrawNormalTextEntryBox(void)
 // difference FR gStringVar1 is used as a buffer here
 void DrawMonTextEntryBox(void)
 {
-    u8 buffer[32];
+    u8 buffer[48];
 
     StringCopy(gStringVar1, gSpeciesNames[sNamingScreen->monSpecies]);
     StringExpandPlaceholders(buffer, sNamingScreen->template->title);

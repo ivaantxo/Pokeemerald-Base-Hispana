@@ -239,28 +239,28 @@ void FillWindowTilesByRow(int windowId, int columnStart, int rowStart, int numFi
 }
 
 // These functions didn't exist in Emerald ENG
-u8 *sub_81DB2D8(u8 *r5, const u8 *r4, u8 *a2)
+u8 *StringAppendWithPlaceholder(u8 *dest, const u8 *src, u8 *placeholderStr)
 {
     u8 text[32], c;
 
-    StringCopyN(text, a2, 31);
+    StringCopyN(text, placeholderStr, 31);
     text[31] = EOS;
-    a2 = text;
-    while ((c = *r4++) != EOS)
+    placeholderStr = text;
+    while ((c = *src++) != EOS)
     {
         if (c == PLACEHOLDER_BEGIN)
         {
-            r4++;
-            r5 = StringCopy(r5, a2);
+            src++;
+            dest = StringCopy(dest, placeholderStr);
         }
         else
         {
-            *r5 = c;
-            r5++;
+            *dest = c;
+            dest++;
         }
     }
-    *r5 = EOS;
-    return r5;
+    *dest = EOS;
+    return dest;
 }
 
 const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGender, const u8 *trainerName)
