@@ -3927,7 +3927,7 @@ static void PrintTitle(void)
     if (!titleText)
         return;
 
-    xOffset = GetStringCenterAlignXOffset(FONT_NORMAL, titleText, 144);
+    xOffset = GetStringCenterAlignXOffset(FONT_NORMAL, titleText, 240);
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
     PrintEasyChatTextWithColors(0, FONT_NORMAL, titleText, xOffset, 1, TEXT_SKIP_DRAW, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
     PutWindowTilemap(0);
@@ -4025,7 +4025,7 @@ static void AddPhraseWindow(void)
     template.width = sPhraseFrameDimensions[frameId].width;
     template.height = sPhraseFrameDimensions[frameId].height;
     template.paletteNum = 11;
-    template.baseBlock = 0x6C;
+    template.baseBlock = 0x84;
     sScreenControl->windowId = AddWindow(&template);
     PutWindowTilemap(sScreenControl->windowId);
 }
@@ -5070,7 +5070,7 @@ static void AddMainScreenButtonWindow(void)
     template.width = 28;
     template.height = 2;
     template.paletteNum = 11;
-    template.baseBlock = 0x34;
+    template.baseBlock = 0x4C;
     windowId = AddWindow(&template);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     for (i = 0; i < (int)ARRAY_COUNT(sFooterTextOptions[0]); i++)

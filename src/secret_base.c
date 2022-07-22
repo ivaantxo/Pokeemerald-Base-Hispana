@@ -727,7 +727,7 @@ static u8 *GetSecretBaseName(u8 *dest, u8 secretBaseIdx)
 {
     *StringCopyN(dest, gSaveBlock1Ptr->secretBases[secretBaseIdx].trainerName, GetNameLength(gSaveBlock1Ptr->secretBases[secretBaseIdx].trainerName)) = EOS;
     ConvertInternationalString(dest, gSaveBlock1Ptr->secretBases[secretBaseIdx].language);
-    return StringAppend(dest, gText_ApostropheSBase);
+    return StringAppendWithPlaceholder(dest, gText_ApostropheSBase, dest);
 }
 
 u8 *GetSecretBaseMapName(u8 *dest)

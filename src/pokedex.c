@@ -4145,13 +4145,13 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(gText_WTWeight, 0x60, 0x49);
     if (owned)
     {
-        PrintMonHeight(gPokedexEntries[num].height, 0x81, 0x39);
-        PrintMonWeight(gPokedexEntries[num].weight, 0x81, 0x49);
+        PrintMonHeight(gPokedexEntries[num].height, 0x90, 0x39);
+        PrintMonWeight(gPokedexEntries[num].weight, 0x90, 0x49);
     }
     else
     {
-        PrintInfoScreenText(gText_UnkHeight, 0x81, 0x39);
-        PrintInfoScreenText(gText_UnkWeight, 0x81, 0x49);
+        PrintInfoScreenText(gText_UnkHeight, 0x90, 0x39);
+        PrintInfoScreenText(gText_UnkWeight, 0x90, 0x49);
     }
     if (owned)
         description = gPokedexEntries[num].description;
@@ -4164,13 +4164,13 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
 // Note I used a random string, to fix later
 static void PrintMonHeight(u16 height, u8 left, u8 top)
 {
-    PrintInfoScreenText(gText_Are2, left, top);
+    PrintInfoScreenText(gText_EmptyHeight, left, top);
     UnusedPrintDecimalNum(0, height, left, top);
 }
 
 static void PrintMonWeight(u16 weight, u8 left, u8 top)
 {
-    PrintInfoScreenText(gText_Are2, left, top);
+    PrintInfoScreenText(gText_EmptyWeight, left, top);
     UnusedPrintDecimalNum(0, weight, left, top);
 }
 
@@ -4503,7 +4503,7 @@ static void UnusedPrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
     }
 
     str[2] = CHAR_0 + ((num % 1000) % 100) / 10;
-    str[3] = CHAR_PERIOD;
+    str[3] = CHAR_COMMA;
     str[4] = CHAR_0 + ((num % 1000) % 100) % 10;
     str[5] = EOS;
     PrintInfoSubMenuText(windowId, str, left, top);

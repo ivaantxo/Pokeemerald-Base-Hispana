@@ -2354,7 +2354,7 @@ void BufferStringBattle(u16 stringID)
     memcpy(txtBuff, stringPtr, size);
     if (!(gBattleTypeFlags & BATTLE_TYPE_SECRET_BASE)
         && gTrainerBattleOpponent_A != TRAINER_UNION_ROOM && gTrainerBattleOpponent_A != TRAINER_FRONTIER_BRAIN
-        && !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER))
+        && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_HILL)))
     {
         u8 *toSwap, *txt;
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && gTrainerBattleOpponent_A < TRAINERS_COUNT)
