@@ -1523,18 +1523,23 @@ const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.g
 const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
 
-// Moved from other files in the french version. Todo sort the gfx in the right order
-const u16 gPokeJumpBonuses_Pal[] = INCBIN_U16("graphics/pokemon_jump/bonuses.gbapal");
-const u32 gPokeJumpBonuses_Gfx[] = INCBIN_U32("graphics/pokemon_jump/bonuses.4bpp.lz");
-const u32 gPokeJumpBonuses_Tilemap[] = INCBIN_U32("graphics/pokemon_jump/bonuses.bin.lz");
+// Moved from other files in the french version.
+
+// credits
+const u32 gCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_end_copyright.4bpp.lz");
+const u32 gCreditsCopyrightEnd_Tilemap[] = INCBIN_U32("graphics/credits/the_end_copyright.bin.lz");
 
 const u16 g321Start_Pal[] = INCBIN_U16("graphics/link/321start.gbapal");
 const u32 g321Start_Gfx[] = INCBIN_U32("graphics/link/321start.4bpp.lz");
 
+// poke jump
+const u16 gPokeJumpBonuses_Pal[] = INCBIN_U16("graphics/pokemon_jump/bonuses.gbapal");
+const u32 gPokeJumpBonuses_Gfx[] = INCBIN_U32("graphics/pokemon_jump/bonuses.4bpp.lz");
+const u32 gPokeJumpBonuses_Tilemap[] = INCBIN_U32("graphics/pokemon_jump/bonuses.bin.lz");
+
 const u16 gBlenderCenter_Pal[] = INCBIN_U16("graphics/berry_blender/center.gbapal");
 
-// tilesets ?
-const u32 gTilesetTiles_Shop[] = INCBIN_U32("data/tilesets/secondary/shop/tiles.4bpp.lz");
+// tiles shop
 const u16 gTilesetPalettes_Shop[][16] =
 {
     INCBIN_U16("data/tilesets/secondary/shop/palettes/00.gbapal"),
@@ -1554,29 +1559,7 @@ const u16 gTilesetPalettes_Shop[][16] =
 	INCBIN_U16("data/tilesets/secondary/shop/palettes/14.gbapal"),
 	INCBIN_U16("data/tilesets/secondary/shop/palettes/15.gbapal"),
 };
-
-const u32 gTilesetTiles_BattleDome[] = INCBIN_U32("data/tilesets/secondary/battle_dome/tiles.4bpp.lz");
-const u16 gTilesetPalettes_BattleDome[][16] =
-{
-    INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/00.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/01.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/02.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/03.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/04.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/05.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/06.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/07.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/08.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/09.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/10.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/11.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/12.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/13.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/14.gbapal"),
-	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/15.gbapal"),
-};
-
-const u32 gFrontierPassMapScreen_Gfx[] = INCBIN_U32("graphics/frontier_pass/map_screen.4bpp.lz");
+const u32 gTilesetTiles_Shop[] = INCBIN_U32("data/tilesets/secondary/shop/tiles.4bpp.lz");
 
 // roulette
 const u16 gRouletteShadow_Pal[] = INCBIN_U16("graphics/roulette/shadow.gbapal");
@@ -1596,12 +1579,30 @@ const u16 gRouletteUnused2_Pal[] = INCBIN_U16("graphics/roulette/unused_2.gbapal
 const u16 gRouletteUnused3_Pal[] = INCBIN_U16("graphics/roulette/unused_3.gbapal");
 const u16 gRouletteUnused4_Pal[] = INCBIN_U16("graphics/roulette/unused_4.gbapal");
 
-// pokedex
-const u16 gCryMeter_Pal[] = INCBIN_U16("graphics/pokedex/cry_meter.gbapal");
-const u8 gCryMeter_Gfx[] = INCBIN_U8("graphics/pokedex/cry_meter.4bpp.lz");
+// frontier pass
+const u32 gFrontierPassMapScreen_Gfx[] = INCBIN_U32("graphics/frontier_pass/map_screen.4bpp.lz");
 
-// credits
-const u32 gCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_end_copyright.4bpp.lz");
+// tiles battle dome
+const u16 gTilesetPalettes_BattleDome[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/00.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/01.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/02.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/03.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/04.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/05.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/06.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/07.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/08.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/09.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/10.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/11.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/12.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/13.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/14.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/15.gbapal"),
+};
+const u32 gTilesetTiles_BattleDome[] = INCBIN_U32("data/tilesets/secondary/battle_dome/tiles.4bpp.lz");
 
 // pokenav match call gfx
 const u16 gMatchCallUI_Pal[] = INCBIN_U16("graphics/pokenav/match_call/ui.gbapal");
@@ -1618,8 +1619,12 @@ const u16 gMonRibbonListFramePal[] = INCBIN_U16("graphics/pokenav/ribbons/list_b
 const u32 gMonRibbonListFrameTiles[] = INCBIN_U32("graphics/pokenav/ribbons/list_bg.4bpp.lz");
 const u32 gMonRibbonListFrameTilemap[] = INCBIN_U32("graphics/pokenav/ribbons/list_bg.bin.lz");
 
+// pokedex
+const u16 gCryMeter_Pal[] = INCBIN_U16("graphics/pokedex/cry_meter.gbapal");
+const u8 gCryMeter_Gfx[] = INCBIN_U8("graphics/pokedex/cry_meter.4bpp.lz");
+
 // random garbage at the end.
-static const u8 sEmpty3[0x54BAC] = {0};
+static const u8 sEmpty3[0x4EA98] = {0};
 static const u8 sUnused1[]       = {0x0D, 0x00, 0x58, 0x02};
 static const u8 sEmpty4[0x1145]  = {0};
 static const u8 sUnused2[]       = {0x02};

@@ -5095,6 +5095,7 @@ extern const u8 gCryMeter_Gfx[];
 
 // credits
 extern const u32 gCreditsCopyrightEnd_Gfx[];
+extern const u32 gCreditsCopyrightEnd_Tilemap[];
 
 // pokenav match call gfx
 extern const u16 gMatchCallUI_Pal[];
