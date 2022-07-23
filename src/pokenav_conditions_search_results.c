@@ -674,8 +674,8 @@ static void CreateSearchResultsList(void)
     template.count = GetSearchResultsMonListCount();
     template.itemSize = sizeof(struct PokenavListItem);
     template.startIndex = GetSearchResultsCurrentListIndex();
-    template.item_X = 13;
-    template.windowWidth = 17;
+    template.item_X = 12;
+    template.windowWidth = 18;
     template.listTop = 1;
     template.maxShowed = 8;
     template.fillValue = 2;
