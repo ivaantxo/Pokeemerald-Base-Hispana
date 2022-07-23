@@ -263,6 +263,8 @@ u8 *StringAppendWithPlaceholder(u8 *dest, const u8 *src, u8 *placeholderStr)
     return dest;
 }
 
+const u8 gText_LevyTatia[] = _("LEVY&TATIA");
+
 const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGender, const u8 *trainerName)
 {
     switch (trainerClassId)
@@ -277,7 +279,7 @@ const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGende
             return gText_Dresseur; // DRESSEUR
         break;
     case TRAINER_CLASS_LEADER:
-        if (trainerName != NULL && StringCompare(trainerName, gText_11F) == 0) // LEVY TATA
+        if (trainerName != NULL && StringCompare(trainerName, gText_LevyTatia) == 0)
             return gText_Champion; // CHAMPION
         break;
     }

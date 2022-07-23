@@ -872,7 +872,7 @@ static void Task_ShowMons(u8 taskId)
         if (sCreditsData->currShownMon < sCreditsData->numMonToShow - 1)
         {
             sCreditsData->currShownMon++;
-            gSprites[spriteId].data[3] = 50;
+            gSprites[spriteId].data[3] = 52;
         }
         else
         {
@@ -886,7 +886,7 @@ static void Task_ShowMons(u8 taskId)
         else
             sCreditsData->nextImgPos++;
 
-        gTasks[taskId].tDelay = 50;
+        gTasks[taskId].tDelay = 52;
         gTasks[taskId].tState++;
         break;
     case 3:
@@ -1032,7 +1032,7 @@ static void Task_CycleSceneryPalette(u8 taskId)
         if (gTasks[taskId].tTimer != TIMER_STOP)
         {
 
-            if (gTasks[taskId].tTimer == 584)
+            if (gTasks[taskId].tTimer == 620)
             {
                 gTasks[gTasks[gTasks[taskId].tMainTaskId].tTaskId_BikeScene].tState = 10;
                 gTasks[taskId].tTimer = TIMER_STOP;

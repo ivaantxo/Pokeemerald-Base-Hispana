@@ -4351,8 +4351,8 @@ void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         j = GetFrontierOpponentClass(trainerId), trGender = IsFrontierTrainerFemale(trainerId);
 
     trClassName = GetTrainerClassNameGenderSpecific(j, trGender, NULL);
-    for (;trClassName[i] != EOS; i++)
-        gStringVar1[i] = trClassName[i];
+    for (; *trClassName != EOS; trClassName++, i++)
+        gStringVar1[i] = *trClassName;
     gStringVar1[i] = CHAR_SPACE;
     gStringVar1[i + 1] = EOS;
 

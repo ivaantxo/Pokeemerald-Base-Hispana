@@ -1,7 +1,7 @@
 #include "global.h"
 
-const u8 gText_LevyTatia[] = _("LEVY&TATIA");
-const u8 gText_MysteryEventBerry[] = _(" Tu as obtenu une BAIE {STR_VAR_2}!\nPapa en a une à l’ARENE de CLEMENTI.");
+ALIGNED(4)
+const u8 gText_MysteryEventBerry[] = _("Tu as obtenu une BAIE {STR_VAR_2}!\nPapa en a une à l’ARENE de CLEMENTI.");
 const u8 gText_MysteryEventBerryTransform[] = _("La BAIE {STR_VAR_1} s’est transformée en\nune BAIE {STR_VAR_2}.");
 const u8 gText_MysteryEventBerryObtained[] = _("Tu avais déjà obtenu la BAIE\n{STR_VAR_1}.");
 const u8 gText_MysteryEventSpecialRibbon[] = _("Un RUBAN spécial a été remis au\nPOKéMON de ton équipe.");

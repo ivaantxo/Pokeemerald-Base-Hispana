@@ -2677,7 +2677,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 else if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
                     trClass = GetFrontierBrainTrainerClass();
                 else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-                    trClass = GetFrontierOpponentClass(gTrainerBattleOpponent_A), gender = GetFrontierOpponentClass(gTrainerBattleOpponent_A);
+                    trClass = GetFrontierOpponentClass(gTrainerBattleOpponent_A), gender = IsFrontierTrainerFemale(gTrainerBattleOpponent_A);
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
                     trClass = GetTrainerHillOpponentClass(gTrainerBattleOpponent_A);
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
@@ -2828,7 +2828,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 s32 gender = -1, trClass;
                 const u8 *trName = NULL;
                 if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-                    trClass = GetFrontierOpponentClass(gTrainerBattleOpponent_B), gender = GetFrontierOpponentClass(gTrainerBattleOpponent_B);
+                    trClass = GetFrontierOpponentClass(gTrainerBattleOpponent_B), gender = IsFrontierTrainerFemale(gTrainerBattleOpponent_B);
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
                     trClass = GetTrainerHillOpponentClass(gTrainerBattleOpponent_B);
                 else
@@ -2887,7 +2887,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
             case B_TXT_PARTNER_CLASS:
             {
                 s32 trClass = GetFrontierOpponentClass(gPartnerTrainerId);
-                s32 gender = GetFrontierOpponentClass(gPartnerTrainerId);
+                s32 gender = IsFrontierTrainerFemale(gPartnerTrainerId);
                 toCpy = GetTrainerClassNameGenderSpecific(trClass, gender, NULL);
                 break;
             }
@@ -2979,8 +2979,8 @@ static void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst) // differen
             }
             else
             {
-                GetMonData(&gEnemyParty[src[srcID + 2]], MON_DATA_NICKNAME, text);
-                StringGet_Nickname(text);
+                GetMonData(&gEnemyParty[src[srcID + 2]], MON_DATA_NICKNAME, dst);
+                StringGet_Nickname(dst);
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
                     StringAppend(dst, sText_FoePkmnPrefix);
                 else
