@@ -915,7 +915,7 @@ static const u8 sUnused[] =
     0x0c, 0x10, 0x00, 0xff, 0x06, 0x27, 0x02, 0xff, 0x00, 0x0c, 0x48,
     0x02, 0xff, 0x00, 0x01, 0x1f, 0x02, 0xff, 0x00, 0x16, 0x37, 0x02,
     0xff, 0x00, 0x0d, 0x50, 0x4b, 0x02, 0xff, 0x06, 0x06, 0x06, 0x06,
-    0x05, 0x03, 0x03, 0x03, 0x02, 0x02, 0x03, 0x03, 0x03, 0x03, 0x02
+    0x05, 0x03, 0x03, 0x03, 0x02, 0x02
 };
 
 static void UpdateHitPitch(void)
@@ -3585,6 +3585,8 @@ static bool8 PrintBlendingResults(void)
     return FALSE;
 }
 
+static const u8 sUnused2[] = {0x03, 0x03, 0x03, 0x03, 0x02};
+
 static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
 {
     u8 text[12];
@@ -3749,25 +3751,22 @@ static bool8 PrintBlendingRanking(void)
     return FALSE;
 }
 
-static const struct WindowTemplate sBlenderRecordWindowTemplate =
-{
-    .bg = 0,
-    .tilemapLeft = 6,
-    .tilemapTop = 4,
-    .width = 18,
-    .height = 11,
-    .paletteNum = 15,
-    .baseBlock = 8
-};
-
 void ShowBerryBlenderRecordWindow(void)
 {
     s32 i;
     s32 xPos, yPos;
-    struct WindowTemplate winTemplate;
+    struct WindowTemplate winTemplate =
+    {
+        .bg = 0,
+        .tilemapLeft = 6,
+        .tilemapTop = 4,
+        .width = 18,
+        .height = 11,
+        .paletteNum = 15,
+        .baseBlock = 8
+    };
     u8 text[32];
 
-    winTemplate = sBlenderRecordWindowTemplate;
     gRecordsWindowId = AddWindow(&winTemplate);
     DrawStdWindowFrame(gRecordsWindowId, 0);
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));

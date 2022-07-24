@@ -288,22 +288,22 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
 // The keys shown on the keyboard are handled separately by sNamingScreenKeyboardText
 static const u8 sKeyboardChars[KBPAGE_COUNT][KBROW_COUNT][KBCOL_COUNT] = {
     [KEYBOARD_LETTERS_LOWER] = {
-        __("abcdef ."),
-        __("ghijkl ,"),
-        __("mnopqrs "),
-        __("tuvwxyz "),
+        __("abcdefgh."),
+        __("ijklmnop,"),
+        __("qrstuvwx "),
+        __("yz  -    "),
     },
     [KEYBOARD_LETTERS_UPPER] = {
-        __("ABCDEF ."),
-        __("GHIJKL ,"),
-        __("MNOPQRS "),
-        __("TUVWXYZ "),
+        __("ABCDEFGH."),
+        __("IJKLMNOP,"),
+        __("QRSTUVWX "),
+        __("YZ  -    "),
     },
     [KEYBOARD_SYMBOLS] = {
-        __("01234   "),
-        __("56789   "),
-        __("!?♂♀/-  "),
-        __("…“”‘'   "),
+        __("01234    "),
+        __("56789    "),
+        __("!?♂♀/    "),
+        __("…“”‘’    "),
     }
 };
 
@@ -313,9 +313,9 @@ static const u8 sPageColumnCounts[KBPAGE_COUNT] = {
     [KEYBOARD_SYMBOLS]       = 6
 };
 static const u8 sPageColumnXPos[KBPAGE_COUNT * KBCOL_COUNT] = {
-    0, 12, 24, 56, 68, 80, 92, 123, // KEYBOARD_LETTERS_LOWER
-    0, 12, 24, 56, 68, 80, 92, 123, // KEYBOARD_LETTERS_UPPER
-    0, 22, 44, 66, 88, 110          // KEYBOARD_SYMBOLS
+    0, 12, 24, 36, 62, 74, 86, 98, 123, // KEYBOARD_LETTERS_LOWER
+    0, 12, 24, 36, 62, 74, 86, 98, 123, // KEYBOARD_LETTERS_UPPER
+    0, 22, 44, 66, 88, 110              // KEYBOARD_SYMBOLS
 };
 
 // forward declarations

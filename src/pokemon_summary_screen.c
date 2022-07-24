@@ -591,7 +591,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .bg = 0,
         .tilemapLeft = 11,
         .tilemapTop = 9,
-        .width = 18,
+        .width = 19,
         .height = 4,
         .paletteNum = 6,
         .baseBlock = 485,
@@ -603,7 +603,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .width = 18,
         .height = 6,
         .paletteNum = 6,
-        .baseBlock = 557,
+        .baseBlock = 561,
     },
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =

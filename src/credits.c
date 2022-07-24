@@ -738,7 +738,7 @@ static void Task_UpdatePage(u8 taskId)
     case 3:
         if (!gPaletteFade.active)
         {
-            gTasks[taskId].tDelay = 115;
+            gTasks[taskId].tDelay = 121;
             gTasks[taskId].tState++;
         }
         return;
