@@ -46,7 +46,7 @@ static const struct WindowTemplate sWindowTemplates_MailboxMenu[MAILBOXWIN_COUNT
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 1,
-        .width = 8,
+        .width = 24,
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x8
@@ -58,7 +58,7 @@ static const struct WindowTemplate sWindowTemplates_MailboxMenu[MAILBOXWIN_COUNT
         .width = 8,
         .height = 18,
         .paletteNum = 15,
-        .baseBlock = 0x18
+        .baseBlock = 0x38
     },
     [MAILBOXWIN_OPTIONS] = {
         .bg = 0,
@@ -67,7 +67,7 @@ static const struct WindowTemplate sWindowTemplates_MailboxMenu[MAILBOXWIN_COUNT
         .width = 11,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 0x18
+        .baseBlock = 0x38
     }
 };
 

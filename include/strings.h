@@ -213,6 +213,7 @@ extern const u8 gMenuText_Walk[];
 extern const u8 gMenuText_Deselect[];
 extern const u8 gMenuText_CheckTag[];
 extern const u8 gMenuText_Confirm[];
+extern const u8 gMenuText_Confirm2[];
 extern const u8 gMenuText_Show[];
 extern const u8 gMenuText_Give2[];
 
@@ -2487,7 +2488,8 @@ extern const u8 gText_MrStoneMatchCallDesc[];
 extern const u8 gText_MrStoneMatchCallName[];
 extern const u8 gText_StevenMatchCallDesc[];
 extern const u8 gText_StevenMatchCallName[];
-extern const u8 gText_MayBrendanMatchCallDesc[];
+extern const u8 gText_BrendanMatchCallDesc[];
+extern const u8 gText_MayMatchCallDesc[];
 extern const u8 gText_WallyMatchCallDesc[];
 extern const u8 gText_NormanMatchCallDesc[];
 extern const u8 gText_NormanMatchCallName[];
