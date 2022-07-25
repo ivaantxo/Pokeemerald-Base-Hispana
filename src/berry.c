@@ -114,7 +114,7 @@ static const u8 sBerryDescriptionPart2_Enigma[] = _("détiendrait le pouvoir des
 
 const struct Berry gBerries[] =
 {
-        [ITEM_CHERI_BERRY - FIRST_BERRY_INDEX] =
+    [ITEM_CHERI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("CERIZ"),
         .firmness = BERRY_FIRMNESS_SOFT,
