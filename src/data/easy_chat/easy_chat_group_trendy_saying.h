@@ -195,7 +195,7 @@ const struct EasyChatWordInfo gEasyChatGroup_TrendySaying[] = {
     },
     {
         .text = gEasyChatWord_Ugly,
-        .alphabeticalOrder = 31,
+        .alphabeticalOrder = 26,
         .enabled = TRUE,
     },
 };

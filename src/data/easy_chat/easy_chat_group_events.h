@@ -171,7 +171,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Events[] = {
     },
     {
         .text = gEasyChatWord_Frontier,
-        .alphabeticalOrder = 27,
+        .alphabeticalOrder = 28,
         .enabled = TRUE,
     },
 };

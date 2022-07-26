@@ -412,7 +412,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Conditions[] = {
     },
     {
         .text = gEasyChatWord_Badly,
-        .alphabeticalOrder = 114,
+        .alphabeticalOrder = 7,
         .enabled = TRUE,
     },
 };

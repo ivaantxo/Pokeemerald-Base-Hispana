@@ -267,7 +267,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Time[] = {
     },
     {
         .text = gEasyChatWord_Week,
-        .alphabeticalOrder = 12,
+        .alphabeticalOrder = 14,
         .enabled = TRUE,
     },
 };

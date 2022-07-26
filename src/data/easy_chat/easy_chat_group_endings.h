@@ -411,7 +411,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Endings[] = {
     },
     {
         .text = gEasyChatWord_Anywhere,
-        .alphabeticalOrder = 10,
+        .alphabeticalOrder = 45,
         .enabled = TRUE,
     },
 };

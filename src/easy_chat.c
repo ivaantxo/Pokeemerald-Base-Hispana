@@ -816,9 +816,9 @@ static const struct BgTemplate sEasyChatBgTemplates[] = {
 static const struct WindowTemplate sEasyChatWindowTemplates[] = {
     {
         .bg = 1,
-        .tilemapLeft = 6,
+        .tilemapLeft = 0,
         .tilemapTop = 0,
-        .width = 18,
+        .width = 30,
         .height = 2,
         .paletteNum = 10,
         .baseBlock = 0x10,
@@ -1181,8 +1181,8 @@ static const struct SpriteTemplate sSpriteTemplate_ScrollIndicator = {
 
 static const u8 sFooterOptionXOffsets[NUM_FOOTER_TYPES][4] = {
     [FOOTER_NORMAL] = {16, 111, 196,   0},
-    [FOOTER_QUIZ]   = {16,  78, 130, 160},
-    [FOOTER_ANSWER] = {16,  80, 134, 170},
+    [FOOTER_QUIZ]   = {16,  82, 148, 184},
+    [FOOTER_ANSWER] = {16,  78, 141, 174},
 };
 
 static const u8 *const sFooterTextOptions[NUM_FOOTER_TYPES][4] = {

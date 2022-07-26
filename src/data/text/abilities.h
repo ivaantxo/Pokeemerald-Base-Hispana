@@ -156,7 +156,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_PURE_POWER] = _("FORCE PURE"),
     [ABILITY_SHELL_ARMOR] = _("COQUE ARMURE"),
     [ABILITY_CACOPHONY] = _("CACOPHONIE"),
-    [ABILITY_AIR_LOCK] = _("AIR LOC"),
+    [ABILITY_AIR_LOCK] = _("AIR LOCK"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =

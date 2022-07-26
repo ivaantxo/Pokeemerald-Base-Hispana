@@ -357,7 +357,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Speech[] = {
     },
     {
         .text = gEasyChatWord_Fantastic,
-        .alphabeticalOrder = 28,
+        .alphabeticalOrder = 44,
         .enabled = TRUE,
     },
 };

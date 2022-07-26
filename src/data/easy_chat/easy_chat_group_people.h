@@ -447,7 +447,7 @@ const struct EasyChatWordInfo gEasyChatGroup_People[] = {
     },
     {
         .text = gEasyChatWord_Some,
-        .alphabeticalOrder = 3,
+        .alphabeticalOrder = 6,
         .enabled = TRUE,
     },
 };
