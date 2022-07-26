@@ -2474,7 +2474,7 @@ void CopyFrontierBrainTrainerName(u8 *dst)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    for (i = 0; i < TRAINER_NAME_LENGTH; i++)
+    for (i = 0; i < TRAINER_NAME_LENGTH + 1; i++)
         dst[i] = gTrainers[sFrontierBrainTrainerIds[facility]].trainerName[i];
 
     dst[i] = EOS;
