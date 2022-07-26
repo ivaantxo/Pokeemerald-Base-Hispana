@@ -1072,35 +1072,35 @@ static const struct InGameTrade sIngameTrades[] =
 static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
 {
     {
-        EC_WORD_BE,
+        EC_WORD_LET_S,
         EC_WORD_NICE,
-        EC_WORD_TO,
+        EC_WORD_WITH,
         EC_POKEMON(PLUSLE),
-        EC_WORD_EXCL,
+        EC_WORD_AND,
         EC_POKEMON(VOLBEAT),
-        EC_WORD_WILL,
-        EC_WORD_BE,
-        EC_WORD_FANTASTIC
+        EC_WORD_IS,
+        EC_WORD_FANTASTIC,
+        EC_EMPTY_WORD
     }, {
-        EC_WORD_I,
-        EC_WORD_WILL,
-        EC_WORD_MAKE,
         EC_POKEMON(BAGON),
+        EC_WORD_IS,
         EC_WORD_TOUGH,
-        EC_WORD_PLEASE,
-        EC_WORD_TRAIN,
+        EC_WORD_EXCL,
+        EC_WORD_TRAINS,
         EC_POKEMON(HORSEA),
-        EC_WORD_WELL
+        EC_WORD_PLEASE,
+        EC_WORD_EXCL,
+        EC_EMPTY_WORD
     }, {
         EC_WORD_THANK_YOU,
         EC_WORD_FOR,
         EC_POKEMON(SKITTY),
+        EC_EMPTY_WORD,
         EC_POKEMON_NATIONAL(MEOWTH),
-        EC_WORD_CRIES,
-        EC_WORD_IN,
+        EC_WORD_EVEN_SO,
         EC_WORD_A,
-        EC_WORD_CUTE,
-        EC_WORD_WAY
+        EC_WORD_SUPER,
+        EC_WORD_CRY
     }
 };
 
