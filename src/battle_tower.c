@@ -269,7 +269,7 @@ const u8 gTowerFemaleTrainerGfxIds[20] =
 };
 
 // Excludes the unused RS_FACILITY_CLASS_BOARDER_1 and _2
-const u8 sRubyFacilityClassToEmerald[RS_FACILITY_CLASSES_COUNT - 2][2] =
+static const u8 sRubyFacilityClassToEmerald[RS_FACILITY_CLASSES_COUNT - 2][2] =
 {
     {RS_FACILITY_CLASS_AQUA_LEADER_ARCHIE, FACILITY_CLASS_AQUA_LEADER_ARCHIE},
     {RS_FACILITY_CLASS_AQUA_GRUNT_M, FACILITY_CLASS_AQUA_GRUNT_M},
@@ -355,332 +355,332 @@ const u8 sRubyFacilityClassToEmerald[RS_FACILITY_CLASSES_COUNT - 2][2] =
     BattleFrontier_BattleTowerMultiPartnerRoom_Text_##name##Accept,     \
     BattleFrontier_BattleTowerMultiPartnerRoom_Text_##name##Reject
 
-const u8 *const sPartnerApprenticeTexts1[] =
+static const u8 *const sPartnerApprenticeTexts1[] =
 {
     PARTNER_TEXTS(Apprentice1)
 };
 
-const u8 *const sPartnerApprenticeTexts2[] =
+static const u8 *const sPartnerApprenticeTexts2[] =
 {
     PARTNER_TEXTS(Apprentice2)
 };
 
-const u8 *const sPartnerApprenticeTexts3[] =
+static const u8 *const sPartnerApprenticeTexts3[] =
 {
     PARTNER_TEXTS(Apprentice3)
 };
 
-const u8 *const sPartnerApprenticeTexts4[] =
+static const u8 *const sPartnerApprenticeTexts4[] =
 {
     PARTNER_TEXTS(Apprentice4)
 };
 
-const u8 *const sPartnerApprenticeTexts5[] =
+static const u8 *const sPartnerApprenticeTexts5[] =
 {
     PARTNER_TEXTS(Apprentice5)
 };
 
-const u8 *const sPartnerApprenticeTexts6[] =
+static const u8 *const sPartnerApprenticeTexts6[] =
 {
      PARTNER_TEXTS(Apprentice6)
 };
 
-const u8 *const sPartnerApprenticeTexts7[] =
+static const u8 *const sPartnerApprenticeTexts7[] =
 {
      PARTNER_TEXTS(Apprentice7)
 };
 
-const u8 *const sPartnerApprenticeTexts8[] =
+static const u8 *const sPartnerApprenticeTexts8[] =
 {
      PARTNER_TEXTS(Apprentice8)
 };
 
-const u8 *const sPartnerApprenticeTexts9[] =
+static const u8 *const sPartnerApprenticeTexts9[] =
 {
      PARTNER_TEXTS(Apprentice9)
 };
 
-const u8 *const sPartnerApprenticeTexts10[] =
+static const u8 *const sPartnerApprenticeTexts10[] =
 {
      PARTNER_TEXTS(Apprentice10)
 };
 
-const u8 *const sPartnerApprenticeTexts11[] =
+static const u8 *const sPartnerApprenticeTexts11[] =
 {
      PARTNER_TEXTS(Apprentice11)
 };
 
-const u8 *const sPartnerApprenticeTexts12[] =
+static const u8 *const sPartnerApprenticeTexts12[] =
 {
      PARTNER_TEXTS(Apprentice12)
 };
 
-const u8 *const sPartnerApprenticeTexts13[] =
+static const u8 *const sPartnerApprenticeTexts13[] =
 {
      PARTNER_TEXTS(Apprentice13)
 };
 
-const u8 *const sPartnerApprenticeTexts14[] =
+static const u8 *const sPartnerApprenticeTexts14[] =
 {
      PARTNER_TEXTS(Apprentice14)
 };
 
-const u8 *const sPartnerApprenticeTexts15[] =
+static const u8 *const sPartnerApprenticeTexts15[] =
 {
      PARTNER_TEXTS(Apprentice15)
 };
 
-const u8 *const sPartnerApprenticeTexts16[] =
+static const u8 *const sPartnerApprenticeTexts16[] =
 {
      PARTNER_TEXTS(Apprentice16)
 };
 
-const u8 *const sPartnerTextsLass[] =
+static const u8 *const sPartnerTextsLass[] =
 {
     PARTNER_TEXTS(Lass)
 };
 
-const u8 *const sPartnerTextsYoungster[] =
+static const u8 *const sPartnerTextsYoungster[] =
 {
     PARTNER_TEXTS(Youngster)
 };
 
-const u8 *const sPartnerTextsHiker[] =
+static const u8 *const sPartnerTextsHiker[] =
 {
     PARTNER_TEXTS(Hiker)
 };
 
-const u8 *const sPartnerTextsBeauty[] =
+static const u8 *const sPartnerTextsBeauty[] =
 {
     PARTNER_TEXTS(Beauty)
 };
 
-const u8 *const sPartnerTextsFisherman[] =
+static const u8 *const sPartnerTextsFisherman[] =
 {
     PARTNER_TEXTS(Fisherman)
 };
 
-const u8 *const sPartnerTextsLady[] =
+static const u8 *const sPartnerTextsLady[] =
 {
     PARTNER_TEXTS(Lady)
 };
 
-const u8 *const sPartnerTextsCyclingTriathleteF[] =
+static const u8 *const sPartnerTextsCyclingTriathleteF[] =
 {
     PARTNER_TEXTS(CyclingTriathleteF)
 };
 
-const u8 *const sPartnerTextsBugCatcher[] =
+static const u8 *const sPartnerTextsBugCatcher[] =
 {
     PARTNER_TEXTS(BugCatcher)
 };
 
-const u8 *const sPartnerTextsSchoolKidM[] =
+static const u8 *const sPartnerTextsSchoolKidM[] =
 {
     PARTNER_TEXTS(SchoolKidM)
 };
 
-const u8 *const sPartnerTextsRichBoy[] =
+static const u8 *const sPartnerTextsRichBoy[] =
 {
     PARTNER_TEXTS(RichBoy)
 };
 
-const u8 *const sPartnerTextsBlackBelt[] =
+static const u8 *const sPartnerTextsBlackBelt[] =
 {
     PARTNER_TEXTS(BlackBelt)
 };
 
-const u8 *const sPartnerTextsTuberF[] =
+static const u8 *const sPartnerTextsTuberF[] =
 {
     PARTNER_TEXTS(TuberF)
 };
 
-const u8 *const sPartnerTextsHexManiac[] =
+static const u8 *const sPartnerTextsHexManiac[] =
 {
     PARTNER_TEXTS(HexManiac)
 };
 
-const u8 *const sPartnerTextsPkmnBreederM[] =
+static const u8 *const sPartnerTextsPkmnBreederM[] =
 {
     PARTNER_TEXTS(PkmnBreederM)
 };
 
-const u8 *const sPartnerTextsRunningTriathleteF[] =
+static const u8 *const sPartnerTextsRunningTriathleteF[] =
 {
     PARTNER_TEXTS(RunningTriathleteF)
 };
 
-const u8 *const sPartnerTextsRunningTriathleteM[] =
+static const u8 *const sPartnerTextsRunningTriathleteM[] =
 {
     PARTNER_TEXTS(RunningTriathleteM)
 };
 
-const u8 *const sPartnerTextsBattleGirl[] =
+static const u8 *const sPartnerTextsBattleGirl[] =
 {
     PARTNER_TEXTS(BattleGirl)
 };
 
-const u8 *const sPartnerTextsCyclingTriathleteM[] =
+static const u8 *const sPartnerTextsCyclingTriathleteM[] =
 {
     PARTNER_TEXTS(CyclingTriathleteM)
 };
 
-const u8 *const sPartnerTextsTuberM[] =
+static const u8 *const sPartnerTextsTuberM[] =
 {
     PARTNER_TEXTS(TuberM)
 };
 
-const u8 *const sPartnerTextsGuitarist[] =
+static const u8 *const sPartnerTextsGuitarist[] =
 {
     PARTNER_TEXTS(Guitarist)
 };
 
-const u8 *const sPartnerTextsGentleman[] =
+static const u8 *const sPartnerTextsGentleman[] =
 {
     PARTNER_TEXTS(Gentleman)
 };
 
-const u8 *const sPartnerTextsPokefanM[] =
+static const u8 *const sPartnerTextsPokefanM[] =
 {
     PARTNER_TEXTS(PokefanM)
 };
 
-const u8 *const sPartnerTextsExpertM[] =
+static const u8 *const sPartnerTextsExpertM[] =
 {
     PARTNER_TEXTS(ExpertM)
 };
 
-const u8 *const sPartnerTextsExpertF[] =
+static const u8 *const sPartnerTextsExpertF[] =
 {
     PARTNER_TEXTS(ExpertF)
 };
 
-const u8 *const sPartnerTextsDragonTamer[] =
+static const u8 *const sPartnerTextsDragonTamer[] =
 {
     PARTNER_TEXTS(DragonTamer)
 };
 
-const u8 *const sPartnerTextsBirdKeeper[] =
+static const u8 *const sPartnerTextsBirdKeeper[] =
 {
     PARTNER_TEXTS(BirdKeeper)
 };
 
-const u8 *const sPartnerTextsNinjaBoy[] =
+static const u8 *const sPartnerTextsNinjaBoy[] =
 {
     PARTNER_TEXTS(NinjaBoy)
 };
 
-const u8 *const sPartnerTextsParasolLady[] =
+static const u8 *const sPartnerTextsParasolLady[] =
 {
     PARTNER_TEXTS(ParasolLady)
 };
 
-const u8 *const sPartnerTextsBugManiac[] =
+static const u8 *const sPartnerTextsBugManiac[] =
 {
     PARTNER_TEXTS(BugManiac)
 };
 
-const u8 *const sPartnerTextsSailor[] =
+static const u8 *const sPartnerTextsSailor[] =
 {
     PARTNER_TEXTS(Sailor)
 };
 
-const u8 *const sPartnerTextsCollector[] =
+static const u8 *const sPartnerTextsCollector[] =
 {
     PARTNER_TEXTS(Collector)
 };
 
-const u8 *const sPartnerTextsPkmnRangerM[] =
+static const u8 *const sPartnerTextsPkmnRangerM[] =
 {
     PARTNER_TEXTS(PkmnRangerM)
 };
 
-const u8 *const sPartnerTextsPkmnRangerF[] =
+static const u8 *const sPartnerTextsPkmnRangerF[] =
 {
     PARTNER_TEXTS(PkmnRangerF)
 };
 
-const u8 *const sPartnerTextsAromaLady[] =
+static const u8 *const sPartnerTextsAromaLady[] =
 {
     PARTNER_TEXTS(AromaLady)
 };
 
-const u8 *const sPartnerTextsRuinManiac[] =
+static const u8 *const sPartnerTextsRuinManiac[] =
 {
     PARTNER_TEXTS(RuinManiac)
 };
 
-const u8 *const sPartnerTextsCoolTrainerM[] =
+static const u8 *const sPartnerTextsCoolTrainerM[] =
 {
     PARTNER_TEXTS(CoolTrainerM)
 };
 
-const u8 *const sPartnerTextsCoolTrainerF[] =
+static const u8 *const sPartnerTextsCoolTrainerF[] =
 {
     PARTNER_TEXTS(CoolTrainerF)
 };
 
-const u8 *const sPartnerTextsPokemaniac[] =
+static const u8 *const sPartnerTextsPokemaniac[] =
 {
     PARTNER_TEXTS(Pokemaniac)
 };
 
-const u8 *const sPartnerTextsKindler[] =
+static const u8 *const sPartnerTextsKindler[] =
 {
     PARTNER_TEXTS(Kindler)
 };
 
-const u8 *const sPartnerTextsCamper[] =
+static const u8 *const sPartnerTextsCamper[] =
 {
     PARTNER_TEXTS(Camper)
 };
 
-const u8 *const sPartnerTextsPicnicker[] =
+static const u8 *const sPartnerTextsPicnicker[] =
 {
     PARTNER_TEXTS(Picnicker)
 };
 
-const u8 *const sPartnerTextsPsychicM[] =
+static const u8 *const sPartnerTextsPsychicM[] =
 {
     PARTNER_TEXTS(PsychicM)
 };
 
-const u8 *const sPartnerTextsPsychicF[] =
+static const u8 *const sPartnerTextsPsychicF[] =
 {
     PARTNER_TEXTS(PsychicF)
 };
 
-const u8 *const sPartnerTextsSchoolKidF[] =
+static const u8 *const sPartnerTextsSchoolKidF[] =
 {
     PARTNER_TEXTS(SchoolKidF)
 };
 
-const u8 *const sPartnerTextsPkmnBreederF[] =
+static const u8 *const sPartnerTextsPkmnBreederF[] =
 {
     PARTNER_TEXTS(PkmnBreederF)
 };
 
-const u8 *const sPartnerTextsPokefanF[] =
+static const u8 *const sPartnerTextsPokefanF[] =
 {
     PARTNER_TEXTS(PokefanF)
 };
 
-const u8 *const sPartnerTextsSwimmerF[] =
+static const u8 *const sPartnerTextsSwimmerF[] =
 {
     PARTNER_TEXTS(SwimmerF)
 };
 
-const u8 *const sPartnerTextsSwimmingTriathleteM[] =
+static const u8 *const sPartnerTextsSwimmingTriathleteM[] =
 {
     PARTNER_TEXTS(SwimmingTriathleteM)
 };
 
-const u8 *const sPartnerTextsSwimmingTriathleteF[] =
+static const u8 *const sPartnerTextsSwimmingTriathleteF[] =
 {
     PARTNER_TEXTS(SwimmingTriathleteF)
 };
 
-const u8 *const sPartnerTextsSwimmerM[] =
+static const u8 *const sPartnerTextsSwimmerM[] =
 {
     PARTNER_TEXTS(SwimmerM)
 };
@@ -743,7 +743,7 @@ struct
     {FACILITY_CLASS_SWIMMER_M,             sPartnerTextsSwimmerM}
 };
 
-const u8 *const *const sPartnerApprenticeTextTables[NUM_APPRENTICES] =
+static const u8 *const *const sPartnerApprenticeTextTables[NUM_APPRENTICES] =
 {
     sPartnerApprenticeTexts1,
     sPartnerApprenticeTexts2,
@@ -822,7 +822,7 @@ static void (* const sBattleTowerFuncs[])(void) =
     [BATTLE_TOWER_FUNC_GET_OPPONENT_INTRO2] = GetOpponentIntroSpeech2,
 };
 
-const u32 sWinStreakFlags[][2] =
+static const u32 sWinStreakFlags[][2] =
 {
     {STREAK_TOWER_SINGLES_50,     STREAK_TOWER_SINGLES_OPEN},
     {STREAK_TOWER_DOUBLES_50,     STREAK_TOWER_DOUBLES_OPEN},
@@ -830,7 +830,7 @@ const u32 sWinStreakFlags[][2] =
     {STREAK_TOWER_LINK_MULTIS_50, STREAK_TOWER_LINK_MULTIS_OPEN},
 };
 
-const u32 sWinStreakMasks[][2] =
+static const u32 sWinStreakMasks[][2] =
 {
     {~(STREAK_TOWER_SINGLES_50),     ~(STREAK_TOWER_SINGLES_OPEN)},
     {~(STREAK_TOWER_DOUBLES_50),     ~(STREAK_TOWER_DOUBLES_OPEN)},
@@ -839,13 +839,13 @@ const u32 sWinStreakMasks[][2] =
 };
 
 // The challenge number at which an Apprentice can appear, depending on how many of their questions were answered
-const u8 sApprenticeChallengeThreshold[MAX_APPRENTICE_QUESTIONS] =
+static const u8 sApprenticeChallengeThreshold[MAX_APPRENTICE_QUESTIONS] =
 {
     1, 2, 3, 4, 5, 8, 9, 10, 11, 12
 };
 
 // Unclear why this was duplicated
-const u8 sBattleTowerPartySizes2[] =
+static const u8 sBattleTowerPartySizes2[] =
 {
     [FRONTIER_MODE_SINGLES]     = FRONTIER_PARTY_SIZE,
     [FRONTIER_MODE_DOUBLES]     = FRONTIER_DOUBLES_PARTY_SIZE,
@@ -855,7 +855,7 @@ const u8 sBattleTowerPartySizes2[] =
 
 // Trainer ID ranges for possible frontier trainers to encounter on particular challenges
 // Trainers are scaled by difficulty, so higher trainer IDs have better teams
-const u16 sFrontierTrainerIdRanges[][2] =
+static const u16 sFrontierTrainerIdRanges[][2] =
 {
     {FRONTIER_TRAINER_BRADY,   FRONTIER_TRAINER_JILL},   //   0 -  99
     {FRONTIER_TRAINER_TREVIN,  FRONTIER_TRAINER_CHLOE},  //  80 - 119
@@ -867,7 +867,7 @@ const u16 sFrontierTrainerIdRanges[][2] =
     {FRONTIER_TRAINER_JAXON,   FRONTIER_TRAINER_GRETEL}, // 200 - 299
 };
 
-const u16 sFrontierTrainerIdRangesHard[][2] =
+static const u16 sFrontierTrainerIdRangesHard[][2] =
 {
     {FRONTIER_TRAINER_ERIK,    FRONTIER_TRAINER_CHLOE},  // 100 - 119
     {FRONTIER_TRAINER_NORTON,  FRONTIER_TRAINER_SOFIA},  // 120 - 139
@@ -880,9 +880,9 @@ const u16 sFrontierTrainerIdRangesHard[][2] =
 };
 
 // Unknown, unused data
-const u16 sUnused[] = { 179, 141, 200, 183 };
+static const u16 sUnused[] = { 179, 141, 200, 183 };
 
-const u8 sBattleTowerPartySizes[FRONTIER_MODE_COUNT] =
+static const u8 sBattleTowerPartySizes[FRONTIER_MODE_COUNT] =
 {
     [FRONTIER_MODE_SINGLES]     = FRONTIER_PARTY_SIZE,
     [FRONTIER_MODE_DOUBLES]     = FRONTIER_DOUBLES_PARTY_SIZE,
@@ -890,12 +890,12 @@ const u8 sBattleTowerPartySizes[FRONTIER_MODE_COUNT] =
     [FRONTIER_MODE_LINK_MULTIS] = FRONTIER_MULTI_PARTY_SIZE,
 };
 
-const u16 sRecordTrainerSpeechWon[] =
+static const u16 sRecordTrainerSpeechWon[] =
 {
     EC_WORD_YAY, EC_WORD_EXCL_EXCL, EC_WORD_I_VE, EC_EMPTY_WORD, EC_WORD_WINS, EC_WORD_EXCL_EXCL
 };
 
-const u16 sRecordTrainerSpeechLost[] =
+static const u16 sRecordTrainerSpeechLost[] =
 {
     EC_WORD_SLIMY, EC_WORD_ELLIPSIS, EC_WORD_TO_US, EC_WORD_EVEN_SO, EC_WORD_LOST, EC_WORD_EXCL
 };
