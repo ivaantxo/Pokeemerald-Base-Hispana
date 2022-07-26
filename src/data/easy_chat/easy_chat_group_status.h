@@ -651,7 +651,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Status[] = {
     },
     {
         .text = gEasyChatWord_ShieldDust,
-        .alphabeticalOrder = 80,
+        .alphabeticalOrder = 75,
         .enabled = TRUE,
     },
 };

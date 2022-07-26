@@ -411,7 +411,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Feelings[] = {
     },
     {
         .text = gEasyChatWord_Understands,
-        .alphabeticalOrder = 20,
+        .alphabeticalOrder = 31,
         .enabled = TRUE,
     },
 };

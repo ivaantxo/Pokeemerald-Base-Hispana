@@ -267,7 +267,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Lifestyle[] = {
     },
     {
         .text = gEasyChatWord_World,
-        .alphabeticalOrder = 44,
+        .alphabeticalOrder = 41,
         .enabled = TRUE,
     },
 };

@@ -249,7 +249,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Misc[] = {
     },
     {
         .text = gEasyChatWord_Right,
-        .alphabeticalOrder = 37,
+        .alphabeticalOrder = 21,
         .enabled = TRUE,
     },
 };

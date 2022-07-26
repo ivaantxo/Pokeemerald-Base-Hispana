@@ -321,7 +321,7 @@ const struct EasyChatWordInfo gEasyChatGroup_Hobbies[] = {
     },
     {
         .text = gEasyChatWord_Look,
-        .alphabeticalOrder = 20,
+        .alphabeticalOrder = 28,
         .enabled = TRUE,
     },
 };
