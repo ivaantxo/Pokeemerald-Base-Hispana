@@ -78,60 +78,60 @@ struct TourneyTreeLineSection
 #define EFFECTIVENESS_MODE_AI_VS_AI 2
 
 static u8 GetDomeTrainerMonIvs(u16);
-void SwapDomeTrainers(int, int, u16 *);
-void CalcDomeMonStats(u16, int, int, u8, u8, int *);
-void CreateDomeOpponentMons(u16);
+static void SwapDomeTrainers(int, int, u16 *);
+static void CalcDomeMonStats(u16, int, int, u8, u8, int *);
+static void CreateDomeOpponentMons(u16);
 static int SelectOpponentMons_Good(u16, bool8);
 static int SelectOpponentMons_Bad(u16, bool8);
 static int GetTypeEffectivenessPoints(int, int, int);
 static int SelectOpponentMonsFromParty(int *, bool8);
-void Task_ShowTourneyInfoCard(u8);
-void Task_HandleInfoCardInput(u8);
+static void Task_ShowTourneyInfoCard(u8);
+static void Task_HandleInfoCardInput(u8);
 static u8 Task_GetInfoCardInput(u8);
-void SetFacilityTrainerAndMonPtrs(void);
+static void SetFacilityTrainerAndMonPtrs(void);
 static int TrainerIdToTournamentId(u16);
 static u16 TrainerIdOfPlayerOpponent(void);
-void Task_ShowTourneyTree(u8);
-void Task_HandleStaticTourneyTreeInput(u8);
-void CB2_TourneyTree(void);
-void VblankCb_TourneyInfoCard(void);
-void DisplayMatchInfoOnCard(u8, u8);
-void DisplayTrainerInfoOnCard(u8, u8);
+static void Task_ShowTourneyTree(u8);
+static void Task_HandleStaticTourneyTreeInput(u8);
+static void CB2_TourneyTree(void);
+static void VblankCb_TourneyInfoCard(void);
+static void DisplayMatchInfoOnCard(u8, u8);
+static void DisplayTrainerInfoOnCard(u8, u8);
 static int BufferDomeWinString(u8, u8*);
 static u8 GetDomeBrainTrainerPicId(void);
 static u8 GetDomeBrainTrainerClass(void);
-void CopyDomeBrainTrainerName(u8 *);
-void CopyDomeTrainerName(u8 *, u16);
-void HblankCb_TourneyTree(void);
-void VblankCb_TourneyTree(void);
+static void CopyDomeBrainTrainerName(u8 *);
+static void CopyDomeTrainerName(u8 *, u16);
+static void HblankCb_TourneyTree(void);
+static void VblankCb_TourneyTree(void);
 static u8 UpdateTourneyTreeCursor(u8);
-void DecideRoundWinners(u8);
+static void DecideRoundWinners(u8);
 static u8 GetOpposingNPCTournamentIdByRound(u8, u8);
-void DrawTourneyAdvancementLine(u8, u8);
-void SpriteCb_HorizontalScrollArrow(struct Sprite *);
-void SpriteCb_VerticalScrollArrow(struct Sprite *);
-void InitDomeChallenge(void);
-void GetDomeData(void);
-void SetDomeData(void);
-void BufferDomeRoundText(void);
-void BufferDomeOpponentName(void);
-void InitDomeOpponentParty(void);
-void ShowDomeOpponentInfo(void);
-void ShowDomeTourneyTree(void);
-void ShowPreviousDomeTourneyTree(void);
-void SetDomeOpponentId(void);
-void SetDomeOpponentGraphicsId(void);
-void ShowNonInteractiveDomeTourneyTree(void);
-void ResolveDomeRoundWinners(void);
-void SaveDomeChallenge(void);
-void IncrementDomeStreaks(void);
-void ResetSketchedMoves(void);
-void RestoreDomePlayerPartyHeldItems(void);
-void ReduceDomePlayerPartyToSelectedMons(void);
-void GetPlayerSeededBeforeOpponent(void);
-void BufferLastDomeWinnerName(void);
-void InitRandomTourneyTreeResults(void);
-void InitDomeTrainers(void);
+static void DrawTourneyAdvancementLine(u8, u8);
+static void SpriteCb_HorizontalScrollArrow(struct Sprite *);
+static void SpriteCb_VerticalScrollArrow(struct Sprite *);
+static void InitDomeChallenge(void);
+static void GetDomeData(void);
+static void SetDomeData(void);
+static void BufferDomeRoundText(void);
+static void BufferDomeOpponentName(void);
+static void InitDomeOpponentParty(void);
+static void ShowDomeOpponentInfo(void);
+static void ShowDomeTourneyTree(void);
+static void ShowPreviousDomeTourneyTree(void);
+static void SetDomeOpponentId(void);
+static void SetDomeOpponentGraphicsId(void);
+static void ShowNonInteractiveDomeTourneyTree(void);
+static void ResolveDomeRoundWinners(void);
+static void SaveDomeChallenge(void);
+static void IncrementDomeStreaks(void);
+static void ResetSketchedMoves(void);
+static void RestoreDomePlayerPartyHeldItems(void);
+static void ReduceDomePlayerPartyToSelectedMons(void);
+static void GetPlayerSeededBeforeOpponent(void);
+static void BufferLastDomeWinnerName(void);
+static void InitRandomTourneyTreeResults(void);
+static void InitDomeTrainers(void);
 
 EWRAM_DATA u32 gPlayerPartyLostHP = 0; // never read
 static EWRAM_DATA u32 sPlayerPartyMaxHP = 0; // never read
@@ -1106,7 +1106,7 @@ static const struct SpriteTemplate sVerticalScrollArrowSpriteTemplate =
 // Organized by seed starting position, i.e. seed 0 battles seed 8 first
 static const u8 sTourneyTreeTrainerIds[DOME_TOURNAMENT_TRAINERS_COUNT] = {0, 8, 12, 4, 7, 15, 11, 3, 2, 10, 14, 6, 5, 13, 9, 1};
 
-void (* const sBattleDomeFunctions[])(void) =
+static void (* const sBattleDomeFunctions[])(void) =
 {
     [BATTLE_DOME_FUNC_INIT]                     = InitDomeChallenge,
     [BATTLE_DOME_FUNC_GET_DATA]                 = GetDomeData,
@@ -2087,7 +2087,7 @@ void CallBattleDomeFunction(void)
     sBattleDomeFunctions[gSpecialVar_0x8004]();
 }
 
-void InitDomeChallenge(void)
+static void InitDomeChallenge(void)
 {
     u32 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
@@ -2103,7 +2103,7 @@ void InitDomeChallenge(void)
     gTrainerBattleOpponent_A = 0;
 }
 
-void GetDomeData(void)
+static void GetDomeData(void)
 {
     u32 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
@@ -2171,7 +2171,7 @@ void GetDomeData(void)
     }
 }
 
-void SetDomeData(void)
+static void SetDomeData(void)
 {
     u32 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
@@ -2237,7 +2237,7 @@ void SetDomeData(void)
     }
 }
 
-void InitDomeTrainers(void)
+static void InitDomeTrainers(void)
 {
     int i, j, k;
     int monLevel;
@@ -2453,7 +2453,7 @@ void InitDomeTrainers(void)
     stats[statIndex] = (u8) ModifyStatByNature(nature, stats[statIndex], statIndex);        \
 }
 
-void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 nature, int *stats)
+static void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 nature, int *stats)
 {
     int i, count;
     u8 bits;
@@ -2492,7 +2492,7 @@ void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 nature, int
     CALC_STAT(baseSpDefense, STAT_SPDEF);
 }
 
-void SwapDomeTrainers(int id1, int id2, u16 *statsArray)
+static void SwapDomeTrainers(int id1, int id2, u16 *statsArray)
 {
     int i;
     u16 temp;
@@ -2504,18 +2504,18 @@ void SwapDomeTrainers(int id1, int id2, u16 *statsArray)
         SWAP(DOME_MONS[id1][i], DOME_MONS[id2][i], temp);
 }
 
-void BufferDomeRoundText(void)
+static void BufferDomeRoundText(void)
 {
     StringCopy(gStringVar1, gRoundsStringTable[gSaveBlock2Ptr->frontier.curChallengeBattleNum]);
 }
 
-void BufferDomeOpponentName(void)
+static void BufferDomeOpponentName(void)
 {
     StringCopy(gStringVar1, gRoundsStringTable[gSaveBlock2Ptr->frontier.curChallengeBattleNum]);
     CopyDomeTrainerName(gStringVar2, gTrainerBattleOpponent_A);
 }
 
-void InitDomeOpponentParty(void)
+static void InitDomeOpponentParty(void)
 {
     gPlayerPartyLostHP = 0;
     sPlayerPartyMaxHP =  GetMonData(&gPlayerParty[0], MON_DATA_MAX_HP, NULL);
@@ -2524,7 +2524,7 @@ void InitDomeOpponentParty(void)
     CreateDomeOpponentMons(TrainerIdToTournamentId(gTrainerBattleOpponent_A));
 }
 
-void CreateDomeOpponentMon(u8 monPartyId, u16 tournamentTrainerId, u8 tournamentMonId, u32 otId)
+static void CreateDomeOpponentMon(u8 monPartyId, u16 tournamentTrainerId, u8 tournamentMonId, u32 otId)
 {
     int i;
     u8 friendship = MAX_FRIENDSHIP;
@@ -2555,7 +2555,7 @@ void CreateDomeOpponentMon(u8 monPartyId, u16 tournamentTrainerId, u8 tournament
                &gBattleFrontierHeldItems[gFacilityTrainerMons[DOME_MONS[tournamentTrainerId][tournamentMonId]].itemTableId]);
 }
 
-void CreateDomeOpponentMons(u16 tournamentTrainerId)
+static void CreateDomeOpponentMons(u16 tournamentTrainerId)
 {
     u8 monsCount = 0;
     u32 otId = 0;
@@ -2747,7 +2747,7 @@ static int GetTypeEffectivenessPoints(int move, int targetSpecies, int mode)
     int i = 0;
     int typePower = TYPE_x1;
 
-    if (move == MOVE_NONE || move == 0xFFFF || gBattleMoves[move].power == 0)
+    if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].power == 0)
         return 0;
 
     defType1 = gBaseStats[targetSpecies].type1;
@@ -2944,7 +2944,7 @@ static int TournamentIdOfOpponent(int roundId, int trainerId)
     }
 }
 
-void SetDomeOpponentId(void)
+static void SetDomeOpponentId(void)
 {
     gTrainerBattleOpponent_A = TrainerIdOfPlayerOpponent();
 }
@@ -2955,12 +2955,12 @@ static u16 TrainerIdOfPlayerOpponent(void)
     return DOME_TRAINERS[TournamentIdOfOpponent(gSaveBlock2Ptr->frontier.curChallengeBattleNum, TRAINER_PLAYER)].trainerId;
 }
 
-void SetDomeOpponentGraphicsId(void)
+static void SetDomeOpponentGraphicsId(void)
 {
     SetBattleFacilityTrainerGfxId(gTrainerBattleOpponent_A, 0);
 }
 
-void SaveDomeChallenge(void)
+static void SaveDomeChallenge(void)
 {
     gSaveBlock2Ptr->frontier.challengeStatus = gSpecialVar_0x8005;
     VarSet(VAR_TEMP_0, 0);
@@ -2968,7 +2968,7 @@ void SaveDomeChallenge(void)
     SaveGameFrontier();
 }
 
-void IncrementDomeStreaks(void)
+static void IncrementDomeStreaks(void)
 {
     u8 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u8 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
@@ -2983,7 +2983,7 @@ void IncrementDomeStreaks(void)
 }
 
 // For showing the opponent info card of the upcoming trainer
-void ShowDomeOpponentInfo(void)
+static void ShowDomeOpponentInfo(void)
 {
     u8 taskId = CreateTask(Task_ShowTourneyInfoCard, 0);
     gTasks[taskId].tState = 0;
@@ -2995,7 +2995,7 @@ void ShowDomeOpponentInfo(void)
 }
 
 // For showing the opponent info card or the match info card
-void Task_ShowTourneyInfoCard(u8 taskId)
+static void Task_ShowTourneyInfoCard(u8 taskId)
 {
     int i;
     int tournamentId = gTasks[taskId].tTournamentId;
@@ -3115,7 +3115,7 @@ void Task_ShowTourneyInfoCard(u8 taskId)
 // Note: Card scrolling up means the current card goes down and another one appears from top.
 // The same is true for scrolling left.
 // That means that the sprite needs to move with the moving card in the opposite scrolling direction.
-void SpriteCb_TrainerIconCardScrollUp(struct Sprite *sprite)
+static void SpriteCb_TrainerIconCardScrollUp(struct Sprite *sprite)
 {
     sprite->y += 4;
     if (sprite->data[0] != 0)
@@ -3135,7 +3135,7 @@ void SpriteCb_TrainerIconCardScrollUp(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_TrainerIconCardScrollDown(struct Sprite *sprite)
+static void SpriteCb_TrainerIconCardScrollDown(struct Sprite *sprite)
 {
     sprite->y -= 4;
     if (sprite->data[0] != 0)
@@ -3155,7 +3155,7 @@ void SpriteCb_TrainerIconCardScrollDown(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_TrainerIconCardScrollLeft(struct Sprite *sprite)
+static void SpriteCb_TrainerIconCardScrollLeft(struct Sprite *sprite)
 {
     sprite->x += 4;
     if (sprite->data[0] != 0)
@@ -3175,7 +3175,7 @@ void SpriteCb_TrainerIconCardScrollLeft(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_TrainerIconCardScrollRight(struct Sprite *sprite)
+static void SpriteCb_TrainerIconCardScrollRight(struct Sprite *sprite)
 {
     sprite->x -= 4;
     if (sprite->data[0] != 0)
@@ -3197,13 +3197,13 @@ void SpriteCb_TrainerIconCardScrollRight(struct Sprite *sprite)
 
 #define sMonIconStill data[3]
 
-void SpriteCb_MonIcon(struct Sprite *sprite)
+static void SpriteCb_MonIcon(struct Sprite *sprite)
 {
     if (!sprite->sMonIconStill)
         UpdateMonIconFrame(sprite);
 }
 
-void SpriteCb_MonIconCardScrollUp(struct Sprite *sprite)
+static void SpriteCb_MonIconCardScrollUp(struct Sprite *sprite)
 {
     if (!sprite->sMonIconStill)
         UpdateMonIconFrame(sprite);
@@ -3225,7 +3225,7 @@ void SpriteCb_MonIconCardScrollUp(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_MonIconCardScrollDown(struct Sprite *sprite)
+static void SpriteCb_MonIconCardScrollDown(struct Sprite *sprite)
 {
     if (!sprite->sMonIconStill)
         UpdateMonIconFrame(sprite);
@@ -3247,7 +3247,7 @@ void SpriteCb_MonIconCardScrollDown(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_MonIconCardScrollLeft(struct Sprite *sprite)
+static void SpriteCb_MonIconCardScrollLeft(struct Sprite *sprite)
 {
     if (!sprite->sMonIconStill)
         UpdateMonIconFrame(sprite);
@@ -3269,7 +3269,7 @@ void SpriteCb_MonIconCardScrollLeft(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_MonIconCardScrollRight(struct Sprite *sprite)
+static void SpriteCb_MonIconCardScrollRight(struct Sprite *sprite)
 {
     if (!sprite->sMonIconStill)
         UpdateMonIconFrame(sprite);
@@ -3291,7 +3291,7 @@ void SpriteCb_MonIconCardScrollRight(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_HorizontalScrollArrow(struct Sprite *sprite)
+static void SpriteCb_HorizontalScrollArrow(struct Sprite *sprite)
 {
     int taskId1 = sprite->data[0];
     int arrId = gTasks[gTasks[taskId1].data[4]].data[1];
@@ -3360,7 +3360,7 @@ void SpriteCb_HorizontalScrollArrow(struct Sprite *sprite)
     }
 }
 
-void SpriteCb_VerticalScrollArrow(struct Sprite *sprite)
+static void SpriteCb_VerticalScrollArrow(struct Sprite *sprite)
 {
     int taskId1 = sprite->data[0];
 
@@ -3403,7 +3403,7 @@ void SpriteCb_VerticalScrollArrow(struct Sprite *sprite)
 
 #define tUsingAlternateSlot data[2] // CARD_ALTERNATE_SLOT
 
-void Task_HandleInfoCardInput(u8 taskId)
+static void Task_HandleInfoCardInput(u8 taskId)
 {
     int i;
     int windowId = 0;
@@ -4257,7 +4257,7 @@ static u8 Task_GetInfoCardInput(u8 taskId)
 #define ALLOC_ARRAY_SIZE (NUM_STATS * FRONTIER_PARTY_SIZE >= NUM_MOVE_POINT_TYPES ? (NUM_STATS * FRONTIER_PARTY_SIZE) :  NUM_MOVE_POINT_TYPES)
 
 // difference FR
-void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
+static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 {
     const u8 *trClassName;
     struct TextPrinterTemplate textPrinter;
@@ -4720,7 +4720,7 @@ static int BufferDomeWinString(u8 matchNum, u8 *tournamentIds)
         return winStringId + 1; // use DOME_TEXT_WON_*
 }
 
-void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
+static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 {
     struct TextPrinterTemplate textPrinter;
     int tournamentIds[2];
@@ -4929,7 +4929,7 @@ void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
     AddTextPrinter(&textPrinter, 0, NULL);
 }
 
-void ShowDomeTourneyTree(void)
+static void ShowDomeTourneyTree(void)
 {
     u8 taskId = CreateTask(Task_ShowTourneyTree, 0);
     gTasks[taskId].tState = 0;
@@ -4940,7 +4940,7 @@ void ShowDomeTourneyTree(void)
 }
 
 // To show the results of the last tourney on the computer in the lobby
-void ShowPreviousDomeTourneyTree(void)
+static void ShowPreviousDomeTourneyTree(void)
 {
     u8 taskId;
 
@@ -4963,7 +4963,7 @@ void ShowPreviousDomeTourneyTree(void)
 #define STATE_SHOW_INFOCARD_MATCH   5
 #define STATE_CLOSE_TOURNEY_TREE    7
 
-void Task_HandleTourneyTreeInput(u8 taskId)
+static void Task_HandleTourneyTreeInput(u8 taskId)
 {
     u8 newTaskId = 0;
     int spriteId = gTasks[taskId].data[1];
@@ -5124,7 +5124,7 @@ static u8 UpdateTourneyTreeCursor(u8 taskId)
 #undef MOVE_DIR_NONE
 
 // Shows the results of the just-completed round for the current tourney
-void ShowNonInteractiveDomeTourneyTree(void)
+static void ShowNonInteractiveDomeTourneyTree(void)
 {
     u8 taskId = CreateTask(Task_ShowTourneyTree, 0);
     gTasks[taskId].tState = 0;
@@ -5134,7 +5134,7 @@ void ShowNonInteractiveDomeTourneyTree(void)
     SetMainCallback2(CB2_TourneyTree);
 }
 
-void ResolveDomeRoundWinners(void)
+static void ResolveDomeRoundWinners(void)
 {
     int i;
 
@@ -5277,7 +5277,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
     return moveIds[j];
 }
 
-void Task_ShowTourneyTree(u8 taskId)
+static void Task_ShowTourneyTree(u8 taskId)
 {
     int i;
     struct TextPrinterTemplate textPrinter;
@@ -5508,7 +5508,7 @@ void Task_ShowTourneyTree(u8 taskId)
     }
 }
 
-void DrawTourneyAdvancementLine(u8 tournamentId, u8 roundId)
+static void DrawTourneyAdvancementLine(u8 tournamentId, u8 roundId)
 {
     int i;
     const struct TourneyTreeLineSection *lineSection = sTourneyTreeLineSections[tournamentId][roundId];
@@ -5526,7 +5526,7 @@ void DrawTourneyAdvancementLine(u8 tournamentId, u8 roundId)
 #define STATE_CLOSE_TOURNEY_TREE  4
 
 // The non-interactive tourney tree that's shown when a round is completed
-void Task_HandleStaticTourneyTreeInput(u8 taskId)
+static void Task_HandleStaticTourneyTreeInput(u8 taskId)
 {
     int i;
     struct TextPrinterTemplate textPrinter;
@@ -5604,7 +5604,7 @@ void Task_HandleStaticTourneyTreeInput(u8 taskId)
 #undef STATE_WAIT_FOR_INPUT
 #undef STATE_CLOSE_TOURNEY_TREE
 
-void CB2_TourneyTree(void)
+static void CB2_TourneyTree(void)
 {
     AnimateSprites();
     BuildOamBuffer();
@@ -5613,7 +5613,7 @@ void CB2_TourneyTree(void)
     RunTasks();
 }
 
-void VblankCb_TourneyInfoCard(void)
+static void VblankCb_TourneyInfoCard(void)
 {
     ChangeBgX(3, 0x80, BG_COORD_ADD);
     ChangeBgY(3, 0x80, BG_COORD_SUB);
@@ -5633,7 +5633,7 @@ void VblankCb_TourneyInfoCard(void)
     *(vu32*)(REG_ADDR_WIN0H) = ((win0H << 16) | (win1H));   \
 }
 
-void HblankCb_TourneyTree(void)
+static void HblankCb_TourneyTree(void)
 {
     u16 vCount = REG_VCOUNT;
 
@@ -5705,7 +5705,7 @@ void HblankCb_TourneyTree(void)
     }
 }
 
-void VblankCb_TourneyTree(void)
+static void VblankCb_TourneyTree(void)
 {
     SetGpuReg(REG_OFFSET_BG0HOFS, gBattle_BG0_X);
     SetGpuReg(REG_OFFSET_BG0VOFS, gBattle_BG0_Y);
@@ -5719,13 +5719,13 @@ void VblankCb_TourneyTree(void)
     ScanlineEffect_InitHBlankDmaTransfer();
 }
 
-void SetFacilityTrainerAndMonPtrs(void)
+static void SetFacilityTrainerAndMonPtrs(void)
 {
     gFacilityTrainerMons = gBattleFrontierMons;
     gFacilityTrainers = gBattleFrontierTrainers;
 }
 
-void ResetSketchedMoves(void)
+static void ResetSketchedMoves(void)
 {
     int i, moveSlot;
 
@@ -5751,7 +5751,7 @@ void ResetSketchedMoves(void)
     }
 }
 
-void RestoreDomePlayerPartyHeldItems(void)
+static void RestoreDomePlayerPartyHeldItems(void)
 {
     int i;
 
@@ -5763,12 +5763,12 @@ void RestoreDomePlayerPartyHeldItems(void)
     }
 }
 
-void ReduceDomePlayerPartyToSelectedMons(void)
+static void ReduceDomePlayerPartyToSelectedMons(void)
 {
     ReducePlayerPartyToSelectedMons();
 }
 
-void GetPlayerSeededBeforeOpponent(void)
+static void GetPlayerSeededBeforeOpponent(void)
 {
     // A higher tournament ID is a worse seed
     if (TrainerIdToTournamentId(gTrainerBattleOpponent_A) > TrainerIdToTournamentId(TRAINER_PLAYER))
@@ -5777,7 +5777,7 @@ void GetPlayerSeededBeforeOpponent(void)
         gSpecialVar_Result = 2;
 }
 
-void BufferLastDomeWinnerName(void)
+static void BufferLastDomeWinnerName(void)
 {
     int i;
 
@@ -5791,7 +5791,7 @@ void BufferLastDomeWinnerName(void)
 }
 
 // For showing the previous tourney results before the player has entered a challenge
-void InitRandomTourneyTreeResults(void)
+static void InitRandomTourneyTreeResults(void)
 {
     int i, j, k;
     int monLevel;
@@ -5963,7 +5963,7 @@ static u8 GetOpposingNPCTournamentIdByRound(u8 tournamentId, u8 round)
 }
 
 // Determines which trainers won in the NPC vs NPC battles
-void DecideRoundWinners(u8 roundId)
+static void DecideRoundWinners(u8 roundId)
 {
     int i;
     int moveSlot, monId1, monId2;
@@ -6077,7 +6077,7 @@ void DecideRoundWinners(u8 roundId)
     }
 }
 
-void CopyDomeTrainerName(u8 *str, u16 trainerId)
+static void CopyDomeTrainerName(u8 *str, u16 trainerId)
 {
     int i = 0;
     SetFacilityPtrsGetLevel();
@@ -6112,7 +6112,7 @@ static u8 GetDomeBrainTrainerClass(void)
     return gTrainers[TRAINER_TUCKER].trainerClass;
 }
 
-void CopyDomeBrainTrainerName(u8 *str)
+static void CopyDomeBrainTrainerName(u8 *str)
 {
     int i;
 
