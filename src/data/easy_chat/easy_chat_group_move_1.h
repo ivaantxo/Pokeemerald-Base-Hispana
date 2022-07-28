@@ -103,7 +103,6 @@ const u16 gEasyChatGroup_Move1[] = {
     MOVE_PURSUIT,
     MOVE_ANCIENT_POWER,
     MOVE_PSYCHO_BOOST,
-    MOVE_PSYCHO_BOOST,
     MOVE_PSYCHIC,
     MOVE_FOCUS_ENERGY,
     MOVE_SMOG,
@@ -155,4 +154,5 @@ const u16 gEasyChatGroup_Move1[] = {
     MOVE_ICY_WIND,
     MOVE_EXTREME_SPEED,
     MOVE_FLY,
+    MOVE_ABSORB,
 };
