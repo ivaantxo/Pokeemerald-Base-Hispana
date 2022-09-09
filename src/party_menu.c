@@ -977,6 +977,8 @@ static u8* GetPartyMenuBgTile(u16 tileId)
     return &sPartyBgGfxTilemap[tileId << 5];
 }
 
+#define POKE_ICON_BASE_PAL_TAG 56000
+
 static void CreatePartyMonSprites(u8 slot)
 {
     u8 actualSlot;
@@ -988,7 +990,12 @@ static void CreatePartyMonSprites(u8 slot)
 
         if (gMultiPartnerParty[actualSlot].species != SPECIES_NONE)
         {
+            u8 index = slot < PARTY_SIZE ? IndexOfSpritePaletteTag(POKE_ICON_BASE_PAL_TAG + slot) : 0xFF;
             CreatePartyMonIconSpriteParameterized(gMultiPartnerParty[actualSlot].species, gMultiPartnerParty[actualSlot].personality, &sPartyMenuBoxes[slot], 0, FALSE);
+            if (index < 16) { // Like SetMonIconPalette, but by species & personality
+                LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(gMultiPartnerParty[actualSlot].species, 0, gMultiPartnerParty[actualSlot].personality), index*16 + 0x100, 32);
+                gSprites[sPartyMenuBoxes[slot].monSpriteId].oam.paletteNum = index;
+            }
             CreatePartyMonHeldItemSpriteParameterized(gMultiPartnerParty[actualSlot].species, gMultiPartnerParty[actualSlot].heldItem, &sPartyMenuBoxes[slot]);
             CreatePartyMonPokeballSpriteParameterized(gMultiPartnerParty[actualSlot].species, &sPartyMenuBoxes[slot]);
             if (gMultiPartnerParty[actualSlot].hp == 0)
@@ -3846,8 +3853,6 @@ static bool8 SetUpFieldMove_Dive(void)
     }
     return FALSE;
 }
-
-#define POKE_ICON_BASE_PAL_TAG 56000
 
 static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox, u32 slot)
 {
