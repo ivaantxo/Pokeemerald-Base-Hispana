@@ -748,7 +748,7 @@ static void SetItemIconActive(u8, bool8);
 static u8 GetItemIconIdxByPosition(u8, u8);
 static void CreateItemIconSprites(void);
 static void TryLoadItemIconAtPos(u8, u8);
-static void TryHideItemIconAtPos(u8, u8);
+static void TryHideItemIconAtPos(u8, u8, bool32);
 static void TakeItemFromMon(u8, u8);
 static void InitItemIconInCursor(u16);
 static void SwapItemsWithMon(u8, u8);
@@ -5156,19 +5156,36 @@ static void SetMovingMonSprite(u8 mode, u8 id)
     sStorage->movingMonSprite->subpriority = 7;
 }
 
+// Find a free party palette slot (1-3, 7-9)
+u8 FindFreePartyPaletteSlot(void) {
+    u32 i, j, paletteNum;
+    bool32 inUse;
+
+    for (i = 0; i < PARTY_SIZE; i++) {
+        inUse = FALSE;
+        paletteNum = (i >= 3 ? i + 3 : i) + 1;
+        for (j = 0; j < PARTY_SIZE; j++)
+            if (sStorage->partySprites[j]->oam.paletteNum == paletteNum)
+                inUse = TRUE;
+        if (!inUse)
+            return paletteNum;
+    }
+}
+
 static void SetPlacedMonSprite(u8 boxId, u8 position)
 {
+    u32 i, paletteNum;
     if (boxId == TOTAL_BOXES_COUNT) // party mon
     {
-        u8 paletteNum = (position >= 3 ? position + 3 : position) + 1;
         sStorage->partySprites[position] = sStorage->movingMonSprite;
         sStorage->partySprites[position]->oam.priority = 1;
         sStorage->partySprites[position]->subpriority = 12;
 
-        // If currently using displayed mon palette, load party sprite palette into proper slot
+        // If currently using displayed mon palette, load party sprite palette into free party palette slot
         if (sStorage->partySprites[position]->oam.paletteNum == IndexOfSpritePaletteTag(PALTAG_DISPLAY_MON)) {
-          LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[position]), paletteNum*16 + 0x100, 32);
-          sStorage->partySprites[position]->oam.paletteNum = paletteNum;
+            paletteNum = FindFreePartyPaletteSlot();
+            LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[position]), paletteNum*16 + 0x100, 32);
+            sStorage->partySprites[position]->oam.paletteNum = paletteNum;
         }
     }
     else
@@ -6227,9 +6244,9 @@ static void SetCursorPosition(u8 newCursorArea, u8 newCursorPosition)
     if (sStorage->boxOption == OPTION_MOVE_ITEMS)
     {
         if (sCursorArea == CURSOR_AREA_IN_BOX)
-            TryHideItemIconAtPos(CURSOR_AREA_IN_BOX, sCursorPosition);
+            TryHideItemIconAtPos(CURSOR_AREA_IN_BOX, sCursorPosition, IsMovingItem());
         else if (sCursorArea == CURSOR_AREA_IN_PARTY)
-            TryHideItemIconAtPos(CURSOR_AREA_IN_PARTY, sCursorPosition);
+            TryHideItemIconAtPos(CURSOR_AREA_IN_PARTY, sCursorPosition, IsMovingItem());
 
         if (newCursorArea == CURSOR_AREA_IN_BOX)
             TryLoadItemIconAtPos(newCursorArea, newCursorPosition);
@@ -6630,11 +6647,11 @@ static void SetShiftedMonData(u8 boxId, u8 position)
 static void SetShiftedMonSprites(u8 boxId, u8 position) {
     u8 displayIndex = IndexOfSpritePaletteTag(PALTAG_DISPLAY_MON);
     if (boxId == TOTAL_BOXES_COUNT) { // party
-      u8 paletteNum = (position >= 3 ? position + 3 : position) + 1;
-      // Copy display palette into party palette slot
-      CpuFastCopy(&gPlttBufferUnfaded[displayIndex*16+0x100], &gPlttBufferUnfaded[paletteNum*16+0x100], 32);
-      CpuFastCopy(&gPlttBufferFaded[displayIndex*16+0x100], &gPlttBufferFaded[paletteNum*16+0x100], 32);
-      sStorage->partySprites[position]->oam.paletteNum = paletteNum;
+        u32 paletteNum = FindFreePartyPaletteSlot();
+        // Copy display palette into party palette slot
+        CpuFastCopy(&gPlttBufferUnfaded[displayIndex*16+0x100], &gPlttBufferUnfaded[paletteNum*16+0x100], 32);
+        CpuFastCopy(&gPlttBufferFaded[displayIndex*16+0x100], &gPlttBufferFaded[paletteNum*16+0x100], 32);
+        sStorage->partySprites[position]->oam.paletteNum = paletteNum;
     } else {
         u8 i = position / 6;
         u8 j = position % 6;
@@ -8167,7 +8184,7 @@ static void SetCursorPriorityTo1(void)
 static void TryHideItemAtCursor(void)
 {
     if (sCursorArea == CURSOR_AREA_IN_BOX)
-        TryHideItemIconAtPos(CURSOR_AREA_IN_BOX, sCursorPosition);
+        TryHideItemIconAtPos(CURSOR_AREA_IN_BOX, sCursorPosition, FALSE);
 }
 
 static void TryShowItemAtCursor(void)
@@ -9008,9 +9025,10 @@ static void CreateItemIconSprites(void)
             spriteSheet.tag = GFXTAG_ITEM_ICON_0 + i;
             LoadCompressedSpriteSheet(&spriteSheet);
             sStorage->itemIcons[i].tiles = GetSpriteTileStartByTag(spriteSheet.tag) * TILE_SIZE_4BPP + (void*)(OBJ_VRAM0);
-            sStorage->itemIcons[i].palIndex = AllocSpritePalette(PALTAG_ITEM_ICON_0 + i);
-            sStorage->itemIcons[i].palIndex *= 16;
-            sStorage->itemIcons[i].palIndex += 0x100;
+            // No longer allocated; item icons use palettes 14 & 15 now
+            // sStorage->itemIcons[i].palIndex = AllocSpritePalette(PALTAG_ITEM_ICON_0 + i);
+            // sStorage->itemIcons[i].palIndex *= 16;
+            // sStorage->itemIcons[i].palIndex += 0x100;
             spriteTemplate.tileTag = GFXTAG_ITEM_ICON_0 + i;
             spriteTemplate.paletteTag = PALTAG_ITEM_ICON_0 + i;
             spriteId = CreateSprite(&spriteTemplate, 0, 0, 11);
@@ -9062,7 +9080,7 @@ static void TryLoadItemIconAtPos(u8 cursorArea, u8 cursorPos)
     }
 }
 
-static void TryHideItemIconAtPos(u8 cursorArea, u8 cursorPos)
+static void TryHideItemIconAtPos(u8 cursorArea, u8 cursorPos, bool32 instant)
 {
     u8 id;
 
@@ -9070,7 +9088,8 @@ static void TryHideItemIconAtPos(u8 cursorArea, u8 cursorPos)
         return;
 
     id = GetItemIconIdxByPosition(cursorArea, cursorPos);
-    SetItemIconAffineAnim(id, ITEM_ANIM_DISAPPEAR);
+    if (!instant)
+        SetItemIconAffineAnim(id, ITEM_ANIM_DISAPPEAR);
     SetItemIconCallback(id, ITEM_CB_WAIT_ANIM, cursorArea, cursorPos);
 }
 
@@ -9356,6 +9375,7 @@ static void SetItemIconPosition(u8 id, u8 cursorArea, u8 cursorPos)
 static void LoadItemIconGfx(u8 id, const u32 *itemTiles, const u32 *itemPal)
 {
     s32 i;
+    u32 paletteNum = 14;
 
     if (id >= MAX_ITEM_ICONS)
         return;
@@ -9367,7 +9387,18 @@ static void LoadItemIconGfx(u8 id, const u32 *itemTiles, const u32 *itemPal)
 
     CpuFastCopy(sStorage->itemIconBuffer, sStorage->itemIcons[id].tiles, 0x200);
     LZ77UnCompWram(itemPal, sStorage->itemIconBuffer);
-    LoadPalette(sStorage->itemIconBuffer, sStorage->itemIcons[id].palIndex, 0x20);
+
+    // Load into free item palette slot,
+    // the one not being used by an item icon
+    for (i = 0; i < MAX_ITEM_ICONS; i++) {
+        if (i != id && sStorage->itemIcons[i].active) {
+            paletteNum = sStorage->itemIcons[i].sprite->oam.paletteNum ^ 1;
+            if (sStorage->itemIcons[i].area == CURSOR_AREA_IN_HAND)
+                break;
+        }
+    }
+    sStorage->itemIcons[id].sprite->oam.paletteNum = paletteNum;
+    LoadPalette(sStorage->itemIconBuffer, paletteNum * 16 + 0x100, 0x20);
 }
 
 static void SetItemIconAffineAnim(u8 id, u8 animNum)
