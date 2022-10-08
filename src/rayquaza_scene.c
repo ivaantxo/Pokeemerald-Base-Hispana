@@ -1,5 +1,6 @@
 #include "global.h"
 #include "rayquaza_scene.h"
+#include "event_object_movement.h"
 #include "sprite.h"
 #include "task.h"
 #include "graphics.h"
@@ -15,6 +16,7 @@
 #include "sound.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "constants/event_objects.h"
 #include "random.h"
 
 /*
@@ -154,7 +156,7 @@ static const struct OamData sOam_64x64 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
     .x = 0,
@@ -171,7 +173,7 @@ static const struct OamData sOam_32x32 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .x = 0,
@@ -188,7 +190,7 @@ static const struct OamData sOam_64x32 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x32),
     .x = 0,
@@ -205,7 +207,7 @@ static const struct OamData sOam_32x16 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x16),
     .x = 0,
@@ -222,7 +224,7 @@ static const struct OamData sOam_16x8 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x8),
     .x = 0,
@@ -239,7 +241,7 @@ static const struct OamData sOam_16x32 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x32),
     .x = 0,
@@ -256,7 +258,7 @@ static const struct OamData sOam_16x16 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -273,7 +275,7 @@ static const struct OamData sOam_32x8 =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x8),
     .x = 0,
@@ -1294,9 +1296,13 @@ void DoRayquazaScene(u8 animId, bool8 endEarly, void (*exitCallback)(void))
 
 static void CB2_InitRayquazaScene(void)
 {
+    u32 i;
     SetVBlankHBlankCallbacksToNull();
     ClearScheduledBgCopiesToVram();
     ScanlineEffect_Stop();
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+        if (gObjectEvents[i].graphicsId == OBJ_EVENT_GFX_RAYQUAZA)
+            gObjectEvents[i].invisible = FALSE;
     FreeAllSpritePalettes();
     ResetPaletteFade();
     ResetSpriteData();
@@ -1627,7 +1633,7 @@ static void Task_DuoFightAnim(u8 taskId)
         StopMapMusic();
     }
 
-    BlendPalettes(PALETTES_ALL, 0x10, 0);
+    BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
     SetVBlankCallback(VBlankCB_DuoFight);
     PlaySE(SE_DOWNPOUR);
@@ -2284,7 +2290,7 @@ static void Task_RayDescendsAnim(u8 taskId)
     LoadDescendsSceneGfx();
     SetGpuRegBits(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
-    BlendPalettes(PALETTES_ALL, 0x10, 0);
+    BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
     SetVBlankCallback(VBlankCB_RayquazaScene);
     sRayScene->revealedLightLine = 0;
     sRayScene->revealedLightTimer = 0;
@@ -2501,7 +2507,7 @@ static void Task_RayChargesAnim(u8 taskId)
     InitChargesSceneBgs();
     LoadChargesSceneGfx();
     SetWindowsHideVertBorders();
-    BlendPalettes(PALETTES_ALL, 0x10, 0);
+    BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
     SetVBlankCallback(VBlankCB_RayquazaScene);
     tState = 0;
     tTimer = 0;
@@ -2697,7 +2703,7 @@ static void Task_RayChasesAwayAnim(u8 taskId)
     ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_EFFECT_BLEND);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(9, 14));
-    BlendPalettes(PALETTES_ALL, 0x10, 0);
+    BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
     SetVBlankCallback(VBlankCB_RayquazaScene);
     tState = 0;
     tTimer = 0;

@@ -112,36 +112,36 @@ static bool8 IsMetatileDirectionallyImpassable(struct ObjectEvent *, s16, s16, u
 static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *, s16, s16);
 static void UpdateObjectEventOffscreen(struct ObjectEvent *, struct Sprite *);
 static void UpdateObjectEventSpriteVisibility(struct ObjectEvent *, struct Sprite *);
-static void ObjectEventUpdateMetatileBehaviors(struct ObjectEvent*);
-static void GetGroundEffectFlags_Reflection(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_TallGrassOnSpawn(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_LongGrassOnSpawn(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_SandHeap(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_ShallowFlowingWater(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_ShortGrass(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_HotSprings(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_TallGrassOnBeginStep(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_LongGrassOnBeginStep(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_Tracks(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_Puddle(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_Ripple(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_Seaweed(struct ObjectEvent*, u32*);
-static void GetGroundEffectFlags_JumpLanding(struct ObjectEvent*, u32*);
-static u8 ObjectEventGetNearbyReflectionType(struct ObjectEvent*);
+static void ObjectEventUpdateMetatileBehaviors(struct ObjectEvent *);
+static void GetGroundEffectFlags_Reflection(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_TallGrassOnSpawn(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_LongGrassOnSpawn(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_SandHeap(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_ShallowFlowingWater(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_ShortGrass(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_HotSprings(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_TallGrassOnBeginStep(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_LongGrassOnBeginStep(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_Tracks(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_Puddle(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_Ripple(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_Seaweed(struct ObjectEvent *, u32 *);
+static void GetGroundEffectFlags_JumpLanding(struct ObjectEvent *, u32 *);
+static u8 ObjectEventGetNearbyReflectionType(struct ObjectEvent *);
 static u8 GetReflectionTypeByMetatileBehavior(u32);
 static void InitObjectPriorityByElevation(struct Sprite *, u8);
-static void ObjectEventUpdateSubpriority(struct ObjectEvent*, struct Sprite*);
-static void DoTracksGroundEffect_None(struct ObjectEvent*, struct Sprite*, u8);
-static void DoTracksGroundEffect_Footprints(struct ObjectEvent*, struct Sprite*, u8);
+static void ObjectEventUpdateSubpriority(struct ObjectEvent *, struct Sprite *);
+static void DoTracksGroundEffect_None(struct ObjectEvent *, struct Sprite *, u8);
+static void DoTracksGroundEffect_Footprints(struct ObjectEvent *, struct Sprite *, u8);
 static void DoTracksGroundEffect_FootprintsB(struct ObjectEvent*, struct Sprite*, u8);
 static void DoTracksGroundEffect_FootprintsC(struct ObjectEvent*, struct Sprite*, u8);
-static void DoTracksGroundEffect_BikeTireTracks(struct ObjectEvent*, struct Sprite*, u8);
+static void DoTracksGroundEffect_BikeTireTracks(struct ObjectEvent *, struct Sprite *, u8);
 static void DoTracksGroundEffect_SlitherTracks(struct ObjectEvent*, struct Sprite*, u8);
-static void DoRippleFieldEffect(struct ObjectEvent*, struct Sprite*);
-static void DoGroundEffects_OnSpawn(struct ObjectEvent*, struct Sprite*);
-static void DoGroundEffects_OnBeginStep(struct ObjectEvent*, struct Sprite*);
-static void DoGroundEffects_OnFinishStep(struct ObjectEvent*, struct Sprite*);
-static void VirtualObject_UpdateAnim(struct Sprite*);
+static void DoRippleFieldEffect(struct ObjectEvent *, struct Sprite *);
+static void DoGroundEffects_OnSpawn(struct ObjectEvent *, struct Sprite *);
+static void DoGroundEffects_OnBeginStep(struct ObjectEvent *, struct Sprite *);
+static void DoGroundEffects_OnFinishStep(struct ObjectEvent *, struct Sprite *);
+static void VirtualObject_UpdateAnim(struct Sprite *);
 static void ApplyLevitateMovement(u8);
 static bool8 MovementType_Disguise_Callback(struct ObjectEvent *, struct Sprite *);
 static bool8 MovementType_Buried_Callback(struct ObjectEvent *, struct Sprite *);
@@ -1599,7 +1599,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
     bool8 shiny;
     u8 paletteNum;
 
-    spriteTemplate = malloc(sizeof(struct SpriteTemplate));
+    spriteTemplate = Alloc(sizeof(struct SpriteTemplate));
     if (graphicsId == OBJ_EVENT_GFX_OW_MON && GetFollowerInfo(&species, &form, &shiny)) {
         const struct ObjectEventGraphicsInfo *graphicsInfo = SpeciesToGraphicsInfo(species, form);
         spriteTemplate->tileTag = graphicsInfo->tileTag;
@@ -1621,7 +1621,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
         LoadObjectEventPalette(spriteTemplate->paletteTag);
 
     spriteId = CreateSprite(spriteTemplate, x, y, subpriority);
-    free(spriteTemplate);
+    Free(spriteTemplate);
 
     if (spriteId != MAX_SPRITES && subspriteTables != NULL)
     {
@@ -1650,10 +1650,12 @@ u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevatio
 
     graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, SpriteCB_VirtualObject, &spriteTemplate, &subspriteTables);
-    *(u16 *)&spriteTemplate.paletteTag = TAG_NONE;
     x += MAP_OFFSET;
     y += MAP_OFFSET;
     SetSpritePosToOffsetMapCoords(&x, &y, 8, 16);
+    if (spriteTemplate.paletteTag != TAG_NONE)
+        LoadObjectEventPalette(spriteTemplate.paletteTag);
+
     spriteId = CreateSpriteAtEnd(&spriteTemplate, x, y, 0);
     if (spriteId != MAX_SPRITES)
     {
@@ -1661,17 +1663,10 @@ u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevatio
         sprite->centerToCornerVecX = -(graphicsInfo->width >> 1);
         sprite->centerToCornerVecY = -(graphicsInfo->height >> 1);
         sprite->y += sprite->centerToCornerVecY;
-        sprite->oam.paletteNum = graphicsInfo->paletteSlot;
-        if (sprite->oam.paletteNum >= 16)
-            sprite->oam.paletteNum -= 16;
 
         sprite->coordOffsetEnabled = TRUE;
         sprite->sVirtualObjId = virtualObjId;
         sprite->sVirtualObjElev = elevation;
-        if (graphicsInfo->paletteSlot == 10)
-            LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
-        else if (graphicsInfo->paletteSlot >= 16)
-            _PatchObjectPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot | 0xf0);
 
         if (subspriteTables != NULL)
         {
@@ -1835,11 +1830,12 @@ void UpdateFollowingPokemon(void) { // Update following pokemon if any
   bool8 shiny;
   u8 form;
   // Avoid spawning large (64x64) follower pokemon inside buildings
-  if (GetFollowerInfo(&species, &form, &shiny) && !(gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, 0)->height == 64)) {
+  if (GetFollowerInfo(&species, &form, &shiny) && !(gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, 0)->height == 64) && !FlagGet(FLAG_TEMP_HIDE_FOLLOWER)) {
     if (objEvent == NULL) { // Spawn follower
       struct ObjectEventTemplate template = {
         .localId = OBJ_EVENT_ID_FOLLOWER,
         .graphicsId = OBJ_EVENT_GFX_OW_MON,
+        .flagId = 0,
         .x = gSaveBlock1Ptr->pos.x,
         .y = gSaveBlock1Ptr->pos.y,
         // If player active, copy player elevation
@@ -2087,7 +2083,7 @@ bool8 ScrFunc_getfolloweraction(struct ScriptContext *ctx) // Essentially a big 
   }
   // Match scripted conditional messages
   // With 50% chance, try to match scripted conditional messages
-  for (i = (Random() & 1) ? 28 : 0, j = 1; i < 28; i++) {
+  for (i = (Random() & 1) ? COND_MSG_COUNT : 0, j = 1; i < COND_MSG_COUNT; i++) {
       const struct FollowerMsgInfoExtended *info = &gFollowerConditionalMessages[i];
       if (info->stFlags == 1 && species != info->st.species)
         continue;
@@ -2466,9 +2462,9 @@ void SetObjectInvisibility(u8 localId, u8 mapNum, u8 mapGroup, bool8 invisible)
 
 void ObjectEventGetLocalIdAndMap(struct ObjectEvent *objectEvent, void *localId, void *mapNum, void *mapGroup)
 {
-    *(u8*)(localId) = objectEvent->localId;
-    *(u8*)(mapNum) = objectEvent->mapNum;
-    *(u8*)(mapGroup) = objectEvent->mapGroup;
+    *(u8 *)(localId) = objectEvent->localId;
+    *(u8 *)(mapNum) = objectEvent->mapNum;
+    *(u8 *)(mapGroup) = objectEvent->mapGroup;
 }
 
 void AllowObjectAtPosTriggerGroundEffects(s16 x, s16 y)
@@ -4954,7 +4950,7 @@ bool8 MovementType_FollowPlayer_Shadow(struct ObjectEvent *objectEvent, struct S
         MoveObjectEventToMapCoords(objectEvent, gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.x, gObjectEvents[gPlayerAvatar.objectEventId].currentCoords.y);
         objectEvent->triggerGroundEffectsOnMove = FALSE; // Stop endless reflection spawning
     }
-    sprite->data[1] = 1; // Enter active state; if the player moves the follower will appear
+    sprite->sTypeFuncId = 1; // Enter active state; if the player moves the follower will appear
     return TRUE;
 }
 
@@ -4964,7 +4960,7 @@ bool8 MovementType_FollowPlayer_Active(struct ObjectEvent *objectEvent, struct S
         return FALSE;
     } else if (!IsFollowerVisible()) {
       if (objectEvent->invisible) { // Return to shadowing state
-        sprite->data[1] = 0;
+        sprite->sTypeFuncId = 0;
         return FALSE;
       }
       // Animate entering pokeball
@@ -4972,7 +4968,7 @@ bool8 MovementType_FollowPlayer_Active(struct ObjectEvent *objectEvent, struct S
       ObjectEventSetSingleMovement(objectEvent, sprite, MOVEMENT_ACTION_ENTER_POKEBALL);
       objectEvent->singleMovementActive = 1;
       sprite->animCmdIndex = 0; // Needed for animCmdIndex weirdness
-      sprite->data[1] = 2; // movement action sets state to 0
+      sprite->sTypeFuncId = 2; // movement action sets state to 0
       return TRUE;
     }
     // TODO: Remove dependence on PlayerGetCopyableMovement
@@ -4990,8 +4986,8 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
     if (ObjectEventExecSingleMovementAction(objectEvent, sprite)) {
     #endif
         objectEvent->singleMovementActive = 0;
-        if (sprite->data[1]) { // restore nonzero state
-          sprite->data[1] = 1;
+        if (sprite->sTypeFuncId) { // restore nonzero state
+            sprite->sTypeFuncId = 1;
         }
     } else if (objectEvent->movementActionId != MOVEMENT_ACTION_EXIT_POKEBALL) {
         UpdateFollowerTransformEffect(objectEvent, sprite);
@@ -5004,7 +5000,7 @@ bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Spri
     u8 direction;
     if (!objectEvent->singleMovementActive) { // walk in place
       ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkInPlaceNormalMovementAction(objectEvent->facingDirection));
-      sprite->data[1] = 1;
+      sprite->sTypeFuncId = 1;
       objectEvent->singleMovementActive = 1;
       return TRUE;
     } else if (ObjectEventExecSingleMovementAction(objectEvent, sprite)) { // finish movement action
@@ -5042,7 +5038,7 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
       ObjectEventSetSingleMovement(objectEvent, sprite, MOVEMENT_ACTION_EXIT_POKEBALL);
       objectEvent->singleMovementActive = 1;
       sprite->animCmdIndex = 0; // Needed because of weird animCmdIndex stuff
-      sprite->data[1] = 2;
+      sprite->sTypeFuncId = 2;
       return TRUE;
     } else if (x == targetX && y == targetY) { // don't move if already in the player's last position
       return FALSE;
@@ -5050,14 +5046,19 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
 
     // Follow player
     direction = GetDirectionToFace(x, y, targetX, targetY);
-    #ifdef MB_SIDEWAYS_STAIRS_RIGHT_SIDE // https://github.com/ghoulslash/pokeemerald/tree/sideways_stairs
     MoveCoords(direction, &x, &y);
+    #ifdef MB_SIDEWAYS_STAIRS_RIGHT_SIDE // https://github.com/ghoulslash/pokeemerald/tree/sideways_stairs
     GetCollisionAtCoords(objectEvent, x, y, direction); // Sets directionOverwrite for stairs
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH)) { // Set follow speed according to player's speed
+    if (GetLedgeJumpDirection(x, y, direction) != DIR_NONE) // InitJumpRegular will set the proper speed
+        ObjectEventSetSingleMovement(objectEvent, sprite, GetJump2MovementAction(direction));
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH)) { // Set follow speed according to player's speed
         if (playerAction >= MOVEMENT_ACTION_RUN_DOWN_SLOW && playerAction <= MOVEMENT_ACTION_RUN_RIGHT_SLOW)
             objectEvent->movementActionId = GetWalkNormalMovementAction(direction);
         else
             objectEvent->movementActionId = GetWalkFastMovementAction(direction);
+
+    } else if (PlayerGetCopyableMovement() == COPY_MOVE_JUMP2) {
+        ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkSlowMovementAction(direction));
     } else {
         if (playerAction >= MOVEMENT_ACTION_WALK_SLOW_DOWN && playerAction <= MOVEMENT_ACTION_WALK_SLOW_RIGHT)
             ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkSlowMovementAction(direction));
@@ -5066,13 +5067,18 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     }
     sprite->sActionFuncId = 0;
     #else
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH)) // Set follow speed according to player's speed
+    if (GetLedgeJumpDirection(x, y, direction) != DIR_NONE) // InitJumpRegular will set the proper speed
+        ObjectEventSetSingleMovement(objectEvent, sprite, GetJump2MovementAction(direction));
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH)) // Set follow speed according to player's speed
         ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkFastMovementAction(direction));
+    // If *player* jumps, make step take twice as long
+    else if (PlayerGetCopyableMovement() == COPY_MOVE_JUMP2)
+        ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkSlowMovementAction(direction));
     else
         ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkNormalMovementAction(direction));
     #endif
     objectEvent->singleMovementActive = 1;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5091,7 +5097,7 @@ bool8 FollowablePlayerMovement_GoSpeed1(struct ObjectEvent *objectEvent, struct 
         ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
     }
     objectEvent->singleMovementActive = TRUE;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5110,7 +5116,7 @@ bool8 FollowablePlayerMovement_GoSpeed2(struct ObjectEvent *objectEvent, struct 
         ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
     }
     objectEvent->singleMovementActive = TRUE;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5129,7 +5135,7 @@ bool8 FollowablePlayerMovement_Slide(struct ObjectEvent *objectEvent, struct Spr
         ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
     }
     objectEvent->singleMovementActive = TRUE;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5141,7 +5147,7 @@ bool8 fph_IM_DIFFERENT(struct ObjectEvent *objectEvent, struct Sprite *sprite, u
     direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
     ObjectEventSetSingleMovement(objectEvent, sprite, GetJumpInPlaceMovementAction(direction));
     objectEvent->singleMovementActive = TRUE;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5160,7 +5166,7 @@ bool8 FollowablePlayerMovement_GoSpeed4(struct ObjectEvent *objectEvent, struct 
         ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
     }
     objectEvent->singleMovementActive = TRUE;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5176,7 +5182,7 @@ bool8 FollowablePlayerMovement_Jump(struct ObjectEvent *objectEvent, struct Spri
     MoveCoordsInDirection(direction, &x, &y, 2, 2);
     ObjectEventSetSingleMovement(objectEvent, sprite, GetJump2MovementAction(direction));
     objectEvent->singleMovementActive = TRUE;
-    sprite->data[1] = 2;
+    sprite->sTypeFuncId = 2;
     return TRUE;
 }
 
@@ -5499,7 +5505,7 @@ u8 GetCollisionAtCoords(struct ObjectEvent *objectEvent, s16 x, s16 y, u32 dir)
     u8 direction = dir;
     if (IsCoordOutsideObjectEventMovementRange(objectEvent, x, y))
         return COLLISION_OUTSIDE_RANGE;
-    else if (MapGridIsImpassableAt(x, y) || GetMapBorderIdAt(x, y) == CONNECTION_INVALID || IsMetatileDirectionallyImpassable(objectEvent, x, y, direction))
+    else if (MapGridGetCollisionAt(x, y) || GetMapBorderIdAt(x, y) == CONNECTION_INVALID || IsMetatileDirectionallyImpassable(objectEvent, x, y, direction))
         return COLLISION_IMPASSABLE;
     else if (objectEvent->trackedByCamera && !CanCameraMoveInDirection(direction))
         return COLLISION_IMPASSABLE;
@@ -5516,7 +5522,7 @@ u8 GetCollisionFlagsAtCoords(struct ObjectEvent *objectEvent, s16 x, s16 y, u8 d
 
     if (IsCoordOutsideObjectEventMovementRange(objectEvent, x, y))
         flags |= 1 << (COLLISION_OUTSIDE_RANGE - 1);
-    if (MapGridIsImpassableAt(x, y) || GetMapBorderIdAt(x, y) == CONNECTION_INVALID || IsMetatileDirectionallyImpassable(objectEvent, x, y, direction) || (objectEvent->trackedByCamera && !CanCameraMoveInDirection(direction)))
+    if (MapGridGetCollisionAt(x, y) || GetMapBorderIdAt(x, y) == CONNECTION_INVALID || IsMetatileDirectionallyImpassable(objectEvent, x, y, direction) || (objectEvent->trackedByCamera && !CanCameraMoveInDirection(direction)))
         flags |= 1 << (COLLISION_IMPASSABLE - 1);
     if (IsElevationMismatchAt(objectEvent->currentElevation, x, y))
         flags |= 1 << (COLLISION_ELEVATION_MISMATCH - 1);
@@ -6265,6 +6271,8 @@ enum {
     JUMP_TYPE_HIGH,
     JUMP_TYPE_LOW,
     JUMP_TYPE_NORMAL,
+    JUMP_TYPE_FAST,
+    JUMP_TYPE_FASTER,
 };
 
 static void InitJump(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 direction, u8 distance, u8 type)
@@ -6288,6 +6296,13 @@ static void InitJump(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 
 
 static void InitJumpRegular(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 direction, u8 distance, u8 type)
 {
+    // For follower only, match the anim duration of the player's movement, whether dashing, walking or jumping
+    if (objectEvent->localId == OBJ_EVENT_ID_FOLLOWER
+        && type == JUMP_TYPE_HIGH
+        && distance == JUMP_DISTANCE_FAR
+        // In some areas (i.e Meteor Falls), the player can jump as the follower jumps, so preserve type in this case
+        && PlayerGetCopyableMovement() != COPY_MOVE_JUMP2)
+        type = TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH) ? JUMP_TYPE_FASTER : JUMP_TYPE_FAST;
     InitJump(objectEvent, sprite, direction, distance, type);
     SetStepAnimHandleAlternation(objectEvent, sprite, GetMoveDirectionAnimNum(objectEvent->facingDirection));
     DoShadowFieldEffect(objectEvent);
@@ -9516,7 +9531,16 @@ static u8 DoJumpSpriteMovement(struct Sprite *sprite)
     if (sprite->sDistance != JUMP_DISTANCE_IN_PLACE)
         Step1(sprite, sprite->sDirection);
 
-    sprite->y2 = GetJumpY(sprite->sTimer >> distanceToShift[sprite->sDistance], sprite->sJumpType);
+    if (sprite->sJumpType == JUMP_TYPE_FASTER) {
+        Step3(sprite, sprite->sDirection);
+        sprite->y2 = GetJumpY(sprite->sTimer >> distanceToShift[sprite->sDistance], JUMP_TYPE_NORMAL);
+        sprite->sTimer += 3;
+    } else if (sprite->sJumpType == JUMP_TYPE_FAST) {
+        Step1(sprite, sprite->sDirection);
+        sprite->y2 = GetJumpY(sprite->sTimer >> distanceToShift[sprite->sDistance], JUMP_TYPE_NORMAL);
+        sprite->sTimer++;
+    } else
+        sprite->y2 = GetJumpY(sprite->sTimer >> distanceToShift[sprite->sDistance], sprite->sJumpType);
 
     sprite->sTimer++;
 
@@ -9678,10 +9702,12 @@ void SetVirtualObjectGraphics(u8 virtualObjId, u8 graphicsId)
         struct Sprite *sprite = &gSprites[spriteId];
         const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
         u16 tileNum = sprite->oam.tileNum;
+        u8 i = FindObjectEventPaletteIndexByTag(graphicsInfo->paletteTag);
+        if (i != 0xFF)
+            UpdateSpritePalette(&sObjectEventSpritePalettes[i], sprite);
 
         sprite->oam = *graphicsInfo->oam;
         sprite->oam.tileNum = tileNum;
-        sprite->oam.paletteNum = graphicsInfo->paletteSlot;
         sprite->images = graphicsInfo->images;
 
         if (graphicsInfo->subspriteTables == NULL)
@@ -9825,13 +9851,13 @@ static void DoRippleFieldEffect(struct ObjectEvent *objectEvent, struct Sprite *
     FieldEffectStart(FLDEFF_RIPPLE);
 }
 
-u8 (*const gMovementActionFuncs_StoreAndLockAnim[])(struct ObjectEvent *, struct Sprite *) = {
-    MovementAction_StoreAndLockAnim_Step0,
+u8 (*const gMovementActionFuncs_LockAnim[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_LockAnim_Step0,
     MovementAction_Finish,
 };
 
-u8 (*const gMovementActionFuncs_FreeAndUnlockAnim[])(struct ObjectEvent *, struct Sprite *) = {
-    MovementAction_FreeAndUnlockAnim_Step0,
+u8 (*const gMovementActionFuncs_UnlockAnim[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_UnlockAnim_Step0,
     MovementAction_Finish,
 };
 
@@ -9847,36 +9873,36 @@ u8 (*const gMovementActionFuncs_FlyDown[])(struct ObjectEvent *, struct Sprite *
     MovementAction_Fly_Finish,
 };
 
-u8 MovementAction_StoreAndLockAnim_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+u8 MovementAction_LockAnim_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     bool32 ableToStore = FALSE;
     if (sLockedAnimObjectEvents == NULL)
     {
         sLockedAnimObjectEvents = AllocZeroed(sizeof(struct LockedAnimObjectEvents));
-        sLockedAnimObjectEvents->objectEventIds[0] = objectEvent->localId;
+        sLockedAnimObjectEvents->localIds[0] = objectEvent->localId;
         sLockedAnimObjectEvents->count = 1;
         ableToStore = TRUE;
     }
     else
     {
         u8 i;
-        u8 firstFreeSlot;
-        bool32 found;
-        for (firstFreeSlot = 16, found = FALSE, i = 0; i < 16; i++)
+        u8 firstFreeSlot = OBJECT_EVENTS_COUNT;
+        bool32 found = FALSE;
+        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         {
-            if (firstFreeSlot == 16 && sLockedAnimObjectEvents->objectEventIds[i] == 0)
+            if (firstFreeSlot == OBJECT_EVENTS_COUNT && sLockedAnimObjectEvents->localIds[i] == 0)
                 firstFreeSlot = i;
 
-            if (sLockedAnimObjectEvents->objectEventIds[i] == objectEvent->localId)
+            if (sLockedAnimObjectEvents->localIds[i] == objectEvent->localId)
             {
                 found = TRUE;
                 break;
             }
         }
 
-        if (!found && firstFreeSlot != 16)
+        if (!found && firstFreeSlot != OBJECT_EVENTS_COUNT)
         {
-            sLockedAnimObjectEvents->objectEventIds[firstFreeSlot] = objectEvent->localId;
+            sLockedAnimObjectEvents->localIds[firstFreeSlot] = objectEvent->localId;
             sLockedAnimObjectEvents->count++;
             ableToStore = TRUE;
         }
@@ -9892,7 +9918,7 @@ u8 MovementAction_StoreAndLockAnim_Step0(struct ObjectEvent *objectEvent, struct
     return TRUE;
 }
 
-u8 MovementAction_FreeAndUnlockAnim_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+u8 MovementAction_UnlockAnim_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     bool32 ableToStore;
     u8 index;
@@ -9902,9 +9928,9 @@ u8 MovementAction_FreeAndUnlockAnim_Step0(struct ObjectEvent *objectEvent, struc
     {
         ableToStore = FALSE;
         index = FindLockedObjectEventIndex(objectEvent);
-        if (index != 16)
+        if (index != OBJECT_EVENTS_COUNT)
         {
-            sLockedAnimObjectEvents->objectEventIds[index] = 0;
+            sLockedAnimObjectEvents->localIds[index] = 0;
             sLockedAnimObjectEvents->count--;
             ableToStore = TRUE;
         }
@@ -9927,7 +9953,7 @@ u8 FindLockedObjectEventIndex(struct ObjectEvent *objectEvent)
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
-        if (sLockedAnimObjectEvents->objectEventIds[i] == objectEvent->localId)
+        if (sLockedAnimObjectEvents->localIds[i] == objectEvent->localId)
             return i;
     }
     return OBJECT_EVENTS_COUNT;
