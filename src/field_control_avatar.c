@@ -1103,6 +1103,16 @@ static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition *position)
     return EventScript_TestSignpostMsg;
 }
 
+static void Task_OpenStartMenu(u8 taskId)
+{
+    if (!ArePlayerFieldControlsLocked())
+    {
+        PlaySE(SE_WIN_OPEN);
+        ShowStartMenu();
+        DestroyTask(taskId);
+    }
+}
+
 void FieldInput_HandleCancelSignpost(struct FieldInput *input)
 {
     if (ScriptContext1_IsScriptSetUp() == TRUE)
@@ -1123,6 +1133,8 @@ void FieldInput_HandleCancelSignpost(struct FieldInput *input)
             {
                 ScriptContext1_SetupScript(EventScript_CancelMessageBox);
                 ScriptContext2_Enable();
+                if (!FuncIsActiveTask(Task_OpenStartMenu))
+                    CreateTask(Task_OpenStartMenu, 8);
             }
         }
     }

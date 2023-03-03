@@ -691,6 +691,7 @@ EventScript_BackupMrBrineyLocation:: @ 8271E95
 	.include "data/scripts/set_gym_trainers.inc"
 
 EventScript_CancelMessageBox::
+	special DoPicboxCancel
 	release
 	end
 
