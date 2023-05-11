@@ -7,6 +7,13 @@
 
 #define MAX_TRAINER_ITEMS 4
 
+#define TRAINER_PIC_WIDTH 64
+#define TRAINER_PIC_HEIGHT 64
+#define TRAINER_PIC_SIZE (TRAINER_PIC_WIDTH * TRAINER_PIC_HEIGHT / 2)
+
+// Red and Leaf's back pics have 5 frames, but this is presumably irrelevant in the places this is used.
+#define MAX_TRAINER_PIC_FRAMES 4
+
 enum {
     BATTLER_AFFINE_NORMAL,
     BATTLER_AFFINE_EMERGE,
@@ -56,6 +63,11 @@ struct TrainerMonItemCustomMoves
     u16 heldItem;
     u16 moves[MAX_MON_MOVES];
 };
+
+#define NO_ITEM_DEFAULT_MOVES(party) { .NoItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = 0
+#define NO_ITEM_CUSTOM_MOVES(party) { .NoItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET
+#define ITEM_DEFAULT_MOVES(party) { .ItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_HELD_ITEM
+#define ITEM_CUSTOM_MOVES(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM
 
 union TrainerMonPtr
 {
