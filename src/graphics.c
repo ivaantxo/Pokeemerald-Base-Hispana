@@ -1,5 +1,8 @@
 #include "global.h"
 
+const u8 gActionsMenu_Gfx[] = INCBIN_U8("graphics/battle_interface/battle_actions.4bpp");
+const u16 gActionsMenu_Pal[] = INCBIN_U16("graphics/battle_interface/battle_actions.gbapal");
+
 const u32 gBattleTextboxTiles[] = INCBIN_U32("graphics/battle_interface/textbox.4bpp.lz");
 const u32 gBattleTextboxPalette[] = INCBIN_U32("graphics/battle_interface/textbox.gbapal.lz");
 const u32 gBattleTextboxTilemap[] = INCBIN_U32("graphics/battle_interface/textbox_map.bin.lz");

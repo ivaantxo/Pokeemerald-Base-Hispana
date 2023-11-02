@@ -12,6 +12,7 @@
 #include "battle_gimmick.h"
 #include "bg.h"
 #include "data.h"
+#include "graphics.h"
 #include "item.h"
 #include "item_menu.h"
 #include "link.h"
@@ -346,10 +347,11 @@ static void HandleInputChooseAction(u32 battler)
         if (gActionSelectionCursor[battler] & 1) // if is B_ACTION_USE_ITEM or B_ACTION_RUN
         {
             PlaySE(SE_SELECT);
-            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            //ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 1;
             //slect_action = 0;
             //ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            ActionSelectionCreateCursorAt_Gfx(gActionSelectionCursor[battler], 0);
         }
     }
     else if (JOY_NEW(DPAD_RIGHT))
@@ -357,10 +359,11 @@ static void HandleInputChooseAction(u32 battler)
         if (!(gActionSelectionCursor[battler] & 1)) // if is B_ACTION_USE_MOVE or B_ACTION_SWITCH
         {
             PlaySE(SE_SELECT);
-            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            //ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 1;
             //slect_action = 1;
             //ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            ActionSelectionCreateCursorAt_Gfx(gActionSelectionCursor[battler], 0);
         }
     }
     else if (JOY_NEW(DPAD_UP))
@@ -368,10 +371,11 @@ static void HandleInputChooseAction(u32 battler)
         if (gActionSelectionCursor[battler] & 2) // if is B_ACTION_SWITCH or B_ACTION_RUN
         {
             PlaySE(SE_SELECT);
-            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            //ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 2;
             //slect_action = 2;
             //ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            ActionSelectionCreateCursorAt_Gfx(gActionSelectionCursor[battler], 0);
         }
     }
     else if (JOY_NEW(DPAD_DOWN))
@@ -379,10 +383,11 @@ static void HandleInputChooseAction(u32 battler)
         if (!(gActionSelectionCursor[battler] & 2)) // if is B_ACTION_USE_MOVE or B_ACTION_USE_ITEM
         {
             PlaySE(SE_SELECT);
-            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            //ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 2;
             //ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
             //slect_action = 3;
+            ActionSelectionCreateCursorAt_Gfx(gActionSelectionCursor[battler], 0);
         }
     }
     else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
@@ -1097,7 +1102,7 @@ static void ReloadMoveNames(u32 battler)
         gBattleStruct->zmove.viewing = FALSE;
         MoveSelectionDestroyCursorAt(battler);
         MoveSelectionDisplayMoveNames(battler);
-    //MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
+    MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
         MoveSelectionDisplayPpNumber(battler);
         MoveSelectionDisplayMoveType(battler);
     }
@@ -1939,12 +1944,12 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
 
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
 {
-    //u16 src[2];
-    //src[0] = baseTileNum + 1;
-    //src[1] = baseTileNum + 2;
+    u16 src[2];
+    src[0] = baseTileNum + 1;
+    src[1] = baseTileNum + 2;
 
-    //CopyToBgTilemapBufferRect_ChangePalette(0, src, 9 * (cursorPosition & 1) + 1, 55 + (cursorPosition & 2), 1, 2, 0x11);
-    //CopyBgTilemapBufferToVram(0);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 9 * (cursorPosition & 1) + 1, 55 + (cursorPosition & 2), 1, 2, 0x11);
+    CopyBgTilemapBufferToVram(0);
 }
 
 void MoveSelectionDestroyCursorAt(u8 cursorPosition)
@@ -1975,6 +1980,29 @@ void ActionSelectionDestroyCursorAt(u8 cursorPosition)
 
     CopyToBgTilemapBufferRect_ChangePalette(0, src, 7 * (cursorPosition & 1) + 16, 35 + (cursorPosition & 2), 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
+}
+
+//Resalta la opción seleccionada de amarillo:
+
+#define ACTION_LUCHAR   0
+#define ACTION_BOLSA    1
+#define ACTION_POKEMON  2
+#define ACTION_HUIR     3
+#define ACTION_PALLETE_OFFSET   0xF0 //paleta 15
+#define ACTION_PALLETE_NUM(n)  (ACTION_PALLETE_OFFSET + n)
+
+static const u16 sHighlightPalette[] =
+{
+    [ACTION_LUCHAR]  = ACTION_PALLETE_NUM(12),
+    [ACTION_BOLSA]   = ACTION_PALLETE_NUM(13),
+    [ACTION_POKEMON] = ACTION_PALLETE_NUM(14),
+    [ACTION_HUIR]    = ACTION_PALLETE_NUM(15),
+};
+
+void ActionSelectionCreateCursorAt_Gfx(u8 cursorPos, u8 unused)
+{
+    LoadPalette(gActionsMenu_Pal, ACTION_PALLETE_OFFSET, 0x20);
+    gPlttBufferFaded[sHighlightPalette[cursorPos]] = RGB(31, 25, 9);//RGB_YELLOW;
 }
 
 void CB2_SetUpReshowBattleScreenAfterMenu(void)
@@ -2175,11 +2203,20 @@ static void PlayerHandleChooseAction(u32 battler)
     //BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
     //LoadSpriteIcons();
 
-    for (i = 0; i < 4; i++)
-        ActionSelectionDestroyCursorAt(i);
+    //for (i = 0; i < 4; i++)
+    //    ActionSelectionDestroyCursorAt(i);
+
+    //cargamos la paleta y 
+    LoadPalette(gActionsMenu_Pal, ACTION_PALLETE_OFFSET, 0x20);
+    FillWindowPixelBuffer(B_WIN_ACTION_MENU_GFX, PIXEL_FILL(1));
+    //cargamos el gráfico:
+    BlitBitmapRectToWindow(B_WIN_ACTION_MENU_GFX, gActionsMenu_Gfx +  0x0 * 32, 0, 0, 128, 48, 0, 0, 120, 48);
+    PutWindowTilemap(B_WIN_ACTION_MENU_GFX);
+    CopyWindowToVram(B_WIN_ACTION_MENU_GFX, COPYWIN_FULL);
 
     TryRestoreLastUsedBall();
-    ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+    //ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+    ActionSelectionCreateCursorAt_Gfx(gActionSelectionCursor[battler], 0);
     PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);

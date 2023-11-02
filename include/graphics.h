@@ -239,6 +239,9 @@ extern const u32 gBerryFixWindow_Gfx[];
 extern const u32 gBerryFixWindow_Tilemap[];
 extern const u16 gBerryFixWindow_Pal[];
 
+extern const u8 gActionsMenu_Gfx[];
+extern const u16 gActionsMenu_Pal[];
+
 extern const u32 gBattleTextboxTiles[];
 extern const u32 gBattleTextboxTilemap[];
 extern const u32 gBattleTextboxPalette[];

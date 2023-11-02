@@ -371,7 +371,16 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 0x00b0,
     },
-    [B_WIN_MOVE_DESCRIPTION] = {
+    [B_WIN_ACTION_MENU_GFX] = {
+        .bg = 0,
+        .tilemapLeft = 15,//17,
+        .tilemapTop = 34,//35,
+        .width = 15,//12,
+        .height = 6,//4,
+        .paletteNum = 15,//5,
+        .baseBlock = 0x0350,//0x0190,
+    },
+        [B_WIN_MOVE_DESCRIPTION] = {
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 47,
