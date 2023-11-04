@@ -2290,7 +2290,7 @@ void InitMoveSelectionsVarsAndStrings(u32 battler)
 {
     MoveSelectionDisplayMoveNames(battler);
     gMultiUsePlayerCursor = 0xFF;
-    MoveSelectionDestroyCursorAt(gMultiUsePlayerCursor);
+    MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
     MoveSelectionDisplayPpString(battler);
     MoveSelectionDisplayPpNumber(battler);
     MoveSelectionDisplayMoveType(battler);
