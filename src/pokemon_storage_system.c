@@ -459,7 +459,7 @@ struct PokemonStorageSystemData
     struct Sprite *arrowSprites[2];
     u32 wallpaperPalBits;
     u8 filler2[27]; // Unused, was 80
-    u16 chooseBoxSwapPal[16]; // Holds dynamic palette to swap into choose box gfx
+    u16 ALIGNED(4) chooseBoxSwapPal[16]; // Holds dynamic palette to swap into choose box gfx
     u16 markingsSwapPal[16]; // Used to store dynamic palette to swap into markings combo
     u16 swapInPal[16];
     void *swapInPalDst;
@@ -1338,7 +1338,7 @@ static const struct SpriteTemplate sSpriteTemplate_Arrow =
     .callback = SpriteCB_Arrow
 };
 
-static const u16 sHandCursor_Pal[] = INCBIN_U16("graphics/pokemon_storage/hand_cursor.gbapal");
+static const u16 ALIGNED(4) sHandCursor_Pal[] = INCBIN_U16("graphics/pokemon_storage/hand_cursor.gbapal");
 static const u8 sHandCursor_Gfx[] = INCBIN_U8("graphics/pokemon_storage/hand_cursor.4bpp");
 static const u8 sHandCursorShadow_Gfx[] = INCBIN_U8("graphics/pokemon_storage/hand_cursor_shadow.4bpp");
 
