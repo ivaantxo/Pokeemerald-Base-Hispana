@@ -1,17 +1,17 @@
 	.align 2
 gText_ConfirmSave::
-	.string "Would you like to save the game?$"
+	.string "Quieres guardar la partida?$"
 
 gText_AlreadySavedFile::
-	.string "There is already a saved file.\n"
-	.string "Is it okay to overwrite it?$"
+	.string "Ya hay una partida guardada.\n"
+	.string "Quieres sobreescribirla?$"
 
 gText_SavingDontTurnOff::
-	.string "SAVING…\n"
-	.string "DON'T TURN OFF THE POWER.$"
+	.string "Guardando…\n"
+	.string "No apagues la consola.$"
 
 gText_PlayerSavedGame::
-	.string "{PLAYER} saved the game.$"
+	.string "{PLAYER} guardó la partida.$"
 
 gText_DifferentSaveFile::
 	.string "WARNING!\p"
@@ -29,5 +29,5 @@ gText_SaveError::
 	.string "backup memory.$"
 
 gText_SavingDontTurnOffPower::
-	.string "SAVING…\n"
-	.string "DON'T TURN OFF THE POWER.$"
+	.string "GUARDANDO…\n"
+	.string "NO APAGUES LA CONSOLA.$"
