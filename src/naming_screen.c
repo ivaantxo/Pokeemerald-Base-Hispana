@@ -1416,17 +1416,10 @@ static void NamingScreen_CreatePCIcon(void)
 static void NamingScreen_CreateMonIcon(void)
 {
     u8 spriteId;
-    u8 index;
+    u32 otId = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
 
     LoadMonIconPalettes();
-    spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality, 1);
-    index = IndexOfSpritePaletteTag(56000); // POKE_ICON_BASE_PAL_TAG
-    if (index < 16) {
-      u32 otId = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
-      const u32 *palette = GetMonSpritePalFromSpeciesAndPersonality(sNamingScreen->monSpecies, otId, sNamingScreen->monPersonality);
-      LoadCompressedPalette(palette, index*16 + 0x100, 32);
-      gSprites[spriteId].oam.paletteNum = index;
-    }
+    spriteId = CreateMonIcon2(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, otId, sNamingScreen->monPersonality, 1);
     gSprites[spriteId].oam.priority = 3;
 }
 

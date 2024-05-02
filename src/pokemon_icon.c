@@ -1,4 +1,5 @@
 #include "global.h"
+#include "data.h"
 #include "graphics.h"
 #include "mail.h"
 #include "palette.h"
@@ -6,6 +7,11 @@
 #include "sprite.h"
 
 #define POKE_ICON_BASE_PAL_TAG 56000
+#define POKE_ICON_SPECIES_BASE_PAL_TAG (POKE_ICON_BASE_PAL_TAG + 16)
+#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_SPECIES_BASE_PAL_TAG + NUM_SPECIES + SPECIES_SHINY_TAG)
+
+#define IS_MON_ICON_TAG(x) (((x) >= POKE_ICON_BASE_PAL_TAG && (x) < POKE_ICON_BASE_PAL_TAG + ARRAY_COUNT(gMonIconPaletteTable)) || \
+                            ((x) >= POKE_ICON_SPECIES_BASE_PAL_TAG && (x) < POKE_ICON_SPECIES_MAX_PAL_TAG))
 
 #define INVALID_ICON_SPECIES SPECIES_OLD_UNOWN_J // Oddly specific, used when an icon should be a ?. Any of the 'old unown' would work
 
@@ -1025,11 +1031,29 @@ static const u16 sSpriteImageSizes[3][4] =
     },
 };
 
-// Note: If you want to use this in your hack, be aware you must allocate palette slots for each icon,
-// i.e via AllocSpritePalette, and set the sprite's palette with SetMonIconPalette
-u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, bool32 handleDeoxys)
-{
-    u8 spriteId;
+// Find or allocate a palette slot for a pokemon icon
+// Prefers unused slots with tags in the icon range (IS_MON_ICON_TAG),
+// but if not found, will allocate a new palette slot
+u32 FindFreeIconPaletteSlot(u16 tag) {
+    u32 i;
+    u16 tag2, used;
+    // look for an unused mon icon slot
+    for (i = 0, used = 0; i < MAX_SPRITES; i++) // compute a bitfield of in-use sprite palettes
+        if (gSprites[i].inUse)
+            used |= 1 << gSprites[i].oam.paletteNum;
+    for (i = 0; i < 16; i++) {
+        if (used & (1 << i)) // skip in-use palettes
+            continue;
+        tag2 = GetSpritePaletteTagByPaletteNum(i);
+        if (IS_MON_ICON_TAG(tag2))
+            return i;
+    }
+    // Allocate new slot
+    return AllocSpritePalette(tag);
+}
+
+// Creates mon icon sprite and overwrites its paletteNum
+u8 CreateMonIcon3(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u8 paletteNum, bool32 handleDeoxys) {
     struct MonIconSpriteTemplate iconTemplate =
     {
         .oam = &sMonIconOamData,
@@ -1037,53 +1061,56 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
         .anims = sMonIconAnims,
         .affineAnims = sMonIconAffineAnims,
         .callback = callback,
-        .paletteTag = POKE_ICON_BASE_PAL_TAG + gMonIconPaletteIndices[species],
+        .paletteTag = TAG_NONE,
     };
+    u8 spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
+    struct Sprite *sprite = &gSprites[spriteId];
 
-    if (species > NUM_SPECIES)
-        iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG;
-
-    spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
-
-    UpdateMonIconFrame(&gSprites[spriteId]);
-
+    UpdateMonIconFrame(sprite);
+    sprite->oam.paletteNum = paletteNum;
     return spriteId;
 }
 
+// Like CreateMonIcon, but also accepts an otId (to support shiny icons)
+u8 CreateMonIcon2(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 otId, u32 personality, bool32 handleDeoxys)
+{
+    u32 paletteNum;
+    const struct CompressedSpritePalette *palette = GetMonSpritePalStructFromOtIdPersonality(species > NUM_SPECIES ? SPECIES_NONE : species, otId, personality);
+    u16 tag = palette->tag + POKE_ICON_SPECIES_BASE_PAL_TAG;
+
+    if ((paletteNum = IndexOfSpritePaletteTag(tag)) >= 16) {
+        if ((paletteNum = FindFreeIconPaletteSlot(tag)) < 16) {
+            SetSpritePaletteTagByPaletteNum(paletteNum, tag);
+            LoadCompressedPaletteFast(palette->data, paletteNum*16 + 0x100, 32);
+        }
+    }
+
+    return CreateMonIcon3(species, callback, x, y, subpriority, personality, paletteNum, handleDeoxys);
+}
+
+// Compatible with vanilla
+u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, bool32 handleDeoxys) {
+    // ^ SHINY_ODDS ensures non-shiny icon
+    CreateMonIcon2(species, callback, x, y, subpriority, personality ^ SHINY_ODDS, personality, handleDeoxys);
+}
+
+// Load the palette for a pokemon into paletteNum,
+// optionally overwrite `sprite`'s paletteNum
 u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum) {
-  if (paletteNum < 16) {
+    if (paletteNum >= 16)
+        return paletteNum;
     LoadCompressedPalette(GetMonFrontSpritePal(mon), paletteNum*16 + 0x100, 32);
     if (sprite)
-      sprite->oam.paletteNum = paletteNum;
-  }
-  return paletteNum;
+        sprite->oam.paletteNum = paletteNum;
 }
 
 // Only used with mail and mystery event, which cannot really store a bit for a shiny pokemon,
 // so we just load the palette into the proper slot by species
+// Used by mail/mystery event/other systems which do not store PIDs;
+// we just pass 0 as the personality
 u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 handleDeoxys)
 {
-    u8 spriteId;
-    u32 index = IndexOfSpritePaletteTag(POKE_ICON_BASE_PAL_TAG + gMonIconPaletteIndices[species]);
-    struct MonIconSpriteTemplate iconTemplate =
-    {
-        .oam = &sMonIconOamData,
-        .image = NULL,
-        .anims = sMonIconAnims,
-        .affineAnims = sMonIconAffineAnims,
-        .callback = callback,
-        .paletteTag = POKE_ICON_BASE_PAL_TAG + gMonIconPaletteIndices[species],
-    };
-
-    if (index < 16)
-      LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, 0xFFFF), index*16 + 0x100, 32);
-
-    iconTemplate.image = GetMonIconTiles(species, handleDeoxys);
-    spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
-
-    UpdateMonIconFrame(&gSprites[spriteId]);
-
-    return spriteId;
+    return CreateMonIcon(species, callback, x, y, subpriority, 0, handleDeoxys);
 }
 
 u16 GetIconSpecies(u16 species, u32 personality)
@@ -1156,46 +1183,15 @@ void LoadMonIconPalettes(void)
         LoadSpritePalette(&gMonIconPaletteTable[i]);
 }
 
-// unused
-void SafeLoadMonIconPalette(u16 species)
-{
-    u8 palIndex;
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    palIndex = gMonIconPaletteIndices[species];
-    if (IndexOfSpritePaletteTag(gMonIconPaletteTable[palIndex].tag) == 0xFF)
-        LoadSpritePalette(&gMonIconPaletteTable[palIndex]);
-}
-
-void LoadMonIconPalette(u16 species)
-{
-    u8 palIndex = gMonIconPaletteIndices[species];
-    if (IndexOfSpritePaletteTag(gMonIconPaletteTable[palIndex].tag) == 0xFF)
-        LoadSpritePalette(&gMonIconPaletteTable[palIndex]);
-}
-
 void FreeMonIconPalettes(void)
 {
-    u8 i;
-    for (i = 0; i < ARRAY_COUNT(gMonIconPaletteTable); i++)
-        FreeSpritePaletteByTag(gMonIconPaletteTable[i].tag);
-}
-
-// unused
-void SafeFreeMonIconPalette(u16 species)
-{
-    u8 palIndex;
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    palIndex = gMonIconPaletteIndices[species];
-    FreeSpritePaletteByTag(gMonIconPaletteTable[palIndex].tag);
-}
-
-void FreeMonIconPalette(u16 species)
-{
-    u8 palIndex;
-    palIndex = gMonIconPaletteIndices[species];
-    FreeSpritePaletteByTag(gMonIconPaletteTable[palIndex].tag);
+    u32 i;
+    u16 tag;
+    for (i = 0; i < 16; i++) {
+        tag = GetSpritePaletteTagByPaletteNum(i);
+        if (IS_MON_ICON_TAG(tag))
+            SetSpritePaletteTagByPaletteNum(i, TAG_NONE);
+    }
 }
 
 void SpriteCB_MonIcon(struct Sprite *sprite)
@@ -1233,25 +1229,9 @@ void TryLoadAllMonIconPalettesAtOffset(u16 offset)
     }
 }
 
-// Unused as of icon upgrade
-u8 GetValidMonIconPalIndex(u16 species)
-{
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    return gMonIconPaletteIndices[species];
-}
-
 u8 GetMonIconPaletteIndexFromSpecies(u16 species)
 {
     return gMonIconPaletteIndices[species];
-}
-
-// Unused as of icon upgrade
-const u16 *GetValidMonIconPalettePtr(u16 species)
-{
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    return gMonIconPaletteTable[gMonIconPaletteIndices[species]].data;
 }
 
 u8 UpdateMonIconFrame(struct Sprite *sprite)

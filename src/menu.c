@@ -2083,12 +2083,6 @@ static void UnusedBlitBitmapRect(const struct Bitmap *src, struct Bitmap *dst, u
 }
 
 // Unused
-static void LoadMonIconPalAtOffset(u8 palOffset, u16 speciesId)
-{
-    LoadPalette(GetValidMonIconPalettePtr(speciesId), palOffset, PLTT_SIZE_4BPP);
-}
-
-// Unused
 static void DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y)
 {
     BlitBitmapToWindow(windowId, GetMonIconPtr(speciesId, personality, 1), x, y, 32, 32);

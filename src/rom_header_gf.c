@@ -105,6 +105,7 @@ static const struct GFRomHeader sGFRomHeader = {
     .monNormalPalettes = gMonPaletteTable,
     .monShinyPalettes = gMonShinyPaletteTable,
     .monIcons = gMonIconTable,
+    // TODO: Icon compatibility with Colosseum/XD
     .monIconPaletteIds = gMonIconPaletteIndices,
     .monIconPalettes = gMonIconPaletteTable,
     .monSpeciesNames = gSpeciesNames,
