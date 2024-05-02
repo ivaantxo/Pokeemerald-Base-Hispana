@@ -1,4 +1,5 @@
 #include "global.h"
+#include "decompress.h"
 #include "scanline_effect.h"
 #include "palette.h"
 #include "task.h"
@@ -1343,7 +1344,7 @@ static void PrintBattleFacilityStringOnCard(void)
 static void PrintPokemonIconsOnCard(void)
 {
     u8 i;
-    u8 paletteSlots[PARTY_SIZE] = {5, 6, 7, 8, 9, 10};
+    u8 paletteSlots[PARTY_SIZE] = {5, 6, 7, 14, 9, 10};
     u8 xOffsets[PARTY_SIZE] = {0, 4, 8, 12, 16, 20};
 
     if (sData->cardType == CARD_TYPE_FRLG)
@@ -1352,8 +1353,7 @@ static void PrintPokemonIconsOnCard(void)
         {
             if (sData->trainerCard.monSpecies[i])
             {
-                u8 monSpecies = GetMonIconPaletteIndexFromSpecies(sData->trainerCard.monSpecies[i]);
-                WriteSequenceToBgTilemapBuffer(3, 16 * i + 224, xOffsets[i] + 3, 15, 4, 4, paletteSlots[monSpecies], 1);
+                WriteSequenceToBgTilemapBuffer(3, 16 * i + 224, xOffsets[i] + 3, 15, 4, 4, paletteSlots[i], 1);
             }
         }
     }
@@ -1361,36 +1361,42 @@ static void PrintPokemonIconsOnCard(void)
 
 static void LoadMonIconGfx(void)
 {
-    u8 i;
+    u32 i;
+    u32 paletteStart = 5;
 
-    CpuSet(gMonIconPalettes, sData->monIconPal, 0x60);
-    switch (sData->trainerCard.monIconTint)
-    {
-    case MON_ICON_TINT_NORMAL:
-        break;
-    case MON_ICON_TINT_BLACK:
-        TintPalette_CustomTone(sData->monIconPal, 96, 0, 0, 0);
-        break;
-    case MON_ICON_TINT_PINK:
-        TintPalette_CustomTone(sData->monIconPal, 96, 500, 330, 310);
-        break;
-    case MON_ICON_TINT_SEPIA:
-        TintPalette_SepiaTone(sData->monIconPal, 96);
-        break;
-    }
-    LoadPalette(sData->monIconPal, BG_PLTT_ID(5), 6 * PLTT_SIZE_4BPP);
+    for (i = 0; i < PARTY_SIZE; i++) {
+        const struct CompressedSpritePalette *palette;
+        if (!sData->trainerCard.monSpecies[i])
+            continue;
 
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        if (sData->trainerCard.monSpecies[i])
-            LoadBgTiles(3, GetMonIconTiles(sData->trainerCard.monSpecies[i], 0), 512, 16 * i + 32);
+        palette = GetMonSpritePalStructFromOtIdPersonality(sData->trainerCard.monSpecies[i], SHINY_ODDS, 0);
+
+        LZDecompressWram(palette->data, sData->monIconPal);
+
+        switch (sData->trainerCard.monIconTint)
+        {
+        case MON_ICON_TINT_NORMAL:
+            break;
+        case MON_ICON_TINT_BLACK:
+            TintPalette_CustomTone(sData->monIconPal, 16, 0, 0, 0);
+            break;
+        case MON_ICON_TINT_PINK:
+            TintPalette_CustomTone(sData->monIconPal, 16, 500, 330, 310);
+            break;
+        case MON_ICON_TINT_SEPIA:
+            TintPalette_SepiaTone(sData->monIconPal, 16);
+            break;
+        }
+
+        LoadPalette(sData->monIconPal, i == 3 ? (14*16) : (i+paletteStart)*16, PLTT_SIZE_4BPP);
+        LoadBgTiles(3, GetMonIconTiles(sData->trainerCard.monSpecies[i], 0), 512, 16 * i + 32);
     }
 }
 
 static void PrintStickersOnCard(void)
 {
     u8 i;
-    u8 paletteSlots[4] = {11, 12, 13, 14};
+    u8 paletteSlots[4] = {11, 12, 13, 13};
 
     if (sData->cardType == CARD_TYPE_FRLG && sData->trainerCard.shouldDrawStickers == TRUE)
     {
@@ -1408,7 +1414,7 @@ static void LoadStickerGfx(void)
     LoadPalette(sTrainerCardSticker1_Pal, BG_PLTT_ID(11), PLTT_SIZE_4BPP);
     LoadPalette(sTrainerCardSticker2_Pal, BG_PLTT_ID(12), PLTT_SIZE_4BPP);
     LoadPalette(sTrainerCardSticker3_Pal, BG_PLTT_ID(13), PLTT_SIZE_4BPP);
-    LoadPalette(sTrainerCardSticker4_Pal, BG_PLTT_ID(14), PLTT_SIZE_4BPP);
+    // LoadPalette(sTrainerCardSticker4_Pal, BG_PLTT_ID(14), PLTT_SIZE_4BPP);
     LoadBgTiles(3, sData->stickerTiles, 1024, 128);
 }
 
