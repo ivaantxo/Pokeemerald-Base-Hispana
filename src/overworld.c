@@ -135,14 +135,11 @@ static void CreateLinkPlayerSprite(u8, u8);
 static void GetLinkPlayerCoords(u8, u16 *, u16 *);
 static u8 GetLinkPlayerFacingDirection(u8);
 static u8 GetLinkPlayerElevation(u8);
-static s32 GetLinkPlayerObjectStepTimer(u8);
 static u8 GetLinkPlayerIdAt(s16, s16);
 static void SetPlayerFacingDirection(u8, u8);
 static void ZeroObjectEvent(struct ObjectEvent *);
 static void SpawnLinkPlayerObjectEvent(u8, s16, s16, u8);
 static void InitLinkPlayerObjectEventPos(struct ObjectEvent *, s16, s16);
-static void SetLinkPlayerObjectRange(u8, u8);
-static void DestroyLinkPlayerObject(u8);
 static u8 GetSpriteForLinkedPlayer(u8);
 static void RunTerminateLinkScript(void);
 static u32 GetLinkSendQueueLength(void);
@@ -205,7 +202,6 @@ EWRAM_DATA static struct InitialPlayerAvatarState sInitialPlayerAvatarState = {0
 EWRAM_DATA static u16 sAmbientCrySpecies = 0;
 EWRAM_DATA static bool8 sIsAmbientCryWaterMon = FALSE;
 EWRAM_DATA struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4] = {0};
-
 
 static const struct WarpData sDummyWarpData =
 {
@@ -1008,8 +1004,8 @@ void SetObjectEventLoadFlag(u8 flag)
     sObjectEventLoadFlag = flag;
 }
 
-// Unused, sObjectEventLoadFlag is read directly
-static u8 GetObjectEventLoadFlag(void)
+// sObjectEventLoadFlag is read directly
+static u8 UNUSED GetObjectEventLoadFlag(void)
 {
     return sObjectEventLoadFlag;
 }
@@ -1304,7 +1300,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
             }
         }
         // Ambient cries after the first one take between 1200-2399 frames (~20-40 seconds)
-        // If the player has a pokemon with the ability Swarm in their party, the time is halved to 600-1199 frames (~10-20 seconds)
+        // If the player has a Pokémon with the ability Swarm in their party, the time is halved to 600-1199 frames (~10-20 seconds)
         *delayCounter = ((Random() % 1200) + 1200) / divBy;
         *state = AMB_CRY_WAIT;
         break;
@@ -1316,7 +1312,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
         }
         break;
     case AMB_CRY_IDLE:
-        // No land/water pokemon on this map
+        // No land/water Pokémon on this map
         break;
     }
 }
@@ -1327,7 +1323,7 @@ static void ChooseAmbientCrySpecies(void)
      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE130))
      && !IsMirageIslandPresent())
     {
-        // Only play water pokemon cries on this route
+        // Only play water Pokémon cries on this route
         // when Mirage Island is not present
         sIsAmbientCryWaterMon = TRUE;
         sAmbientCrySpecies = GetLocalWaterMon();
@@ -1495,8 +1491,8 @@ void CB2_Overworld(void)
         SetVBlankCallback(NULL);
     OverworldBasic();
     if (fading) {
-      SetFieldVBlankCallback();
-      return;
+        SetFieldVBlankCallback();
+        return;
     }
 }
 
@@ -1977,9 +1973,9 @@ static bool32 ReturnToFieldLocal(u8 *state)
         ResumeMap(FALSE);
         InitObjectEventsReturnToField();
         if (gFieldCallback == FieldCallback_Fly)
-          RemoveFollowingPokemon();
+            RemoveFollowingPokemon();
         else
-          UpdateFollowingPokemon();
+            UpdateFollowingPokemon();
         SetCameraToTrackPlayer();
         (*state)++;
         break;
@@ -1995,6 +1991,7 @@ static bool32 ReturnToFieldLocal(u8 *state)
     case 3:
         return TRUE;
     }
+
     return FALSE;
 }
 
@@ -2171,7 +2168,7 @@ static void InitObjectEventsLink(void)
 
 static void InitObjectEventsLocal(void)
 {
-    s16 x, y;
+    u16 x, y;
     struct InitialPlayerAvatarState *player;
 
     gTotalCameraPixelOffsetX = 0;
@@ -2668,8 +2665,7 @@ u32 GetCableClubPartnersReady(void)
     return CABLE_SEAT_WAITING;
 }
 
-// Unused
-static bool32 IsAnyPlayerExitingCableClub(void)
+static bool32 UNUSED IsAnyPlayerExitingCableClub(void)
 {
     return IsAnyPlayerInLinkState(PLAYER_LINK_STATE_EXITING_ROOM);
 }
@@ -2977,7 +2973,7 @@ static void InitLinkPlayerObjectEventPos(struct ObjectEvent *objEvent, s16 x, s1
     ObjectEventUpdateElevation(objEvent, NULL);
 }
 
-static void SetLinkPlayerObjectRange(u8 linkPlayerId, u8 dir)
+static void UNUSED SetLinkPlayerObjectRange(u8 linkPlayerId, u8 dir)
 {
     if (gLinkPlayerObjectEvents[linkPlayerId].active)
     {
@@ -2987,7 +2983,7 @@ static void SetLinkPlayerObjectRange(u8 linkPlayerId, u8 dir)
     }
 }
 
-static void DestroyLinkPlayerObject(u8 linkPlayerId)
+static void UNUSED DestroyLinkPlayerObject(u8 linkPlayerId)
 {
     struct LinkPlayerObjectEvent *linkPlayerObjEvent = &gLinkPlayerObjectEvents[linkPlayerId];
     u8 objEventId = linkPlayerObjEvent->objEventId;
@@ -3028,7 +3024,7 @@ static u8 GetLinkPlayerElevation(u8 linkPlayerId)
     return objEvent->currentElevation;
 }
 
-static s32 GetLinkPlayerObjectStepTimer(u8 linkPlayerId)
+static s32 UNUSED GetLinkPlayerObjectStepTimer(u8 linkPlayerId)
 {
     u8 objEventId = gLinkPlayerObjectEvents[linkPlayerId].objEventId;
     struct ObjectEvent *objEvent = &gObjectEvents[objEventId];

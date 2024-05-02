@@ -56,7 +56,6 @@ static void AddSpritesToOamBuffer(void);
 static u8 CreateSpriteAt(u8 index, const struct SpriteTemplate *template, s16 x, s16 y, u8 subpriority);
 static void ResetOamMatrices(void);
 static void ResetSprite(struct Sprite *sprite);
-static s16 AllocSpriteTiles(u16 tileCount);
 static void RequestSpriteFrameImageCopy(u16 index, u16 tileNum, const struct SpriteFrameImage *images);
 static void ResetAllSprites(void);
 static void BeginAnim(struct Sprite *sprite);
@@ -1588,7 +1587,6 @@ u8 LoadSpritePalette(const struct SpritePalette *palette)
 {
     u8 index = IndexOfSpritePaletteTag(palette->tag);
     u8 i;
-    u16 *debugPtr = (u16*) 0x0203d800;
 
     if (index != 0xFF)
         return index;
@@ -1602,9 +1600,6 @@ u8 LoadSpritePalette(const struct SpritePalette *palette)
     else
     {
         sSpritePaletteTags[index] = palette->tag;
-        for (i = 0; i < 16; i++) {
-          debugPtr[i] = sSpritePaletteTags[i];
-        }
         DoLoadSpritePalette(palette->data, PLTT_ID(index));
         return index;
     }

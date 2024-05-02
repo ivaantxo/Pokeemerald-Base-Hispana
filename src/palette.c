@@ -212,15 +212,13 @@ bool8 BeginNormalPaletteFade(u32 selectedPalettes, s8 delay, u8 startY, u8 targe
     }
 }
 
-// Unused
-static bool8 BeginPlttFade(u32 selectedPalettes, u8 delay, u8 startY, u8 targetY, u16 blendColor)
+static bool8 UNUSED BeginPlttFade(u32 selectedPalettes, u8 delay, u8 startY, u8 targetY, u16 blendColor)
 {
     ReadPlttIntoBuffers();
     return BeginNormalPaletteFade(selectedPalettes, delay, startY, targetY, blendColor);
 }
 
-// Unused
-static void PaletteStruct_Run(u8 a1, u32 *unkFlags)
+static void UNUSED PaletteStruct_Run(u8 a1, u32 *unkFlags)
 {
     u8 i;
 
@@ -393,14 +391,14 @@ void ResetPaletteFadeControl(void)
     gPaletteFade.deltaY = 2;
 }
 
-static void PaletteStruct_SetUnusedFlag(u16 id)
+static void UNUSED PaletteStruct_SetUnusedFlag(u16 id)
 {
     u8 paletteNum = PaletteStruct_GetPalNum(id);
     if (paletteNum != NUM_PALETTE_STRUCTS)
         sPaletteStructs[paletteNum].flag = TRUE;
 }
 
-static void PaletteStruct_ClearUnusedFlag(u16 id)
+static void UNUSED PaletteStruct_ClearUnusedFlag(u16 id)
 {
     u8 paletteNum = PaletteStruct_GetPalNum(id);
     if (paletteNum != NUM_PALETTE_STRUCTS)
@@ -429,7 +427,7 @@ static u8 UpdateTimeOfDayPaletteFade(void) // Like normal, but respects sprite p
         return PALETTE_FADE_STATUS_DONE;
 
     if (IsSoftwarePaletteFadeFinishing())
-      return gPaletteFade.active ? PALETTE_FADE_STATUS_ACTIVE : PALETTE_FADE_STATUS_DONE;
+        return gPaletteFade.active ? PALETTE_FADE_STATUS_ACTIVE : PALETTE_FADE_STATUS_DONE;
 
     if (!gPaletteFade.objPaletteToggle)
     {
@@ -454,19 +452,20 @@ static u8 UpdateTimeOfDayPaletteFade(void) // Like normal, but respects sprite p
     }
 
     for (paletteNum = 0; paletteNum < 16; paletteNum++, selectedPalettes >>= 1, paletteOffset += 16) {
-      if (selectedPalettes & 1) {
-        if (gPaletteFade.yDec) {
-          if (gPaletteFade.objPaletteToggle) { // sprite palettes
-            if (gPaletteFade.y >= gPaletteFade.targetY || GetSpritePaletteTagByPaletteNum(paletteNum) & 0x8000)
-              BlendPalette(paletteOffset, 16, gPaletteFade.y, gPaletteFade.blendColor);
-          // tile palettes
-          } else if (gPaletteFade.y >= gPaletteFade.targetY || (paletteNum >= 13 && paletteNum <= 15)) {
-              BlendPalette(paletteOffset, 16, gPaletteFade.y, gPaletteFade.blendColor);
-          }
-        } else {
-          BlendPalette(paletteOffset, 16, gPaletteFade.y, gPaletteFade.blendColor);
+        if (selectedPalettes & 1) {
+            if (gPaletteFade.yDec) {
+                // sprite palettes
+                if (gPaletteFade.objPaletteToggle) {
+                    if (gPaletteFade.y >= gPaletteFade.targetY || GetSpritePaletteTagByPaletteNum(paletteNum) & 0x8000)
+                        BlendPalette(paletteOffset, 16, gPaletteFade.y, gPaletteFade.blendColor);
+                // tile palettes
+                } else if (gPaletteFade.y >= gPaletteFade.targetY || (paletteNum >= 13 && paletteNum <= 15)) {
+                    BlendPalette(paletteOffset, 16, gPaletteFade.y, gPaletteFade.blendColor);
+                }
+            } else {
+                BlendPalette(paletteOffset, 16, gPaletteFade.y, gPaletteFade.blendColor);
+            }
         }
-      }
     }
 
     gPaletteFade.objPaletteToggle ^= 1;
@@ -1079,8 +1078,7 @@ void BlendPalettesGradually(u32 selectedPalettes, s8 delay, u8 coeff, u8 coeffTa
     gTasks[taskId].func(taskId);
 }
 
-// Unused
-static bool32 IsBlendPalettesGraduallyTaskActive(u8 id)
+static bool32 UNUSED IsBlendPalettesGraduallyTaskActive(u8 id)
 {
     int i;
 
@@ -1093,8 +1091,7 @@ static bool32 IsBlendPalettesGraduallyTaskActive(u8 id)
     return FALSE;
 }
 
-// Unused
-static void DestroyBlendPalettesGraduallyTask(void)
+static void UNUSED DestroyBlendPalettesGraduallyTask(void)
 {
     u8 taskId;
 
