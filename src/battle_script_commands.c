@@ -11765,25 +11765,28 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 statValue = -2;
             gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
             index = 1;
-            if (statValue == -2)
-            {
-                gBattleTextBuff2[1] = B_BUFF_STRING;
-                gBattleTextBuff2[2] = STRINGID_STATHARSHLY;
-                gBattleTextBuff2[3] = STRINGID_STATHARSHLY >> 8;
-                index = 4;
-            }
-            else if (statValue <= -3)
-            {
-                gBattleTextBuff2[1] = B_BUFF_STRING;
-                gBattleTextBuff2[2] = STRINGID_SEVERELY & 0xFF;
-                gBattleTextBuff2[3] = STRINGID_SEVERELY >> 8;
-                index = 4;
-            }
+
             gBattleTextBuff2[index++] = B_BUFF_STRING;
             gBattleTextBuff2[index++] = STRINGID_STATFELL;
             gBattleTextBuff2[index++] = STRINGID_STATFELL >> 8;
-            gBattleTextBuff2[index] = B_BUFF_EOS;
 
+            if (statValue == -2)
+            {
+                gBattleTextBuff2[index++] = B_BUFF_STRING;
+                gBattleTextBuff2[index++] = STRINGID_STATSHARPLY;
+                gBattleTextBuff2[index++] = STRINGID_STATSHARPLY >> 8;
+            }
+            else if (statValue <= -3)
+            {
+                gBattleTextBuff2[index++] = B_BUFF_STRING;
+                gBattleTextBuff2[index++] = STRINGID_SEVERELY & 0xFF;
+                gBattleTextBuff2[index++] = STRINGID_SEVERELY >> 8;
+            }
+
+            gBattleTextBuff2[index++] = B_BUFF_STRING;
+            gBattleTextBuff2[index++] = STRINGID_DOT & 0xFF;
+            gBattleTextBuff2[index++] = STRINGID_DOT  >> 8;
+            gBattleTextBuff2[index] = B_BUFF_EOS;
             if (gBattleMons[battler].statStages[statId] == MIN_STAT_STAGE)
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAT_WONT_DECREASE;
@@ -11804,23 +11807,36 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             statValue = 2;
         gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
         index = 1;
+        
+        gBattleTextBuff2[index] = B_BUFF_STRING;
+        index +=1;
+        gBattleTextBuff2[index] = STRINGID_STATROSE;
+        index +=1;
+        gBattleTextBuff2[index] = STRINGID_STATROSE >> 8;
+        index +=1;
+
         if (statValue == 2)
         {
-            gBattleTextBuff2[1] = B_BUFF_STRING;
-            gBattleTextBuff2[2] = STRINGID_STATSHARPLY;
-            gBattleTextBuff2[3] = STRINGID_STATSHARPLY >> 8;
-            index = 4;
+            gBattleTextBuff2[index] = B_BUFF_STRING;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_STATSHARPLY;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_STATSHARPLY >> 8;
+            index +=1;
         }
         else if (statValue >= 3)
         {
-            gBattleTextBuff2[1] = B_BUFF_STRING;
-            gBattleTextBuff2[2] = STRINGID_DRASTICALLY & 0xFF;
-            gBattleTextBuff2[3] = STRINGID_DRASTICALLY >> 8;
-            index = 4;
+            gBattleTextBuff2[index] = B_BUFF_STRING;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_DRASTICALLY & 0xFF;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_DRASTICALLY >> 8;
+            index +=1;
         }
+
         gBattleTextBuff2[index++] = B_BUFF_STRING;
-        gBattleTextBuff2[index++] = STRINGID_STATROSE;
-        gBattleTextBuff2[index++] = STRINGID_STATROSE >> 8;
+        gBattleTextBuff2[index++] = STRINGID_DOT & 0xFF;
+        gBattleTextBuff2[index++] = STRINGID_DOT  >> 8;
         gBattleTextBuff2[index] = B_BUFF_EOS;
 
         if (gBattleMons[battler].statStages[statId] == MAX_STAT_STAGE)
