@@ -205,7 +205,9 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+#if USE_DEXNAV_SEARCH_LEVELS == TRUE
     memset(gSaveBlock1Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock1Ptr->dexNavSearchLevels));
+#endif
     gSaveBlock1Ptr->dexNavChain = 0;
 }
 

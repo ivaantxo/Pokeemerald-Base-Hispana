@@ -794,6 +794,17 @@ static void LoadSearchIconData(void)
     LoadCompressedSpriteSheetUsingHeap(&sHiddenMonIconSpriteSheet);
 }
 
+static u8 GetSearchLevel(u16 dexNum)
+{
+    u8 searchLevel;
+#if USE_DEXNAV_SEARCH_LEVELS == TRUE
+    searchLevel = gSaveBlock1Ptr->dexNavSearchLevels[dexNum];
+#else
+    searchLevel = 0;
+#endif
+    return searchLevel;
+}
+
 #define tProximity          data[0]
 #define tFrameCount         data[1]
 #define tSpecies            data[2]
@@ -805,8 +816,8 @@ static void Task_SetUpDexNavSearch(u8 taskId)
     
     u16 species = sDexNavSearchDataPtr->species;
     u8 environment = sDexNavSearchDataPtr->environment;
-    u8 searchLevel = gSaveBlock1Ptr->dexNavSearchLevels[SpeciesToNationalPokedexNum(species)];
-    
+    u8 searchLevel = GetSearchLevel(SpeciesToNationalPokedexNum(species));
+
     // init sprites
     sDexNavSearchDataPtr->iconSpriteId = MAX_SPRITES;
     sDexNavSearchDataPtr->itemSpriteId = MAX_SPRITES;
@@ -2162,7 +2173,7 @@ static void PrintCurrentSpeciesInfo(void)
     }
     else
     {
-        ConvertIntToDecimalStringN(gStringVar4, gSaveBlock1Ptr->dexNavSearchLevels[dexNum], 0, 4);
+        ConvertIntToDecimalStringN(gStringVar4, GetSearchLevel(dexNum), 0, 4);
         AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SEARCH_LEVEL_Y, sFontColor_Black, 0, gStringVar4);
     }
     
@@ -2719,8 +2730,10 @@ bool8 DexNavTryMakeShinyMon(void)
 
 void TryIncrementSpeciesSearchLevel(u16 dexNum)
 {
+#if USE_DEXNAV_SEARCH_LEVELS == TRUE
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock1Ptr->dexNavSearchLevels[dexNum] < 255)
         gSaveBlock1Ptr->dexNavSearchLevels[dexNum]++;
+#endif
 }
 
 void ResetDexNavSearch(void)
