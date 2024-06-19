@@ -713,7 +713,6 @@ static u8 CheckForPlayerAvatarStaticCollision(u8 direction)
 u8 CheckForObjectEventCollision(struct ObjectEvent *objectEvent, s16 x, s16 y, u8 direction, u8 metatileBehavior)
 {
     u8 collision = GetCollisionAtCoords(objectEvent, x, y, direction);
-    u8 currentBehavior = MapGridGetMetatileBehaviorAt(objectEvent->currentCoords.x, objectEvent->currentCoords.y);
     
     if (collision == COLLISION_ELEVATION_MISMATCH && CanStopSurfing(x, y, direction))
         return COLLISION_STOP_SURFING;
@@ -733,21 +732,6 @@ u8 CheckForObjectEventCollision(struct ObjectEvent *objectEvent, s16 x, s16 y, u
         CheckAcroBikeCollision(x, y, metatileBehavior, &collision);
     }
     
-    //sideways stairs logic
-    /*
-    if (MetatileBehavior_IsSidewaysStairsLeftSideTop(metatileBehavior) && direction == DIR_EAST)
-        return COLLISION_IMPASSABLE;    //moving onto left-side top edge east from ground -> cannot move
-    else if (MetatileBehavior_IsSidewaysStairsRightSideTop(metatileBehavior) && direction == DIR_WEST)
-        return COLLISION_IMPASSABLE;    //moving onto left-side top edge east from ground -> cannot move
-    else if (MetatileBehavior_IsSidewaysStairsRightSideBottom(metatileBehavior) && (direction == DIR_EAST || direction == DIR_SOUTH))
-        return COLLISION_IMPASSABLE;
-    else if (MetatileBehavior_IsSidewaysStairsLeftSideBottom(metatileBehavior) && (direction == DIR_WEST || direction == DIR_SOUTH))
-        return COLLISION_IMPASSABLE;
-    else if ((MetatileBehavior_IsSidewaysStairsLeftSideTop(currentBehavior) || MetatileBehavior_IsSidewaysStairsRightSideTop(currentBehavior))
-     && direction == DIR_NORTH && collision == COLLISION_NONE)
-        return COLLISION_IMPASSABLE;    //trying to move north off of top-most tile onto same level doesn't work
-    */
-        
     return collision;
 }
 
