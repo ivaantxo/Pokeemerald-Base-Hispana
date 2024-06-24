@@ -10,21 +10,21 @@ FortreeCity_House3_EventScript_SchoolKidM::
 	end
 
 FortreeCity_House3_Text_MetStevenHadAmazingPokemon:
-	.string "En parlant de POKéDEX, ça me\n"
-	.string "rappelle quelque chose.\p"
-	.string "J’ai rencontré ce DRESSEUR, PIERRE,\n"
-	.string "quand je cherchais des pierres rares.\p"
-	.string "Si t’avais vu comme ses POKéMON\n"
-	.string "étaient surprenants!\p"
-	.string "Non seulement ils étaient rares, mais\n"
-	.string "ils étaient également soumis à un rude\l"
-	.string "entraînement.\p"
-	.string "Ce DRESSEUR est peut-être encore plus\n"
-	.string "fort que le CHAMPION de cette ville…$"
+	.string "Hablando de POKéDEX, me acabo\n"
+	.string "de acordar de algo…\p"
+	.string "Conocí a un ENTRENADOR, MÁXIMO se\n"
+	.string "llamaba, mientras buscaba rocas raras.\p"
+	.string "Jo, jo, jo, llevaba consigo POKéMON\n"
+	.string "extraordinarios.\p"
+	.string "No eran sólo poco comunes, sino que\n"
+	.string "además estaban muy bien entrenados.\p"
+	.string "Es posible que este chico sea más\n"
+	.string "fuerte que la LÍDER del GIMNASIO\l"
+	.string "de este pueblo.$"
 
 FortreeCity_House3_Text_OhYouHavePokedex:
-	.string "Quelle est cette chose que tu as là?\p"
-	.string "… … … … … …\p"
-	.string "Oh, ça s’appelle un POKéDEX?\n"
-	.string "C’est très impressionnant!$"
+	.string "¿Qué es eso que llevas ahí?\p"
+	.string "Aaaah…\p"
+	.string "¿Entonces se llama POKéDEX?\n"
+	.string "¡Está guapa!$"
 

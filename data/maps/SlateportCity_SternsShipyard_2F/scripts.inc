@@ -10,13 +10,13 @@ SlateportCity_SternsShipyard_2F_EventScript_Scientist2::
 	end
 
 SlateportCity_SternsShipyard_2F_Text_ShipDesignMoreLikeBuilding:
-	.string "Concevoir un grand bateau relève plus\n"
-	.string "de la construction d’un vaste bâtiment\l"
-	.string "que de l’assemblage d’un véhicule.$"
+	.string "Diseñar un gran barco se parece\n"
+	.string "más a construir un edificio que\l"
+	.string "a crear un medio de transporte.$"
 
 SlateportCity_SternsShipyard_2F_Text_FloatsBecauseBuoyancy:
-	.string "C’est étrange qu’un bateau fait d’acier\n"
-	.string "puisse flotter, non?\p"
-	.string "S’il flotte, c’est dû à ce que l’on\n"
-	.string "appelle le principe de flottabilité.$"
+	.string "¿No te parece extraño que un barco\n"
+	.string "construido con hierro pueda flotar?\p"
+	.string "Pues bien, flota gracias al principio\n"
+	.string "de la flotabilidad. ¡Naturalmente!$"
 

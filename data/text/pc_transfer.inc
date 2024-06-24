@@ -1,33 +1,31 @@
 gText_PkmnTransferredSomeonesPC::
-    .string "{STR_VAR_2} a été transféré sur le\n"
-    .string "PC de ???.\p"
-    .string "Il a été placé dans la BOITE\n"
-    .string "appelée “{STR_VAR_1}”.$"
+	.string "{STR_VAR_2} fue enviado al PC\n"
+	.string "de alguien.\p"
+	.string "Se ha guardado en la CAJA\n"
+	.string "“{STR_VAR_1}”.$"
 
 gText_PkmnTransferredLanettesPC::
-    .string "{STR_VAR_2} a été transféré sur le\n"
-    .string "PC d’ANNETTE.\p"
-    .string "Il a été placé dans la BOITE\n"
-    .string "appelée “{STR_VAR_1}”.$"
+	.string "{STR_VAR_2} fue enviado al PC\n"
+	.string "de AREDIA.\p"
+	.string "Se ha guardado en la CAJA\n"
+	.string "“{STR_VAR_1}”.$"
 
 gText_PkmnTransferredSomeonesPCBoxFull::
-    .string "La BOITE {STR_VAR_3} sur le PC\n"
-    .string "de ??? est pleine.\p"
-    .string "{STR_VAR_2} a été placé dans la\n"
-    .string "BOITE appelée “{STR_VAR_1}”.$"
+	.string "La CAJA “{STR_VAR_3}” del PC\n"
+	.string "de alguien estaba llena.\p"
+	.string "{STR_VAR_2} fue enviado a la CAJA\n"
+	.string "“{STR_VAR_1}”.$"
 
 gText_PkmnTransferredLanettesPCBoxFull::
-    .string "La BOITE “{STR_VAR_3}” sur le PC\n"
-    .string "d’ANNETTE est pleine.\p"
-    .string "{STR_VAR_2} a été placé dans la\n"
-    .string "BOITE appelée “{STR_VAR_1}”.$"
+	.string "La CAJA “{STR_VAR_3}” del PC\n"
+	.string "de AREDIA estaba llena.\p"
+	.string "{STR_VAR_2} fue enviado a la CAJA\n"
+	.string "“{STR_VAR_1}”.$"
 
 gText_NoMoreRoomForPokemon::
-    .string "Il n’y a plus de place pour\n"
-    .string "les POKéMON.\p"
-    .string "Les BOITES sont pleines et\n"
-    .string "ne peuvent plus rien recevoir.$"
+	.string "¡No queda sitio para más POKéMON!\p"
+	.string "¡Las CAJAS POKéMON están llenas!$"
 
 gText_NicknameThisPokemon::
-    .string "Voulez-vous donner un surnom\n"
-    .string "à {STR_VAR_1}?$"
+	.string "¿Quieres darle un mote\n"
+	.string "a tu {STR_VAR_1}?$"

@@ -12,25 +12,24 @@ SeafloorCavern_Room1_EventScript_Grunt2::
 	end
 
 SeafloorCavern_Room1_Text_Grunt1Intro:
-	.string "Pas besoin d’un môme dans nos pattes!\n"
-	.string "Rentre chez toi!$"
+	.string "¡No queremos enanos por aquí!\n"
+	.string "¡Vete a casita con mamá!$"
 
 SeafloorCavern_Room1_Text_Grunt1Defeat:
-	.string "Je veux rentrer chez moi…$"
+	.string "Aaaah, quiero irme a casa…$"
 
 SeafloorCavern_Room1_Text_Grunt1PostBattle:
-	.string "Je veux avoir une promotion pour\n"
-	.string "donner des ordres aux SBIRES…$"
+	.string "Quiero que me asciendan para poder\n"
+	.string "mandar a los SOLDADOS…$"
 
 SeafloorCavern_Room1_Text_Grunt2Intro:
-	.string "Ce sous-marin… C’est minuscule à\n"
-	.string "l’intérieur. J’ai mal partout!$"
+	.string "Ese submarino es enanísimo…\n"
+	.string "Me duele todo de estar ahí encogido…$"
 
 SeafloorCavern_Room1_Text_Grunt2Defeat:
-	.string "Ça m’énerve de perdre!$"
+	.string "¡Me duele aún más perder!$"
 
 SeafloorCavern_Room1_Text_Grunt2PostBattle:
-	.string "Ce sous-marin qu’on a piqué…\n"
-	.string "Plutôt brutale la balade!\p"
-	.string "C’est trop étroit là-dedans!$"
+	.string "Ese submarino que robamos\n"
+	.string "es lo peor: ¡no se cabe dentro!$"
 

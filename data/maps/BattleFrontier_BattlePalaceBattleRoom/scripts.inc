@@ -448,134 +448,134 @@ BattleFrontier_BattlePalaceBattleRoom_Movement_SpenserEnter:
 	step_end
 
 BattleFrontier_BattlePalaceBattleRoom_Text_LetMeRestoreYourMons:
-	.string "Excellent…\n"
-	.string "Je vais soigner vos POKéMON.$"
+	.string "Excelente…\n"
+	.string "Voy a devolver la forma a tus POKéMON.$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor2ndOpponent:
-	.string "Le deuxième adversaire est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Tu 2.º rival espera.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor3rdOpponent:
-	.string "Le troisième adversaire est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Tu 3.{SUPER_ER} rival espera.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor4thOpponent:
-	.string "Le quatrième adversaire est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Tu 4.º rival espera.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor5thOpponent:
-	.string "Le cinquième adversaire est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Tu 5.º rival espera.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor6thOpponent:
-	.string "Le sixième adversaire est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Tu 6.º rival espera.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_PreparedFor7thOpponent:
-	.string "Le septième adversaire est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Tu 7.º rival espera.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SaveAndQuitGame:
-	.string "Voulez-vous sauvegarder la partie et\n"
-	.string "arrêter de jouer?$"
+	.string "¿Quieres guardar la partida\n"
+	.string "y dejar de jugar?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_WishToQuitChallenge:
-	.string "Voulez-vous abandonner votre défi?$"
+	.string "¿Deseas retirarte del desafío?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SavingData:
-	.string "Sauvegarde en cours…\n"
-	.string "Veuillez patienter.$"
+	.string "Vamos a guardar los datos.\n"
+	.string "Un poco de paciencia, por favor…$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_RecordLastMatch:
-	.string "Voulez-vous enregistrer votre dernier\n"
-	.string "combat sur votre PASSE ZONE?$"
+	.string "¿Deseas grabar tu último combate\n"
+	.string "en tu PASE del FRENTE?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_ChallengingPalaceMaven:
-	.string "Et maintenant…\p"
-	.string "Vos victoires vous donnent le droit\n"
-	.string "d’affronter le CAPT. PALACE…$"
+	.string "Y ahora…\p"
+	.string "Gracias a tus victorias encadenadas,\n"
+	.string "te has ganado el derecho a enfrentarte\l"
+	.string "a nuestro maestro, el AMO del PALACIO…$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_ReadyForPalaceMaven:
-	.string "Le CAPT. PALACE est prêt.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "Pronto llegará el AMO del PALACIO.\n"
+	.string "¿De verdad deseas continuar?$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_AnnounceArrivalOfSpenser:
-	.string "Veuillez accueillir comme il se doit\n"
-	.string "le CAPT. PALACE, ESTEBAN!$"
+	.string "¡Su reputación le precede!\n"
+	.string "¡El AMO del PALACIO, ANICETO!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserFirstIntro:
-	.string "ESTEBAN: Je ne fais qu’un avec mes\n"
-	.string "POKéMON!\p"
-	.string "Mon cœur et celui de mes POKéMON\n"
-	.string "battent à l’unisson!\p"
-	.string "Dis-moi, DRESSEUR en herbe!\n"
-	.string "Crois-tu en tes POKéMON?\p"
-	.string "Est-ce que tu crois en eux, quoi\n"
-	.string "qu’il arrive?\p"
-	.string "La confiance qui te lie à tes POKéMON\n"
-	.string "devra être à toute épreuve!$"
+	.string "ANICETO: ¡Mi cuerpo y mi mente\n"
+	.string "están siempre con mis POKéMON!\p"
+	.string "¡Mi corazón late a la vez que los suyos!\p"
+	.string "Dime, tú que te atreves a desafiarme:\n"
+	.string "¿Tienes fe en tus POKéMON?\p"
+	.string "¿Tienes una fe plena en ellos?\p"
+	.string "Porque, si esa fe flaquea lo más mínimo,\n"
+	.string "¡nunca jamás podrás derrotarme!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_ProveYourBondWithMons:
-	.string "Montre-moi les liens qui t’unissent à\n"
-	.string "tes POKéMON!$"
+	.string "¡Veamos lo fuerte que es ese vínculo\n"
+	.string "que tienes con tus POKéMON! ¡Adelante!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserPostSilverBattle:
-	.string "ESTEBAN: Ahhhhh!\p"
-	.string "Je me suis un peu trop vanté!\n"
-	.string "Désolé pour ce petit numéro!\p"
-	.string "Allez…\n"
-	.string "Donne-moi ce que tu sais!$"
+	.string "ANICETO: ¡Vaya, vaya!\p"
+	.string "¡No te han asustado mis fanfarronadas!\n"
+	.string "¡Perdona, intentaba impresionarte\l"
+	.string "con mi palabrería!\p"
+	.string "¡Anda!\n"
+	.string "¡Saca eso!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_LetsSeeFrontierPass:
-	.string "Un bon DRESSEUR ne doit jamais perdre\n"
-	.string "la face…\p"
-	.string "Allez, ton PASSE ZONE!\n"
-	.string "Et que ça saute!$"
+	.string "Ay, ay, por lo menos espero no perder\n"
+	.string "esta fachada mía que tanto impone…\p"
+	.string "¡Venga!\n"
+	.string "¡Muestra tu PASE del FRENTE!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_ReceivedSpiritsSymbol:
-	.string "Le SYMBOLE ESPRIT a été ajouté sur le\n"
-	.string "PASSE ZONE!$"
+	.string "¡El SÍMBOLO del ÁNIMO ha sido\n"
+	.string "grabado en el PASE del FRENTE!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserAwaitNextTime:
-	.string "ESTEBAN: Tu lis dans tes POKéMON comme\n"
-	.string "dans un livre ouvert.\p"
-	.string "J’attendrai avec impatience l’instant\n"
-	.string "où nous nous reverrons.$"
+	.string "ANICETO: La mirada de tus POKéMON\n"
+	.string "es limpia y clara.\p"
+	.string "Ojalá que no tardemos mucho\n"
+	.string "en volver a enfrentarnos.$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserThisTimeWontHoldBack:
-	.string "ESTEBAN: Ahhhhh!!!\n"
-	.string "Te voilà?\p"
-	.string "Tu as dû développer un lien\n"
-	.string "unique avec tes POKéMON.\p"
-	.string "Battons-nous!\p"
-	.string "Cette fois, je ne vais pas faire le\n"
-	.string "malin! Cette fois, je vais gagner!\p"
-	.string "On peut commencer?\n"
-	.string "Prépare-toi à perdre!$"
+	.string "ANICETO: ¡Anda, mira tú qué bien!\n"
+	.string "¡Has llegado hasta aquí otra vez!\p"
+	.string "¡Ese vínculo con tus POKéMON\n"
+	.string "debe de ser realmente extraordinario!\p"
+	.string "¡Así sea, pues!\p"
+	.string "Esta vez sin fanfarronadas.\n"
+	.string "Esta vez, la cosa va en serio.\p"
+	.string "¿Están tus POKéMON preparados?\n"
+	.string "¡Pues prepárate para perder!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_Kaaah:
-	.string "… … …\n"
-	.string "Ahhhhh!$"
+	.string "¡Aaaaaah!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserYourTeamIsAdmirable:
-	.string "ESTEBAN: Ce fut une belle\n"
-	.string "démonstration! Mes POKéMON, même\l"
-	.string "déchaînés, n’ont pas battu les tiens.\p"
-	.string "Votre esprit d’équipe est remarquable!\p"
-	.string "Allez…\n"
-	.string "Tu me donnes ce que tu sais?$"
+	.string "ANICETO: ¡Menuda demostración!\n"
+	.string "Los míos han combatido como mejor\l"
+	.string "sabían, pero no ha sido suficiente.\p"
+	.string "¡Tu ánimo y el de tu equipo\n"
+	.string "son dignos de admiración!\p"
+	.string "¡Venga!\n"
+	.string "¡Muestra eso!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_HurryWithFrontierPass:
-	.string "Un bon DRESSEUR se doit d’être\n"
-	.string "respectueux…\p"
-	.string "Allez, grouille-toi!\n"
-	.string "Sors-moi ton PASSE ZONE!$"
+	.string "Ay, ay, ojalá pueda mantener\n"
+	.string "un mínimo de decoro…\p"
+	.string "¡Ah! ¡Venga!\n"
+	.string "¡Tú, date prisa con el PASE del FRENTE!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpiritsSymbolTookGoldenShine:
-	.string "Le SYMBOLE ESPRIT a pris une couleur\n"
-	.string "dorée!$"
+	.string "¡El SÍMBOLO del ÁNIMO\n"
+	.string "ha adquirido un brillo dorado!$"
 
 BattleFrontier_BattlePalaceBattleRoom_Text_SpenserComeSeeMeAgain:
-	.string "ESTEBAN: Ah, ah!\p"
-	.string "Reviens me voir quand tu veux!\n"
-	.string "Nous t’attendrons de pied ferme!$"
+	.string "ANICETO: ¡Vaya, vaya!\p"
+	.string "¡No me olvides y ven a verme otra vez!\n"
+	.string "¡Los míos y yo os estaremos esperando!$"

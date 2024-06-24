@@ -31,21 +31,21 @@ LavaridgeTown_PokemonCenter_1F_EventScript_Gentleman::
 	end
 
 LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether:
-	.string "Je crois que les POKéMON deviennent\n"
-	.string "plus proches de leurs DRESSEURS s’ils\l"
-	.string "passent du temps ensemble.\p"
-	.string "Plus ils passent de temps ensemble,\n"
-	.string "plus ils sont proches. J’en suis sûre.$"
+	.string "Creo que los POKéMON se van uniendo\n"
+	.string "más a los ENTRENADORES a medida\l"
+	.string "que van pasando más tiempo juntos.\p"
+	.string "Cuanto más tiempo, mejor.\n"
+	.string "Eso creo.$"
 
 LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate:
-	.string "Les sources chaudes me font un bien\n"
-	.string "fou.\p"
-	.string "J’aimerais que mes POKéMON puissent\n"
-	.string "en profiter aussi.$"
+	.string "Es increíble cómo pueden devolverte\n"
+	.string "la energía estos baños termales.\p"
+	.string "¡Cómo me gustaría poder meter\n"
+	.string "también aquí a mis POKéMON!$"
 
 LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo:
-	.string "Ho ho! Hé, tu sais que tu peux accéder\n"
-	.string "aux sources chaudes par ici?\p"
-	.string "Puisque les POKéMON se reposent, les\n"
-	.string "DRESSEURS devraient aussi se reposer.$"
+	.string "¡Jo, jo, jo! Oye, joven, por aquí\n"
+	.string "llegarás a los baños termales.\p"
+	.string "Los POKéMON descansan, ¿no?\n"
+	.string "Pues los ENTRENADORES también.$"
 

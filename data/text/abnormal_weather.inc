@@ -1,5 +1,6 @@
 gText_AbnormalWeatherEnded_Rain::
-    .string "La pluie torrentielle s’est arrêtée…$"
+	.string "Parece que ha parado de llover…$"
 
 gText_AbnormalWeatherEnded_Sun::
-    .string "Le soleil brille moins fort…$"
+	.string "Parece que el sol ha dejado de brillar\n"
+	.string "con fuerza…$"

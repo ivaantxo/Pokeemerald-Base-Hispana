@@ -54,17 +54,18 @@ MossdeepCity_House2_Movement_WingullExitEast:
 	step_end
 
 MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree:
-	.string "Ma petite sœur échange des LETTRES\n"
-	.string "avec son petit ami de CIMETRONELLE.\p"
-	.string "Je ne l’envie pas du tout.$"
+	.string "Mi hermana pequeña se escribe CARTAS\n"
+	.string "con su novio, que vive en ARBORADA.\p"
+	.string "Yo preferiría poder quedar\n"
+	.string "con él en vivo y en directo.$"
 
 MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth:
-	.string "Même si je ne peux pas voir mon ami à\n"
-	.string "CIMETRONELLE, mon POKéMON fait les\l"
-	.string "allers et retours avec nos LETTRES.\p"
-	.string "Nous sommes séparés, mais je ne\n"
-	.string "me sens pas seule.$"
+	.string "No puedo ver a mi novio, porque vive en\n"
+	.string "ARBORADA, pero mi POKéMON le lleva\l"
+	.string "mis CARTAS allí y me trae las suyas.\p"
+	.string "Así podemos seguir en contacto\n"
+	.string "a pesar de la distancia.$"
 
 MossdeepCity_House2_Text_Wingull:
-	.string "GOELISE: Goéééliiise!$"
+	.string "WINGULL: ¡Winguuu!$"
 

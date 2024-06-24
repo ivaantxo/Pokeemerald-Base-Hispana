@@ -42,40 +42,39 @@ FortreeCity_House2_EventScript_WrongGuess::
 	end
 
 FortreeCity_House2_Text_HiddenPowersArousedByNature:
-	.string "Les humains… Les POKéMON…\p"
-	.string "Leurs pouvoirs cachés se développent\n"
-	.string "lorsqu’ils vivent en milieu naturel…$"
+	.string "Los poderes ocultos de la gente y de\n"
+	.string "los POKéMON salen a la luz cuando\l"
+	.string "viven en contacto con la naturaleza.$"
 
 FortreeCity_House2_Text_CoinInWhichHand:
-	.string "Laisse la vieille dame que je suis voir si\n"
-	.string "ton pouvoir caché s’est éveillé…\p"
-	.string "J’ai une pièce dans une main.\p"
-	.string "Dans quelle main l’ai-je cachée?\n"
-	.string "La droite ou la gauche?$"
+	.string "Deja que compruebe si tus poderes\n"
+	.string "ocultos han despertado…\p"
+	.string "Tengo una moneda en una mano.\p"
+	.string "Ahora dime, ¿está en la mano derecha?\n"
+	.string "¿O quizás en la izquierda?$"
 
 FortreeCity_House2_Text_CorrectTryAgainWhichHand:
-	.string "Oh! Oui, c’est juste!\p"
-	.string "On va réessayer.\p"
-	.string "Dans quelle main est la pièce?\n"
-	.string "La droite ou la gauche?$"
+	.string "¡Has acertado!\p"
+	.string "Volvamos a intentarlo.\p"
+	.string "¿Dónde guardo la moneda?\n"
+	.string "¿En la mano derecha o en la izquierda?$"
 
 FortreeCity_House2_Text_CorrectTryAgainWhichHand2:
-	.string "Oh! Oui, c’est juste!\p"
-	.string "On va réessayer.\p"
-	.string "Dans quelle main est la pièce?\n"
-	.string "La droite ou la gauche?$"
+	.string "¡Has acertado!\p"
+	.string "Volvamos a intentarlo.\p"
+	.string "¿Dónde guardo la moneda?\n"
+	.string "¿En la mano derecha o en la izquierda?$"
 
 FortreeCity_House2_Text_YourHiddenPowerHasAwoken:
-	.string "Oh! Superbe!\n"
-	.string "Ton pouvoir caché s’est réveillé!\p"
-	.string "Tiens, prends ça et révèle le pouvoir\n"
-	.string "caché de tes POKéMON.$"
+	.string "¡Magnífico!\n"
+	.string "¡Tus poderes ocultos están activos!\p"
+	.string "Mira, te voy a dar esto para que puedas\n"
+	.string "hacer lo mismo con tus POKéMON.$"
 
 FortreeCity_House2_Text_ExplainHiddenPower:
-	.string "PUISSANCE CACHEE est une capacité\n"
-	.string "qui diffère selon les POKéMON.$"
+	.string "PODER OCULTO es un movimiento\n"
+	.string "que se adapta a cada POKéMON.$"
 
 FortreeCity_House2_Text_YouGuessedWrong:
-	.string "Non, dommage.\n"
-	.string "Tu n’as pas fait le bon choix.$"
+	.string "Pues no. Te has equivocado.$"
 

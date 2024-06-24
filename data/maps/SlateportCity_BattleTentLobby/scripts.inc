@@ -275,36 +275,36 @@ SlateportCity_BattleTentLobby_EventScript_ExitRules::
 	end
 
 SlateportCity_BattleTentLobby_Text_CouldntFindMonForMe:
-	.string "Tu vois, comme j’pouvais pas trouver\n"
-	.string "de POKéMON pour moi, tu vois…\p"
-	.string "Alors j’suis allé me plaindre à ce\n"
-	.string "type là, tu vois.\p"
-	.string "Et il voulait même pas m’écouter, quoi!\n"
-	.string "Un vrai pourri, quoi!\p"
-	.string "J’pouvais pas en placer une!\n"
-	.string "Attends, prends ça, quoi!$"
+	.string "Mi problema es que no he encontrado\n"
+	.string "ni un POKéMON que me mole, ¿sabes?\p"
+	.string "Así que decidí ir a montarle un pollo\n"
+	.string "al pibe ese de allí, pues porque sí.\p"
+	.string "Y el tronco pasó de mí…\n"
+	.string "No se enrolló nada, ¿entiendes?\p"
+	.string "Igualito, igualito… ¡que tú! Pues vale,\n"
+	.string "ya lo pillo, colega, pero toma esto.$"
 
 SlateportCity_BattleTentLobby_Text_ExplainTorment:
-	.string "Ben quoi, c’est la CT41, tu vois?\n"
-	.string "Hé, c’est TOURMENTE, tu piges?\p"
-	.string "Avec ça, l’autre pourra pas utiliser\n"
-	.string "deux fois de suite la même capacité, OK?\p"
-	.string "Hé, maintenant, tu m’écoutes, alors!\n"
-	.string "C’est quand même pas la mort!$"
+	.string "Es la MT41, que lo sepas…\n"
+	.string "Vamos, la MT TORMENTO…\p"
+	.string "Si la usas, el tipo que se enfrente\n"
+	.string "a ti no podrá usar dos veces seguidas\l"
+	.string "el mismo movimiento, ¿sabes?\p"
+	.string "¡Oye, tú, pero escúchame! Cualquiera\n"
+	.string "diría que esto es un tormento…$"
 
 SlateportCity_BattleTentLobby_Text_IllTryUsingBugMons:
-	.string "J’aime pas vraiment les POKéMON\n"
-	.string "INSECTE, mais je devrais peut-être\l"
-	.string "en essayer, juste pour voir.\p"
-	.string "Qui sait, j’pourrais peut-être même\n"
-	.string "aimer ça!$"
+	.string "Los POKéMON BICHO no me convencen,\n"
+	.string "pero quizás debería reconsiderarlo,\l"
+	.string "aunque sólo sea por cambiar.\p"
+	.string "Quién sabe, ¡a lo mejor resulta\n"
+	.string "que al final me chiflan!$"
 
 SlateportCity_BattleTentLobby_Text_BattleEvenWithoutToughMons:
-	.string "Tu peux te battre quand tu veux ici,\n"
-	.string "même si tu ne possèdes pas de\l"
-	.string "POKéMON.$"
+	.string "Aquí puedes luchar todo lo que quieras,\n"
+	.string "aunque no tengas POKéMON fuertes.$"
 
 SlateportCity_BattleTentLobby_Text_NiceIfMoreSelection:
-	.string "Ne serait-ce pas super s’ils avaient\n"
-	.string "plus de choix?$"
+	.string "¿A que estaría bien que hubiera\n"
+	.string "más donde elegir?$"
 

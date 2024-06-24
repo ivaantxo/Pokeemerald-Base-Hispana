@@ -27,15 +27,13 @@ DewfordTown_PokemonCenter_1F_EventScript_Man::
 	end
 
 DewfordTown_PokemonCenter_1F_Text_StoneCavern:
-	.string "Il y a une caverne en bordure de\n"
-	.string "la ville.\p"
-	.string "J’ai entendu dire qu’on y trouve des\n"
-	.string "pierres très rares.$"
+	.string "Hay una caverna de roca en la otra\n"
+	.string "punta del pueblo.\p"
+	.string "Creo que puedes encontrar piedras\n"
+	.string "raras por allí.$"
 
 DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM:
-	.string "Même si un POKéMON est K.O. et ne\n"
-	.string "peut pas se battre, il peut quand\p"
-	.string "même utiliser les coups appris d’une\n"
-	.string "CS ou CAPSULE SECRETE en dehors\l"
-	.string "d’un combat.$"
+	.string "Aunque un POKéMON esté debilitado,\n"
+	.string "todavía podrá usar un movimiento de\l"
+	.string "una Máquina Oculta, MO para abreviar.$"
 

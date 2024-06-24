@@ -1,27 +1,32 @@
 	.align 2
 gText_ConfirmSave::
-	.string "Voulez-vous sauvegarder la partie?$"
+	.string "  ¿Quieres guardar la partida?$"
 
 gText_AlreadySavedFile::
-	.string "Il y a déjà une partie sauvegardée.\n"
-	.string "Voulez-vous la remplacer?$"
+	.string "Ya hay una partida guardada.\n"
+	.string "¿Quieres sobrescribirla?$"
 
 gText_SavingDontTurnOff::
-	.string "SAUVEGARDE EN COURS…\n"
-	.string "N’ETEIGNEZ PAS LA CONSOLE.$"
+	.string "GUARDANDO…\n"
+	.string "NO APAGUES LA CONSOLA.$"
 
 gText_PlayerSavedGame::
-	.string "{PLAYER} a sauvegardé la partie.$"
+	.string "{PLAYER} guardó la partida.$"
 
 gText_DifferentSaveFile::
-	.string "Une partie différente est déjà\n"
-	.string "sauvegardée.\p"
-	.string "Voulez-vous la remplacer?$"
+	.string "¡ATENCIÓN!\p"
+	.string "Ya hay una partida guardada.\p"
+	.string "Si guardas, perderás los datos\n"
+	.string "de la partida incluyendo los\l"
+	.string "objetos y los POKéMON.\p"
+	.string "¿Seguro que quieres guardar ahora\n"
+	.string "y sobrescribir los otros datos?$"
 
 gText_SaveError::
-	.string "Erreur de sauvegarde.\p"
-	.string "Changer la mémoire de sauvegarde.$"
+	.string "Error al guardar.\p"
+	.string "Cambia la memoria\n"
+	.string "de seguridad.$"
 
 gText_SavingDontTurnOffPower::
-	.string "SAUVEGARDE EN COURS…\n"
-	.string "NE PAS ETEINDRE.$"
+	.string "GUARDANDO…\n"
+	.string "NO APAGUES LA CONSOLA.$"

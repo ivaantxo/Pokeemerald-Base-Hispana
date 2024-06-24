@@ -1,41 +1,37 @@
 FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent:
-	.string "Bienvenue dans la TENTE DE COMBAT\n"
-	.string "d’AUTEQUIA!\p"
-	.string "Je serai votre guide pour le\n"
-	.string "TOURNOI K.O.!$"
+	.string "¡Te damos la bienvenida a la TIENDA\n"
+	.string "de BATALLA de PUEBLO PARDAL!\p"
+	.string "¡Yo soy el guía del TORNEO con JUEZ!$"
 
 FallarborTown_BattleTentLobby_Text_TakeChallenge:
-	.string "Voulez-vous participer à un\n"
-	.string "TOURNOI K.O., oui ou non?$"
+	.string "¿Te atreves a participar\n"
+	.string "en un TORNEO con JUEZ?$"
 
 FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge:
-	.string "Nous espérons que vous relèverez\n"
-	.string "bientôt notre défi!$"
+	.string "Bueno, vuelve cuando quieras.$"
 
 FallarborTown_BattleTentLobby_Text_ExplainFallarborTent:
-	.string "Dans la TENTE DE COMBAT d’AUTEQUIA,\n"
-	.string "vous participez à un TOURNOI K.O.\p"
-	.string "Les participants s’inscrivent avec une\n"
-	.string "équipe de trois POKéMON.\p"
-	.string "Ces POKéMON doivent être placés dans\n"
-	.string "l’ordre dans lequel ils apparaîtront.\p"
-	.string "Pendant un combat, ils apparaîtront\n"
-	.string "l’un après l’autre dans l’ordre\l"
-	.string "prédéfini.\p"
-	.string "Un POKéMON qui entre au combat doit\n"
-	.string "y rester jusqu’à la fin.\p"
-	.string "S’il n’y a pas de vainqueur au bout de\n"
-	.string "trois tours, l’ARBITRE intervient.\p"
-	.string "Si vous voulez interrompre le défi,\n"
-	.string "veuillez sauvegarder la partie.\p"
-	.string "Si vous ne sauvegardez pas, vous ne\n"
-	.string "pourrez pas reprendre ce défi.\p"
-	.string "Si vous mettez K.O. trois DRESSEURS de\n"
-	.string "suite, nous vous remettons un prix.$"
+	.string "En la TIENDA de BATALLA de PARDAL,\n"
+	.string "se disputan TORNEOS con JUEZ.\p"
+	.string "Cada ENTRENADOR participa\n"
+	.string "con un equipo de tres POKéMON.\p"
+	.string "Primero, debes elegir los tres POKéMON\n"
+	.string "en el orden en que deseas que combatan.\p"
+	.string "Durante el combate, los POKéMON\n"
+	.string "aparecerán uno a uno en ese orden.\p"
+	.string "Una vez entre un POKéMON en combate,\n"
+	.string "deberá seguir hasta que concluya.\p"
+	.string "Pero si no hay ganador al cabo\n"
+	.string "de tres rondas, el juez decidirá.\p"
+	.string "Si quieres interrumpir el desafío,\n"
+	.string "no olvides guardar antes la partida.\p"
+	.string "Si no la guardas, se te descalificará.\p"
+	.string "Si logras vencer a tres ENTRENADORES\n"
+	.string "seguidos, ganarás un bonito premio.$"
 
 FallarborTown_BattleTentLobby_Text_SaveBeforeChallenge:
-	.string "Avant de me suivre dans la TENTE DE\n"
-	.string "COMBAT, vous devez sauvegarder. OK?$"
+	.string "Te mostraré la TIENDA de BATALLA,\n"
+	.string "pero antes guardaré la partida, ¿eh?…$"
 
 @ Unused
 FallarborTown_BattleTentLobby_Text_WhichLevelMode:
@@ -44,111 +40,112 @@ FallarborTown_BattleTentLobby_Text_WhichLevelMode:
 	.string "Which is your choice?$"
 
 FallarborTown_BattleTentLobby_Text_SelectThreeMons:
-	.string "Veuillez choisir les trois POKéMON que\n"
-	.string "vous souhaitez inscrire.$"
+	.string "Selecciona los tres POKéMON\n"
+	.string "con los que quieres combatir.$"
 
 FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLv50:
-	.string "Je regrette, cher DRESSEUR!\p"
-	.string "Vous n’avez pas trois POKéMON\n"
-	.string "aptes à participer.\p"
-	.string "Ils doivent aussi tenir des objets\n"
-	.string "différents.\p"
-	.string "Les OEUFS{STR_VAR_1} inaptes au combat.\p"
-	.string "Revenez me voir quand vous aurez\n"
-	.string "ce qu’il faut.$"
+	.string "Qué lástima…\p"
+	.string "No tienes tres POKéMON que puedan\n"
+	.string "participar en este desafío.\p"
+	.string "Cuando los consigas, deben sostener\n"
+	.string "distintos tipos de objeto.\p"
+	.string "Los HUEVOS{STR_VAR_1} participar.\p"
+	.string "Vuelve cuando cumplas las condiciones\n"
+	.string "para aceptar el desafío.$"
 
 FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen:
-	.string "Je regrette, cher DRESSEUR!\p"
-	.string "Vous n’avez pas trois POKéMON\n"
-	.string "aptes à participer.\p"
-	.string "Il vous faut trois POKéMON différents\n"
-	.string "pour participer.\p"
-	.string "Ils doivent aussi tenir des objets\n"
-	.string "différents.\p"
-	.string "Les OEUFS{STR_VAR_1} inaptes au combat.\p"
-	.string "Revenez me voir quand vous aurez\n"
-	.string "ce qu’il faut.$"
+	.string "Qué lástima…\p"
+	.string "No tienes tres POKéMON que puedan\n"
+	.string "participar en este desafío.\p"
+	.string "Necesitas tres POKéMON diferentes\n"
+	.string "para poder participar.\p"
+	.string "Además, deben sostener distintos\n"
+	.string "tipos de objeto.\p"
+	.string "Los HUEVOS{STR_VAR_1} participar.\p"
+	.string "Vuelve cuando cumplas las condiciones\n"
+	.string "para aceptar el desafío.$"
 
 FallarborTown_BattleTentLobby_Text_GuideYouToBattleTent:
-	.string "Je vais vous guider dans la\n"
-	.string "TENTE DE COMBAT.$"
+	.string "Ahora te guiaré hasta\n"
+	.string "la TIENDA de BATALLA.$"
 
 FallarborTown_BattleTentLobby_Text_DidntSaveBeforeQuitting:
-	.string "Je regrette, cher DRESSEUR!\p"
-	.string "Vous n’avez pas sauvegardé avant de\n"
-	.string "quitter votre dernier défi.\p"
-	.string "Dans ce cas, c’est la disqualification.\n"
-	.string "Quel dommage!\p"
-	.string "Bien entendu, vous pouvez recommencer\n"
-	.string "un autre défi.$"
+	.string "Lástima…\p"
+	.string "No guardaste la partida antes\n"
+	.string "de abandonar el desafío, ¿verdad?…\p"
+	.string "Eso implica la descalificación…\p"
+	.string "No obstante, puedes volver\n"
+	.string "a participar cuando quieras.$"
 
 FallarborTown_BattleTentLobby_Text_BeatThreeTrainers:
-	.string "Splendide! Vous avez battu trois\n"
-	.string "DRESSEURS à la suite!$"
+	.string "¡Espléndido! ¡Has vencido a tres\n"
+	.string "ENTRENADORES consecutivos!$"
 
 FallarborTown_BattleTentLobby_Text_WaitWhileSaveGame:
-	.string "Votre résultat va être sauvegardé.\n"
-	.string "Veuillez patienter.$"
+	.string "Espera un segundo mientras\n"
+	.string "guardo la partida.$"
 
 FallarborTown_BattleTentLobby_Text_PresentYouWithPrize:
-	.string "Pour récompenser ces trois victoires\n"
-	.string "consécutives, voici un prix.$"
+	.string "Toma este premio para conmemorar\n"
+	.string "tu racha de 3 victorias consecutivas.$"
 
 FallarborTown_BattleTentLobby_Text_ReceivedPrize:
-	.string "{PLAYER} reçoit {STR_VAR_1}\n"
-	.string "en récompense.$"
+	.string "{PLAYER} recibió el premio\n"
+	.string "{STR_VAR_1}.$"
 
 FallarborTown_BattleTentLobby_Text_BagFullReturnForPrize:
-	.string "Oh, votre SAC est plein.\p"
-	.string "Veuillez faire de la place dans votre\n"
-	.string "SAC et revenez ensuite me voir.$"
+	.string "¡Pero bueno!\n"
+	.string "Tienes la MOCHILA repleta.\p"
+	.string "Será mejor que la vacíes un poco\n"
+	.string "si quieres llevarte el premio.$"
 
 FallarborTown_BattleTentLobby_Text_ThankYouWaitWhileSaving:
-	.string "Merci d’avoir participé!\p"
-	.string "Votre résultat va être sauvegardé.\n"
-	.string "Veuillez patienter.$"
+	.string "¡Muchas gracias por participar!\p"
+	.string "Espera un segundo mientras\n"
+	.string "guardo la partida.$"
 
 FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2:
-	.string "Nous attendrons votre prochain défi\n"
-	.string "avec impatience.$"
+	.string "Esperamos que vuelvas\n"
+	.string "pronto por aquí.$"
 
 FallarborTown_BattleTentLobby_Text_LookingForwardToArrival:
-	.string "Nous vous attendions!\p"
-	.string "Vous devez sauvegarder avant d’aller\n"
-	.string "plus loin. Veuillez patienter.$"
+	.string "Ya tenía ganas de volver a verte.\p"
+	.string "Antes de conducirte a la TIENDA\n"
+	.string "de BATALLA, debo guardar la partida.\l"
+	.string "Espera un momento…$"
 
 VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent:
-	.string "Bienvenue dans la TENTE DE COMBAT\n"
-	.string "de VERGAZON!\p"
-	.string "Nous testons la confiance des\n"
-	.string "DRESSEURS envers leurs POKéMON.$"
+	.string "¡Ésta es la TIENDA de BATALLA\n"
+	.string "de VERDEGAL!\p"
+	.string "Aquí ponemos a prueba la confianza\n"
+	.string "de los ENTRENADORES en sus POKéMON.$"
 
 VerdanturfTown_BattleTentLobby_Text_TakeChallenge:
-	.string "Voulez-vous relever le défi de la\n"
-	.string "TENTE DE COMBAT de VERGAZON?$"
+	.string "¿Deseas afrontar el desafío de la\n"
+	.string "TIENDA de BATALLA de VERDEGAL?$"
 
 VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent:
-	.string "Dans la TENTE DE COMBAT de VERGAZON,\n"
-	.string "une règle importante est ajoutée.\p"
-	.string "Les DRESSEURS peuvent seulement\n"
-	.string "faire entrer et sortir leurs POKéMON.\p"
-	.string "Les DRESSEURS ne peuvent pas donner\n"
-	.string "d’autres ordres à leurs POKéMON.\p"
-	.string "Les POKéMON agiront conformément\n"
-	.string "à leur nature et se battront seuls.\p"
-	.string "Vous devez placer votre confiance en\n"
-	.string "vos POKéMON et les regarder.\p"
-	.string "Si vous réalisez l’exploit de battre\n"
-	.string "trois DRESSEURS à la suite, vous\l"
-	.string "recevrez un prix.\p"
-	.string "Si vous voulez interrompre le défi,\n"
-	.string "veuillez sauvegarder la partie.\p"
-	.string "Assurez-vous de bien sauvegarder, ou\n"
-	.string "vous ne pourrez pas reprendre le défi.$"
+	.string "En la TIENDA de BATALLA\n"
+	.string "de VERDEGAL, hay una regla\l"
+	.string "básica que debe ser respetada.\p"
+	.string "Los ENTRENADORES sólo pueden\n"
+	.string "cambiar de POKéMON.\p"
+	.string "Es decir, los ENTRENADORES no pueden\n"
+	.string "dar órdenes a sus POKéMON.\p"
+	.string "De este modo, se deja que los POKéMON\n"
+	.string "combatan solos, según su naturaleza.\p"
+	.string "Debes confiar en tus POKéMON\n"
+	.string "y vigilar para que nada les pase.\p"
+	.string "Si logras derrotar consecutivamente\n"
+	.string "a tres ENTRENADORES, obtendrás\l"
+	.string "un premio como reconocimiento.\p"
+	.string "Si quieres interrumpir el desafío,\n"
+	.string "no olvides guardar antes la partida.\p"
+	.string "Si no la guardas, se te descalificará.$"
 
 VerdanturfTown_BattleTentLobby_Text_ReturnFortified:
-	.string "Revenez quand vous aurez fortifié\n"
-	.string "votre esprit et vos POKéMON.$"
+	.string "Vuelve cuando tu corazón y el de tus\n"
+	.string "POKéMON latan como uno solo.$"
 
 @ Unused
 VerdanturfTown_BattleTentLobby_Text_WhichLevelMode:
@@ -157,90 +154,93 @@ VerdanturfTown_BattleTentLobby_Text_WhichLevelMode:
 	.string "Which is your choice of a challenge?$"
 
 VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLv50:
-	.string "Je regrette!\p"
-	.string "Vous n’avez pas trois POKéMON\n"
-	.string "aptes à participer.\p"
-	.string "Il vous faut trois POKéMON différents\n"
-	.string "pour participer.\p"
-	.string "Ils doivent aussi tenir des objets\n"
-	.string "différents.\p"
-	.string "Les OEUFS{STR_VAR_1} inaptes au combat.\p"
-	.string "Revenez me voir quand vous aurez\n"
-	.string "ce qu’il faut.$"
+	.string "Qué desgracia…\p"
+	.string "No tienes tres POKéMON que puedan\n"
+	.string "participar en este desafío.\p"
+	.string "Necesitas tres POKéMON diferentes\n"
+	.string "para poder participar.\p"
+	.string "Además, deben sostener distintos\n"
+	.string "tipos de objeto.\p"
+	.string "Los HUEVOS{STR_VAR_1} participar.\p"
+	.string "Vuelve cuando cumplas las condiciones\n"
+	.string "para aceptar el desafío.$"
 
 VerdanturfTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen:
-	.string "Je regrette!\p"
-	.string "Vous n’avez pas trois POKéMON\n"
-	.string "aptes à participer.\p"
-	.string "Il vous faut trois POKéMON différents\n"
-	.string "pour participer.\p"
-	.string "Ils doivent aussi tenir des objets\n"
-	.string "différents.\p"
-	.string "Les OEUFS{STR_VAR_1} inaptes au combat.\p"
-	.string "Revenez me voir quand vous aurez\n"
-	.string "ce qu’il faut.$"
+	.string "Qué desgracia…\p"
+	.string "No tienes tres POKéMON que puedan\n"
+	.string "participar en este desafío.\p"
+	.string "Necesitas tres POKéMON diferentes\n"
+	.string "para poder participar.\p"
+	.string "Además, deben sostener distintos\n"
+	.string "tipos de objeto.\p"
+	.string "Los HUEVOS{STR_VAR_1} participar.\p"
+	.string "Vuelve cuando cumplas las condiciones\n"
+	.string "para aceptar el desafío.$"
 
 VerdanturfTown_BattleTentLobby_Text_SelectThreeMons:
-	.string "Très bien. Maintenant, veuillez choisir\n"
-	.string "vos trois POKéMON.$"
+	.string "Selecciona los tres POKéMON\n"
+	.string "con los que quieres combatir.$"
 
 VerdanturfTown_BattleTentLobby_Text_SaveBeforeChallenge:
-	.string "Avant d’entrer dans la TENTE DE COMBAT,\n"
-	.string "votre partie doit être sauvegardée. OK?$"
+	.string "Antes de conducirte a la TIENDA\n"
+	.string "de BATALLA, debes guardar la partida.\l"
+	.string "¿Estás de acuerdo?$"
 
 VerdanturfTown_BattleTentLobby_Text_NowFollowMe:
-	.string "Très bien.\n"
-	.string "Suivez-moi, je vous prie.$"
+	.string "Bien.\n"
+	.string "Ahora, sígueme.$"
 
 VerdanturfTown_BattleTentLobby_Text_ResultsWillBeRecorded:
-	.string "Ce fut un privilège de pouvoir assister\n"
-	.string "à un tel combat.\p"
-	.string "Votre résultat va être sauvegardé.\n"
-	.string "Veuillez patienter.$"
+	.string "Me siento privilegiado por poder haber\n"
+	.string "visto combatir a tus POKéMON.\p"
+	.string "Voy a guardar tu resultado.\n"
+	.string "Sólo será un segundo, por favor.$"
 
 VerdanturfTown_BattleTentLobby_Text_AchievedThreeWinStreak:
-	.string "Trois victoires consécutives…\p"
-	.string "Les liens qui unissent votre esprit à\n"
-	.string "vos POKéMON sont solides et sincères.$"
+	.string "A juzgar por tus tres victorias\n"
+	.string "consecutivas…\p"
+	.string "El vínculo que une tu corazón al de tus \n"
+	.string "POKéMON debe de ser firme y fuerte.$"
 
 VerdanturfTown_BattleTentLobby_Text_FeatWillBeRecorded:
-	.string "Votre résultat va être sauvegardé.\n"
-	.string "Je vous demande de patienter un peu.$"
+	.string "Voy a guardar tu récord.\n"
+	.string "Espera unos instantes.$"
 
 VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize:
-	.string "Pour récompenser ces trois victoires\n"
-	.string "consécutives, voici un prix.$"
+	.string "Tus tres victorias consecutivas se\n"
+	.string "merecen qué menos que este premio.$"
 
 SlateportCity_BattleTentLobby_Text_WelcomeToBattleTent:
-	.string "Bienvenue dans la TENTE DE COMBAT\n"
-	.string "de POIVRESSEL!\p"
-	.string "Je serai votre guide pour le TOURNOI\n"
-	.string "COMBAT ECHANGE.$"
+	.string "¡Ésta es la TIENDA de BATALLA\n"
+	.string "de CIUDAD PORTUAL!\p"
+	.string "Aquí se celebran los famosos \n"
+	.string "TORNEOS de COMBATES con TRUEQUE.$"
 
 SlateportCity_BattleTentLobby_Text_TakeChallenge:
-	.string "Voulez-vous relever le défi du\n"
-	.string "COMBAT ECHANGE?$"
+	.string "¿Deseas afrontar el desafío de un\n"
+	.string "TORNEO de COMBATES con TRUEQUE?$"
 
 SlateportCity_BattleTentLobby_Text_ExplainSlateportTent:
-	.string "Dans la TENTE DE COMBAT de POIVRESSEL\n"
-	.string "ont lieu des COMBATS ECHANGE avec des\l"
-	.string "POKéMON de location.\p"
-	.string "Vous devez choisir trois POKéMON parmi\n"
-	.string "les POKéMON de location.\p"
-	.string "Ensuite, vous faites des COMBATS\n"
-	.string "SOLO avec ces POKéMON.\p"
-	.string "Si vous gagnez, vous pouvez échanger\n"
-	.string "l’un des POKéMON de location.\p"
-	.string "Si vous gagnez trois combats à la suite,\n"
-	.string "vous remportez un prix.\p"
-	.string "Si vous voulez interrompre le défi,\n"
-	.string "veuillez sauvegarder la partie.\p"
-	.string "Si vous ne sauvegardez pas,\n"
-	.string "c’est la disqualification.$"
+	.string "En la TIENDA de BATALLA de CIUDAD\n"
+	.string "PORTUAL se disputan COMBATES\l"
+	.string "con TRUEQUE con POKéMON prestados.\p"
+	.string "Primero, debes elegir los tres POKéMON\n"
+	.string "con los que vas a comenzar el torneo.\p"
+	.string "Con esos POKéMON prestados, debes\n"
+	.string "luchar en el primer COMBATE INDIVIDUAL.\p"
+	.string "Si ganas a tu rival, tendrás derecho a\n"
+	.string "un trueque: podrás elegir uno de sus\l"
+	.string "POKéMON y cambiárselo por uno tuyo.\p"
+	.string "Repite este ciclo de combate y trueque\n"
+	.string "y, si logras ganar tres veces seguidas,\l"
+	.string "conseguirás un fabuloso premio.\p"
+	.string "Si quieres interrumpir el desafío,\n"
+	.string "no olvides guardar antes la partida.\p"
+	.string "Si no la guardas, se te descalificará.$"
 
 SlateportCity_BattleTentLobby_Text_LookForwardToNextVisit:
-	.string "Nous espérons vous compter parmi\n"
-	.string "nos participants une prochaine fois.$"
+	.string "Espero que vuelvas\n"
+	.string "pronto por aquí.$"
 
 @ Unused
 SlateportCity_BattleTentLobby_Text_WhichLevelMode:
@@ -248,8 +248,8 @@ SlateportCity_BattleTentLobby_Text_WhichLevelMode:
 	.string "Level 50 or Level 100?$"
 
 SlateportCity_BattleTentLobby_Text_SaveBeforeChallenge:
-	.string "Avant de commencer, votre partie doit\n"
-	.string "être sauvegardée. OK?$"
+	.string "Antes de afrontar tu desafío,\n"
+	.string "debo guardar la partida, ¿de acuerdo?$"
 
 @ Unused
 SlateportCity_BattleTentLobby_Text_HoldMonsForSafekeeping:
@@ -257,14 +257,14 @@ SlateportCity_BattleTentLobby_Text_HoldMonsForSafekeeping:
 	.string "safekeeping while you compete.$"
 
 SlateportCity_BattleTentLobby_Text_StepThisWay:
-	.string "Entrez, je vous en prie.$"
+	.string "Pasa por aquí.$"
 
 SlateportCity_BattleTentLobby_Text_ReturnRentalMonsSaveResults:
-	.string "Merci d’avoir joué!\p"
-	.string "Je vous rends vos POKéMON et reprends\n"
-	.string "les POKéMON de location.\p"
-	.string "Je dois sauvegarder vos données.\n"
-	.string "Veuillez patienter.$"
+	.string "¡Gracias por participar!\p"
+	.string "Voy a devolverte tus POKéMON\n"
+	.string "a cambio de los que te prestamos.\p"
+	.string "Y voy a guardar también tus resultados.\n"
+	.string "Un momento, por favor.$"
 
 @ Unused
 SlateportCity_BattleTentLobby_Text_ReturnMonsExchangeRentals:
@@ -272,34 +272,33 @@ SlateportCity_BattleTentLobby_Text_ReturnMonsExchangeRentals:
 	.string "for our rental POKéMON.$"
 
 SlateportCity_BattleTentLobby_Text_WonThreeMatchesReturnMons:
-	.string "Félicitations! Vous avez gagné trois\n"
-	.string "COMBATS ECHANGE à la suite!\p"
-	.string "Je vous rends vos POKéMON et reprends\n"
-	.string "les POKéMON de location.\p"
-	.string "Je dois sauvegarder vos données.\n"
-	.string "Veuillez patienter.$"
+	.string "¡Enhorabuena!\n"
+	.string "¡Tres victorias seguidas!\p"
+	.string "Voy a devolverte tus POKéMON\n"
+	.string "a cambio de los que te prestamos.\p"
+	.string "Y voy a guardar también tus resultados.\n"
+	.string "Un momento, por favor.$"
 
 SlateportCity_BattleTentLobby_Text_AwardYouThisPrize:
-	.string "Pour récompenser ces trois victoires\n"
-	.string "consécutives, voici un prix.$"
+	.string "Como premio por las tres victorias\n"
+	.string "seguidas, toma esto. Para ti.$"
 
 SlateportCity_BattleTentLobby_Text_NoRoomInBagMakeRoom:
-	.string "Oh?\n"
-	.string "On dirait que vous n’avez plus de place.\p"
-	.string "Faites de la place dans votre SAC et\n"
-	.string "revenez me voir.$"
+	.string "¿Eh?\n"
+	.string "Se diría que no tienes sitio para esto.\p"
+	.string "Haz un hueco en la MOCHILA\n"
+	.string "y vuelve por aquí.$"
 
 SlateportCity_BattleTentLobby_Text_BeenWaitingForYou:
-	.string "Nous vous attendions!\p"
-	.string "Avant de reprendre votre défi, vous\n"
-	.string "devez sauvegarder la partie.$"
+	.string "¡Te estábamos esperando!\p"
+	.string "Antes de volver a competir,\n"
+	.string "déjame guardarte la partida.$"
 
 SlateportCity_BattleTentLobby_Text_DidntSaveBeforeQuitting:
-	.string "Je regrette!\p"
-	.string "Vous n’avez pas sauvegardé avant de\n"
-	.string "quitter votre dernier défi.\p"
-	.string "Dans ce cas, c’est la disqualification.\n"
-	.string "C’est dommage!$"
+	.string "Siento decírtelo, pero no guardaste\n"
+	.string "la partida la última vez que jugaste.\p"
+	.string "Así que se te ha descalificado.\n"
+	.string "Lo siento.$"
 
 @ Unused
 SlateportCity_BattleTentLobby_Text_ReturnPersonalMons:
@@ -319,41 +318,42 @@ SlateportCity_BattleTentLobby_Text_ReadWhichHeading:
 	.string "Which heading do you want to read?$"
 
 SlateportCity_BattleTentLobby_Text_ExplainBasicRules:
-	.string "Au COMBAT ECHANGE, vous ne pouvez\n"
-	.string "utiliser que trois POKéMON.\p"
-	.string "Qu’ils aient été prêtés ou échangés,\n"
-	.string "votre équipe ne peut pas avoir deux\l"
-	.string "fois le même POKéMON.$"
+	.string "En los enfrentamientos de COMBATE\n"
+	.string "con TRUEQUE, sólo se usan tres POKéMON.\p"
+	.string "Al tomar prestados o trocar POKéMON,\n"
+	.string "hay que tener en cuenta que el equipo\l"
+	.string "no debe tener dos POKéMON iguales.$"
 
 SlateportCity_BattleTentLobby_Text_ExplainSwapPartnerRules:
-	.string "Vous pouvez échanger un POKéMON avec\n"
-	.string "le DRESSEUR que vous venez de battre.\p"
-	.string "Vous ne pouvez obtenir que les POKéMON\n"
-	.string "se trouvant dans son équipe.$"
+	.string "Sólo puedes cambiarle un POKéMON\n"
+	.string "al ENTRENADOR al que acabas de vencer.\p"
+	.string "Y sólo puedes elegir entre los POKéMON\n"
+	.string "que haya usado ese ENTRENADOR.$"
 
 SlateportCity_BattleTentLobby_Text_ExplainSwapNumberRules:
-	.string "A chaque fois que vous gagnez, vous\n"
-	.string "pouvez échanger l’un de vos POKéMON\l"
-	.string "avec l’un de ceux de votre adversaire.\p"
-	.string "Vous ne pouvez pas faire d’échange\n"
-	.string "avec le troisième DRESSEUR.$"
+	.string "Después de cada victoria, podrás\n"
+	.string "cambiar uno de tus POKéMON por\l"
+	.string "uno de los del ENTRENADOR derrotado.\p"
+	.string "Con el tercer ENTRENADOR\n"
+	.string "no podrás hacer trueque de POKéMON.$"
 
 SlateportCity_BattleTentLobby_Text_ExplainSwapNotes:
-	.string "Voici deux choses à savoir sur les\n"
-	.string "échanges de POKéMON.\p"
-	.string "Avant l’échange, vous ne pouvez pas\n"
-	.string "connaître les stats du POKéMON\l"
-	.string "que vous voulez recevoir.\p"
-	.string "Les POKéMON de votre équipe sont\n"
-	.string "alignés dans l’ordre où vous les avez\l"
-	.string "loués.\p"
-	.string "Cet ordre reste le même lorsque vous\n"
-	.string "échangez des POKéMON.$"
+	.string "A la hora de trocar POKéMON, debes\n"
+	.string "tener en cuenta dos cosas.\p"
+	.string "Primera: en el momento del trueque,\n"
+	.string "no podrás ver las características\l"
+	.string "del POKéMON que vas a recibir.\p"
+	.string "Segunda: los POKéMON de tu equipo\n"
+	.string "se mostrarán siguiendo el orden\l"
+	.string "en el que los elegiste.\p"
+	.string "Ese orden no se altera aunque\n"
+	.string "luego realices trueques.$"
 
 SlateportCity_BattleTentLobby_Text_ExplainMonRules:
-	.string "Tous les POKéMON de la TENTE DE COMBAT\n"
-	.string "de POIVRESSEL sont prêtés.\p"
-	.string "Les POKéMON sont tous de niveau 30.$"
+	.string "Todos los POKéMON de la TIENDA de\n"
+	.string "BATALLA de CIUDAD PORTUAL se alquilan.\p"
+	.string "Todos los POKéMON que se alquilan\n"
+	.string "se encuentran en el nivel 30.$"
 
 @ Unused
 VerdanturfTown_BattleTentLobby_Text_RulesAreListed2:
@@ -421,13 +421,13 @@ VerdanturfTown_BattleTentLobby_Text_ExplainWhenInDangerRules:
 	.string "in a pinch, watch it carefully.$"
 
 BattleTentLobby_Text_ExplainLevelRules:
-	.string "Dans cette TENTE DE COMBAT, le niveau\n"
-	.string "de vos adversaires est ajusté en\l"
-	.string "fonction du niveau de vos POKéMON.\p"
-	.string "Cependant, aucun des DRESSEURS que\n"
-	.string "vous affronterez n’aura de POKéMON\l"
-	.string "de niveau inférieur à 30.$"
+	.string "En esta TIENDA de BATALLA, los niveles\n"
+	.string "de tus rivales se ajustarán para\l"
+	.string "igualarse a los de tus POKéMON.\p"
+	.string "Con todo, ningún ENTRENADOR\n"
+	.string "al que te enfrentes tendrá POKéMON\l"
+	.string "por debajo del nivel 30.$"
 
 VerdanturfTown_BattleTentLobby_Text_RulesAreListed:
-	.string "Règles de la TENTE DE COMBAT de\n"
-	.string "VERGAZON.$"
+	.string "Son las reglas de la TIENDA de BATALLA\n"
+	.string "de VERDEGAL.$"

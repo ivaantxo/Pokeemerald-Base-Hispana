@@ -81,68 +81,66 @@ RustboroCity_DevonCorp_1F_EventScript_ProductsDisplay::
 	end
 
 RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp:
-	.string "Bonjour et bienvenue à la DEVON SARL.\p"
-	.string "Nous produisons avec fierté des objets\n"
-	.string "et médicaments qui simplifient la vie.$"
+	.string "Buenos días. Estás en DEVON S.A.\p"
+	.string "Somos los orgullosos fabricantes\n"
+	.string "de miles de objetos y medicinas\l"
+	.string "que hacen la vida más fácil.$"
 
 RustboroCity_DevonCorp_1F_Text_StaffGotRobbed:
-	.string "Une de nos équipes de chercheurs s’est\n"
-	.string "fait voler un important paquet.$"
+	.string "Uno de nuestros científicos se ha\n"
+	.string "dejado robar un paquete de lo más\l"
+	.string "importante.$"
 
 RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct:
-	.string "Hé, ces CHAUSSURES DE SPORT!\n"
-	.string "Elles sortent de nos ateliers!\p"
-	.string "J’aime constater que ce que nous\n"
-	.string "avons produit sert à quelqu’un.$"
+	.string "Eh, esas DEPORTIVAS las hemos\n"
+	.string "fabricado nosotros.\p"
+	.string "¡Siempre es un placer ver a uno\n"
+	.string "de nuestros clientes!$"
 
 RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright:
-	.string "Ce paquet qui a été volé…\p"
-	.string "Bien sûr, c’est important, mais ce n’est\n"
-	.string "pas utile à tout le monde.\p"
-	.string "Et d’après mes calculs, le voleur ne\n"
-	.string "doit pas être très intelligent.$"
+	.string "Ese paquete que han robado…\p"
+	.string "es muy importante, cierto, pero no es\n"
+	.string "algo que pueda usar cualquiera.\p"
+	.string "En mi opinión, ese ladrón no era\n"
+	.string "muy listo que digamos…$"
 
 RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered:
-	.string "Ils ont l’air d’avoir retrouvé le\n"
-	.string "PACK DEVON qui avait été volé.$"
+	.string "Parece que alguien ha recuperado\n"
+	.string "las PIEZAS DEVON que robaron.$"
 
 RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter:
-	.string "Désolé, mais seules les personnes\n"
-	.string "autorisées peuvent entrer ici.$"
+	.string "Lo siento, sólo el personal autorizado\n"
+	.string "puede entrar aquí.$"
 
 RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed:
-	.string "C’est trop bête!\n"
-	.string "Comment a-t-on pu se faire voler?$"
+	.string "¿Cómo hemos podido ser tan tontos…?\n"
+	.string "¡¿Cómo nos hemos dejado robar?!$"
 
 RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere:
-	.string "Bonjour! C’est toujours avec grand\n"
-	.string "plaisir que nous vous accueillons ici!$"
+	.string "¡Anda, hola!\n"
+	.string "¡Tenerte aquí es siempre un placer!$"
 
 RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay:
-	.string "Des échantillons de pierres et de\n"
-	.string "métaux sont placés dans une vitrine.\p"
-	.string "Il y a un panneau avec quelque chose\n"
-	.string "d’écrit…\p"
-	.string "“DEVON était à l’origine une\n"
-	.string "compagnie d’exploitation minière.\p"
-	.string "La compagnie a également produit de\n"
-	.string "l’acier en exploitant la limaille se\l"
-	.string "trouvant dans le sable.\p"
-	.string "DEVON s’est sans cesse développé\n"
-	.string "depuis ses humbles débuts.\p"
-	.string "DEVON fabrique maintenant\n"
-	.string "une grande variété de produits\l"
-	.string "industriels.”$"
+	.string "En la urna de cristal se exponen\n"
+	.string "muestras de rocas y metales.\p"
+	.string "Hay un cartel con algo escrito…\p"
+	.string "“DEVON S.A. se dedicaba en sus\n"
+	.string "inicios a extraer rocas de canteras.”\p"
+	.string "“También producía hierro a partir de\n"
+	.string "las limaduras que había en la arena.”\p"
+	.string "“A pesar de tan humildes orígenes,\n"
+	.string "DEVON logró crecer como empresa.”\p"
+	.string "“DEVON fabrica en la actualidad una\n"
+	.string "amplia gama de productos industriales.”$"
 
 RustboroCity_DevonCorp_1F_Text_ProductDisplay:
-	.string "La vitrine est pleine de prototypes et\n"
-	.string "d’échantillons.\p"
-	.string "Il y a un panneau avec une inscription…\p"
-	.string "“En plus de ses produits industriels,\n"
-	.string "DEVON souhaite se développer sur le\p"
-	.string "marché pharmaceutique pour\n"
-	.string "améliorer notre qualité de vie.\p"
-	.string "Récemment, DEVON a commercialisé des\n"
-	.string "outils pour les DRESSEURS, comme les\p"
-	.string "POKé BALLS et les systèmes POKéNAV.”$"
+	.string "En la urna de cristal se exponen\n"
+	.string "prototipos y productos de prueba.\p"
+	.string "Hay un cartel con algo escrito…\p"
+	.string "“Además de productos industriales,\n"
+	.string "DEVON comercializa artículos varios\l"
+	.string "e incluso productos farmacéuticos.”\p"
+	.string "“Desde hace poco, DEVON también vende\n"
+	.string "artículos para ENTRENADORES POKéMON,\l"
+	.string "como POKé BALLS y POKéNAVEGADORES.”$"
 

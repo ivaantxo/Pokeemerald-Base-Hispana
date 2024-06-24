@@ -12,33 +12,32 @@ MagmaHideout_3F_1R_EventScript_Grunt16::
 	end
 
 MagmaHideout_3F_1R_Text_Grunt9Intro:
-	.string "Qu’est-ce que j’ai fait de mal pour\n"
-	.string "être obligé de monter la garde ici?\p"
-	.string "Mon oreille gauche est presque\n"
-	.string "en train de brûler!$"
+	.string "¿Qué he hecho yo para merecer\n"
+	.string "este puesto de guardia?\p"
+	.string "¡Tengo las orejas ardiendo!$"
 
 MagmaHideout_3F_1R_Text_Grunt9Defeat:
-	.string "Je dois avoir des bouffées de chaleur…$"
+	.string "El calor me da flojera…$"
 
 MagmaHideout_3F_1R_Text_Grunt9PostBattle:
-	.string "Tu trouves pas ça bizarre qu’on porte\n"
-	.string "des bonnets dans cette fournaise?$"
+	.string "¿Te parece raro que llevemos capuchas\n"
+	.string "en un volcán lleno de lava como éste?$"
 
 MagmaHideout_3F_1R_Text_Grunt16Intro:
-	.string "Nous avons rejoint la TEAM pour aider\n"
-	.string "notre leader à concrétiser sa vision.\p"
-	.string "Je me moque que tu appartiennes\n"
-	.string "ou non à la TEAM AQUA.\p"
-	.string "Je ne laisserai personne interférer\n"
-	.string "dans nos plans!$"
+	.string "Nos unimos al EQUIPO MAGMA para ayudar\n"
+	.string "a nuestro líder a cumplir su visión.\p"
+	.string "Me da igual si eres del EQUIPO AQUA\n"
+	.string "o sólo estás de paso por aquí.\p"
+	.string "¡Nadie interfiere en nuestros planes\n"
+	.string "y se sale con la suya!$"
 
 MagmaHideout_3F_1R_Text_Grunt16Defeat:
-	.string "Oh non…\n"
-	.string "Je n’ai rien pu faire.$"
+	.string "¡Oh, no!\n"
+	.string "¡Esto no es de recibo!$"
 
 MagmaHideout_3F_1R_Text_Grunt16PostBattle:
-	.string "Ecoute-moi bien.\n"
-	.string "Ne te trompe pas d’ennemi.\p"
-	.string "N’écoute pas la TEAM AQUA.\n"
-	.string "Ne crois pas leurs mensonges!$"
+	.string "Escúchame bien.\n"
+	.string "¡El EQUIPO MAGMA tiene razón!\p"
+	.string "No hagas ni caso al EQUIPO AQUA.\n"
+	.string "¡Mienten más que hablan!$"
 

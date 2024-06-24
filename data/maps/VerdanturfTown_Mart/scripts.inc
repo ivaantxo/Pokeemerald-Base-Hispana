@@ -41,19 +41,21 @@ VerdanturfTown_Mart_EventScript_Lass::
 	end
 
 VerdanturfTown_Mart_Text_XSpecialIsCrucial:
-	.string "Pour les combats de POKéMON, SPECIAL +\n"
-	.string "est crucial.\p"
-	.string "Cela permet d’augmenter la puissance de\n"
-	.string "certaines attaques pendant un combat.$"
+	.string "En cualquier combate POKéMON,\n"
+	.string "un ESPECIAL X es crucial.\p"
+	.string "Potencia la fuerza de algunos\n"
+	.string "movimientos, pero sólo durante\l"
+	.string "un combate.$"
 
 VerdanturfTown_Mart_Text_NoStrategyGuidesForBattleTent:
-	.string "Je ne trouve aucun livre de stratégie\n"
-	.string "sur les TENTES DE COMBAT…\p"
-	.string "Peut-être qu’il faut simplement suivre\n"
-	.string "son instinct, après tout…$"
+	.string "Parece que no venden por ningún lado\n"
+	.string "libros de estrategia para ganar\l"
+	.string "en la TIENDA de BATALLA…\p"
+	.string "Habrá que fiarse del instinto de una…$"
 
 VerdanturfTown_Mart_Text_NestBallOnWeakenedPokemon:
-	.string "La FAIBLO BALL fonctionne mieux\n"
-	.string "sur les POKéMON faibles.\p"
-	.string "On ne peut en acheter qu’à VERGAZON.$"
+	.string "La NIDO BALL funciona mejor\n"
+	.string "con los POKéMON de menor nivel.\p"
+	.string "VERDEGAL es el único lugar\n"
+	.string "donde se puede comprar una.$"
 

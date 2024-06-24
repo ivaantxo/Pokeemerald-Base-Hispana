@@ -52,47 +52,45 @@ FallarborTown_EventScript_MoveTutorSign::
 	end
 
 FallarborTown_Text_ShadyCharactersCozmosHome:
-	.string "Il se passe quelque chose d’étrange,\n"
-	.string "je n’aime pas trop ça!\p"
-	.string "J’ai aperçu quelqu’un entrer et sortir\n"
-	.string "du LABO du PROF. KOSMO.$"
+	.string "¿Qué pasa, qué pasa?\p"
+	.string "He visto a un tipo muy sospechoso\n"
+	.string "merodeando por el LABORATORIO del\l"
+	.string "PROF. COZMO…$"
 
 FallarborTown_Text_RegionKnownForMeteors:
-	.string "Cela fait très longtemps que cette\n"
-	.string "région est connue pour ses météorites.\p"
-	.string "Un météorite se serait jadis écrasé,\n"
-	.string "creusant le SITE METEORE.$"
+	.string "Esta región es conocida por sus\n"
+	.string "lluvias de meteoritos.\p"
+	.string "Dicen que la CASCADA METEORO se creó\n"
+	.string "hace siglos, a causa de un meteorito…$"
 
 FallarborTown_Text_MyPreciousAzurill:
-	.string "Tu vois! Regarde!\n"
-	.string "C’est mon cher AZURILL!\p"
-	.string "Il est adroit, et en plus il est doux!$"
+	.string "¡Mira! ¡Pero mira bien!\n"
+	.string "¡Éste es mi precioso AZURILL!\p"
+	.string "¿A que es la cosita más mona,\n"
+	.string "suave y blandita del mundo?$"
 
 FallarborTown_Text_Azurill:
-	.string "AZURILL: Azuzuuu.$"
+	.string "AZURILL: Azu, azuuuu…$"
 
 FallarborTown_Text_HaveYouChallengedFlannery:
-	.string "As-tu déjà affronté ADRIANE, le\n"
-	.string "CHAMPION de l’ARENE de VERMILAVA?\p"
-	.string "Son grand-père était célèbre.\n"
-	.string "Il a fait partie du CONSEIL 4\l"
-	.string "de la LIGUE POKéMON.\p"
-	.string "Ça ne me surprendrait pas de voir\n"
-	.string "ADRIANE devenir un grand DRESSEUR\l"
-	.string "à son tour.$"
+	.string "¿Ya has desafiado a CANDELA, la\n"
+	.string "LÍDER del GIMNASIO de LAVACALDA?\p"
+	.string "Su abuelo era muy famoso. Perteneció\n"
+	.string "al ALTO MANDO de la LIGA POKéMON.\p"
+	.string "No me sorprende ni una pizca que\n"
+	.string "CANDELA también se haya convertido\l"
+	.string "en una gran ENTRENADORA.$"
 
 FallarborTown_Text_BattleTentSign:
-	.string "TENTE DE COMBAT d’AUTEQUIA\n"
-	.string "“Que les meilleures équipes\l"
-	.string "se rencontrent!”$"
+	.string "TIENDA de BATALLA de PUEBLO PARDAL\n"
+	.string "“¡El punto de encuentro\l"
+	.string "de los grandes equipos!”$"
 
 FallarborTown_Text_TownSign:
-	.string "AUTEQUIA\n"
-	.string "“Une communauté agricole et ses\l"
-	.string "petits jardins.”$"
+	.string "PUEBLO PARDAL\n"
+	.string "“Una comunidad de granjas y jardines.”$"
 
 FallarborTown_Text_MoveTutorSign:
-	.string "MAISON DU MAITRE DES CAPACITES\n"
-	.string "“Venez apprendre de nouvelles\l"
-	.string "capacités à vos POKéMON!”$"
+	.string "CASA del TUTOR de MOVIMIENTOS\n"
+	.string "“Enseña movimientos a tus POKéMON.”$"
 

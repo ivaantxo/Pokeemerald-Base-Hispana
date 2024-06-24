@@ -10,15 +10,15 @@ VerdanturfTown_House_EventScript_Woman2::
 	end
 
 VerdanturfTown_House_Text_TrainersGatherAtPokemonLeague:
-	.string "Au loin, au fin fond d’ETERNARA,\n"
-	.string "se trouve la LIGUE POKéMON.\p"
-	.string "Les DRESSEURS qui s’y retrouvent sont\n"
-	.string "terriblement doués.$"
+	.string "Lejos, muy lejos, en CIUDAD COLOSALIA,\n"
+	.string "está la LIGA POKéMON.\p"
+	.string "Los ENTRENADORES que se reúnen\n"
+	.string "allí son espeluznantemente buenos.$"
 
 VerdanturfTown_House_Text_DefeatEliteFourInARow:
-	.string "Dans la LIGUE POKéMON, la règle stipule\n"
-	.string "que tu dois battre tous les membres\l"
-	.string "du CONSEIL 4 consécutivement.\p"
-	.string "Si tu perds contre l’un d’entre eux, tu\n"
-	.string "dois reprendre le défi depuis le début.$"
+	.string "Según las reglas de la LIGA POKéMON,\n"
+	.string "tienes que luchar contra los miembros\l"
+	.string "del ALTO MANDO uno tras otro, seguidos.\p"
+	.string "Si pierdes contra alguno de ellos, debes\n"
+	.string "comenzar otra vez desde el primero.$"
 

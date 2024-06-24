@@ -302,44 +302,45 @@ Route110_TrickHousePuzzle3_EventScript_Alan::
 	end
 
 Route110_TrickHousePuzzle3_Text_WroteSecretCodeLockOpened:
-	.string "{PLAYER} écrit le code secret\n"
-	.string "sur la porte.\p"
-	.string "“Le MAITRE DES PIEGES est envié.”\n"
-	.string "… … … … … … … …\p"
-	.string "La porte s’ouvre!$"
+	.string "{PLAYER} escribió el código secreto\n"
+	.string "en la puerta.\p"
+	.string "“El MAESTRO TRETA\n"
+	.string "es lo más.”\l"
+	.string "Y…\p"
+	.string "¡la puerta se ha abierto!$"
 
 Route110_TrickHousePuzzle3_Text_JustinIntro:
-	.string "Je reviens toujours au même endroit!$"
+	.string "¡No paro de dar vueltas en círculo!$"
 
 Route110_TrickHousePuzzle3_Text_JustinDefeat:
-	.string "Je suis déjà perdu, et en plus, tu\n"
-	.string "me bats? C’est vraiment trop injuste!$"
+	.string "Como si no tuviera bastantes problemas,\n"
+	.string "vienes tú a derrotarme. ¡No es justo!$"
 
 Route110_TrickHousePuzzle3_Text_JustinPostBattle:
-	.string "Il y a trop de portes, ici! C’est trop\n"
-	.string "petit et on n’y voit rien! A l’aide!$"
+	.string "¡Aquí hay demasiadas puertas!\n"
+	.string "¡Es pequeño y está oscuro! ¡Socorro!$"
 
 Route110_TrickHousePuzzle3_Text_MarthaIntro:
-	.string "Je ne sais pas ce qui se passe ici.\n"
-	.string "Je me sens un peu triste…$"
+	.string "No sé de dónde vengo ni adónde voy\n"
+	.string "y me está entrando un mal rollo…$"
 
 Route110_TrickHousePuzzle3_Text_MarthaDefeat:
-	.string "Tu… Tu es abominable!$"
+	.string "Y tú, tú… ¡eres una mala persona!$"
 
 Route110_TrickHousePuzzle3_Text_MarthaPostBattle:
-	.string "Je sais que je suis faible!\n"
-	.string "Et je n’ai aucun sens de l’orientation!$"
+	.string "Ya sé que tengo que mejorar…\n"
+	.string "¡Y aprender a orientarme también!$"
 
 Route110_TrickHousePuzzle3_Text_AlanIntro:
-	.string "Je ne comprends pas. Qui peut bien\n"
-	.string "s’amuser dans une maison aussi bizarre?$"
+	.string "No lo entiendo. ¿Quién en su sano\n"
+	.string "juicio querría una casa tan rara?$"
 
 Route110_TrickHousePuzzle3_Text_AlanDefeat:
-	.string "Je ne comprends pas.\n"
-	.string "Comment ai-je fait pour perdre?$"
+	.string "No lo entiendo.\n"
+	.string "¿Cómo he podido perder?$"
 
 Route110_TrickHousePuzzle3_Text_AlanPostBattle:
-	.string "Je ne comprends pas. Combien de pièges\n"
-	.string "y a-t-il dans cette maison?\p"
-	.string "Tu me donnes une réponse?$"
+	.string "No lo entiendo.\n"
+	.string "¿Cuántas trampas hay en esta casa?\p"
+	.string "A ver si tú sabes la respuesta…$"
 

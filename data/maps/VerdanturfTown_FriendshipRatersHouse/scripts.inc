@@ -63,43 +63,42 @@ VerdanturfTown_FriendshipRatersHouse_EventScript_Pikachu::
 	end
 
 VerdanturfTown_FriendshipRatersHouse_Text_SeeHowMuchPokemonLikesYou:
-	.string "Laisse-moi voir ton POKéMON.\n"
-	.string "Je vais regarder s’il t’aime bien.\p"
-	.string "Oh.\n"
-	.string "Ton POKéMON…$"
+	.string "Déjame que vea a tu POKéMON.\n"
+	.string "Quiero saber cuánto te quiere…\p"
+	.string "Ajá…\n"
+	.string "Tu POKéMON…$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_AdoresYou:
-	.string "Il t’adore.\n"
-	.string "Il ne pourrait pas t’aimer plus.\l"
-	.string "Ça fait plaisir à voir.$"
+	.string "te adora.\n"
+	.string "Es que no te puede querer más.\l"
+	.string "Tanto amor me conmueve hasta a mí.$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_VeryHappy:
-	.string "Il semble très heureux.\n"
-	.string "A l’évidence, il t’aime de tout son cœur.$"
+	.string "parece muy feliz.\n"
+	.string "Es obvio que te quiere un montón.$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_LikesYouQuiteALot:
-	.string "Il t’aime beaucoup.\n"
-	.string "Il semble vouloir être dorloté.$"
+	.string "te quiere mucho.\n"
+	.string "Parece que necesita algo más de cariño.$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_GettingUsedToYou:
-	.string "Il commence à s’habituer à toi.\n"
-	.string "Il a l’air de croire en toi.$"
+	.string "se está acostumbrando a ti.\n"
+	.string "Parece que tiene confianza en ti.$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_NotUsedToYou:
-	.string "Il n’est pas encore très habitué à toi.\n"
-	.string "Il ne t’aime pas, mais ne te déteste pas\l"
-	.string "non plus.$"
+	.string "todavía debe acostumbrarse a ti.\n"
+	.string "Le traes un poco al fresco.$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_VeryWary:
-	.string "Il est sur ses gardes.\n"
-	.string "Il pourrait être agressif.\p"
-	.string "Il ne t’aime pas du tout.$"
+	.string "desconfía mucho de ti.\n"
+	.string "Los ojos le brillan de forma extraña…\l"
+	.string "Parece que no le gustas ni un pelo.$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_DetestsYou:
-	.string "C’est un peu difficile à annoncer…\p"
-	.string "Ton POKéMON te déteste franchement.\n"
-	.string "Ça ne te met pas un peu mal à l’aise?$"
+	.string "Ejem, no resulta nada fácil decir esto…\p"
+	.string "Lo siento, pero tu POKéMON no\n"
+	.string "te traga. ¿No te hace sentirte fatal?$"
 
 VerdanturfTown_FriendshipRatersHouse_Text_Pikachu:
-	.string "PIKACHU: Pika pika!$"
+	.string "PIKACHU: ¡Pika, pika!$"
 

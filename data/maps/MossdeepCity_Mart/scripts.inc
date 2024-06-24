@@ -39,25 +39,23 @@ MossdeepCity_Mart_EventScript_Sailor::
 	end
 
 MossdeepCity_Mart_Text_ReviveIsFantastic:
-	.string "RAPPEL est fabuleux!\p"
-	.string "Si tu en donnes à un POKéMON K.O.,\n"
-	.string "il reprend connaissance.\p"
-	.string "Mais attention, RAPPEL ne restitue\n"
-	.string "pas les PP des capacités déjà utilisés.$"
+	.string "¡REVIVIR es lo mejor!\p"
+	.string "Si se lo das a un POKéMON debilitado,\n"
+	.string "se recupera y puede luchar de nuevo.\p"
+	.string "Pero ten cuidado: REVIVIR no restaura\n"
+	.string "los PP usados de cada movimiento.$"
 
 MossdeepCity_Mart_Text_MaxRepelLastsLongest:
-	.string "MAX REPOUSSE maintient les POKéMON\n"
-	.string "faibles à l’écart.\p"
-	.string "Parmi tous les REPOUSSES, c’est celui\n"
-	.string "qui dure le plus longtemps.$"
+	.string "MÁX. REPEL mantiene alejados a todos\n"
+	.string "los POKéMON débiles.\p"
+	.string "Entre todos los REPELENTES,\n"
+	.string "éste es el que dura más tiempo.$"
 
 MossdeepCity_Mart_Text_NetAndDiveBallsRare:
-	.string "Les FILET BALLS et les SCUBA BALLS\n"
-	.string "sont des POKé BALLS rares, qui ne\l"
-	.string "sont fabriquées qu’à ALGATIA.\p"
-	.string "La FILET BALL est efficace contre les\n"
-	.string "POKéMON des types INSECTE et EAU.\p"
-	.string "La SCUBA BALL est plus efficace\n"
-	.string "contre les POKéMON qui vivent\l"
-	.string "au fond de la mer.$"
+	.string "La MALLA BALL y la BUCEO BALL son\n"
+	.string "unas POKé BALLS propias de ALGARIA.\p"
+	.string "Una MALLA BALL es eficaz con los\n"
+	.string "POKéMON de los tipos BICHO y AGUA.\p"
+	.string "Una BUCEO BALL funciona mejor con los\n"
+	.string "POKéMON que viven en el fondo del mar.$"
 

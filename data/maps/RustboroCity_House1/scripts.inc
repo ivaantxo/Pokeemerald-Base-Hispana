@@ -50,32 +50,32 @@ RustboroCity_House1_EventScript_Hiker::
 	end
 
 RustboroCity_House1_Text_IllTradeIfYouWant:
-	.string "Hein? Mon POKéMON est mignon?\n"
-	.string "Bien sûr que je le sais.\p"
-	.string "Mais si tu veux, je suis d’accord pour\n"
-	.string "te l’échanger.\p"
-	.string "Je t’échange mon {STR_VAR_2} contre\n"
-	.string "un {STR_VAR_1} si tu veux.$"
+	.string "¿Qué? ¿Que mi POKéMON es una monada?\n"
+	.string "Eso ya lo sabía yo.\p"
+	.string "Pues, si te hace mucha ilusión, podría\n"
+	.string "incluso dártelo a cambio de algo.\p"
+	.string "Si quieres, te cambio mi {STR_VAR_2}\n"
+	.string "por un {STR_VAR_1}.$"
 
 RustboroCity_House1_Text_PleaseBeGoodToMyPokemon:
-	.string "Hé hé…\n"
-	.string "Sois sympa avec mon POKéMON.$"
+	.string "Je, je, je…\n"
+	.string "Pórtate bien con mi POKéMON.$"
 
 RustboroCity_House1_Text_DoesntLookLikeMonToMe:
-	.string "Hein? Il ressemble pas vraiment à\n"
-	.string "un {STR_VAR_1}!$"
+	.string "¿Eh? ¿Qué eso es un {STR_VAR_1}?\n"
+	.string "Pues a mí no me lo parece en absoluto…$"
 
 RustboroCity_House1_Text_YouDontWantToThatsOkay:
-	.string "Oh, si tu ne veux pas, c’est d’accord.\n"
-	.string "Mais il est vraiment mignon, tu sais?$"
+	.string "Ah, pues si no quieres, peor para ti.\n"
+	.string "Porque mi POKéMON es una monada…$"
 
 RustboroCity_House1_Text_AnyPokemonCanBeCute:
-	.string "Tous les POKéMON peuvent être mignons\n"
-	.string "s’ils sont élevés avec gentillesse.$"
+	.string "Cualquier POKéMON puede ser mono\n"
+	.string "si lo crías con cariño y esmero.$"
 
 RustboroCity_House1_Text_AllSortsOfPlaces:
-	.string "Chaque endroit a ses types précis de\n"
-	.string "POKéMON et de personnes.\p"
-	.string "Je trouve ça si fascinant que je me\n"
-	.string "balade un peu partout.$"
+	.string "En cada lugar hay gente y POKéMON\n"
+	.string "diferentes.\p"
+	.string "Es muy curioso, por eso voy siempre\n"
+	.string "de aquí para allá.$"
 

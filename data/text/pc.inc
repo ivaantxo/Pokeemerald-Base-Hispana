@@ -1,17 +1,18 @@
 Text_BootUpPC:
-    .string "{PLAYER} allume le PC.$"
+	.string "{PLAYER} encendió el PC.$"
 
 gText_WhichPCShouldBeAccessed::
-    .string "Accéder à quel PC?$"
+	.string "¿A qué PC quieres acceder?$"
 
 gText_AccessedSomeonesPC::
-    .string "PC de ??? connecté.$"
+	.string "Accedió al PC de alguien.$"
 
 gText_StorageSystemOpened::
-    .string "Gestion de Stocks de POKéMON en ligne.$"
+	.string "Acceso al Sistema de Almacenamiento\n"
+	.string "de POKéMON concedido.$"
 
 gText_AccessedPlayersPC::
-    .string "PC personnel connecté.$"
+	.string "Accedió al PC de {PLAYER}.$"
 
 gText_AccessedLanettesPC::
-    .string "PC d’ANNETTE connecté.$"
+	.string "Accedió al PC de AREDIA.$"

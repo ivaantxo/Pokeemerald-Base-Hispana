@@ -12,46 +12,46 @@ SeafloorCavern_Room3_EventScript_Grunt5::
 	end
 
 SeafloorCavern_Room3_Text_ShellyIntro:
-	.string "Ahahahaha!\p"
-	.string "Comment t’as fait pour venir jusqu’ici\n"
-	.string "sans sous-marin?\l"
-	.string "Quel môme impressionnant!\p"
-	.string "Mais… C’est pas pour autant qu’on va\n"
-	.string "te laisser te mêler de nos affaires.\p"
-	.string "Et j’voudrais avoir ma revanche pour\n"
-	.string "ce qui s’est passé au CENTRE METEO…\p"
-	.string "Je vais te faire goûter à la douleur!\n"
-	.string "Tu ferais mieux de renoncer!$"
+	.string "¡Ja, ja, ja, ja!\p"
+	.string "¿Cómo has podido llegar hasta aquí\n"
+	.string "sin un submarino?\l"
+	.string "¡Estoy impresionada!\p"
+	.string "¡Pero ya has cotilleado bastante!\p"
+	.string "¡Y quiero tomarme la revancha por lo que\n"
+	.string "pasó en el INSTITUTO METEOROLÓGICO!\p"
+	.string "¡Te voy a dar una buena tunda!\n"
+	.string "¡Ya te puedes ir preparando!$"
 
 SeafloorCavern_Room3_Text_ShellyDefeat:
-	.string "Ahahahaha!\p"
-	.string "Ouille!$"
+	.string "Ja, ja, ja, ja…\p"
+	.string "Ay…$"
 
 SeafloorCavern_Room3_Text_ShellyPostBattle:
-	.string "Ahahahaha!\n"
-	.string "Quelle puissance tu as!\p"
-	.string "C’est vraiment dommage que tu ne\n"
-	.string "sois pas membre de la TEAM AQUA.\p"
-	.string "Tu aurais pu prendre du plaisir dans le\n"
-	.string "fabuleux monde que notre CHEF nous\l"
-	.string "a promis…$"
+	.string "¡Ja, ja, ja, ja!\n"
+	.string "¡Qué fuerte eres!\p"
+	.string "Lástima que no seas miembro\n"
+	.string "del EQUIPO AQUA.\p"
+	.string "Podrías haber disfrutado\n"
+	.string "del maravilloso mundo que el JEFE\l"
+	.string "nos ha prometido…$"
 
 SeafloorCavern_Room3_Text_Grunt5Intro:
-	.string "Pour réaliser notre rêve, nous avons\n"
-	.string "besoin de la puissance des POKéMON.\p"
-	.string "Mais il y a toujours des enquiquineurs\n"
-	.string "comme toi qui utilisent leurs POKéMON\l"
-	.string "pour contrecarrer nos plans!\p"
-	.string "Rien ne se passe jamais comme prévu!$"
+	.string "Para hacer realidad nuestros sueños,\n"
+	.string "necesitamos el poder de los POKéMON.\p"
+	.string "¡Pero siempre hay algún entrometido\n"
+	.string "que usa el poder de los POKéMON\l"
+	.string "para darnos la lata, incluso aquí!\p"
+	.string "¡La vida podría ser mucho más\n"
+	.string "fácil sin plastas como tú!$"
 
 SeafloorCavern_Room3_Text_Grunt5Defeat:
-	.string "Graaah!$"
+	.string "¡Argh!$"
 
 SeafloorCavern_Room3_Text_Grunt5PostBattle:
-	.string "Tu sais, nous ne remettons pas en\n"
-	.string "question les motifs de notre CHEF.\p"
-	.string "Mais tu es là, à vouloir stopper\n"
-	.string "nos plans.\p"
-	.string "Peut-être que…\n"
-	.string "Tu dois avoir tes raisons…$"
+	.string "Mira, nosotros no nos cuestionamos\n"
+	.string "las razones del mandamás.\p"
+	.string "Pero aquí estás tú, mequetrefe,\n"
+	.string "buscando pelea con el JEFE.\p"
+	.string "Va a resultar…\n"
+	.string "que tienes agallas…$"
 

@@ -11,8 +11,7 @@ AbandonedShip_Rooms_B1F_EventScript_FatMan::
 	end
 
 AbandonedShip_Rooms_B1F_Text_GettingQueasy:
-	.string "Hoooou…\p"
-	.string "J’ai mal au cœur rien que d’être à bord\n"
-	.string "de ce bateau…\p"
-	.string "Ça ne bouge même pas, mais…$"
+	.string "Ay, ay, ay…\p"
+	.string "Me estoy poniendo malo en este barco…\p"
+	.string "Está parado, pero da igual…$"
 

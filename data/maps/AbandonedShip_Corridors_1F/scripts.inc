@@ -11,16 +11,16 @@ AbandonedShip_Corridors_1F_EventScript_Charlie::
 	end
 
 AbandonedShip_Corridors_1F_Text_CharlieIntro:
-	.string "Qu’est-ce qu’il y a de si drôle à me voir\n"
-	.string "à bord du bateau avec ma bouée?$"
+	.string "¿Qué? ¿Te hace gracia que lleve\n"
+	.string "flotador montado en el barco?$"
 
 AbandonedShip_Corridors_1F_Text_CharlieDefeat:
-	.string "Waouh, tu m’as écrasé!$"
+	.string "Vaya, me he quedado desinflado…$"
 
 AbandonedShip_Corridors_1F_Text_CharliePostBattle:
-	.string "C’est dur de lancer des POKé BALLS tout\n"
-	.string "en se cramponnant à une bouée!$"
+	.string "¡No es fácil lanzar POKé BALLS\n"
+	.string "cuando llevas un flotador!$"
 
 AbandonedShip_Corridors_1F_Text_IsntItFunHere:
-	.string "C’est cool ici, hein?\n"
-	.string "Je suis tout excité rien que d’être là!$"
+	.string "¿A que es superdivertido?\n"
+	.string "¡Me lo paso pipa aquí!$"

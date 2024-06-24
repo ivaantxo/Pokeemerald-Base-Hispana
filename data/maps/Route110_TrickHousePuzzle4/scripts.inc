@@ -28,42 +28,45 @@ Route110_TrickHousePuzzle4_EventScript_Paula::
 	end
 
 Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened:
-	.string "{PLAYER} écrit le code secret\n"
-	.string "sur la porte.\p"
-	.string "“Le MAITRE DES PIEGES est cool.”\n"
-	.string "… … … … … … … …\p"
-	.string "La porte s’ouvre!$"
+	.string "{PLAYER} escribió el código secreto\n"
+	.string "en la puerta.\p"
+	.string "“El MAESTRO TRETA\n"
+	.string "es guay.”\l"
+	.string "Y…\p"
+	.string "¡la puerta se ha abierto!$"
 
 Route110_TrickHousePuzzle4_Text_CoraIntro:
-	.string "Tous ces trucs à résoudre, c’est trop\n"
-	.string "compliqué. Je voulais juste me battre!$"
+	.string "Me duele la cabeza de pensar…\n"
+	.string "¡Luchar cuesta menos trabajo!$"
 
 Route110_TrickHousePuzzle4_Text_CoraDefeat:
-	.string "Même si j’ai perdu, je préfère me battre!$"
+	.string "Me da igual haber perdido…\n"
+	.string "¡Luchar sigue siendo lo mejor!$"
 
 Route110_TrickHousePuzzle4_Text_CoraPostBattle:
-	.string "Tu n’es pas d’accord? Ce que tu\n"
-	.string "cherches, c’est surtout des DRESSEURS.$"
+	.string "¡Por supuesto! Yo iría a cualquier sitio\n"
+	.string "donde hubiera un ENTRENADOR.$"
 
 Route110_TrickHousePuzzle4_Text_YujiIntro:
-	.string "Hé, hé! Des rochers comme ça, je peux\n"
-	.string "les pousser avec un seul doigt!$"
+	.string "¡Eh, tú! ¿Ves estas rocas tan gordas?\n"
+	.string "¡Pues yo las muevo con el dedo meñique!$"
 
 Route110_TrickHousePuzzle4_Text_YujiDefeat:
-	.string "Je peux pousser des rochers, mais je\n"
-	.string "n’arrive pas à résoudre les énigmes…$"
+	.string "Puedo mover rocas, pero no\n"
+	.string "puedo resolver acertijos…$"
 
 Route110_TrickHousePuzzle4_Text_YujiPostBattle:
-	.string "Il ne suffit pas d’être musclé…\n"
-	.string "Il faut utiliser sa tête et être malin!$"
+	.string "No basta con ser musculoso,\n"
+	.string "¡también hay que ser ingenioso!$"
 
 Route110_TrickHousePuzzle4_Text_PaulaIntro:
-	.string "La MAISON DES PIEGES est de plus en\n"
-	.string "plus compliquée, n’est-ce pas?$"
+	.string "La CASA TRETA es cada vez más\n"
+	.string "traicionera, ¿no te parece?$"
 
 Route110_TrickHousePuzzle4_Text_PaulaDefeat:
-	.string "Aaargh!$"
+	.string "¡Ayyyy!$"
 
 Route110_TrickHousePuzzle4_Text_PaulaPostBattle:
-	.string "Quelqu’un est-il déjà arrivé à la fin?$"
+	.string "Yo creo que nadie ha logrado\n"
+	.string "llegar hasta el final…$"
 

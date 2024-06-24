@@ -1,95 +1,95 @@
 gContestHallPaintingCaption::
-    .string "{STR_VAR_1}\n"
-    .string "{STR_VAR_3} de {STR_VAR_2}$"
+	.string "{STR_VAR_1}\n"
+	.string "{STR_VAR_3} de {STR_VAR_2}$"
 
 gContestPaintingContest::
-    .string "CONTEST$"
+	.string "CONTEST$"
 
 gContestRankNormal::
-    .string "CATEGORIE NORMAL$"
+	.string "NIVEL NORMAL$"
 
 gContestRankSuper::
-    .string "CATEGORIE SUPER$"
+	.string "NIVEL ALTO$"
 
 gContestRankHyper::
-    .string "CATEGORIE HYPER$"
+	.string "NIVEL AVANZADO$"
 
 gContestRankMaster::
-    .string "CATEGORIE MASTER$"
+	.string "NIVEL EXPERTO$"
 
 gContestLink::
-    .string "LINK$"
+	.string "CONEXIÓN$"
 
 gContestCoolness::
-    .string "SANG-FROID$"
+	.string "CARISM$"
 
 gContestBeauty::
-    .string "BEAUTE$"
+	.string "BELLEZ$"
 
 gContestCuteness::
-    .string "GRACE$"
+	.string "DULZUR$"
 
 gContestSmartness::
-    .string "INTELLIGENCE$"
+	.string "INGENI$"
 
 gContestToughness::
-    .string "ROBUSTESSE$"
+	.string "DUREZA$"
 
 gContestPaintingCool1::
-    .string "Le super cool,\n"
-    .string "l’inestimable {STR_VAR_1}$"
+	.string "El magnífico, imparable\n"
+	.string "y superguay {STR_VAR_1}$"
 
 gContestPaintingCool2::
-    .string "Hé!\n"
-    .string "Le joli POKéMON {STR_VAR_1} $"
+	.string "¡Aquí está!\n"
+	.string "El guapísimo {STR_VAR_1}$"
 
 gContestPaintingCool3::
-    .string "L’extraordinaire, le merveilleux et\n"
-    .string "superbe {STR_VAR_1} $"
+	.string "El maravilloso, fantástico y\n"
+	.string "estupendo {STR_VAR_1}$"
 
 gContestPaintingBeauty1::
-    .string "La splendeur de ce siècle, le\n"
-    .string "magnifique {STR_VAR_1} $"
+	.string "El más bello de este siglo:\n"
+	.string "el hermoso {STR_VAR_1}$"
 
 gContestPaintingBeauty2::
-    .string "L’éblouissant et somptueux\n"
-    .string "sourire de {STR_VAR_1} $"
+	.string "La deslumbrante y brillante\n"
+	.string "sonrisa de {STR_VAR_1}$"
 
 gContestPaintingBeauty3::
-    .string "L’idole du CENTRE POKéMON:\n"
-    .string "l’incomparable {STR_VAR_1} $"
+	.string "El incomparable, el superídolo \n"
+	.string "del CENTRO POKéMON {STR_VAR_1}$"
 
 gContestPaintingCute1::
-    .string "Le gentil et adorable {STR_VAR_1} $"
+	.string "El cariñoso y dulce {STR_VAR_1}$"
 
 gContestPaintingCute2::
-    .string "Portrait de la victoire du joli\n"
-    .string "{STR_VAR_1} $"
+	.string "El retrato ganador\n"
+	.string "del bonito {STR_VAR_1}$"
 
 gContestPaintingCute3::
-    .string "Fais-nous un clin d’œil!\n"
-    .string "Mignon POKéMON {STR_VAR_1} $"
+	.string "¡Regálanos una sonrisa!\n"
+	.string "El adorable {STR_VAR_1}$"
 
 gContestPaintingSmart1::
-    .string "Le maestro de l’intelligence:\n"
-    .string "le sage POKéMON {STR_VAR_1} $"
+	.string "El maestro del ingenio:\n"
+	.string "el sabio {STR_VAR_1}$"
 
 gContestPaintingSmart2::
-    .string "Le POKéMON élu:\n"
-    .string "le seul et l’unique {STR_VAR_1} $"
+	.string "El más grande entre los POKéMON:\n"
+	.string "el inigualable {STR_VAR_1}$"
 
 gContestPaintingSmart3::
-    .string "Toute l’élégance\n"
-    .string "de l’excellent {STR_VAR_1} $"
+	.string "El minuto de gloria\n"
+	.string "del excelente {STR_VAR_1}$"
 
 gContestPaintingTough1::
-    .string "Tout en muscles, le fou\n"
-    .string "de vitesse {STR_VAR_1} $"
+	.string "El vertiginoso y\n"
+	.string "supermusculoso {STR_VAR_1}$"
 
 gContestPaintingTough2::
-    .string "C’est incontestablement le\n"
-    .string "plus fort, {STR_VAR_1} $"
+	.string "El fuerte, muy fuerte y\n"
+	.string "fortísimo {STR_VAR_1}$"
 
 gContestPaintingTough3::
-    .string "Le puissant et robuste POKéMON\n"
-    .string "{STR_VAR_1} $"
+	.string "¡El increíblemente duro\n"
+	.string "y asombroso {STR_VAR_1}$"

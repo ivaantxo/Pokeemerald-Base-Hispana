@@ -57,6 +57,6 @@ BattleFrontier_BattlePikeCorridor_Movement_AttendantEnterCorridor:
 	step_end
 
 BattleFrontier_BattlePikeCorridor_Text_YourChallengeHasBegun:
-	.string "Votre COMBAT HASARD a\n"
-	.string "commencé…$"
+	.string "El desafío de la ELECCIÓN de COMBATES\n"
+	.string "ha dado comienzo…$"
 

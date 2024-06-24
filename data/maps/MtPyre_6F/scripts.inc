@@ -28,43 +28,43 @@ MtPyre_6F_EventScript_Cedric::
 	end
 
 MtPyre_6F_Text_ValerieIntro:
-	.string "Quand je suis ici…\n"
-	.string "Un étrange pouvoir s’empare de moi…$"
+	.string "Cuando estoy aquí…\n"
+	.string "siento un extraño poder dentro de mí.$"
 
 MtPyre_6F_Text_ValerieDefeat:
-	.string "Le pouvoir s’affaiblit…$"
+	.string "Pues esta vez no lo he sentido mucho…$"
 
 MtPyre_6F_Text_ValeriePostBattle:
-	.string "Ce pouvoir vient peut-être des esprits\n"
-	.string "errants des POKéMON qui reposent ici…$"
+	.string "Quizás provenga del espíritu de los\n"
+	.string "POKéMON que a veces acuden aquí…$"
 
 MtPyre_6F_Text_ValerieRegister:
-	.string "… J’ai perdu ce match, mais…\n"
-	.string "J’ai ce petit don en moi…\p"
-	.string "Et sans même poser les mains\n"
-	.string "sur ton POKéNAV…$"
+	.string "Ji, ji, ji… He perdido el combate, pero…\n"
+	.string "todavía puedo sorprenderte…\p"
+	.string "No hace falta ni que ponga mis manos\n"
+	.string "sobre tu POKéNAV… ¡Toma ya!$"
 
 MtPyre_6F_Text_ValerieRematchIntro:
-	.string "Derrière toi…\n"
-	.string "Qu’est-ce que c’est…$"
+	.string "¡Detrás de ti!\n"
+	.string "¿Qué es eso?$"
 
 MtPyre_6F_Text_ValerieRematchDefeat:
-	.string "Quelque chose a disparu…$"
+	.string "Pues juraría que había algo…$"
 
 MtPyre_6F_Text_ValeriePostRematch:
-	.string "Les POKéMON qui reposent ici…\n"
-	.string "Parfois, ils s’amusent…$"
+	.string "Los POKéMON que descansan aquí\n"
+	.string "pueden ser muy juguetones.$"
 
 MtPyre_6F_Text_CedricIntro:
-	.string "Est-ce que tu as perdu ton chemin?\n"
-	.string "Ne t’inquiète pas, je suis là!$"
+	.string "¿Has perdido el norte?\n"
+	.string "¡No te preocupes, que aquí estoy yo!$"
 
 MtPyre_6F_Text_CedricDefeat:
-	.string "Tu n’avais pas perdu ton chemin?$"
+	.string "¿Pero tú no te habías perdido?$"
 
 MtPyre_6F_Text_CedricPostBattle:
-	.string "Je pensais qu’un DRESSEUR perdu\n"
-	.string "serait plus facile à battre.\p"
-	.string "Je m’étais trompé et je ne\n"
-	.string "recommencerai plus…$"
+	.string "Pensaba que era más fácil derrotar\n"
+	.string "a los ENTRENADORES que se pierden.\p"
+	.string "No volveré a intentar un truco\n"
+	.string "tan sucio nunca más…$"
 

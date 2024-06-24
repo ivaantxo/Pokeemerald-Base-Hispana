@@ -62,51 +62,50 @@ SlateportCity_NameRatersHouse_EventScript_NewNameDifferent::
 	end
 
 SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname:
-	.string "Je suis le SPECIALISTE DES NOMS!\n"
-	.string "Je donne des conseils sur les surnoms\l"
-	.string "à choisir.\p"
-	.string "Et si j’examinais le surnom que tu as\n"
-	.string "donné à l’un de tes POKéMON?$"
+	.string "¡Je, je! ¡Hola! ¡Soy el INSPECTOR\n"
+	.string "de los MOTES! ¡El adivinador de nombres!\p"
+	.string "Estaré encantado de evaluar\n"
+	.string "el nombre de tu POKéMON, je, je.$"
 
 SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname:
-	.string "Le surnom de quel POKéMON veux-tu\n"
-	.string "que je juge?$"
+	.string "¿Qué nombre de POKéMON\n"
+	.string "quieres que adivine y evalúe?$"
 
 SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne:
-	.string "Hum… {STR_VAR_1}, c’est ça? C’est pas\n"
-	.string "mal, ce surnom que tu lui as donné.\p"
-	.string "Mais que dirais-tu de lui en\n"
-	.string "donner un meilleur?$"
+	.string "Mmmmm… {STR_VAR_1}, ¿a que sí?\n"
+	.string "No está mal, no está mal…\p"
+	.string "Pero ¿no crees que podríamos\n"
+	.string "encontrar un nombre aún mejor?$"
 
 SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe:
-	.string "Bon, alors quel va être le\n"
-	.string "nouveau surnom?$"
+	.string "Así me gusta. A ver…\n"
+	.string "¿Cuál será el nuevo nombre?$"
 
 SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName:
-	.string "Très bien! A partir de maintenant, ce\n"
-	.string "POKéMON sera surnommé {STR_VAR_1}!\p"
-	.string "C’est mieux qu’avant!\n"
-	.string "Tu en as de la chance!$"
+	.string "¡Ya está! ¡A partir de ahora, el nombre\n"
+	.string "de este POKéMON será {STR_VAR_1}!\p"
+	.string "Es un nombre mucho mejor que\n"
+	.string "el anterior, ¡qué suerte tienes!$"
 
 SlateportCity_NameRatersHouse_Text_DoVisitAgain:
-	.string "Je vois.\n"
-	.string "Reviens me voir.$"
+	.string "Entiendo…\n"
+	.string "Entonces vuelve cuando quieras.$"
 
 SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior:
-	.string "Ça y est! A partir de maintenant, ce\n"
-	.string "POKéMON sera surnommé {STR_VAR_1}!\p"
-	.string "Ce surnom ne semble pas très différent\n"
-	.string "de l’autre et pourtant, il sonne mieux!\p"
-	.string "Tu en as de la chance!$"
+	.string "¡Ya está! ¡A partir de ahora, el nombre\n"
+	.string "de este POKéMON será {STR_VAR_1}!\p"
+	.string "No parece muy diferente del anterior\n"
+	.string "y, sin embargo, es muchísimo mejor.\l"
+	.string "¡Qué suerte tienes!$"
 
 SlateportCity_NameRatersHouse_Text_MagnificentName:
-	.string "Hum… C’est {STR_VAR_1}!\p"
-	.string "C’est un magnifique surnom!\n"
-	.string "Rien à redire!\p"
-	.string "Tu ferais bien de chouchouter ton\n"
-	.string "{STR_VAR_1} à partir de maintenant.$"
+	.string "Mmmm… ¡Será {STR_VAR_1}!\p"
+	.string "¡He aquí un mote magnífico!\n"
+	.string "¡Absolutamente irreprochable!\p"
+	.string "Harás bien en querer mucho\n"
+	.string "a tu {STR_VAR_1} de ahora en adelante.$"
 
 SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg:
-	.string "Voyons, voyons…\n"
-	.string "Ce n’est qu’un OEUF!$"
+	.string "Pero vamos a ver…\n"
+	.string "¡Esto es sólo un HUEVO!$"
 

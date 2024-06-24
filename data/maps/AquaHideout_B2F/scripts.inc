@@ -90,73 +90,72 @@ AquaHideout_B2F_EventScript_Grunt8::
 	end
 
 AquaHideout_B2F_Text_MattIntro:
-	.string "Hé, hé, hé…\p"
-	.string "On avait sous-estimé tes compétences!\p"
-	.string "Mais cette fois, ça y est!\p"
-	.string "Je suis un cran au-dessus des SBIRES\n"
-	.string "que tu as vus.\p"
-	.string "Je n’vais pas flancher.\n"
-	.string "Je vais te pulvériser!$"
+	.string "Jo, jo, jo…\p"
+	.string "¿Has llegado hasta aquí?\n"
+	.string "Creo que te hemos subestimado.\p"
+	.string "¡Pero ya está bien de tonterías!\p"
+	.string "Yo soy más fuerte que los SOLDADOS\n"
+	.string "con los que has luchado hasta ahora.\p"
+	.string "No voy a limitarme a hacerte perder\n"
+	.string "tiempo… ¡Te voy a pulverizar!$"
 
 AquaHideout_B2F_Text_MattDefeat:
-	.string "Hé, hé, hé…\n"
-	.string "Alors moi aussi, j’ai perdu…$"
+	.string "Jo, jo, jo…\n"
+	.string "Yo tampoco lo he logrado…$"
 
 AquaHideout_B2F_Text_OurBossGotThroughHisPreparations:
-	.string "Hé, hé, hé!\p"
-	.string "Pendant que je m’amusais avec toi,\n"
-	.string "notre CHEF a terminé ses préparatifs!$"
+	.string "¡Jo, jo, jo!\p"
+	.string "¡Mientras me divertía contigo,\n"
+	.string "nuestro JEFE terminó los preparativos!$"
 
 AquaHideout_B2F_Text_MattPostBattle:
-	.string "Hé, hé, hé!\p"
-	.string "Notre CHEF est déjà en route vers\n"
-	.string "une caverne sous la mer!\p"
-	.string "Si tu veux te lancer à sa poursuite, tu\n"
-	.string "ferais bien de chercher dans le vaste\l"
-	.string "océan derrière NENUCRIQUE.\p"
-	.string "Mais est-ce que tu vas la trouver?\n"
-	.string "Hé, hé, hé!$"
+	.string "¡Jo, jo, jo!\p"
+	.string "Nuestro JEFE ya ha ido a ocultarse\n"
+	.string "a una cueva submarina.\p"
+	.string "Si quieres encontrarlo, tendrás que\n"
+	.string "buscarlo en el gran mar que hay\l"
+	.string "más allá de CALAGUA.\p"
+	.string "¿Pero acaso podrás encontrar\n"
+	.string "siquiera el mar? ¡Jo, jo, jo!$"
 
 AquaHideout_B2F_Text_Grunt4Intro:
-	.string "Ouaaah, ça m’fatigue d’attendre!\n"
-	.string "En plus, tu m’dois un combat!$"
+	.string "¡Jua, jua, jua! ¡Estoy harto de esperar!\n"
+	.string "¡Me debes un combate!$"
 
 AquaHideout_B2F_Text_Grunt4Defeat:
-	.string "Fatigué d’attendre…\n"
-	.string "Vaincu et abasourdi…$"
+	.string "Total, podía haberme quedado\n"
+	.string "esperando…$"
 
 AquaHideout_B2F_Text_Grunt4PostBattle:
-	.string "CHEF…\n"
-	.string "C’est assez bien?$"
+	.string "El JEFE no va a estar satisfecho…$"
 
 AquaHideout_B2F_Text_Grunt6Intro:
-	.string "Les téléporteurs, c’est la fierté et la\n"
-	.string "réussite de notre PLANQUE!\p"
-	.string "Tu n’sais pas trop où tu es,\n"
-	.string "n’est-ce pas?\p"
-	.string "Décontenancer et fatiguer l’ennemi,\n"
-	.string "puis lui serrer la vis! C’est notre plan!$"
+	.string "Baldosas teletransportadoras:\n"
+	.string "¡el orgullo de la GUARIDA!\p"
+	.string "No tienes ni idea de dónde estás,\n"
+	.string "¿verdad?\p"
+	.string "Aturullar al enemigo para luego caer\n"
+	.string "sobre ellos. ¡Ése es nuestro plan!$"
 
 AquaHideout_B2F_Text_Grunt6Defeat:
-	.string "Qu’est-ce qui ne va pas chez toi?\n"
-	.string "Tu ne montres pas le moindre signe\l"
-	.string "de fatigue.$"
+	.string "¿Y tú qué desayunas?\n"
+	.string "¿Cómo es que no te cansas?$"
 
 AquaHideout_B2F_Text_Grunt6PostBattle:
-	.string "Ça m’rappelle… Je ne sais plus où\n"
-	.string "j’ai mis la MASTER BALL.\p"
-	.string "Si je n’ai pas réussi à la garder, le\n"
-	.string "CHEF va me passer un savon…$"
+	.string "Esto me recuerda… que no me acuerdo\n"
+	.string "de dónde puse la MASTER BALL.\p"
+	.string "Si no la protejo bien, el JEFE me va\n"
+	.string "a machacar…$"
 
 AquaHideout_B2F_Text_Grunt8Intro:
-	.string "La première chose que j’ai dû faire en\n"
-	.string "arrivant ici, c’est comprendre comment\l"
-	.string "ces téléporteurs fonctionnent.$"
+	.string "Lo primero que aprendí al entrar en el\n"
+	.string "EQUIPO AQUA fue cómo están conectadas\l"
+	.string "estas baldosas teletransportadoras.$"
 
 AquaHideout_B2F_Text_Grunt8Defeat:
-	.string "J’étais trop occupé à penser aux\n"
-	.string "téléporteurs…$"
+	.string "Debería pensar en algo más que en las\n"
+	.string "baldosas teletransportadoras…$"
 
 AquaHideout_B2F_Text_Grunt8PostBattle:
-	.string "Je vais devoir apprendre comment\n"
-	.string "me battre plus efficacement.$"
+	.string "Tengo que encontrar la manera\n"
+	.string "de luchar de forma más eficaz…$"

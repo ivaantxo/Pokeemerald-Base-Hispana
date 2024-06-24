@@ -9,14 +9,14 @@ MtPyre_5F_EventScript_Atsushi::
 	end
 
 MtPyre_5F_Text_AtsushiIntro:
-	.string "Professeur…\n"
-	.string "Regardez les progrès que j’ai faits!$"
+	.string "El espíritu de mi maestro me observa…\n"
+	.string "¡Y verá que he mejorado una burrada!$"
 
 MtPyre_5F_Text_AtsushiDefeat:
-	.string "Professeur…\n"
-	.string "Pardonnez-moi!$"
+	.string "El espíritu de mi maestro me observa…\n"
+	.string "Y me has dejado hecho un guiñapo…$"
 
 MtPyre_5F_Text_AtsushiPostBattle:
-	.string "Mon prof, qui repose ici, ne trouvera\n"
-	.string "la paix que lorsque j’aurai progressé…$"
+	.string "Debo mejorar para que el espíritu\n"
+	.string "de mi maestro pueda descansar en paz…$"
 

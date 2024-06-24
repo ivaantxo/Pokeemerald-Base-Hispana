@@ -36,20 +36,22 @@ MauvilleCity_PokemonCenter_1F_EventScript_Youngster::
 	end
 
 MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings:
-	.string "L’homme qui est là-bas dit des choses\n"
-	.string "étranges.\p"
-	.string "Il est marrant, mais bizarre aussi.\n"
-	.string "Je ne suis pas près de l’oublier!$"
+	.string "¡Ese hombre de ahí dice unas cosas\n"
+	.string "muy raras!\p"
+	.string "En cierto modo tiene gracia.\n"
+	.string "Creo que no le olvidaré fácilmente.$"
 
 MauvilleCity_PokemonCenter_1F_Text_MyDataUpdatedFromRecordCorner:
-	.string "Quand j’ai échangé des données au\n"
-	.string "CENTRE DE DONNEES, il y a eu une mise à\l"
-	.string "jour de ce qui est à la mode à MYOKARA.\p"
-	.string "Maintenant, j’ai les mêmes que mes amis!$"
+	.string "Cuando accedí al CENTRO de RÉCORDS,\n"
+	.string "se actualizaron los datos de lo que\l"
+	.string "más mola en AZULIZA.\p"
+	.string "¡Ahora esos datos son los mismos\n"
+	.string "que los de mis amigos!$"
 
 MauvilleCity_PokemonCenter_1F_Text_RecordCornerSoundsFun:
-	.string "Un CENTRE DE DONNEES a ouvert à l’étage\n"
-	.string "du CENTRE POKéMON.\p"
-	.string "Je ne sais pas de quoi il s’agit au juste,\n"
-	.string "mais ça a l’air sympa. Je passerai voir!$"
+	.string "Han abierto un CENTRO de RÉCORDS\n"
+	.string "en la planta de arriba del CENTRO\l"
+	.string "POKéMON.\p"
+	.string "No sé de qué va, pero suena díver.\n"
+	.string "¡Voy a echar un ojo!$"
 

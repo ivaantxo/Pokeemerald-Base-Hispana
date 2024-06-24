@@ -1,115 +1,116 @@
 gBirchDexRatingText_AreYouCurious::
-	.string "PROF. SEKO: Ah, {PLAYER}{KUN}!\p"
-	.string "Tu veux que je te donne mon avis\n"
-	.string "sur ton POKéDEX?$"
+	.string "PROF. ABEDUL: ¡Ah, {PLAYER}{KUN}!\p"
+	.string "¿Quieres saber cómo llevas\n"
+	.string "la POKéDEX?$"
 
 gBirchDexRatingText_Cancel::
-	.string "Hum? Oh, tu n’as pas attrapé assez\n"
-	.string "de POKéMON pour que ça en vaille\l"
-	.string "la peine.$"
+	.string "¿Eh? Ah, ya, no has cogido\n"
+	.string "bastantes POKéMON para\l"
+	.string "que valga la pena…$"
 
 gBirchDexRatingText_SoYouveSeenAndCaught::
-	.string "Hum…\p"
-	.string "Tu as rencontré {STR_VAR_1} POKéMON\n"
-	.string "et tu en as attrapé {STR_VAR_2}…$"
+	.string "Mmmm…\p"
+	.string "Así que has visto {STR_VAR_1} POKéMON\n"
+	.string "y has atrapado {STR_VAR_2} POKéMON.$"
 
 gBirchDexRatingText_LessThan10::
-	.string "Tu devrais aller plus souvent dans\n"
-	.string "les herbes et mieux chercher\l"
-	.string "les POKéMON.$"
+	.string "Deberías ir más a las zonas de\n"
+	.string "hierba alta para buscar POKéMON.$"
 
 gBirchDexRatingText_LessThan20::
-	.string "Je suppose que tu as bien\n"
-	.string "compris ça. Mais désormais,\l"
-	.string "ça va devenir plus dur.$"
+	.string "Vas cogiéndole el tranquillo, pero a\n"
+	.string "partir de ahora cuesta más…$"
 
 gBirchDexRatingText_LessThan30::
-	.string "Certains POKéMON n’apparaissent\n"
-	.string "que dans des zones précises.\l"
-	.string "Sois tenace!$"
+	.string "Algunos POKéMON sólo aparecen en\n"
+	.string "ciertas zonas. Tienes que insistir.$"
 
 gBirchDexRatingText_LessThan40::
-	.string "Bon, il pourrait être un peu plus\n"
-	.string "rempli, mais il ressemble déjà plus\l"
-	.string "à un POKéDEX.$"
+	.string "Bueno, podría estar más llena, pero\n"
+	.string "ya empieza a parecer una POKéDEX.$"
 
 gBirchDexRatingText_LessThan50::
-	.string "Hé, il commence à être plutôt\n"
-	.string "pas mal. Continue sur ta lancée!$"
+	.string "Esto va sobre ruedas.\n"
+	.string "Sigue así.$"
 
 gBirchDexRatingText_LessThan60::
-	.string "Est-ce que tu utilises des CANNES?\n"
-	.string "Il y a beaucoup de POKéMON\l"
-	.string "dans la mer.$"
+	.string "¿Estás usando CAÑAS?\n"
+	.string "Hay muchos POKéMON en el mar…$"
 
 gBirchDexRatingText_LessThan70::
-	.string "Plutôt que juste attraper des\n"
-	.string "POKéMON, pourquoi ne pas aussi\l"
-	.string "les faire évoluer?$"
+	.string "En vez de limitarte a atrapar\n"
+	.string "POKéMON, ¿por qué no los haces\l"
+	.string "evolucionar?$"
 
 gBirchDexRatingText_LessThan80::
-	.string "Ce POKéDEX va être formidable.\n"
-	.string "J’en ai bien l’impression.$"
+	.string "Esta POKéDEX va a ser fantástica.\n"
+	.string "Lo presiento…$"
 
 gBirchDexRatingText_LessThan90::
-	.string "Tu as collecté tout ça…\n"
-	.string "Tu as un talent remarquable!$"
+	.string "Has atrapado todos éstos…\n"
+	.string "¡Tienes buena mano!$"
 
 gBirchDexRatingText_LessThan100::
-	.string "As-tu visité le PARC SAFARI?\p"
-	.string "J’ai entendu dire que certains\n"
-	.string "POKéMON ne s’attrapent que là-bas.$"
+	.string "¿Has visitado la ZONA SAFARI?\p"
+	.string "Dicen que hay algunos POKéMON\n"
+	.string "que sólo se pueden atrapar allí.$"
 
 gBirchDexRatingText_LessThan110::
-	.string "Tu as atteint la barre des 100.\n"
-	.string "C’est un POKéDEX impressionnant!$"
+	.string "Por fin has llegado al número 100.\n"
+	.string "¡Esta POKéDEX es impresionante!$"
 
 gBirchDexRatingText_LessThan120::
-	.string "En utilisant ECLATE-ROC, tu peux\n"
-	.string "trouver des POKéMON.$"
+	.string "¿Sabes que se pueden encontrar\n"
+	.string "ciertos POKéMON usando\l"
+	.string "GOLPE ROCA?$"
 
 gBirchDexRatingText_LessThan130::
-	.string "Tu devrais faire des échanges pour\n"
-	.string "te procurer d’autres POKéMON.$"
+	.string "Intercambiar POKéMON con tus\n"
+	.string "amigos es una manera fácil de\l"
+	.string "conseguir más.$"
 
 gBirchDexRatingText_LessThan140::
-	.string "Certains POKéMON évoluent quand\n"
-	.string "ils aiment vraiment leur DRESSEUR.$"
+	.string "Me han dicho que algunos POKéMON\n"
+	.string "evolucionan gracias al amor que\l"
+	.string "sienten por sus ENTRENADORES.$"
 
 gBirchDexRatingText_LessThan150::
-	.string "Je ne savais pas qu’il y avait\n"
-	.string "autant d’espèces de POKéMON\l"
-	.string "à HOENN.$"
+	.string "No tenía ni idea de que había\n"
+	.string "tantas especies de POKéMON en\l"
+	.string "HOENN.$"
 
 gBirchDexRatingText_LessThan160::
-	.string "Il arrive que certains POKéMON\n"
-	.string "sortent en grand nombre, telle une\l"
-	.string "horde sauvage.\p"
-	.string "Ne rate pas ce genre d’occasion!$"
+	.string "A veces, algunos POKéMON aparecen\n"
+	.string "en gran número.\p"
+	.string "Es casi como una plaga, pero no hay\n"
+	.string "mejor momento para atraparlos.$"
 
 gBirchDexRatingText_LessThan170::
-	.string "On a une bonne représentation des\n"
-	.string "POKéMON de la région de HOENN\l"
-	.string "en regardant ton POKéDEX.$"
+	.string "Mirando tu POKéDEX puedes hacerte\n"
+	.string "una buena idea de los POKéMON que\l"
+	.string "viven en la región de HOENN.$"
 
 gBirchDexRatingText_LessThan180::
-	.string "Je pourrais déjà te donner le titre\n"
-	.string "de PROFESSEUR POKéMON!$"
+	.string "Yo diría que ya se te puede\n"
+	.string "considerar un PROFESOR POKéMON…\l"
+	.string "¡y bueno!$"
 
 gBirchDexRatingText_LessThan190::
-	.string "Avec un POKéDEX aussi bien rempli,\n"
-	.string "tu passes en professionnel!$"
+	.string "¡Con una POKéDEX tan completa, se\n"
+	.string "puede decir que eres todo un\l"
+	.string "profesional en la materia!$"
 
 gBirchDexRatingText_LessThan200::
-	.string "Tu es à deux doigts de compléter\n"
-	.string "ce POKéDEX. Je le vois!$"
+	.string "Estás a punto de acabar la\n"
+	.string "POKéDEX.\l"
+	.string "La cosa se pone emocionante.$"
 
 gBirchDexRatingText_DexCompleted::
-	.string "Félicitations!\n"
-	.string "Ton POKéDEX est complet!$"
+	.string "¡Felicidades!\n"
+	.string "¡Tu POKéDEX está completa!$"
 
 gBirchDexRatingText_OnANationwideBasis::
-	.string "Hum…\n"
-	.string "Sur l’ensemble du territoire…\p"
-	.string "Tu as rencontré {STR_VAR_1} POKéMON\n"
-	.string "et tu as attrapé {STR_VAR_2} POKéMON…$"
+	.string "Mmmm…\n"
+	.string "A escala nacional…\p"
+	.string "has visto {STR_VAR_1} POKéMON y\n"
+	.string "has atrapado {STR_VAR_2} POKéMON.$"

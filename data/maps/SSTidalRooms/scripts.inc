@@ -63,113 +63,112 @@ SSTidalRooms_EventScript_Naomi::
 	end
 
 SSTidalRooms_Text_TakeRestOnBed:
-	.string "Ah, un lit!\n"
-	.string "Je vais me reposer.$"
+	.string "Es una cama.\n"
+	.string "Voy a descansar un poco.$"
 
 SSTidalRooms_Text_ColtonIntro:
-	.string "Je vais souvent à NENUCRIQUE.\p"
-	.string "C’est parce que j’aime faire des\n"
-	.string "CONCOURS POKéMON, tu vois.$"
+	.string "A veces suelo ir a CIUDAD CALAGUA.\p"
+	.string "Me lo paso genial participando\n"
+	.string "en CONCURSOS POKéMON.$"
 
 SSTidalRooms_Text_ColtonDefeat:
-	.string "C’était un match très intéressant!$"
+	.string "¡Qué combate tan bueno!$"
 
 SSTidalRooms_Text_ColtonPostBattle:
-	.string "Je suis tout nerveux à l’idée de\n"
-	.string "découvrir de nouveaux POKéMON pendant\l"
-	.string "les CONCOURS. J’ai hâte d’y être!$"
+	.string "Yo es que me emociono sólo imaginando\n"
+	.string "los tipos de POKéMON a los que me\l"
+	.string "enfrentaré en el siguiente CONCURSO…$"
 
 SSTidalRooms_Text_MicahIntro:
-	.string "Tes amis sont-ils puissants?$"
+	.string "¿Tus amigos son fuertes?$"
 
 SSTidalRooms_Text_MicahDefeat:
-	.string "Ah oui, tes amis sont puissants!$"
+	.string "Sí, de hecho son muy fuertes…$"
 
 SSTidalRooms_Text_MicahPostBattle:
-	.string "Les amis ne sont pas forcément humains.\n"
-	.string "Mes POKéMON sont mes meilleurs amis!$"
+	.string "Los amigos suelen ser personas,\n"
+	.string "pero los POKéMON también pueden\l"
+	.string "ser muy buenos amigos…$"
 
 SSTidalRooms_Text_ThomasIntro:
-	.string "Dis-moi…\n"
-	.string "Tu as frappé avant d’entrer?$"
+	.string "Joven…\n"
+	.string "¿Has llamado a la puerta?$"
 
 SSTidalRooms_Text_ThomasDefeat:
-	.string "On doit accepter la défaite calmement,\n"
-	.string "sans paniquer.$"
+	.string "Se ha de aceptar la derrota\n"
+	.string "con deportividad y caballerosidad.$"
 
 SSTidalRooms_Text_ThomasPostBattle:
-	.string "Un véritable GENTLEMAN ne doit jamais\n"
-	.string "s’énerver, quelle que soit la situation.$"
+	.string "El lema de cualquier CABALLERO que se\n"
+	.string "precie es: “Nunca perder la calma”.$"
 
 SSTidalRooms_Text_JedIntro:
-	.string "ALI: Ça me gêne un peu, mais… On va\n"
-	.string "te montrer le pouvoir de notre amour!$"
+	.string "JOEL: Me da un poco de vergüenza,\n"
+	.string "pero… ¡vas a ver nuestro dúo de lucha!$"
 
 SSTidalRooms_Text_JedDefeat:
-	.string "ALI: Soupir…$"
+	.string "JOEL: Ay…$"
 
 SSTidalRooms_Text_JedPostBattle:
-	.string "ALI: C’est la première fois que le\n"
-	.string "pouvoir de notre amour n’est pas le\l"
-	.string "plus fort! Tu es un DRESSEUR puissant!$"
+	.string "JOEL: Es la primera vez que nuestro\n"
+	.string "dúo de lucha pierde…\l"
+	.string "¡Debes de ser excepcional!$"
 
 SSTidalRooms_Text_JedNotEnoughMons:
-	.string "ALI: Tu n’as qu’un POKéMON?\n"
-	.string "La solitude ne te pèse pas trop?$"
+	.string "JOEL: ¿Sólo tienes un POKéMON?\n"
+	.string "¿Y no es un rollo patatero?$"
 
 SSTidalRooms_Text_LeaIntro:
-	.string "LISE: C’est un peu naïf, mais… On va\n"
-	.string "te montrer le pouvoir de notre amour!$"
+	.string "LIZ: Me da un poco de cosa, pero…\n"
+	.string "¡vas a ver nuestro dúo de lucha!$"
 
 SSTidalRooms_Text_LeaDefeat:
-	.string "LISE: Ouin-ouin!$"
+	.string "LIZ: Oh, no…$"
 
 SSTidalRooms_Text_LeaPostBattle:
-	.string "LISE: Je n’y crois pas! Le pouvoir de\n"
-	.string "notre amour n’a pas été le plus fort…\p"
-	.string "Tu es un DRESSEUR très puissant!$"
+	.string "LIZ: ¡No me lo puedo creer!\n"
+	.string "Nuestro dúo de lucha derrotado…\l"
+	.string "¡Debes de ser excepcional!$"
 
 SSTidalRooms_Text_LeaNotEnoughMons:
-	.string "LISE: Je voulais me battre…\n"
-	.string "Mais tu n’as même pas deux POKéMON…$"
+	.string "LIZ: Me encanta luchar…,\n"
+	.string "pero ni siquiera tienes dos POKéMON…$"
 
 SSTidalRooms_Text_GarretIntro:
-	.string "Ah, tu arrives à temps.\p"
-	.string "Je m’ennuie terriblement, tu sais.\n"
-	.string "Tu vas me divertir.$"
+	.string "Llegas justo a tiempo, o sea.\p"
+	.string "Me estaba aburriendo como una ostra,\n"
+	.string "de verdad. ¡Haz algo para entretenerme!$"
 
 SSTidalRooms_Text_GarretDefeat:
-	.string "Pfff… Tu m’as bien diverti.$"
+	.string "Esto no mola para nada, o sea…$"
 
 SSTidalRooms_Text_GarretPostBattle:
-	.string "Je devrais peut-être demander à mon\n"
-	.string "père de m’acheter un yacht.\p"
-	.string "Un yacht rien que pour mes POKéMON\n"
-	.string "et moi!$"
+	.string "Le voy a decir a papi que me compre\n"
+	.string "un yate que he visto, que es ideal.\l"
+	.string "¡Sólo para mí y mis POKéMON!$"
 
 SSTidalRooms_Text_NaomiIntro:
-	.string "Oh, quel DRESSEUR adorable tu es.\n"
-	.string "Veux-tu prendre un thé?\p"
-	.string "Ou préfères-tu te battre?$"
+	.string "Oh, qué cosita tan mona que eres…\n"
+	.string "¿Quieres tomar leche con galletas?\l"
+	.string "¿O prefieres luchar un ratito?$"
 
 SSTidalRooms_Text_NaomiDefeat:
-	.string "Je vois.\n"
-	.string "Tu es du genre entreprenant.$"
+	.string "Ya sabía yo que a ti te va la marcha…$"
 
 SSTidalRooms_Text_NaomiPostBattle:
-	.string "Une croisière autour du monde dans un\n"
-	.string "yacht de luxe n’est pas sans charme…\p"
-	.string "Mais je dois bien avouer que voyager\n"
-	.string "dans un ferry est plutôt plaisant.$"
+	.string "Relajarse en un crucero de lujo\n"
+	.string "no está nada mal…\p"
+	.string "Aunque dar vueltas a HOENN\n"
+	.string "en un ferry también tiene su encanto.$"
 
 SSTidalRooms_Text_NotSuspiciousTakeThis:
-	.string "Heu… Salut! Je… Non, je n’ai pas l’air\n"
-	.string "suspect! Hé… Tu veux ça? C’est gratuit!\p"
-	.string "C’est… Je le jure, je ne l’ai pas volé!\n"
-	.string "Je n’oserais jamais voler! SAISIE?\p"
-	.string "Ne crains rien! Tu peux t’en servir!$"
+	.string "Oh… Hola… ¡Yo no estoy haciendo nada\n"
+	.string "raro! Esto… ¡Toma esto! ¡Gratis!\p"
+	.string "Eh… En serio… ¡Yo no se lo he birlado\n"
+	.string "a nadie! ¡Nunca jamás haría algo así!\l"
+	.string "¡Puedes usarlo sin problemas!$"
 
 SSTidalRooms_Text_ExplainSnatch:
-	.string "SAISIE permet de voler l’attaque\n"
-	.string "ennemie et d’en obtenir les effets.$"
+	.string "ROBO se apodera del movimiento\n"
+	.string "del rival para poder usarlo en su lugar.$"
 

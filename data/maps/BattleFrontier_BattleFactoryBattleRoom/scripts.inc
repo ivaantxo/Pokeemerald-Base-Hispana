@@ -251,73 +251,70 @@ BattleFrontier_BattleFactoryBattleRoom_EventScript_ScientistsFaceBattle::
 	return
 
 BattleFrontier_BattleFactoryBattleRoom_Text_GetAMoveOn:
-	.string "Hé, toi!\n"
-	.string "Avance!$"
+	.string "¡Venga, venga!\n"
+	.string "¡Muévete!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_NolandImFactoryHead:
-	.string "Je m’appelle SAM!\n"
-	.string "C’est moi le responsable de cet endroit,\l"
-	.string "je suis le CHEF D’USINE!\p"
-	.string "J’ai regardé tes scores au COMBAT\n"
-	.string "ECHANGE.\p"
-	.string "Tu as de bonnes idées, mais ce n’est\n"
-	.string "pas encore tout à fait ça!\p"
-	.string "Ecoute-moi. Lire des livres et faire des\n"
-	.string "exercices, ça ne suffit pas.\p"
-	.string "En fait…\n"
-	.string "Sans la pratique, ça ne sert à rien!\p"
-	.string "Tu dois travailler avec ton cœur et ton\n"
-	.string "corps, tu comprends?\p"
-	.string "Je vais me battre dans les mêmes\n"
-	.string "conditions que toi.\p"
-	.string "Moi aussi, je vais utiliser des POKéMON\n"
-	.string "de location!$"
+	.string "¡Hola, me llamo SABINO!\n"
+	.string "Soy el que manda aquí, por así decirlo.\l"
+	.string "Por eso me llaman el JEFE de la FÁBRICA.\p"
+	.string "He estado echando un vistazo a tus\n"
+	.string "resultados de COMBATE con TRUEQUE.\p"
+	.string "Parece que tienes madera, pero aún\n"
+	.string "hay algo de serrín en tu cabeza.\p"
+	.string "Déjame decirte algo, ¿eh? El saber\n"
+	.string "no está sólo en leer libros y estudiar.\p"
+	.string "Si sólo haces eso…\n"
+	.string "¡No aprenderás nunca nada!\p"
+	.string "Tienes que vivir las cosas, sentirlas\n"
+	.string "en tu propia piel, ¿entiendes?\p"
+	.string "Te retaré en igualdad de condiciones.\n"
+	.string "¡Yo también usaré POKéMON prestados!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_ShakeOutKnowledgeBringItOn:
-	.string "Creuse-toi la tête, sors ta science et\n"
-	.string "bats-toi!$"
+	.string "¡Llegó la hora de mostrarme todo\n"
+	.string "el saber que posees!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_NolandLetsSeeFrontierPass:
-	.string "SAM: Joli combat!\n"
-	.string "Montre-moi ton PASSE ZONE.$"
+	.string "SABINO: ¡Bien hecho!\n"
+	.string "Déjame tu PASE del FRENTE.$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_ReceivedKnowledgeSymbol:
-	.string "Le SYMBOLE SAVOIR a été ajouté sur le\n"
-	.string "PASSE ZONE!$"
+	.string "¡El SÍMBOLO del SABER ha sido\n"
+	.string "grabado en tu PASE del FRENTE!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_NextTimeNoHoldsBarred:
-	.string "Hé…\n"
-	.string "Tu sais de quoi tu parles…\p"
-	.string "La prochaine fois je ne te laisserai\n"
-	.string "aucune chance, compris?\p"
-	.string "Continue d’étudier!$"
+	.string "Eh, tú…\n"
+	.string "Brillas con luz propia…\p"
+	.string "La próxima vez, no seré tan magnánimo.\n"
+	.string "Sin contemplaciones, ¿entiendes?\p"
+	.string "¡Sigue estudiando y aprendiendo!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_HarderLookThanLastTime:
-	.string "SAM: Hé! Comment vas-tu?\n"
-	.string "Tu continues d’étudier?\p"
-	.string "Oh?\p"
-	.string "Ton regard est plus dur que la dernière\n"
-	.string "fois.\p"
-	.string "Je crois que je vais bien m’amuser!\n"
-	.string "Je suis impatient de commencer!$"
+	.string "SABINO: ¡Eh, hola! ¿Qué tal lo llevas?\n"
+	.string "¿Sigues aplicándote en tus estudios?\p"
+	.string "Mmm…\p"
+	.string "Tus ojos brillan con más fuerza\n"
+	.string "que la última vez que te vi.\p"
+	.string "¡Venga, creo que nos vamos a divertir!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_AllRightBringItOn:
-	.string "Allez!\n"
-	.string "Au combat!$"
+	.string "¡Adelante!\n"
+	.string "¡Veamos de lo que eres capaz!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_OutOfMyLeagueLetsSeePass:
-	.string "SAM: Mais…\n"
-	.string "Tu es déjà au niveau supérieur!\p"
-	.string "Pfff!\n"
-	.string "Ton PASSE ZONE…$"
+	.string "SABINO: Pero cómo…\n"
+	.string "¡Oye, tú ya estás en otro nivel!\p"
+	.string "¡Uff!\n"
+	.string "¡Dame el PASE del FRENTE!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_KnowledgeSymbolTookGoldenShine:
-	.string "Le SYMBOLE SAVOIR a pris une couleur\n"
-	.string "dorée!$"
+	.string "¡El SÍMBOLO del SABER\n"
+	.string "ha adquirido un brillo dorado!$"
 
 BattleFrontier_BattleFactoryBattleRoom_Text_LastTimeILoseToYou:
-	.string "Pfff!\p"
-	.string "C’est la dernière fois que je perds\n"
-	.string "contre toi!\p"
-	.string "On refera un combat, d’accord?$"
+	.string "¡Vaya, vaya!\p"
+	.string "¡Te prometo que es la última vez\n"
+	.string "que pierdo contigo!\p"
+	.string "Tenemos que repetirlo, ¿vale?$"
 

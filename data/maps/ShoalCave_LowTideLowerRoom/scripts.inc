@@ -47,13 +47,13 @@ ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand::
 	end
 
 ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus:
-	.string "Ce froid pénétrant dans les alentours\n"
-	.string "est un obstacle à l’entraînement.\p"
-	.string "Mais avec un peu de concentration,\n"
-	.string "on peut le vaincre!\p"
-	.string "Avec ce BANDEAU, tu t’y mets\n"
-	.string "et tu résistes au froid!$"
+	.string "Con este frío glacial que hace,\n"
+	.string "no hay quién entrene…\p"
+	.string "Pero si uno se concentra,\n"
+	.string "puede dejar de sentirlo.\p"
+	.string "Concéntrate con esta CINTA FOCUS\n"
+	.string "y enfréntate al frío.$"
 
 ShoalCave_LowTideLowerRoom_Text_EverythingStartsWithFocus:
-	.string "Tout vient de la concentration!$"
+	.string "¡La concentración lo es todo!$"
 

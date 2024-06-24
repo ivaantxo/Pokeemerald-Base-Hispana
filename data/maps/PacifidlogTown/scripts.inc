@@ -28,28 +28,27 @@ PacifidlogTown_EventScript_TownSign::
 	end
 
 PacifidlogTown_Text_FastRunningCurrent:
-	.string "Le courant de la mer entre PACIFIVILLE\n"
-	.string "et POIVRESSEL est très fort.\p"
-	.string "Si tu décidais de faire du SURF,\n"
-	.string "tu pourrais te faire emporter et\l"
-	.string "te retrouver très loin d’ici.$"
+	.string "El mar que separa OROMAR de CIUDAD\n"
+	.string "PORTUAL tiene muchas corrientes.\p"
+	.string "¡Si haces SURF en él, puedes acabar\n"
+	.string "en cualquier sitio!$"
 
 PacifidlogTown_Text_NeatHousesOnWater:
-	.string "Regarde comme c’est chouette!\n"
-	.string "Ces maisons sont construites sur l’eau.\p"
-	.string "Je suis né ici!$"
+	.string "Mira qué cosa más chula.\n"
+	.string "¡Las casas flotan sobre el agua!\p"
+	.string "¡Yo he nacido aquí!$"
 
 PacifidlogTown_Text_SkyPillarTooScary:
-	.string "LE PILIER CELESTE?\p"
-	.string "Oh, tu veux sûrement parler de cette\n"
-	.string "très très grande tour un peu plus loin.\p"
-	.string "Si tu veux mon avis, il faut être fou\n"
-	.string "pour vouloir monter si haut!\p"
-	.string "Vivre au niveau de la mer, ici à\n"
-	.string "PACIFIVILLE, voilà ce qui me va!$"
+	.string "¿El PILAR CELESTE?\p"
+	.string "Ah, tú te refieres a esa torre\n"
+	.string "altísima que está más allá.\p"
+	.string "Lo que es yo, no subía hasta arriba\n"
+	.string "ni loco. Ese sitio me da escalofríos.\p"
+	.string "Por el contrario, vivir a nivel del\n"
+	.string "mar en OROMAR es una gozada.$"
 
 PacifidlogTown_Text_TownSign:
-	.string "PACIFIVILLE\p"
-	.string "“Là où le soleil du matin se reflète\n"
-	.string "sur les eaux.”$"
+	.string "PUEBLO OROMAR\p"
+	.string "“Donde el radiante sol ilumina\n"
+	.string "las aguas cada día.”$"
 

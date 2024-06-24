@@ -134,35 +134,33 @@ Route113_EventScript_Wyatt::
 	end
 
 Route113_Text_AshCanBeFashionedIntoGlass:
-	.string "Waaaah! Quelle merveille la technologie\n"
-	.string "d’aujourd’hui!\p"
-	.string "Prends ces cendres volcaniques.\n"
-	.string "On peut en faire des objets en verre.$"
+	.string "¡Hoy en día, la ciencia avanza\n"
+	.string "que es una barbaridad!\p"
+	.string "Por ejemplo, mira esta ceniza volcánica.\n"
+	.string "Se puede hacer cristal con ella.$"
 
 Route113_Text_FunWalkingThroughAsh:
-	.string "C’est drôle de marcher dans les cendres\n"
-	.string "volcaniques sur le sol et dans l’herbe.\p"
-	.string "Tu peux voir où tu as marché. C’est\n"
-	.string "trop fort!$"
+	.string "Caminar entre las cenizas del\n"
+	.string "volcán mola mogollón.\p"
+	.string "¡Vas dejando huellas por todas partes!$"
 
 Route113_Text_RouteSign111:
-	.string "ROUTE 113\n"
-	.string "{RIGHT_ARROW} ROUTE 111$"
+	.string "RUTA 113\n"
+	.string "{RIGHT_ARROW} RUTA 111$"
 
 Route113_Text_RouteSignFallarbor:
-	.string "ROUTE 113\n"
-	.string "{LEFT_ARROW} AUTEQUIA$"
+	.string "RUTA 113\n"
+	.string "{LEFT_ARROW} PUEBLO PARDAL$"
 
 Route113_Text_TrainerTipsRegisterKeyItems:
-	.string "CONSEILS AUX DRESSEURS\p"
-	.string "Vous pouvez enregistrer un des OBJETS\n"
-	.string "RARES de votre SAC comme fonction\l"
-	.string "du bouton SELECT.\p"
-	.string "Il suffit d’appuyer sur SELECT pour\n"
-	.string "utiliser l’objet enregistré à votre gré.$"
+	.string "PISTAS para ENTRENADORES\p"
+	.string "Puedes asignar uno de los OBJETOS\n"
+	.string "CLAVE de la MOCHILA al Botón SELECT.\p"
+	.string "Para usar ese objeto después, sólo\n"
+	.string "tendrás que pulsar SELECT.$"
 
 Route113_Text_GlassWorkshopSign:
-	.string "ATELIER DU VERRE\n"
-	.string "“Ici, on transforme les cendres\l"
-	.string "volcaniques en objets en verre!”$"
+	.string "TALLER de VIDRIO\n"
+	.string "“Creamos objetos de cristal con\l"
+	.string "ceniza volcánica.”$"
 

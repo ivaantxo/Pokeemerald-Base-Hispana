@@ -27,31 +27,32 @@ DewfordTown_House2_EventScript_Boy::
 	end
 
 DewfordTown_House2_Text_WantYouToHaveSilkScarf:
-	.string "Regarde-moi cette merveille!\p"
-	.string "C’est un MOUCH. SOIE. C’est à la pointe\n"
-	.string "de la mode!\p"
-	.string "Oh, je vois une lueur dans tes yeux!\n"
-	.string "Mon style éblouissant te plaît!\p"
-	.string "Oh, tu me fais plaisir!\n"
-	.string "Tiens, voilà. Je te le donne!$"
+	.string "¡Recrea la vista en esto!\p"
+	.string "Es un PAÑUELO de SEDA.\n"
+	.string "Es lo último de lo último.\l"
+	.string "Una preciosidad.\p"
+	.string "Ajá, ya veo que te gusta…\n"
+	.string "¡Te brillan los ojos y todo!\p"
+	.string "¡Me has caído bien!\n"
+	.string "¡Toma, te lo voy a dar!$"
 
 DewfordTown_House2_Text_NoRoom:
-	.string "Oh, tu n’as plus de place?\p"
-	.string "Bon, écoute-moi bien, cet objet est\n"
-	.string "indispensable! Il vaut bien tous les\l"
-	.string "objets que j’ai sur moi.$"
+	.string "Anda, ¿no tienes sitio?\p"
+	.string "Escúchame bien: todo el mundo tendría\n"
+	.string "que tener un PAÑUELO como éste.\l"
+	.string "¡Yo daría lo que fuera por tenerlo!$"
 
 DewfordTown_House2_Text_ExplainSilkScarf:
-	.string "Le MOUCH. SOIE augmente la puissance\n"
-	.string "des attaques de type NORMAL.\p"
-	.string "C’est un MOUCHOIR merveilleux assorti à\n"
-	.string "presque tous les POKéMON!$"
+	.string "El PAÑUELO de SEDA aumenta la potencia\n"
+	.string "de los movimientos de tipo NORMAL.\p"
+	.string "Es un PAÑUELO maravilloso que sienta\n"
+	.string "de miedo a casi cualquier POKéMON.$"
 
 DewfordTown_House2_Text_BrawlySoCool:
-	.string "Ouah, tu as franchi la mer pour\n"
-	.string "venir visiter MYOKARA?\p"
-	.string "Tu es peut-être ici parce que tu\n"
-	.string "as entendu parler de BASTIEN?\p"
-	.string "Il est super cool…\n"
-	.string "Tout le monde l’adore.$"
+	.string "¡Guau! ¿Has cruzado todo el mar\n"
+	.string "para venir a AZULIZA?\p"
+	.string "¿Has venido aquí porque has oído\n"
+	.string "hablar de MARCIAL?\p"
+	.string "Es tan guay…\n"
+	.string "Todos lo veneran.$"
 

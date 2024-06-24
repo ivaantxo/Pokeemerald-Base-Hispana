@@ -65,54 +65,55 @@ FallarborTown_CozmosHouse_EventScript_CozmoIsHappy::
 	end
 
 FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow:
-	.string "PROF. KOSMO: Oh…\n"
-	.string "Je n’aurais jamais dû me laisser rouler\l"
-	.string "dans la farine et avouer à la TEAM MAGMA\l"
-	.string "où on peut trouver des METEORITES…\p"
-	.string "Ce METEORITE du SITE METEORE…\n"
-	.string "Il ne sera jamais à moi, maintenant…$"
+	.string "PROF. COZMO: Oh…\n"
+	.string "No debería haberme dejado\l"
+	.string "amedrentar por el EQUIPO MAGMA y\l"
+	.string "revelar dónde hay METEORITOS…\p"
+	.string "Ese METEORITO de la CASCADA METEORO…\n"
+	.string "Ya nunca lo recuperaré…$"
 
 FallarborTown_CozmosHouse_Text_IsThatMeteoriteMayIHaveIt:
-	.string "Oh!\n"
-	.string "Hein?\p"
-	.string "Mais, cet objet…\p"
-	.string "C’est impossible!?!\p"
-	.string "Est-ce le METEORITE que la TEAM\n"
-	.string "MAGMA a pris au SITE METEORE?\p"
-	.string "S’il te plaît, tu peux me le donner?\p"
-	.string "Je suis prêt à te l’échanger contre un\n"
-	.string "objet de valeur. Que dirais-tu d’une CT?$"
+	.string "¡Eh!\n"
+	.string "¿Cómo?\p"
+	.string "Ese objeto…\p"
+	.string "¿Es posible…?\p"
+	.string "¿Es el METEORITO que el EQUIPO MAGMA\n"
+	.string "robó en la CASCADA METEORO?\p"
+	.string "Por favor, ¿puedo…?\p"
+	.string "No quiero quitártelo por la cara…\n"
+	.string "¿Qué te parece cambiarlo por esta MT?$"
 
 FallarborTown_CozmosHouse_Text_PleaseUseThisTM:
-	.string "PROF. KOSMO: Cette CT est le symbole\n"
-	.string "de ma gratitude à ton égard.\p"
-	.string "N’hésite pas à l’utiliser!$"
+	.string "PROF. COZMO: Esta MT es un símbolo\n"
+	.string "de la enorme gratitud que siento.\l"
+	.string "¡No dejes de usarla!$"
 
 FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch:
-	.string "PROF. KOSMO: Oh, je n’arrive pas à\n"
-	.string "y croire. C’est vraiment super génial!\p"
-	.string "Ça va faire avancer mes recherches!$"
+	.string "PROF. COZMO: ¡No puedo creerlo!\n"
+	.string "¡Es genial, maravilloso y estupendo!\p"
+	.string "¡Será de una enorme ayuda\n"
+	.string "en mi investigación!$"
 
 FallarborTown_CozmosHouse_Text_CrushedWithDisappointment:
-	.string "PROF. KOSMO: Oh, mais…\n"
-	.string "Je suis extrêmement déçu…$"
+	.string "PROF. COZMO: Anda ya… ¿No?…\n"
+	.string "Me siento profundamente abatido…$"
 
 FallarborTown_CozmosHouse_Text_MayIHaveMeteorite:
-	.string "PROF. KOSMO: S’il te plaît, tu peux\n"
-	.string "me donner ce METEORITE?\p"
-	.string "Je suis prêt à te l’échanger contre un\n"
-	.string "objet de valeur. Que dirais-tu d’une CT?$"
+	.string "PROF. COZMO: Por favor, ¿me darías\n"
+	.string "ese METEORITO?\p"
+	.string "No quiero quitártelo por la cara…\n"
+	.string "¿Qué te parece cambiarlo por esta MT?$"
 
 FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls:
-	.string "Le PROF. KOSMO est parti au SITE\n"
-	.string "METEORE, sur la ROUTE 114, avec\l"
-	.string "des types de la TEAM MAGMA.$"
+	.string "El PROF. COZMO fue a la CASCADA\n"
+	.string "METEORO, en la RUTA 114, con algunos\l"
+	.string "miembros del EQUIPO MAGMA.$"
 
 FallarborTown_CozmosHouse_Text_FeelSorryForCozmo:
-	.string "Pauvre PROF. KOSMO… Il est si déprimé…\n"
-	.string "Ça me fend le cœur.$"
+	.string "Pobre PROF. COZMO…\n"
+	.string "Está tan depre… Me da una pena…$"
 
 FallarborTown_CozmosHouse_Text_CozmoIsSoHappy:
-	.string "Regarde le PROF. KOSMO…\n"
-	.string "Il est tellement content! C’est génial!$"
+	.string "Mira al PROF. COZMO…\n"
+	.string "¡Está tan feliz! ¡Da gusto verle!$"
 

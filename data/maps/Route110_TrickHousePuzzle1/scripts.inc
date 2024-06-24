@@ -37,42 +37,43 @@ Route110_TrickHousePuzzle1_EventScript_Robin::
 	end
 
 Route110_TrickHousePuzzle1_Text_WroteSecretCodeLockOpened::
-	.string "{PLAYER} écrit le code secret\n"
-	.string "sur la porte.\p"
-	.string "“Le MAITRE DES PIEGES est formidable.”\n"
-	.string "… … … … … … … …\p"
-	.string "La porte s’ouvre!$"
+	.string "{PLAYER} escribió el código secreto\n"
+	.string "en la puerta.\p"
+	.string "“El MAESTRO TRETA\n"
+	.string "es fabuloso.”\l"
+	.string "Y…\p"
+	.string "¡la puerta se ha abierto!$"
 
 Route110_TrickHousePuzzle1_Text_SallyIntro:
-	.string "Grâce à COUPE, que je viens d’apprendre,\n"
-	.string "je vais vaincre à la force de ma lame!$"
+	.string "Me voy a hacer con la victoria gracias\n"
+	.string "al movimiento que acabo de aprender.$"
 
 Route110_TrickHousePuzzle1_Text_SallyDefeat:
-	.string "Pourquoi as-tu l’air si sérieux?$"
+	.string "Vaya, contigo no funciona…$"
 
 Route110_TrickHousePuzzle1_Text_SallyPostBattle:
-	.string "Je ne me lasse pas de trancher,\n"
-	.string "découper et taillader!$"
+	.string "Este nuevo movimiento es estupendo.\n"
+	.string "¡No me canso de usarlo!$"
 
 Route110_TrickHousePuzzle1_Text_EddieIntro:
-	.string "Je me suis retrouvé dans cette étrange\n"
-	.string "maison par hasard…$"
+	.string "He llegado hasta esta casa tan\n"
+	.string "rara sin querer…$"
 
 Route110_TrickHousePuzzle1_Text_EddieDefeat:
-	.string "Et maintenant, j’ai perdu…$"
+	.string "Y encima voy y pierdo…$"
 
 Route110_TrickHousePuzzle1_Text_EddiePostBattle:
-	.string "J’ai perdu mon chemin, un combat et\n"
-	.string "la tête… Je n’arrive pas à sortir…$"
+	.string "Me he perdido, he perdido luchando\n"
+	.string "y ahora… ¡no sé ni cómo volver a casa!$"
 
 Route110_TrickHousePuzzle1_Text_RobinIntro:
-	.string "Mais qui est le MAITRE DES PIEGES?$"
+	.string "¿Pero quién es ese MAESTRO TRETA?$"
 
 Route110_TrickHousePuzzle1_Text_RobinDefeat:
-	.string "Tu as gagné parce que j’étais perdue\n"
-	.string "dans mes pensées!$"
+	.string "¡Has vencido porque estaba sumida\n"
+	.string "en mis pensamientos, que conste!$"
 
 Route110_TrickHousePuzzle1_Text_RobinPostBattle:
-	.string "Tu es balèze!\n"
-	.string "Mais qui es-tu, au juste?$"
+	.string "¡Qué fuerte eres!\n"
+	.string "¿De dónde sales?$"
 

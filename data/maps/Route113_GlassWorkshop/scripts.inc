@@ -292,89 +292,90 @@ Route113_GlassWorkshop_EventScript_NinjaBoy::
 	end
 
 Route113_GlassWorkshop_Text_GoCollectAshWithThis:
-	.string "Cette zone est couverte de cendres\n"
-	.string "volcaniques, rheu-teu!\p"
-	.string "J’ai un talent unique, rheu-teu.\p"
-	.string "Je peux fabriquer du verre avec des\n"
-	.string "cendres volcaniques, rheu-teu.\p"
-	.string "Va ramasser des cendres, rheu-teu.$"
+	.string "Esta zona está cubierta de ceniza\n"
+	.string "volcánica, ¡achís, achís!\p"
+	.string "Yo sé cómo usarla, ¡achís!\p"
+	.string "Fabrico objetos de cristal con ella,\n"
+	.string "¿a que molo? ¡¡¡ACHÍS!!!\p"
+	.string "Puedes recoger ceniza con esto…$"
 
 Route113_GlassWorkshop_Text_ExplainSootSack:
-	.string "Prends ce SAC A SUIE et marche\n"
-	.string "dans les cendres, rheu-teu.\p"
-	.string "Il se remplira de cendres volcaniques,\n"
-	.string "rheu-teu.\p"
-	.string "Lorsque tu penses en avoir ramassé\n"
-	.string "assez, reviens me voir, rheu-teu.$"
+	.string "Coge este SACO HOLLÍN y camina entre\n"
+	.string "los montones de ceniza, ¡achís!\p"
+	.string "Se llenará con la ceniza volcánica,\n"
+	.string "¡achís, achís!\p"
+	.string "Cuando hayas recogido una buena\n"
+	.string "cantidad, ven a verme, ¡ACHÍS!$"
 
 Route113_GlassWorkshop_Text_LetsSeeCollectedAshes:
-	.string "Tu as ramassé des cendres, rheu-teu?\n"
-	.string "Voyons donc, rheu-teu.$"
+	.string "¿Has recogido ceniza?, ¡achís!\n"
+	.string "A ver… ¡Achís, achís!$"
 
 Route113_GlassWorkshop_Text_NotEnoughAshNeedX:
-	.string "Hmmm…\n"
-	.string "Il n’y a pas assez de cendres, rheu-teu.\l"
-	.string "Je ne peux pas faire de verre, rheu-teu.\p"
-	.string "Voyons un peu… Tu dois faire {STR_VAR_1} pas\n"
-	.string "dans la cendre si tu veux que je te\l"
-	.string "fabrique une FLUTE BLEUE, rheu-teu.$"
+	.string "Mmmm…\n"
+	.string "No hay bastante ceniza, ¡achís!\l"
+	.string "No puedo hacer cristal con esto…\p"
+	.string "A ver… Tienes que dar {STR_VAR_1} pasos para\n"
+	.string "recoger suficiente ceniza y que yo\l"
+	.string "pueda hacerte una FLAUTA AZUL, ¡achís!$"
 
 Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike:
-	.string "Oh!\n"
-	.string "Tu as beaucoup de cendres, rheu-teu!\p"
-	.string "Je vais te faire un objet en verre,\n"
-	.string "rheu-teu! Que veux-tu, rheu-teu?$"
+	.string "¡Oh!\n"
+	.string "Tienes un montón de ceniza, ¡achís!\p"
+	.string "Te voy a hacer un objeto de cristal…\n"
+	.string "¿Cuál quieres? ¡Achís!$"
 
 Route113_GlassWorkshop_Text_IsThatTheItemForYou:
-	.string "Une {STR_VAR_1}, rheu-teu?\n"
-	.string "C’est ce que tu veux, rheu-teu?$"
+	.string "¿Una {STR_VAR_1}?, ¡achís!\n"
+	.string "¿Seguro que es eso? ¡¡ACHÍS!!$"
 
 Route113_GlassWorkshop_Text_WhichWouldYouLike:
-	.string "Que veux-tu, rheu-teu?$"
+	.string "¿Cuál quieres? ¡Achís!$"
 
 Route113_GlassWorkshop_Text_IllMakeItemForYou:
-	.string "{STR_VAR_1}? Très bien, rheu-teu!\p"
-	.string "Je vais te faire ça, rheu-teu.\n"
-	.string "Attends une minute, rheu-teu.$"
+	.string "Vale, una {STR_VAR_1} entonces,\n"
+	.string "¡achís!\p"
+	.string "Te la hago en un minuto, ¡achís!\n"
+	.string "Ten un poco de paciencia, ¡ACHÍS!$"
 
 Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem:
-	.string "{STR_VAR_1}, rheu-teu?\p"
-	.string "Il n’y a pas assez de cendres pour\n"
-	.string "fabriquer cet objet, rheu-teu.\p"
-	.string "Voyons un peu… Tu dois faire {STR_VAR_2} pas\n"
-	.string "dans la cendre si tu veux que je\l"
-	.string "fabrique cet objet, rheu-teu.\p"
-	.string "Veux-tu que je te fabrique un autre\n"
-	.string "objet à la place, rheu-teu?$"
+	.string "¿Una {STR_VAR_1}?, ¡achís!\p"
+	.string "No tienes bastante ceniza para hacer\n"
+	.string "eso, lo siento, ¡achís, achís!\p"
+	.string "A ver… Tienes que dar {STR_VAR_2} pasos para\n"
+	.string "recoger suficiente ceniza y que yo\l"
+	.string "pueda hacerte ese objeto, ¡achís!\p"
+	.string "¿Quieres que te haga otro objeto\n"
+	.string "en vez de ése? ¡¡¡ACHÍS!!!$"
 
 Route113_GlassWorkshop_Text_AllThatAshButDontWantAnything:
-	.string "Tu as ramassé toute cette cendre,\n"
-	.string "mais tu ne veux rien, rheu-teu?$"
+	.string "¿Has recogido toda esa ceniza y ahora\n"
+	.string "no quieres nada de nada, achís?$"
 
 Route113_GlassWorkshop_Text_IveFinishedGlassItem:
-	.string "Ah, j’ai fini {STR_VAR_1}.\n"
-	.string "Prends, rheu-teu.$"
+	.string "He acabado tu {STR_VAR_1}.\n"
+	.string "Toma, para ti, ¡achís!$"
 
 Route113_GlassWorkshop_Text_NoRoomInBag:
-	.string "C’est vraiment bête,\n"
-	.string "rheu-teu.\p"
-	.string "Je vais garder l’objet. Reviens me voir\n"
-	.string "plus tard, rheu-teu.$"
+	.string "¿Cómo?\n"
+	.string "¡Si no tienes sitio en la MOCHILA, achís!\p"
+	.string "Te voy a guardar esto, así que vuelve\n"
+	.string "cuando quieras, ¡¡ACHÍS!!$"
 
 Route113_GlassWorkshop_Text_NoRoomInPC:
-	.string "C’est vraiment bête,\n"
-	.string "rheu-teu.\p"
-	.string "Je vais garder l’objet. Reviens me voir\n"
-	.string "plus tard, rheu-teu.$"
+	.string "¿Cómo?\n"
+	.string "¡Si no tienes sitio en el PC, achís!\p"
+	.string "Te voy a guardar esto, así que vuelve\n"
+	.string "cuando quieras, ¡¡ACHÍS!!$"
 
 Route113_GlassWorkshop_Text_HaventGotYourSootSack:
-	.string "Hein? Tu n’as pas ton SAC A SUIE sur\n"
-	.string "toi, rheu-teu.\p"
-	.string "Tu dois l’avoir sur toi pour ramasser\n"
-	.string "des cendres volcaniques, rheu-teu.$"
+	.string "¿Cómo? ¡Si no llevas el SACO\n"
+	.string "HOLLÍN contigo, achís!\p"
+	.string "Lo necesitas para poder recoger\n"
+	.string "ceniza volcánica, ¡¡ACHÍS!!$"
 
 Route113_GlassWorkshop_Text_FunToBlowGlassFlute:
-	.string "C’est rigolo de jouer de la flûte en\n"
-	.string "verre pendant que mon patron discute.\p"
-	.string "Rheu-rheu! Teu-teu!$"
+	.string "Es divertido fabricar flautas de\n"
+	.string "cristal sólo soplando.\p"
+	.string "¡Achís! ¡¡ACHÍS!!$"
 

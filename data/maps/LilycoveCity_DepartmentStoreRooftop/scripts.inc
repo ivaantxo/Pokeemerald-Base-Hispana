@@ -185,35 +185,34 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_ExitVendingMachine::
 	end
 
 LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales:
-	.string "Ils n’ont pas fixé de date pour le\n"
-	.string "déstockage massif?\p"
-	.string "Je regarde la télé, mais je n’ai\n"
-	.string "pas vu une seule pub.$"
+	.string "¿Todavía no saben cuándo\n"
+	.string "van a hacer la liquidación?\p"
+	.string "Aquí nadie sabe decirme nada…$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale:
-	.string "Oui! Ça faisait longtemps que\n"
-	.string "j’attendais ces soldes.\p"
-	.string "Il y a des objets qu’on ne trouve qu’ici.\n"
-	.string "Moi, je vais faire le plein!$"
+	.string "He estado esperando un montón\n"
+	.string "a que se pusieran de liquidación.\p"
+	.string "¡Ahora voy a aprovechar para cambiar\n"
+	.string "toda la decoración de mi casa!$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty:
-	.string "Oh… J’ai tellement soif!$"
+	.string "Uf… ¡Qué sed tengo!$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_WhichDrinkWouldYouLike:
-	.string "C’est un DISTRIBUTEUR AUTOMATIQUE.\n"
-	.string "Quelle boisson voulez-vous?$"
+	.string "Es una MÁQUINA EXPENDEDORA.\n"
+	.string "No sé si beber algo…$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown:
-	.string "Clang!\p"
-	.string "{STR_VAR_1} tombe.$"
+	.string "¡Clang!\p"
+	.string "Ha caído una lata de {STR_VAR_1}.$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown:
-	.string "Clang!\p"
-	.string "Bingo! {STR_VAR_1} tombe.\n"
-	.string "C’est gratuit!$"
+	.string "¡Clang!\p"
+	.string "¡Qué suerte! ¡Ha caído otra\n"
+	.string "lata de {STR_VAR_1}!$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney:
-	.string "Pas assez d’argent…$"
+	.string "No tengo bastante dinero…$"
 
 LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink:
-	.string "Ne pas acheter de boisson.$"
+	.string "Mejor no compro nada de beber…$"

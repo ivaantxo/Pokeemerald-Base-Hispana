@@ -31,20 +31,21 @@ RustboroCity_PokemonCenter_1F_EventScript_Girl::
 	end
 
 RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities:
-	.string "Mon POKéMON est NAIF et celui de mon\n"
-	.string "ami est JOVIAL. C’est leur nature.\p"
-	.string "C’est fascinant de voir comme les\n"
-	.string "POKéMON ont leur caractère!$"
+	.string "Mi POKéMON tiene una naturaleza\n"
+	.string "INGENUA y el de mi amigo tiene\l"
+	.string "una naturaleza ALEGRE.\p"
+	.string "¡Es increíble ver cómo cada POKéMON\n"
+	.string "tiene una personalidad diferente!$"
 
 RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon:
-	.string "Tout comme chez les hommes, il existe\n"
-	.string "des POKéMON mâles et femelles.\p"
-	.string "Mais la différence entre les deux sexes\n"
-	.string "ne saute pas aux yeux.$"
+	.string "Los POKéMON también pueden ser\n"
+	.string "machos o hembras.\p"
+	.string "Lo que no está claro es cuál\n"
+	.string "es la diferencia entre unos y otros.$"
 
 RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor:
-	.string "L’homme de la maison voisine m’a donné\n"
-	.string "une CS!\p"
-	.string "Je l’ai apprise à mon POKéMON pour\n"
-	.string "qu’il COUPE les petits arbres.$"
+	.string "¡El hombre de ahí al lado me ha dado\n"
+	.string "una MO!\p"
+	.string "La he usado para enseñar a mi POKéMON\n"
+	.string "a usar CORTE con los árboles.$"
 

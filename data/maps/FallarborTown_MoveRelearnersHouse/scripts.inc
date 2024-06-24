@@ -59,43 +59,42 @@ FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale::
 	end
 
 FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor:
-	.string "Je suis le MAITRE DES CAPACITES.\p"
-	.string "Je connais absolument toutes les\n"
-	.string "attaques que les POKéMON peuvent\l"
-	.string "apprendre. Et je peux enseigner ces\l"
-	.string "attaques à d’autres POKéMON.\p"
-	.string "Je peux enseigner une attaque à l’un de\n"
-	.string "tes POKéMON, si tu veux.\p"
-	.string "Je peux le faire en échange d’une\n"
-	.string "ECAILLECOEUR. Je les collectionne.$"
+	.string "Soy el TUTOR de MOVIMIENTOS.\p"
+	.string "Me sé todos los movimientos que\n"
+	.string "aprenden los POKéMON. Todos, toditos,\l"
+	.string "todos. Y además los puedo enseñar.\p"
+	.string "Si quieres, puedo enseñar a uno\n"
+	.string "de tus POKéMON un movimiento.\p"
+	.string "Lo haré por una insignificante ESCAMA\n"
+	.string "CORAZÓN. Es que las colecciono.$"
 
 FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove:
-	.string "Oh! Génial! C’est une ECAILLECOEUR\n"
-	.string "d’une belle taille!\p"
-	.string "Tu veux que j’enseigne une attaque\n"
-	.string "à un de tes POKéMON?$"
+	.string "¡Sí! ¡Ésa es! ¡Una auténtica ESCAMA\n"
+	.string "CORAZÓN! ¡Una de las de verdad!\p"
+	.string "A ver que lo adivine, ¿quieres que\n"
+	.string "enseñe un movimiento a tu POKéMON?$"
 
 FallarborTown_MoveRelearnersHouse_Text_TutorWhichMon:
-	.string "A quel POKéMON dois-je l’enseigner?$"
+	.string "¿Qué POKéMON quieres que lo aprenda?$"
 
 FallarborTown_MoveRelearnersHouse_Text_TeachWhichMove:
-	.string "Quelle attaque dois-je enseigner?$"
+	.string "¿Qué movimiento quieres que aprenda?$"
 
 FallarborTown_MoveRelearnersHouse_Text_DontHaveMoveToTeachPokemon:
-	.string "Désolé…\p"
-	.string "Apparemment, il n’y a aucune attaque\n"
-	.string "que je puisse apprendre à ce POKéMON.$"
+	.string "Perdona…\p"
+	.string "Parece que no puedo enseñar ningún\n"
+	.string "movimiento a ese POKéMON…$"
 
 FallarborTown_MoveRelearnersHouse_Text_HandedOverHeartScale:
-	.string "{PLAYER} donne une ECAILLECOEUR\n"
-	.string "en échange.$"
+	.string "{PLAYER} entregó una ESCAMA CORAZÓN\n"
+	.string "a cambio de la lección.$"
 
 FallarborTown_MoveRelearnersHouse_Text_ComeBackWithHeartScale:
-	.string "Si tu veux que j’enseigne une attaque\n"
-	.string "à ton POKéMON, reviens avec\l"
-	.string "une ECAILLECOEUR.$"
+	.string "Si tu POKéMON necesita aprender\n"
+	.string "un movimiento, vuelve con una ESCAMA\l"
+	.string "CORAZÓN.$"
 
 FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg:
-	.string "Quoi? Mais je ne peux pas apprendre\n"
-	.string "une attaque à un OEUF.$"
+	.string "¿Eh? No puedo enseñar absolutamente\n"
+	.string "ningún movimiento a un HUEVO…$"
 

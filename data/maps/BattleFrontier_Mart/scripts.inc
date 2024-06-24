@@ -49,21 +49,20 @@ BattleFrontier_Mart_EventScript_Boy::
 	end
 
 BattleFrontier_Mart_Text_ChaperonGrandson:
-	.string "Nous sommes venus accompagner\n"
-	.string "notre petit-fils.\p"
-	.string "On en profite pour acheter quelques\n"
-	.string "souvenirs.$"
+	.string "Hemos venido a animar a nuestro nieto.\p"
+	.string "Pero, ya que estamos aquí, he pensado\n"
+	.string "comprarme algo de recuerdo.$"
 
 BattleFrontier_Mart_Text_ProteinMakeNiceGift:
-	.string "Que penses-tu de ça, chéri?\n"
-	.string "Ça ferait un joli cadeau, non?\p"
-	.string "PRO… TE… INE?\n"
-	.string "Ça m’a l’air d’être délicieux!$"
+	.string "Oye, ¿qué te parece esto?\n"
+	.string "¿A que es un buen regalo?\p"
+	.string "¿Pone… PRO… TE… Í… NA?\n"
+	.string "Suena a algo delicioso, ¿no crees?$"
 
 BattleFrontier_Mart_Text_FacilitiesDontAllowItems:
-	.string "Dans la ZONE DE COMBAT, on n’a pas\n"
-	.string "toujours le droit d’utiliser des objets\l"
-	.string "en combat.\p"
-	.string "Ça rend les choses encore plus\n"
-	.string "difficiles!$"
+	.string "En muchos de los edificios del FRENTE\n"
+	.string "de BATALLA no permiten el uso\l"
+	.string "de objetos durante los combates.\p"
+	.string "¡Esa regla pone las cosas aún más\n"
+	.string "difíciles de lo que ya son!$"
 

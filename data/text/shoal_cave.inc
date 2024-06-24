@@ -1,52 +1,55 @@
 ShoalCave_LowTideEntranceRoom_Text_AreYouPlanningOnGoingInThere:
-	.string "Tu as prévu d’aller loin?\p"
-	.string "Et si tu m’apportais des SELS TREFONDS\n"
-	.string "et des CO. TREFONDS?\p"
-	.string "Je peux te préparer quelque chose\n"
-	.string "de bon si tu m’apportes ce qu’il faut.$"
+	.string "¿Estás pensando en llegar\n"
+	.string "hasta el fondo?\p"
+	.string "¿Por qué no me traes SAL\n"
+	.string "CARDUMEN y CONCHAS CARDUMEN?\p"
+	.string "Si las consigo, podré hacerte\n"
+	.string "algo muy especial.$"
 
 ShoalCave_LowTideEntranceRoom_Text_BringMe4ShoalSaltAndShells:
-	.string "Si tu m’apportais quatre SELS TREFONDS\n"
-	.string "et quatre CO. TREFONDS, je pourrais te\l"
-	.string "faire un GRELOT COQUE.\p"
-	.string "Tu peux te procurer ces ingrédients\n"
-	.string "tous les jours.$"
+	.string "Necesito SAL CARDUMEN y CONCHAS\n"
+	.string "CARDUMEN. Con cuatro unidades de cada\l"
+	.string "una, puedo hacer una CAMPANA CONCHA.\p"
+	.string "Esos ingredientes se pueden conseguir\n"
+	.string "un día sí y otro también.$"
 
 ShoalCave_LowTideEntranceRoom_Text_WouldYouLikeShellBell:
-	.string "Oh, hé! Des SELS TREFONDS et des \n"
-	.string "CO. TREFONDS! Et suffisamment!\p"
-	.string "Tu veux que je les utilise\n"
-	.string "pour faire un GRELOT COQUE?$"
+	.string "¡Hala! ¡Traes SAL CARDUMEN\n"
+	.string "y CONCHAS CARDUMEN!\l"
+	.string "¡Y bastantes de cada!\p"
+	.string "¿Quieres que te haga una\n"
+	.string "CAMPANA CONCHA con ellas?$"
 
 ShoalCave_LowTideEntranceRoom_Text_MakeShellBellRightAway:
-	.string "Bon, d’accord! Je te fais un\n"
-	.string "GRELOT COQUE sur-le-champ.\p"
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "Voilà! C’est prêt!$"
+	.string "Así me gusta. Te voy a hacer\n"
+	.string "una CAMPANA CONCHA en un plis.\p"
+	.string "La, la, la…\n"
+	.string "La, la, la…\p"
+	.string "¡Ya está!$"
 
 ShoalCave_LowTideEntranceRoom_Text_ExplainShellBell:
-	.string "Gardes-en pour un POKéMON.\n"
-	.string "Il va adorer ça, c’est sûr!\p"
-	.string "Quoi, le carillon du GRELOT COQUE…\n"
-	.string "Sublime!\p"
-	.string "Tu peux avoir ses ingrédients tous les\n"
-	.string "jours. Alors je peux t’en faire d’autres.$"
+	.string "Haz que algún POKéMON la sostenga.\n"
+	.string "Seguro que le encanta.\p"
+	.string "Y no me extraña… ¡La CAMPANA CONCHA\n"
+	.string "tiene un repicar sublime!\p"
+	.string "Los ingredientes para hacerla se\n"
+	.string "pueden conseguir diariamente, así que\l"
+	.string "cuando quieras puedo hacerte más.$"
 
 ShoalCave_LowTideEntranceRoom_Text_WantedToMakeShellBell:
-	.string "Oh… Dans ce cas…\n"
-	.string "Je voulais faire un GRELOT COQUE…$"
+	.string "Oh… Pues vaya… Yo que quería\n"
+	.string "hacer una CAMPANA CONCHA…$"
 
 ShoalCave_LowTideEntranceRoom_Text_NoSpaceInYourBag:
-	.string "Tu n’as pas assez de place dans ton SAC\n"
-	.string "pour recevoir ça.\p"
-	.string "Tu devrais faire de la place et\n"
-	.string "revenir pour avoir un GRELOT COQUE.$"
+	.string "Aunque te la hiciera, no tienes\n"
+	.string "espacio en la MOCHILA.\p"
+	.string "Deja un hueco libre y vuelve\n"
+	.string "a por tu CAMPANA CONCHA.$"
 
 ShoalCave_Text_WasShoalSaltNowNothing:
-	.string "Il y avait du SEL TREFONDS ici.\n"
-	.string "Mais il n’y a plus rien.$"
+	.string "Aquí había algo de SAL CARDUMEN,\n"
+	.string "pero ahora no queda nada.$"
 
 ShoalCave_Text_WasShoallShellNowNothing:
-	.string "Il y avait un CO. TREFONDS ici.\n"
-	.string "Mais il n’y a plus rien.$"
+	.string "Aquí había una CONCHA CARDUMEN,\n"
+	.string "pero ahora no hay nada.$"

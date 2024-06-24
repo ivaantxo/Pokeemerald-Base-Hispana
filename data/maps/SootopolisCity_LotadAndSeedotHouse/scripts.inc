@@ -104,101 +104,101 @@ SootopolisCity_LotadAndSeedotHouse_EventScript_LotadSizeRecord::
 	end
 
 SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigSeedot:
-	.string "Tu connais le POKéMON GRAINIPIOT?\n"
-	.string "Il se fait rare à ATALANOPOLIS.\p"
-	.string "Moi, j’adore les grands GRAINIPIOT.\n"
-	.string "Plus ils sont grands et mieux c’est.\p"
-	.string "Mais mon p’tit frère, il dit que les\n"
-	.string "NENUPIOT sont plus grands.\p"
-	.string "C’est pas vrai. Les GRAINIPIOT\n"
-	.string "sont encore plus grands!\p"
-	.string "Hum? Tu as un GRAINIPIOT avec toi?\n"
-	.string "Oh, fais-moi voir, s’il te plaît!$"
+	.string "¿Conoces el POKéMON SEEDOT?\n"
+	.string "Apenas se le ve en ARRECÍPOLIS.\p"
+	.string "Pero igualmente me encanta:\n"
+	.string "cuanto más grande, mejor.\p"
+	.string "Mi hermano pequeño dice que\n"
+	.string "LOTAD es más grande.\p"
+	.string "¡Qué chorrada! SEEDOT es gigantesco…\p"
+	.string "Eh… ¿Tienes un SEEDOT?\n"
+	.string "¿Me lo puedes enseñar?$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_GoshMightBeBiggerThanLotad:
-	.string "{STR_VAR_2} cm!\n"
-	.string "Waouh, il est grand celui-là!\p"
-	.string "Il pourrait même dépasser le grand\n"
-	.string "NENUPIOT que mon p’tit frère a vu!\p"
-	.string "Merci de me l’avoir montré.\n"
-	.string "Tiens, c’est ma façon de te remercier!$"
+	.string "¡{STR_VAR_2} cm!\n"
+	.string "¡Pues sí que es enorme!\p"
+	.string "¡Puede que incluso sea más grandote\n"
+	.string "que el LOTAD que vio mi hermano!\p"
+	.string "Gracias por dejarme verlo.\n"
+	.string "Toma esto como agradecimiento.$"
 
 @ Unused
 SootopolisCity_LotadAndSeedotHouse_Text_ReceivedPotion1:
 	.string "{PLAYER} received a POTION.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1:
-	.string "Oh?\n"
-	.string "Ton SAC est carrément plein.$"
+	.string "¿Eh? ¡Pero si la MOCHILA\n"
+	.string "está que revienta!$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot:
-	.string "{STR_VAR_2} cm, c’est ça?\p"
-	.string "Hum… J’ai vu un plus grand GRAINIPIOT\n"
-	.string "que celui-là.$"
+	.string "{STR_VAR_2} cm, ¿no?\p"
+	.string "Bah… He visto a un SEEDOT\n"
+	.string "más grande que éste.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotSeedot:
-	.string "Ah oui, c’est quelque chose!\n"
-	.string "Mais c’est pas un GRAINIPIOT!$"
+	.string "Mmmm… No está nada mal,\n"
+	.string "pero no es un SEEDOT.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigSeedot:
-	.string "Tu n’as pas de grand GRAINIPIOT?\n"
-	.string "Quel dommage!\p"
-	.string "Si tu trouves un grand GRAINIPIOT,\n"
-	.string "viens me le montrer.$"
+	.string "¿No tienes un SEEDOT grande?\n"
+	.string "Qué mala suerte…\p"
+	.string "Si consigues uno, ven a verme.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_BiggestSeedotInHistory:
-	.string "Le plus grand GRAINIPIOT jamais vu!\n"
-	.string "Un géant de {STR_VAR_3} cm appartenant\l"
-	.string "à {STR_VAR_2}!\p"
-	.string "Un GRAINIPIOT encore plus\n"
-	.string "grand qu’un NENUPIOT!$"
+	.string "¡El mayor SEEDOT jamás visto!\n"
+	.string "¡Un gigante de {STR_VAR_3} cm que\l"
+	.string "pertenece a {STR_VAR_2}!\p"
+	.string "¡Siempre es mucho mejor tener\n"
+	.string "un SEEDOT que sea más grande\l"
+	.string "que un LOTAD!$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigLotad:
-	.string "Tu connais le POKéMON NENUPIOT?\n"
-	.string "On en voit rarement à ATALANOPOLIS.\p"
-	.string "J’adore, j’adore les grands NENUPIOT!\p"
-	.string "Mon grand frère dit que le GRAINIPIOT\n"
-	.string "est plus grand.\p"
-	.string "Mais c’est faux! Tout le monde sait\n"
-	.string "bien que le NENUPIOT est plus grand.\p"
-	.string "Hum? Tu as un NENUPIOT?\n"
-	.string "Fais-moi voir, s’il te plaît!$"
+	.string "¿Conoces el POKéMON LOTAD?\n"
+	.string "Apenas se le ve en ARRECÍPOLIS.\p"
+	.string "Pero igualmente me encanta:\n"
+	.string "cuanto más grande, mejor.\p"
+	.string "Mi hermano mayor dice que\n"
+	.string "SEEDOT es más grande.\p"
+	.string "¡Qué absurdo! Todo el mundo sabe\n"
+	.string "que LOTAD es colosal…\p"
+	.string "Eh… ¿Tienes un LOTAD?\n"
+	.string "¿Me lo puedes enseñar?$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot:
-	.string "{STR_VAR_2} cm!\n"
-	.string "Waouh, c’est beaucoup!\p"
-	.string "C’est peut-être encore plus grand que\n"
-	.string "l’énorme GRAINIPIOT que mon frère a vu.\p"
-	.string "Merci de me l’avoir montré!\n"
-	.string "Tiens, c’est pour te remercier!$"
+	.string "¡{STR_VAR_2} cm!\n"
+	.string "¡Pues sí que es enorme!\p"
+	.string "¡Puede que incluso sea más grandote\n"
+	.string "que el SEEDOT que vio mi hermano!\p"
+	.string "Gracias por dejarme verlo.\n"
+	.string "Toma esto como agradecimiento.$"
 
 @ Unused
 SootopolisCity_LotadAndSeedotHouse_Text_ReceivedPotion2:
 	.string "{PLAYER} received a POTION.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2:
-	.string "Oh?\n"
-	.string "Ton SAC est carrément plein.$"
+	.string "¿Eh? ¡Pero si la MOCHILA\n"
+	.string "está que revienta!$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerLotad:
-	.string "{STR_VAR_2} cm?\p"
-	.string "Hum… J’ai vu un plus grand NENUPIOT\n"
-	.string "que celui-là.$"
+	.string "¿{STR_VAR_2} cm?\p"
+	.string "Bah… He visto a un LOTAD\n"
+	.string "más grande que éste.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotLotad:
-	.string "Eh bien, ça c’est quelque chose!\n"
-	.string "Mais c’est pas un NENUPIOT!$"
+	.string "Mmmm… No está nada mal,\n"
+	.string "pero no es un LOTAD.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigLotad:
-	.string "Tu n’as pas de grand NENUPIOT?\n"
-	.string "C’est dommage…\p"
-	.string "Si tu trouves un grand NENUPIOT,\n"
-	.string "viens me le montrer.$"
+	.string "¿No tienes un LOTAD grande?\n"
+	.string "Qué decepción…\p"
+	.string "Si consigues uno, ven a verme.$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_BiggestLotadInHistory:
-	.string "Le plus grand NENUPIOT jamais vu!\n"
-	.string "Un colosse de {STR_VAR_3} cm appartenant\l"
-	.string "à {STR_VAR_2}!\p"
-	.string "Un NENUPIOT encore plus\n"
-	.string "grand qu’un GRAINIPIOT!$"
+	.string "¡El mayor LOTAD jamás visto!\n"
+	.string "¡Un coloso de {STR_VAR_3} cm que\l"
+	.string "pertenece a {STR_VAR_2}!\p"
+	.string "¡Siempre es mucho mejor tener\n"
+	.string "un LOTAD que sea más grande\l"
+	.string "que un SEEDOT!$"
 

@@ -315,78 +315,79 @@ Route110_TrickHousePuzzle7_EventScript_Everett::
 	end
 
 Route110_TrickHousePuzzle7_EventScript_WroteSecretCodeLockOpened::
-	.string "{PLAYER} écrit le code secret\n"
-	.string "sur la porte.\p"
-	.string "“Le MAITRE DES PIEGES est trognon!”\n"
-	.string "… … … … … … … …\p"
-	.string "La porte s’ouvre!$"
+	.string "{PLAYER} escribió el código secreto\n"
+	.string "en la puerta.\p"
+	.string "“El MAESTRO TRETA\n"
+	.string "es achuchable.”\l"
+	.string "Y…\p"
+	.string "¡la puerta se ha abierto!$"
 
 Route110_TrickHousePuzzle7_Text_JoshuaIntro:
-	.string "Le MAITRE DES PIEGES disparaît dans\n"
-	.string "un nuage de fumée. Comment fait-il?$"
+	.string "El MAESTRO TRETA siempre desaparece\n"
+	.string "como un fantasma. ¿Cómo lo hace?$"
 
 Route110_TrickHousePuzzle7_Text_JoshuaDefeat:
-	.string "Aïeuuuuh! Tu es drôlement balèze!\n"
-	.string "Comment fais-tu?$"
+	.string "¡Ayyyy! ¡Eres muy fuerte!\n"
+	.string "¿Cómo lo haces?$"
 
 Route110_TrickHousePuzzle7_Text_JoshuaPostBattle:
-	.string "Moi aussi, j’aimerais pouvoir\n"
-	.string "disparaître dans un nuage de fumée.$"
+	.string "Ojalá pudiera aparecer y desaparecer\n"
+	.string "como un fantasma yo también…$"
 
 Route110_TrickHousePuzzle7_Text_PatriciaIntro:
-	.string "Tourner en rond sans arrêt…\n"
-	.string "Ça porte malheur…$"
+	.string "Dar vueltas alrededor de un círculo\n"
+	.string "mágico atrae a los malos espíritus…$"
 
 Route110_TrickHousePuzzle7_Text_PatriciaDefeat:
-	.string "Une défaite!\n"
-	.string "C’est un mauvais présage…$"
+	.string "¡Me has derrotado!\n"
+	.string "Eso no puede ser bueno…$"
 
 Route110_TrickHousePuzzle7_Text_PatriciaPostBattle:
-	.string "Ça fait dix fois que je reviens au même\n"
-	.string "endroit. Ça va me porter malheur.$"
+	.string "He dado como diez vueltas en círculo…\n"
+	.string "Habré atraído a algún mal espíritu…$"
 
 Route110_TrickHousePuzzle7_Text_AlexisIntro:
-	.string "Le gagnant passera la porte le premier.\n"
-	.string "Voilà ce que j’en dis.$"
+	.string "Si ganas, pasarás por aquí\n"
+	.string "antes que yo, lo presiento…$"
 
 Route110_TrickHousePuzzle7_Text_AlexisDefeat:
-	.string "Oh!\n"
-	.string "Bon, allez, après toi!$"
+	.string "¡Oh!…\n"
+	.string "En fin, tú sigue adelante…$"
 
 Route110_TrickHousePuzzle7_Text_AlexisPostBattle:
-	.string "Je pense que tu finiras par résoudre\n"
-	.string "toutes les énigmes de la\l"
-	.string "MAISON DES PIEGES.$"
+	.string "Estás resolviendo los acertijos\n"
+	.string "de la CASA TRETA. Vamos, eso creo…$"
 
 Route110_TrickHousePuzzle7_Text_MarielaIntro:
-	.string "Tiens, te voilà enfin, toi!\n"
-	.string "Il n’y a plus de temps à perdre!$"
+	.string "¡Jo, jo, jo! ¡Por fin!\n"
+	.string "¡Venga, acabemos de una vez!$"
 
 Route110_TrickHousePuzzle7_Text_MarielaDefeat:
-	.string "Un petit sourire, tu as gagné!$"
+	.string "Ganas de pura chiripa.$"
 
 Route110_TrickHousePuzzle7_Text_MarielaPostBattle:
-	.string "Je ne suis pas en colère.\n"
-	.string "Je ne suis pas comme ça, moi!$"
+	.string "¡Bah! ¡A mí no me afecta perder!\n"
+	.string "¡Para nada!$"
 
 Route110_TrickHousePuzzle7_Text_AlvaroIntro:
-	.string "Je dois dire que je te voyais venir!$"
+	.string "¡Presentía que no tardarías en llegar!$"
 
 Route110_TrickHousePuzzle7_Text_AlvaroDefeat:
-	.string "Par contre, ça, je ne l’ai pas vu venir…$"
+	.string "Lástima que no predijera el resultado…$"
 
 Route110_TrickHousePuzzle7_Text_AlvaroPostBattle:
-	.string "Oui, enfin ce n’est pas le meilleur\n"
-	.string "endroit pour faire connaissance.\p"
-	.string "On ne doit pas être très nets, tous\n"
-	.string "les deux!$"
+	.string "Lo cierto es que hemos elegido un sitio\n"
+	.string "un poco raro para conocernos, ¿verdad?\p"
+	.string "Claro que los dos somos un pelín raros…\n"
+	.string "En fin, ¡suerte!$"
 
 Route110_TrickHousePuzzle7_Text_EverettIntro:
-	.string "On est un peu à l’étroit ici…$"
+	.string "Qué poco espacio hay aquí…$"
 
 Route110_TrickHousePuzzle7_Text_EverettDefeat:
-	.string "Quelle force! Je m’incline.$"
+	.string "Ciertamente hay que reconocer tu valor.$"
 
 Route110_TrickHousePuzzle7_Text_EverettPostBattle:
-	.string "Ce que j’aimerais être toi…$"
+	.string "Pensaba cambiarte el sitio si ganaba,\n"
+	.string "pero…$"
 

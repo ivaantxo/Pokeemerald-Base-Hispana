@@ -87,5 +87,6 @@ BattleFrontier_BattleArenaCorridor_Movement_AttendantMoveOutOfWay:
 	step_end
 
 BattleFrontier_BattleArenaCorridor_Text_PleaseStepIn:
-	.string "Entrez et surpassez-vous!$"
+	.string "Los combates se librarán\n"
+	.string "en la sala de al lado. ¡Suerte!$"
 

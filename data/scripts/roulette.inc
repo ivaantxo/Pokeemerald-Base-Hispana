@@ -24,44 +24,44 @@ Roulette_EventScript_Play::
 	end
 	
 Roulette_Text_PlayMinimumWagerIsX::
-	.string "A cette table, la mise minimum est\n"
-	.string "de {STR_VAR_1}. Voulez-vous jouer?$"
+	.string "La apuesta mínima en esta mesa\n"
+	.string "es {STR_VAR_1}. ¿Quieres jugar?$"
 
 Roulette_Text_NotEnoughCoins::
-	.string "Vous n’avez pas assez de JETONS.$"
+	.string "No tienes bastantes FICHAS.$"
 
 Roulette_Text_SpecialRateTable::
-	.string "En ce moment, table à tarif spécial!$"
+	.string "¡Hora de la bonificación especial!$"
 
 Roulette_Text_ControlsInstruction::
-	.string "Placez votre mise avec la manette +\n"
-	.string "et appuyez sur le bouton A.$"
+	.string "Coloca tu apuesta con el + Panel\n"
+	.string "de Control y pulsa el Botón A.$"
 
 Roulette_Text_ItsAHit::
-	.string "Vous avez gagné!$"
+	.string "¡Premio!$"
 
 Roulette_Text_Jackpot::
-	.string "Jackpot!$"
+	.string "¡Premio gordo!$"
 
 Roulette_Text_NothingDoing::
-	.string "Vous avez perdu!$"
+	.string "¡Gana la casa!$"
 
 Roulette_Text_YouveWonXCoins::
-	.string "Vous avez gagné {STR_VAR_1} JETONS!$"
+	.string "¡Has ganado {STR_VAR_1} FICHAS!$"
 
 Roulette_Text_NoCoinsLeft::
-	.string "Plus assez de JETONS…$"
+	.string "No tienes bastantes FICHAS.$"
 
 Roulette_Text_KeepPlaying::
-	.string "Continuer à jouer?$"
+	.string "¿Quieres seguir jugando?$"
 
 Roulette_Text_BoardWillBeCleared::
-	.string "La ROULETTE va être relancée.$"
+	.string "Se va a limpiar la mesa de la RULETA.$"
 
 @ Unused
 Roulette_Text_YouDontHaveACoinCase::
 	.string "You don’t have a COIN CASE.$"
 
 Roulette_Text_CoinCaseIsFull::
-	.string "Votre BOITE JETONS est pleine! On peut\n"
-	.string "échanger vos JETONS contre des lots.$"
+	.string "¡Tu MONEDERO está lleno!\n"
+	.string "Cambia tus FICHAS por premios.$"

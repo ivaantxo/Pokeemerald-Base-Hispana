@@ -35,14 +35,14 @@ SlateportCity_Mart_EventScript_Man::
 	end
 
 SlateportCity_Mart_Text_SomeItemsOnlyAtMart:
-	.string "Il doit y avoir certains produits\n"
-	.string "intéressants au MARCHE.\p"
-	.string "Mais certains objets ne sont en vente\n"
-	.string "que dans les BOUTIQUES POKéMON.$"
+	.string "El MERCADO ofrece muchos artículos\n"
+	.string "muy interesantes.\p"
+	.string "Pero hay muchos otros que sólo se\n"
+	.string "venden en las TIENDAS POKéMON.$"
 
 SlateportCity_Mart_Text_GreatBallIsBetter:
-	.string "La SUPER BALL est plus efficace que la\n"
-	.string "POKé BALL pour attraper des POKéMON.\p"
-	.string "Avec ça, je devrais pouvoir attraper\n"
-	.string "ce POKéMON insaisissable…$"
+	.string "Una SUPERBALL es mejor que una\n"
+	.string "POKé BALL para atrapar POKéMON.\p"
+	.string "Si la usas, deberías poder hacerte\n"
+	.string "con los POKéMON escurridizos.$"
 

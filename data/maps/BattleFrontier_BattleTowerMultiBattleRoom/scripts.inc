@@ -445,28 +445,28 @@ BattleFrontier_BattleTowerMultiBattleRoom_Movement_WalkInPlaceLeft:
 	step_end
 
 BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor2ndOpponentSet:
-	.string "La deuxième équipe adverse est prête.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "El 2.º equipo está preparado.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor3rdOpponentSet:
-	.string "La troisième équipe adverse est prête.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "El 3.{SUPER_ER} equipo está preparado.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor4thOpponentSet:
-	.string "La quatrième équipe adverse est prête.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "El 4.º equipo está preparado.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor5thOpponentSet:
-	.string "La cinquième équipe adverse est prête.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "El 5.º equipo está preparado.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor6thOpponentSet:
-	.string "La sixième équipe adverse est prête.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "El 6.º equipo está preparado.\n"
+	.string "¿Continuamos?$"
 
 BattleFrontier_BattleTowerMultiBattleRoom_Text_ReadyFor7thOpponentSet:
-	.string "La septième équipe adverse est prête.\n"
-	.string "Pouvons-nous commencer?$"
+	.string "El 7.º equipo está preparado.\n"
+	.string "¿Continuamos?$"
 
 @ Unused
 BattleFrontier_BattleTowerMultiBattleRoom_Text_2ndOpponentSetNext:
@@ -499,9 +499,9 @@ BattleFrontier_BattleTowerMultiBattleRoom_Text_7thOpponentSetNext:
 	.string "Do your best!$"
 
 gText_LinkStandby3::
-	.string "Connexion…$"
+	.string "Esperando conexión…$"
 
 gText_YourPartnerHasRetired::
-	.string "Votre partenaire a arrêté.\p"
-	.string "Votre défi dans la SALLE DE\n"
-	.string "COMBAT va être annulé.$"
+	.string "Tu pareja se ha retirado.\p"
+	.string "Tu desafío de la SALA BATALLA\n"
+	.string "ha sido cancelado.$"

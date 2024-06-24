@@ -1,41 +1,40 @@
 EventTicket_Text_ShowOldSeaMap:
-	.string "Le ferry allant à POIVRESSEL est…\p"
-	.string "Pardon? Est-ce que nous pouvons aller\n"
-	.string "à cet endroit indiqué sur la carte?\p"
-	.string "Je connais quelqu’un qui pourra t’aider.\n"
-	.string "Un instant.$"
+	.string "El ferry para CIUDAD PORTUAL va a…\p"
+	.string "¿Disculpa? ¿Que si podemos\n"
+	.string "viajar a este punto del mapa?\p"
+	.string "Conozco a alguien que puede ayudarte.\n"
+	.string "Espera un momento.$"
 
 EventTicket_Text_ThatPass:
-	.string "Le ferry allant à POIVRESSEL est…\p"
-	.string "Oh?\n"
-	.string "Ce PASSE…$"
+	.string "El ferry para CIUDAD PORTUAL va a…\p"
+	.string "¿Eh?\n"
+	.string "Ese TICKET…$"
 
 EventTicket_Text_ShowEonTicket:
-	.string "Hé, mon p’tit, c’est toi qui as apporté\n"
-	.string "ce drôle de PASSE?\p"
-	.string "J’vais t’dire, tu te diriges vers une\n"
-	.string "île minuscule beaucoup plus au sud.\p"
-	.string "Impossible de dire ce qui t’attend\n"
-	.string "là-bas, mon p’tit.\p"
-	.string "Ça me donne la chair de poule!\p"
-	.string "Tout le monde à bord!$"
+	.string "Eh, oye, ¿tú eres quien trajo ese\n"
+	.string "TICKET más raro que un perro verde?\p"
+	.string "Te voy a decir una cosa: intentas llegar\n"
+	.string "a una islita perdida en un mar del sur.\p"
+	.string "Ni idea de lo que puede haber allí,\n"
+	.string "oye… ¡Me da escalofríos pensarlo!\p"
+	.string "¡Todos a bordo!$"
 
 EventTicket_Text_SouthernIslandSailBack:
-	.string "Dis, mon p’tit, y a absolument rien à voir\n"
-	.string "sur cette île perdue.\p"
-	.string "On retourne à NENUCRIQUE?$"
+	.string "Eh, oye, no hay absolutamente nada que\n"
+	.string "hacer en esta isla perdida en el mar.\p"
+	.string "¿Y si volvemos a CALAGUA?$"
 
 EventTicket_Text_SailHome:
-	.string "C’est d’accord, mon p’tit!\n"
-	.string "On est partis!$"
+	.string "¡Estupendo!\n"
+	.string "¡Rumbo a casa!$"
 
 EventTicket_Text_AsYouLike:
-	.string "D’accord, mon p’tit, comme tu veux.$"
+	.string "Bah, bueno, tú sabrás lo que quieres…$"
 
 SouthernIsland_Interior_Text_Sign:
-	.string "“Les rêves ne sont qu’une autre\n"
-	.string "réalité. Ne jamais l’oublier…”$"
+	.string "“Los sueños son un mundo aparte.\n"
+	.string "Recuérdalo…”$"
 
 SouthernIsland_Exterior_Text_Sign:
-	.string "“Ceux dont les souvenirs s’estompent\n"
-	.string "cherchent à les graver dans leur cœur.”$"
+	.string "“Si quieres evitar olvidar tus\n"
+	.string "recuerdos, guárdalos en el corazón…”$"

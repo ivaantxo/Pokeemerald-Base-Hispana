@@ -1,26 +1,26 @@
 SecretBase_Text_TreeCanBeClimbed:
-	.string "On peut grimper à cet arbre si une liane\n"
-	.string "en descend.$"
+	.string "Si cae una liana, querrá decir\n"
+	.string "que se puede trepar a este árbol.$"
 
 SecretBase_Text_TreeUseSecretPower:
-	.string "On peut grimper à cet arbre si une liane\n"
-	.string "en descend.\p"
-	.string "Voulez-vous utiliser FORCE CACHEE?$"
+	.string "Si cae una liana, querrá decir\n"
+	.string "que se puede trepar a este árbol.\p"
+	.string "¿Usas DAÑO SECRETO?$"
 
 SecretBase_Text_VineDroppedDown:
-	.string "Une liane épaisse est tombée de l’arbre!$"
+	.string "¡Ha caído una liana muy gruesa!$"
 
 SecretBase_Text_ClumpOfGrass:
-	.string "On peut pénétrer à l’intérieur\n"
-	.string "en déplaçant ce massif d’herbe.$"
+	.string "Si se puede mover este montón\n"
+	.string "de hierba, es porque se puede entrar.$"
 
 SecretBase_Text_ClumpUseSecretPower:
-	.string "On peut pénétrer à l’intérieur\n"
-	.string "en déplaçant ce massif d’herbe.\p"
-	.string "Voulez-vous utiliser FORCE CACHEE?$"
+	.string "Si se puede mover este montón\n"
+	.string "de hierba, es porque se puede entrar.\p"
+	.string "¿Usas DAÑO SECRETO?$"
 
 SecretBase_Text_DiscoveredSmallEntrance:
-	.string "Une petite entrée a été découverte!$"
+	.string "¡Has descubierto una pequeña abertura!$"
 
 	.include "data/text/secret_base_trainers.inc"
 
@@ -672,70 +672,71 @@ SecretBase_EventScript_CushionInteract::
 	end
 
 SecretBase_Text_AllDecorationsWillBeReturned:
-	.string "Les décorations et meubles de la BASE\n"
-	.string "SECRETE seront transférés sur le PC.\p"
-	.string "Continuer?$"
+	.string "Todos los muebles y elementos de\n"
+	.string "decoración de tu BASE SECRETA\l"
+	.string "volverán a tu PC.\p"
+	.string "¿Estás de acuerdo?$"
 
 SecretBase_Text_WantToRegisterSecretBase:
-	.string "Sauvegarder les données de la\n"
-	.string "BASE SECRETE de {STR_VAR_1}?$"
+	.string "¿Quieres registrar la BASE\n"
+	.string "SECRETA de {STR_VAR_1}?$"
 
 SecretBase_Text_AlreadyRegisteredDelete:
-	.string "Ces données sont déjà sauvegardées.\n"
-	.string "Les effacer?$"
+	.string "Ya se han registrado estos datos.\n"
+	.string "¿Quieres borrarlos?$"
 
 SecretBase_Text_TooManyBasesDeleteSome:
-	.string "Vous pouvez sauvegarder jusqu’à\n"
-	.string "dix lieux.\p"
-	.string "Supprimez un lieu pour sauvegarder\n"
-	.string "les données d’un nouveau lieu.$"
+	.string "Se pueden registrar hasta 10\n"
+	.string "lugares diferentes.\p"
+	.string "Si quieres registrar un lugar\n"
+	.string "nuevo, tendrás que borrar\l"
+	.string "alguno de los que ya tienes.$"
 
 SecretBase_Text_RegistrationCompleted:
-	.string "Sauvegarde terminée.$"
+	.string "Registro realizado.$"
 
 SecretBase_Text_DataUnregistered:
-	.string "Les données n’ont pas été\n"
-	.string "sauvegardées.$"
+	.string "Se han eliminado los datos.$"
 
 SecretBase_Text_BootUpPC:
-	.string "{PLAYER} allume le PC.$"
+	.string "{PLAYER} encendió el PC.$"
 
 SecretBase_Text_WhatWouldYouLikeToDo:
-	.string "Que voulez-vous faire?$"
+	.string "¿Qué quieres hacer?$"
 
 SecretBase_Text_RegistryInfo:
-	.string "A moins que le propriétaire ne parte, la\n"
-	.string "BASE SECRETE sauvegardée subsistera.\p"
-	.string "Si la sauvegarde est effacée, une autre\n"
-	.string "BASE SECRETE peut prendre sa place.\p"
-	.string "Vous pouvez sauvegarder jusqu’à\n"
-	.string "dix lieux.$"
+	.string "Una vez registrada, la BASE SECRETA\n"
+	.string "no desaparecerá a menos que el otro\l"
+	.string "ENTRENADOR se mude a otro lugar.\p"
+	.string "Si se elimina una BASE SECRETA\n"
+	.string "del registro, se podrá registrar otra\l"
+	.string "en su lugar.\p"
+	.string "Se pueden registrar hasta 10 BASES\n"
+	.string "SECRETAS diferentes en total.$"
 
 SecretBase_Text_BattleTowerShield:
-	.string "Une plaque en {STR_VAR_2}, qui certifie\n"
-	.string "l’obtention de {STR_VAR_1} victoires\l"
-	.string "consécutives à la TOUR DE COMBAT.$"
+	.string "Un escudo de {STR_VAR_2} que premia\n"
+	.string "{STR_VAR_1} victorias seguidas\l"
+	.string "en la TORRE BATALLA.$"
 
 SecretBase_Text_ToyTV:
-	.string "Une fausse TV. Elle pourrait\n"
-	.string "être prise pour une vraie.$"
+	.string "Una tele de juguete muy bien hecha.\n"
+	.string "¡Si hasta parece de verdad!$"
 
 SecretBase_Text_SeedotTV:
-	.string "Une fausse TV en forme de GRAINIPIOT.\n"
-	.string "Elle semble pouvoir rouler sur\l"
-	.string "elle-même.$"
+	.string "Una tele de juguete con forma de\n"
+	.string "SEEDOT. Parece que va a salir rodando.$"
 
 SecretBase_Text_SkittyTV:
-	.string "Une fausse TV en forme de SKITTY.\n"
-	.string "Elle semble pouvoir vadrouiller…$"
+	.string "Una tele de juguete con forma de\n"
+	.string "SKITTY. Parece que va a salir andando.$"
 
 SecretBase_Text_WouldYouLikeToMoveBases:
-	.string "Vous ne pouvez avoir qu’une seule\n"
-	.string "BASE SECRETE.\p"
-	.string "Voulez-vous déplacer ici la BASE \n"
-	.string "SECRETE déjà créée {STR_VAR_1}?$"
+	.string "Sólo puedes hacer una BASE SECRETA.\p"
+	.string "¿Quieres mudarte de tu BASE SECRETA,\n"
+	.string "situada en la {STR_VAR_1}?$"
 
 SecretBase_Text_MovingCompletedUseSecretPower:
-	.string "Déplacement terminé.\p"
-	.string "Voulez-vous utiliser FORCE CACHEE?$"
+	.string "Ya ha terminado la mudanza.\p"
+	.string "¿Quieres usar DAÑO SECRETO?$"
 

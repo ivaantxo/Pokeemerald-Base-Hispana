@@ -151,67 +151,68 @@ MossdeepCity_StevensHouse_EventScript_DiveItemBall::
 	end
 
 MossdeepCity_StevensHouse_Text_YouveEarnedHMDive:
-	.string "PIERRE: {PLAYER}{KUN}…\p"
-	.string "Comme tu vois, il n’y a pas grand\n"
-	.string "chose ici, mais je m’y sens bien.\p"
-	.string "Merci pour tout ce que tu as fait.\p"
-	.string "Pour te prouver ma gratitude, je\n"
-	.string "voudrais te donner cette CS!\p"
-	.string "Elle contient PLONGEE. Tu la mérites\n"
-	.string "vraiment, tu ne peux pas refuser.$"
+	.string "MÁXIMO: ¿{PLAYER}{KUN}? Anda…\p"
+	.string "Pues sí, aquí vivo yo. Ya sé, parece\n"
+	.string "algo frío, pero es que me gusta\l"
+	.string "la decoración minimalista…\p"
+	.string "Te agradezco todo lo que has hecho.\p"
+	.string "Y quiero demostrártelo dándote esto.\n"
+	.string "Es la MÁQUINA OCULTA BUCEO.\p"
+	.string "Acéptala. Te la has ganado.$"
 
 MossdeepCity_StevensHouse_Text_ExplainDive:
-	.string "PIERRE: Quand tu utiliseras SURF,\n"
-	.string "tu verras des zones d’eau plus sombres.\p"
-	.string "Utilise PLONGEE si tu es au-dessus des\n"
-	.string "profondeurs. Tu iras au fond de la mer.\p"
-	.string "Si tu veux remonter à la surface,\n"
-	.string "utilise PLONGEE à nouveau.\p"
-	.string "Cependant, à certains endroits, il ne\n"
-	.string "sera pas possible de remonter.$"
+	.string "MÁXIMO: Cuando hagas SURF, verás\n"
+	.string "zonas donde el agua está más oscura.\p"
+	.string "En esos sitios puedes usar BUCEO.\n"
+	.string "Así bucearás hasta el fondo.\p"
+	.string "Cuando quieras volver a la superficie,\n"
+	.string "vuelve a usar BUCEO.\p"
+	.string "Sin embargo, en algunas zonas\n"
+	.string "no podrás volver a la superficie…$"
 
 MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis:
-	.string "PIERRE: Apparemment, il y a une caverne\n"
-	.string "sous l’eau entre ALGATIA et\l"
-	.string "ATALANOPOLIS.\p"
-	.string "Tu sais, celle que le CAPT. POUPE\n"
-	.string "a découverte avec son sous-marin.$"
+	.string "MÁXIMO: Parece que hay una gruta\n"
+	.string "submarina entre ALGARIA y\l"
+	.string "ARRECÍPOLIS.\p"
+	.string "Sí, ya sabes, la que descubrió\n"
+	.string "el CAP. BABOR con su submarino.$"
 
 MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum:
-	.string "{PLAYER} examine la POKé BALL.\p"
-	.string "Elle contient le POKéMON\n"
-	.string "TERHAL.\p"
-	.string "Prendre la POKé BALL?$"
+	.string "{PLAYER} comprobó la POKé BALL.\p"
+	.string "Contiene el POKéMON\n"
+	.string "BELDUM.\p"
+	.string "¿Quieres la POKé BALL?$"
 
 MossdeepCity_StevensHouse_Text_ObtainedBeldum:
-	.string "{PLAYER} reçoit un TERHAL.$"
+	.string "{PLAYER} consiguió un BELDUM.$"
 
 @ Unused
 MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon:
 	.string "There is no space for another POKéMON.$"
 
 MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas:
-	.string "{PLAYER} laisse la POKé BALL à sa place.$"
+	.string "{PLAYER} dejó la POKé BALL\n"
+	.string "donde estaba.$"
 
 MossdeepCity_StevensHouse_Text_LetterFromSteven:
-	.string "C’est une lettre.\p"
-	.string "… … … … … …\p"
-	.string "Pour {PLAYER}{KUN}…\p"
-	.string "J’ai décidé de faire un petit examen de\n"
-	.string "conscience et de m’entraîner en route.\p"
-	.string "Je ne prévois pas de rentrer chez moi\n"
-	.string "tout de suite.\p"
-	.string "J’ai un service à te demander.\p"
-	.string "Je veux que tu prennes la POKé BALL\n"
-	.string "qui est sur le bureau.\p"
-	.string "A l’intérieur, il y a un TERHAL, mon\n"
-	.string "POKéMON préféré.\p"
-	.string "Je compte sur toi.\p"
-	.string "Nos chemins se croiseront peut-être\n"
-	.string "à nouveau.\p"
-	.string "PIERRE ROCHARD$"
+	.string "Es una carta.\p"
+	.string "A ver qué dice…\p"
+	.string "Para {PLAYER}{KUN}…\p"
+	.string "He decidido lanzarme a la aventura\n"
+	.string "y entrenar mientras viajo.\p"
+	.string "No creo que vuelva a casa\n"
+	.string "en bastante tiempo.\p"
+	.string "Por eso debo pedirte un favor.\p"
+	.string "Quisiera que cojas la POKé BALL\n"
+	.string "que está en la mesa.\p"
+	.string "Dentro hay un BELDUM,\n"
+	.string "mi POKéMON favorito.\p"
+	.string "Cuento contigo.\p"
+	.string "Espero que nuestros caminos\n"
+	.string "se crucen algún día.\p"
+	.string "MÁXIMO PEÑAS$"
 
 MossdeepCity_StevensHouse_Text_CollectionOfRareRocks:
-	.string "C’est une collection de roches et de\n"
-	.string "pierres rares réunies par PIERRE.$"
+	.string "Es una colección de rocas y piedras\n"
+	.string "raras reunida por MÁXIMO.$"
 

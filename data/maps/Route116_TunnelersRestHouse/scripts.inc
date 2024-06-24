@@ -28,35 +28,33 @@ Route116_TunnelersRestHouse_EventScript_TunnelOpened::
 	end
 
 Route116_TunnelersRestHouse_Text_WeHadToStopBoring:
-	.string "C’est le TUNNEL MERAZON, là-bas…\p"
-	.string "Au début, de nombreux ouvriers\n"
-	.string "perçaient les rochers avec d’énormes\l"
-	.string "engins. Mais nous avons dû arrêter.\p"
-	.string "On s’est rendu compte que les travaux\n"
-	.string "avaient un effet négatif sur les\l"
-	.string "POKéMON sauvages de la région.\p"
-	.string "Maintenant, nous n’avons plus rien\n"
-	.string "à faire, à part flâner.$"
+	.string "El TÚNEL FERVERGAL…\p"
+	.string "Al principio teníamos un equipo con el\n"
+	.string "último grito en maquinaria trabajando\l"
+	.string "en él y tuvimos que parar.\p"
+	.string "Resulta que podríamos haber afectado\n"
+	.string "negativamente a los POKéMON\l"
+	.string "salvajes de la zona.\p"
+	.string "Por eso ahora nos dedicamos\n"
+	.string "a tocarnos la barriga…$"
 
 Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf:
-	.string "Il y a un homme qui creuse un TUNNEL\n"
-	.string "vers VERGAZON, tout seul.\l"
-	.string "Il veut absolument passer.\p"
-	.string "Il affirme que s’il creuse petit à petit\n"
-	.string "sans utiliser de machine, il ne\l"
-	.string "dérangera pas les POKéMON et n’abîmera\l"
-	.string "pas l’écosystème environnant.\p"
-	.string "Je me demande s’il a déjà fini.$"
+	.string "Hay un hombre que está cavando\n"
+	.string "un TÚNEL a VERDEGAL él solito.\l"
+	.string "Parece desesperado por terminar.\p"
+	.string "Dice que, si cava poco a poco, sin usar\n"
+	.string "máquinas, no molestará a los POKéMON\l"
+	.string "ni causará daños medioambientales…$"
 
 Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel:
-	.string "Pour atteindre VERGAZON sans utiliser\n"
-	.string "ce TUNNEL, tu devras naviguer jusqu’à\l"
-	.string "MYOKARA, puis jusqu’à POIVRESSEL et\l"
-	.string "enfin passer par LAVANDIA.$"
+	.string "Para llegar a VERDEGAL sin usar\n"
+	.string "el TÚNEL, tienes que atravesar el mar\l"
+	.string "hasta AZULIZA, navegar a CIUDAD\l"
+	.string "PORTUAL y luego viajar a MALVALONA…$"
 
 Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough:
-	.string "Tu as entendu? Le TUNNEL pour\n"
-	.string "VERGAZON est enfin terminé!\p"
-	.string "Parfois, si l’on souhaite très fort\n"
-	.string "quelque chose, ça se réalise.$"
+	.string "¿Te has enterado?\n"
+	.string "¡Han terminado el TÚNEL a VERDEGAL!\p"
+	.string "A veces creo que, si lo deseas de veras,\n"
+	.string "tus sueños se pueden hacer realidad…$"
 

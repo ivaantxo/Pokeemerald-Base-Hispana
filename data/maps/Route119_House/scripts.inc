@@ -16,12 +16,12 @@ Route119_House_EventScript_Wingull::
 	end
 
 Route119_House_Text_RumorAboutCaveOfOrigin:
-	.string "J’ai entendu parler d’une grotte\n"
-	.string "appelée la GROTTE ORIGINE.\p"
-	.string "Les gens racontent que les esprits des\n"
-	.string "POKéMON y sont ranimés.\p"
-	.string "C’est possible, une chose pareille?$"
+	.string "He oído hablar de una cueva llamada\n"
+	.string "CUEVA ANCESTRAL.\p"
+	.string "Se rumorea que allí resucitan los\n"
+	.string "espíritus de los POKéMON que han\l"
+	.string "partido. ¿Será verdad…?$"
 
 Route119_House_Text_Wingull:
-	.string "GOELISE: Liiise?$"
+	.string "WINGULL: ¿Wingulu?$"
 

@@ -134,102 +134,99 @@ MagmaHideout_4F_EventScript_Tabitha::
 	end
 
 MagmaHideout_4F_Text_Grunt11Intro:
-	.string "Moi aussi je voudrais voir GROUDON…\n"
-	.string "Mais ils ne me laissent même pas voir\l"
-	.string "le bout de sa queue.\p"
-	.string "C’est vraiment pas sympa.\p"
-	.string "Oh non! Je viens de cracher\n"
-	.string "le morceau!$"
+	.string "Yo también quiero ver a GROUDON, pero\n"
+	.string "no me dejan ni acercarme a la cola…\p"
+	.string "Qué frustración más grande…\p"
+	.string "¡Oh, no!\n"
+	.string "¡Se me ha escapado lo de GROUDON!$"
 
 MagmaHideout_4F_Text_Grunt11Defeat:
-	.string "Je devais être trop énervé pour pouvoir\n"
-	.string "gagner ce combat.$"
+	.string "Supongo que no se puede ganar cuando\n"
+	.string "no se está tranquilo y concentrado…$"
 
 MagmaHideout_4F_Text_Grunt11PostBattle:
-	.string "En fait, je ne sais même pas si\n"
-	.string "GROUDON a une queue…$"
+	.string "¿Tendrá cola GROUDON?…$"
 
 MagmaHideout_4F_Text_Grunt12Intro:
-	.string "Wahaha!\n"
-	.string "Bientôt… Très bientôt!\l"
-	.string "Nous sommes sur le point de réussir!$"
+	.string "¡Jua, jua, jua!\n"
+	.string "¡Queda poco! ¡Muy poco!\l"
+	.string "¡Se va a cumplir nuestro objetivo!$"
 
 MagmaHideout_4F_Text_Grunt12Defeat:
 	.string "Grrr…\n"
-	.string "J’y étais presque!$"
+	.string "¿He venido tan lejos para esto?$"
 
 MagmaHideout_4F_Text_Grunt12PostBattle:
-	.string "MAX!\n"
-	.string "Un intrus vient vers vous!$"
+	.string "¡Tengo que avisar a MAGNO de que\n"
+	.string "se nos ha colado alguien!$"
 
 MagmaHideout_4F_Text_Grunt13Intro:
-	.string "Ne crois pas pouvoir passer facilement.\n"
-	.string "Tu ne m’as pas encore battu!$"
+	.string "¡Todavía no hemos acabado contigo!\n"
+	.string "¡No te voy a dejar pasar porque sí!$"
 
 MagmaHideout_4F_Text_Grunt13Defeat:
-	.string "T’as juste eu de la chance!$"
+	.string "¿Tan fácil es derrotarme?$"
 
 MagmaHideout_4F_Text_Grunt13PostBattle:
-	.string "Allez… Encore un combat…$"
+	.string "Anda, dame la revancha…$"
 
 MagmaHideout_4F_Text_TabithaIntro:
-	.string "Héhéhé…\n"
-	.string "Tu as réussi à venir jusqu’ici, alors je\l"
-	.string "vais tout te raconter!\p"
-	.string "C’est bien ça!\n"
-	.string "GROUDON est en train de dormir,\l"
-	.string "juste un peu plus loin.\p"
-	.string "Mais MAX doit déjà être avec lui.\p"
-	.string "Ce n’est plus qu’une question de\n"
-	.string "secondes avant qu’il ne le réveille!$"
+	.string "¡Je, je, je!\n"
+	.string "¡Has llegado lejos, lo reconozco!\p"
+	.string "¡Y sí, tienes razón!\n"
+	.string "¡GROUDON duerme algo más arriba!\p"
+	.string "¡MAGNO acaba de ir ahora mismo\n"
+	.string "hacia donde está GROUDON!\p"
+	.string "¡Le falta poco para despertarse!\n"
+	.string "¡Je, je! ¡Je, je, je!$"
 
 MagmaHideout_4F_Text_TabithaDefeat:
-	.string "Je suis humilié…\n"
-	.string "Encore une fois…$"
+	.string "Otra vez vencido…\n"
+	.string "Je, je…$"
 
 MagmaHideout_4F_Text_TabithaPostBattle:
-	.string "Mais pendant que tu perdais ton temps\n"
-	.string "avec moi, MAX a dû réveiller GROUDON…$"
+	.string "Mientras perdías el tiempo conmigo,\n"
+	.string "MAGNO ha despertado a GROUDON…$"
 
 MagmaHideout_4F_Text_MaxieAwakenGroudon:
-	.string "MAX: GROUDON…\p"
-	.string "Rien n’a encore pu te réveiller de ton\n"
-	.string "sommeil dans ce bain de magma…\p"
-	.string "Cet ORBE BLEU, il te manquait,\n"
-	.string "n’est-ce pas?\p"
-	.string "Je t’ai ramené l’ORBE BLEU.\n"
-	.string "Que sa lumière te réveille!\p"
-	.string "Et montre-moi…\n"
-	.string "Montre-moi l’étendue de ta puissance!$"
+	.string "MAGNO: GROUDON…\p"
+	.string "Nada ha logrado despertarte y liberarte\n"
+	.string "de tu prisión de magma…\p"
+	.string "Lo que buscabas era esta\n"
+	.string "ESFERA AZUL, ¿a que sí?\p"
+	.string "Pues aquí la tienes.\n"
+	.string "¡Que su brillo te despierte!\p"
+	.string "¡Muéstrame tu gran poder\n"
+	.string "en toda su plenitud!$"
 
 MagmaHideout_4F_Text_MaxieGroudonWhatsWrong:
-	.string "MAX: GROUDON!\n"
-	.string "Que se passe-t-il?\p"
-	.string "L’ORBE BLEU était bien la clef?!\p"
-	.string "GROUDON!\n"
-	.string "Où es-tu parti?$"
+	.string "MAGNO: ¡GROUDON!\n"
+	.string "¿Qué ocurre?\p"
+	.string "¿La ESFERA AZUL no es la llave?\p"
+	.string "¡GROUDON!\n"
+	.string "¿Adónde te has ido?$"
 
 MagmaHideout_4F_Text_MaxieOhItWasYou:
-	.string "MAX: Oh, c’était donc toi?\p"
-	.string "Tu n’as pas arrêté d’apparaître ici\n"
-	.string "et là…\p"
-	.string "Je comprends maintenant!\n"
-	.string "C’est sûrement à cause de toi!$"
+	.string "MAGNO: Ah, ¿así que has sido tú?\p"
+	.string "Ya me había fijado en cómo metías\n"
+	.string "las narices donde no te llamaban…\p"
+	.string "¡Ya está!\n"
+	.string "¡Seguro que todo es culpa tuya!$"
 
 MagmaHideout_4F_Text_MaxieDefeat:
-	.string "D’où te vient cette maîtrise\n"
-	.string "des POKéMON?$"
+	.string "¿Por qué te gusta tanto andar\n"
+	.string "con los POKéMON?$"
 
 MagmaHideout_4F_Text_MaxieImGoingAfterGroudon:
-	.string "MAX: Il doit bien y avoir une raison pour\n"
-	.string "que GROUDON soit parti comme ça…\p"
-	.string "C’est ce que tu essaies de me dire,\n"
-	.string "c’est ça?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "Humpf…\n"
-	.string "Et tu crois que je le savais pas?\p"
-	.string "GROUDON parti, nous n’avons plus rien\n"
-	.string "à faire dans ce volcan.\p"
-	.string "Je pars à sa recherche, nos chemins\n"
-	.string "se séparent ici!$"
+	.string "MAGNO: Debe de haber algún motivo\n"
+	.string "por el que GROUDON se ha ido…\p"
+	.string "Eso es lo que estás intentando\n"
+	.string "decirme, ¿verdad?\p"
+	.string "Ya…\n"
+	.string "Claro…\p"
+	.string "Mmmm…\n"
+	.string "¿Crees que no me había dado cuenta?\p"
+	.string "Como GROUDON se ha ido, ya no\n"
+	.string "necesitamos este estúpido volcán.\p"
+	.string "¡Me voy en busca de GROUDON,\n"
+	.string "así que hasta nunca!$"

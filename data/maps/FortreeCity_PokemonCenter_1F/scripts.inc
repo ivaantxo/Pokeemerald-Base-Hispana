@@ -30,27 +30,28 @@ FortreeCity_PokemonCenter_1F_EventScript_Boy::
 	end
 
 FortreeCity_PokemonCenter_1F_Text_GoToSafariZone:
-	.string "Ecoute, mon petit, est-ce que tu\n"
-	.string "travailles sur un POKéDEX?\p"
-	.string "Hum… Va au PARC SAFARI, sur la\n"
-	.string "ROUTE 121! C’est mon conseil.$"
+	.string "Oye, dime, ¿estás intentando\n"
+	.string "completar tu POKéDEX?\p"
+	.string "Pues entonces ve a la ZONA SAFARI,\n"
+	.string "en la RUTA 121. No te arrepentirás.$"
 
 FortreeCity_PokemonCenter_1F_Text_RecordCornerIsNeat:
-	.string "Tu as déjà fait quelque chose au\n"
-	.string "CENTRE DE DONNEES?\p"
-	.string "C’est ingénieux. Ça permet d’échanger\n"
-	.string "des données entre DRESSEURS.\p"
-	.string "Je sais pas trop comment ça marche,\n"
-	.string "mais c’est cool. C’est même génial!$"
+	.string "¿Has hecho algo en el CENTRO\n"
+	.string "de RÉCORDS?\p"
+	.string "Está bastante bien. Mezcla y combina\n"
+	.string "los récords de los ENTRENADORES.\p"
+	.string "No estoy seguro de cómo funciona,\n"
+	.string "pero es de lo mejorcito que hay.$"
 
 FortreeCity_PokemonCenter_1F_Text_DoYouKnowAboutPokenav:
-	.string "Hé, tu as un POKéNAV!\n"
-	.string "C’est le même que le mien!\p"
-	.string "Tu connais la fonction MATCH PHONE?\p"
-	.string "Utilise-la pour tchater avec les\n"
-	.string "DRESSEURS que tu auras enregistrés.\p"
-	.string "Cette option t’indique aussi les\n"
-	.string "DRESSEURS souhaitant une revanche.\p"
-	.string "C’est pas génial?\n"
-	.string "Y a pas mieux que DEVON!$"
+	.string "¡Anda, si tienes un POKéNAV!\n"
+	.string "Es igualito que el mío.\p"
+	.string "¿Has oído hablar de la AGENDA\n"
+	.string "del MÓVIL del POKéNAV?\p"
+	.string "Consúltala cuando quieras charlar\n"
+	.string "con los ENTRENADORES registrados.\p"
+	.string "También te indicará qué ENTRENADORES\n"
+	.string "quieren volver a luchar contigo.\p"
+	.string "¿No es estupendo?\n"
+	.string "¡Y todo gracias a DEVON!$"
 

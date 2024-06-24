@@ -140,32 +140,33 @@ SkyPillar_Outside_EventScript_ClosedDoor::
 	end
 
 SkyPillar_Outside_Text_DoorIsClosed:
-	.string "La porte est fermée.$"
+	.string "La puerta está cerrada.$"
 
 SkyPillar_Outside_Text_OpenedDoorToSkyPillar:
-	.string "MARC: Oh, je suis terriblement désolé!\p"
-	.string "Dans ma hâte, je ne m’étais pas rendu\n"
-	.string "compte que tu ne me suivais pas!\p"
-	.string "J’ai ouvert la porte d’accès au\n"
-	.string "PILIER CELESTE.\p"
-	.string "{PLAYER}{KUN}, allons-y!$"
+	.string "PLUBIO: ¡Vaya, cuánto lo siento!\p"
+	.string "¡Salí tan precipitadamente que no me di\n"
+	.string "cuenta de que te habías quedado atrás!\p"
+	.string "He logrado abrir la puerta\n"
+	.string "del PILAR CELESTE.\p"
+	.string "¡Vamos allá, {PLAYER}{KUN}!$"
 
 SkyPillar_Outside_Text_EarthquakeNotMomentToWaste:
-	.string "MARC: C’est un tremblement de terre!\p"
-	.string "Il n’y a pas un instant à perdre!\n"
-	.string "Nous devons nous dépêcher!$"
+	.string "PLUBIO: ¡Un terremoto!\p"
+	.string "¡No hay un momento que perder!\n"
+	.string "¡Debemos apresurarnos!$"
 
 SkyPillar_Outside_Text_SituationGettingWorse:
-	.string "MARC: Hum…\n"
-	.string "La situation est de pire en pire…$"
+	.string "PLUBIO: Mmm…\n"
+	.string "La situación está empeorando…$"
 
 SkyPillar_Outside_Text_GotToGoBackForSootopolis:
-	.string "MARC: Ça ne va pas…\p"
-	.string "Les changements climatiques se font\n"
-	.string "même sentir ici…\p"
-	.string "{PLAYER}{KUN}.\p"
-	.string "RAYQUAZA doit se trouver plus loin.\p"
-	.string "Je suis inquiet pour ATALANOPOLIS,\n"
-	.string "je dois y retourner.\p"
-	.string "Tout repose entre tes mains.\n"
-	.string "Nous comptons sur toi!$"
+	.string "PLUBIO: Esto no es bueno…\p"
+	.string "Las condiciones climáticas se han\n"
+	.string "alterado incluso aquí…\p"
+	.string "{PLAYER}{KUN}…\p"
+	.string "RAYQUAZA debería estar algo\n"
+	.string "más arriba.\p"
+	.string "Me preocupa ARRECÍPOLIS.\n"
+	.string "Voy para allá de nuevo.\p"
+	.string "Ahora todo depende de ti.\n"
+	.string "¡No nos falles!$"

@@ -92,72 +92,72 @@ ProfileMan_EventScript_Ret::
 	return
 
 ProfileMan_Text_CollectTrainerProfiles:
-	.string "Salut, DRESSEUR!\n"
-	.string "Quel magnifique sourire tu as là!\p"
-	.string "J’ai une passion. Je rassemble les\n"
-	.string "profils de DRESSEURS de POKéMON.$"
+	.string "¡Hey, hola!\n"
+	.string "Qué sonrisa tan bonita tienes…\p"
+	.string "¿Sabes? Mi hobby es coleccionar los\n"
+	.string "perfiles de los ENTRENADORES POKéMON.$"
 
 ProfileMan_Text_MayISeeYourProfile:
-	.string "Alors, qu’en dis-tu?\n"
-	.string "Je peux voir ton profil?$"
+	.string "¿Qué te parece?\n"
+	.string "¿Puedo ver tu perfil?$"
 
 ProfileMan_Text_EasyChatExplanation:
-	.string "Pour créer son propre profil,\n"
-	.string "il faut associer quatre mots ou\l"
-	.string "groupes de mots.\p"
-	.string "Je vais donner un exemple de profil\n"
-	.string "constitué de quatre segments de texte.\p"
-	.string "Chacun remplace, à sa guise, ces quatre\n"
-	.string "segments de texte par d’autres, de\l"
-	.string "façon à dépeindre son propre profil.\p"
-	.string "Les mots que l’on peut utiliser sont\n"
-	.string "nombreux.\p"
-	.string "Ils sont classés par catégories, telles\n"
-	.string "que POKéMON, vie quotidienne, hobbies,\l"
-	.string "permettant de les trouver facilement.\p"
-	.string "Il faut d’abord choisir une catégorie\n"
-	.string "pour afficher une liste de choix.\p"
-	.string "Ensuite, il faut sélectionner son choix.\p"
-	.string "Il suffit de refaire pareil pour les\n"
-	.string "autres choix et le profil est déterminé.$"
+	.string "Para crear tu perfil, debes unir\n"
+	.string "cuatro palabras o locuciones.\p"
+	.string "Para que te hagas una idea, te voy\n"
+	.string "a mostrar un ejemplo de perfil.\p"
+	.string "Puedes cambiar los cuatro elementos\n"
+	.string "por otras palabras que se ajusten\l"
+	.string "mejor a tu personalidad.\p"
+	.string "Hay un montón de locuciones que\n"
+	.string "puedes usar.\p"
+	.string "Están agrupadas por categorías,\n"
+	.string "para que sea más fácil encontrarlas.\p"
+	.string "Primero elige una categoría para\n"
+	.string "ver todas las opciones disponibles.\p"
+	.string "Después elige la palabra o locución\n"
+	.string "que te convenga.\p"
+	.string "Repite esto hasta tener cuatro y\n"
+	.string "habrás creado tu propio perfil.$"
 
 ProfileMan_Text_LetsSeeItThen:
-	.string "Oui! Merci!\n"
-	.string "Alors, voyons ton profil!$"
+	.string "¡Genial! ¡Gracias!\n"
+	.string "¡Estoy deseando verlo!$"
 
 ProfileMan_Text_ImagineYouWouldHaveWonderfulProfile:
-	.string "Oh non, vraiment?\p"
-	.string "J’imagine que quelqu’un comme toi\n"
-	.string "doit avoir un merveilleux profil…$"
+	.string "¿No? ¿En serio?\p"
+	.string "Pensaba que alguien como tú tendría\n"
+	.string "un perfil estupendo…$"
 
 ProfileMan_Text_NotIntoItRightNow:
-	.string "Oh? Tu ne veux pas le faire maintenant?\p"
-	.string "Comme tu veux!$"
+	.string "¿Y eso? ¿No te apetece?\p"
+	.string "¡Bueno, pues hazlo cuando te\n"
+	.string "venga mejor!$"
 
 ProfileMan_Text_YouHaveWonderfulSmile:
-	.string "Salut, DRESSEUR!\n"
-	.string "Quel magnifique sourire tu as!$"
+	.string "¡Hey, hola!\n"
+	.string "Qué sonrisa tan bonita tienes…$"
 
 ProfileMan_Text_MayISeeYourNewProfile:
-	.string "Puis-je voir ton nouveau profil?$"
+	.string "¿Puedo ver tu nuevo perfil?$"
 
 ProfileMan_Text_EvenBetterThanLastProfile:
-	.string "Oui! Merci!\p"
-	.string "J’espère que ce sera encore mieux que\n"
-	.string "le profil que tu m’as déjà montré.$"
+	.string "¡Sí! ¡Gracias!\p"
+	.string "Espero que sea aún mejor que el perfil\n"
+	.string "que me enseñaste la otra vez.$"
 
 ProfileMan_Text_LikeProfileWayItIs:
-	.string "Oh, tu aimes ton profil tel qu’il est.\p"
-	.string "Je ne t’en blâme pas. C’est devenu un\n"
-	.string "très bon profil.$"
+	.string "Ah, te gusta tu perfil tal como es…\p"
+	.string "No te culpo, es un gran perfil\n"
+	.string "tal como está ahora.$"
 
 ProfileMan_Text_FantasticProfile:
-	.string "F… Fantastique!\p"
-	.string "Ton profil est génial!\n"
-	.string "Il révèle vraiment qui tu es.\p"
-	.string "Tu sais, en voyant ce profil, on est\n"
-	.string "forcément captivé par toi!\p"
-	.string "Merci!$"
+	.string "¡Fantástico!\p"
+	.string "¡Tu perfil es maravilloso!\n"
+	.string "Dice todo sobre ti.\p"
+	.string "Vaya, cualquiera que lo oiga caerá\n"
+	.string "rendido a tus pies.\p"
+	.string "¡Gracias!$"
 
 @ Unused
 ProfileMan_Text_YouKnowSecretSaying:

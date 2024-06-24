@@ -67,14 +67,15 @@ LilycoveCity_DepartmentStore_2F_Pokemart2:
 	end
 
 LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly:
-	.string "Apprendre à utiliser correctement les\n"
-	.string "objets, c’est vraiment la base de tout.$"
+	.string "Aprende a usar bien los objetos.\n"
+	.string "Es algo verdaderamente fundamental.$"
 
 LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband:
-	.string "Mon mari m’attend à la maison.\n"
-	.string "Qu’est-ce qui pourrait lui faire plaisir?$"
+	.string "Hoy es el cumpleaños de mi marido\n"
+	.string "y todavía no he encontrado ningún\l"
+	.string "regalo que me guste…$"
 
 LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems:
-	.string "Je pars pour un long voyage.\n"
-	.string "Il faut que je fasse le plein d’objets.$"
+	.string "Me voy de viaje muy pronto y tengo\n"
+	.string "que comprar todo lo que necesito.$"
 

@@ -74,36 +74,35 @@ Route102_EventScript_Allen::
 	end
 
 Route102_Text_WatchMeCatchPokemon:
-	.string "TIMMY: {PLAYER}…\n"
-	.string "Les POKéMON se cachent dans les hautes\l"
-	.string "herbes comme celles-là, pas vrai?\p"
-	.string "Observe-moi et regarde si j’arrive à en\n"
-	.string "attraper un correctement.\p"
-	.string "… Waouh!$"
+	.string "BLASCO: {PLAYER}…\n"
+	.string "Los POKéMON se ocultan en la hierba\l"
+	.string "alta como ésta, ¿verdad?\p"
+	.string "Por favor, obsérvame a ver si lo\n"
+	.string "hago bien…\p"
+	.string "¡Guau!$"
 
 Route102_Text_WallyIDidIt:
-	.string "TIMMY: J’ai réussi… C’est mon…\n"
-	.string "Mon POKéMON!$"
+	.string "BLASCO: Lo he hecho… ¡He atrapado\n"
+	.string "a mi primer POKéMON!$"
 
 Route102_Text_LetsGoBack:
-	.string "Merci, {PLAYER}!\n"
-	.string "Retournons à l’ARENE!$"
+	.string "¡{PLAYER}, muchas gracias!\n"
+	.string "¡Volvamos al GIMNASIO!$"
 
 Route102_Text_ImNotVeryTall:
-	.string "Je… ne suis pas très grand, alors je\n"
-	.string "m’enfonce dans les hautes herbes.\p"
-	.string "L’herbe chatouille mes narines…\n"
-	.string "Aaaaaaaaaaaaaa…\p"
-	.string "Atchoum!$"
+	.string "Soy chiquitito, por eso me hundo\n"
+	.string "en las zonas de hierba alta.\p"
+	.string "La hierba se me mete por la nariz y…\n"
+	.string "a-a-a-a-a-a…\p"
+	.string "¡Achís!$"
 
 Route102_Text_CatchWholeBunchOfPokemon:
-	.string "Je vais attraper tout un tas de\n"
-	.string "POKéMON!$"
+	.string "¡Voy a cazar un montón de POKéMON!$"
 
 Route102_Text_RouteSignOldale:
-	.string "ROUTE 102\n"
-	.string "{RIGHT_ARROW} ROSYERES$"
+	.string "RUTA 102\n"
+	.string "{RIGHT_ARROW} PUEBLO ESCASO$"
 
 Route102_Text_RouteSignPetalburg:
-	.string "ROUTE 102\n"
-	.string "{LEFT_ARROW} CLEMENTI-VILLE$"
+	.string "RUTA 102\n"
+	.string "{LEFT_ARROW} CIUDAD PETALIA$"

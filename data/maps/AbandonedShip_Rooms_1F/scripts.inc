@@ -32,51 +32,46 @@ AbandonedShip_Rooms_1F_EventScript_ThaliaRematch::
 	end
 
 AbandonedShip_Rooms_1F_Text_TakingALookAround:
-	.string "Les bateaux de ce genre sont rares,\n"
-	.string "alors je vais y jeter un coup d’œil.\p"
-	.string "Hum…\n"
-	.string "On dirait qu’il y a d’autres cabines…$"
+	.string "Los barcos de este tipo son poco\n"
+	.string "comunes, así que estoy de inspección.\p"
+	.string "Mmmm…\n"
+	.string "Parece que hay muchos camarotes…$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaIntro:
-	.string "Qu’est-ce qui a bien pu te pousser\n"
-	.string "à venir ici?\p"
-	.string "Tu ne sais pas que la curiosité est\n"
-	.string "un vilain défaut?$"
+	.string "¿Qué ha podido impulsarte a venir\n"
+	.string "hasta aquí? ¡Será la curiosidad!$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaDefeat:
-	.string "Et plutôt tenace en plus de ça!$"
+	.string "La fuerza es otra de tus cualidades…$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaPostBattle:
-	.string "L’homme d’à côté…\p"
-	.string "Il dit qu’il est juste là pour voir le\n"
-	.string "paysage, mais j’ai du mal à le croire.$"
+	.string "¿Ves al hombre de ahí al lado?\p"
+	.string "Dice que está de turismo,\n"
+	.string "pero yo no me lo creo.$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaRegister:
-	.string "Tu es si jeune pour un DRESSEUR!\n"
-	.string "Laisse-moi t’enregistrer!$"
+	.string "¡Tú sí que sabes entrenar POKéMON!\n"
+	.string "¡Será un honor registrarte!$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaRematchIntro:
-	.string "Qu’est-ce qui a bien pu te pousser\n"
-	.string "à revenir ici?\p"
-	.string "Quelle curiosité, ma parole!$"
+	.string "¿Qué ha podido impulsarte a venir\n"
+	.string "hasta aquí? ¡Será la curiosidad!$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaRematchDefeat:
-	.string "C’est normal d’avoir tant de force\n"
-	.string "dans un si petit corps?$"
+	.string "No es normal ser tan fuerte.$"
 
 AbandonedShip_Rooms_1F_Text_ThaliaPostRematch:
-	.string "Je suis sûre que cet homme cherche\n"
-	.string "quelque chose. Il est vraiment étrange!$"
+	.string "¡Ese picaruelo no es trigo limpio!\n"
+	.string "¡Actúa de forma muy sospechosa!$"
 
 AbandonedShip_Rooms_1F_Text_DemetriusIntro:
-	.string "Waaah!\n"
-	.string "Tu m’as trouvé!$"
+	.string "¡Aaaah!\n"
+	.string "¡Me han encontrado! Pero ¿eh?$"
 
 AbandonedShip_Rooms_1F_Text_DemetriusDefeat:
-	.string "Oh, t’es pas ma maman toi!$"
+	.string "¡Tú no eres mi madre!$"
 
 AbandonedShip_Rooms_1F_Text_DemetriusPostBattle:
-	.string "J’ai peur de me faire gronder, alors\n"
-	.string "je me cache…\p"
-	.string "Tu diras rien, d’accord?$"
+	.string "Mi madre se ha enfadado, así que me\n"
+	.string "he escondido. No digas que estoy aquí.$"
 

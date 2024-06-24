@@ -41,26 +41,25 @@ MauvilleCity_House2_EventScript_DeclineTrade::
 	end
 
 MauvilleCity_House2_Text_BuyHarborMailAtSlateport:
-	.string "Avec un VELO, ce serait facile d’aller\n"
-	.string "faire des courses à POIVRESSEL.\p"
-	.string "Je pourrais acheter une LETTRE PORT à\n"
-	.string "la BOUTIQUE POKéMON de POIVRESSEL…$"
+	.string "Si tuviera una BICI, sería facilísimo\n"
+	.string "ir de compras por CIUDAD PORTUAL.\p"
+	.string "Podría comprar una CARTA PUERTO en\n"
+	.string "la TIENDA POKéMON de CIUDAD PORTUAL.$"
 
 MauvilleCity_House2_Text_TradeHarborMailForCoinCase:
-	.string "Oh! Tu as une LETTRE PORT?\p"
-	.string "Tu me l’échanges contre une\n"
-	.string "BOITE JETONS?$"
+	.string "Ah, ¿tienes una CARTA PUERTO?\n"
+	.string "¿La cambiarías por un MONEDERO?$"
 
 MauvilleCity_House2_Text_IllTradeYouCoinCase:
-	.string "Oh, ça me fait tellement plaisir!\n"
-	.string "OK, je t’échange une BOITE JETONS!$"
+	.string "¡Qué buena suerte!\n"
+	.string "Muy bien, te daré un MONEDERO.$"
 
 MauvilleCity_House2_Text_UseCoinCaseAtGameCorner:
-	.string "Cette BOITE JETONS peut être utilisée\n"
-	.string "au CASINO.$"
+	.string "Ese MONEDERO se puede usar\n"
+	.string "en el CASINO.$"
 
 MauvilleCity_House2_Text_ThatsDisappointing:
-	.string "Oh, désolée…\p"
-	.string "Mais il faut une BOITE JETONS\n"
-	.string "pour jouer au CASINO.$"
+	.string "Qué disgusto…\p"
+	.string "Pues que sepas que necesitas un\n"
+	.string "MONEDERO en el CASINO.$"
 

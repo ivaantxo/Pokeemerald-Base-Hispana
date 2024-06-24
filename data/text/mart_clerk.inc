@@ -1,10 +1,10 @@
 gText_HowMayIServeYou::
-    .string "Bienvenue!\p"
-    .string "En quoi puis-je vous aider?$"
+	.string "¡Hola!\p"
+	.string "¿En qué puedo ayudarte?$"
 
 gText_PleaseComeAgain::
-    .string "A la prochaine!$"
+	.string "¡Vuelve cuando quieras!$"
 
 gText_PlayerWhatCanIDoForYou::
-    .string "Bienvenue {PLAYER}{KUN}!\p"
-    .string "Que puis-je faire pour vous?$"
+	.string "¡Hola, {PLAYER}{KUN}!\p"
+	.string "¿En qué puedo ayudarte?$"

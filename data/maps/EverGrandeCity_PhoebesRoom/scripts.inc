@@ -59,26 +59,25 @@ EverGrandeCity_PhoebesRoom_EventScript_Defeated::
 	end
 
 EverGrandeCity_PhoebesRoom_Text_IntroSpeech:
-	.string "Ah, ah, ah!\p"
-	.string "Je suis SPECTRA du CONSEIL 4.\n"
-	.string "Je me suis entraînée au MONT MEMORIA.\p"
-	.string "Là-bas, j’ai appris à communier avec\n"
-	.string "les POKéMON du type SPECTRE.\p"
-	.string "Oui, le lien que j’ai créé avec eux\n"
-	.string "est très étroit.\p"
-	.string "Viens! On verra si tu arrives à infliger\n"
-	.string "des dommages à mes POKéMON!$"
+	.string "¡Ja, ja, ja!\p"
+	.string "Soy FÁTIMA, del ALTO MANDO.\n"
+	.string "Me he entrenado en el MONTE PÍRICO.\p"
+	.string "Allí desarrollé un estrecho vínculo\n"
+	.string "con los POKéMON de tipo FANTASMA.\p"
+	.string "Sí, ahora ellos y yo tenemos\n"
+	.string "una relación casi simbiótica.\p"
+	.string "¡Así que, adelante, prueba a ver\n"
+	.string "si puedes debilitar a mis POKéMON!$"
 
 EverGrandeCity_PhoebesRoom_Text_Defeat:
-	.string "Oh, non!\n"
-	.string "J’ai lancé le défi et j’ai perdu…$"
+	.string "Qué palo…\n"
+	.string "Me han derrotado…$"
 
 EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech:
-	.string "Toi aussi, un lien fort t’unit\n"
-	.string "à tes POKéMON.\p"
-	.string "Je n’ai pas voulu le reconnaître et\n"
-	.string "forcément, j’ai perdu.\p"
-	.string "J’aimerais bien voir jusqu’où ce lien\n"
-	.string "si fort te mènera.\p"
-	.string "Avance jusqu’à la prochaine pièce.$"
+	.string "Está claro que tú también tienes\n"
+	.string "un estrecho vínculo con tus POKéMON.\p"
+	.string "No supe verlo, por eso he perdido.\p"
+	.string "Me gustaría ver lo lejos que te lleva\n"
+	.string "esta relación especial que tenéis.\p"
+	.string "Ya puedes pasar a la siguiente sala.$"
 

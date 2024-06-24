@@ -69,20 +69,19 @@ RustboroCity_Mart_EventScript_BugCatcher::
 	end
 
 RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish:
-	.string "J’achète des ANTI-PARA et des\n"
-	.string "ANTIDOTES.\p"
-	.string "C’est juste au cas où je tomberais sur\n"
-	.string "un BALIGNON au BOIS CLEMENTI.$"
+	.string "Estoy comprando ANTIPARALIZACIÓN\n"
+	.string "y ANTÍDOTOS.\p"
+	.string "Por si acaso caigo sobre un SHROOMISH\n"
+	.string "en el BOSQUE PETALIA…$"
 
 RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead:
-	.string "Mon POKéMON a évolué.\n"
-	.string "Il a plein de PV maintenant.\p"
-	.string "Je ferais mieux d’acheter des SUPER\n"
-	.string "POTIONS plutôt que de simples POTIONS.$"
+	.string "Mi POKéMON ha evolucionado y ahora\n"
+	.string "tiene un montón de PS.\p"
+	.string "Ahora, más que POCIONES, compensa\n"
+	.string "comprarle SUPERPOCIONES.$"
 
 RustboroCity_Mart_Text_GettingEscapeRopeJustInCase:
-	.string "J’ai pris une CORDE SORTIE, juste au\n"
-	.string "cas où je me perdrais dans une caverne.\p"
-	.string "Il me suffit de l’utiliser pour me\n"
-	.string "retrouver directement à l’entrée.$"
+	.string "Me he hecho con una CUERDA HUIDA\n"
+	.string "por si me pierdo algún día en una cueva.\p"
+	.string "Cuando la usas, vuelves a la entrada.$"
 

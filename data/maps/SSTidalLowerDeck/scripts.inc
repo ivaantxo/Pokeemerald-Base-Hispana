@@ -12,30 +12,28 @@ SSTidalLowerDeck_EventScript_Leonard::
 	end
 
 SSTidalLowerDeck_Text_PhillipIntro:
-	.string "Arrrg! J’en ai plein le dos de nettoyer\n"
-	.string "cet endroit gigantesque!\p"
-	.string "C’est l’heure de la pause,\n"
-	.string "battons-nous!$"
+	.string "¡Aaaaargh! ¡Estoy hasta las narices\n"
+	.string "de no acabar nunca de limpiar esto!\p"
+	.string "¡Vamos a luchar para desfogarme!$"
 
 SSTidalLowerDeck_Text_PhillipDefeat:
-	.string "Hé, p’tit frère, j’ai perdu!$"
+	.string "Je, je… Pues he perdido…$"
 
 SSTidalLowerDeck_Text_PhillipPostBattle:
-	.string "Nous sommes les FRERES PROPRETE!\p"
-	.string "L’aîné répand le détergent et le\n"
-	.string "benjamin frotte!$"
+	.string "¡Somos los HERMANOS FREGONA!\p"
+	.string "El mayor echa jabón en el suelo\n"
+	.string "y el joven fregotea por todas partes.$"
 
 SSTidalLowerDeck_Text_LeonardIntro:
-	.string "Nous sommes dans la cale du navire.\n"
-	.string "Il y a beaucoup de place.\l"
-	.string "Profitons-en pour faire un combat\l"
-	.string "de POKéMON.$"
+	.string "Éste es el nivel inferior del casco.\n"
+	.string "Aquí hay un montón de sitio.\l"
+	.string "Se puede luchar sin agobios…$"
 
 SSTidalLowerDeck_Text_LeonardDefeat:
-	.string "Hé, grand frère, j’ai perdu!$"
+	.string "Je, je… Pues he perdido…$"
 
 SSTidalLowerDeck_Text_LeonardPostBattle:
-	.string "Nous sommes les FRERES PROPRETE!\p"
-	.string "L’aîné répand le détergent et le\n"
-	.string "benjamin frotte!$"
+	.string "¡Somos los HERMANOS FREGONA!\p"
+	.string "El mayor echa jabón en el suelo\n"
+	.string "y el joven fregotea por todas partes.$"
 

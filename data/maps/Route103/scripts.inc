@@ -289,67 +289,68 @@ Route103_EventScript_Isabelle::
 	end
 
 Route103_Text_MayRoute103Pokemon:
-	.string "FLORA: Voyons… Les POKéMON trouvés\n"
-	.string "sur la ROUTE 103 comprennent…$"
+	.string "AURA: Veamos… En la RUTA 103 puedes\n"
+	.string "encontrar POKéMON como…$"
 
 Route103_Text_MayLetsBattle:
-	.string "Oh, salut {PLAYER}{KUN}!\p"
-	.string "… Oh, je vois. Mon père t’a fait cadeau\n"
-	.string "d’un POKéMON.\p"
-	.string "Puisqu’on est là, on n’a qu’à se faire\n"
-	.string "un petit combat!\p"
-	.string "Je vais te montrer ce que c’est qu’être\n"
-	.string "un DRESSEUR.$"
+	.string "¡Oh, hola, {PLAYER}{KUN}!\p"
+	.string "Ya… Mi padre te ha regalado\n"
+	.string "un POKéMON…\p"
+	.string "Y ya que estamos aquí, podríamos\n"
+	.string "echar un combate rapidito.\p"
+	.string "Te voy a enseñar cómo entrenar\n"
+	.string "POKéMON.$"
 
 Route103_Text_MayDefeated:
-	.string "Waouh! C’était génial!\n"
-	.string "{PLAYER}{KUN}, tu as beaucoup de talent!$"
+	.string "¡Guau, genial!\n"
+	.string "¡{PLAYER}{KUN}, se te da bien!$"
 
 Route103_Text_MayTimeToHeadBack:
-	.string "FLORA: Maintenant, je crois savoir\n"
-	.string "pourquoi mon père garde un œil sur toi.\p"
-	.string "C’est vrai, tu viens juste d’avoir ce\n"
-	.string "POKéMON et il t’aime déjà.\p"
-	.string "Tu peux peut-être nouer des liens avec\n"
-	.string "n’importe quel type de POKéMON.\p"
-	.string "Bon, il est temps de retourner au\n"
-	.string "LABO.$"
+	.string "AURA: Creo que ya entiendo por qué\n"
+	.string "mi padre te tiene tanto aprecio.\p"
+	.string "Por ejemplo, ese POKéMON que acabas\n"
+	.string "de recibir ya te quiere un montón.\p"
+	.string "Se ve que puedes hacer amistad\n"
+	.string "con los POKéMON muy fácilmente.\p"
+	.string "Bien, volvamos al LABORATORIO.$"
 
 Route103_Text_BrendanRoute103Pokemon:
-	.string "BRICE: OK! Alors c’est celui-ci et\n"
-	.string "celui-là qui vivent sur la ROUTE 103…$"
+	.string "BRUNO: Bien, pues entonces es éste\n"
+	.string "de aquí y el que vive en la RUTA 103…$"
 
 Route103_Text_BrendanLetsBattle:
-	.string "Hé, c’est {PLAYER}!\p"
-	.string "… Oh, super, papa t’a donné un POKéMON.\p"
-	.string "Puisqu’on est là, pourquoi ne pas se\n"
-	.string "faire un petit combat?\p"
-	.string "Je vais t’apprendre ce que c’est que\n"
-	.string "d’être DRESSEUR!$"
+	.string "¡Eh, pero si es {PLAYER}!\p"
+	.string "Ya… Mi padre te ha regalado un\n"
+	.string "POKéMON…\p"
+	.string "Y ya que estamos aquí, podríamos\n"
+	.string "echar un combate rapidito.\p"
+	.string "Te voy a enseñar cómo se entrena\n"
+	.string "POKéMON.$"
 
 Route103_Text_BrendanDefeated:
-	.string "Hum, {PLAYER}, t’es pas si minable que ça.$"
+	.string "Vaya, {PLAYER}, no eres lo que se dice\n"
+	.string "una nulidad, precisamente…$"
 
 Route103_Text_BrendanTimeToHeadBack:
-	.string "BRICE: Ça y est, je sais.\n"
-	.string "Maintenant, je sais pourquoi mon père\l"
-	.string "garde un œil sur toi.\p"
-	.string "Regarde, ton POKéMON t’aime déjà, alors\n"
-	.string "que tu viens juste de l’avoir.\p"
-	.string "{PLAYER}, il me semble que tu peux nouer\n"
-	.string "des liens avec n’importe quel POKéMON.\p"
-	.string "On devrait retourner au LABO.$"
+	.string "BRUNO: Sí, ya lo pillo.\n"
+	.string "Creo que ya entiendo por qué\l"
+	.string "mi padre te tiene tanto aprecio.\p"
+	.string "Porque, ¿ves?, ese POKéMON que acabas\n"
+	.string "de recibir ya te quiere un montón.\p"
+	.string "{PLAYER}, puedes hacer amistad con los\n"
+	.string "POKéMON muy fácilmente, está claro.\p"
+	.string "Ahora volvamos al LABORATORIO.$"
 
 Route103_Text_ShouldHaveBroughtPotion:
-	.string "Mon POKéMON est terriblement fatigué…\n"
-	.string "J’aurais dû apporter une POTION…$"
+	.string "Mi POKéMON está agotado…\n"
+	.string "Debería haber traído una POCIÓN…$"
 
 Route103_Text_ShortcutToOldale:
-	.string "Si tu traverses la mer ici, tu trouveras\n"
-	.string "un raccourci pour ROSYERES.\p"
-	.string "Hum, hum… Utile, hein?$"
+	.string "Si atraviesas el mar por aquí,\n"
+	.string "atajas para ir a PUEBLO ESCASO.\p"
+	.string "Je, je, je, es práctico, ¿verdad?$"
 
 Route103_Text_RouteSign:
-	.string "ROUTE 103\n"
-	.string "{DOWN_ARROW} ROSYERES$"
+	.string "RUTA 103\n"
+	.string "{DOWN_ARROW} PUEBLO ESCASO$"
 

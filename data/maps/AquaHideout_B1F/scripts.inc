@@ -107,55 +107,58 @@ AquaHideout_B1F_EventScript_Grunt7::
 	end
 
 AquaHideout_B1F_Text_Grunt2Intro:
-	.string "Si tu veux connaître le secret de notre\n"
-	.string "PLANQUE, il faut que tu me battes!$"
+	.string "Si quieres conocer el secreto\n"
+	.string "de nuestra GUARIDA, ¡derrótame!$"
 
 AquaHideout_B1F_Text_Grunt2Defeat:
-	.string "Je ne peux absolument pas gagner…$"
+	.string "Qué desastre…$"
 
 AquaHideout_B1F_Text_Grunt2PostBattle:
-	.string "Le secret de notre PLANQUE?\p"
-	.string "Eh bien, disons que…\n"
-	.string "Il y a un sous-marin tout au bout!\p"
-	.string "Mais, pour le moment…\n"
-	.string "Hep, hep, hep…$"
+	.string "¿Nuestra GUARIDA secreta?\p"
+	.string "Bueno, digamos…\n"
+	.string "¡que hay un submarino de por medio!\p"
+	.string "Pero no te diré más…\n"
+	.string "¡Je, je, je!$"
 
 AquaHideout_B1F_Text_Grunt3Intro:
-	.string "Chargement réserve d’essence OK!\n"
-	.string "Chargement nourriture trajet OK!\p"
-	.string "Plus rien à faire à part mettre K.O. une\n"
-	.string "personne gênante.$"
+	.string "Carga de combustible terminada.\n"
+	.string "Carga de víveres terminada.\p"
+	.string "Zarparemos en cuanto hayamos\n"
+	.string "terminado con cierta personita\l"
+	.string "de lo más entrometida…$"
 
 AquaHideout_B1F_Text_Grunt3Defeat:
-	.string "J’ai pris une bonne raclée!$"
+	.string "¡Me has dado una buena paliza!$"
 
 AquaHideout_B1F_Text_Grunt3PostBattle:
-	.string "Hum!\n"
-	.string "Ça devait arriver!\p"
-	.string "Il fallait juste que je te retienne!$"
+	.string "¡No importa!\n"
+	.string "¡Yo ya me lo esperaba!\p"
+	.string "¡Total, sólo tenía que entretenerte\n"
+	.string "un rato!$"
 
 AquaHideout_B1F_Text_Grunt5Intro:
-	.string "Bâillement… J’en ai marre de monter la\n"
-	.string "garde dans la PLANQUE. Je te défie!$"
+	.string "Auaaaa… Vigilar la GUARIDA me aburre\n"
+	.string "tantísimo… Mola más luchar contigo.$"
 
 AquaHideout_B1F_Text_Grunt5Defeat:
-	.string "Bâillement…\n"
-	.string "Oh, j’ai perdu…$"
+	.string "Auaaaa…\n"
+	.string "He perdido…$"
 
 AquaHideout_B1F_Text_Grunt5PostBattle:
-	.string "Si tu te précipites trop, d’autres types\n"
-	.string "de la TEAM AQUA pourraient t’avoir.$"
+	.string "Si sigues metiéndote donde no te\n"
+	.string "llaman, otros miembros del EQUIPO AQUA\l"
+	.string "irán a por ti.$"
 
 AquaHideout_B1F_Text_Grunt7Intro:
-	.string "Hé!\n"
-	.string "Toi là!\p"
-	.string "Tu préfères quoi?\n"
-	.string "L’uniforme de la TEAM AQUA ou celui\l"
-	.string "de la TEAM MAGMA?$"
+	.string "¡Eh, tú!\n"
+	.string "¡Sí, me refiero a ti!\p"
+	.string "¿Cuál mola más en tu opinión?\n"
+	.string "¿El uniforme del EQUIPO AQUA\l"
+	.string "o el del EQUIPO MAGMA?$"
 
 AquaHideout_B1F_Text_Grunt7Defeat:
-	.string "J’ai perdu avec panache!$"
+	.string "He perdido, pero sigo molando…$"
 
 AquaHideout_B1F_Text_Grunt7PostBattle:
-	.string "Avec un uniforme comme le mien,\n"
-	.string "on reste cool même si on perd!$"
+	.string "Si tu uniforme mola, tienes buena\n"
+	.string "pinta hasta cuando pierdes, ¿no?$"

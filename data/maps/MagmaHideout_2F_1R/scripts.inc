@@ -22,53 +22,55 @@ MagmaHideout_2F_1R_EventScript_Grunt5::
 	end
 
 MagmaHideout_2F_1R_Text_Grunt14Intro:
-	.string "Pas si vite!\p"
-	.string "Seuls les membres de la TEAM MAGMA\n"
-	.string "sont autorisés à être ici!\p"
-	.string "Mais tu ne portes pas notre uniforme…\p"
-	.string "Il vaut mieux que je sois sûre!\n"
-	.string "Allez, viens te battre!$"
+	.string "¿Y esto? Pero vamos a ver…\p"
+	.string "¡Los únicos que pueden estar aquí son\n"
+	.string "los miembros del EQUIPO MAGMA!\p"
+	.string "Y tú no llevas el uniforme\n"
+	.string "del EQUIPO MAGMA…\p"
+	.string "¡Has levantado mis sospechas!\n"
+	.string "¡Te voy a dar para el pelo!$"
 
 MagmaHideout_2F_1R_Text_Grunt14Defeat:
-	.string "Aïe…\n"
-	.string "Mon honneur vient d’en prendre un coup.$"
+	.string "Ay, ay, ay…\n"
+	.string "Me has machacado el orgullo…$"
 
 MagmaHideout_2F_1R_Text_Grunt14PostBattle:
-	.string "Si tu n’aimes pas avoir froid,\n"
-	.string "rejoins la TEAM MAGMA!$"
+	.string "Si siempre tienes frío, deberías\n"
+	.string "unirte al EQUIPO MAGMA.$"
 
 MagmaHideout_2F_1R_Text_Grunt3Intro:
-	.string "Attends un peu toi!\p"
-	.string "Tu pensais vraiment pouvoir passer\n"
-	.string "devant moi comme ça?$"
+	.string "¡Los pies quietos!\p"
+	.string "¿No esperarás que cierre el pico y\n"
+	.string "deje que te pires por tu cara bonita?$"
 
 MagmaHideout_2F_1R_Text_Grunt3Defeat:
-	.string "Bon d’accord, j’ai rien dit.$"
+	.string "¡Vale, vale, vale!\n"
+	.string "¡Me rindo!$"
 
 MagmaHideout_2F_1R_Text_Grunt3PostBattle:
-	.string "J’aurais sûrement mieux fait de\n"
-	.string "te laisser passer directement…$"
+	.string "Quizás hubiera sido mejor hacer\n"
+	.string "como que no te había visto…$"
 
 MagmaHideout_2F_1R_Text_Grunt4Intro:
-	.string "Ah ah!\n"
-	.string "Un intrus!$"
+	.string "¡Ajá!\n"
+	.string "¡Tú te has colado!$"
 
 MagmaHideout_2F_1R_Text_Grunt4Defeat:
-	.string "Graaah!$"
+	.string "¡Aaaaah!$"
 
 MagmaHideout_2F_1R_Text_Grunt4PostBattle:
-	.string "J’ai perdu…\p"
-	.string "Est-ce que je dois continuer à\n"
-	.string "tourner en rond bêtement?$"
+	.string "Perder, ya he perdido.\p"
+	.string "¿Qué sentido tiene seguir\n"
+	.string "dando vueltas?$"
 
 MagmaHideout_2F_1R_Text_Grunt5Intro:
-	.string "Oh oh!\n"
-	.string "Un intrus!$"
+	.string "¡Vaya, vaya, vaya!\n"
+	.string "¡Si se nos ha infiltrado alguien!$"
 
 MagmaHideout_2F_1R_Text_Grunt5Defeat:
-	.string "Humpff…$"
+	.string "Me has dejado sin palabras…$"
 
 MagmaHideout_2F_1R_Text_Grunt5PostBattle:
-	.string "En fait, les combats n’ont jamais été\n"
-	.string "ma spécialité…$"
+	.string "La verdad es que no se me da bien\n"
+	.string "luchar…$"
 

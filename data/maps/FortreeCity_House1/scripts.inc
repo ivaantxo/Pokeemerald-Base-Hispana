@@ -61,38 +61,39 @@ FortreeCity_House1_EventScript_Zigzagoon::
 	end
 
 FortreeCity_House1_Text_YouWillTradeWontYou:
-	.string "Aaaah, j’en veux un!\n"
-	.string "Il me faut un {STR_VAR_1}!\p"
-	.string "Je ferais n’importe quoi pour en\n"
-	.string "avoir un! C’est un vrai cri du cœur!\p"
-	.string "Maintenant que tu es au courant,\n"
-	.string "tu vas échanger ton {STR_VAR_1} \l"
-	.string "contre un {STR_VAR_2}, n’est-ce pas?$"
+	.string "¡Grrrrrr! ¡Quiero uno!\n"
+	.string "¡Necesito un {STR_VAR_1}!\l"
+	.string "¡Daría lo que fuera!\p"
+	.string "Eh… ¿Has oído el grito desgarrado\n"
+	.string "que sale del fondo de mi corazón?\p"
+	.string "Pues si lo has oído, no dudarás\n"
+	.string "en cambiarme tu {STR_VAR_1}\l"
+	.string "por mi {STR_VAR_2}, ¿verdad?$"
 
 FortreeCity_House1_Text_MonYouTakeCare:
-	.string "Ouais, super!\p"
-	.string "{STR_VAR_1}, bienvenue!\n"
-	.string "{STR_VAR_2}, fais attention à toi!$"
+	.string "¡Sí, sí, cómo mola!\p"
+	.string "¡Bienvenido, {STR_VAR_1}!\n"
+	.string "¡Y tú cuida de {STR_VAR_2}!$"
 
 FortreeCity_House1_Text_ThisIsntAMon:
-	.string "Ah non, je ne pense pas!\n"
-	.string "Ce n’est pas un {STR_VAR_1}.$"
+	.string "Vaya, pues va a ser que no.\n"
+	.string "Eso no es un {STR_VAR_1}.$"
 
 FortreeCity_House1_Text_YouWontTradeMe:
-	.string "Non? Tu ne veux pas faire d’échange?\n"
-	.string "Même après que je t’ai ouvert mon cœur?$"
+	.string "¿Que no? ¿No me lo vas a cambiar?\n"
+	.string "¿No tienes corazón o qué?$"
 
 FortreeCity_House1_Text_GoingToMakeVolbeatStrong:
-	.string "A partir de maintenant, je vais rendre\n"
-	.string "ce MUCIOLE très fort!\p"
-	.string "J’espère que tu feras la même chose\n"
-	.string "avec POSIPI!$"
+	.string "¡A partir de ahora haré todo lo que sea\n"
+	.string "necesario para fortalecer a VOLBEAT!\p"
+	.string "¡Espero que tú hagas lo mismo\n"
+	.string "por PLUSLE!$"
 
 FortreeCity_House1_Text_TradingMemoriesWithOthers:
-	.string "Echanger des POKéMON avec d’autres…\p"
-	.string "C’est comme échanger ses propres\n"
-	.string "souvenirs avec quelqu’un d’autre.$"
+	.string "Cambiar POKéMON…\p"
+	.string "Para mí es como dar parte de ti\n"
+	.string "a otra persona…$"
 
 FortreeCity_House1_Text_Zigzagoon:
-	.string "ZIGZATON: Zigzaaa?$"
+	.string "ZIGZAGOON: ¿Gungún?$"
 

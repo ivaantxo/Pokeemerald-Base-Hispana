@@ -40,26 +40,25 @@ OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable::
 	end
 
 OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC:
-	.string "Le PC dans le coin est à la\n"
-	.string "disposition des DRESSEURS de POKéMON.\p"
-	.string "Naturellement, tu peux l’utiliser\n"
-	.string "quand tu veux.$"
+	.string "Ese PC de la esquina es para el uso\n"
+	.string "de cualquier ENTRENADOR POKéMON.\p"
+	.string "Eso quiere decir que tú también\n"
+	.string "lo puedes usar, claro.$"
 
 OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat:
-	.string "Les CENTRES POKéMON sont géniaux!\p"
-	.string "Tu peux utiliser leurs services autant\n"
-	.string "que tu veux. En plus, c’est gratuit.\p"
-	.string "Pas de souci!$"
+	.string "¡Los CENTROS POKéMON son guays!\p"
+	.string "Puedes usar sus servicios todas\n"
+	.string "las veces que quieras y siempre\l"
+	.string "es gratis. ¡Es una pasada!$"
 
 OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable:
-	.string "L’étage du CENTRE POKéMON\n"
-	.string "vient d’être construit.\p"
-	.string "Mais ils prétendent avoir encore besoin\n"
-	.string "de faire quelques petits travaux.$"
+	.string "Empezaron a construir el CLUB del CABLE\n"
+	.string "POKéMON del primer piso hace poco.\p"
+	.string "Y cualquiera sabe cuándo\n"
+	.string "acabarán las obras…$"
 
 OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub:
-	.string "L’étage du CENTRE POKéMON\n"
-	.string "vient d’être construit.\p"
-	.string "J’y ai tout de suite échangé des\n"
-	.string "POKéMON.$"
+	.string "Acabaron de construir el CLUB del CABLE\n"
+	.string "POKéMON del primer piso hace poco.\p"
+	.string "¡Vengo de intercambiar un POKéMON!$"
 

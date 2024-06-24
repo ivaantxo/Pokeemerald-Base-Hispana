@@ -344,58 +344,58 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 	step_end
 
 OldaleTown_Text_SavingMyProgress:
-	.string "Si je veux faire une pause, alors je\n"
-	.string "sauvegarde ma partie.$"
+	.string "Quiero descansar un ratito,\n"
+	.string "así que voy a guardar mi partida.$"
 
 OldaleTown_Text_IWorkAtPokemonMart:
-	.string "Bonjour! Je travaille dans une BOUTIQUE\n"
-	.string "POKéMON.\p"
-	.string "Je peux t’emmener avec moi?$"
+	.string "¡Hola!\n"
+	.string "Trabajo en la TIENDA POKéMON.\p"
+	.string "¿Querrías venir conmigo?$"
 
 OldaleTown_Text_ThisIsAPokemonMart:
-	.string "C’est une BOUTIQUE POKéMON.\n"
-	.string "On la reconnaît à son toit bleu.\p"
-	.string "Nous vendons divers produits, dont les\n"
-	.string "POKé BALLS pour attraper les POKéMON.\p"
-	.string "J’aimerais que tu prennes ça, comme\n"
-	.string "si c’était une offre promotionnelle.$"
+	.string "Ésta es la TIENDA POKéMON.\n"
+	.string "Se reconoce por el tejado azul.\p"
+	.string "Vendemos de todo, incluso POKé BALLS\n"
+	.string "para atrapar POKéMON.\p"
+	.string "Mira, te voy a hacer un regalo como\n"
+	.string "parte de nuestra promoción.$"
 
 OldaleTown_Text_PotionExplanation:
-	.string "Une POTION s’utilise à tout moment.\n"
-	.string "Alors dans certaines situations, c’est\l"
-	.string "plus pratique qu’un CENTRE POKéMON.$"
+	.string "Puedes usar una POCIÓN en cualquier\n"
+	.string "momento, así que a veces puede ser más\l"
+	.string "útil que buscar un CENTRO POKéMON.$"
 
 OldaleTown_Text_WaitDontComeInHere:
-	.string "Aaaaaah! Attends!\n"
-	.string "Ne va pas par là!\p"
-	.string "Je viens de découvrir les empreintes\n"
-	.string "d’un POKéMON rare!\p"
-	.string "Attends que je finisse de les\n"
-	.string "reproduire, d’accord?$"
+	.string "¡Nooooo! ¡No te muevas!\n"
+	.string "¡Ni se te ocurra pisar aquí!\p"
+	.string "Acabo de descubrir las huellas\n"
+	.string "de un POKéMON raro.\p"
+	.string "Espera hasta que termine de\n"
+	.string "hacer mi bosquejo, ¿vale?$"
 
 OldaleTown_Text_DiscoveredFootprints:
-	.string "Je viens juste de découvrir les\n"
-	.string "empreintes d’un POKéMON rare!\p"
-	.string "Attends que je finisse de les\n"
-	.string "reproduire, d’accord?$"
+	.string "Acabo de descubrir las huellas\n"
+	.string "de un POKéMON raro.\p"
+	.string "Espera hasta que termine de\n"
+	.string "hacer mi bosquejo, ¿vale?$"
 
 OldaleTown_Text_FinishedSketchingFootprints:
-	.string "J’ai fini de reproduire les empreintes\n"
-	.string "d’un POKéMON rare.\p"
-	.string "Mais je pense qu’il ne s’agit en fait\n"
-	.string "que de mes propres pas…$"
+	.string "Ya he acabado el bosquejo de las\n"
+	.string "huellas del POKéMON raro.\p"
+	.string "Y ahora me doy cuenta de que…\n"
+	.string "eran mis propias huellas, snif…$"
 
 OldaleTown_Text_MayLetsGoBack:
-	.string "FLORA: {PLAYER}{KUN}!\p"
-	.string "Par là!\n"
-	.string "Vite, au LABO!$"
+	.string "AURA: ¡{PLAYER}{KUN}!\n"
+	.string "¡Ven aquí, deprisa!\l"
+	.string "¡Vamos al LABORATORIO!$"
 
 OldaleTown_Text_BrendanLetsGoBack:
-	.string "BRICE: Je retourne au LABO de\n"
-	.string "papa, maintenant.\p"
-	.string "{PLAYER}, tu ferais bien de n’pas tarder.$"
+	.string "BRUNO: Me voy al LABORATORIO\n"
+	.string "de mi padre.\l"
+	.string "{PLAYER}, tú también deberías venir.$"
 
 OldaleTown_Text_CitySign:
-	.string "ROSYERES\n"
-	.string "“Là où les choses se font rares.”$"
+	.string "PUEBLO ESCASO\n"
+	.string "“Donde nunca pasa nada.”$"
 

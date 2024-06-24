@@ -69,41 +69,44 @@ LilycoveCity_MoveDeletersHouse_EventScript_LastMonWithSurf::
 	end
 
 LilycoveCity_MoveDeletersHouse_Text_ICanMakeMonForgetMove:
-	.string "Hum… Ah, oui,\n"
-	.string "je suis l’EFFACEUR DE CAPACITES.\p"
-	.string "Je fais oublier leurs capacités\n"
-	.string "aux POKéMON.\p"
-	.string "Tu veux que je le fasse?$"
+	.string "Eh… Ah, hola.\n"
+	.string "Soy el QUITA-MOVIMIENTOS.\p"
+	.string "Puedo hacer que los POKéMON\n"
+	.string "olviden sus movimientos.\p"
+	.string "¿Quieres que me ocupe de los tuyos?$"
 
 LilycoveCity_MoveDeletersHouse_Text_WhichMonShouldForget:
-	.string "Quel POKéMON doit oublier une capacité?$"
+	.string "¿Qué POKéMON debería olvidar\n"
+	.string "algún movimiento?$"
 
 LilycoveCity_MoveDeletersHouse_Text_WhichMoveShouldBeForgotten:
-	.string "Quelle capacité doit être oubliée?$"
+	.string "¿Qué movimiento debería\n"
+	.string "olvidar?$"
 
 LilycoveCity_MoveDeletersHouse_Text_MonOnlyKnowsOneMove:
-	.string "Apparemment, {STR_VAR_1} ne connaît\n"
-	.string "qu’une seule capacité…$"
+	.string "Parece que {STR_VAR_1} sólo sabe\n"
+	.string "un movimiento…$"
 
 LilycoveCity_MoveDeletersHouse_Text_MonsMoveShouldBeForgotten:
-	.string "Hum! {STR_VAR_2} de {STR_VAR_1}?\n"
-	.string "Cette capacité doit être oubliée?$"
+	.string "Ajá. ¿{STR_VAR_2} de {STR_VAR_1}?\n"
+	.string "¿Ése quieres? ¿De verdad?$"
 
 LilycoveCity_MoveDeletersHouse_Text_MonHasForgottenMove:
-	.string "Ça a marché à la perfection!\p"
-	.string "{STR_VAR_1} a complètement oublié\n"
-	.string "{STR_VAR_2}.$"
+	.string "¡Ha salido de perlas!\p"
+	.string "{STR_VAR_1} ha olvidado\n"
+	.string "completamente {STR_VAR_2}.$"
 
 LilycoveCity_MoveDeletersHouse_Text_ComeAgain:
-	.string "Reviens me voir si tu veux que tes\n"
-	.string "POKéMON oublient des capacités.$"
+	.string "Vuelve por aquí si quieres que tus\n"
+	.string "POKéMON olviden algún movimiento.$"
 
 LilycoveCity_MoveDeletersHouse_Text_EggCantForgetMoves:
-	.string "Quoi? Les OEUFS ne connaissent\n"
-	.string "aucune capacité?!$"
+	.string "¿Cómo?\n"
+	.string "Un HUEVO no puede saber\l"
+	.string "ningún movimiento.$"
 
 LilycoveCity_MoveDeletersHouse_Text_CantForgetSurf:
-	.string "Hum…\p"
-	.string "On dirait que ton {STR_VAR_1} ne veut\n"
-	.string "pas oublier SURF.$"
+	.string "¡Ajá!\p"
+	.string "Tu {STR_VAR_1} no tiene\n"
+	.string "ganas de olvidar SURF.$"
 
