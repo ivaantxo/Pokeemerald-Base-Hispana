@@ -1,5 +1,5 @@
 LilycoveCity_ContestLobby_Text_InterviewRequest:
-	.string "ûËÁ¡Hola! Tú has participado en un\n"
+	.string "¡Hola! Tú has participado en un\n"
 	.string "CONCURSO POKéMON, ¿verdad?\l"
 	.string "Se ve por los POKéMON que tienes.\p"
 	.string "Soy reportero. Trabajo en una historia\n"
@@ -1207,6 +1207,8 @@ gTVTodaysRivalTrainerText10::
 	.string "que está ahora en el ferry.\p"
 	.string "{STR_VAR_1} lleva registrados por ahora\n"
 	.string "{STR_VAR_2} POKéMON en la POKéDEX.$"
+	
+	.string "$"
 
 gTVTodaysRivalTrainerText01::
 	.string "¿Y con cuántas MEDALLAS cuenta\n"
