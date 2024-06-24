@@ -1,6 +1,6 @@
 	.align 2
 gText_ConfirmSave::
-	.string "  ¿Quieres guardar la partida?$"
+	.string "¿Quieres guardar la partida?$"
 
 gText_AlreadySavedFile::
 	.string "Ya hay una partida guardada.\n"

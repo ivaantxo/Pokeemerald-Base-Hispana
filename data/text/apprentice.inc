@@ -1,5 +1,4 @@
 gText_ApprenticeChallenge0::
-	.string "\n"
 	.string "Mm, soy el aprendiz n.º {STR_VAR_2} de {STR_VAR_1}.\n"
 	.string "Snif… Esta tensión puede conmigo…$"
 
