@@ -1300,7 +1300,7 @@ static const u8 * const sStatNamesTable2[] =
     sText_SpDef, sText_Defense, sText_Speed
 };
 
-const u8 gText_SafariBalls[] = _("r{DYNAMIC 92}{HIGHLIGHT 2}SAFARI BALLS");
+const u8 gText_SafariBalls[] = _("{HIGHLIGHT 2}SAFARI BALLS");
 const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT 2}Tienes $" "{HIGHLIGHT 2}");
 const u8 gText_Sleep[] = _("sueño");
 const u8 gText_Poison[] = _("envenenamiento");
