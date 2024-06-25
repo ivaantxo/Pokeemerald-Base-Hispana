@@ -15,7 +15,7 @@ MysteryGiftScript_StampCard::
 	end
 
 sText_MysteryGiftStampCard:
-	.string "Merci d’utiliser le système\n"
-	.string "CARTE TAMPON.\p"
-	.string "Il vous en faut {STR_VAR_1} de plus pour\n"
-	.string "remplir complètement la carte.$"
+	.string "Gracias por usar el sistema\n"
+	.string "de SELLOS.\p"
+	.string "Para completar la TARJETA\n"
+	.string "de SELLOS, te faltan {STR_VAR_1}.$"

@@ -13,11 +13,11 @@ MysteryGiftScript_AlteringCave_:
 	end
 
 sText_MysteryGiftAlteringCave:
-	.string "Merci d’utiliser le système\n"
-	.string "CADEAU MYST.\p"
-	.string "Il y a de plus en plus de rumeurs\n"
-	.string "sur l’apparition de POKéMON rares.\p"
-	.string "Les rumeurs parlent de la GROTTE\n"
-	.string "METAMO sur la ROUTE 103.\p"
-	.string "Vous devriez y aller pour vérifier\n"
-	.string "si les rumeurs sont vraies.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Últimamente se ha comentado que\n"
+	.string "han aparecido POKéMON raros.\p"
+	.string "Dicen que ha sido por la CUEVA\n"
+	.string "CAMBIANTE, en la RUTA 103.\p"
+	.string "¿Por qué no te pasas por allí\n"
+	.string "y ves si los rumores son ciertos?$"

@@ -36,23 +36,23 @@ MysticTicket_Obtained:
 	end
 
 sText_MysticTicketForYou:
-	.string "Merci d’utiliser le système\n"
-	.string "CADEAU MYST.\p"
-	.string "Vous devez être {PLAYER}.\n"
-	.string "Il y a un ticket pour vous.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Debes de ser {PLAYER}, ¿no?\p"
+	.string "Pues tenemos un ticket para ti.$"
 
 sText_MysticTicketUseAtPort:
-	.string "Il peut être utilisé au port de\n"
-	.string "NENUCRIQUE.\p"
-	.string "Essayez-le pour voir de quoi \n"
-	.string "il s’agit.$"
+	.string "Parece que puedes usarlo en el\n"
+	.string "puerto de CIUDAD CALAGUA.\p"
+	.string "¿Por qué no curioseas un poco\n"
+	.string "para ver de qué va la cosa?$"
 
 sText_MysticTicketThankYou:
-	.string "Merci d’utiliser le système\n"
-	.string "CADEAU MYST.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.$"
 
 sText_MysticTicketBagFull:
-	.string "Oh, je regrette, {PLAYER}. La POCHE\n"
-	.string "OBJ. RARES du SAC est pleine.\p"
-	.string "Faites de la place dans votre SAC\n"
-	.string "et revenez me voir.$"
+	.string "Lo siento, {PLAYER}. El BOLSILLO\n"
+	.string "de los OBJETOS CLAVE está lleno.\p"
+	.string "Guarda algo en el PC y vuelve\n"
+	.string "más tarde.$"

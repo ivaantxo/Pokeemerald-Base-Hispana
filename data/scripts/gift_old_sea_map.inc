@@ -35,23 +35,23 @@ OldSeaMap_Obtained:
 	end
 
 sText_MysteryGiftOldSeaMapForYou:
-	.string "Merci d’utiliser le système\n"
-	.string "CADEAU MYST.\p"
-	.string "Vous devez être {PLAYER}.\n"
-	.string "Il y a une VIEILLECARTE pour vous.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.\p"
+	.string "Debes de ser {PLAYER}, ¿no?\p"
+	.string "Pues tenemos una CARTA MARINA para ti.$"
 
 sText_MysteryGiftOldSeaMapUseAtPort:
-	.string "Elle peut être utilisée au port de\n"
-	.string "NENUCRIQUE.\p"
-	.string "Essayez-la pour voir de quoi \n"
-	.string "il s’agit.$"
+	.string "Parece que puedes usarlo en el\n"
+	.string "puerto de CIUDAD CALAGUA.\p"
+	.string "¿Por qué no curioseas un poco\n"
+	.string "para ver de qué va la cosa?$"
 
 sText_MysteryGiftOldSeaMapThankYou:
-	.string "Merci d’utiliser le système\n"
-	.string "CADEAU MYST.$"
+	.string "Gracias por usar el sistema\n"
+	.string "del REGALO MISTERIOSO.$"
 
 sText_MysteryGiftOldSeaMapBagFull:
-	.string "Oh, je regrette, {PLAYER}. La POCHE\n"
-	.string "OBJ. RARES du SAC est pleine.\p"
-	.string "Faites de la place dans votre SAC\n"
-	.string "et revenez me voir.$"
+	.string "Lo siento, {PLAYER}. El BOLSILLO\n"
+	.string "de los OBJETOS CLAVE está lleno.\p"
+	.string "Guarda algo en el PC y vuelve más\n"
+	.string "tarde.$"
