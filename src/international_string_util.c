@@ -265,7 +265,7 @@ u8 *StringAppendWithPlaceholder(u8 *dest, const u8 *src, u8 *placeholderStr)
     return dest;
 }
 
-const u8 gText_LevyTatia[] = _("LEVY&TATIA");
+const u8 gText_LevyTatia[] = _("VITO-LETI");
 
 const u8 *GetTrainerClassNameGenderSpecific(s32 trainerClassId, u32 trainerGender, const u8 *trainerName)
 {
