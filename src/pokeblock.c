@@ -700,7 +700,7 @@ static void DrawPokeblockMenuTitleText(void)
     u8 i;
 
     const u8 *itemName = ItemId_GetName(ITEM_POKEBLOCK_CASE);
-    PrintOnPokeblockWindow(WIN_TITLE, itemName, GetStringCenterAlignXOffset(FONT_NORMAL, itemName, 0x50));
+    PrintOnPokeblockWindow(WIN_TITLE, itemName, GetStringCenterAlignXOffset(FONT_NORMAL, itemName, 0x48));
 
     PrintOnPokeblockWindow(WIN_SPICY,  gText_Spicy, 0);
     PrintOnPokeblockWindow(WIN_DRY,    gText_Dry, 0);
@@ -741,7 +741,7 @@ static void PutPokeblockListMenuString(u8 *dst, u16 pkblId)
 
     *(txtPtr++) = EXT_CTRL_CODE_BEGIN;
     *(txtPtr++) = EXT_CTRL_CODE_SKIP;
-    *(txtPtr++) = CHAR_BLOCK_1;
+    *(txtPtr++) = CHAR_PO;
 
     ConvertIntToDecimalStringN(gStringVar1, GetHighestPokeblocksFlavorLevel(pkblock), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(txtPtr, gText_LvVar1);
