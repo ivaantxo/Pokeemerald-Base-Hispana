@@ -1,10 +1,10 @@
-# Pokémon Émeraude
+# Pokémon Esmeralda
 
-This is a decompilation of Pokémon Émeraude(Pokémon Emerald French version).
+This is a decompilation of Pokémon Esmeralda(Pokémon Emerald French version).
 
 It builds the following ROM:
 
-* [**pokeemerald_fr.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1961) `sha1: ca666651374d89ca439007bed54d839eb7bd14d0`
+* [**pokeemerald_es.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1961) `sha1: FE1558A3DCB0360AB558969E09B690888B846DD9`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
