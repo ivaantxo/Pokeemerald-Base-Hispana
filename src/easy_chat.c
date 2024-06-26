@@ -680,17 +680,17 @@ static const u8 sAlphabetGroupIdMap[NUM_ALPHABET_ROWS][NUM_ALPHABET_COLUMNS] = {
 
 static const u16 sMysteryGiftPhrase[NUM_QUESTIONNAIRE_WORDS] = {
     EC_WORD_LINK,
-    EC_WORD_WITH,
-    EC_WORD_CASE,
-    EC_WORD_TRAINER,
+    EC_WORD_MISS,
+    EC_WORD_TO_THEM,
+    EC_EMPTY_WORD,
 };
 
 static const u16 sBerryMasterWifePhrases[][2] = {
-    [PHRASE_GREAT_BATTLE - 1]        = {EC_WORD_GREAT, EC_WORD_FIGHTING},
-    [PHRASE_CHALLENGE_CONTEST - 1]   = {EC_WORD_CONTEST, EC_WORD_CHALLENGE},
-    [PHRASE_OVERWHELMING_LATIAS - 1] = {EC_WORD_OVERWHELMING, EC_POKEMON(LATIAS)},
-    [PHRASE_COOL_LATIOS - 1]         = {EC_WORD_COOL, EC_POKEMON(LATIOS)},
-    [PHRASE_SUPER_HUSTLE - 1]        = {EC_WORD_SUPER, EC_WORD_HUSTLE},
+    [PHRASE_GREAT_BATTLE - 1]        = {EC_WORD_LOLLING, EC_WORD_BATTLE},
+    [PHRASE_CHALLENGE_CONTEST - 1]   = {EC_WORD_CHALLENGE, EC_WORD_CONTEST},
+    [PHRASE_OVERWHELMING_LATIAS - 1] = {EC_WORD_INCREDIBLE, EC_POKEMON(LATIAS)},
+    [PHRASE_COOL_LATIOS - 1]         = {EC_WORD_COOLNESS, EC_POKEMON(LATIOS)},
+    [PHRASE_SUPER_HUSTLE - 1]        = {EC_WORD_SHINE, EC_WORD_CAN_WIN},
 };
 
 const u16 sTriangleCursor_Pal[] = INCBIN_U16("graphics/easy_chat/triangle_cursor.gbapal");
@@ -1181,8 +1181,8 @@ static const struct SpriteTemplate sSpriteTemplate_ScrollIndicator = {
 
 static const u8 sFooterOptionXOffsets[NUM_FOOTER_TYPES][4] = {
     [FOOTER_NORMAL] = {16, 111, 196,   0},
-    [FOOTER_QUIZ]   = {16,  82, 148, 184},
-    [FOOTER_ANSWER] = {16,  78, 141, 174},
+    [FOOTER_QUIZ]   = {16,  70, 118, 160},
+    [FOOTER_ANSWER] = {16,  68, 114, 154},
 };
 
 static const u8 *const sFooterTextOptions[NUM_FOOTER_TYPES][4] = {
@@ -1220,37 +1220,37 @@ static const u8 *const sEasyChatGroupNamePointers[EC_NUM_GROUPS] = {
 };
 
 static const u16 sDefaultProfileWords[EASY_CHAT_BATTLE_WORDS_COUNT - 2] = {
-    EC_WORD_ADORE,
-    EC_WORD_CASE,
+    EC_WORD_ISN_T_IT_QUES,
+    EC_WORD_BEING,
+    EC_WORD_ALT_COLOR,
     EC_WORD_POKEMON,
-    EC_EMPTY_WORD,
 };
 
 static const u16 sDefaultBattleStartWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
-    EC_WORD_APOLOGIZE,
-    EC_WORD_EXCL,
-    EC_WORD_HERE_I_COME,
-    EC_WORD_EXCL,
-    EC_EMPTY_WORD,
-    EC_EMPTY_WORD,
+    EC_WORD_QUES_EXCL,
+    EC_WORD_HAVE,
+    EC_WORD_THOSE_ARE,
+    EC_WORD_LIE,
+    EC_WORD_FIGHTS,
+    EC_WORD_QUES,
 };
 
 static const u16 sDefaultBattleWonWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
-    EC_WORD_YAY,
-    EC_WORD_YAY,
-    EC_WORD_I_VE,
-    EC_WORD_REALLY,
-    EC_WORD_WINS,
-    EC_WORD_EXCL_EXCL,
+    EC_WORD_WAHAHAHA,
+    EC_WORD_WAHAHAHA,
+    EC_WORD_DASH_DASH_DASH,
+    EC_WORD_HEHEHE,
+    EC_EMPTY_WORD,
+    EC_EMPTY_WORD,
 };
 
 static const u16 sDefaultBattleLostWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
-    EC_WORD_IT_S,
+    EC_WORD_CRIES,
+    EC_WORD_CRIES,
+    EC_WORD_UGLY,
+    EC_WORD_COUNT_ON,
     EC_EMPTY_WORD,
-    EC_WORD_AWFUL,
-    EC_WORD_ELLIPSIS,
-    EC_WORD_I_VE,
-    EC_WORD_LOST,
+    EC_EMPTY_WORD,
 };
 
 static const u16 sRestrictedWordSpecies[] = {

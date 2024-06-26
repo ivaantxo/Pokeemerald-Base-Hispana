@@ -1005,7 +1005,7 @@ const struct InGameTrade sIngameTrades[] =
 {
     [INGAME_TRADE_SEEDOT] =
     {
-        .nickname = _("PIPIO"),
+        .nickname = _("SITOT"),
         .species = SPECIES_SEEDOT,
         .ivs = {5, 4, 5, 4, 4, 4},
         .abilityNum = 1,
@@ -1014,14 +1014,14 @@ const struct InGameTrade sIngameTrades[] =
         .personality = 0x84,
         .heldItem = ITEM_CHESTO_BERRY,
         .mailNum = -1,
-        .otName = _("KOBE"),
+        .otName = _("QUICO"),
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_RALTS
     },
     [INGAME_TRADE_PLUSLE] =
     {
-        .nickname = _("SIPO"),
+        .nickname = _("PUSLE"),
         .species = SPECIES_PLUSLE,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0,
@@ -1030,14 +1030,14 @@ const struct InGameTrade sIngameTrades[] =
         .personality = 0x6F,
         .heldItem = ITEM_WOOD_MAIL,
         .mailNum = 0,
-        .otName = _("ALBAN"),
+        .otName = _("RENATO"),
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_VOLBEAT
     },
     [INGAME_TRADE_HORSEA] =
     {
-        .nickname = _("HYPY"),
+        .nickname = _("HORSI"),
         .species = SPECIES_HORSEA,
         .ivs = {5, 4, 4, 4, 5, 4},
         .abilityNum = 0,
@@ -1046,14 +1046,14 @@ const struct InGameTrade sIngameTrades[] =
         .personality = 0x7F,
         .heldItem = ITEM_WAVE_MAIL,
         .mailNum = 1,
-        .otName = _("LUDOVIC"),
+        .otName = _("SERGIO"),
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_BAGON
     },
     [INGAME_TRADE_MEOWTH] =
     {
-        .nickname = _("GNAGNAA"),
+        .nickname = _("MEOWOW"),
         .species = SPECIES_MEOWTH,
         .ivs = {4, 5, 4, 5, 4, 4},
         .abilityNum = 0,
@@ -1062,7 +1062,7 @@ const struct InGameTrade sIngameTrades[] =
         .personality = 0x8B,
         .heldItem = ITEM_RETRO_MAIL,
         .mailNum = 2,
-        .otName = _("ISIS"),
+        .otName = _("ISA"),
         .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
@@ -1072,36 +1072,39 @@ const struct InGameTrade sIngameTrades[] =
 const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
 {
     {
-        EC_WORD_LET_S,
-        EC_WORD_NICE,
-        EC_WORD_WITH,
-        EC_POKEMON(PLUSLE),
-        EC_WORD_AND,
-        EC_POKEMON(VOLBEAT),
-        EC_WORD_IS,
-        EC_WORD_FANTASTIC,
-        EC_EMPTY_WORD
+        EC_WORD_DOES,
+         EC_WORD_MUCH,
+         EC_WORD_MISS,
+         EC_POKEMON(PLUSLE),
+         EC_POKEMON(VOLBEAT),
+         EC_WORD_IS,
+         EC_WORD_VERY,
+         EC_WORD_ANTICIPATION,
+         EC_EMPTY_WORD,
+         EC_POKEMON(NONE)
     }, {
         EC_POKEMON(BAGON),
-        EC_WORD_IS,
-        EC_WORD_TOUGH,
-        EC_WORD_EXCL,
-        EC_WORD_TRAINS,
-        EC_POKEMON(HORSEA),
-        EC_WORD_PLEASE,
-        EC_WORD_EXCL,
-        EC_EMPTY_WORD
+         EC_WORD_WERE,
+         EC_WORD_POINTS,
+         EC_EMPTY_WORD,
+         EC_POKEMON(HORSEA),
+         EC_WORD_PRAISE,
+         EC_WORD_NITWIT,
+         EC_WORD_FORGETS,
+         EC_EMPTY_WORD,
+         EC_POKEMON(NONE)
     }, {
-        EC_WORD_THANK_YOU,
-        EC_WORD_FOR,
-        EC_POKEMON(SKITTY),
-        EC_EMPTY_WORD,
-        EC_POKEMON_NATIONAL(MEOWTH),
-        EC_WORD_EVEN_SO,
-        EC_WORD_A,
-        EC_WORD_SUPER,
-        EC_WORD_CRY
-    }
+        EC_WORD_THANKS,
+         EC_WORD_HOWEVER,
+         EC_POKEMON(SKITTY),
+         EC_EMPTY_WORD,
+         EC_POKEMON_NATIONAL(MEOWTH),
+         EC_WORD_IS,
+         EC_WORD_VERY,
+         EC_WORD_CUTENESS,
+         EC_EMPTY_WORD,
+         EC_POKEMON(NONE)
+    },
 };
 
 static const struct WindowTemplate sTradeSequenceWindowTemplates[] =
