@@ -1,6 +1,6 @@
 # Pokémon Esmeralda
 
-This is a decompilation of Pokémon Esmeralda(Pokémon Emerald French version).
+This is a decompilation of Pokémon Esmeralda(Pokémon Emerald Spanish version).
 
 It builds the following ROM:
 
