@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
+    ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
 }
 
 SINGLE_BATTLE_TEST("Explosion causes the user to faint")
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it misses")
 SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it has no effect")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_EXPLOSION].type == TYPE_NORMAL);
+        ASSUME(gMovesInfo[MOVE_EXPLOSION].type == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_GASTLY].types[0] == TYPE_GHOST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GASTLY);
@@ -62,7 +62,6 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it has no effect"
         TURN { MOVE(player, MOVE_EXPLOSION); }
     } SCENE {
         HP_BAR(player, hp: 0);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         MESSAGE("It doesn't affect Foe Gastly…");
         NOT HP_BAR(opponent);
         MESSAGE("Wobbuffet fainted!");
@@ -89,5 +88,60 @@ DOUBLE_BATTLE_TEST("Explosion causes everyone to faint in a double battle")
         HP_BAR(opponentRight, hp: 0);
         MESSAGE("Foe Kadabra fainted!");
         MESSAGE("Wobbuffet fainted!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_EXPLOSION); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
+            HP_BAR(player, hp: 0);
+        }
+        ABILITY_POPUP(opponent, ABILITY_DAMP);
+        MESSAGE("Foe Golduck's Damp prevents Wobbuffet from using Explosion!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Explosion does not trigger Destiny Bond")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DESTINY_BOND); MOVE(opponent, MOVE_EXPLOSION);}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DESTINY_BOND, player);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
+        HP_BAR(player);
+        NOT HP_BAR(opponent);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt Absorb")
+{
+    GIVEN {
+        PLAYER(SPECIES_GEODUDE_ALOLAN) { Ability(ABILITY_GALVANIZE); }
+        PLAYER(SPECIES_WYNAUT) { HP(1); }
+        OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_VOLT_ABSORB); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); }
+    } SCENE {
+        MESSAGE("Geodude used Explosion!");
+        HP_BAR(playerLeft, hp: 0);
+        ABILITY_POPUP(opponentLeft, ABILITY_VOLT_ABSORB);
+        NOT HP_BAR(opponentLeft, hp: 0);
+        HP_BAR(playerRight, hp: 0);
+        MESSAGE("Wynaut fainted!");
+        HP_BAR(opponentRight, hp: 0);
+        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Geodude fainted!");
     }
 }

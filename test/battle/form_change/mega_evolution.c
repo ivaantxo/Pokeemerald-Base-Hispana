@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Rayquaza can Mega Evolve knowing Dragon Ascent")
 SINGLE_BATTLE_TEST("Mega Evolution affects turn order")
 {
     GIVEN {
-        ASSUME(B_MEGA_EVO_TURN_ORDER);
+        ASSUME(B_MEGA_EVO_TURN_ORDER >= GEN_7);
         PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_GARDEVOIRITE); Speed(105); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(106); }
     } WHEN {
@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("Mega Evolution affects turn order")
 SINGLE_BATTLE_TEST("Abilities replaced by Mega Evolution do not affect turn order")
 {
     GIVEN {
-        ASSUME(B_MEGA_EVO_TURN_ORDER);
+        ASSUME(B_MEGA_EVO_TURN_ORDER >= GEN_7);
         ASSUME(gSpeciesInfo[SPECIES_SABLEYE_MEGA].abilities[0] != ABILITY_STALL
             && gSpeciesInfo[SPECIES_SABLEYE_MEGA].abilities[1] != ABILITY_STALL);
         PLAYER(SPECIES_SABLEYE) { Item(ITEM_SABLENITE); Ability(ABILITY_STALL); Speed(105); }
@@ -108,7 +108,7 @@ SINGLE_BATTLE_TEST("Abilities replaced by Mega Evolution do not affect turn orde
 DOUBLE_BATTLE_TEST("Mega Evolution happens after switching, but before Focus Punch-like Moves")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_FOCUS_PUNCH].effect == EFFECT_FOCUS_PUNCH);
+        ASSUME(gMovesInfo[MOVE_FOCUS_PUNCH].effect == EFFECT_FOCUS_PUNCH);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_VENUSAUR) { Item(ITEM_VENUSAURITE); }
         OPPONENT(SPECIES_WYNAUT);
@@ -151,5 +151,28 @@ SINGLE_BATTLE_TEST("Regular Mega Evolution and Fervent Wish Mega Evolution can h
     } THEN {
         EXPECT_EQ(player->species, SPECIES_RAYQUAZA_MEGA);
         EXPECT_EQ(opponent->species, SPECIES_GARDEVOIR_MEGA);
+    }
+}
+
+SINGLE_BATTLE_TEST("Mega Evolved Pokemon do not change abilities after fainting")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_CRUNCH].makesContact == TRUE);
+        ASSUME(gSpeciesInfo[SPECIES_GARCHOMP_MEGA].abilities[0] != ABILITY_ROUGH_SKIN);
+        ASSUME(gSpeciesInfo[SPECIES_GARCHOMP_MEGA].abilities[1] != ABILITY_ROUGH_SKIN);
+        ASSUME(gSpeciesInfo[SPECIES_GARCHOMP_MEGA].abilities[2] != ABILITY_ROUGH_SKIN);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GARCHOMP) { Ability(ABILITY_ROUGH_SKIN); Item(ITEM_GARCHOMPITE); HP(1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_CRUNCH); MOVE(opponent, MOVE_CELEBRATE, megaEvolve: TRUE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CRUNCH, player);
+        MESSAGE("Foe Garchomp fainted!");
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_ROUGH_SKIN);
+            MESSAGE("Wobbuffet was hurt by Foe Garchomp's Rough Skin!");
+            HP_BAR(player);
+        }
     }
 }

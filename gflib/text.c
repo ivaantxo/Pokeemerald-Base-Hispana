@@ -268,7 +268,7 @@ u16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 
     return AddTextPrinter(&printerTemplate, speed, callback);
 }
 
-bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
+bool32 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
 {
     int i;
     u16 j;
@@ -344,7 +344,7 @@ void RunTextPrinters(void)
     }
 }
 
-bool16 IsTextPrinterActive(u8 id)
+bool32 IsTextPrinterActive(u8 id)
 {
     return sTextPrinters[id].active;
 }
@@ -554,8 +554,7 @@ void DecompressGlyphTile(const void *src_, void *dest_)
     *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
 }
 
-// Unused
-static u8 GetLastTextColor(u8 colorType)
+static u8 UNUSED GetLastTextColor(u8 colorType)
 {
     switch (colorType)
     {
@@ -848,7 +847,7 @@ void TextPrinterClearDownArrow(struct TextPrinter *textPrinter)
     CopyWindowToVram(textPrinter->printerTemplate.windowId, COPYWIN_GFX);
 }
 
-bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
+bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
@@ -863,9 +862,9 @@ bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
     }
 }
 
-bool16 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
+bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
 {
-    bool8 result = FALSE;
+    bool32 result = FALSE;
     if (gTextFlags.autoScroll != 0)
     {
         result = TextPrinterWaitAutoMode(textPrinter);
@@ -882,9 +881,9 @@ bool16 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
     return result;
 }
 
-bool16 TextPrinterWait(struct TextPrinter *textPrinter)
+bool32 TextPrinterWait(struct TextPrinter *textPrinter)
 {
-    bool16 result = FALSE;
+    bool32 result = FALSE;
     if (gTextFlags.autoScroll != 0)
     {
         result = TextPrinterWaitAutoMode(textPrinter);
@@ -900,7 +899,7 @@ bool16 TextPrinterWait(struct TextPrinter *textPrinter)
     return result;
 }
 
-void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *counter, u8 *yCoordIndex)
+void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool32 drawArrow, u8 *counter, u8 *yCoordIndex)
 {
     const u8 *arrowTiles;
 
@@ -1224,8 +1223,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
     return RENDER_FINISH;
 }
 
-// Unused
-static u32 GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 letterSpacing)
+static u32 UNUSED GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 letterSpacing)
 {
     int i;
     u8 width;
@@ -1329,7 +1327,7 @@ static u32 (*GetFontWidthFunc(u8 fontId))(u16, bool32)
 
 s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
 {
-    bool8 isJapanese;
+    bool32 isJapanese;
     int minGlyphWidth;
     u32 (*func)(u16 fontId, bool32 isJapanese);
     int localLetterSpacing;

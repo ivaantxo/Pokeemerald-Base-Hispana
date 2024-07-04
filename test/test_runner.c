@@ -30,7 +30,6 @@ void TestRunner_Battle(const struct Test *);
 
 static bool32 MgbaOpen_(void);
 static void MgbaExit_(u8 exitCode);
-static s32 MgbaPuts_(const char *s);
 static s32 MgbaVPrintf_(const char *fmt, va_list va);
 static void Intr_Timer2(void);
 
@@ -106,6 +105,8 @@ static u32 AssignCostToRunner(void)
 
 void CB2_TestRunner(void)
 {
+top:
+
     switch (gTestRunnerState.state)
     {
     case STATE_INIT:
@@ -119,6 +120,7 @@ void CB2_TestRunner(void)
         MoveSaveBlocks_ResetHeap();
         ClearSav1();
         ClearSav2();
+        ClearSav3();
 
         gIntrTable[7] = Intr_Timer2;
 
@@ -291,12 +293,6 @@ void CB2_TestRunner(void)
                 color = "";
             }
 
-            if (gTestRunnerState.result == TEST_RESULT_PASS
-             && gTestRunnerState.result != gTestRunnerState.expectedResult)
-            {
-                MgbaPuts_("\e[31mPlease remove KNOWN_FAILING if this test intentionally PASSes\e[0m");
-            }
-
             switch (gTestRunnerState.result)
             {
             case TEST_RESULT_FAIL:
@@ -311,7 +307,10 @@ void CB2_TestRunner(void)
                 }
                 break;
             case TEST_RESULT_PASS:
-                result = "PASS";
+                if (gTestRunnerState.result != gTestRunnerState.expectedResult)
+                    result = "KNOWN_FAILING_PASS";
+                else
+                    result = "PASS";
                 break;
             case TEST_RESULT_ASSUMPTION_FAIL:
                 result = "ASSUMPTION_FAIL";
@@ -339,7 +338,12 @@ void CB2_TestRunner(void)
             }
 
             if (gTestRunnerState.result == TEST_RESULT_PASS)
-                MgbaPrintf_(":P%s%s\e[0m", color, result);
+            {
+                if (gTestRunnerState.result != gTestRunnerState.expectedResult)
+                    MgbaPrintf_(":U%s%s\e[0m", color, result);
+                else
+                    MgbaPrintf_(":P%s%s\e[0m", color, result);
+            }
             else if (gTestRunnerState.result == TEST_RESULT_ASSUMPTION_FAIL)
                 MgbaPrintf_(":A%s%s\e[0m", color, result);
             else if (gTestRunnerState.result == TEST_RESULT_TODO)
@@ -361,6 +365,9 @@ void CB2_TestRunner(void)
         MgbaExit_(gTestRunnerState.exitCode);
         break;
     }
+
+    if (gMain.callback2 == CB2_TestRunner)
+        goto top;
 }
 
 void Test_ExpectedResult(enum TestResult result)
@@ -398,11 +405,21 @@ static void FunctionTest_TearDown(void *data)
     FREE_AND_SET_NULL(gFunctionTestRunnerState);
 }
 
+static bool32 FunctionTest_CheckProgress(void *data)
+{
+    bool32 madeProgress;
+    (void)data;
+    madeProgress = gFunctionTestRunnerState->checkProgressParameter < gFunctionTestRunnerState->runParameter;
+    gFunctionTestRunnerState->checkProgressParameter = gFunctionTestRunnerState->runParameter;
+    return madeProgress;
+}
+
 const struct TestRunner gFunctionTestRunner =
 {
     .setUp = FunctionTest_SetUp,
     .run = FunctionTest_Run,
     .tearDown = FunctionTest_TearDown,
+    .checkProgress = FunctionTest_CheckProgress,
 };
 
 static void Assumptions_Run(void *data)
@@ -498,11 +515,6 @@ static void MgbaExit_(u8 exitCode)
     asm("swi 0x3" :: "r" (_exitCode));
 }
 
-static s32 MgbaPuts_(const char *s)
-{
-    return MgbaPrintf_("%s", s);
-}
-
 s32 MgbaPrintf_(const char *fmt, ...)
 {
     va_list va;
@@ -531,6 +543,7 @@ static s32 MgbaVPrintf_(const char *fmt, va_list va)
     s32 c, d;
     u32 p;
     const char *s;
+    const u8 *pokeS;
     while (*fmt)
     {
         switch ((c = *fmt++))
@@ -625,8 +638,8 @@ static s32 MgbaVPrintf_(const char *fmt, va_list va)
                     i = MgbaPutchar_(i, c);
                 break;
             case 'S':
-                s = va_arg(va, const u8 *);
-                while ((c = *s++) != EOS)
+                pokeS = va_arg(va, const u8 *);
+                while ((c = *pokeS++) != EOS)
                 {
                     if ((c = gWireless_RSEtoASCIITable[c]) != '\0')
                         i = MgbaPutchar_(i, c);
@@ -650,4 +663,30 @@ static s32 MgbaVPrintf_(const char *fmt, va_list va)
         REG_DEBUG_FLAGS = MGBA_LOG_INFO | 0x100;
     }
     return i;
+}
+
+/* Entry point for the Debugging and Control System. Handles illegal
+ * instructions, which are typically caused by branching to an invalid
+ * address. */
+#if MODERN
+__attribute__((naked, section(".dacs"), target("arm")))
+#else
+__attribute__((naked, section(".dacs")))
+#endif
+void DACSEntry(void)
+{
+    asm(".arm\n\
+         ldr r0, =(DACSHandle + 1)\n\
+         bx r0\n");
+}
+
+#define DACS_LR (*(vu32 *)0x3007FEC)
+
+void DACSHandle(void)
+{
+    if (gTestRunnerState.state == STATE_RUN_TEST)
+        gTestRunnerState.state = STATE_REPORT_RESULT;
+    gTestRunnerState.result = TEST_RESULT_CRASH;
+    ReinitCallbacks();
+    DACS_LR = ((uintptr_t)JumpToAgbMainLoop & ~1) + 4;
 }

@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
+    ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after switch out", s16 damage)
@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after KO", s16 
 DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double battle")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
+        ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
@@ -78,10 +78,18 @@ DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double ba
         // Everyone faints.
 
         MESSAGE("Go! Ekans!");
+        NONE_OF {
+            ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
+        }
         MESSAGE("2 sent out Arbok!");
+        NONE_OF {
+            ABILITY_POPUP(opponentLeft, ABILITY_INTIMIDATE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+        }
         MESSAGE("Go! Abra!");
         MESSAGE("2 sent out Wynaut!");
-
+        // Intimidate activates after all battlers have been brought out
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         MESSAGE("Ekans's Intimidate cuts Foe Arbok's attack!");
@@ -99,7 +107,7 @@ DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double ba
 SINGLE_BATTLE_TEST("Intimidate and Eject Button force the opponent to Attack")
 {
     GIVEN {
-        ASSUME(gItems[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
+        ASSUME(gItemsInfo[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
         OPPONENT(SPECIES_HITMONTOP) { Moves(MOVE_TACKLE); }
@@ -157,5 +165,83 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
         MESSAGE("Hitmontop's Intimidate cuts Foe Azurill's attack!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Intimidate activates immediately after the mon was switched in as long as one opposing mon is alive")
+{
+    GIVEN {
+        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
+        OPPONENT(SPECIES_WYNAUT) { HP(1); }
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_U_TURN, target: opponentLeft); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 2); }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_ELECTRIC_SURGE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, playerLeft);
+        HP_BAR(opponentLeft);
+        ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+    } THEN {
+        EXPECT_EQ(playerLeft->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("Intimidate can not further lower opponents Atk stat if it is at minimum stages")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(opponent, MOVE_CHARM); }
+        TURN { SWITCH(opponent, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+        ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Foe Arbok's Intimidate cuts Wobbuffet's attack!");
+        }
+        MESSAGE("Wobbuffet's Attack won't go lower!");
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], MIN_STAT_STAGE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Intimidate is not going to trigger if a mon switches out through u-turn and the opposing field is empty")
+{
+    GIVEN {
+        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_WYNAUT) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_TREECKO);
+        OPPONENT(SPECIES_TORCHIC);
+    } WHEN {
+        TURN {
+            MOVE(opponentRight, MOVE_HEALING_WISH);
+            MOVE(playerLeft, MOVE_U_TURN, target: opponentLeft);
+            SEND_OUT(playerLeft, 2);
+            SEND_OUT(opponentLeft, 2);
+            SEND_OUT(opponentRight, 3);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HEALING_WISH, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, playerLeft);
+        HP_BAR(opponentLeft);
+        MESSAGE("2 sent out Treecko!");
+        MESSAGE("2 sent out Torchic!");
+        NOT ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
     }
 }

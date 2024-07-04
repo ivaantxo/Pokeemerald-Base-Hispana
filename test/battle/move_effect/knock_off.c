@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_KNOCK_OFF].effect == EFFECT_KNOCK_OFF);
+    ASSUME(gMovesInfo[MOVE_KNOCK_OFF].effect == EFFECT_KNOCK_OFF);
 }
 
 SINGLE_BATTLE_TEST("Knock Off knocks a healing berry before it has the chance to activate")
@@ -49,5 +49,17 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
             MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Rocky Helmet!");
         }
+    }
+}
+
+SINGLE_BATTLE_TEST("Knock Off doesn't knock off items from Pokemon behind substitutes")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_POKE_BALL); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_KNOCK_OFF); }
+    } SCENE {
+        NOT MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Poké Ball");
     }
 }

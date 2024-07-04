@@ -11,7 +11,7 @@
 #define AILMENT_BRN   5
 #define AILMENT_PKRS  6
 #define AILMENT_FNT   7
-#define AILMENT_FSB   8
+#define AILMENT_FRB   8
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1
@@ -79,6 +79,8 @@
 #define PARTY_MSG_DO_WHAT_WITH_ITEM         24
 #define PARTY_MSG_DO_WHAT_WITH_MAIL         25
 #define PARTY_MSG_ALREADY_HOLDING_ONE       26
+#define PARTY_MSG_WHICH_APPLIANCE           27
+#define PARTY_MSG_CHOOSE_SECOND_FUSION      28
 #define PARTY_MSG_NONE                      127
 
 // IDs for DisplayPartyPokemonDescriptionText, to display a message in the party pokemon's box
@@ -96,9 +98,11 @@
 #define PARTYBOX_DESC_HAVE        11
 #define PARTYBOX_DESC_DONT_HAVE   12
 
-#define SELECTWINDOW_ACTIONS  0
-#define SELECTWINDOW_ITEM     1
-#define SELECTWINDOW_MAIL     2
-#define SELECTWINDOW_MOVES    3
+#define SELECTWINDOW_ACTIONS     0
+#define SELECTWINDOW_ITEM        1
+#define SELECTWINDOW_MAIL        2
+#define SELECTWINDOW_MOVES       3
+#define SELECTWINDOW_CATALOG     4
+#define SELECTWINDOW_ZYGARDECUBE 5
 
 #endif // GUARD_CONSTANTS_PARTY_MENU_H
