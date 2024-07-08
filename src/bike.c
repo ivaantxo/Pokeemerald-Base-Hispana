@@ -206,7 +206,7 @@ static void MachBikeTransition_TurnDirection(u8 direction)
         Bike_SetBikeStill();
     }
     else
-    {        
+    {
         MachBikeTransition_FaceDirection(playerObjEvent->facingDirection);
     }
 }
@@ -246,6 +246,7 @@ static void MachBikeTransition_TrySpeedUp(u8 direction)
         }
         else
         {
+            // we did not hit anything that can slow us down, so perform the advancement callback depending on the bikeFrameCounter and try to increase the mach bike's speed.
             if (ObjectMovingOnRockStairs(playerObjEvent, direction) && gPlayerAvatar.bikeFrameCounter > 1)
                 gPlayerAvatar.bikeFrameCounter--;
             

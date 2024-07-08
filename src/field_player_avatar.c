@@ -638,7 +638,7 @@ static void PlayerNotOnBikeTurningInPlace(u8 direction, u16 heldKeys)
 static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 {
     u8 collision = CheckForPlayerAvatarCollision(direction);
-    
+
     if (collision)
     {
         if (collision == COLLISION_LEDGE_JUMP)
@@ -659,7 +659,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
             return;
         }
     }
-    
+
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
     {
         // same speed as running
@@ -2473,7 +2473,6 @@ u8 GetRightSideStairsDirection(u8 direction)
     default:
         if (direction > DIR_EAST)
             direction -= DIR_EAST;
-        
         return direction;
     }           
 }
@@ -2489,7 +2488,6 @@ u8 GetLeftSideStairsDirection(u8 direction)
     default:
         if (direction > DIR_EAST)
             direction -= DIR_EAST;
-        
         return direction;
     }
 }
