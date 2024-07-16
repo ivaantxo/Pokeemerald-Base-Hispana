@@ -509,7 +509,7 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
 
 void SetWalkingIntoSignVars(void)
 {
-    gWalkAwayFromSignpostTimer = 6;
+    gWalkAwayFromSignpostTimer = WALK_AWAY_SIGNPOST_FRAMES;
     sMsgBoxIsCancelable = TRUE;
 }
 
