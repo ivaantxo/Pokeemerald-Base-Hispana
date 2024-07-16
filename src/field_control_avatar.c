@@ -1177,9 +1177,9 @@ void CancelSignPostMessageBox(struct FieldInput *input)
 	if (!ScriptContext_IsEnabled())
 		return;
 
-	if (gWalkAwayFromSignInhibitTimer)
+	if (gWalkAwayFromSignpostTimer)
 	{
-		gWalkAwayFromSignInhibitTimer--;
+		gWalkAwayFromSignpostTimer--;
 		return;
 	}
 

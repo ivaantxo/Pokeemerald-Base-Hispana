@@ -505,10 +505,11 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
 #endif //FREE_MYSTERY_EVENT_BUFFERS
 }
 
-// auto read signposts
+#define WALK_AWAY_SIGNPOST_FRAMES 6
+
 void SetWalkingIntoSignVars(void)
 {
-    gWalkAwayFromSignInhibitTimer = 6;
+    gWalkAwayFromSignpostTimer = 6;
     sMsgBoxIsCancelable = TRUE;
 }
 
