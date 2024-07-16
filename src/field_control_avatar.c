@@ -1167,29 +1167,40 @@ static void Task_OpenStartMenu(u8 taskId)
     }
 }
 
-void FieldInput_HandleCancelSignpost(struct FieldInput *input)
+bool32 IsDpadPushedToTurnOrMovePlayer(struct FieldInput *input)
 {
-    if (ScriptContext_IsEnabled() == TRUE)
-    {
-        if (gWalkAwayFromSignInhibitTimer != 0)
-        {
-            gWalkAwayFromSignInhibitTimer--;
-        }
-        else if (CanWalkAwayToCancelMsgBox() == TRUE)
-        {
-            //ClearMsgBoxCancelableState();
-            if (input->dpadDirection != 0 && GetPlayerFacingDirection() != input->dpadDirection)
-            {
-                ScriptContext_SetupScript(EventScript_CancelMessageBox);
-                LockPlayerFieldControls();
-            }
-            else if (input->pressedStartButton)
-            {
-                ScriptContext_SetupScript(EventScript_CancelMessageBox);
-                LockPlayerFieldControls();
-                if (!FuncIsActiveTask(Task_OpenStartMenu))
-                    CreateTask(Task_OpenStartMenu, 8);
-            }
-        }
-    }
+	return (input->dpadDirection != 0 && GetPlayerFacingDirection() != input->dpadDirection);
+}
+
+void CancelSignPostMessageBox(struct FieldInput *input)
+{
+	if (!ScriptContext_IsEnabled())
+		return;
+
+	if (gWalkAwayFromSignInhibitTimer)
+	{
+		gWalkAwayFromSignInhibitTimer--;
+		return;
+	}
+
+	if (!CanWalkAwayToCancelMsgBox())
+		return;
+
+	if (IsDpadPushedToTurnOrMovePlayer(input))
+	{
+		ScriptContext_SetupScript(EventScript_CancelMessageBox);
+		LockPlayerFieldControls();
+		return;
+	}
+
+	if (!input->pressedStartButton)
+		return;
+
+	ScriptContext_SetupScript(EventScript_CancelMessageBox);
+	LockPlayerFieldControls();
+
+	if (FuncIsActiveTask(Task_OpenStartMenu))
+		return;
+
+	CreateTask(Task_OpenStartMenu, 8);
 }
