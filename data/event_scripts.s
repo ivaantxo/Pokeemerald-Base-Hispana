@@ -694,7 +694,7 @@ EventScript_BackupMrBrineyLocation::
 	.include "data/scripts/set_gym_trainers.inc"
 
 EventScript_CancelMessageBox::
-	special DoPicboxCancel
+	special UseBlankMessageToCancelPokemonPic
 	release
 	end
 
