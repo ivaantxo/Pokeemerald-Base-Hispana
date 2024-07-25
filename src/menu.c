@@ -225,7 +225,6 @@ void LoadSignPostWindowFrameGfx(void)
 
 static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 paletteNum)
 {
-	// Top left
 	FillBgTilemapBufferRect(bg,
 			DLG_WINDOW_BASE_TILE_NUM + 0,
 			tilemapLeft - 2,
@@ -254,8 +253,6 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 			1,
 			4,
 			DLG_WINDOW_PALETTE_NUM);
-
-	// Bottom left
 	FillBgTilemapBufferRect(bg,
 			BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM + 0),
 			tilemapLeft - 2,
@@ -270,8 +267,6 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 			1,
 			1,
 			DLG_WINDOW_PALETTE_NUM);
-
-	// Top
 	FillBgTilemapBufferRect(bg,
 			DLG_WINDOW_BASE_TILE_NUM + 4,
 			tilemapLeft,
@@ -279,8 +274,6 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 			26,
 			1,
 			DLG_WINDOW_PALETTE_NUM);
-
-	// Top right
 	FillBgTilemapBufferRect(bg,
 			BG_TILE_H_FLIP(DLG_WINDOW_BASE_TILE_NUM + 0),
 			tilemapLeft + 27,
@@ -309,8 +302,6 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 			1,
 			4,
 			DLG_WINDOW_PALETTE_NUM);
-
-	// Bottom right
 	FillBgTilemapBufferRect(bg,
 			BG_TILE_V_FLIP(BG_TILE_H_FLIP(DLG_WINDOW_BASE_TILE_NUM + 0)),
 			tilemapLeft + 27,
@@ -325,8 +316,6 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 			1,
 			1,
 			DLG_WINDOW_PALETTE_NUM);
-
-	// Bottom
 	FillBgTilemapBufferRect(bg,
 			BG_TILE_V_FLIP(DLG_WINDOW_BASE_TILE_NUM + 4),
 			tilemapLeft,
@@ -338,6 +327,7 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 
 static inline void *GetWindowFunc_DialogueFrame(void)
 {
+	DebugPrintf("test %d",IsMsgSignPost());
 	return (IsMsgSignPost() ? WindowFunc_DrawSignFrame : WindowFunc_DrawDialogueFrame);
 
 }

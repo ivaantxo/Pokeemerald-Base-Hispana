@@ -82,6 +82,7 @@ static void UpdateLetsGoEvolutionTracker(void);
 static bool8 UpdatePoisonStepCounter(void);
 #endif // OW_POISON_DAMAGE
 static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 metatileBehavior, u8 playerDirection);
+static void SetMsgSignPostAndVarFacing(u32 playerDirection);
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection);
 static u8 GetFacingSignpostType(u16 metatileBehvaior, u8 direction);
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition * position);
@@ -378,6 +379,9 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
         return NULL;
     if (bgEvent->bgUnion.script == NULL)
         return EventScript_TestSignpostMsg;
+
+	if (GetFacingSignpostType(metatileBehavior, direction) != SIGNPOST_NA)
+		SetMsgSignPostAndVarFacing(direction);
 
     switch (bgEvent->kind)
     {
@@ -1133,18 +1137,26 @@ static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
     if (MetatileBehavior_IsPlayerFacingPokeMartSign(metatileBehavior, playerDirection) == TRUE)
         return SIGNPOST_POKEMART;*/
 
+	DebugPrintf("behavior is %d",metatileBehavior);
+
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
         return SIGNPOST_SCRIPTED;
 
     return SIGNPOST_NA;
 }
 
+static void SetMsgSignPostAndVarFacing(u32 playerDirection)
+{
+	DebugPrintf("test");
+    MsgSetSignPost();
+    gSpecialVar_Facing = playerDirection;
+}
+
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection)
 {
-    gSpecialVar_Facing = playerDirection;
     ScriptContext_SetupScript(script);
     SetWalkingIntoSignVars();
-    MsgSetSignPost();
+	SetMsgSignPostAndVarFacing(playerDirection);
 }
 
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition *position)
