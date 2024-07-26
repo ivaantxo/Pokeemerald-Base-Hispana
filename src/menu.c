@@ -327,7 +327,6 @@ static void WindowFunc_DrawSignFrame(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 wi
 
 static inline void *GetWindowFunc_DialogueFrame(void)
 {
-	DebugPrintf("test %d",IsMsgSignPost());
 	return (IsMsgSignPost() ? WindowFunc_DrawSignFrame : WindowFunc_DrawDialogueFrame);
 
 }

@@ -1112,13 +1112,12 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 me
 
     switch (GetFacingSignpostType(metatileBehavior, playerDirection))
     {
-    /* leaving this commented out for examples of custom signpost types
     case SIGNPOST_POKECENTER:
-        SetUpWalkIntoSignScript(EventScript_PokecenterSign, playerDirection);
+        SetUpWalkIntoSignScript(Common_EventScript_ShowPokemonCenterSign, playerDirection);
         return TRUE;
     case SIGNPOST_POKEMART:
-        SetUpWalkIntoSignScript(EventScript_PokemartSign, playerDirection);
-        return TRUE;*/
+        SetUpWalkIntoSignScript(Common_EventScript_ShowPokemartSign, playerDirection);
+        return TRUE;
     case SIGNPOST_SCRIPTED:
         script = GetSignpostScriptAtMapPosition(position);
         if (script == NULL)
@@ -1132,12 +1131,10 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 me
 
 static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
 {
-    /*if (MetatileBehavior_IsPlayerFacingPokemonCenterSign(metatileBehavior, playerDirection) == TRUE)
+    if (MetatileBehavior_IsPokemonCenterSign(metatileBehavior) == TRUE)
         return SIGNPOST_POKECENTER;
-    if (MetatileBehavior_IsPlayerFacingPokeMartSign(metatileBehavior, playerDirection) == TRUE)
-        return SIGNPOST_POKEMART;*/
-
-	DebugPrintf("behavior is %d",metatileBehavior);
+    if (MetatileBehavior_IsPokeMartSign(metatileBehavior) == TRUE)
+        return SIGNPOST_POKEMART;
 
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
         return SIGNPOST_SCRIPTED;
@@ -1147,7 +1144,7 @@ static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
 
 static void SetMsgSignPostAndVarFacing(u32 playerDirection)
 {
-	DebugPrintf("test");
+    SetWalkingIntoSignVars();
     MsgSetSignPost();
     gSpecialVar_Facing = playerDirection;
 }
@@ -1155,7 +1152,6 @@ static void SetMsgSignPostAndVarFacing(u32 playerDirection)
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection)
 {
     ScriptContext_SetupScript(script);
-    SetWalkingIntoSignVars();
 	SetMsgSignPostAndVarFacing(playerDirection);
 }
 
