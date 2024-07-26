@@ -1416,7 +1416,7 @@ bool8 MetatileBehavior_IsSignpost(u8 mb)
 bool8 MetatileBehavior_IsPokemonCenterSign(u8 mb)
 {
 #if OW_AUTO_SIGNPOST == TRUE
-    return (mb == MB_SIGNPOST_POKECENTER);
+    return (mb == MB_POKEMON_CENTER_SIGN);
 #else
 	return FALSE;
 #endif
@@ -1425,7 +1425,7 @@ bool8 MetatileBehavior_IsPokemonCenterSign(u8 mb)
 bool8 MetatileBehavior_IsPokeMartSign(u8 mb)
 {
 #if OW_AUTO_SIGNPOST == TRUE
-    return (mb == MB_SIGNPOST_POKEMART);
+    return (mb == MB_POKEMART_SIGN);
 #else
 	return FALSE;
 #endif
