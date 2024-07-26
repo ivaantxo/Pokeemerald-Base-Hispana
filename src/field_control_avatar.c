@@ -1099,8 +1099,6 @@ int SetCableClubWarp(void)
     return 0;
 }
 
-// auto read signposts
-// signposts
 static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 metatileBehavior, u8 playerDirection)
 {
     const u8 *script;
