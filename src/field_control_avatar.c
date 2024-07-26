@@ -35,6 +35,7 @@
 #include "constants/event_objects.h"
 #include "constants/field_poison.h"
 #include "constants/map_types.h"
+#include "constants/metatile_behaviors.h"
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 
@@ -43,12 +44,7 @@ static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
 
 u8 gSelectedObjectEvent;
 
-#define SIGNPOST_POKECENTER     0
-#define SIGNPOST_POKEMART       1
-#define SIGNPOST_INDIGO_1       2
-#define SIGNPOST_INDIGO_2       3
-#define SIGNPOST_SCRIPTED       240
-#define SIGNPOST_NA             255
+#define SIGNPOST_NA             0
 
 static void GetPlayerPosition(struct MapPosition *);
 static void GetInFrontOfPlayerPosition(struct MapPosition *);
@@ -1110,13 +1106,13 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 me
 
     switch (GetFacingSignpostType(metatileBehavior, playerDirection))
     {
-    case SIGNPOST_POKECENTER:
+    case MB_POKEMON_CENTER_SIGN:
         SetUpWalkIntoSignScript(Common_EventScript_ShowPokemonCenterSign, playerDirection);
         return TRUE;
-    case SIGNPOST_POKEMART:
+    case MB_POKEMART_SIGN:
         SetUpWalkIntoSignScript(Common_EventScript_ShowPokemartSign, playerDirection);
         return TRUE;
-    case SIGNPOST_SCRIPTED:
+    case MB_SIGNPOST:
         script = GetSignpostScriptAtMapPosition(position);
         if (script == NULL)
             return FALSE;
@@ -1130,12 +1126,12 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 me
 static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
 {
     if (MetatileBehavior_IsPokemonCenterSign(metatileBehavior) == TRUE)
-        return SIGNPOST_POKECENTER;
+        return MB_POKEMON_CENTER_SIGN;
     if (MetatileBehavior_IsPokeMartSign(metatileBehavior) == TRUE)
-        return SIGNPOST_POKEMART;
+        return MB_POKEMART_SIGN;
 
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
-        return SIGNPOST_SCRIPTED;
+        return MB_SIGNPOST;
 
     return SIGNPOST_NA;
 }

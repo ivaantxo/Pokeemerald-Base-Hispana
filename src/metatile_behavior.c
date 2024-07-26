@@ -1404,7 +1404,7 @@ bool8 MetatileBehavior_IsTrainerHillTimer(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsSignpost(u8 mb)
+bool32 MetatileBehavior_IsSignpost(u32 mb)
 {
 #if OW_AUTO_SIGNPOST == TRUE
     return (mb == MB_SIGNPOST);
@@ -1413,7 +1413,7 @@ bool8 MetatileBehavior_IsSignpost(u8 mb)
 #endif
 }
 
-bool8 MetatileBehavior_IsPokemonCenterSign(u8 mb)
+bool32 MetatileBehavior_IsPokemonCenterSign(u32 mb)
 {
 #if OW_AUTO_SIGNPOST == TRUE
     return (mb == MB_POKEMON_CENTER_SIGN);
@@ -1422,7 +1422,7 @@ bool8 MetatileBehavior_IsPokemonCenterSign(u8 mb)
 #endif
 }
 
-bool8 MetatileBehavior_IsPokeMartSign(u8 mb)
+bool32 MetatileBehavior_IsPokeMartSign(u32 mb)
 {
 #if OW_AUTO_SIGNPOST == TRUE
     return (mb == MB_POKEMART_SIGN);
