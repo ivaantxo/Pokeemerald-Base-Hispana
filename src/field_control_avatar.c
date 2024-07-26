@@ -44,7 +44,7 @@ static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
 
 u8 gSelectedObjectEvent;
 
-#define SIGNPOST_NA             0
+#define NOT_SIGNPOST             0
 
 static void GetPlayerPosition(struct MapPosition *);
 static void GetInFrontOfPlayerPosition(struct MapPosition *);
@@ -77,10 +77,10 @@ static void UpdateLetsGoEvolutionTracker(void);
 #if OW_POISON_DAMAGE < GEN_5
 static bool8 UpdatePoisonStepCounter(void);
 #endif // OW_POISON_DAMAGE
-static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 metatileBehavior, u8 playerDirection);
+static bool32 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u32 metatileBehavior, u32 playerDirection);
 static void SetMsgSignPostAndVarFacing(u32 playerDirection);
-static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection);
-static u8 GetFacingSignpostType(u16 metatileBehvaior, u8 direction);
+static void SetUpWalkIntoSignScript(const u8 *script, u32 playerDirection);
+static u32 GetFacingSignpostType(u16 metatileBehvaior, u32 direction);
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition * position);
 
 void FieldClearPlayerInput(struct FieldInput *input)
@@ -183,18 +183,18 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             return TRUE;
     }
 
-    if (input->checkStandardWildEncounter)
-    {
-        if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
-        {
-            GetInFrontOfPlayerPosition(&position);
-            metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-            if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
-                return TRUE;
-            GetPlayerPosition(&position);
-            metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-        }
-    }
+	if (input->checkStandardWildEncounter)
+	{
+		if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
+		{
+			GetInFrontOfPlayerPosition(&position);
+			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+			if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
+				return TRUE;
+			GetPlayerPosition(&position);
+			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+		}
+	}
 
     if (input->checkStandardWildEncounter && CheckStandardWildEncounter(metatileBehavior) == TRUE)
         return TRUE;
@@ -376,7 +376,7 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
     if (bgEvent->bgUnion.script == NULL)
         return EventScript_TestSignpostMsg;
 
-	if (GetFacingSignpostType(metatileBehavior, direction) != SIGNPOST_NA)
+	if (GetFacingSignpostType(metatileBehavior, direction) != NOT_SIGNPOST)
 		SetMsgSignPostAndVarFacing(direction);
 
     switch (bgEvent->kind)
@@ -1095,7 +1095,7 @@ int SetCableClubWarp(void)
     return 0;
 }
 
-static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 metatileBehavior, u8 playerDirection)
+static bool32 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u32 metatileBehavior, u32 playerDirection)
 {
     const u8 *script;
 
@@ -1123,7 +1123,7 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u16 me
     }
 }
 
-static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
+static u32 GetFacingSignpostType(u16 metatileBehavior, u32 playerDirection)
 {
     if (MetatileBehavior_IsPokemonCenterSign(metatileBehavior) == TRUE)
         return MB_POKEMON_CENTER_SIGN;
@@ -1133,7 +1133,7 @@ static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
         return MB_SIGNPOST;
 
-    return SIGNPOST_NA;
+    return NOT_SIGNPOST;
 }
 
 static void SetMsgSignPostAndVarFacing(u32 playerDirection)
@@ -1143,7 +1143,7 @@ static void SetMsgSignPostAndVarFacing(u32 playerDirection)
     gSpecialVar_Facing = playerDirection;
 }
 
-static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection)
+static void SetUpWalkIntoSignScript(const u8 *script, u32 playerDirection)
 {
     ScriptContext_SetupScript(script);
 	SetMsgSignPostAndVarFacing(playerDirection);
@@ -1161,12 +1161,12 @@ static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition *position)
 
 static void Task_OpenStartMenu(u8 taskId)
 {
-    if (!ArePlayerFieldControlsLocked())
-    {
-        PlaySE(SE_WIN_OPEN);
-        ShowStartMenu();
-        DestroyTask(taskId);
-    }
+	if (ArePlayerFieldControlsLocked())
+		return;
+
+	PlaySE(SE_WIN_OPEN);
+	ShowStartMenu();
+	DestroyTask(taskId);
 }
 
 bool32 IsDpadPushedToTurnOrMovePlayer(struct FieldInput *input)
