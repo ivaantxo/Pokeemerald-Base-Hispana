@@ -1127,7 +1127,6 @@ static u32 GetFacingSignpostType(u16 metatileBehavior, u32 playerDirection)
         return MB_POKEMON_CENTER_SIGN;
     if (MetatileBehavior_IsPokeMartSign(metatileBehavior) == TRUE)
         return MB_POKEMART_SIGN;
-
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
         return MB_SIGNPOST;
 
