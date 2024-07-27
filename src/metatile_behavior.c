@@ -125,11 +125,9 @@ static const u8 sTileBitAttributes[NUM_METATILE_BEHAVIORS] =
     [MB_ISOLATED_HORIZONTAL_RAIL]        = TILE_FLAG_UNUSED,
     [MB_VERTICAL_RAIL]                   = TILE_FLAG_UNUSED,
     [MB_HORIZONTAL_RAIL]                 = TILE_FLAG_UNUSED,
-#if OW_AUTO_SIGNPOST == TRUE
     [MB_SIGNPOST]                        = TILE_FLAG_UNUSED,
     [MB_POKEMON_CENTER_SIGN]             = TILE_FLAG_UNUSED,
     [MB_POKEMART_SIGN]                   = TILE_FLAG_UNUSED,
-#endif
 };
 
 bool8 MetatileBehavior_IsATile(u8 metatileBehavior)
