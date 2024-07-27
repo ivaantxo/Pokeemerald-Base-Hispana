@@ -28,9 +28,6 @@ extern const u8 EventScript_FollowerFaceUp[];
 extern const u8 EventScript_FollowerFaceResult[];
 extern const u8 EnterPokeballMovement[];
 
-extern const u8 Common_Movement_FollowerSafeStart[];
-extern const u8 Common_Movement_FollowerSafeEnd[];
-
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_TryGetTrainerScript[];
 extern const u8 EventScript_StartTrainerApproach[];
@@ -646,6 +643,10 @@ extern const u8 VSSeeker_Text_BatteryNotChargedNeedXSteps[];
 extern const u8 VSSeeker_Text_NoTrainersWithinRange[];
 extern const u8 VSSeeker_Text_TrainersNotReady[];
 extern const u8 EventScript_VsSeekerChargingDone[];
+
+extern const u8 Common_Movement_FollowerSafeStart[];
+extern const u8 Common_Movement_FollowerSafeEnd[];
+
 extern const u8 EventScript_CancelMessageBox[];
 extern const u8 Common_EventScript_ShowPokemonCenterSign[];
 extern const u8 Common_EventScript_ShowPokemartSign[];
