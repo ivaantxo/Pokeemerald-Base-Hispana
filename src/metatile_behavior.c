@@ -1404,17 +1404,17 @@ bool8 MetatileBehavior_IsTrainerHillTimer(u8 metatileBehavior)
         return FALSE;
 }
 
-bool32 MetatileBehavior_IsSignpost(u32 mb)
+bool32 MetatileBehavior_IsSignpost(u32 metatileBehavior)
 {
-    return (mb == MB_SIGNPOST);
+    return (metatileBehavior == MB_SIGNPOST);
 }
 
-bool32 MetatileBehavior_IsPokemonCenterSign(u32 mb)
+bool32 MetatileBehavior_IsPokemonCenterSign(u32 metatileBehavior)
 {
-    return (mb == MB_POKEMON_CENTER_SIGN);
+    return (metatileBehavior == MB_POKEMON_CENTER_SIGN);
 }
 
-bool32 MetatileBehavior_IsPokeMartSign(u32 mb)
+bool32 MetatileBehavior_IsPokeMartSign(u32 metatileBehavior)
 {
-    return (mb == MB_POKEMART_SIGN);
+    return (metatileBehavior == MB_POKEMART_SIGN);
 }
