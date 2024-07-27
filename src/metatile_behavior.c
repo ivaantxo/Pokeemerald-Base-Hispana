@@ -1418,4 +1418,3 @@ bool32 MetatileBehavior_IsPokeMartSign(u32 mb)
 {
     return (mb == MB_POKEMART_SIGN);
 }
-
