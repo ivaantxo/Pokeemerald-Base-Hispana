@@ -1419,6 +1419,5 @@ bool32 MetatileBehavior_IsPokemonCenterSign(u32 mb)
 bool32 MetatileBehavior_IsPokeMartSign(u32 mb)
 {
     return (mb == MB_POKEMART_SIGN);
-#endif
 }
 
