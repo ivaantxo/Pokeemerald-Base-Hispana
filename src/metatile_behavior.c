@@ -1411,7 +1411,7 @@ bool32 MetatileBehavior_IsSignpost(u32 mb)
 #if OW_AUTO_SIGNPOST == TRUE
     return (mb == MB_SIGNPOST);
 #else
-	return FALSE;
+    return FALSE;
 #endif
 }
 
@@ -1420,7 +1420,7 @@ bool32 MetatileBehavior_IsPokemonCenterSign(u32 mb)
 #if OW_AUTO_SIGNPOST == TRUE
     return (mb == MB_POKEMON_CENTER_SIGN);
 #else
-	return FALSE;
+    return FALSE;
 #endif
 }
 
@@ -1429,7 +1429,7 @@ bool32 MetatileBehavior_IsPokeMartSign(u32 mb)
 #if OW_AUTO_SIGNPOST == TRUE
     return (mb == MB_POKEMART_SIGN);
 #else
-	return FALSE;
+    return FALSE;
 #endif
 }
 

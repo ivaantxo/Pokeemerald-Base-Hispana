@@ -183,18 +183,18 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             return TRUE;
     }
 
-	if (input->checkStandardWildEncounter)
-	{
-		if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
-		{
-			GetInFrontOfPlayerPosition(&position);
-			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-			if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
-				return TRUE;
-			GetPlayerPosition(&position);
-			metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-		}
-	}
+    if (input->checkStandardWildEncounter)
+    {
+        if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
+        {
+            GetInFrontOfPlayerPosition(&position);
+            metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+            if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
+                return TRUE;
+            GetPlayerPosition(&position);
+            metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+        }
+    }
 
     if (input->checkStandardWildEncounter && CheckStandardWildEncounter(metatileBehavior) == TRUE)
         return TRUE;
@@ -376,8 +376,8 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
     if (bgEvent->bgUnion.script == NULL)
         return EventScript_TestSignpostMsg;
 
-	if (GetFacingSignpostType(metatileBehavior, direction) != NOT_SIGNPOST)
-		SetMsgSignPostAndVarFacing(direction);
+    if (GetFacingSignpostType(metatileBehavior, direction) != NOT_SIGNPOST)
+        SetMsgSignPostAndVarFacing(direction);
 
     switch (bgEvent->kind)
     {
@@ -1146,7 +1146,7 @@ static void SetMsgSignPostAndVarFacing(u32 playerDirection)
 static void SetUpWalkIntoSignScript(const u8 *script, u32 playerDirection)
 {
     ScriptContext_SetupScript(script);
-	SetMsgSignPostAndVarFacing(playerDirection);
+    SetMsgSignPostAndVarFacing(playerDirection);
 }
 
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition *position)
@@ -1161,48 +1161,48 @@ static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition *position)
 
 static void Task_OpenStartMenu(u8 taskId)
 {
-	if (ArePlayerFieldControlsLocked())
-		return;
+    if (ArePlayerFieldControlsLocked())
+        return;
 
-	PlaySE(SE_WIN_OPEN);
-	ShowStartMenu();
-	DestroyTask(taskId);
+    PlaySE(SE_WIN_OPEN);
+    ShowStartMenu();
+    DestroyTask(taskId);
 }
 
 bool32 IsDpadPushedToTurnOrMovePlayer(struct FieldInput *input)
 {
-	return (input->dpadDirection != 0 && GetPlayerFacingDirection() != input->dpadDirection);
+    return (input->dpadDirection != 0 && GetPlayerFacingDirection() != input->dpadDirection);
 }
 
 void CancelSignPostMessageBox(struct FieldInput *input)
 {
-	if (!ScriptContext_IsEnabled())
-		return;
+    if (!ScriptContext_IsEnabled())
+        return;
 
-	if (gWalkAwayFromSignpostTimer)
-	{
-		gWalkAwayFromSignpostTimer--;
-		return;
-	}
+    if (gWalkAwayFromSignpostTimer)
+    {
+        gWalkAwayFromSignpostTimer--;
+        return;
+    }
 
-	if (!CanWalkAwayToCancelMsgBox())
-		return;
+    if (!CanWalkAwayToCancelMsgBox())
+        return;
 
-	if (IsDpadPushedToTurnOrMovePlayer(input))
-	{
-		ScriptContext_SetupScript(EventScript_CancelMessageBox);
-		LockPlayerFieldControls();
-		return;
-	}
+    if (IsDpadPushedToTurnOrMovePlayer(input))
+    {
+        ScriptContext_SetupScript(EventScript_CancelMessageBox);
+        LockPlayerFieldControls();
+        return;
+    }
 
-	if (!input->pressedStartButton)
-		return;
+    if (!input->pressedStartButton)
+        return;
 
-	ScriptContext_SetupScript(EventScript_CancelMessageBox);
-	LockPlayerFieldControls();
+    ScriptContext_SetupScript(EventScript_CancelMessageBox);
+    LockPlayerFieldControls();
 
-	if (FuncIsActiveTask(Task_OpenStartMenu))
-		return;
+    if (FuncIsActiveTask(Task_OpenStartMenu))
+        return;
 
-	CreateTask(Task_OpenStartMenu, 8);
+    CreateTask(Task_OpenStartMenu, 8);
 }
