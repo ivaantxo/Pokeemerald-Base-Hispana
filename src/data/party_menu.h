@@ -691,7 +691,7 @@ struct
     [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED] = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
     #ifdef BATTLE_ENGINE
-    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_CLIMB] = {gMoveNames[MOVE_ROCK_CLIMB], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_CLIMB] = {gMovesInfo[MOVE_ROCK_CLIMB].name, CursorCb_FieldMove},
     #endif
 };
 
