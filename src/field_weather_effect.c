@@ -770,7 +770,7 @@ void Snow_InitVars(void)
     gWeatherPtr->weatherGfxLoaded = FALSE;
     gWeatherPtr->targetColorMapIndex = 3;
     gWeatherPtr->colorMapStepDelay = 20;
-    gWeatherPtr->targetSnowflakeSpriteCount = 16;
+    gWeatherPtr->targetSnowflakeSpriteCount = NUM_SNOWFLAKE_SPRITES;
     gWeatherPtr->snowflakeVisibleCounter = 0;
 }
 
@@ -2434,8 +2434,7 @@ static void UpdateBubbleSprite(struct Sprite *sprite)
 
 //------------------------------------------------------------------------------
 
-// Unused function.
-static void UnusedSetCurrentAbnormalWeather(u32 weather, u32 unknown)
+static void UNUSED UnusedSetCurrentAbnormalWeather(u32 weather, u32 unknown)
 {
     sCurrentAbnormalWeather = weather;
     sUnusedWeatherRelated = unknown;
