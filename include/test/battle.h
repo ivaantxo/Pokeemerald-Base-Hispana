@@ -326,14 +326,14 @@
  * The inference process is naive, if your test contains anything that
  * modifies the speed of a battler you should specify them explicitly.
  *
- * MOVE(battler, move | moveSlot:, [megaEvolve:], [hit:], [criticalHit:], [target:], [allowed:], [WITH_RNG(tag, value])
+ * MOVE(battler, move | moveSlot:, [gimmick:], [hit:], [criticalHit:], [target:], [allowed:], [WITH_RNG(tag, value])
  * Used when the battler chooses Fight. Either the move ID or move slot
- * must be specified. megaEvolve: TRUE causes the battler to Mega Evolve
- * if able, hit: FALSE causes the move to miss, criticalHit: TRUE causes
- * the move to land a critical hit, target: is used in double battles to
- * choose the target (when necessary), and allowed: FALSE is used to
- * reject an illegal move e.g. a Disabled one. WITH_RNG allows the move
- * to specify an explicit outcome for an RNG tag.
+ * must be specified. gimmick: GIMMICK_MEGA causes the battler to Mega 
+ * Evolve if able, hit: FALSE causes the move to miss, criticalHit: TRUE
+ * causes the move to land a critical hit, target: is used in double
+ * battles to choose the target (when necessary), and allowed: FALSE is
+ * used to reject an illegal move e.g. a Disabled one. WITH_RNG allows
+ * the move to specify an explicit outcome for an RNG tag.
  *     MOVE(playerLeft, MOVE_TACKLE, target: opponentRight);
  * If the battler does not have an explicit Moves specified the moveset
  * will be populated based on the MOVEs it uses.
@@ -507,7 +507,7 @@
 // or loop.
 #define BATTLE_TEST_STACK_SIZE 1024
 #define MAX_TURNS 16
-#define MAX_QUEUED_EVENTS 25
+#define MAX_QUEUED_EVENTS 30
 #define MAX_EXPECTED_ACTIONS 10
 
 enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD, BATTLE_TEST_AI_SINGLES, BATTLE_TEST_AI_DOUBLES };
@@ -518,7 +518,6 @@ typedef void (*DoubleBattleTestFunction)(void *, const u32, struct BattlePokemon
 struct BattleTest
 {
     u8 type;
-    u16 sourceLine;
     union
     {
         SingleBattleTestFunction singles;
@@ -662,6 +661,7 @@ struct BattleTestData
     u8 gender;
     u8 nature;
     u16 forcedAbilities[NUM_BATTLE_SIDES][PARTY_SIZE];
+    u8 chosenGimmick[NUM_BATTLE_SIDES][PARTY_SIZE];
 
     u8 currentMonIndexes[MAX_BATTLERS_COUNT];
     u8 turnState;
@@ -743,10 +743,10 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gBattleTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)&(const struct BattleTest) \
         { \
             .type = _type, \
-            .sourceLine = __LINE__, \
             .function = { .singles = (SingleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
         }, \
@@ -761,10 +761,10 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gBattleTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)&(const struct BattleTest) \
         { \
             .type = _type, \
-            .sourceLine = __LINE__, \
             .function = { .doubles = (DoubleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
         }, \
@@ -941,15 +941,8 @@ struct MoveContext
     u16 explicitCriticalHit:1;
     u16 secondaryEffect:1;
     u16 explicitSecondaryEffect:1;
-    u16 megaEvolve:1;
-    u16 explicitMegaEvolve:1;
-    u16 ultraBurst:1;
-    u16 explicitUltraBurst:1;
-    // TODO: u8 zMove:1;
-    u16 dynamax:1;
-    u16 explicitDynamax:1;
-    u16 tera:1;
-    u16 explicitTera:1;
+    u16 gimmick:4;
+    u16 explicitGimmick:1;
     u16 allowed:1;
     u16 explicitAllowed:1;
     u16 notExpected:1; // Has effect only with EXPECT_MOVE
@@ -1001,6 +994,8 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 // Static const is needed to make the modern compiler put the pattern variable in the .rodata section, instead of putting it on stack(which can break the game).
 #define MESSAGE(pattern) do {static const u8 msg[] = _(pattern); QueueMessage(__LINE__, msg);} while (0)
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
+#define FREEZE_OR_FROSTBURN_STATUS(battler, isFrostbite) \
+    (B_USE_FROSTBITE ? STATUS_ICON(battler, frostbite: isFrostbite) : STATUS_ICON(battler, freeze: isFrostbite))
 
 #define SWITCH_OUT_MESSAGE(name) ONE_OF {                                         \
                                      MESSAGE(name ", that's enough! Come back!"); \
@@ -1098,7 +1093,7 @@ void ValidateFinally(u32 sourceLine);
         s32 _am = Q_4_12_TO_INT(_a * _m); \
         s32 _t = max(Q_4_12_TO_INT(abs(_m) + Q_4_12_ROUND), 1); \
         if (abs(_am-_b) > _t) \
-            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECT_MUL_EQ(%d, %q, %d) failed: %d not in [%d..%d]", gTestRunnerState.test->filename, __LINE__, _a, _m, _b, _am, _b-_t, _b+_t); \
+            Test_ExitWithResult(TEST_RESULT_FAIL, __LINE__, ":L%s:%d: EXPECT_MUL_EQ(%d, %q, %d) failed: %d not in [%d..%d]", gTestRunnerState.test->filename, __LINE__, _a, _m, _b, _am, _b-_t, _b+_t); \
     } while (0)
 
 #endif

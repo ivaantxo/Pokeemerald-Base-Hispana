@@ -1055,7 +1055,7 @@
 	.endm
 
 	@ creates a mon for a given party and slot
-	@ otherwise 
+	@ otherwise
 	.macro createmon side:req, slot:req, species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, ggMaxFactor, teraType
 	callnative ScrCmd_createmon
 	.byte \side	 @ 0 - player, 1 - opponent
@@ -2095,6 +2095,11 @@
 	special CreateEnemyEventMon
 	.endm
 
+	.macro setdynamicaifunc func:req
+	callnative ScriptSetDynamicAiFunc
+	.4byte \func
+	.endm
+
 	@ Set up a totem boost for the next battle.
 	@ 'battler' is the position of the mon you want to gain a boost. see B_POSITION_xx in include/constants/battle.h.
 	@ The rest of the arguments are the stat change values to each stat.
@@ -2295,9 +2300,24 @@
 	.byte \sourceId
 	.byte \targetId
 	.endm
-    
+
 	@ set the wild double battle flag
 	@ can be used in conjunection with createmon to set up a wild battle with 2 player mons vs. 1 enemy mon
 	.macro setwilddoubleflag
 	callnative ScriptSetDoubleBattleFlag
+	.endm
+
+	@ When OW_USE_FAKE_RTC and OW_FLAG_PAUSE_TIME is assigned, this macro will stop the flow of time.
+	.macro pausefakertc
+	callnative Script_PauseFakeRtc
+	.endm
+
+	@ When OW_USE_FAKE_RTC and OW_FLAG_PAUSE_TIME is assigned, this macro will resume the flow of time.
+	.macro resumefakertc
+	callnative Script_ResumeFakeRtc
+	.endm
+
+	@ When OW_USE_FAKE_RTC and OW_FLAG_PAUSE_TIME is assigned, this macro will resume the flow of time if paused, and stop the flow of time otherwise.
+	.macro togglefakertc
+	callnative Script_ToggleFakeRtc
 	.endm

@@ -2958,6 +2958,50 @@ const struct SpriteTemplate gWoodHammerHammerSpriteTemplate =
     .callback = AnimWoodHammerHammer,
 };
 
+const struct SpriteTemplate gIvyCudgelSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
+const struct SpriteTemplate gIvyCudgelFireSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_FIRE,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
+const struct SpriteTemplate gIvyCudgelRockSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_ROCK,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
+const struct SpriteTemplate gIvyCudgelWaterSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_WATER,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
 const struct SpriteTemplate gJudgmentGrayOutwardSpikesTemplate =
 {
     .tileTag = ANIM_TAG_GREEN_SPIKE,
@@ -6557,8 +6601,8 @@ static void ReloadBattlerSprites(u32 battler, struct Pokemon *party)
     BattleLoadMonSpriteGfx(mon, battler);
     CreateBattlerSprite(battler);
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_ALL);
-    // If battler is mega evolved / primal reversed, hide the sprite until the move animation finishes.
-    MegaIndicator_SetVisibilities(gHealthboxSpriteIds[battler], TRUE);
+    // If battler has an indicator for a gimmick, hide the sprite until the move animation finishes.
+    UpdateIndicatorVisibilityAndType(gHealthboxSpriteIds[battler], TRUE);
     
     // Try to recreate shadow sprite
     if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId < MAX_SPRITES)
