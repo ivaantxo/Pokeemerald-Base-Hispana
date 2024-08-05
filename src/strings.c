@@ -363,7 +363,6 @@ const u8 gText_CanIHelpWithAnythingElse[] = _("¿Necesitas algo más?");
 const u8 gText_ThrowInPremierBalls[] = _("Te daré también {STR_VAR_1} HONOR BALLS.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ThrowInPremierBall[] = _("Además te voy a dar una\nHonor Ball de regalo.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantBuyKeyItem[] = _("¿{STR_VAR_2}? No, lo siento.\nNo puedo comprar eso.{PAUSE_UNTIL_PRESS}");
-const u8 gText_ThrowInPremierBalls[] = _("I'll throw in {STR_VAR_1} PREMIER BALLS, too.{PAUSE_UNTIL_PRESS}");
 const u8 gText_HowManyToSell[] = _("¿{STR_VAR_2}?\n¿Cuántas unidades quieres vender?");
 const u8 gText_ICanPayVar1[] = _("Puedo pagarte {STR_VAR_1}¥.\n¿Te parece bien?");
 const u8 gText_TurnedOverVar1ForVar2[] = _("Recibiste {STR_VAR_1}¥\npor la venta.");
