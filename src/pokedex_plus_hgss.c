@@ -4881,8 +4881,10 @@ static void Task_LoadStatsScreen(u8 taskId)
             u32 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
             u32 personality = GetPokedexMonPersonality(species);
             FreeMonIconPalettes(); //Free space for new pallete
-            gTasks[taskId].data[6] = CreateMonIcon(species, SpriteCB_MonIcon, 18, 31, 4, personality); //Create pokemon sprite
+            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, personality), OBJ_PLTT_ID(4), PLTT_SIZE_4BPP);
+            gTasks[taskId].data[4] = CreateMonIcon(species, SpriteCB_MonIcon, 18, 31, 4, personality); //Create pokemon sprite
             gSprites[gTasks[taskId].data[4]].oam.priority = 0;
+            gSprites[gTasks[taskId].data[4]].oam.paletteNum = 4;
         }
         gMain.state++;
         break;

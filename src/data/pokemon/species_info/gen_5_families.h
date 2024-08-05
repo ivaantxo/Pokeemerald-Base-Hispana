@@ -11923,7 +11923,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .palette = gMonPalette_##form,                                  \
         .shinyPalette = gMonShinyPalette_##form,                        \
         .iconSprite = gMonIcon_Genesect,                                \
-        .iconPalIndex = 2,                                              \
         FOOTPRINT(Genesect)                                             \
         OVERWORLD(                                                      \
             sPicTable_Genesect,                                         \

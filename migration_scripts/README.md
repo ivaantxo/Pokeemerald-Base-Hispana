@@ -290,7 +290,6 @@ Updates egg moves to the refactored format. Only necessary if new species have b
         .palette = gMonPalette_Bulbasaur,
         .shinyPalette = gMonShinyPalette_Bulbasaur,
         .iconSprite = gMonIcon_Bulbasaur,
-        .iconPalIndex = 4,
         FOOTPRINT(Bulbasaur)
         .levelUpLearnset = sBulbasaurLevelUpLearnset,
         .teachableLearnset = sBulbasaurTeachableLearnset,

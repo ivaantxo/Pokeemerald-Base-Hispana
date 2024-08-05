@@ -3378,7 +3378,6 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .palette = gMonPalette_Unown,                                                                   \
         .shinyPalette = gMonShinyPalette_Unown,                                                         \
         .iconSprite = gMonIcon_Unown ##letter,                                                          \
-        .iconPalIndex = 0,                                                                              \
         FOOTPRINT(Unown)                                                                                \
         OVERWORLD(                                                                                       \
             sPicTable_Unown ##letter,                                                                   \

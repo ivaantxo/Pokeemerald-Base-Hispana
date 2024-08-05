@@ -9521,7 +9521,7 @@ static void PrintItemDescription(void)
 static void InitItemInfoWindow(void)
 {
     sStorage->itemInfoWindowOffset = 21;
-    LoadBgTiles(0, sItemInfoFrame_Gfx, 0x80, 0x13A);
+    LoadBgTiles(0, sItemInfoFrame_Gfx, 128, 314);
     DrawItemInfoWindow(0);
 }
 

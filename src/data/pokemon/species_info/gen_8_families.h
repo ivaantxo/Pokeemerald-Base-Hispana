@@ -4617,7 +4617,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .palette = gMonPalette_Alcremie ##sweet##cream,                                         \
         .shinyPalette = gMonShinyPalette_Alcremie ##sweet,                                      \
         .iconSprite = gMonIcon_AlcremieStrawberryVanillaCream, /*AlcremieStrawberry##cream##*/  \
-        .iconPalIndex = 1,                                                                      \
         FOOTPRINT(Alcremie)                                                                     \
         OVERWORLD(                                                                              \
             sPicTable_AlcremieStrawberry, /*Alcremie ##sweet*/                                  \

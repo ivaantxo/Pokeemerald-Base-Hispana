@@ -174,14 +174,12 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
     };
 
     spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
-
     UpdateMonIconFrame(&gSprites[spriteId]);
 
     return spriteId;
 }
 
-// Load the palette for a pokemon into paletteNum,
-// optionally overwrite `sprite`'s paletteNum
+// Carga la paleta del Pokémon en paletteNum.
 u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum) 
 {
     if (paletteNum < 16)
@@ -193,10 +191,7 @@ u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum)
     return paletteNum;
 }
 
-// Only used with mail and mystery event, which cannot really store a bit for a shiny pokemon,
-// so we just load the palette into the proper slot by species
-// Used by mail/mystery event/other systems which do not store PIDs;
-// we just pass 0 as the personality
+// Solo se usa en los sistemas que no pueden ser shiny, por eso le pasamos un 0 en personalidad.
 u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority)
 {
     return CreateMonIcon(species, callback, x, y, subpriority, 0);
