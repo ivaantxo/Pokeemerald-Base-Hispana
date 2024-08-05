@@ -512,6 +512,7 @@ struct PokemonStorageSystemData
     u8 cursorPalNums[2];
     const u32 *displayMonPalette;
     u32 displayMonPersonality;
+    bool8 displayMonIsShiny;
     u16 displayMonSpecies;
     u16 displayMonItemId;
     u16 displayUnusedVar;
@@ -4585,23 +4586,17 @@ static void CreateMovingMonIcon(void)
     sStorage->movingMonSprite->callback = SpriteCB_HeldMon;
 }
 
-// helper that also returns the species
-static const u32 *_GetMonFrontSpritePal(struct Pokemon *mon, u16 *species)
-{
-    u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    *species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
-    return GetMonSpritePalFromSpeciesAndPersonality(*species, otId, personality);
-}
-
 static void SetBoxMonDynamicPalette(u8 boxId, u8 position)
 {
-    u16 species;
-    const u32 *palette = _GetMonFrontSpritePal((struct Pokemon *)&gPokemonStoragePtr->boxes[boxId][position], &species);
+    struct Pokemon *mon = (struct Pokemon *)&gPokemonStoragePtr->boxes[boxId][position];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+    bool8 isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    const u32 *palette = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality);
+
     // Decompress species palette into swap buffer
     if (species == SPECIES_CASTFORM)
-    // needs more than 32 bytes of space; so decompress and copy
-    {
+    { // needs more than 32 bytes of space; so decompress and copy
         LZ77UnCompWram(palette, gDecompressionBuffer);
         CpuFastCopy(gDecompressionBuffer, &sPaletteSwapBuffer[PLTT_ID(position)], PLTT_SIZE_4BPP);
     }
@@ -4935,8 +4930,8 @@ static void CreatePartyMonsSprites(bool8 visible)
 
     sStorage->transferWholePlttFrames = -1; // keep transferring entire palette buffer until done with party menu
     sStorage->partySprites[0] = CreateMonIconSprite(species, personality, 104, 64, 1, 12);
-    LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[0]), (0+1)* 16 + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
-    sStorage->partySprites[0]->oam.paletteNum = 0+1;
+    LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[0]), PLTT_ID(1) + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
+    sStorage->partySprites[0]->oam.paletteNum = 1;
     count = 1;
     for (i = 1; i < PARTY_SIZE; i++)
     {
@@ -7187,6 +7182,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetMonData(mon, MON_DATA_LEVEL);
             sStorage->displayMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
+            sStorage->displayMonIsShiny = GetMonData(mon, MON_DATA_IS_SHINY);   
             sStorage->displayMonPalette = GetMonFrontSpritePal(mon);
             gender = GetMonGender(mon);
             sStorage->displayMonItemId = GetMonData(mon, MON_DATA_HELD_ITEM);
@@ -7212,6 +7208,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
+            sStorage->displayMonIsShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
             sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, isShiny, sStorage->displayMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
             sStorage->displayMonItemId = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);
