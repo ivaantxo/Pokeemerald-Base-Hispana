@@ -3082,9 +3082,9 @@ static const u8 *TryGetStatusString(u8 *src)
 
     for (i = 0; i < ARRAY_COUNT(gStatusConditionStringsTable); i++)
     {
-        if (chars1 == *(u32 *)(&gStatusConditionStringsTable[i][0][0])
-            && chars2 == *(u32 *)(&gStatusConditionStringsTable[i][0][4]))
-            return gStatusConditionStringsTable[i][1];
+        if (chars1 == *(u32 *)(&gStatusConditionStringsTable[i][0])
+            && chars2 == *(u32 *)(&gStatusConditionStringsTable[i][4]))
+            return gStatusConditionStringsTable[i];
     }
     return NULL;
 }

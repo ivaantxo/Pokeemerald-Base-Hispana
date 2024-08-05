@@ -10700,7 +10700,7 @@ static void Cmd_various(void)
         {
             gBattleMons[battler].status2 &= ~(STATUS2_INFATUATION);
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_INFATUATION;  // STRINGID_TARGETGOTOVERINFATUATION
-            StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
+            StringCopy(gBattleTextBuff1, gText_Love);
         }
         // Check taunt
         if (gDisableStructs[battler].tauntTimer != 0)
