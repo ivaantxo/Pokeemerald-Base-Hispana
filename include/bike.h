@@ -63,9 +63,6 @@ enum
     ACRO_TRANS_WHEELIE_LOWERING_MOVING,
 };
 
-// Exported RAM declarations
-extern bool8 gUnusedBikeCameraAheadPanback;
-
 // Exported ROM declarations
 void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys);
 void Bike_TryAcroBikeHistoryUpdate(u16 newKeys, u16 heldKeys);

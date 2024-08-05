@@ -280,11 +280,6 @@ struct ContestTV
     bool8 madeExcitingAppeal:1;
 };
 
-struct ContestUnused
-{
-    u8 filler[12];
-};
-
 struct ContestResources
 {
     struct Contest *contest;
@@ -295,7 +290,6 @@ struct ContestResources
     struct ContestGraphicsState *gfxState;
     struct ContestMoveAnimData *moveAnim;
     struct ContestTV *tv;
-    struct ContestUnused * unused;
     u8 *contestBgTilemaps[CONTESTANT_COUNT];
     void * boxBlinkTiles1;
     void * boxBlinkTiles2;

@@ -678,14 +678,6 @@ static const u8 *const sDescriptionStringTable[] =
     [PARTYBOX_DESC_DONT_HAVE]  = gText_DontHave,
 };
 
-static const u16 sUnusedData[] =
-{
-    0x0108, 0x0151, 0x0160, 0x015b, 0x002e, 0x005c, 0x0102, 0x0153, 0x014b, 0x00ed, 0x00f1, 0x010d, 0x003a, 0x003b, 0x003f, 0x0071,
-    0x00b6, 0x00f0, 0x00ca, 0x00db, 0x00da, 0x004c, 0x00e7, 0x0055, 0x0057, 0x0059, 0x00d8, 0x005b, 0x005e, 0x00f7, 0x0118, 0x0068,
-    0x0073, 0x015f, 0x0035, 0x00bc, 0x00c9, 0x007e, 0x013d, 0x014c, 0x0103, 0x0107, 0x0122, 0x009c, 0x00d5, 0x00a8, 0x00d3, 0x011d,
-    0x0121, 0x013b, 0x000f, 0x0013, 0x0039, 0x0046, 0x0094, 0x00f9, 0x007f, 0x0123,
-};
-
 struct
 {
     const u8 *text;
@@ -980,44 +972,10 @@ static const union AnimCmd sSmallPokeballAnim_Open[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sSmallPokeballAnim_Blank1[] =
-{
-    ANIMCMD_FRAME(8, 0),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sSmallPokeballAnim_Blank2[] =
-{
-    ANIMCMD_FRAME(12, 0),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sSmallPokeballAnim_Blank3[] =
-{
-    ANIMCMD_FRAME(16, 0),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sSmallPokeballAnim_Blank4[] =
-{
-    ANIMCMD_FRAME(20, 0),
-    ANIMCMD_END
-};
-
-// The blanks below are never used. See SpriteCB_BounceConfirmCancelButton, where they were intended to be used
 static const union AnimCmd *const sSpriteAnimTable_MenuPokeballSmall[] =
 {
     sSmallPokeballAnim_Closed,
-    sSmallPokeballAnim_Open,
-    sSmallPokeballAnim_Blank1,
-    sSmallPokeballAnim_Blank2,
-    sSmallPokeballAnim_Blank3,
-    sSmallPokeballAnim_Blank4
-};
-
-static const struct CompressedSpriteSheet sSpriteSheet_MenuPokeballSmall =
-{
-    gPartyMenuPokeballSmall_Gfx, 0x0300, TAG_POKEBALL_SMALL
+    sSmallPokeballAnim_Open
 };
 
 // Used for the pokeball sprite next to Cancel and Confirm when both are present, otherwise sSpriteTemplate_MenuPokeball is used

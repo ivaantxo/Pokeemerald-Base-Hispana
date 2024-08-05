@@ -12,8 +12,6 @@
 #include "sprite.h"
 #include "text.h"
 
-EWRAM_DATA bool8 gUnusedBikeCameraAheadPanback = FALSE;
-
 struct FieldCameraOffset
 {
     u8 xPixelOffset;
@@ -31,7 +29,6 @@ static s32 MapPosToBgTilemapOffset(struct FieldCameraOffset *, s32, s32);
 static void DrawWholeMapViewInternal(int, int, const struct MapLayout *);
 static void DrawMetatileAt(const struct MapLayout *, u16, int, int);
 static void DrawMetatile(s32, const u16 *, u16);
-static void CameraPanningCB_PanAhead(void);
 
 static struct FieldCameraOffset sFieldCameraOffset;
 static s16 sHorizontalCameraPan;
@@ -445,7 +442,7 @@ void SetCameraPanning(s16 horizontal, s16 vertical)
 
 void InstallCameraPanAheadCallback(void)
 {
-    sFieldCameraPanningCallback = CameraPanningCB_PanAhead;
+    sFieldCameraPanningCallback = InstallCameraPanAheadCallback;
     sBikeCameraPanFlag = FALSE;
     sHorizontalCameraPan = 0;
     sVerticalCameraPan = 32;
@@ -458,48 +455,4 @@ void UpdateCameraPanning(void)
     //Update sprite offset of overworld objects
     gSpriteCoordOffsetX = gTotalCameraPixelOffsetX - sHorizontalCameraPan;
     gSpriteCoordOffsetY = gTotalCameraPixelOffsetY - sVerticalCameraPan - 8;
-}
-
-static void CameraPanningCB_PanAhead(void)
-{
-    u8 var;
-
-    if (gUnusedBikeCameraAheadPanback == FALSE)
-    {
-        InstallCameraPanAheadCallback();
-    }
-    else
-    {
-        // this code is never reached
-        if (gPlayerAvatar.tileTransitionState == T_TILE_TRANSITION)
-        {
-            sBikeCameraPanFlag ^= 1;
-            if (sBikeCameraPanFlag == FALSE)
-                return;
-        }
-        else
-        {
-            sBikeCameraPanFlag = FALSE;
-        }
-
-        var = GetPlayerMovementDirection();
-        if (var == 2)
-        {
-            if (sVerticalCameraPan > -8)
-                sVerticalCameraPan -= 2;
-        }
-        else if (var == 1)
-        {
-            if (sVerticalCameraPan < 72)
-                sVerticalCameraPan += 2;
-        }
-        else if (sVerticalCameraPan < 32)
-        {
-            sVerticalCameraPan += 2;
-        }
-        else if (sVerticalCameraPan > 32)
-        {
-            sVerticalCameraPan -= 2;
-        }
-    }
 }

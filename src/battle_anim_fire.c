@@ -313,25 +313,6 @@ const union AnimCmd *const gAnims_FireBlastCross[] =
     sAnim_FireBlastCross,
 };
 
-static const union AffineAnimCmd sAffineAnim_Unused_0[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_Unused_1[] =
-{
-    AFFINEANIMCMD_FRAME(0xA0, 0xA0, 0, 0),
-    AFFINEANIMCMD_END,
-};
-
-// Unused
-static const union AffineAnimCmd *const sAffineAnims_Unused[] =
-{
-    sAffineAnim_Unused_0,
-    sAffineAnim_Unused_1,
-};
-
 const struct SpriteTemplate gFireBlastCrossSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SMALL_EMBER,

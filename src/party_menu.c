@@ -4376,7 +4376,6 @@ static void UNUSED SpriteCB_BounceConfirmCancelButton(u8 spriteId, u8 spriteId2,
 static void LoadPartyMenuPokeballGfx(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_MenuPokeball);
-    LoadCompressedSpriteSheet(&sSpriteSheet_MenuPokeballSmall);
     LoadCompressedSpritePalette(&sSpritePalette_MenuPokeball);
 }
 

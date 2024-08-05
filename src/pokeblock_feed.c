@@ -339,9 +339,6 @@ static const union AffineAnimCmd *const sAffineAnims_Mon[] =
     [AFFINE_TURN_DOWN_SLOW]   = sAffineAnim_Mon_TurnDownSlow,
     [AFFINE_TURN_DOWN_SLIGHT] = sAffineAnim_Mon_TurnDownSlight,
     [AFFINE_TURN_UP_HIGH]     = sAffineAnim_Mon_TurnUpHigh,
-    [AFFINE_UNUSED_1]         = sAffineAnim_Mon_None,
-    [AFFINE_UNUSED_2]         = sAffineAnim_Mon_None,
-    [AFFINE_UNUSED_3]         = sAffineAnim_Mon_None,
 
     // Animations for flipped mon sprites
     [AFFINE_NONE + NUM_MON_AFFINES]             = sAffineAnim_Mon_None,
@@ -351,11 +348,6 @@ static const union AffineAnimCmd *const sAffineAnims_Mon[] =
     [AFFINE_TURN_DOWN_SLOW + NUM_MON_AFFINES]   = sAffineAnim_Mon_TurnDownSlow_Flipped,
     [AFFINE_TURN_DOWN_SLIGHT + NUM_MON_AFFINES] = sAffineAnim_Mon_TurnDownSlight_Flipped,
     [AFFINE_TURN_UP_HIGH + NUM_MON_AFFINES]     = sAffineAnim_Mon_TurnUpHigh_Flipped,
-    [AFFINE_UNUSED_1 + NUM_MON_AFFINES]         = sAffineAnim_Mon_None,
-    [AFFINE_UNUSED_2 + NUM_MON_AFFINES]         = sAffineAnim_Mon_None,
-    [AFFINE_UNUSED_3 + NUM_MON_AFFINES]         = sAffineAnim_Mon_None,
-
-    sAffineAnim_Mon_None, // ? Extra for some reason
 };
 
 static const struct BgTemplate sBackgroundTemplates[] =

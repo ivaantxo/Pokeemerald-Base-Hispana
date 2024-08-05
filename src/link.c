@@ -55,10 +55,7 @@ struct LinkTestBGInfo
 static struct BlockTransfer sBlockSend;
 static struct BlockTransfer sBlockRecv[MAX_LINK_PLAYERS];
 static u32 sBlockSendDelayCounter;
-static bool32 sDummy1; // Never read
-static bool8 sDummy2; // Never assigned, read in unused function
 static u32 sPlayerDataExchangeStatus;
-static bool32 sDummy3; // Never read
 static u8 sLinkTestLastBlockSendPos;
 static u8 sLinkTestLastBlockRecvPos[MAX_LINK_PLAYERS];
 static u8 sNumVBlanksWithoutSerialIntr;
@@ -80,11 +77,8 @@ u32 gLinkFiller2;
 u16 gLinkHeldKeys;
 u16 ALIGNED(4) gRecvCmds[MAX_RFU_PLAYERS][CMD_LENGTH];
 u32 gLinkStatus;
-bool8 gLinkDummy1; // Never read
-bool8 gLinkDummy2; // Never read
 bool8 gReadyToExitStandby[MAX_LINK_PLAYERS];
 bool8 gReadyToCloseLink[MAX_LINK_PLAYERS];
-u16 gReadyCloseLinkType; // Never read
 u8 gSuppressLinkErrorMessage;
 bool8 gWirelessCommType;
 bool8 gSavedLinkPlayerCount;
@@ -105,7 +99,6 @@ u8 gLastRecvQueueCount;
 u16 gLinkSavedIme;
 
 static EWRAM_DATA u8 sLinkTestDebugValuesEnabled = 0;
-static EWRAM_DATA u8 sDummyFlag = FALSE;
 EWRAM_DATA u32 gBerryBlenderKeySendAttempts = 0;
 EWRAM_DATA u16 gBlockRecvBuffer[MAX_RFU_PLAYERS][BLOCK_BUFFER_SIZE / 2] = {};
 EWRAM_DATA u8 gBlockSendBuffer[BLOCK_BUFFER_SIZE] = {};
@@ -121,7 +114,6 @@ static EWRAM_DATA struct {
     u8 lastSendQueueCount;
     bool8 disconnected;
 } sLinkErrorBuffer = {};
-static EWRAM_DATA u16 sReadyCloseLinkAttempts = 0; // never read
 static EWRAM_DATA void *sLinkErrorBgTilemapBuffer = NULL;
 
 static void InitLocalLinkPlayer(void);
@@ -232,7 +224,6 @@ static const struct WindowTemplate sLinkErrorWindowTemplates[] = {
 };
 
 static const u8 sTextColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY };
-static const u8 sUnusedData[] = {0x00, 0xFF, 0xFE, 0xFF, 0x00};
 
 bool8 IsWirelessAdapterConnected(void)
 {
@@ -310,7 +301,6 @@ static void UNUSED LinkTestScreen(void)
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
-    sDummy3 = FALSE;
     InitLocalLinkPlayer();
     CreateTask(Task_PrintTestData, 0);
     SetMainCallback2(CB2_LinkTest);
@@ -378,10 +368,6 @@ void OpenLink(void)
         gSuppressLinkErrorMessage = FALSE;
         ResetBlockReceivedFlags();
         ResetBlockSend();
-        sDummy1 = FALSE;
-        gLinkDummy2 = FALSE;
-        gLinkDummy1 = FALSE;
-        gReadyCloseLinkType = 0;
         CreateTask(Task_TriggerHandshake, 2);
     }
     else
@@ -436,7 +422,6 @@ static void TestBlockTransfer(u8 nothing, u8 is, u8 used)
                 if (gLinkTestBlockChecksums[i] != 0x0342)
                 {
                     sLinkTestDebugValuesEnabled = FALSE;
-                    sDummyFlag = FALSE;
                 }
             }
         }
@@ -552,10 +537,7 @@ static void ProcessRecvCmds(u8 unused)
                 gLinkPartnersHeldKeys[i] = gRecvCmds[i][1];
                 break;
             case LINKCMD_DUMMY_1:
-                gLinkDummy2 = TRUE;
-                break;
             case LINKCMD_DUMMY_2:
-                gLinkDummy2 = TRUE;
                 break;
             case LINKCMD_INIT_BLOCK:
             {
@@ -605,7 +587,6 @@ static void ProcessRecvCmds(u8 unused)
                         if ((linkPlayer->version & 0xFF) == VERSION_RUBY || (linkPlayer->version & 0xFF) == VERSION_SAPPHIRE)
                         {
                             linkPlayer->progressFlagsCopy = 0;
-                            linkPlayer->neverRead = 0;
                             linkPlayer->progressFlags = 0;
                         }
                         ConvertLinkPlayerName(linkPlayer);
@@ -661,7 +642,6 @@ static void BuildSendCmd(u16 command)
             gSendCmd[1] = gMain.heldKeys;
             break;
         case LINKCMD_DUMMY_1:
-            gSendCmd[0] = LINKCMD_DUMMY_1;
             break;
         case LINKCMD_SEND_EMPTY:
             gSendCmd[0] = LINKCMD_SEND_EMPTY;
@@ -693,10 +673,8 @@ static void BuildSendCmd(u16 command)
             break;
         case LINKCMD_READY_CLOSE_LINK:
             gSendCmd[0] = LINKCMD_READY_CLOSE_LINK;
-            gSendCmd[1] = gReadyCloseLinkType;
             break;
         case LINKCMD_DUMMY_2:
-            gSendCmd[0] = LINKCMD_DUMMY_2;
             break;
         case LINKCMD_SEND_HELD_KEYS:
             if (gHeldKeyCodeToSend == 0 || gLinkTransferringData)
@@ -770,20 +748,6 @@ static int AreAnyLinkPlayersUsingVersions(u32 version1, u32 version2)
             return 1;
     }
     return -1;
-}
-
-u32 LinkDummy_Return2(void)
-{
-    return 2;
-}
-
-static bool32 UNUSED IsFullLinkGroupWithNoRS(void)
-{
-    if (GetLinkPlayerCount() != MAX_LINK_PLAYERS || AreAnyLinkPlayersUsingVersions(VERSION_RUBY, VERSION_SAPPHIRE) < 0)
-    {
-        return FALSE;
-    }
-    return TRUE;
 }
 
 bool32 Link_AnyPartnersPlayingRubyOrSapphire(void)
@@ -1376,11 +1340,6 @@ bool8 IsLinkMaster(void)
     return EXTRACT_MASTER(gLinkStatus);
 }
 
-static u8 UNUSED GetDummy2(void)
-{
-    return sDummy2;
-}
-
 void SetCloseLinkCallbackAndType(u16 type)
 {
     if (gWirelessCommType == TRUE)
@@ -1392,8 +1351,6 @@ void SetCloseLinkCallbackAndType(u16 type)
         if (gLinkCallback == NULL)
         {
             gLinkCallback = LinkCB_ReadyCloseLink;
-            gLinkDummy1 = FALSE;
-            gReadyCloseLinkType = type;
         }
     }
 }
@@ -1406,15 +1363,9 @@ void SetCloseLinkCallback(void)
     }
     else
     {
-        if (gLinkCallback != NULL)
-        {
-            sReadyCloseLinkAttempts++;
-        }
-        else
+        if (gLinkCallback == NULL)
         {
             gLinkCallback = LinkCB_ReadyCloseLink;
-            gLinkDummy1 = FALSE;
-            gReadyCloseLinkType = 0;
         }
     }
 }
@@ -1449,7 +1400,6 @@ static void LinkCB_WaitCloseLink(void)
         gLinkVSyncDisabled = TRUE;
         CloseLink();
         gLinkCallback = NULL;
-        gLinkDummy1 = TRUE;
     }
 }
 
@@ -1462,15 +1412,9 @@ void SetCloseLinkCallbackHandleJP(void)
     }
     else
     {
-        if (gLinkCallback != NULL)
-        {
-            sReadyCloseLinkAttempts++;
-        }
-        else
+        if (gLinkCallback == NULL)
         {
             gLinkCallback = LinkCB_ReadyCloseLinkWithJP;
-            gLinkDummy1 = FALSE;
-            gReadyCloseLinkType = 0;
         }
     }
 }
@@ -1511,7 +1455,6 @@ static void LinkCB_WaitCloseLinkWithJP(void)
         gLinkVSyncDisabled = TRUE;
         CloseLink();
         gLinkCallback = NULL;
-        gLinkDummy1 = TRUE;
     }
 }
 
@@ -1525,8 +1468,6 @@ void SetLinkStandbyCallback(void)
     {
         if (gLinkCallback == NULL)
             gLinkCallback = LinkCB_Standby;
-
-        gLinkDummy1 = FALSE;
     }
 }
 

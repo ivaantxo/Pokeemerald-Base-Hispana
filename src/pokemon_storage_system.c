@@ -371,23 +371,6 @@ struct StorageMenu
     int textId;
 };
 
-struct UnkUtilData
-{
-    const u8 *src;
-    u8 *dest;
-    u16 size;
-    u16 unk;
-    u16 height;
-    void (*func)(struct UnkUtilData *data);
-};
-
-struct UnkUtil
-{
-    struct UnkUtilData *data;
-    u8 numActive;
-    u8 max;
-};
-
 struct ChooseBoxMenu
 {
     struct Sprite *menuSprite;
@@ -420,8 +403,6 @@ struct PokemonStorageSystemData
     u8 screenChangeType;
     bool8 isReopening;
     u8 taskId;
-    struct UnkUtil unkUtil;
-    struct UnkUtilData unkUtilData[8];
     u16 partyMenuTilemapBuffer[0x108];
     u16 partyMenuUnused1; // Never read
     u16 partyMenuY;
@@ -881,12 +862,6 @@ static void TilemapUtil_Free(void);
 static void TilemapUtil_Update(u8);
 static void TilemapUtil_DrawPrev(u8);
 static void TilemapUtil_Draw(u8);
-
-// Unknown utility
-static void UnkUtil_Init(struct UnkUtil *, struct UnkUtilData *, u32);
-static void UnkUtil_Run(void);
-static void UnkUtil_CpuRun(struct UnkUtilData *);
-static void UnkUtil_DmaRun(struct UnkUtilData *);
 
 // Form changing
 void SetMonFormPSS(struct BoxPokemon *boxMon);
@@ -1996,7 +1971,6 @@ static void VBlankCB_PokeStorage(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
-    UnkUtil_Run();
     TransferPlttBuffer();
     SetGpuReg(REG_OFFSET_BG2HOFS, sStorage->bg2_X);
 }
@@ -2070,7 +2044,6 @@ static void ResetForPokeStorage(void)
     FreeAllSpritePalettes();
     ClearDma3Requests();
     gReservedSpriteTileCount = 0x280;
-    UnkUtil_Init(&sStorage->unkUtil, sStorage->unkUtilData, ARRAY_COUNT(sStorage->unkUtilData));
     gKeyRepeatStartDelay = 20;
     ClearScheduledBgCopiesToVram();
     TilemapUtil_Init(TILEMAPID_COUNT);
@@ -10072,98 +10045,6 @@ static void TilemapUtil_Draw(u8 id)
                                   sTilemapUtil[id].cur.width,
                                   1);
         tiles += adder;
-    }
-}
-
-
-//------------------------------------------------------------------------------
-//  SECTION: UnkUtil
-//
-//  Some data transfer utility that goes functionally unused.
-//  It gets initialized with UnkUtil_Init, and run every vblank in Pokémon
-//  Storage with UnkUtil_Run, but neither of the Add functions are ever used,
-//  so UnkUtil_Run performs no actions.
-//------------------------------------------------------------------------------
-
-
-EWRAM_DATA static struct UnkUtil *sUnkUtil = NULL;
-
-static void UnkUtil_Init(struct UnkUtil *util, struct UnkUtilData *data, u32 max)
-{
-    sUnkUtil = util;
-    util->data = data;
-    util->max = max;
-    util->numActive = 0;
-}
-
-static void UnkUtil_Run(void)
-{
-    u16 i;
-    if (sUnkUtil->numActive)
-    {
-        for (i = 0; i < sUnkUtil->numActive; i++)
-        {
-            struct UnkUtilData *data = &sUnkUtil->data[i];
-            data->func(data);
-        }
-        sUnkUtil->numActive = 0;
-    }
-}
-
-static bool8 UNUSED UnkUtil_CpuAdd(u8 *dest, u16 dLeft, u16 dTop, const u8 *src, u16 sLeft, u16 sTop, u16 width, u16 height, u16 unkArg)
-{
-    struct UnkUtilData *data;
-
-    if (sUnkUtil->numActive >= sUnkUtil->max)
-        return FALSE;
-
-    data = &sUnkUtil->data[sUnkUtil->numActive++];
-    data->size = width * 2;
-    data->dest = dest + 2 * (dTop * 32 + dLeft);
-    data->src = src + 2 * (sTop * unkArg + sLeft);
-    data->height = height;
-    data->unk = unkArg;
-    data->func = UnkUtil_CpuRun;
-    return TRUE;
-}
-
-// Functionally unused
-static void UnkUtil_CpuRun(struct UnkUtilData *data)
-{
-    u16 i;
-
-    for (i = 0; i < data->height; i++)
-    {
-        CpuCopy16(data->src, data->dest, data->size);
-        data->dest += 64;
-        data->src += data->unk * 2;
-    }
-}
-
-static bool8 UNUSED UnkUtil_DmaAdd(void *dest, u16 dLeft, u16 dTop, u16 width, u16 height)
-{
-    struct UnkUtilData *data;
-
-    if (sUnkUtil->numActive >= sUnkUtil->max)
-        return FALSE;
-
-    data = &sUnkUtil->data[sUnkUtil->numActive++];
-    data->size = width * 2;
-    data->dest = dest + (dTop * 32 + dLeft) * 2;
-    data->height = height;
-    data->func = UnkUtil_DmaRun;
-    return TRUE;
-}
-
-// Functionally unused
-static void UnkUtil_DmaRun(struct UnkUtilData *data)
-{
-    u16 i;
-
-    for (i = 0; i < data->height; i++)
-    {
-        Dma3FillLarge16_(0, data->dest, data->size);
-        data->dest += 64;
     }
 }
 

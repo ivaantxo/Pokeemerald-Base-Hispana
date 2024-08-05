@@ -100,12 +100,6 @@ enum {
 #define RET_VALUE_LEVELED_UP   11
 #define RET_GIMMICK            (1 << 7)
 
-struct UnusedControllerStruct
-{
-    u8 unk:7;
-    u8 flag:1;
-};
-
 struct HpAndStatus
 {
     u16 hp;
@@ -170,10 +164,6 @@ enum
     CONTROLLER_CHOSENMONRETURNVALUE,
     CONTROLLER_ONERETURNVALUE,
     CONTROLLER_ONERETURNVALUE_DUPLICATE,
-    CONTROLLER_CLEARUNKVAR,
-    CONTROLLER_SETUNKVAR,
-    CONTROLLER_CLEARUNKFLAG,
-    CONTROLLER_TOGGLEUNKFLAG,
     CONTROLLER_HITANIMATION,
     CONTROLLER_CANTSWITCH,
     CONTROLLER_PLAYSE,
@@ -195,7 +185,6 @@ enum
     CONTROLLER_CMDS_COUNT
 };
 
-extern struct UnusedControllerStruct gUnusedControllerStruct;
 extern void (*gBattlerControllerFuncs[MAX_BATTLERS_COUNT])(u32 battler);
 extern void (*gBattlerControllerEndFuncs[MAX_BATTLERS_COUNT])(u32 battler);
 extern u8 gBattleControllerData[MAX_BATTLERS_COUNT];
@@ -281,10 +270,6 @@ void BtlController_HandleHealthBarUpdate(u32 battler, bool32 updateHpText);
 void DoStatusIconUpdate(u32 battler);
 void BtlController_HandleStatusIconUpdate(u32 battler);
 void BtlController_HandleStatusAnimation(u32 battler);
-void BtlController_HandleClearUnkVar(u32 battler);
-void BtlController_HandleSetUnkVar(u32 battler);
-void BtlController_HandleClearUnkFlag(u32 battler);
-void BtlController_HandleToggleUnkFlag(u32 battler);
 void BtlController_HandleHitAnimation(u32 battler);
 void BtlController_HandlePlaySE(u32 battler);
 void BtlController_HandlePlayFanfareOrBGM(u32 battler);

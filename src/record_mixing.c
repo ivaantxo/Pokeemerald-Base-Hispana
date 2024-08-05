@@ -185,21 +185,6 @@ static void SetSrcLookupPointers(void)
     sBattleTowerSave_Duplicate = &gSaveBlock2Ptr->frontier.towerPlayer;
 }
 
-static void PrepareUnknownExchangePacket(struct PlayerRecordRS *dest)
-{
-    memcpy(dest->secretBases, sSecretBasesSave, sizeof(dest->secretBases));
-    memcpy(dest->tvShows, sTvShowsSave, sizeof(dest->tvShows));
-    SanitizeTVShowLocationsForRuby(dest->tvShows);
-    memcpy(dest->pokeNews, sPokeNewsSave, sizeof(dest->pokeNews));
-    memcpy(&dest->oldMan, sOldManSave, sizeof(dest->oldMan));
-    memcpy(dest->dewfordTrends, sDewfordTrendsSave, sizeof(dest->dewfordTrends));
-    GetRecordMixingDaycareMail(&dest->daycareMail);
-    EmeraldBattleTowerRecordToRuby(sBattleTowerSave, &dest->battleTowerRecord);
-
-    if (GetMultiplayerId() == 0)
-        dest->giftItem = GetRecordMixingGift();
-}
-
 static void PrepareExchangePacketForRubySapphire(struct PlayerRecordRS *dest)
 {
     memcpy(dest->secretBases, sSecretBasesSave, sizeof(dest->secretBases));
@@ -227,10 +212,7 @@ static void PrepareExchangePacket(void)
 
     if (Link_AnyPartnersPlayingRubyOrSapphire())
     {
-        if (LinkDummy_Return2() == 0)
-            PrepareUnknownExchangePacket(&sSentRecord->ruby);
-        else
-            PrepareExchangePacketForRubySapphire(&sSentRecord->ruby);
+        PrepareExchangePacketForRubySapphire(&sSentRecord->ruby);
     }
     else
     {

@@ -177,7 +177,6 @@ EWRAM_DATA u8 gSelectedTradeMonPositions[2] = {0};
 static EWRAM_DATA struct {
     u8 bg2hofs;
     u8 bg3hofs;
-    u8 filler_2[38];
     u8 partySpriteIds[2][PARTY_SIZE];
     u8 cursorSpriteId;
     u8 cursorPosition;
@@ -187,9 +186,7 @@ static EWRAM_DATA struct {
     bool8 isEgg[2][PARTY_SIZE];
     u8 hpBarLevels[2][PARTY_SIZE];
     u8 bufferPartyState;
-    u8 filler_6A[5];
     u8 callbackId;
-    u8 neverRead_70;
     u16 bottomTextTileStart;
     u8 drawSelectedMonState[2];
     u8 selectedMonIdx[2];
@@ -197,12 +194,10 @@ static EWRAM_DATA struct {
     u8 partnerSelectStatus;
     u8 playerConfirmStatus;
     u8 partnerConfirmStatus;
-    u8 filler_7C[2];
     u8 partnerCursorPosition;
     u16 linkData[20];
     u8 timer;
     u8 giftRibbons[GIFT_RIBBONS_COUNT];
-    u8 filler_B4[0x81C];
     struct {
         bool8 active;
         u16 delay;
@@ -215,27 +210,22 @@ static EWRAM_DATA struct {
     struct Pokemon tempMon; // Used as a temp variable when swapping Pokémon
     u32 timer;
     u32 monPersonalities[2];
-    u8 filler_70[2];
     u8 playerFinishStatus;
     u8 partnerFinishStatus;
     u16 linkData[10];
     u8 linkTimeoutZero1;
     u8 linkTimeoutZero2;
     u16 linkTimeoutTimer;
-    u16 neverRead_8C;
     u8 monSpriteIds[2];
     u8 connectionSpriteId1; // Multi-purpose sprite ids used during the transfer sequence
     u8 connectionSpriteId2;
     u8 cableEndSpriteId;
     u8 scheduleLinkTransfer;
     u16 state;
-    u8 filler_96[0x3C];
     u8 releasePokeballSpriteId;
     u8 bouncingPokeballSpriteId;
     u16 texX;
     u16 texY;
-    u16 neverRead_D8;
-    u16 neverRead_DA;
     u16 scrX;
     u16 scrY;
     s16 bg1vofs;
@@ -249,7 +239,6 @@ static EWRAM_DATA struct {
     u16 monSpecies[2];
     u16 cachedMapMusic;
     u8 textColors[3];
-    u8 filler_F9;
     bool8 isCableTrade;
     u8 wirelessWinLeft;
     u8 wirelessWinTop;
@@ -426,7 +415,6 @@ static void InitTradeMenu(void)
         LoadMonIconPalettes();
         sTradeMenu->bufferPartyState = 0;
         sTradeMenu->callbackId = CB_MAIN_MENU;
-        sTradeMenu->neverRead_70 = 0;
         sTradeMenu->drawSelectedMonState[TRADE_PLAYER] = 0;
         sTradeMenu->drawSelectedMonState[TRADE_PARTNER] = 0;
         sTradeMenu->playerConfirmStatus = STATUS_NONE;
@@ -1046,8 +1034,6 @@ static void Trade_Memcpy(void *dest, const void *src, u32 size)
 static bool8 BufferTradeParties(void)
 {
     u8 id = GetMultiplayerId();
-    int i;
-    struct Pokemon *mon;
 
     switch (sTradeMenu->bufferPartyState)
     {
@@ -1153,22 +1139,6 @@ static bool8 BufferTradeParties(void)
         }
         break;
     case 21:
-        for (i = 0, mon = gEnemyParty; i < PARTY_SIZE; mon++, i++)
-        {
-            u8 name[POKEMON_NAME_LENGTH + 1];
-            u16 species = GetMonData(mon, MON_DATA_SPECIES);
-
-            if (species != SPECIES_NONE)
-            {
-                if (species == SPECIES_SHEDINJA && GetMonData(mon, MON_DATA_LANGUAGE) != LANGUAGE_JAPANESE)
-                {
-                    GetMonData(mon, MON_DATA_NICKNAME, name);
-
-                    if (!StringCompareWithoutExtCtrlCodes(name, sText_ShedinjaJP))
-                        SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(SPECIES_SHEDINJA));
-                }
-            }
-        }
         return TRUE;
     // Delay until next state
     case 2:
@@ -2822,13 +2792,10 @@ void CB2_LinkTrade(void)
         TradeAnimInit_LoadGfx();
         ClearLinkTimeoutTimer();
         gMain.state++;
-        sTradeAnim->neverRead_8C = 0;
         sTradeAnim->state = 0;
         sTradeAnim->isLinkTrade = TRUE;
         sTradeAnim->texX = 64;
         sTradeAnim->texY = 64;
-        sTradeAnim->neverRead_D8 = 0;
-        sTradeAnim->neverRead_DA = 0;
         sTradeAnim->scrX = DISPLAY_WIDTH / 2;
         sTradeAnim->scrY = DISPLAY_HEIGHT / 2;
         sTradeAnim->sXY = 256;
@@ -2994,12 +2961,9 @@ static void CB2_InitInGameTrade(void)
         SetVBlankCallback(VBlankCB_TradeAnim);
         TradeAnimInit_LoadGfx();
         sTradeAnim->isLinkTrade = FALSE;
-        sTradeAnim->neverRead_8C = 0;
         sTradeAnim->state = 0;
         sTradeAnim->texX = 64;
         sTradeAnim->texY = 64;
-        sTradeAnim->neverRead_D8 = 0;
-        sTradeAnim->neverRead_DA = 0;
         sTradeAnim->scrX = DISPLAY_WIDTH / 2;
         sTradeAnim->scrY = DISPLAY_HEIGHT / 2;
         sTradeAnim->sXY = 256;

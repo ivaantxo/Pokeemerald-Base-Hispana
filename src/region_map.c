@@ -75,7 +75,6 @@ static EWRAM_DATA struct {
     u16 mapSecId;
     struct RegionMap regionMap;
     u8 tileBuffer[0x1c0];
-    u8 nameBuffer[0x26]; // never read
     bool8 choseFlyLocation;
 } *sFlyMap = NULL;
 
@@ -1693,7 +1692,6 @@ void CB2_OpenFlyMap(void)
         CreateRegionMapCursor(TAG_CURSOR, TAG_CURSOR);
         CreateRegionMapPlayerIcon(TAG_PLAYER_ICON, TAG_PLAYER_ICON);
         sFlyMap->mapSecId = sFlyMap->regionMap.mapSecId;
-        StringFill(sFlyMap->nameBuffer, CHAR_SPACE, MAP_NAME_LENGTH);
         sDrawFlyDestTextWindow = TRUE;
         DrawFlyDestTextWindow();
         gMain.state++;
