@@ -246,13 +246,7 @@
 #define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
 #define EVO_NONE                          0xFFFE // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
 
-#if MODERN
-#define U8_ENUM : u8
-#else
-#define U8_ENUM
-#endif
-
-enum EvolutionMethods U8_ENUM {
+enum EvolutionMethods {
     EVO_FRIENDSHIP,                      // Pokémon levels up with friendship ≥ 220
     EVO_FRIENDSHIP_DAY,                  // Pokémon levels up during the day with friendship ≥ 220
     EVO_FRIENDSHIP_NIGHT,                // Pokémon levels up at night with friendship ≥ 220
@@ -307,7 +301,7 @@ enum EvolutionMethods U8_ENUM {
     EVO_OVERWORLD_STEPS,                 // Pokémon levels up after having taken a specific amount of steps in the overworld
 };
 
-enum EvolutionMode U8_ENUM {
+enum EvolutionMode {
     EVO_MODE_NORMAL,
     EVO_MODE_CANT_STOP,
     EVO_MODE_TRADE,
