@@ -763,6 +763,7 @@ struct Mail
     /*0x1A*/ u8 trainerId[TRAINER_ID_LENGTH];
     /*0x1E*/ u16 species;
     /*0x20*/ u16 itemId;
+    // /*0x22*/ u16 isShiny; // TODO: struct is forcibly word-aligned, so we could use these last two bytes to store shininess
 };
 
 struct DaycareMail

@@ -87,6 +87,14 @@ void LoadCompressedPalette(const u32 *src, u16 offset, u16 size)
     CpuCopy16(gPaletteDecompressionBuffer, &gPlttBufferFaded[offset], size);
 }
 
+// Drop in replacement but uses CpuFastCopy, size must be 0 % 32
+void LoadCompressedPaletteFast(const u32 *src, u16 offset, u16 size)
+{
+    LZDecompressWram(src, gPaletteDecompressionBuffer);
+    CpuFastCopy(gPaletteDecompressionBuffer, &gPlttBufferUnfaded[offset], size);
+    CpuFastCopy(&gPlttBufferUnfaded[offset], &gPlttBufferFaded[offset], size);
+}
+
 void LoadPalette(const void *src, u16 offset, u16 size)
 {
     CpuCopy16(src, &gPlttBufferUnfaded[offset], size);

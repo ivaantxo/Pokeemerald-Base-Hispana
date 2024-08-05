@@ -49,8 +49,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .palette = gMonPalette_Rowlet,
         .shinyPalette = gMonShinyPalette_Rowlet,
-        .iconSprite = gMonIcon_Rowlet,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Rowlet, ,
         FOOTPRINT(Rowlet)
         OVERWORLD(
             sPicTable_Rowlet,
@@ -112,8 +111,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Dartrix,
         .shinyPalette = gMonShinyPalette_Dartrix,
-        .iconSprite = gMonIcon_Dartrix,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Dartrix, 
         FOOTPRINT(Dartrix)
         OVERWORLD(
             sPicTable_Dartrix,
@@ -174,8 +172,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .palette = gMonPalette_Decidueye,
         .shinyPalette = gMonShinyPalette_Decidueye,
-        .iconSprite = gMonIcon_Decidueye,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Decidueye, 
         FOOTPRINT(Decidueye)
         OVERWORLD(
             sPicTable_Decidueye,
@@ -236,8 +233,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_DecidueyeHisuian,
         .shinyPalette = gMonShinyPalette_DecidueyeHisuian,
-        .iconSprite = gMonIcon_DecidueyeHisuian,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_DecidueyeHisuian, ,
         FOOTPRINT(Decidueye)
         OVERWORLD(
             sPicTable_DecidueyeHisuian,
@@ -301,8 +297,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Litten,
         .shinyPalette = gMonShinyPalette_Litten,
-        .iconSprite = gMonIcon_Litten,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Litten, ,
         FOOTPRINT(Litten)
         OVERWORLD(
             sPicTable_Litten,
@@ -363,8 +358,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Torracat,
         .shinyPalette = gMonShinyPalette_Torracat,
-        .iconSprite = gMonIcon_Torracat,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Torracat, ,
         FOOTPRINT(Torracat)
         OVERWORLD(
             sPicTable_Torracat,
@@ -424,8 +418,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Incineroar,
         .shinyPalette = gMonShinyPalette_Incineroar,
-        .iconSprite = gMonIcon_Incineroar,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Incineroar, ,
         FOOTPRINT(Incineroar)
         OVERWORLD(
             sPicTable_Incineroar,
@@ -486,8 +479,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Popplio,
         .shinyPalette = gMonShinyPalette_Popplio,
-        .iconSprite = gMonIcon_Popplio,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Popplio, ,
         FOOTPRINT(Popplio)
         OVERWORLD(
             sPicTable_Popplio,
@@ -548,8 +540,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Brionne,
         .shinyPalette = gMonShinyPalette_Brionne,
-        .iconSprite = gMonIcon_Brionne,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Brionne, ,
         FOOTPRINT(Brionne)
         OVERWORLD(
             sPicTable_Brionne,
@@ -609,8 +600,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Primarina,
         .shinyPalette = gMonShinyPalette_Primarina,
-        .iconSprite = gMonIcon_Primarina,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Primarina, ,
         FOOTPRINT(Primarina)
         OVERWORLD(
             sPicTable_Primarina,
@@ -672,8 +662,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW,
         .palette = gMonPalette_Pikipek,
         .shinyPalette = gMonShinyPalette_Pikipek,
-        .iconSprite = gMonIcon_Pikipek,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Pikipek, 
         FOOTPRINT(Pikipek)
         OVERWORLD(
             sPicTable_Pikipek,
@@ -735,8 +724,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_H_STRETCH,
         .palette = gMonPalette_Trumbeak,
         .shinyPalette = gMonShinyPalette_Trumbeak,
-        .iconSprite = gMonIcon_Trumbeak,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Trumbeak, ,
         FOOTPRINT(Trumbeak)
         OVERWORLD(
             sPicTable_Trumbeak,
@@ -797,8 +785,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .palette = gMonPalette_Toucannon,
         .shinyPalette = gMonShinyPalette_Toucannon,
-        .iconSprite = gMonIcon_Toucannon,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Toucannon, ,
         FOOTPRINT(Toucannon)
         OVERWORLD(
             sPicTable_Toucannon,
@@ -860,8 +847,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Yungoos,
         .shinyPalette = gMonShinyPalette_Yungoos,
-        .iconSprite = gMonIcon_Yungoos,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Yungoos, 
         FOOTPRINT(Yungoos)
         OVERWORLD(
             sPicTable_Yungoos,
@@ -919,8 +905,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Gumshoos,
         .shinyPalette = gMonShinyPalette_Gumshoos,
-        .iconSprite = gMonIcon_Gumshoos,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Gumshoos, 
         FOOTPRINT(Gumshoos)
         OVERWORLD(
             sPicTable_Gumshoos,
@@ -977,8 +962,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Gumshoos,
         .shinyPalette = gMonShinyPalette_Gumshoos,
-        .iconSprite = gMonIcon_Gumshoos,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Gumshoos, 
         FOOTPRINT(Gumshoos)
         OVERWORLD(
             sPicTable_Gumshoos,
@@ -1041,8 +1025,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Grubbin,
         .shinyPalette = gMonShinyPalette_Grubbin,
-        .iconSprite = gMonIcon_Grubbin,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Grubbin, ,
         FOOTPRINT(Grubbin)
         OVERWORLD(
             sPicTable_Grubbin,
@@ -1104,8 +1087,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Charjabug,
         .shinyPalette = gMonShinyPalette_Charjabug,
-        .iconSprite = gMonIcon_Charjabug,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Charjabug, 
         FOOTPRINT(Charjabug)
         OVERWORLD(
             sPicTable_Charjabug,
@@ -1164,8 +1146,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Vikavolt,
         .shinyPalette = gMonShinyPalette_Vikavolt,
-        .iconSprite = gMonIcon_Vikavolt,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Vikavolt, ,
         FOOTPRINT(Vikavolt)
         OVERWORLD(
             sPicTable_Vikavolt,
@@ -1222,8 +1203,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Vikavolt,
         .shinyPalette = gMonShinyPalette_Vikavolt,
-        .iconSprite = gMonIcon_Vikavolt,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Vikavolt, ,
         FOOTPRINT(Vikavolt)
         OVERWORLD(
             sPicTable_Vikavolt,
@@ -1287,8 +1267,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Crabrawler,
         .shinyPalette = gMonShinyPalette_Crabrawler,
-        .iconSprite = gMonIcon_Crabrawler,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Crabrawler, 
         FOOTPRINT(Crabrawler)
         OVERWORLD(
             sPicTable_Crabrawler,
@@ -1351,8 +1330,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Crabominable,
         .shinyPalette = gMonShinyPalette_Crabominable,
-        .iconSprite = gMonIcon_Crabominable,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Crabominable, 
         FOOTPRINT(Crabominable)
         OVERWORLD(
             sPicTable_Crabominable,
@@ -1414,8 +1392,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioBaile,
         .shinyPalette = gMonShinyPalette_OricorioBaile,
-        .iconSprite = gMonIcon_OricorioBaile,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_OricorioBaile, ,
         FOOTPRINT(Oricorio)
         OVERWORLD(
             sPicTable_OricorioBaile,
@@ -1478,8 +1455,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioPomPom,
         .shinyPalette = gMonShinyPalette_OricorioPomPom,
-        .iconSprite = gMonIcon_OricorioPomPom,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_OricorioPomPom, 
         FOOTPRINT(Oricorio)
         .levelUpLearnset = sOricorioLevelUpLearnset,
         .teachableLearnset = sOricorioTeachableLearnset,
@@ -1534,8 +1510,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioPau,
         .shinyPalette = gMonShinyPalette_OricorioPau,
-        .iconSprite = gMonIcon_OricorioPau,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_OricorioPau, 
         FOOTPRINT(Oricorio)
         .levelUpLearnset = sOricorioLevelUpLearnset,
         .teachableLearnset = sOricorioTeachableLearnset,
@@ -1590,8 +1565,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioSensu,
         .shinyPalette = gMonShinyPalette_OricorioSensu,
-        .iconSprite = gMonIcon_OricorioSensu,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_OricorioSensu, ,
         FOOTPRINT(Oricorio)
         .levelUpLearnset = sOricorioLevelUpLearnset,
         .teachableLearnset = sOricorioTeachableLearnset,
@@ -1649,8 +1623,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .palette = gMonPalette_Cutiefly,
         .shinyPalette = gMonShinyPalette_Cutiefly,
-        .iconSprite = gMonIcon_Cutiefly,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Cutiefly, 
         FOOTPRINT(Cutiefly)
         OVERWORLD(
             sPicTable_Cutiefly,
@@ -1710,8 +1683,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .palette = gMonPalette_Ribombee,
         .shinyPalette = gMonShinyPalette_Ribombee,
-        .iconSprite = gMonIcon_Ribombee,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Ribombee, 
         FOOTPRINT(Ribombee)
         OVERWORLD(
             sPicTable_Ribombee,
@@ -1769,8 +1741,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .palette = gMonPalette_Ribombee,
         .shinyPalette = gMonShinyPalette_Ribombee,
-        .iconSprite = gMonIcon_Ribombee,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Ribombee, 
         FOOTPRINT(Ribombee)
         OVERWORLD(
             sPicTable_Ribombee,
@@ -1829,8 +1800,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Rockruff,
         .shinyPalette = gMonShinyPalette_Rockruff,
-        .iconSprite = gMonIcon_Rockruff,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Rockruff, 
         FOOTPRINT(Rockruff)
         OVERWORLD(
             sPicTable_Rockruff,
@@ -1889,8 +1859,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Rockruff,
         .shinyPalette = gMonShinyPalette_Rockruff,
-        .iconSprite = gMonIcon_Rockruff,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Rockruff, 
         FOOTPRINT(Rockruff)
         OVERWORLD(
             sPicTable_Rockruff,
@@ -1952,8 +1921,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         .palette = gMonPalette_LycanrocMidday,
         .shinyPalette = gMonShinyPalette_LycanrocMidday,
-        .iconSprite = gMonIcon_LycanrocMidday,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_LycanrocMidday, 
         FOOTPRINT(Lycanroc)
         OVERWORLD(
             sPicTable_LycanrocMidday,
@@ -2013,8 +1981,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .palette = gMonPalette_LycanrocMidnight,
         .shinyPalette = gMonShinyPalette_LycanrocMidnight,
-        .iconSprite = gMonIcon_LycanrocMidnight,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_LycanrocMidnight, ,
         FOOTPRINT(Lycanroc)
         OVERWORLD(
             sPicTable_LycanrocMidnight,
@@ -2074,8 +2041,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         .palette = gMonPalette_LycanrocDusk,
         .shinyPalette = gMonShinyPalette_LycanrocDusk,
-        .iconSprite = gMonIcon_LycanrocDusk,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_LycanrocDusk, ,
         FOOTPRINT(Lycanroc)
         OVERWORLD(
             sPicTable_LycanrocDusk,
@@ -2138,8 +2104,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_WishiwashiSolo,
         .shinyPalette = gMonShinyPalette_WishiwashiSolo,
-        .iconSprite = gMonIcon_WishiwashiSolo,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_WishiwashiSolo, 
         FOOTPRINT(Wishiwashi)
         OVERWORLD(
             sPicTable_WishiwashiSolo,
@@ -2201,8 +2166,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_WishiwashiSchool,
         .shinyPalette = gMonShinyPalette_WishiwashiSchool,
-        .iconSprite = gMonIcon_WishiwashiSchool,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_WishiwashiSchool, ,
         FOOTPRINT(Wishiwashi)
         .levelUpLearnset = sWishiwashiLevelUpLearnset,
         .teachableLearnset = sWishiwashiTeachableLearnset,
@@ -2259,8 +2223,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Mareanie,
         .shinyPalette = gMonShinyPalette_Mareanie,
-        .iconSprite = gMonIcon_Mareanie,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Mareanie, 
         FOOTPRINT(Mareanie)
         OVERWORLD(
             sPicTable_Mareanie,
@@ -2322,8 +2285,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Toxapex,
         .shinyPalette = gMonShinyPalette_Toxapex,
-        .iconSprite = gMonIcon_Toxapex,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Toxapex, ,
         FOOTPRINT(Toxapex)
         OVERWORLD(
             sPicTable_Toxapex,
@@ -2385,8 +2347,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Mudbray,
         .shinyPalette = gMonShinyPalette_Mudbray,
-        .iconSprite = gMonIcon_Mudbray,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Mudbray, 
         FOOTPRINT(Mudbray)
         OVERWORLD(
             sPicTable_Mudbray,
@@ -2448,8 +2409,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Mudsdale,
         .shinyPalette = gMonShinyPalette_Mudsdale,
-        .iconSprite = gMonIcon_Mudsdale,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Mudsdale, ,
         FOOTPRINT(Mudsdale)
         OVERWORLD(
             sPicTable_Mudsdale,
@@ -2511,8 +2471,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Dewpider,
         .shinyPalette = gMonShinyPalette_Dewpider,
-        .iconSprite = gMonIcon_Dewpider,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Dewpider, ,
         FOOTPRINT(Dewpider)
         OVERWORLD(
             sPicTable_Dewpider,
@@ -2571,8 +2530,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Araquanid,
         .shinyPalette = gMonShinyPalette_Araquanid,
-        .iconSprite = gMonIcon_Araquanid,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Araquanid, 
         FOOTPRINT(Araquanid)
         OVERWORLD(
             sPicTable_Araquanid,
@@ -2629,8 +2587,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Araquanid,
         .shinyPalette = gMonShinyPalette_Araquanid,
-        .iconSprite = gMonIcon_Araquanid,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Araquanid, 
         FOOTPRINT(Araquanid)
         OVERWORLD(
             sPicTable_Araquanid,
@@ -2694,8 +2651,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Fomantis,
         .shinyPalette = gMonShinyPalette_Fomantis,
-        .iconSprite = gMonIcon_Fomantis,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Fomantis, 
         FOOTPRINT(Fomantis)
         OVERWORLD(
             sPicTable_Fomantis,
@@ -2754,8 +2710,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Lurantis,
         .shinyPalette = gMonShinyPalette_Lurantis,
-        .iconSprite = gMonIcon_Lurantis,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Lurantis, 
         FOOTPRINT(Lurantis)
         OVERWORLD(
             sPicTable_Lurantis,
@@ -2812,8 +2767,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Lurantis,
         .shinyPalette = gMonShinyPalette_Lurantis,
-        .iconSprite = gMonIcon_Lurantis,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Lurantis, 
         FOOTPRINT(Lurantis)
         OVERWORLD(
             sPicTable_Lurantis,
@@ -2878,8 +2832,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Morelull,
         .shinyPalette = gMonShinyPalette_Morelull,
-        .iconSprite = gMonIcon_Morelull,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Morelull, ,
         FOOTPRINT(Morelull)
         OVERWORLD(
             sPicTable_Morelull,
@@ -2942,8 +2895,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Shiinotic,
         .shinyPalette = gMonShinyPalette_Shiinotic,
-        .iconSprite = gMonIcon_Shiinotic,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Shiinotic, 
         FOOTPRINT(Shiinotic)
         OVERWORLD(
             sPicTable_Shiinotic,
@@ -3005,8 +2957,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Salandit,
         .shinyPalette = gMonShinyPalette_Salandit,
-        .iconSprite = gMonIcon_Salandit,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Salandit, 
         FOOTPRINT(Salandit)
         OVERWORLD(
             sPicTable_Salandit,
@@ -3065,8 +3016,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Salazzle,
         .shinyPalette = gMonShinyPalette_Salazzle,
-        .iconSprite = gMonIcon_Salazzle,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Salazzle, ,
         FOOTPRINT(Salazzle)
         OVERWORLD(
             sPicTable_Salazzle,
@@ -3123,8 +3073,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Salazzle,
         .shinyPalette = gMonShinyPalette_Salazzle,
-        .iconSprite = gMonIcon_Salazzle,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Salazzle, ,
         FOOTPRINT(Salazzle)
         OVERWORLD(
             sPicTable_Salazzle,
@@ -3187,8 +3136,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Stufful,
         .shinyPalette = gMonShinyPalette_Stufful,
-        .iconSprite = gMonIcon_Stufful,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Stufful, ,
         FOOTPRINT(Stufful)
         OVERWORLD(
             sPicTable_Stufful,
@@ -3249,8 +3197,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Bewear,
         .shinyPalette = gMonShinyPalette_Bewear,
-        .iconSprite = gMonIcon_Bewear,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Bewear, ,
         FOOTPRINT(Bewear)
         OVERWORLD(
             sPicTable_Bewear,
@@ -3312,8 +3259,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Bounsweet,
         .shinyPalette = gMonShinyPalette_Bounsweet,
-        .iconSprite = gMonIcon_Bounsweet,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Bounsweet, 
         FOOTPRINT(Bounsweet)
         OVERWORLD(
             sPicTable_Bounsweet,
@@ -3376,8 +3322,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Steenee,
         .shinyPalette = gMonShinyPalette_Steenee,
-        .iconSprite = gMonIcon_Steenee,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Steenee, 
         FOOTPRINT(Steenee)
         OVERWORLD(
             sPicTable_Steenee,
@@ -3439,8 +3384,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Tsareena,
         .shinyPalette = gMonShinyPalette_Tsareena,
-        .iconSprite = gMonIcon_Tsareena,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Tsareena, 
         FOOTPRINT(Tsareena)
         OVERWORLD(
             sPicTable_Tsareena,
@@ -3504,8 +3448,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Comfey,
         .shinyPalette = gMonShinyPalette_Comfey,
-        .iconSprite = gMonIcon_Comfey,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Comfey, 
         FOOTPRINT(Comfey)
         OVERWORLD(
             sPicTable_Comfey,
@@ -3567,8 +3510,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_H_SLIDE,
         .palette = gMonPalette_Oranguru,
         .shinyPalette = gMonShinyPalette_Oranguru,
-        .iconSprite = gMonIcon_Oranguru,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Oranguru, ,
         FOOTPRINT(Oranguru)
         OVERWORLD(
             sPicTable_Oranguru,
@@ -3630,8 +3572,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_H_SHAKE,
         .palette = gMonPalette_Passimian,
         .shinyPalette = gMonShinyPalette_Passimian,
-        .iconSprite = gMonIcon_Passimian,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Passimian, 
         FOOTPRINT(Passimian)
         OVERWORLD(
             sPicTable_Passimian,
@@ -3693,8 +3634,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Wimpod,
         .shinyPalette = gMonShinyPalette_Wimpod,
-        .iconSprite = gMonIcon_Wimpod,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Wimpod, 
         FOOTPRINT(Wimpod)
         OVERWORLD(
             sPicTable_Wimpod,
@@ -3755,8 +3695,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Golisopod,
         .shinyPalette = gMonShinyPalette_Golisopod,
-        .iconSprite = gMonIcon_Golisopod,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Golisopod, 
         FOOTPRINT(Golisopod)
         OVERWORLD(
             sPicTable_Golisopod,
@@ -3818,8 +3757,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Sandygast,
         .shinyPalette = gMonShinyPalette_Sandygast,
-        .iconSprite = gMonIcon_Sandygast,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Sandygast, 
         FOOTPRINT(Sandygast)
         OVERWORLD(
             sPicTable_Sandygast,
@@ -3881,8 +3819,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Palossand,
         .shinyPalette = gMonShinyPalette_Palossand,
-        .iconSprite = gMonIcon_Palossand,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Palossand, 
         FOOTPRINT(Palossand)
         OVERWORLD(
             sPicTable_Palossand,
@@ -3943,8 +3880,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Pyukumuku,
         .shinyPalette = gMonShinyPalette_Pyukumuku,
-        .iconSprite = gMonIcon_Pyukumuku,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Pyukumuku, ,
         FOOTPRINT(Pyukumuku)
         OVERWORLD(
             sPicTable_Pyukumuku,
@@ -4006,8 +3942,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_TypeNull,
         .shinyPalette = gMonShinyPalette_TypeNull,
-        .iconSprite = gMonIcon_TypeNull,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_TypeNull, ,
         FOOTPRINT(Type_Null)
         OVERWORLD(
             sPicTable_TypeNull,
@@ -4067,8 +4002,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/                                   \
         .palette = gMonPalette_Silvally##_palette,                          \
         .shinyPalette = gMonShinyPalette_Silvally##_palette,                \
-        .iconSprite = gMonIcon_Silvally,                                    \
-        .iconPalIndex = 0,                                                  \
+        .iconSprite = gMonIcon_Silvally,                                    \ ,                                                  \
         FOOTPRINT(Silvally)                                                 \
         OVERWORLD(                                                          \
             sPicTable_Silvally,                                             \
@@ -4156,8 +4090,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/                   \
         .palette = gMonPalette_MiniorMeteor,                \
         .shinyPalette = gMonShinyPalette_MiniorMeteor,      \
-        .iconSprite = gMonIcon_MiniorMeteor,                \
-        .iconPalIndex = 0,                                  \
+        .iconSprite = gMonIcon_MiniorMeteor,                \ ,                                  \
         OVERWORLD(                                          \
             sPicTable_MiniorMeteor,                         \
             SIZE_32x32,                                     \
@@ -4170,7 +4103,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         MINIOR_MISC_INFO(BODY_COLOR_BROWN),                 \
     }
 
-#define MINIOR_CORE_SPECIES_INFO(Form, color, iconPal)          \
+#define MINIOR_CORE_SPECIES_INFO(Form, color)                   \
     {                                                           \
         .baseHP        = 60,                                    \
         .baseAttack    = 100,                                   \
@@ -4193,7 +4126,6 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .palette = gMonPalette_MiniorCore##Form,                \
         .shinyPalette = gMonShinyPalette_MiniorCore,            \
         .iconSprite = gMonIcon_MiniorCore##Form,                \
-        .iconPalIndex = iconPal,                                \
         .formChangeTable = sMinior ##Form##FormChangeTable,     \
         MINIOR_MISC_INFO(color),                                \
     }
@@ -4205,13 +4137,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO(Blue),
     [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO(Indigo),
     [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO(Violet),
-    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED,    0),
-    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED,    0),
-    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW, 0),
-    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN,  1),
-    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE,   0),
-    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE,   0),
-    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE, 2),
+    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED),
+    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED),
+    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW),
+    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN),
+    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE),
+    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE),
+    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE),
 #endif //P_FAMILY_MINIOR
 
 #if P_FAMILY_KOMALA
@@ -4260,8 +4192,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Komala,
         .shinyPalette = gMonShinyPalette_Komala,
-        .iconSprite = gMonIcon_Komala,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Komala, 
         FOOTPRINT(Komala)
         OVERWORLD(
             sPicTable_Komala,
@@ -4324,8 +4255,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Turtonator,
         .shinyPalette = gMonShinyPalette_Turtonator,
-        .iconSprite = gMonIcon_Turtonator,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Turtonator, ,
         FOOTPRINT(Turtonator)
         OVERWORLD(
             sPicTable_Turtonator,
@@ -4384,8 +4314,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_Togedemaru,
         .shinyPalette = gMonShinyPalette_Togedemaru,
-        .iconSprite = gMonIcon_Togedemaru,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Togedemaru, 
         FOOTPRINT(Togedemaru)
         OVERWORLD(
             sPicTable_Togedemaru,
@@ -4443,8 +4372,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_Togedemaru,
         .shinyPalette = gMonShinyPalette_Togedemaru,
-        .iconSprite = gMonIcon_Togedemaru,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Togedemaru, 
         FOOTPRINT(Togedemaru)
         OVERWORLD(
             sPicTable_Togedemaru,
@@ -4505,8 +4433,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_MimikyuDisguised,
         .shinyPalette = gMonShinyPalette_MimikyuDisguised,
-        .iconSprite = gMonIcon_MimikyuDisguised,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_MimikyuDisguised, 
         FOOTPRINT(Mimikyu)
         OVERWORLD(
             sPicTable_MimikyuDisguised,
@@ -4565,8 +4492,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_MimikyuBusted,
         .shinyPalette = gMonShinyPalette_MimikyuBusted,
-        .iconSprite = gMonIcon_MimikyuBusted,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_MimikyuBusted, 
         FOOTPRINT(Mimikyu)
         .levelUpLearnset = sMimikyuLevelUpLearnset,
         .teachableLearnset = sMimikyuTeachableLearnset,
@@ -4617,8 +4543,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_MimikyuDisguised,
         .shinyPalette = gMonShinyPalette_MimikyuDisguised,
-        .iconSprite = gMonIcon_MimikyuDisguised,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_MimikyuDisguised, 
         FOOTPRINT(Mimikyu)
         .isTotem = TRUE,
         .levelUpLearnset = sMimikyuLevelUpLearnset,
@@ -4670,8 +4595,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_MimikyuBusted,
         .shinyPalette = gMonShinyPalette_MimikyuBusted,
-        .iconSprite = gMonIcon_MimikyuBusted,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_MimikyuBusted, 
         FOOTPRINT(Mimikyu)
         .isTotem = TRUE,
         .levelUpLearnset = sMimikyuLevelUpLearnset,
@@ -4729,8 +4653,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Bruxish,
         .shinyPalette = gMonShinyPalette_Bruxish,
-        .iconSprite = gMonIcon_Bruxish,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Bruxish, ,
         FOOTPRINT(Bruxish)
         OVERWORLD(
             sPicTable_Bruxish,
@@ -4793,8 +4716,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_H_SLIDE,
         .palette = gMonPalette_Drampa,
         .shinyPalette = gMonShinyPalette_Drampa,
-        .iconSprite = gMonIcon_Drampa,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Drampa, ,
         FOOTPRINT(Drampa)
         OVERWORLD(
             sPicTable_Drampa,
@@ -4858,8 +4780,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Dhelmise,
         .shinyPalette = gMonShinyPalette_Dhelmise,
-        .iconSprite = gMonIcon_Dhelmise,
-        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_Dhelmise, 
         FOOTPRINT(Dhelmise)
         OVERWORLD(
             sPicTable_Dhelmise,
@@ -4921,8 +4842,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_JangmoO,
         .shinyPalette = gMonShinyPalette_JangmoO,
-        .iconSprite = gMonIcon_JangmoO,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_JangmoO, 
         FOOTPRINT(JangmoO)
         OVERWORLD(
             sPicTable_JangmoO,
@@ -4984,8 +4904,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_H_STRETCH,
         .palette = gMonPalette_HakamoO,
         .shinyPalette = gMonShinyPalette_HakamoO,
-        .iconSprite = gMonIcon_HakamoO,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_HakamoO, 
         FOOTPRINT(HakamoO)
         OVERWORLD(
             sPicTable_HakamoO,
@@ -5043,8 +4962,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .palette = gMonPalette_KommoO,
         .shinyPalette = gMonShinyPalette_KommoO,
-        .iconSprite = gMonIcon_KommoO,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_KommoO, 
         FOOTPRINT(KommoO)
         OVERWORLD(
             sPicTable_KommoO,
@@ -5101,8 +5019,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .palette = gMonPalette_KommoO,
         .shinyPalette = gMonShinyPalette_KommoO,
-        .iconSprite = gMonIcon_KommoO,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_KommoO, 
         FOOTPRINT(KommoO)
         OVERWORLD(
             sPicTable_KommoO,
@@ -5166,8 +5083,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_TapuKoko,
         .shinyPalette = gMonShinyPalette_TapuKoko,
-        .iconSprite = gMonIcon_TapuKoko,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_TapuKoko, ,
         FOOTPRINT(TapuKoko)
         OVERWORLD(
             sPicTable_TapuKoko,
@@ -5230,8 +5146,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_TapuLele,
         .shinyPalette = gMonShinyPalette_TapuLele,
-        .iconSprite = gMonIcon_TapuLele,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_TapuLele, ,
         FOOTPRINT(TapuLele)
         OVERWORLD(
             sPicTable_TapuLele,
@@ -5294,8 +5209,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_TapuBulu,
         .shinyPalette = gMonShinyPalette_TapuBulu,
-        .iconSprite = gMonIcon_TapuBulu,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_TapuBulu, 
         FOOTPRINT(TapuBulu)
         OVERWORLD(
             sPicTable_TapuBulu,
@@ -5359,8 +5273,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_TapuFini,
         .shinyPalette = gMonShinyPalette_TapuFini,
-        .iconSprite = gMonIcon_TapuFini,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_TapuFini, ,
         FOOTPRINT(TapuFini)
         OVERWORLD(
             sPicTable_TapuFini,
@@ -5423,8 +5336,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Cosmog,
         .shinyPalette = gMonShinyPalette_Cosmog,
-        .iconSprite = gMonIcon_Cosmog,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Cosmog, 
         FOOTPRINT(Cosmog)
         OVERWORLD(
             sPicTable_Cosmog,
@@ -5489,8 +5401,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Cosmoem,
         .shinyPalette = gMonShinyPalette_Cosmoem,
-        .iconSprite = gMonIcon_Cosmoem,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Cosmoem, ,
         FOOTPRINT(Cosmoem)
         OVERWORLD(
             sPicTable_Cosmoem,
@@ -5554,8 +5465,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Solgaleo,
         .shinyPalette = gMonShinyPalette_Solgaleo,
-        .iconSprite = gMonIcon_Solgaleo,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Solgaleo, ,
         FOOTPRINT(Solgaleo)
         OVERWORLD(
             sPicTable_Solgaleo,
@@ -5617,8 +5527,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Lunala,
         .shinyPalette = gMonShinyPalette_Lunala,
-        .iconSprite = gMonIcon_Lunala,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Lunala, 
         FOOTPRINT(Lunala)
         OVERWORLD(
             sPicTable_Lunala,
@@ -5682,8 +5591,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Nihilego,
         .shinyPalette = gMonShinyPalette_Nihilego,
-        .iconSprite = gMonIcon_Nihilego,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Nihilego, ,
         FOOTPRINT(Nihilego)
         OVERWORLD(
             sPicTable_Nihilego,
@@ -5746,8 +5654,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Buzzwole,
         .shinyPalette = gMonShinyPalette_Buzzwole,
-        .iconSprite = gMonIcon_Buzzwole,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Buzzwole, ,
         FOOTPRINT(Buzzwole)
         OVERWORLD(
             sPicTable_Buzzwole,
@@ -5809,8 +5716,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Pheromosa,
         .shinyPalette = gMonShinyPalette_Pheromosa,
-        .iconSprite = gMonIcon_Pheromosa,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Pheromosa, 
         FOOTPRINT(Pheromosa)
         OVERWORLD(
             sPicTable_Pheromosa,
@@ -5872,8 +5778,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Xurkitree,
         .shinyPalette = gMonShinyPalette_Xurkitree,
-        .iconSprite = gMonIcon_Xurkitree,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Xurkitree, ,
         FOOTPRINT(Xurkitree)
         OVERWORLD(
             sPicTable_Xurkitree,
@@ -5937,8 +5842,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Celesteela,
         .shinyPalette = gMonShinyPalette_Celesteela,
-        .iconSprite = gMonIcon_Celesteela,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Celesteela, ,
         FOOTPRINT(Celesteela)
         OVERWORLD(
             sPicTable_Celesteela,
@@ -6001,8 +5905,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Kartana,
         .shinyPalette = gMonShinyPalette_Kartana,
-        .iconSprite = gMonIcon_Kartana,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Kartana, ,
         FOOTPRINT(Kartana)
         OVERWORLD(
             sPicTable_Kartana,
@@ -6064,8 +5967,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Guzzlord,
         .shinyPalette = gMonShinyPalette_Guzzlord,
-        .iconSprite = gMonIcon_Guzzlord,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Guzzlord, ,
         FOOTPRINT(Guzzlord)
         OVERWORLD(
             sPicTable_Guzzlord,
@@ -6130,8 +6032,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Necrozma,
         .shinyPalette = gMonShinyPalette_Necrozma,
-        .iconSprite = gMonIcon_Necrozma,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Necrozma, ,
         FOOTPRINT(Necrozma)
         OVERWORLD(
             sPicTable_Necrozma,
@@ -6195,8 +6096,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_NecrozmaDuskMane,
         .shinyPalette = gMonShinyPalette_NecrozmaDuskMane,
-        .iconSprite = gMonIcon_NecrozmaDuskMane,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_NecrozmaDuskMane, ,
         FOOTPRINT(Necrozma)
         OVERWORLD(
             sPicTable_NecrozmaDuskMane,
@@ -6262,8 +6162,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_NecrozmaDawnWings,
         .shinyPalette = gMonShinyPalette_NecrozmaDawnWings,
-        .iconSprite = gMonIcon_NecrozmaDawnWings,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_NecrozmaDawnWings, ,
         FOOTPRINT(Necrozma)
         OVERWORLD(
             sPicTable_NecrozmaDawnWings,
@@ -6332,8 +6231,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_NecrozmaUltra,
         .shinyPalette = gMonShinyPalette_NecrozmaUltra,
-        .iconSprite = gMonIcon_NecrozmaUltra,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_NecrozmaUltra, 
         FOOTPRINT(Necrozma)
         .isLegendary = TRUE,
         .isUltraBurst = TRUE,
@@ -6393,8 +6291,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/
         .palette = gMonPalette_Magearna,
         .shinyPalette = gMonShinyPalette_Magearna,
-        .iconSprite = gMonIcon_Magearna,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Magearna, ,
         FOOTPRINT(Magearna)
         OVERWORLD(
             sPicTable_Magearna,
@@ -6455,8 +6352,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/
         .palette = gMonPalette_MagearnaOriginalColor,
         .shinyPalette = gMonShinyPalette_MagearnaOriginalColor,
-        .iconSprite = gMonIcon_MagearnaOriginalColor,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_MagearnaOriginalColor, ,
         FOOTPRINT(Magearna)
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
@@ -6514,8 +6410,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Marshadow,
         .shinyPalette = gMonShinyPalette_Marshadow,
-        .iconSprite = gMonIcon_Marshadow,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Marshadow, ,
         FOOTPRINT(Marshadow)
         OVERWORLD(
             sPicTable_Marshadow,
@@ -6578,8 +6473,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Poipole,
         .shinyPalette = gMonShinyPalette_Poipole,
-        .iconSprite = gMonIcon_Poipole,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Poipole, ,
         FOOTPRINT(Poipole)
         OVERWORLD(
             sPicTable_Poipole,
@@ -6640,8 +6534,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Naganadel,
         .shinyPalette = gMonShinyPalette_Naganadel,
-        .iconSprite = gMonIcon_Naganadel,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Naganadel, ,
         FOOTPRINT(Naganadel)
         OVERWORLD(
             sPicTable_Naganadel,
@@ -6703,8 +6596,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Stakataka,
         .shinyPalette = gMonShinyPalette_Stakataka,
-        .iconSprite = gMonIcon_Stakataka,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Stakataka, ,
         FOOTPRINT(Stakataka)
         OVERWORLD(
             sPicTable_Stakataka,
@@ -6766,8 +6658,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Blacephalon,
         .shinyPalette = gMonShinyPalette_Blacephalon,
-        .iconSprite = gMonIcon_Blacephalon,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Blacephalon, ,
         FOOTPRINT(Blacephalon)
         OVERWORLD(
             sPicTable_Blacephalon,
@@ -6828,8 +6719,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Zeraora,
         .shinyPalette = gMonShinyPalette_Zeraora,
-        .iconSprite = gMonIcon_Zeraora,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_Zeraora, ,
         FOOTPRINT(Zeraora)
         OVERWORLD(
             sPicTable_Zeraora,
@@ -6891,8 +6781,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Meltan,
         .shinyPalette = gMonShinyPalette_Meltan,
-        .iconSprite = gMonIcon_Meltan,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Meltan, 
         FOOTPRINT(Meltan)
         OVERWORLD(
             sPicTable_Meltan,
@@ -6952,8 +6841,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Melmetal,
         .shinyPalette = gMonShinyPalette_Melmetal,
-        .iconSprite = gMonIcon_Melmetal,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Melmetal, 
         FOOTPRINT(Melmetal)
         OVERWORLD(
             sPicTable_Melmetal,
@@ -7017,8 +6905,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_MelmetalGigantamax,
         .shinyPalette = gMonShinyPalette_MelmetalGigantamax,
-        .iconSprite = gMonIcon_MelmetalGigantamax,
-        .iconPalIndex = 0,
+        .iconSprite = gMonIcon_MelmetalGigantamax, ,
         FOOTPRINT(Melmetal)
         .isMythical = TRUE,
         .isGigantamax = TRUE,

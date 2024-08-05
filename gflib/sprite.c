@@ -1630,6 +1630,17 @@ u16 GetSpritePaletteTagByPaletteNum(u8 paletteNum)
     return sSpritePaletteTags[paletteNum];
 }
 
+u16 SetSpritePaletteTagByPaletteNum(u8 paletteNum, u16 tag)
+{
+    u16 oldTag = sSpritePaletteTags[paletteNum];
+    sSpritePaletteTags[paletteNum] = tag;
+    #if DEBUG
+    if (tag == TAG_NONE)
+        FillPalette(0, paletteNum * 16 + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
+    #endif
+    return oldTag;
+}
+
 void FreeSpritePaletteByTag(u16 tag)
 {
     u8 index = IndexOfSpritePaletteTag(tag);

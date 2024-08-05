@@ -419,9 +419,6 @@ struct SpeciesInfo /*0xC4*/
  /* 0x76 */ u8 backPicSize; // The dimensions of this drawn pixel area.
  /* 0x76 */ u8 backPicSizeFemale; // The dimensions of this drawn pixel area.
  /* 0x77 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
- /* 0x78 */ u8 iconPalIndex:3;
-            u8 iconPalIndexFemale:3;
-            u8 padding3:2;
  /* 0x79 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
  /* 0x7A */ u32 isLegendary:1;

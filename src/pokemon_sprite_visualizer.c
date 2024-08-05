@@ -1094,7 +1094,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             gReservedSpritePaletteCount = 8;
             ResetAllPicSprites();
             BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
-            LoadPalette(GetTextWindowPalette(0), 15*16, 0x40);
+            LoadPalette(GetTextWindowPalette(0), PLTT_ID(15), 0x40);
 
             FillBgTilemapBufferRect(0, 0, 0, 0, 32, 20, 15);
             InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
@@ -1110,7 +1110,6 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             AllocateMonSpritesGfx();
 
             LoadPalette(sBgColor, 0, 2);
-            LoadMonIconPalette(SPECIES_BULBASAUR);
 
             SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
             ShowBg(0);
@@ -1683,7 +1682,6 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     FreeMonIconPalettes();
 
     AllocateMonSpritesGfx();
-    LoadMonIconPalettePersonality(species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
 
     //Update instructions
     PrintInstructionsOnWindow(data);
