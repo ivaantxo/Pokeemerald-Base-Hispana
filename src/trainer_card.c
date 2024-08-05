@@ -1366,13 +1366,13 @@ static void LoadMonIconGfx(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        const struct CompressedSpritePalette *palette;
+        const u32 *palette;
         if (!sData->trainerCard.monSpecies[i])
             continue;
 
-        palette = GetMonSpritePalStructFromOtIdPersonality(sData->trainerCard.monSpecies[i], SHINY_ODDS, 0);
+        palette = GetMonSpritePalFromSpeciesAndPersonality(sData->trainerCard.monSpecies[i], SHINY_ODDS, 0);
 
-        LZDecompressWram(palette->data, sData->monIconPal);
+        LZDecompressWram(palette, sData->monIconPal);
 
         switch (sData->trainerCard.monIconTint)
         {

@@ -46,6 +46,7 @@
 #include "constants/contest.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/pokemon_icon.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"

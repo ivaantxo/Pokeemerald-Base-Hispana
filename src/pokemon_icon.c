@@ -160,9 +160,9 @@ u32 FindFreeIconPaletteSlot(u16 tag)
     return AllocSpritePalette(tag);
 }
 
-// Creates mon icon sprite and overwrites its paletteNum
-u8 CreateMonIconOverwritePaletteNum(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u8 paletteNum)
+u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality)
 {
+    u8 spriteId;
     struct MonIconSpriteTemplate iconTemplate =
     {
         .oam = &sMonIconOamData,
@@ -172,48 +172,25 @@ u8 CreateMonIconOverwritePaletteNum(u16 species, void (*callback)(struct Sprite 
         .callback = callback,
         .paletteTag = TAG_NONE,
     };
-    u8 spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
-    struct Sprite *sprite = &gSprites[spriteId];
 
-    UpdateMonIconFrame(sprite);
-    sprite->oam.paletteNum = paletteNum;
+    spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
+
+    UpdateMonIconFrame(&gSprites[spriteId]);
+
     return spriteId;
-}
-
-// Like CreateMonIcon, but also accepts an otId (to support shiny icons)
-u8 CreateMonIconOtId(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 otId, u32 personality)
-{
-    u32 paletteNum;
-    const u32 *palette = GetMonSpritePalFromSpeciesAndPersonality(species > NUM_SPECIES ? SPECIES_NONE : species, otId, personality);
-    u16 tag = palette->tag + POKE_ICON_SPECIES_BASE_PAL_TAG;
-
-    if ((paletteNum = IndexOfSpritePaletteTag(tag)) >= 16)
-    {
-        if ((paletteNum = FindFreeIconPaletteSlot(tag)) < 16)
-        {
-            SetSpritePaletteTagByPaletteNum(paletteNum, tag);
-            LoadCompressedPaletteFast(palette->data, PLTT_ID(paletteNum) + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
-        }
-    }
-    return CreateMonIconOverwritePaletteNum(species, callback, x, y, subpriority, personality, paletteNum);
-}
-
-// Compatible with vanilla
-u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality)
-{
-    // ^ SHINY_ODDS ensures non-shiny icon
-    CreateMonIconOtId(species, callback, x, y, subpriority, personality ^ SHINY_ODDS, personality);
 }
 
 // Load the palette for a pokemon into paletteNum,
 // optionally overwrite `sprite`'s paletteNum
-u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum)
+u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum) 
 {
-    if (paletteNum >= 16)
-        return paletteNum;
-    LoadCompressedPalette(GetMonFrontSpritePal(mon), PLTT_ID(paletteNum) + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
-    if (sprite)
+    if (paletteNum < 16)
+    {
+        LoadCompressedPalette(GetMonFrontSpritePal(mon), OBJ_PLTT_OFFSET + PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+        if (sprite)
         sprite->oam.paletteNum = paletteNum;
+    }
+    return paletteNum;
 }
 
 // Only used with mail and mystery event, which cannot really store a bit for a shiny pokemon,

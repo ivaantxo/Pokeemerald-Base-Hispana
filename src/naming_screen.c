@@ -1416,10 +1416,9 @@ static void NamingScreen_CreatePCIcon(void)
 static void NamingScreen_CreateMonIcon(void)
 {
     u8 spriteId;
-    u32 otId = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
 
     LoadMonIconPalettes();
-    spriteId = CreateMonIconOtId(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, otId, sNamingScreen->monPersonality);
+    spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality);
     gSprites[spriteId].oam.priority = 3;
 }
 
