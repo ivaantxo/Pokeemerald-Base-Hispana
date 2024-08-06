@@ -853,7 +853,7 @@ static const u8 sText_Trainer2LoseText[];
     static const u8 sText_ShedItsTail[] = _("¡{B_ATK_NAME_WITH_PREFIX} se deshizo de su cola\npara crear un señuelo!");
     static const u8 sText_PkmnTerastallizedInto[] = _("{B_ATK_NAME_WITH_PREFIX} se teracristalizó \nen el tipo {B_BUFF1}!");
     static const u8 sText_SupersweetAromaWafts[] = _("Un aroma superdulce se desprende del\njarabe que cubre a {B_ATK_NAME_WITH_PREFIX}!");
-    static const u8 sText_TidyingUpComplete[] = _(¡"Limpieza completada!");
+    static const u8 sText_TidyingUpComplete[] = _("¡Limpieza completada!");
     static const u8 sTextDot[] = _(".");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
