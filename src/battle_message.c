@@ -847,14 +847,14 @@ static const u8 sText_Trainer2LoseText[];
     static const u8 sText_SwampEnvelopedSide[] = _("Un pantano envolvió\nal equipo {B_DEF_TEAM2}.");
     static const u8 sText_TheSwampDisappeared[] = _("El pantano alrededor del equipo {B_ATK_TEAM2}\ndesapareció.");
     static const u8 sText_HospitalityRestoration[] = _("¡{B_ATK_PARTNER_NAME} se bebió todo\nel té que Sinistea preparó!");
-static const u8 sText_ElectroShotCharging[] = _("{B_ATK_NAME_WITH_PREFIX} absorbed\nelectricity!");
-static const u8 sText_ItemWasUsedUp[] = _("The {B_LAST_ITEM}\nwas used up...");
-static const u8 sText_AttackerLostItsType[] = _("{B_ATK_NAME_WITH_PREFIX} lost\nits {B_BUFF1} type!");
-static const u8 sText_ShedItsTail[] = _("{B_ATK_NAME_WITH_PREFIX} shed its tail\nto create a decoy!");
-static const u8 sText_PkmnTerastallizedInto[] = _("{B_ATK_NAME_WITH_PREFIX} terastallized\ninto the {B_BUFF1} type!");
-static const u8 sText_SupersweetAromaWafts[] = _("A supersweet aroma is wafting from\nthe syrup covering {B_ATK_NAME_WITH_PREFIX}!");
-static const u8 sText_TidyingUpComplete[] = _("Tidying up complete!");
-static const u8 sTextDot[] = _(".");
+    static const u8 sText_ElectroShotCharging[] = _("¡{B_ATK_NAME_WITH_PREFIX} absorbió\nla electricidad!");
+    static const u8 sText_ItemWasUsedUp[] = _("{B_LAST_ITEM}\nya no quedan...");
+    static const u8 sText_AttackerLostItsType[] = _("¡{B_ATK_NAME_WITH_PREFIX} perdió\nsu tipo {B_BUFF1}!");
+    static const u8 sText_ShedItsTail[] = _("¡{B_ATK_NAME_WITH_PREFIX} se deshizo de su cola\npara crear un señuelo!");
+    static const u8 sText_PkmnTerastallizedInto[] = _("{B_ATK_NAME_WITH_PREFIX} se teracristalizó \nen el tipo {B_BUFF1}!");
+    static const u8 sText_SupersweetAromaWafts[] = _("Un aroma superdulce se desprende del\njarabe que cubre a {B_ATK_NAME_WITH_PREFIX}!");
+    static const u8 sText_TidyingUpComplete[] = _(¡"Limpieza completada!");
+    static const u8 sTextDot[] = _(".");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
