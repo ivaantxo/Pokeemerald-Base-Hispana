@@ -1742,10 +1742,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 14,
         .weight = 615,
         .description = COMPOUND_STRING(
-            "Massive amounts of energy intensely\n"
-            "stimulated Ampharos's cells, apparently\n"
-            "awakening its long-sleeping dragon's\n"
-            "blood."),
+            "Una enorme cantidad de energía estimuló\n"
+            "las células de Ampharos, despertando\n"
+            "la sangre de dragón que llevaba\n"
+            "largo tiempo dormida."),
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -4368,10 +4368,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 17,
         .weight = 625,
         .description = COMPOUND_STRING(
-            "A tremendous influx of energy builds it up,\n"
-            "but when Mega Evolution ends, Heracross\n"
-            "is bothered by terrible soreness in its\n"
-            "muscles."),
+            "Un enorme flujo de energía lo fortalece,\n"
+            "pero cuando termina la Mega, Heracross\n"
+            "sufre un dolor muscular terrible."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -5321,10 +5320,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 6,
         .weight = 5,
         .description = COMPOUND_STRING(
-            "Sudden climate change wiped out this\n"
-            "ancient kind of Corsola. With its branches,\n"
-            "it absorbs others' life-force. It curses\n"
-            "those unaware that kick it by accident."),
+            "Un cambio climático acabó con esta\n"
+            "antigua especie. Con sus ramas,\n"
+            "absorbe la fuerza vital de otros.\n"
+            "Maldice a aquellos que la pisen."),
         .pokemonScale = 410,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -5940,9 +5939,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 19,
         .weight = 495,
         .description = COMPOUND_STRING(
-            "Its red claws and the tips of its tail are\n"
-            "melting from high internal temperatures\n"
-            "that are painful to Houndoom itself.\n"),
+            "Sus garras rojas y las puntas de su cola\n"
+            "se están derritiendo debido a las altas\n"
+            "temperaturas internas, que son\n"
+            "dañinas para el propio Houndoom."),
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -6760,10 +6760,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 25,
         .weight = 2550,
         .description = COMPOUND_STRING(
-            "Due to the colossal power poured into it,\n"
-            "this Pokémon's back split right open. Its\n"
-            "destructive instincts are the only thing\n"
-            "keeping it moving."),
+            "Debido al colosal poder que se le ha\n"
+            "influido, su espalda se ha\n"
+            "abierto completamente. Sus instintos\n"
+            "destructivos son lo único que lo mueve."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 345,

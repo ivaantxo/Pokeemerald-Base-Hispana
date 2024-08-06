@@ -6741,10 +6741,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 250,
         .weight = 0,
         .description = COMPOUND_STRING(
-            "In a distant land, there are\n"
-            "legends about a cyclopean giant. In fact,\n"
-            "the giant was a Melmetal that was\n"
-            "flooded with Gigantamax energy."),
+            "En una tierra lejana, existen leyendas\n"
+            "sobre un gigante ciclópeo. En realidad,\n"
+            "el gigante era un Melmetal que fue\n"
+            "inundado con energía Gigantamax."),
         .pokemonScale = 257,
         .pokemonOffset = 10,
         .trainerScale = 423,

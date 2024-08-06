@@ -210,10 +210,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 19,
         .weight = 552,
         .description = COMPOUND_STRING(
-            "Thanks to the power in its quick legs,\n"
-            "Mega Sceptile can be on its opponent in a\n"
-            "flash. It can cut off a portion of its tail\n"
-            "to fire it like a missile at an opponent."),
+            "Gracias al poder en sus patas rápidas,\n"
+            "puede llegar a su rival en un abrir\n"
+            "y cerrar de ojos. Puede cortar su cola\n"
+            "para tirarla como un misil hacia el rival."),
         .pokemonScale = 256,
         .pokemonOffset = -1,
         .trainerScale = 275,
@@ -459,10 +459,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 19,
         .weight = 520,
         .description = COMPOUND_STRING(
-            "As it unleashes a flurry of savage kicks,\n"
-            "its legs can begin to burn from the\n"
-            "friction of the surrounding atmosphere.\n"
-            "They're always a source of pride to it."),
+            "Al desatar una ráfaga de patadas,\n"
+            "sus piernas pueden comenzar a arder\n"
+            "debido a la fricción con el aire.\n"
+            "Siempre son un orgullo para él."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 301,
@@ -697,10 +697,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 19,
         .weight = 1020,
         .description = COMPOUND_STRING(
-            "When it Mega Evolves, the strength that it\n"
-            "needs to act in the water is increased.\n"
-            "It can use its tenacious power\n"
-            "both on land and in the water."),
+            "Al Mega Evolucionar, la fuerza que\n"
+            "emplea para moverse en el agua aumenta.\n"
+            "Puede usar su poder tenaz tanto en\n"
+            "tierra como en el agua."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -1022,10 +1022,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 4,
         .weight = 175,
         .description = COMPOUND_STRING(
-            "Its restlessness has it constantly moving\n"
-            "in zigzags. It will purposely run into other\n"
-            "Pokémon to start fights. It's thought to\n"
-            "be the oldest form of Zigzagoon."),
+            "Su inquietud lo mantiene\n"
+            "moviendose en zigzag. Chocará\n"
+            "adrede con otros para comenzar peleas.\n"
+            "Se cree que es la forma más antigua."),
         .pokemonScale = 560,
         .pokemonOffset = 22,
         .trainerScale = 256,
@@ -1086,10 +1086,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 5,
         .weight = 325,
         .description = COMPOUND_STRING(
-            "This very aggressive Pokémon will\n"
-            "recklessly challenge opponents stronger\n"
-            "than itself. It uses its long tongue to\n"
-            "taunt them to then tackle forcefully."),
+            "Es muy agresivo y desafiará\n"
+            "a oponentes más fuertes que él\n"
+            "mismo. Usa su lengua larga para provocar\n"
+            "a sus rivales y luego arremeter fuerza."),
         .pokemonScale = 321,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -2366,10 +2366,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 16,
         .weight = 484,
         .description = COMPOUND_STRING(
-            "By opening its heart, Mega Gardevoir\n"
-            "becomes able to use tremendous psychic\n"
-            "power. The red plate in its chest is said to\n"
-            "be a physical manifestation of its heart."),
+            "Al abrir su corazón, Mega Gardevoir se\n"
+            "vuelve capaz de usar un poder enorme.\n"
+            "Se dice que la placa roja en su pecho es\n"
+            "una manifestación física de su corazón."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -2492,10 +2492,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 16,
         .weight = 564,
         .description = COMPOUND_STRING(
-            "Mega Gallade has a knightly appearance.\n"
-            "It can use its psychic power to reshape\n"
-            "both arms into blades simultaneously and\n"
-            "fight using a dual-wielding style."),
+            "Tiene una apariencia caballeresca.\n"
+            "Puede usar su poder para transformar\n"
+            "sus brazos en cuchillas y luchar\n"
+            "usando un estilo de doble empuñadura."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -3780,9 +3780,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 5,
         .weight = 1610,
         .description = COMPOUND_STRING(
-            "Bathed in the energy of Mega Evolution,\n"
-            "the gemstone on its chest expands, rips\n"
-            "through its skin, and falls out."),
+            "Baño en la energía de Mega Evolución,\n"
+            "la gema en su pecho se expande, rasga\n"
+            "su piel y cae fuera."),
         .pokemonScale = 451,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -3907,10 +3907,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 10,
         .weight = 235,
         .description = COMPOUND_STRING(
-            "Its two sets of jaws thrash about\n"
-            "violently as if they each had a will of\n"
-            "their own. One gnash from them can turn a\n"
-            "boulder to dust."),
+            "Sus dos mandíbulas se agitan de forma\n"
+            "violenta como si tuvieran voluntad\n"
+            "propia. Un mordisco de ellas puede\n"
+            "convertir una roca en polvo."),
         .pokemonScale = 466,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4150,10 +4150,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 22,
         .weight = 3950,
         .description = COMPOUND_STRING(
-            "When Aggron Mega Evolves into\n"
-            "Mega Aggron, the destructive ability of\n"
-            "its fearsome horns can turn a steel-clad\n"
-            "tank into so much scrap metal."),
+            "Cuando Aggron Mega Evoluciona,\n"
+            "su capacidad destructiva\n"
+            "puede convertir un tanque blindado\n"
+            "en chatarra."),
         .pokemonScale = 256,
         .pokemonOffset = -1,
         .trainerScale = 350,
@@ -4333,10 +4333,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 13,
         .weight = 315,
         .description = COMPOUND_STRING(
-            "It uses its amped-up willpower to create\n"
-            "additional arms for itself. The more it has\n"
-            "trained its spirit, the more realistic and\n"
-            "dexterous these self-created arms become."),
+            "Utiliza su voluntad para crear\n"
+            "brazos adicionales. Cuanto más ha\n"
+            "entrenado su espíritu, más realistas y\n"
+            "dextrales se vuelven."),
         .pokemonScale = 298,
         .pokemonOffset = 5,
         .trainerScale = 256,
@@ -4508,9 +4508,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 18,
         .weight = 440,
         .description = COMPOUND_STRING(
-            "Too much electricity has built up in its\n"
-            "body, irritating Manectric. Its explosive\n"
-            "speed is equal to that of a lightning bolt."),
+            "Ha acumulado demasiada electricidad\n"
+            "en su cuerpo, irritandolo. Su velocidad\n"
+            "explosiva es igual a la de un rayo."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 257,
@@ -5275,10 +5275,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 25,
         .weight = 1303,
         .description = COMPOUND_STRING(
-            "The yellow patterns it bears are old scars.\n"
-            "The energy from Mega Evolution runs\n"
-            "through them, causing it sharp pain and\n"
-            "suffering."),
+            "Los patrones amarillos que lleva son\n"
+            "viejas cicatrices. La energía de la\n"
+            "Mega Evolución corre a través de ellas,\n"
+            "causándole dolor agudo y sufrimiento."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 317,
@@ -5586,10 +5586,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 25,
         .weight = 3205,
         .description = COMPOUND_STRING(
-            "The humps on its back have transformed\n"
-            "into one large and very active volcano. It\n"
-            "has a deep hatred of water or any moisture\n"
-            "and has an explosive personality."),
+            "Los jorobas de su espalda se han\n"
+            "transformado en un volcán grande y\n"
+            "activo. Odia el agua y la humedad,\n"
+            "posee una personalidad muy explosiva."),
         .pokemonScale = 256,
         .pokemonOffset = 7,
         .trainerScale = 345,
@@ -6322,10 +6322,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 15,
         .weight = 206,
         .description = COMPOUND_STRING(
-            "It sings with a voice that is even more\n"
-            "beautiful than before it Mega Evolved.\n"
-            "Its feathers became larger for protection\n"
-            "and glimmer with an iridescent sheen."),
+            "Canta con una voz que es aún más\n"
+            "hermosa que antes de Mega Evolucionar.\n"
+            "Sus plumas se han agrandado para\n"
+            "protegerse y brillan con resplandor."),
         .pokemonScale = 327,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -7846,9 +7846,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 12,
         .weight = 130,
         .description = COMPOUND_STRING(
-            "Extraordinary energy amplifies its\n"
-            "cursing power to such an extent that it\n"
-            "can't help but curse its own Trainer."),
+            "La energía extraordinaria amplifica su\n"
+            "poder de maldición hasta el punto de que\n"
+            "no puede evitar maldecir incluso a su\n"
+            "propio Entrenador."),
         .pokemonScale = 262,
         .pokemonOffset = 9,
         .trainerScale = 256,
@@ -8366,10 +8367,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 12,
         .weight = 490,
         .description = COMPOUND_STRING(
-            "As the energy of Mega Evolution fills it,\n"
-            "its fur bristles. What you see on its back\n"
-            "are not true wings, and this Pokémon isn't\n"
-            "able to fly."),
+            "A medida que la energía de la Mega lo\n"
+            "llena, su pelaje se eriza. Lo que se ve en\n"
+            "su espalda no son alas reales, y\n"
+            "no es capaz de volar."),
         .pokemonScale = 301,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -8554,9 +8555,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 21,
         .weight = 3502,
         .description = COMPOUND_STRING(
-            "The power of Mega Evolution was so strong\n"
-            "that it smashed Glalie's jaw. Its inability\n"
-            "to eat very well leaves Glalie irritated."),
+            "El poder de la Mega fue tan fuerte\n"
+            "que rompió su mandíbula. Su incapacidad\n"
+            "para comer bien le enfada."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 344,
@@ -9353,10 +9354,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 18,
         .weight = 1126,
         .description = COMPOUND_STRING(
-            "Mega Evolution fuels its brutality, and it\n"
-            "may even turn on the Trainer who raised it.\n"
-            "It's been dubbed the blood-soaked.\n"
-            "crescent."),
+            "La Mega alimenta su brutalidad, y\n"
+            "puede incluso volverse contra el amo\n"
+            "que lo crió. Se apodó como “el creciente\n"
+            "empapado en sangre.”"),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -9596,9 +9597,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 25,
         .weight = 9429,
         .description = COMPOUND_STRING(
-            "When it knows it can't win, it digs the\n"
-            "claws on its legs into its opponent and\n"
-            "starts the countdown to a big explosion."),
+            "Cuando sabe que no puede ganar, clava\n"
+            "las garras de sus patas en su rival y\n"
+            "comienza la cuenta regresiva para una\n"
+            "gran explosión."),
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 447,
@@ -9918,10 +9920,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 18,
         .weight = 520,
         .description = COMPOUND_STRING(
-            "Its body is smaller than Mega Latios's\n"
-            "body. It is more agile and can make very\n"
-            "sharp turns. When it Mega Evolves, its\n"
-            "defensive strength grows substantially."),
+            "Es más pequeño que Mega Latios.\n"
+            "Es más ágil y puede hacer giros\n"
+            "muy bruscos. Cuando Mega Evoluciona, su\n"
+            "fuerza defensiva crece mucho."),
         .pokemonScale = 304,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -10045,10 +10047,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 23,
         .weight = 700,
         .description = COMPOUND_STRING(
-            "It's larger than Mega Latias, and can\n"
-            "achieve higher speeds in flight.\n"
-            "This Pokémon can use its speed in battle\n"
-            "to unleash a flurry of attacks."),
+            "Es más grande que Mega Latias y puede\n"
+            "alcanzar mayores velocidades en vuelo.\n"
+            "Puede usar su velocidad en batalla\n"
+            "para desatar una ráfaga de ataques."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 294,
@@ -10430,10 +10432,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 108,
         .weight = 3920,
         .description = COMPOUND_STRING(
-            "Particles stream from the filaments that\n"
-            "extend from its jaw. They can control the\n"
-            "density and humidity of the air, allowing\n"
-            "Rayquaza to manipulate the weather."),
+            "Las partículas fluyen desde los hilos\n"
+            "que salen desde su mandíbula. Pueden\n"
+            "controlar la densidad y humedad del\n"
+            "aire, permitiendo que manipule el clima."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 448,

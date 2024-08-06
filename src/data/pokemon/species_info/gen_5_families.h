@@ -2357,10 +2357,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 15,
         .weight = 320,
         .description = COMPOUND_STRING(
-            "Mega Audino emits a soothing pulse from\n"
-            "its body that reduces hostility in others.\n"
-            "Anything that comes into contact with its\n"
-            "second feelers will fall into a deep sleep."),
+            "Emite un pulso reconfortante desde su\n"
+            "cuerpo que reduce la hostilidad rival.\n"
+            "Cualquier cosa que toque sus segundas\n"
+            "antenas caerá en un sueño profundo.\n"),
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -4254,10 +4254,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 7,
         .weight = 400,
         .description = COMPOUND_STRING(
-            "The colder they get, the more\n"
-            "energetic they are. They freeze their\n"
-            "breath to make snowballs, using them\n"
-            "as ammo for playful snowball fights."),
+            "Cuanto más frías son, más enérgicas\n"
+            "se vuelven. Congelan su aliento para\n"
+            "crear bolas de nieve, usándolas como\n"
+            "munición para juegos juguetones."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -4318,10 +4318,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 17,
         .weight = 1200,
         .description = COMPOUND_STRING(
-            "On days when blizzards blow\n"
-            "through, it comes down to where people\n"
-            "live. It stashes food in the snowball on\n"
-            "its head, taking it home for later."),
+            "En los días en que soplan ventiscas,\n"
+            "baja a donde viven las personas. Guarda\n"
+            "comida en la bola de nieve de su cabeza,\n"
+            " llevándola a casa para más tarde."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -4915,10 +4915,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 5,
         .weight = 15,
         .description = COMPOUND_STRING(
-            "A clay slab with cursed engravings\n"
-            "took possession of a Yamask. The\n"
-            "slab is said to be absorbing the\n"
-            "Yamask's dark power."),
+            "Una losa de arcilla con grabados\n"
+            "malditos tomó posesión de un Yamask. Se\n"
+            "dice que la losa está absorbiendo\n"
+            "el poder oscuro de Yamask."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5397,10 +5397,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 210,
         .weight = 0,
         .description = COMPOUND_STRING(
-            "It sprays toxic gas from its mouth\n"
-            "and fingers. If the gas engulfs you,\n"
-            "the toxins will seep in all the way\n"
-            "down to your bones."),
+            "Rocía gas tóxico desde su boca\n"
+            "y sus dedos. Si el gas te envuelve,\n"
+            "las toxinas se filtrarán\n"
+            "hasta tus huesos."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -8900,10 +8900,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 7,
         .weight = 205,
         .description = COMPOUND_STRING(
-            "Its conspicuous lips lure prey in\n"
-            "as it lies in wait in the mud. When\n"
-            "prey gets close, Stunfisk clamps its\n"
-            "jagged steel fins down on them."),
+            "Sus labios cebo atraen a sus presas\n"
+            "mientras yace al acecho en el barro. Al\n"
+            "acercarse la presa, la aprieta con\n"
+            "sus afiladas aletas de acero."),
         .pokemonScale = 365,
         .pokemonOffset = 14,
         .trainerScale = 256,

@@ -2875,10 +2875,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 13,
         .weight = 283,
         .description = COMPOUND_STRING(
-            "Mega Evolution awakens its combative\n"
-            "instincts. It has shed any fur that got in\n"
-            "the way of its attacks.\n"
-            "crescent."),
+            "La Mega despierta sus instintos\n"
+            "combativos. Ha eliminado cualquier\n"
+            "pelaje que estorbara en sus ataques."),
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -3595,10 +3594,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 19,
         .weight = 950,
         .description = COMPOUND_STRING(
-            "Excess energy melted its arms and wings\n"
-            "into giant scythes, sending it mad with\n"
-            "rage. It swings its scythes wildly and\n"
-            "slices the ground to pieces."),
+            "La energía en exceso fundió sus brazos\n"
+            "y alas en enormes hoces, volviendolo\n"
+            "loco de ira. Balancea sus hoces de forma\n"
+            "salvaje y corta el suelo en pedazos."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -3772,10 +3771,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 13,
         .weight = 575,
         .description = COMPOUND_STRING(
-            "It readies itself to face its enemies by\n"
-            "focusing its mental energies. Its fighting\n"
-            "style can be summed up in a single word:\n"
-            "heartless."),
+            "Se prepara para enfrentar a sus rivales\n"
+            "concentrando sus energías mentales. Su\n"
+            "estilo de lucha se puede resumir en una\n"
+            "sola palabra: despiadado."),
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -4514,10 +4513,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 27,
         .weight = 1850,
         .description = COMPOUND_STRING(
-            "The sprouts on Abomasnow's back grow into\n"
-            "great shafts of ice when it Mega Evolves.\n"
-            "Dislikes associating with others and\n"
-            "chooses to live quietly deep in mountains."),
+            "Los brotes de su espalda crecen\n"
+            "en grandes columnas de hielo cuando\n"
+            "Mega Evoluciona. Odia juntarse con\n"
+            "otros y elige vivir solo en la montaña."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 348,
