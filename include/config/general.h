@@ -1,16 +1,16 @@
 #ifndef GUARD_CONFIG_GENERAL_H
 #define GUARD_CONFIG_GENERAL_H
 
-// In the Generation 3 games, Asserts were used in various debug builds.
-// Ruby/Sapphire and Emerald do not have these asserts while Fire Red
-// still has them in the ROM. This is because the developers forgot
-// to define NDEBUG before release, however this has been changed as
-// Ruby's actual debug build does not use the AGBPrint features.
+// En los juegos de la Generación 3, se usaron asserts en varias compilaciones de depuración.
+// Ruby/Sapphire y Emerald no tienen estos asserts, mientras que Fire Red
+// aún los tiene en el ROM. Esto se debe a que los desarrolladores olvidaron
+// definir NDEBUG antes del lanzamiento; sin embargo, esto se ha cambiado ya que
+// la compilación de depuración de Ruby no usa las funciones AGBPrint.
 #define NDEBUG
 
-// To enable printf debugging, comment out "#define NDEBUG". This allows
-// the various AGBPrint functions to be used. (See include/gba/isagbprint.h).
-// See below for enabling different pretty printing versions.
+// Para habilitar la depuración con printf, comenta "#define NDEBUG". Esto permite
+// usar las diversas funciones AGBPrint. (Consulta include/gba/isagbprint.h).
+// Consulta a continuación para habilitar diferentes versiones de impresión bonita.
 
 #ifndef NDEBUG
 
@@ -21,39 +21,39 @@
 #define LOG_HANDLER_NOCASH_PRINT (1)
 #define LOG_HANDLER_MGBA_PRINT (2)
 
-// Use this switch to choose a handler for pretty printing.
-// NOTE: mini_printf supports a custom pretty printing formatter to display preproc encoded strings. (%S)
-//       some libc distributions (especially dkp arm-libc) will fail to link pretty printing.
+// Usa este interruptor para elegir un manejador para la impresión bonita.
+// NOTA: mini_printf soporta un formateador personalizado para mostrar cadenas codificadas en preprocesador. (%S)
+//       Algunas distribuciones de libc (especialmente dkp arm-libc) fallarán al enlazar impresión bonita.
 #define PRETTY_PRINT_HANDLER (PRETTY_PRINT_MINI_PRINTF)
 
-// Use this switch to choose a handler for printf output.
-// NOTE: These will only work on the respective emulators and should not be used in a productive environment.
-//       Some emulators or real hardware might (and is allowed to) crash if they are used.
-//       AGB_PRINT is supported on respective debug units.
+// Usa este interruptor para elegir un manejador para la salida de printf.
+// NOTA: Estos solo funcionarán en los emuladores respectivos y no deben usarse en un entorno productivo.
+//       Algunos emuladores o hardware real podrían (y está permitido) fallar si se usan.
+//       AGB_PRINT está soportado en unidades de depuración respectivas.
 
 #define LOG_HANDLER (LOG_HANDLER_MGBA_PRINT)
 #endif
 
-// Uncomment to fix some identified minor bugs
+// Descomenta para arreglar algunos errores menores identificados
 #define BUGFIX
 
-// Various undefined behavior bugs may or may not prevent compilation with
-// newer compilers. So always fix them when using a modern compiler.
+// Varios comportamientos indefinidos pueden o no impedir la compilación con
+// compiladores más nuevos. Así que siempre corrígelos al usar un compilador moderno.
 #if MODERN || defined(BUGFIX)
 #ifndef UBFIX
 #define UBFIX
 #endif
 #endif
 
-// Compatibility definition for other projects to detect pokeemerald-expansion
+// Definición de compatibilidad para que otros proyectos detecten pokeemerald-expansion
 #define RHH_EXPANSION
 
-// Legacy branch-based defines included for backwards compatibility
+// Definiciones basadas en ramas heredadas incluidas para compatibilidad hacia atrás
 #define BATTLE_ENGINE
 #define POKEMON_EXPANSION
 #define ITEM_EXPANSION
 
-// Generation constants used in configs to define behavior.
+// Constantes de generación utilizadas en configuraciones para definir comportamientos.
 #define GEN_1 0
 #define GEN_2 1
 #define GEN_3 2
@@ -63,24 +63,24 @@
 #define GEN_7 6
 #define GEN_8 7
 #define GEN_9 8
-// Changing GEN_LATEST's value to a different Generation will change every default setting that uses it at once.
+// Cambiar el valor de GEN_LATEST a una Generación diferente cambiará todas las configuraciones predeterminadas que lo usan a la vez.
 #define GEN_LATEST GEN_9
 
-// General settings
-#define EXPANSION_INTRO              TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
-#define POKEDEX_PLUS_HGSS            FALSE   // If TRUE, enables the custom HGSS style Pokedex.
-#define SUMMARY_SCREEN_NATURE_COLORS TRUE    // If TRUE, nature-based stat boosts and reductions will be red and blue in the summary screen.
-#define HQ_RANDOM                    TRUE    // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
-#define COMPETITIVE_PARTY_SYNTAX     TRUE    // If TRUE, parties are defined in "competitive syntax".
+// Configuraciones generales
+#define EXPANSION_INTRO              TRUE    // Si es TRUE, se reproducirá una introducción personalizada de RHH después de la pantalla de derechos de autor original.
+#define POKEDEX_PLUS_HGSS            FALSE   // Si es TRUE, habilita el Pokédex estilo HGSS personalizado.
+#define SUMMARY_SCREEN_NATURE_COLORS TRUE    // Si es TRUE, los aumentos y reducciones basados en la naturaleza se mostrarán en rojo y azul en la pantalla de resumen.
+#define HQ_RANDOM                    TRUE    // Si es TRUE, reemplaza el RNG predeterminado con una implementación del RNG SFC32. Puede romper el código que depende del RNG.
+#define COMPETITIVE_PARTY_SYNTAX     TRUE    // Si es TRUE, los equipos se definen en "sintaxis competitiva".
 
-// Measurement system constants to be used for UNITS
-#define UNITS_IMPERIAL               0       // Inches, feet, pounds
-#define UNITS_METRIC                 1       // meters, kilograms
+// Constantes del sistema de medidas para usar con UNITS
+#define UNITS_IMPERIAL               0       // Pulgadas, pies, libras
+#define UNITS_METRIC                 1       // metros, kilogramos
 
 #define UNITS                        UNITS_IMPERIAL
-#define CHAR_DEC_SEPARATOR           CHAR_PERIOD // CHAR_PERIOD is used as a decimal separator only in the UK and the US. The rest of the world uses CHAR_COMMA.
+#define CHAR_DEC_SEPARATOR           CHAR_PERIOD // CHAR_PERIOD se usa como separador decimal solo en el Reino Unido y EE.UU. El resto del mundo usa CHAR_COMMA.
 
-// Naming Screen
-#define AUTO_LOWERCASE_KEYBOARD      GEN_LATEST  // Starting in GEN_6, after entering the first uppercase character, the keyboard switches to lowercase letters.
+// Pantalla de Nombres
+#define AUTO_LOWERCASE_KEYBOARD      GEN_LATEST  // A partir de GEN_6, después de ingresar el primer carácter en mayúsculas, el teclado cambia a letras minúsculas.
 
 #endif // GUARD_CONFIG_GENERAL_H

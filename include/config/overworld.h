@@ -1,100 +1,101 @@
 #ifndef GUARD_CONFIG_OVERWORLD_H
 #define GUARD_CONFIG_OVERWORLD_H
 
-// Movement config
-#define OW_RUNNING_INDOORS          GEN_LATEST  // In Gen4+, players are allowed to run indoors.
+// Configuración de movimiento
+#define OW_RUNNING_INDOORS          GEN_LATEST  // En Gen4+, los jugadores pueden correr en interiores.
 
-// Other settings
-#define OW_POISON_DAMAGE                GEN_LATEST // In Gen4, Pokémon no longer faint from Poison in the overworld. In Gen5+, they no longer take damage at all.
-#define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // If enabled, you can be spotted by two trainers at the same time even if you only have one eligible Pokémon in your party.
-#define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // If enabled, map popups will not appear if entering a map with the same Map Section Id as the last.
+// Otras configuraciones
+#define OW_POISON_DAMAGE                GEN_LATEST // En Gen4, los Pokémon ya no se desmayan por Veneno en el mundo exterior. En Gen5+, no reciben daño en absoluto.
+#define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // Si está habilitado, puedes ser visto por dos entrenadores al mismo tiempo incluso si solo tienes un Pokémon elegible en tu equipo.
+#define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // Si está habilitado, las ventanas emergentes del mapa no aparecerán si entras en un mapa con el mismo Id de Sección del Mapa que el último.
 
-// These generational defines only make a distinction for Berries and the OW_PC_MOVE_ORDER
+// Estas definiciones generacionales solo hacen una distinción para Bayas y el OW_PC_MOVE_ORDER
 #define GEN_6_XY GEN_6
 #define GEN_6_ORAS GEN_LATEST + 1
 
-// PC settings
-#define OW_PC_PRESS_B               GEN_LATEST // In Gen4, pressing B when holding a Pokémon is equivalent to placing it. In Gen3, it gives the "You're holding a Pokémon!" error.
-#define OW_PC_JAPAN_WALDA_ICONS     TRUE       // In the US release of Emerald, the Cross, Bolt, and Plusle icons for Walda's wallpapers were left blank from the Japan release. Setting this to TRUE will restore them.
-#define OW_PC_HEAL                  GEN_LATEST // In Gen8+, Pokémon are not healed when deposited in the PC.
-#define OW_PC_MOVE_ORDER            GEN_LATEST // Starting in Gen4, the order of options in the PC menu change.
-#define OW_PC_RELEASE_ITEM          GEN_LATEST // In Gen8+, Pokémon that get released with a held item return it to the bag.
+// Configuración del PC
+#define OW_PC_PRESS_B               GEN_LATEST // En Gen4, presionar B mientras sostienes un Pokémon es equivalente a colocarlo. En Gen3, da el error "¡Estás sosteniendo un Pokémon!"
+#define OW_PC_JAPAN_WALDA_ICONS     TRUE       // En la versión de EE.UU. de Emerald, los íconos de Cruz, Rayo y Plusle para los fondos de Walda quedaron en blanco de la versión japonesa. Configurar esto en TRUE los restaurará.
+#define OW_PC_HEAL                  GEN_LATEST // En Gen8+, los Pokémon no se curan cuando se depositan en el PC.
+#define OW_PC_MOVE_ORDER            GEN_LATEST // A partir de Gen4, el orden de opciones en el menú del PC cambia.
+#define OW_PC_RELEASE_ITEM          GEN_LATEST // En Gen8+, los Pokémon que se liberan con un objeto en mano lo devuelven a la bolsa.
 
-#define OW_BERRY_MUTATIONS             FALSE      // If enabled, Berry plants can mutate based on berries planted next to them.
-#define OW_BERRY_MUTATION_CHANCE       25         // Determines the % chance of a mutation.
-#define OW_BERRY_MOISTURE              FALSE      // If enabled, Berry watering is not a matter of watering it once per stage, but rather of keeping the soil moist.
-#define OW_BERRY_ALWAYS_WATERABLE      FALSE      // If OW_BERRY_MOISTURE is enabled, this setting allows the player to continuously water soil; dry soil will cause a decrease in Berry Yield (like Gen4). When off, soil can only be watered when dry and watering increases yield (like Gen6).
-#define OW_BERRY_MULCH_USAGE           FALSE      // If enabled, Mulch can be used on soil to fertilize it. Otherwise, it is considered unusable. Note that moisture effects only work with OW_BERRY_MOISTURE enabled!
-#define OW_BERRY_WEEDS                 FALSE      // If enabled, weeds may grow on Berry plants that the player needs to take care of. Without OW_BERRY_MOISTURE, weeding bonuses are rounded down.
-#define OW_BERRY_PESTS                 FALSE      // If enabled, pests may approach Berry plants that the player needs to take care of. Without OW_BERRY_MOISTURE, pest bonuses are rounded down.
-#define OW_BERRY_SIX_STAGES            FALSE      // In XY, Berries go through six stages instead of four. This toggle does not affect the time it takes for a tree to be ready for harvest. Without OW_BERRY_MOISTURE, the two extra stages count as BERRY_STAGE_TALLER for watering purposes.
+#define OW_BERRY_MUTATIONS             FALSE      // Si está habilitado, las plantas de bayas pueden mutar basándose en las bayas plantadas a su lado.
+#define OW_BERRY_MUTATION_CHANCE       25         // Determina el % de probabilidad de una mutación.
+#define OW_BERRY_MOISTURE              FALSE      // Si está habilitado, el riego de las bayas no se trata de regarlas una vez por etapa, sino de mantener el suelo húmedo.
+#define OW_BERRY_ALWAYS_WATERABLE      FALSE      // Si OW_BERRY_MOISTURE está habilitado, esta configuración permite al jugador regar continuamente el suelo; el suelo seco causará una disminución en el Rendimiento de la Baya (como en Gen4). Cuando está desactivado, el suelo solo se puede regar cuando esté seco y el riego aumenta el rendimiento (como en Gen6).
+#define OW_BERRY_MULCH_USAGE           FALSE      // Si está habilitado, el Abono puede usarse en el suelo para fertilizarlo. De lo contrario, se considera inutilizable. ¡Nota que los efectos de humedad solo funcionan con OW_BERRY_MOISTURE habilitado!
+#define OW_BERRY_WEEDS                 FALSE      // Si está habilitado, pueden crecer malezas en las plantas de bayas que el jugador debe cuidar. Sin OW_BERRY_MOISTURE, los bonos de desmalezado se redondean hacia abajo.
+#define OW_BERRY_PESTS                 FALSE      // Si está habilitado, pueden aparecer plagas en las plantas de bayas que el jugador debe cuidar. Sin OW_BERRY_MOISTURE, los bonos de plagas se redondean hacia abajo.
+#define OW_BERRY_SIX_STAGES            FALSE      // En XY, las bayas pasan por seis etapas en lugar de cuatro. Este interruptor no afecta el tiempo que tarda un árbol en estar listo para la cosecha. Sin OW_BERRY_MOISTURE, las dos etapas adicionales se cuentan como BERRY_STAGE_TALLER para fines de riego.
 
-#define OW_BERRY_GROWTH_RATE           GEN_3      // Presets for how long each Berry plant takes to grow.
-#define OW_BERRY_YIELD_RATE            GEN_3      // Presets for how many Berries each plant can yield.
-#define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // If OW_BERRY_MOISTURE is enabled, this setting changes how fast the soil dries out. GEN_4 uses a Berry-dependent drain rate, GEN_6_XY dries out in 24 hours (4 hours with the relevant Mulch) and GEN_6_ORAS dries out in 4 hours. Other values are illegal.
+#define OW_BERRY_GROWTH_RATE           GEN_3      // Preajustes para cuánto tiempo tarda cada planta de baya en crecer.
+#define OW_BERRY_YIELD_RATE            GEN_3      // Preajustes para cuántas bayas puede producir cada planta.
+#define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // Si OW_BERRY_MOISTURE está habilitado, esta configuración cambia la rapidez con la que se seca el suelo. GEN_4 usa una tasa de drenaje dependiente de la baya, GEN_6_XY se seca en 24 horas (4 horas con el Abono relevante) y GEN_6_ORAS se seca en 4 horas. Otros valores son ilegales.
 
-// Overworld Pokémon
-#define OW_POKEMON_OBJECT_EVENTS       TRUE       // Adds Object Event fields for every species. Can be used for NPCs using the OBJ_EVENT_GFX_SPECIES macro (eg. OBJ_EVENT_GFX_SPECIES(BULBASAUR))
-#define OW_SUBSTITUTE_PLACEHOLDER      TRUE       // Use a substitute OW for Pokémon that are missing overworld sprites
-#define OW_LARGE_OW_SUPPORT            TRUE       // If true, adds a small amount of overhead to OW code so that large (48x48, 64x64) OWs will display correctly under bridges, etc.
-#define OW_PKMN_OBJECTS_SHARE_PALETTES FALSE      // [WIP!! NOT ALL PALETTES HAVE BEEN ADJUSTED FOR THIS!!] If TRUE, follower palettes are taken from battle sprites.
-#define OW_GFX_COMPRESS                TRUE       // Adds support for compressed OW graphics, (Also compresses pokemon follower graphics).
-                                                  // Compressed gfx are incompatible with non-power-of-two sprite sizes:
-                                                  // (You should not use 48x48 sprites/tables for compressed gfx)
-                                                  // 16x32, 32x32, 64x64 etc are fine
-// Follower Pokémon
-#define OW_FOLLOWERS_ENABLED           FALSE      // Enables follower Pokémon, HGSS style. Requires OW_POKEMON_OBJECT_EVENTS. Note that additional scripting may be required for them to be fully supported!
-#define OW_FOLLOWERS_BOBBING           TRUE       // If true, follower pokemon will bob up and down during their idle & walking animations
-#define OW_FOLLOWERS_POKEBALLS         TRUE       // Followers will emerge from the pokeball they are stored in, instead of a normal pokeball
+// Pokémon en el mundo exterior
+#define OW_POKEMON_OBJECT_EVENTS       TRUE       // Agrega campos de Evento de Objeto para cada especie. Puede ser utilizado para NPCs usando el macro OBJ_EVENT_GFX_SPECIES (por ejemplo, OBJ_EVENT_GFX_SPECIES(BULBASAUR))
+#define OW_SUBSTITUTE_PLACEHOLDER      TRUE       // Usa un sustituto OW para Pokémon que faltan sprites en el mundo exterior
+#define OW_LARGE_OW_SUPPORT            TRUE       // Si es verdadero, agrega una pequeña cantidad de sobrecarga al código OW para que los OW grandes (48x48, 64x64) se muestren correctamente debajo de puentes, etc.
+#define OW_PKMN_OBJECTS_SHARE_PALETTES FALSE      // [¡WIP! NO TODAS LAS PALETAS SE HAN AJUSTADO PARA ESTO!] Si es TRUE, las paletas de seguidores se toman de los sprites de batalla.
+#define OW_GFX_COMPRESS                TRUE       // Agrega soporte para gráficos OW comprimidos, (También comprime gráficos de seguidores de Pokémon).
+                                                  // Los gráficos comprimidos son incompatibles con tamaños de sprites que no son potencias de dos:
+                                                  // (No debes usar sprites/tablas de 48x48 para gráficos comprimidos)
+                                                  // 16x32, 32x32, 64x64, etc., están bien
 
-// Out-of-battle Ability effects
-#define OW_SYNCHRONIZE_NATURE       GEN_LATEST // In Gen8+, if a Pokémon with Synchronize leads the party, wild Pokémon will always have their same Nature as opposed to the 50% chance in previous games. Gift Pokémon excluded.
-                                               // In USUM (here GEN_7), if a Pokémon with Synchronize leads the party, gift Pokémon will always have their same Nature regardless of their Egg Group.
-                                               // In ORAS (here GEN_6), if a Pokémon with Synchronize leads the party, gift Pokémon from the No Eggs Discovered Egg Group will always have their same Nature.
-#define OW_SUPER_LUCK               GEN_LATEST // In Gen8+, if a Pokémon with Super Luck is leading the party, the wild held item rate is increased to 60%/20%.
-#define OW_INFILTRATOR              GEN_LATEST // In Gen8+, if a Pokémon with Infiltrator is leading the party, the wild encounter rate is halved.
-#define OW_HARVEST                  GEN_LATEST // In Gen8+, if a Pokémon with Harvest is leading the party, there is a 50% chance to encounter a Grass-type Pokémon.
-#define OW_LIGHTNING_ROD            GEN_LATEST // In Gen8+, if a Pokémon with Lightning Rod is leading the party, there is a 50% chance to encounter an Electric-type Pokémon.
-#define OW_STORM_DRAIN              GEN_LATEST // In Gen8+, if a Pokémon with Storm Drain is leading the party, there is a 50% chance to encounter a Water-type Pokémon.
-#define OW_FLASH_FIRE               GEN_LATEST // In Gen8+, if a Pokémon with Flash Fire is leading the party, there is a 50% chance to encounter a Fire-type Pokémon.
+// Pokémon seguidores
+#define OW_FOLLOWERS_ENABLED           FALSE      // Habilita Pokémon seguidores, al estilo de HGSS. Requiere OW_POKEMON_OBJECT_EVENTS. ¡Nota que puede ser necesaria una programación adicional para que se soporten completamente!
+#define OW_FOLLOWERS_BOBBING           TRUE       // Si es verdadero, los Pokémon seguidores se moverán hacia arriba y hacia abajo durante sus animaciones de inactividad y caminata.
+#define OW_FOLLOWERS_POKEBALLS         TRUE       // Los seguidores emergerán de la Pokébola en la que están almacenados, en lugar de una Pokébola normal
 
-// These generational defines only make a distinction for OW_ALTERED_TIME_RATIO
+// Efectos de Habilidad fuera de batalla
+#define OW_SYNCHRONIZE_NATURE       GEN_LATEST // En Gen8+, si un Pokémon con Sincronía lidera el equipo, los Pokémon salvajes siempre tendrán la misma Naturaleza en lugar del 50% de probabilidad en juegos anteriores. Pokémon regalo excluidos.
+                                               // En USUM (aquí GEN_7), si un Pokémon con Sincronía lidera el equipo, los Pokémon regalo siempre tendrán la misma Naturaleza independientemente de su Grupo de Huevos.
+                                               // En ORAS (aquí GEN_6), si un Pokémon con Sincronía lidera el equipo, los Pokémon regalo del Grupo de Huevos Sin Huevos Descubiertos siempre tendrán la misma Naturaleza.
+#define OW_SUPER_LUCK               GEN_LATEST // En Gen8+, si un Pokémon con Super Suerte está liderando el equipo, la tasa de objetos sostenidos salvajes se incrementa al 60%/20%.
+#define OW_INFILTRATOR              GEN_LATEST // En Gen8+, si un Pokémon con Infiltrador está liderando el equipo, la tasa de encuentros salvajes se reduce a la mitad.
+#define OW_HARVEST                  GEN_LATEST // En Gen8+, si un Pokémon con Cosecha está liderando el equipo, hay un 50% de probabilidad de encontrar un Pokémon de tipo Planta.
+#define OW_LIGHTNING_ROD            GEN_LATEST // En Gen8+, si un Pokémon con Pararrayos está liderando el equipo, hay un 50% de probabilidad de encontrar un Pokémon de tipo Eléctrico.
+#define OW_STORM_DRAIN              GEN_LATEST // En Gen8+, si un Pokémon con Absorbe Agua está liderando el equipo, hay un 50% de probabilidad de encontrar un Pokémon de tipo Agua.
+#define OW_FLASH_FIRE               GEN_LATEST // En Gen8+, si un Pokémon con Absorbe Fuego está liderando el equipo, hay un 50% de probabilidad de encontrar un Pokémon de tipo Fuego.
+
+// Estas definiciones generacionales solo hacen una distinción para OW_ALTERED_TIME_RATIO
 #define GEN_8_PLA                       GEN_LATEST + 2
 
-//Time
-#define OW_TIMES_OF_DAY                 GEN_LATEST // Different generations have the times of day change at different times.
-#define OW_USE_FAKE_RTC                 FALSE      // When TRUE, seconds on the in-game clock will only advance once every 60 playTimeVBlanks (every 60 frames).
-#define OW_ALTERED_TIME_RATIO           GEN_LATEST // In GEN_8_PLA, the time in game moves forward 60 seconds for every second in the RTC. In GEN_9, it is 20 seconds. This has no effect if OW_USE_FAKE_RTC is FALSE.
+// Tiempo
+#define OW_TIMES_OF_DAY                 GEN_LATEST // Diferentes generaciones cambian los tiempos del día en diferentes momentos.
+#define OW_USE_FAKE_RTC                 FALSE      // Cuando es TRUE, los segundos en el reloj del juego solo avanzarán una vez cada 60 playTimeVBlanks (cada 60 fotogramas).
+#define OW_ALTERED_TIME_RATIO           GEN_LATEST // En GEN_8_PLA, el tiempo en el juego avanza 60 segundos por cada segundo en el RTC. En GEN_9, son 20 segundos. Esto no tiene efecto si OW_USE_FAKE_RTC es FALSE.
 
-// Overworld flags
-// To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
-// Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define OW_FLAG_PAUSE_TIME          0  // If this flag is set and OW_USE_FAKE_RTC is enabled, seconds on the in-game clock will not advance.
-#define OW_FLAG_NO_ENCOUNTER        0  // If this flag is set, wild encounters will be disabled.
-#define OW_FLAG_NO_TRAINER_SEE      0  // If this flag is set, trainers will not battle the player unless they're talked to.
-#define OW_FLAG_NO_COLLISION        0  // If this flag is set, the player will be able to walk over tiles with collision. Mainly intended for debugging purposes.
+// Banderas del mundo exterior
+// Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la bandera que le estás asignando.
+// Ejemplo: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa bandera para activar la característica.
+#define OW_FLAG_PAUSE_TIME          0  // Si esta bandera está activada y OW_USE_FAKE_RTC está habilitado, los segundos en el reloj del juego no avanzarán.
+#define OW_FLAG_NO_ENCOUNTER        0  // Si esta bandera está activada, los encuentros salvajes estarán deshabilitados.
+#define OW_FLAG_NO_TRAINER_SEE      0  // Si esta bandera está activada, los entrenadores no pelearán con el jugador a menos que se les hable.
+#define OW_FLAG_NO_COLLISION        0  // Si esta bandera está activada, el jugador podrá caminar sobre losetas con colisión. Principalmente destinado para fines de depuración.
 
-#define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    FALSE    // If set to TRUE, battle pyramid Pokemon will be generated randomly based on the round's challenge instead of hardcoded in src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (or open_level_wild_mons.h)
+#define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    FALSE    // Si se establece en TRUE, los Pokémon de la pirámide de batalla se generarán aleatoriamente en función del desafío de la ronda en lugar de estar codificados en src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (o open_level_wild_mons.h)
 
-// Map pop-up config
-#define OW_POPUP_GENERATION        GEN_3    // Different generations display location names in overworld pop-ups differently.
-                                            // Only choies are currently GEN_3 and GEN_5, all others will default to Gen3 pop-ups.
+// Configuración de ventanas emergentes del mapa
+#define OW_POPUP_GENERATION        GEN_3    // Diferentes generaciones muestran los nombres de ubicación en las ventanas emergentes del mundo exterior de manera diferente.
+                                            // Solo las opciones actuales son GEN_3 y GEN_5, todas las demás se ajustarán a las ventanas emergentes de Gen3.
 
-// Gen5 map pop-up config
-// Constants
-#define OW_POPUP_BW_TIME_NONE      0   // Don't show the time
-#define OW_POPUP_BW_TIME_12_HR     1   // Use 12 hour (AM/PM) time
-#define OW_POPUP_BW_TIME_24_HR     2   // Use 24 hour time
+// Configuración de ventanas emergentes del mapa Gen5
+// Constantes
+#define OW_POPUP_BW_TIME_NONE      0   // No mostrar la hora
+#define OW_POPUP_BW_TIME_12_HR     1   // Usar hora de 12 horas (AM/PM)
+#define OW_POPUP_BW_TIME_24_HR     2   // Usar hora de 24 horas
 
-#define OW_POPUP_BW_COLOR_BLACK    0   // Black pop-up from B2
-#define OW_POPUP_BW_COLOR_WHITE    1   // White pop-up from W2
+#define OW_POPUP_BW_COLOR_BLACK    0   // Ventana emergente negra de B2
+#define OW_POPUP_BW_COLOR_WHITE    1   // Ventana emergente blanca de W2
 
-// Configuration
-#define OW_POPUP_BW_COLOR          OW_POPUP_BW_COLOR_BLACK  // B2W2 use different colors for their map pop-ups.
-#define OW_POPUP_BW_TIME_MODE      OW_POPUP_BW_TIME_NONE    // Determines what type of time is shown.
-#define OW_POPUP_BW_ALPHA_BLEND    FALSE                    // Enables alpha blending/transparency for the pop-ups. Mainly intended to be used with the black color option.
+// Configuración
+#define OW_POPUP_BW_COLOR          OW_POPUP_BW_COLOR_BLACK  // B2W2 usan diferentes colores para sus ventanas emergentes del mapa.
+#define OW_POPUP_BW_TIME_MODE      OW_POPUP_BW_TIME_NONE    // Determina qué tipo de hora se muestra.
+#define OW_POPUP_BW_ALPHA_BLEND    FALSE                    // Habilita el mezclado alfa/transparencia para las ventanas emergentes. Principalmente destinado a usarse con la opción de color negro.
 
-// Pokémon Center
-#define OW_IGNORE_EGGS_ON_HEAL     GEN_LATEST               // In Gen 4+, the nurse in the Pokémon Center does not heal Eggs on healing machine.
+// Centro Pokémon
+#define OW_IGNORE_EGGS_ON_HEAL     GEN_LATEST               // En Gen 4+, la enfermera en el Centro Pokémon no cura los Huevos en la máquina de curación.
 
 #endif // GUARD_CONFIG_OVERWORLD_H
