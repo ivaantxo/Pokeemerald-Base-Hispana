@@ -1561,7 +1561,7 @@ const u32 gBattleAnimBgPalette_SteelBeam[] = INCBIN_U32("graphics/battle_anims/b
 
 // misc
 const u32 gBerryBlenderCenter_Gfx[] = INCBIN_U32("graphics/berry_blender/center.8bpp.lz");
-const u32 gBerryBlenderOuter_Gfx[] = INCBIN_U32("graphics/berry_blender/outer.4bpp.lz");
+const u32 gBerryBlenderOuter_Gfx[] = INCBIN_U32("graphics/berry_blender/outer.4bpp.lz"); // French version has a comma in the pic, English a dot
 const u32 gBerryBlenderOuter_Tilemap[] = INCBIN_U32("graphics/berry_blender/outer_map.bin.lz");
 
 const u32 gBattleAnimBgPalette_Cosmic[] = INCBIN_U32("graphics/battle_anims/backgrounds/cosmic.gbapal.lz");
@@ -2048,3 +2048,103 @@ const u16 gFrontierPassCancelButtonHighlighted_Tilemap[] = INCBIN_U16("graphics/
 const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.gbapal");
 const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
+
+// Moved from other files in the french version.
+
+// credits
+const u32 gCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_end_copyright.4bpp.lz");
+const u32 gCreditsCopyrightEnd_Tilemap[] = INCBIN_U32("graphics/credits/the_end_copyright.bin.lz");
+
+const u16 g321Start_Pal[] = INCBIN_U16("graphics/link/321start.gbapal");
+const u32 g321Start_Gfx[] = INCBIN_U32("graphics/link/321start.4bpp.lz");
+
+// poke jump
+const u16 gPokeJumpBonuses_Pal[] = INCBIN_U16("graphics/pokemon_jump/bonuses.gbapal");
+const u32 gPokeJumpBonuses_Gfx[] = INCBIN_U32("graphics/pokemon_jump/bonuses.4bpp.lz");
+const u32 gPokeJumpBonuses_Tilemap[] = INCBIN_U32("graphics/pokemon_jump/bonuses.bin.lz");
+
+const u16 gBlenderCenter_Pal[] = INCBIN_U16("graphics/berry_blender/center.gbapal");
+
+// tiles shop
+const u16 gTilesetPalettes_Shop[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/shop/palettes/00.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/01.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/02.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/03.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/04.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/05.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/06.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/07.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/08.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/09.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/10.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/11.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/12.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/13.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/14.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/shop/palettes/15.gbapal"),
+};
+const u32 gTilesetTiles_Shop[] = INCBIN_U32("data/tilesets/secondary/shop/tiles.4bpp.lz");
+
+// roulette
+const u16 gRouletteShadow_Pal[] = INCBIN_U16("graphics/roulette/shadow.gbapal");
+const u16 gRouletteBall_Pal[] = INCBIN_U16("graphics/roulette/ball.gbapal");
+const u16 gRouletteBallCounter_Pal[] = INCBIN_U16("graphics/roulette/ball_counter.gbapal");
+const u16 gRouletteCursor_Pal[] = INCBIN_U16("graphics/roulette/cursor.gbapal");
+const u16 gRouletteCredit_Pal[] = INCBIN_U16("graphics/roulette/credit.gbapal");
+const u16 gRouletteShroomish_Pal[] = INCBIN_U16("graphics/roulette/shroomish.gbapal");
+const u16 gRouletteTaillow_Pal[] = INCBIN_U16("graphics/roulette/tailow.gbapal");
+const u16 gRouletteGridIcons_Pal[] = INCBIN_U16("graphics/roulette/grid_icons.gbapal");
+const u16 gRouletteWynaut_Pal[] = INCBIN_U16("graphics/roulette/wynaut.gbapal");
+const u16 gRouletteAzurill_Pal[] = INCBIN_U16("graphics/roulette/azurill.gbapal");
+const u16 gRouletteSkitty_Pal[] = INCBIN_U16("graphics/roulette/skitty.gbapal");
+const u16 gRouletteMakuhita_Pal[] = INCBIN_U16("graphics/roulette/makuhita.gbapal");
+const u16 gRouletteUnused1_Pal[] = INCBIN_U16("graphics/roulette/unused_1.gbapal");
+const u16 gRouletteUnused2_Pal[] = INCBIN_U16("graphics/roulette/unused_2.gbapal");
+const u16 gRouletteUnused3_Pal[] = INCBIN_U16("graphics/roulette/unused_3.gbapal");
+const u16 gRouletteUnused4_Pal[] = INCBIN_U16("graphics/roulette/unused_4.gbapal");
+
+// frontier pass
+const u32 gFrontierPassMapScreen_Gfx[] = INCBIN_U32("graphics/frontier_pass/map_screen.4bpp.lz");
+
+// tiles battle dome
+const u16 gTilesetPalettes_BattleDome[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/00.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/01.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/02.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/03.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/04.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/05.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/06.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/07.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/08.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/09.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/10.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/11.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/12.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/13.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/14.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/battle_dome/palettes/15.gbapal"),
+};
+const u32 gTilesetTiles_BattleDome[] = INCBIN_U32("data/tilesets/secondary/battle_dome/tiles.4bpp.lz");
+
+// pokenav match call gfx
+const u16 gMatchCallUI_Pal[] = INCBIN_U16("graphics/pokenav/match_call/ui.gbapal");
+const u32 gMatchCallUI_Gfx[] = INCBIN_U32("graphics/pokenav/match_call/ui.4bpp.lz");
+const u32 gMatchCallUI_Tilemap[] = INCBIN_U32("graphics/pokenav/match_call/ui.bin.lz");
+
+// pokenav conditions search results
+const u16 gConditionSearchResultFramePal[] = INCBIN_U16("graphics/pokenav/condition/search_results.gbapal");
+const u32 gConditionSearchResultTiles[] = INCBIN_U32("graphics/pokenav/condition/search_results.4bpp.lz");
+const u32 gConditionSearchResultTilemap[] = INCBIN_U32("graphics/pokenav/condition/search_results.bin.lz");
+
+// pokenav ribbons list
+const u16 gMonRibbonListFramePal[] = INCBIN_U16("graphics/pokenav/ribbons/list_bg.gbapal");
+const u32 gMonRibbonListFrameTiles[] = INCBIN_U32("graphics/pokenav/ribbons/list_bg.4bpp.lz");
+const u32 gMonRibbonListFrameTilemap[] = INCBIN_U32("graphics/pokenav/ribbons/list_bg.bin.lz");
+
+// pokedex
+const u16 gCryMeter_Pal[] = INCBIN_U16("graphics/pokedex/cry_meter.gbapal");
+const u8 gCryMeter_Gfx[] = INCBIN_U8("graphics/pokedex/cry_meter.4bpp.lz");
