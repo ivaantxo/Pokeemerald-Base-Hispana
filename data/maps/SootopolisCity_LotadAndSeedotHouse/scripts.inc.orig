@@ -1,0 +1,248 @@
+SootopolisCity_LotadAndSeedotHouse_MapScripts::
+	.byte 0
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_SeedotBrother::
+	special GetSeedotSizeRecordInfo
+	lock
+	faceplayer
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigSeedot, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	goto_if_eq VAR_RESULT, PARTY_NOTHING_CHOSEN, SootopolisCity_LotadAndSeedotHouse_EventScript_CancelShowSeedot
+	special CompareSeedotSize
+	goto_if_eq VAR_RESULT, 1, SootopolisCity_LotadAndSeedotHouse_EventScript_NotSeedot
+	goto_if_eq VAR_RESULT, 2, SootopolisCity_LotadAndSeedotHouse_EventScript_SmallSeedot
+	goto_if_eq VAR_RESULT, 3, SootopolisCity_LotadAndSeedotHouse_EventScript_BigSeedot
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_CancelShowSeedot::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigSeedot, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_NotSeedot::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotSeedot, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_SmallSeedot::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_BigSeedot::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_GoshMightBeBiggerThanLotad, MSGBOX_DEFAULT
+	giveitem ITEM_ELIXIR
+	goto_if_eq VAR_RESULT, FALSE, SootopolisCity_LotadAndSeedotHouse_EventScript_NoRoomForElixir1
+	closemessage
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_NoRoomForElixir1::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_LotadBrother::
+	special GetLotadSizeRecordInfo
+	lock
+	faceplayer
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigLotad, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_RESULT, VAR_0x8004
+	goto_if_eq VAR_RESULT, PARTY_NOTHING_CHOSEN, SootopolisCity_LotadAndSeedotHouse_EventScript_CancelShowLotad
+	special CompareLotadSize
+	goto_if_eq VAR_RESULT, 1, SootopolisCity_LotadAndSeedotHouse_EventScript_NotLotad
+	goto_if_eq VAR_RESULT, 2, SootopolisCity_LotadAndSeedotHouse_EventScript_SmallLotad
+	goto_if_eq VAR_RESULT, 3, SootopolisCity_LotadAndSeedotHouse_EventScript_BigLotad
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_CancelShowLotad::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigLotad, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_NotLotad::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotLotad, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_SmallLotad::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerLotad, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_BigLotad::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot, MSGBOX_DEFAULT
+	giveitem ITEM_ELIXIR
+	goto_if_eq VAR_RESULT, FALSE, SootopolisCity_LotadAndSeedotHouse_EventScript_NoRoomForElixir2
+	closemessage
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_NoRoomForElixir2::
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2, MSGBOX_DEFAULT
+	release
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_SeedotSizeRecord::
+	special GetSeedotSizeRecordInfo
+	lockall
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_BiggestSeedotInHistory, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SootopolisCity_LotadAndSeedotHouse_EventScript_LotadSizeRecord::
+	special GetLotadSizeRecordInfo
+	lockall
+	msgbox SootopolisCity_LotadAndSeedotHouse_Text_BiggestLotadInHistory, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigSeedot:
+	.string "¿Conoces el POKéMON SEEDOT?\n"
+	.string "Apenas se le ve en ARRECÍPOLIS.\p"
+	.string "Pero igualmente me encanta:\n"
+	.string "cuanto más grande, mejor.\p"
+	.string "Mi hermano pequeño dice que\n"
+	.string "LOTAD es más grande.\p"
+	.string "¡Qué chorrada! SEEDOT es gigantesco…\p"
+	.string "Eh… ¿Tienes un SEEDOT?\n"
+	.string "¿Me lo puedes enseñar?$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_GoshMightBeBiggerThanLotad:
+<<<<<<< HEAD
+	.string "{STR_VAR_2}!\n"
+	.string "Oh, my gosh, this is a big one!\p"
+	.string "It might even beat the big LOTAD\n"
+	.string "my younger brother saw!\p"
+	.string "Thanks for showing me.\n"
+	.string "This is my thanks!$"
+=======
+	.string "¡{STR_VAR_2} cm!\n"
+	.string "¡Pues sí que es enorme!\p"
+	.string "¡Puede que incluso sea más grandote\n"
+	.string "que el LOTAD que vio mi hermano!\p"
+	.string "Gracias por dejarme verlo.\n"
+	.string "Toma esto como agradecimiento.$"
+>>>>>>> 63ba53fed9de8315f030184c613a5ea3e619bd36
+
+@ Unused
+SootopolisCity_LotadAndSeedotHouse_Text_ReceivedPotion1:
+	.string "{PLAYER} received a POTION.$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull1:
+	.string "¿Eh? ¡Pero si la MOCHILA\n"
+	.string "está que revienta!$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerSeedot:
+<<<<<<< HEAD
+	.string "{STR_VAR_2}, is it?\p"
+	.string "Hmm… I've seen a bigger SEEDOT\n"
+	.string "than this one.$"
+=======
+	.string "{STR_VAR_2} cm, ¿no?\p"
+	.string "Bah… He visto a un SEEDOT\n"
+	.string "más grande que éste.$"
+>>>>>>> 63ba53fed9de8315f030184c613a5ea3e619bd36
+
+SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotSeedot:
+	.string "Mmmm… No está nada mal,\n"
+	.string "pero no es un SEEDOT.$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigSeedot:
+	.string "¿No tienes un SEEDOT grande?\n"
+	.string "Qué mala suerte…\p"
+	.string "Si consigues uno, ven a verme.$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_BiggestSeedotInHistory:
+<<<<<<< HEAD
+	.string "The biggest SEEDOT in history!\n"
+	.string "{STR_VAR_2}'s {STR_VAR_3} giant!\p"
+	.string "A SEEDOT bigger than a LOTAD\n"
+	.string "always wanted!$"
+=======
+	.string "¡El mayor SEEDOT jamás visto!\n"
+	.string "¡Un gigante de {STR_VAR_3} cm que\l"
+	.string "pertenece a {STR_VAR_2}!\p"
+	.string "¡Siempre es mucho mejor tener\n"
+	.string "un SEEDOT que sea más grande\l"
+	.string "que un LOTAD!$"
+>>>>>>> 63ba53fed9de8315f030184c613a5ea3e619bd36
+
+SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigLotad:
+	.string "¿Conoces el POKéMON LOTAD?\n"
+	.string "Apenas se le ve en ARRECÍPOLIS.\p"
+	.string "Pero igualmente me encanta:\n"
+	.string "cuanto más grande, mejor.\p"
+	.string "Mi hermano mayor dice que\n"
+	.string "SEEDOT es más grande.\p"
+	.string "¡Qué absurdo! Todo el mundo sabe\n"
+	.string "que LOTAD es colosal…\p"
+	.string "Eh… ¿Tienes un LOTAD?\n"
+	.string "¿Me lo puedes enseñar?$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_WowMightBeBiggerThanSeedot:
+<<<<<<< HEAD
+	.string "{STR_VAR_2}!\n"
+	.string "Wow, that is big!\p"
+	.string "It might be even bigger than the huge\n"
+	.string "SEEDOT my big brother saw.\p"
+	.string "Thanks for showing me!\n"
+	.string "This is my thanks!$"
+=======
+	.string "¡{STR_VAR_2} cm!\n"
+	.string "¡Pues sí que es enorme!\p"
+	.string "¡Puede que incluso sea más grandote\n"
+	.string "que el SEEDOT que vio mi hermano!\p"
+	.string "Gracias por dejarme verlo.\n"
+	.string "Toma esto como agradecimiento.$"
+>>>>>>> 63ba53fed9de8315f030184c613a5ea3e619bd36
+
+@ Unused
+SootopolisCity_LotadAndSeedotHouse_Text_ReceivedPotion2:
+	.string "{PLAYER} received a POTION.$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_BagCrammedFull2:
+	.string "¿Eh? ¡Pero si la MOCHILA\n"
+	.string "está que revienta!$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_SeenBiggerLotad:
+<<<<<<< HEAD
+	.string "{STR_VAR_2}?\p"
+	.string "Hmm… I've seen a bigger LOTAD\n"
+	.string "than this one here.$"
+=======
+	.string "¿{STR_VAR_2} cm?\p"
+	.string "Bah… He visto a un LOTAD\n"
+	.string "más grande que éste.$"
+>>>>>>> 63ba53fed9de8315f030184c613a5ea3e619bd36
+
+SootopolisCity_LotadAndSeedotHouse_Text_ThatsNotLotad:
+	.string "Mmmm… No está nada mal,\n"
+	.string "pero no es un LOTAD.$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_DontHaveBigLotad:
+	.string "¿No tienes un LOTAD grande?\n"
+	.string "Qué decepción…\p"
+	.string "Si consigues uno, ven a verme.$"
+
+SootopolisCity_LotadAndSeedotHouse_Text_BiggestLotadInHistory:
+<<<<<<< HEAD
+	.string "The biggest LOTAD in history!\n"
+	.string "{STR_VAR_2}'s {STR_VAR_3} colossus!\p"
+	.string "A LOTAD bigger than a SEEDOT\n"
+	.string "always wanted!$"
+=======
+	.string "¡El mayor LOTAD jamás visto!\n"
+	.string "¡Un coloso de {STR_VAR_3} cm que\l"
+	.string "pertenece a {STR_VAR_2}!\p"
+	.string "¡Siempre es mucho mejor tener\n"
+	.string "un LOTAD que sea más grande\l"
+	.string "que un SEEDOT!$"
+>>>>>>> 63ba53fed9de8315f030184c613a5ea3e619bd36
+

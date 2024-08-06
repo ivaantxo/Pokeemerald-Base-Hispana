@@ -690,9 +690,9 @@ static const u16 sText_Pal[] = INCBIN_U16("graphics/contest/text.gbapal");
 
 const u8 *const gContestEffectDescriptionPointers[] =
 {
-    [CONTEST_EFFECT_HIGHLY_APPEALING]                      = COMPOUND_STRING("A highly appealing move."),
-    [CONTEST_EFFECT_USER_MORE_EASILY_STARTLED]             = COMPOUND_STRING("After this move, the user is\nmore easily startled."),
-    [CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES]        = COMPOUND_STRING("Makes a great appeal, but\nallows no more to the end."),
+    [CONTEST_EFFECT_HIGHLY_APPEALING]                      = COMPOUND_STRING("Un movimiento altamente atractivo."),
+    [CONTEST_EFFECT_USER_MORE_EASILY_STARTLED]             = COMPOUND_STRING("Tras este movimiento, el usuario\nes más asustadizo."),
+    [CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES]        = COMPOUND_STRING("Hace una gran actuación, pero\nno permite más movimientos hasta el final."),
     [CONTEST_EFFECT_REPETITION_NOT_BORING]                 = COMPOUND_STRING("Can be repeatedly used\nwithout boring the JUDGE."),
     [CONTEST_EFFECT_AVOID_STARTLE_ONCE]                    = COMPOUND_STRING("Can avoid being startled\nby others once."),
     [CONTEST_EFFECT_AVOID_STARTLE]                         = COMPOUND_STRING("Can avoid being startled\nby others."),
