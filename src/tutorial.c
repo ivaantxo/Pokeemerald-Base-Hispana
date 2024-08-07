@@ -39,16 +39,22 @@ static void HandleMovement_Zubat();
 u8 GetZubatPositionY(u8 cord);
 u8 isZubatColisionKoffing(struct Sprite *spriteZubat);
 u8 isBeamColisionKoffing(struct Sprite *spriteBeam);
+static bool8 HasLivesToContinue();
 static void DestroySpriteBeam(struct Sprite *sprite);
 static void Task_Movement_Bgs(u8 taskId);
 static void  Task_WaitToCreateKoffings(u8 taskId);
+static void Task_ZubatFall(u8 taskId);
+static void Task_EndGame(u8 taskId);
+
+static void PrintLives();
+static void PrintDistance();
 
 //==========BG GRAPHICS==========//
-static const u32 TutorialBG1_Tileset[] = INCBIN_U32("graphics/tutorial/bg1_tileset.4bpp.lz");
-static const u32 TutorialBG1_Tilemap[] = INCBIN_U32("graphics/tutorial/bg1_tilemap.bin.lz");
-
 static const u32 TutorialBG2_Tileset[] = INCBIN_U32("graphics/tutorial/bg2_tileset.4bpp.lz");
 static const u32 TutorialBG2_Tilemap[] = INCBIN_U32("graphics/tutorial/bg2_tilemap.bin.lz");
+
+static const u32 TutorialBG3_Tileset[] = INCBIN_U32("graphics/tutorial/bg3_tileset.4bpp.lz");
+static const u32 TutorialBG3_Tilemap[] = INCBIN_U32("graphics/tutorial/bg3_tilemap.bin.lz");
 
 static const u16 TutorialBG_Palette[] = INCBIN_U16("graphics/tutorial/bgPal.gbapal");
 
@@ -58,6 +64,8 @@ static const u8 Zubat_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/zubatSprit
 static const u8 Koffing_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/koffingSprite.4bpp");
 static const u8 Beam_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/beamSprite.4bpp");
 
+static const u8 ZubatIcon_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/zubatIcon.4bpp");
+
 static const u16 ZubatKoffing_Palette[] = INCBIN_U16("graphics/tutorial/sprites/spritesPal.gbapal");
 
 
@@ -66,6 +74,7 @@ static const u16 ZubatKoffing_Palette[] = INCBIN_U16("graphics/tutorial/sprites/
 #define tTimeToWait data[3]
 #define tTimer data[7]
 
+#define NUM_LIVES 5;
 #define HEIGHT_SCREEN 160
 #define WIDTH_SCREEN 240
 
@@ -83,12 +92,18 @@ struct Tutorial
     u8 countBeam;
     u8 beamSpritesId[MAX_NUM_BEAM_SPRITES];
     u8 koffingSpritesId[MAX_NUM_KOFFING_SPRITES];
+    u16 distance;
+    u8 numLives;
 };
 
 static EWRAM_DATA struct Tutorial tutorialObj = {0};
 
 const u8 sTextColors[]= {TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
-const u8 gText_HowToPlay[] = _("Zubat no ve nada. Ayudalo a\n volar por cueva sin chocarse con\p los Pokemon salvajes.\pPulsa {DPAD_UPDOWN} para moverte\nPulsa {A_BUTTON} localizar los obstaculos.");
+const u8 sTextColors2[]= {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
+
+const u8 gText_HowToPlay[] = _("Zubat no ve nada. Ayudalo a volar por la\ncueva sin chocarse con los {PKMN} salvajes.\pPulsa {DPAD_UPDOWN} para moverte\nPulsa {A_BUTTON} localizar los obstaculos.");
+const u8 gText_Distance[] = _("Distancia: {STR_VAR_1}m");
+const u8 gText_Live[] = _(" x {STR_VAR_1}");
 
 //==========SPRITES TEMPLATES==========//
 
@@ -128,12 +143,13 @@ static const struct SpritePalette spritePaletteZubatKoffing =
 static const struct SpriteSheet spriteSheetZubat =
 {
             .data = Zubat_Sprite,
-            .size = 1536, // 32 * 96 /2
+            .size = 2048, // 32 * 128 /2
             .tag = TAG_SPRITE_ZUBAT,
 };
 
 enum{
     ZUBAT_MOVEMENT,
+    ZUBAT_DIE,
 };
 
 static const union AnimCmd sAnim_ZubatMovement[] =
@@ -144,15 +160,27 @@ static const union AnimCmd sAnim_ZubatMovement[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_ZubatDie[] =
+{
+    ANIMCMD_FRAME(48, 16),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd *const sAnims_ZubatSprite[] =
 {
     [ZUBAT_MOVEMENT] = sAnim_ZubatMovement,
+    [ZUBAT_DIE] = sAnim_ZubatDie
 };
 
 #define sColision data[6] 
 
 void SpriteCallbackZubat(struct Sprite *sprite)
 {
+    if(!HasLivesToContinue()){
+        StartSpriteAnim(sprite, ZUBAT_DIE);
+        return;
+    }
+
     HandleMovement_Zubat();
 
     u8 idKoffing = isZubatColisionKoffing(sprite);
@@ -162,6 +190,8 @@ void SpriteCallbackZubat(struct Sprite *sprite)
         sprite->sColision = TRUE;
         sprite->sTimer = 200;
         gSprites[idKoffing].invisible = FALSE;
+        tutorialObj.numLives -= 1;
+        PrintLives();
     }
 
     if(sprite->sColision && --sprite->sTimer % 10 == 0)
@@ -257,15 +287,20 @@ static const union AnimCmd *const sAnims_KoffingSprite[] =
 
 void SpriteCallbackKoffing(struct Sprite *sprite)
 {
-    if( sprite-> x  == 0)
+    if(!HasLivesToContinue())
     {
-        tutorialObj.koffingSpritesId[sprite->sKoffingIndex] = 0xFF;
-        DestroySprite(sprite);
-    }
+        sprite->invisible = FALSE;
+    }else{
+        if( sprite-> x  == 0)
+        {
+            tutorialObj.koffingSpritesId[sprite->sKoffingIndex] = 0xFF;
+            DestroySprite(sprite);
+        }
 
-    if(++ sprite->sTimer % 2 == 0)
-    {
-        sprite->x -= 2;
+        if(++ sprite->sTimer % 2 == 0)
+        {
+            sprite->x -= 2;
+        }
     }
 }
 
@@ -331,6 +366,30 @@ static void DestroySpriteBeam(struct Sprite *sprite)
     tutorialObj.countBeam -=1;
 }
 
+static void DestroySpritesGame()
+{
+    u8 i;
+
+    DestroySprite(&gSprites[tutorialObj.zubatSpriteId]);
+    tutorialObj.zubatSpriteId = 0xFF;
+  
+    for (i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
+    {
+        if(tutorialObj.koffingSpritesId[i] == 0xFF)
+            continue;
+        DestroySprite(&gSprites[tutorialObj.koffingSpritesId[i]]);
+        tutorialObj.koffingSpritesId[i] = 0xFF;
+    }
+
+    for (i = 0; i < MAX_NUM_BEAM_SPRITES; i++)
+    {
+        if(tutorialObj.beamSpritesId[i] == 0xFF)
+            continue;
+        DestroySprite(&gSprites[tutorialObj.beamSpritesId[i]]);
+        tutorialObj.beamSpritesId[i] = 0xFF;
+    }
+}
+
 //==========BG TEMPLATES==========//
 static const struct BgTemplate TutorialBgTemplates[] =
 {
@@ -361,11 +420,11 @@ static void LoadBGs_EventStart()
 {
     InitBgsFromTemplates(0, TutorialBgTemplates, NELEMS(TutorialBgTemplates));
 
-    LZ77UnCompVram(TutorialBG2_Tileset, (void*) VRAM + 0x4000 * TutorialBgTemplates[2].charBaseIndex);
-    LZ77UnCompVram(TutorialBG2_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[2].mapBaseIndex));
+    LZ77UnCompVram(TutorialBG3_Tileset, (void*) VRAM + 0x4000 * TutorialBgTemplates[2].charBaseIndex);
+    LZ77UnCompVram(TutorialBG3_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[2].mapBaseIndex));
 
-    LZ77UnCompVram(TutorialBG1_Tileset, (void*) VRAM + 0x4000 * TutorialBgTemplates[1].charBaseIndex);
-    LZ77UnCompVram(TutorialBG1_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[1].mapBaseIndex));
+    LZ77UnCompVram(TutorialBG2_Tileset, (void*) VRAM + 0x4000 * TutorialBgTemplates[1].charBaseIndex);
+    LZ77UnCompVram(TutorialBG2_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[1].mapBaseIndex));
 
     LoadPalette(TutorialBG_Palette, 0x00, 0x20);
 
@@ -394,7 +453,10 @@ static void CB2_Tutorial()
 //==========WINDOW LOAD FUNC==========//
 
 enum{
-    WINDOW_MSG
+    WINDOW_MSG,
+    WINDOW_DISTANCE,
+    WINDOW_LIVE,
+
 };
 
 static const struct WindowTemplate sWindowTemplatesTutorial[] =
@@ -404,9 +466,27 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .tilemapLeft = 1,
         .tilemapTop = 6,
         .width = 28,
-        .height = 6,
+        .height = 5,
         .paletteNum = 15,
         .baseBlock = 1
+    },
+    [WINDOW_DISTANCE]{
+        .bg = 0,
+        .tilemapLeft = 18,
+        .tilemapTop = 0,
+        .width = 10,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 169
+    },
+     [WINDOW_LIVE]{
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 0,
+        .width = 6,
+        .height = 2,
+        .paletteNum = 1,
+        .baseBlock = 189
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -416,6 +496,25 @@ static void InitWindowTutorial()
 	InitWindows(sWindowTemplatesTutorial);
     DeactivateAllTextPrinters();
 	LoadPalette(GetOverworldTextboxPalettePtr(), 0xf0, 0x20);
+}
+
+static void PrintDistance()
+{
+    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0));
+    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar2, gText_Distance);
+    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextColors2, 0, gStringVar2);
+    CopyWindowToVram(WINDOW_DISTANCE, 2);
+}
+
+static void PrintLives()
+{
+    FillWindowPixelBuffer(WINDOW_LIVE, PIXEL_FILL(0));
+    BlitBitmapToWindow(WINDOW_LIVE, ZubatIcon_Sprite, 0, 0, 16, 16);
+    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.numLives, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar2, gText_Live);
+    AddTextPrinterParameterized3(WINDOW_LIVE, FONT_SMALL, 17, 0, sTextColors2, 0, gStringVar2);
+    CopyWindowToVram(WINDOW_LIVE, 2);
 }
 
 //==========Other functions==========//
@@ -512,6 +611,14 @@ static void HandleMovement_Zubat()
     }
 }
 
+static bool8 HasLivesToContinue()
+{
+    if(tutorialObj.numLives == 0)
+        return FALSE;
+
+    return TRUE;
+}
+
 //==========tasks==========//
 
 static void Task_StartGame(u8 taskId);
@@ -523,6 +630,8 @@ static void Task_MainWaitFadeIn(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        PutWindowTilemap(WINDOW_DISTANCE);
+        PutWindowTilemap(WINDOW_LIVE);
         PutWindowTilemap(WINDOW_MSG);
         DrawStdWindowFrame(WINDOW_MSG, FALSE);
         FillWindowPixelBuffer(WINDOW_MSG, PIXEL_FILL(1));
@@ -538,7 +647,7 @@ static void Task_RemoveWindow(u8 taskId)
 {
     if(!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
     {
-        ClearDialogWindowAndFrameToTransparent(WINDOW_MSG, FALSE);
+        ClearDialogWindowAndFrameToTransparent(WINDOW_MSG, TRUE);
         ClearStdWindowAndFrameToTransparent(WINDOW_MSG, FALSE);
         CopyWindowToVram(WINDOW_MSG, COPYWIN_GFX);
         RemoveWindow(WINDOW_MSG);
@@ -549,7 +658,11 @@ static void Task_RemoveWindow(u8 taskId)
 static void Task_StartGame(u8 taskId)
 {
     tutorialObj.countBeam = 0;
+    tutorialObj.distance = 0;
+    tutorialObj.numLives = NUM_LIVES;
     memset(tutorialObj.koffingSpritesId, 0xFF, sizeof(tutorialObj.koffingSpritesId));
+    PrintLives();
+    PrintDistance();
     tutorialObj.zubatSpriteId = CreateZubatSprite(50, 50 ,0);
     CreateTask(Task_CreateKoffings, 1);
     gTasks[taskId].func = Task_Movement_Bgs;
@@ -560,6 +673,12 @@ static void Task_StartGame(u8 taskId)
 
 static void Task_Movement_Bgs(u8 taskId)
 {
+    if(!HasLivesToContinue())
+    {
+        gTasks[taskId].tTimer = 0;
+        gTasks[taskId].func = Task_ZubatFall;
+    }
+
     if(gTasks[taskId].tTimer % 4 == 0) 
     {
         SetGpuReg(REG_OFFSET_BG2HOFS, ++gTasks[taskId].tBG2HOFS);
@@ -569,6 +688,11 @@ static void Task_Movement_Bgs(u8 taskId)
     {
         SetGpuReg(REG_OFFSET_BG3HOFS, ++gTasks[taskId].tBG3HOFS);
     }
+
+    if(gTasks[taskId].tTimer % 30 == 0){
+        tutorialObj.distance += 1;
+        PrintDistance();
+    } 
 
     gTasks[taskId].tTimer += 1;
 }
@@ -584,6 +708,11 @@ static void  Task_CreateKoffings(u8 taskId)
 
     if (!gPaletteFade.active)
     {
+        if(!HasLivesToContinue())
+        {
+            DestroyTask(taskId);
+        }
+
        numSpriteToCreate = (Random() % (MAX_NUM_KOFFING_SPRITES/2)) + 1;
 
         for ( i = 0; i < numSpriteToCreate; i++)
@@ -634,6 +763,36 @@ static void  Task_WaitToCreateKoffings(u8 taskId)
         gTasks[taskId].func = Task_CreateKoffings;
     }
 }   
+static void Task_ZubatFall(u8 taskId)
+{
+    if(gSprites[tutorialObj.zubatSpriteId].y ==  HEIGHT_SCREEN)
+    {
+        gSprites[tutorialObj.zubatSpriteId].invisible = TRUE;
+        gTasks[taskId].func = Task_EndGame;
+    }
+    gSprites[tutorialObj.zubatSpriteId].y += 1;
+}
+
+static void Task_FadeOut(u8 taskId)
+{
+    BeginNormalPaletteFade(PALETTES_ALL, 10, 0, 16, RGB_BLACK);
+    gTasks[taskId].func = Task_FadeOut;
+
+}
+
+static void Task_EndGame(u8 taskId)
+{
+    if(!gPaletteFade.active)
+    {
+        Free(&tutorialObj);
+        FreeAllWindowBuffers();
+        DestroySpritesGame();
+        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        DestroyTask(taskId);
+    }
+}
+
+
 
 
 //==========GFX SETUP FUNC==========//
@@ -660,6 +819,8 @@ void CB2_InitTutorialSetUp()
         InitWindowTutorial();
         LoadSpritesResources();
         LoadMessageBoxAndBorderGfx();
+        LoadBgTiles(0, ZubatIcon_Sprite, 128, 0x200);
+        LoadPalette(ZubatKoffing_Palette, 0x10, 0x20);
         gMain.state++;
         break;
     case 3:
