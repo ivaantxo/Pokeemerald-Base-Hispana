@@ -68,7 +68,7 @@
 
 // Configuraciones generales
 #define EXPANSION_INTRO              TRUE    // Si es TRUE, se reproducirá una introducción personalizada de RHH después de la pantalla de derechos de autor original.
-#define POKEDEX_PLUS_HGSS            FALSE   // Si es TRUE, habilita el Pokédex estilo HGSS personalizado.
+#define POKEDEX_PLUS_HGSS            TRUE    // Si es TRUE, habilita el Pokédex estilo HGSS personalizado.
 #define SUMMARY_SCREEN_NATURE_COLORS TRUE    // Si es TRUE, los aumentos y reducciones basados en la naturaleza se mostrarán en rojo y azul en la pantalla de resumen.
 #define HQ_RANDOM                    TRUE    // Si es TRUE, reemplaza el RNG predeterminado con una implementación del RNG SFC32. Puede romper el código que depende del RNG.
 #define COMPETITIVE_PARTY_SYNTAX     TRUE    // Si es TRUE, los equipos se definen en "sintaxis competitiva".
@@ -77,8 +77,8 @@
 #define UNITS_IMPERIAL               0       // Pulgadas, pies, libras
 #define UNITS_METRIC                 1       // metros, kilogramos
 
-#define UNITS                        UNITS_IMPERIAL
-#define CHAR_DEC_SEPARATOR           CHAR_PERIOD // CHAR_PERIOD se usa como separador decimal solo en el Reino Unido y EE.UU. El resto del mundo usa CHAR_COMMA.
+#define UNITS                        UNITS_METRIC
+#define CHAR_DEC_SEPARATOR           CHAR_COMMA // CHAR_PERIOD se usa como separador decimal solo en el Reino Unido y EE.UU. El resto del mundo usa CHAR_COMMA.
 
 // Pantalla de Nombres
 #define AUTO_LOWERCASE_KEYBOARD      GEN_LATEST  // A partir de GEN_6, después de ingresar el primer carácter en mayúsculas, el teclado cambia a letras minúsculas.
