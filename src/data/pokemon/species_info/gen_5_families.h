@@ -611,10 +611,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 15,
         .weight = 582,
         .description = COMPOUND_STRING(
-            "Hard of heart and deft of blade,\n"
-            "this rare form of Samurott is a\n"
-            "product of the Pokémon's evolution in the\n"
-            "region of Hisui."),
+            "De corazón duro y hábil con la espada,\n"
+"esta rara forma de Samurott es un\n"
+"producto de la evolución del Pokémon\n"
+"en la región de Hisui."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -3512,10 +3512,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 12,
         .weight = 192,
         .description = COMPOUND_STRING(
-            "Its well-developed legs are the result of\n"
-            "a life spent on mountains covered in deep\n"
-            "snow. The scent it exudes from its flower\n"
-            "crown heartens those in proximity."),
+            "Sus piernas fortalecidas son el resultado\n"
+"de una vida pasada en montañas cubiertas\n"
+"de nieve profunda. El aroma que exuda de\n"
+"su corona alegra a quienes están cerca."),
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -3578,10 +3578,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 10,
         .weight = 180,
         .description = COMPOUND_STRING(
-            "It used to be a common food source. The\n"
-            "meat of red Basculin is on the fatty side\n"
-            "and it's more popular with the youth.\n"
-            "Its temperament is vicious and aggressive."),
+            "Solía ser fuente de alimento común. La\n"
+"carne del Basculin rojo es algo grasosa\n"
+"y es más popular entre los jóvenes.\n"
+"Su temperamento es vicioso y agresivo."),
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -3642,10 +3642,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 10,
         .weight = 180,
         .description = COMPOUND_STRING(
-            "They form schools with others of the same\n"
-            "color. The greatest foe of a school of blue\n"
-            "Basculin is a school of red Basculin.\n"
-            "Its flavor is light and inoffensive."),
+            "Forman escuelas con otros de su mismo\n"
+"color. El mayor enemigo de una escuela de\n"
+"Basculin azul es una escuela de Basculin\n"
+"rojo. Su sabor es ligero e inofensivo."),
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -3707,10 +3707,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 10,
         .weight = 180,
         .description = COMPOUND_STRING(
-            "While this ancient form of Basculin shares\n"
-            "a vast array of qualities with other forms,\n"
-            "it differs in several respects, including\n"
-            "demeanor, being much gentler than others."),
+            "Aunque esta forma es antigua, comparte\n"
+"una gran variedad de cualidades, se\n"
+"diferencia en varios aspectos, por\n"
+"ejemplo su actitud, siendo más gentil."),
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -3771,10 +3771,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 30,
         .weight = 1100,
         .description = COMPOUND_STRING(
-            "Clads itself in the souls of comrades that\n"
-            "perished before fulfilling their goals of\n"
-            "journeying upstream. No other species in\n"
-            "all Hisui's rivers is Basculegion's equal."),
+            "Se cubre con las almas de aliados que\n"
+"cayeron antes de cumplir su objetivo de\n"
+"asubir corriente arriba. Ninguna especie\n"
+"en los ríos de Hisui es igual a esta."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -3833,9 +3833,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 30,
         .weight = 1100,
         .description = COMPOUND_STRING(
-            "The souls of its comrades cloak its\n"
-            "body and propel it effortlessly\n"
-            "through even raging rapids."),
+            "Las almas de sus aliados envuelven su\n"
+"cuerpo y lo impulsan sin esfuerzo a\n"
+"través de incluso las corrientes\n"
+"más furiosas."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -4138,10 +4139,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 13,
         .weight = 929,
         .description = COMPOUND_STRING(
-            "When one is injured in a fierce battle,\n"
-            "it transforms into a stone statue.\n"
-            "Then it meditates and sharpens its\n"
-            "mind and fights on mentally."),
+            "Cuando resulta herido en batalla,\n"
+"se transforma en una estatua de piedra.\n"
+"Entonces medita y agudiza su mente,\n"
+"y continúa luchando mentalmente."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -4200,9 +4201,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 13,
         .weight = 929,
         .description = COMPOUND_STRING(
-            "When wounded, it stops moving. It\n"
-            "goes as still as stone to meditate,\n"
-            "sharpening its mind and spirit."),
+            "Cuando está herido, deja de moverse.\n"
+"Se queda tan inmóvil como una piedra\n"
+"para meditar, agudizando su\n"
+"mente y espíritu."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -4381,10 +4383,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 17,
         .weight = 1200,
         .description = COMPOUND_STRING(
-            "Darmanitan takes this form when\n"
-            "enraged. It won't stop spewing flames\n"
-            "until its rage has settled, even if\n"
-            "its body starts to melt."),
+            "Darmanitan toma esta forma cuando está\n"
+"enfadado. No dejará de lanzar llamas\n"
+"hasta que su ira se haya calmado, incluso\n"
+"si su cuerpo comienza a derretirse."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -5572,10 +5574,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 7,
         .weight = 125,
         .description = COMPOUND_STRING(
-            "Derives power from resentment,\n"
-            "which rises as energy atop its head and\n"
-            "takes on the forms of foes. In this\n"
-            "way, Zorua vents lingering malice."),
+            "Deriva poder del resentimiento,\n"
+"que surge como energía en su cabeza y\n"
+"asume las formas de sus rivales. De esta\n"
+"forma, libera la mala voluntad que queda."),
         .pokemonScale = 365,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -5635,10 +5637,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 16,
         .weight = 730,
         .description = COMPOUND_STRING(
-            "Heedless of its own safety,\n"
-            "Zoroark attacks its nemeses with a bitter\n"
-            "energy so intense, it lacerates\n"
-            "Zoroark's own body."),
+            "Sin preocuparse por su propia seguridad,\n"
+"ataca a sus rivales con una energía\n"
+"tan amarga que llega a lacerar el\n"
+"propio cuerpo de Zoroark."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -6483,10 +6485,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 195,
         .description = COMPOUND_STRING(
-            "Deerling have different scents\n"
-            "depending on the season. In early\n"
-            "spring, these Pokémon give off a\n"
-            "delicate, sweet, and calming scent."),
+            "Los Deerling tienen diferentes aromas\n"
+        "en base a la estación. En la\n"
+        "primavera temprana, emiten un\n"
+        "aroma delicado, dulce y calmante."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6546,10 +6548,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 195,
         .description = COMPOUND_STRING(
-            "To prevent Deerling from entering\n"
-            "their fields, many farmers will have\n"
-            "several Lycanroc stand guard, as\n"
-            "they are its natural enemy."),
+            "Para evitar que Deerling entre,\n"
+        "muchos granjeros colocan varios\n"
+        "Lycanroc para que estén de guardia,\n"
+        "ya que son sus enemigos naturales."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6609,10 +6611,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 195,
         .description = COMPOUND_STRING(
-            "Deerling have different scents\n"
-            "depending on the season. In this form,\n"
-            "Deerling have a softly sweet scent\n"
-            "that lingers in the nose."),
+            "Deerling tiene diferentes olores\n"
+        "dependiendo de la estación. En esta forma,\n"
+        "Deerling tiene un aroma suavemente dulce\n"
+        "que persiste en la nariz."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6672,10 +6674,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 195,
         .description = COMPOUND_STRING(
-            "Deerling's scent changes with the\n"
-            "seasons, but when the Pokémon is in\n"
-            "its Winter Form, it has hardly any\n"
-            "scent at all."),
+            "El aroma de Deerling cambia con las\n"
+        "estaciones, pero cuando el Pokémon está\n"
+        "en su Forma de Invierno, casi no tiene\n"
+        "aroma en absoluto."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6735,10 +6737,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 19,
         .weight = 925,
         .description = COMPOUND_STRING(
-            "Some people call Sawsbuck the harbingers\n"
-            "of spring because the plants growing on\n"
-            "its horns change according to the season.\n"
-            "The leader possesses magnificent horns."),
+            "Algunas personas llaman a Sawsbuck los\n"
+        "presagios de la primavera porque las\n"
+        "plantas de sus cuernos cambian según\n"
+        "la estación. El líder posee cuernos magníficos."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -6796,10 +6798,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 19,
         .weight = 925,
         .description = COMPOUND_STRING(
-            "The thicker and larger the\n"
-            "branches and leaves on its antlers, the\n"
-            "more majestic the Sawsbuck is thought\n"
-            "to be."),
+            "Cuanto más gruesas y grandes son las\n"
+        "ramas y hojas en sus cuernos, más majestuoso\n"
+        "se considera que es Sawsbuck."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -6857,10 +6858,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 19,
         .weight = 925,
         .description = COMPOUND_STRING(
-            "Sawsbuck in their Autumn Form are\n"
-            "known for having very short\n"
-            "tempers. The males fight each other\n"
-            "incessantly."),
+            "Sawsbuck en su Forma Otoñal son\n"
+        "conocidos por tener un temperamento\n"
+        "muy corto. Los machos se pelean\n"
+        "incesantemente."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -6918,10 +6919,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 19,
         .weight = 925,
         .description = COMPOUND_STRING(
-            "Though there are many enthusiasts\n"
-            "for Sawsbuck as a species, this\n"
-            "seasonal form in particular is not\n"
-            "very popular."),
+            "Aunque hay muchos entusiastas de\n"
+        "Sawsbuck como especie, esta forma\n"
+        "estacional en particular no es\n"
+        "muy popular."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -9604,9 +9605,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 17,
         .weight = 434,
         .description = COMPOUND_STRING(
-            "Screaming a bloodcurdling battle\n"
-            "cry, this huge and ferocious bird\n"
-            "Pokémon goes out on the hunt."),
+            "Con un grito de batalla escalofriante,\n"
+"este enorme y feroz Pokémon ave\n"
+"sale en busca de su presa."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10373,10 +10374,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 15,
         .weight = 630,
         .description = COMPOUND_STRING(
-            "Tornadus expels massive energy from\n"
-            "its tail, causing severe storms.\n"
-            "Its power can blow entire houses away.\n"
-            "It zooms through the sky at 200 mph."),
+            "Expulsa una enorme energía desde\n"
+"su cola, causando tormentas severas.\n"
+"Su poder puede derribar casas enteras.\n"
+"Se desplaza por el cielo a 200 kmh."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10437,10 +10438,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 14,
         .weight = 630,
         .description = COMPOUND_STRING(
-            "An example of what is known as a\n"
-            "“form change”. Tornadus has been\n"
-            "sighted crossing the ocean while in this\n"
-            "form."),
+           "Un ejemplo de lo que se conoce como un\n"
+"“cambio de forma”. Tornadus ha sido\n"
+"observado cruzando el océano en esta\n"
+"forma."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10494,10 +10495,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 15,
         .weight = 610,
         .description = COMPOUND_STRING(
-            "The spikes on its tail discharge immense\n"
-            "bolts of lightning. Countless charred\n"
-            "remains mar the landscape of places\n"
-            "through which Thundurus has passed."),
+            "Su cola descarga inmensos rayos.\n"
+"Incontables restos carbonizados\n"
+"marcan el paisaje de los lugares\n"
+"por donde ha pasado Thundurus."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10558,10 +10559,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 30,
         .weight = 610,
         .description = COMPOUND_STRING(
-            "It pulverizes foes into\n"
-            "nothingness with showers of devastatingly\n"
-            "powerful lightning bolts launched from\n"
-            "the string of orbs on its tail."),
+            "Pulveriza a sus enemigos hasta\n"
+"convertirlos en nada con golpes de\n"
+"rayos devastadores. Lanzados desde\n"
+"la cadena de orbes en su cola."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10736,10 +10737,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 15,
         .weight = 680,
         .description = COMPOUND_STRING(
-            "The energy that comes pouring from its tail\n"
-            "increases the nutrition in the soil, making\n"
-            "crops grow to great size. It has been\n"
-            "hailed as “The Guardian of the Fields.”"),
+            "La energía que brota de su cola incrementa\n"
+"la nutrición en el suelo, haciendo que los\n"
+"cultivos crezcan a gran tamaño. Ha sido\n"
+"llamado “El Guardián de los Campos.”"),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10800,10 +10801,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 13,
         .weight = 680,
         .description = COMPOUND_STRING(
-            "Landorus soars through the sky in\n"
-            "this form, bestowing plentiful\n"
-            "harvests upon the land and earning the\n"
-            "people's reverence."),
+            "Landorus vuela por el cielo en\n"
+"esta forma, otorgando cosechas abundantes\n"
+"a la tierra y ganándose la veneración\n"
+"de la gente."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10927,10 +10928,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 36,
         .weight = 3250,
         .description = COMPOUND_STRING(
-            "The sameness of Reshiram's and\n"
-            "Kyurem's genes allowed Kyurem to\n"
-            "absorb Reshiram. Kyurem can now use the\n"
-            "power of both fire and ice."),
+            "La similitud entre los genes de Reshiram y\n"
+"Kyurem permitió que Kyurem absorbiera a\n"
+"Reshiram. Ahora Kyurem puede usar el poder\n"
+"tanto del fuego como del hielo."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 356,
@@ -10990,10 +10991,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 33,
         .weight = 3250,
         .description = COMPOUND_STRING(
-            "The sameness of Zekrom's and\n"
-            "Kyurem's genes allowed Kyurem to absorb\n"
-            "Zekrom. Kyurem can now use the\n"
-            "power of both electricity and ice."),
+            "La similitud entre los genes de Zekrom y\n"
+"Kyurem permitió que Kyurem absorbiera a\n"
+"Zekrom. Ahora Kyurem puede usar el poder\n"
+"tanto de la electricidad como del hielo."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 356,
@@ -11024,125 +11025,123 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
 #if P_FAMILY_KELDEO
     [SPECIES_KELDEO_ORDINARY] =
-    {
-        .baseHP        = 91,
-        .baseAttack    = 72,
-        .baseDefense   = 90,
-        .baseSpeed     = 108,
-        .baseSpAttack  = 129,
-        .baseSpDefense = 90,
-        .types = MON_TYPES(TYPE_WATER, TYPE_FIGHTING),
-        .catchRate = 3,
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,
-        .evYield_SpAttack = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 80,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = _("Keldeo"),
-        .cryId = CRY_KELDEO,
-        .natDexNum = NATIONAL_DEX_KELDEO,
-        .categoryName = _("Colt"),
-        .height = 14,
-        .weight = 485,
-        .description = COMPOUND_STRING(
-            "When it is resolute, its body fills with\n"
-            "power and it becomes swifter. It crosses\n"
-            "the world, running over the surfaces of\n"
-            "oceans and rivers."),
-        .pokemonScale = 265,
-        .pokemonOffset = 2,
-        .trainerScale = 262,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_KeldeoOrdinary,
-        .frontPicSize = MON_COORDS_SIZE(56, 56),
-        .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_KeldeoOrdinary,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backPic = gMonBackPic_KeldeoOrdinary,
-        .backPicSize = MON_COORDS_SIZE(56, 64),
-        .backPicYOffset = 4,
-        .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .palette = gMonPalette_KeldeoOrdinary,
-        .shinyPalette = gMonShinyPalette_KeldeoOrdinary,
-        .iconSprite = gMonIcon_KeldeoOrdinary,
-        .iconPalIndex = 0,
-        FOOTPRINT(Keldeo)
-        OVERWORLD(
-            sPicTable_KeldeoOrdinary,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_KeldeoOrdinary,
-            gShinyOverworldPalette_KeldeoOrdinary
-        )
-        .isMythical = TRUE,
-        .isFrontierBanned = TRUE,
-        .levelUpLearnset = sKeldeoLevelUpLearnset,
-        .teachableLearnset = sKeldeoTeachableLearnset,
-        .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
-        .formChangeTable = sKeldeoFormChangeTable,
-    },
+{
+    .baseHP        = 91,
+    .baseAttack    = 72,
+    .baseDefense   = 90,
+    .baseSpeed     = 108,
+    .baseSpAttack  = 129,
+    .baseSpDefense = 90,
+    .types = MON_TYPES(TYPE_WATER, TYPE_FIGHTING),
+    .catchRate = 3,
+    .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,
+    .evYield_SpAttack = 3,
+    .genderRatio = MON_GENDERLESS,
+    .eggCycles = 80,
+    .friendship = 35,
+    .growthRate = GROWTH_SLOW,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+    .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE, ABILITY_NONE },
+    .bodyColor = BODY_COLOR_YELLOW,
+    .speciesName = _("Keldeo"),
+    .cryId = CRY_KELDEO,
+    .natDexNum = NATIONAL_DEX_KELDEO,
+    .categoryName = _("Potro"),
+    .height = 14,
+    .weight = 485,
+    .description = COMPOUND_STRING(
+        "Cuando está decidido, su cuerpo se llena de\n"
+        "poder y se vuelve más rápido. Cruza el mundo,\n"
+        "corriendo sobre la superficie de océanos y ríos."),
+    .pokemonScale = 265,
+    .pokemonOffset = 2,
+    .trainerScale = 262,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_KeldeoOrdinary,
+    .frontPicSize = MON_COORDS_SIZE(56, 56),
+    .frontPicYOffset = 5,
+    .frontAnimFrames = sAnims_KeldeoOrdinary,
+    .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+    .backPic = gMonBackPic_KeldeoOrdinary,
+    .backPicSize = MON_COORDS_SIZE(56, 64),
+    .backPicYOffset = 4,
+    .backAnimId = BACK_ANIM_JOLT_RIGHT,
+    .palette = gMonPalette_KeldeoOrdinary,
+    .shinyPalette = gMonShinyPalette_KeldeoOrdinary,
+    .iconSprite = gMonIcon_KeldeoOrdinary,
+    .iconPalIndex = 0,
+    FOOTPRINT(Keldeo)
+    OVERWORLD(
+        sPicTable_KeldeoOrdinary,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_KeldeoOrdinary,
+        gShinyOverworldPalette_KeldeoOrdinary
+    )
+    .isMythical = TRUE,
+    .isFrontierBanned = TRUE,
+    .levelUpLearnset = sKeldeoLevelUpLearnset,
+    .teachableLearnset = sKeldeoTeachableLearnset,
+    .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
+    .formChangeTable = sKeldeoFormChangeTable,
+},
 
-    [SPECIES_KELDEO_RESOLUTE] =
-    {
-        .baseHP        = 91,
-        .baseAttack    = 72,
-        .baseDefense   = 90,
-        .baseSpeed     = 108,
-        .baseSpAttack  = 129,
-        .baseSpDefense = 90,
-        .types = MON_TYPES(TYPE_WATER, TYPE_FIGHTING),
-        .catchRate = 3,
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,
-        .evYield_SpAttack = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 80,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_YELLOW,
-        .noFlip = TRUE,
-        .speciesName = _("Keldeo"),
-        .cryId = CRY_KELDEO,
-        .natDexNum = NATIONAL_DEX_KELDEO,
-        .categoryName = _("Colt"),
-        .height = 14,
-        .weight = 485,
-        .description = COMPOUND_STRING(
-            "The power that lay hidden in its\n"
-            "body now covers its horn, turning it\n"
-            "into a sword that can slice through\n"
-            "anything."),
-        .pokemonScale = 265,
-        .pokemonOffset = 2,
-        .trainerScale = 262,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_KeldeoResolute,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_KeldeoResolute,
-        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
-        .backPic = gMonBackPic_KeldeoResolute,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
-        .backPicYOffset = 3,
-        .backAnimId = BACK_ANIM_GROW_STUTTER,
-        .palette = gMonPalette_KeldeoResolute,
-        .shinyPalette = gMonShinyPalette_KeldeoResolute,
-        .iconSprite = gMonIcon_KeldeoResolute,
-        .iconPalIndex = 0,
-        FOOTPRINT(Keldeo)
-        .isMythical = TRUE,
-        .isFrontierBanned = TRUE,
-        .levelUpLearnset = sKeldeoLevelUpLearnset,
-        .teachableLearnset = sKeldeoTeachableLearnset,
-        .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
-        .formChangeTable = sKeldeoFormChangeTable,
-    },
+[SPECIES_KELDEO_RESOLUTE] =
+{
+    .baseHP        = 91,
+    .baseAttack    = 72,
+    .baseDefense   = 90,
+    .baseSpeed     = 108,
+    .baseSpAttack  = 129,
+    .baseSpDefense = 90,
+    .types = MON_TYPES(TYPE_WATER, TYPE_FIGHTING),
+    .catchRate = 3,
+    .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,
+    .evYield_SpAttack = 3,
+    .genderRatio = MON_GENDERLESS,
+    .eggCycles = 80,
+    .friendship = 35,
+    .growthRate = GROWTH_SLOW,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+    .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE, ABILITY_NONE },
+    .bodyColor = BODY_COLOR_YELLOW,
+    .noFlip = TRUE,
+    .speciesName = _("Keldeo"),
+    .cryId = CRY_KELDEO,
+    .natDexNum = NATIONAL_DEX_KELDEO,
+    .categoryName = _("Potro"),
+    .height = 14,
+    .weight = 485,
+    .description = COMPOUND_STRING(
+        "El poder que yacía oculto en su cuerpo\n"
+        "ahora cubre su cuerno, convirtiéndolo en una\n"
+        "espada que puede cortar a través de cualquier cosa."),
+    .pokemonScale = 265,
+    .pokemonOffset = 2,
+    .trainerScale = 262,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_KeldeoResolute,
+    .frontPicSize = MON_COORDS_SIZE(64, 64),
+    .frontPicYOffset = 2,
+    .frontAnimFrames = sAnims_KeldeoResolute,
+    .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+    .backPic = gMonBackPic_KeldeoResolute,
+    .backPicSize = MON_COORDS_SIZE(64, 64),
+    .backPicYOffset = 3,
+    .backAnimId = BACK_ANIM_GROW_STUTTER,
+    .palette = gMonPalette_KeldeoResolute,
+    .shinyPalette = gMonShinyPalette_KeldeoResolute,
+    .iconSprite = gMonIcon_KeldeoResolute,
+    .iconPalIndex = 0,
+    FOOTPRINT(Keldeo)
+    .isMythical = TRUE,
+    .isFrontierBanned = TRUE,
+    .levelUpLearnset = sKeldeoLevelUpLearnset,
+    .teachableLearnset = sKeldeoTeachableLearnset,
+    .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
+    .formChangeTable = sKeldeoFormChangeTable,
+},
 #endif //P_FAMILY_KELDEO
 
 #if P_FAMILY_MELOETTA
@@ -11177,10 +11176,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 65,
         .description = COMPOUND_STRING(
-            "The melodies sung by Meloetta have the\n"
-            "power to make Pokémon that hear them\n"
-            "happy or sad. Many famous songs have been\n"
-            "inspired by the tunes that Meloetta plays."),
+             "Las melodías que canta tienen el poder\n"
+        "de hacer que los Pokémon que las escuchan\n"
+        "se sientan felices o tristes. Muchas canciones\n"
+        "famosas han sido inspiradas por sus melodías."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -11247,9 +11246,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 65,
         .description = COMPOUND_STRING(
-            "Meloetta's melodies are sung with\n"
-            "a special vocalization method that can\n"
-            "control the feelings of those who hear it."),
+           "Las melodías son cantadas con\n"
+        "un método vocal especial que puede\n"
+        "controlar los sentimientos."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,

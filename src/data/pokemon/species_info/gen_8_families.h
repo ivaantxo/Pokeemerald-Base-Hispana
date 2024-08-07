@@ -3603,252 +3603,252 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
 #if P_FAMILY_SINISTEA
     [SPECIES_SINISTEA_PHONY] =
-    {
-        .baseHP        = 40,
-        .baseAttack    = 45,
-        .baseDefense   = 45,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 74,
-        .baseSpDefense = 54,
-        .types = MON_TYPES(TYPE_GHOST),
-        .catchRate = 120,
-        .expYield = 62,
-        .evYield_SpAttack = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
-        .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = _("Sinistea"),
-        .cryId = CRY_SINISTEA,
-        .natDexNum = NATIONAL_DEX_SINISTEA,
-        .categoryName = _("Black Tea"),
-        .height = 1,
-        .weight = 2,
-        .description = COMPOUND_STRING(
-            "This Pokémon is said to have been born\n"
-            "when a lonely spirit possessed a cold,\n"
-            "leftover cup of tea."),
-        .pokemonScale = 682,
-        .pokemonOffset = 24,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Sinistea,
-        .frontPicSize = MON_COORDS_SIZE(40, 32),
-        .frontPicYOffset = 17,
-        .frontAnimFrames = sAnims_Sinistea,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 9,
-        .backPic = gMonBackPic_Sinistea,
-        .backPicSize = MON_COORDS_SIZE(48, 32),
-        .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_Sinistea,
-        .shinyPalette = gMonShinyPalette_Sinistea,
-        .iconSprite = gMonIcon_Sinistea,
-        .iconPalIndex = 2,
-        FOOTPRINT(Sinistea)
-        OVERWORLD(
-            sPicTable_Sinistea,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_Sinistea,
-            gShinyOverworldPalette_Sinistea
-        )
-        .levelUpLearnset = sSinisteaLevelUpLearnset,
-        .teachableLearnset = sSinisteaTeachableLearnset,
-        .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CRACKED_POT, SPECIES_POLTEAGEIST_PHONY}),
-    },
+{
+    .baseHP        = 40,
+    .baseAttack    = 45,
+    .baseDefense   = 45,
+    .baseSpeed     = 50,
+    .baseSpAttack  = 74,
+    .baseSpDefense = 54,
+    .types = MON_TYPES(TYPE_GHOST),
+    .catchRate = 120,
+    .expYield = 62,
+    .evYield_SpAttack = 1,
+    .genderRatio = MON_GENDERLESS,
+    .eggCycles = 20,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
+    .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
+    .bodyColor = BODY_COLOR_PURPLE,
+    .speciesName = _("Sinistea"),
+    .cryId = CRY_SINISTEA,
+    .natDexNum = NATIONAL_DEX_SINISTEA,
+    .categoryName = _("Black Tea"),
+    .height = 1,
+    .weight = 2,
+    .description = COMPOUND_STRING(
+        "Se dice que este Pokémon nació\n"
+        "cuando un espíritu solitario poseyó\n"
+        "una taza de té fría y sobrante."),
+    .pokemonScale = 682,
+    .pokemonOffset = 24,
+    .trainerScale = 256,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_Sinistea,
+    .frontPicSize = MON_COORDS_SIZE(40, 32),
+    .frontPicYOffset = 17,
+    .frontAnimFrames = sAnims_Sinistea,
+    //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+    .enemyMonElevation = 9,
+    .backPic = gMonBackPic_Sinistea,
+    .backPicSize = MON_COORDS_SIZE(48, 32),
+    .backPicYOffset = 16,
+    //.backAnimId = BACK_ANIM_NONE,
+    .palette = gMonPalette_Sinistea,
+    .shinyPalette = gMonShinyPalette_Sinistea,
+    .iconSprite = gMonIcon_Sinistea,
+    .iconPalIndex = 2,
+    FOOTPRINT(Sinistea)
+    OVERWORLD(
+        sPicTable_Sinistea,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_Sinistea,
+        gShinyOverworldPalette_Sinistea
+    )
+    .levelUpLearnset = sSinisteaLevelUpLearnset,
+    .teachableLearnset = sSinisteaTeachableLearnset,
+    .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
+    .evolutions = EVOLUTION({EVO_ITEM, ITEM_CRACKED_POT, SPECIES_POLTEAGEIST_PHONY}),
+},
 
-    [SPECIES_SINISTEA_ANTIQUE] =
-    {
-        .baseHP        = 40,
-        .baseAttack    = 45,
-        .baseDefense   = 45,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 74,
-        .baseSpDefense = 54,
-        .types = MON_TYPES(TYPE_GHOST),
-        .catchRate = 120,
-        .expYield = 62,
-        .evYield_SpAttack = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
-        .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = _("Sinistea"),
-        .cryId = CRY_SINISTEA,
-        .natDexNum = NATIONAL_DEX_SINISTEA,
-        .categoryName = _("Black Tea"),
-        .height = 1,
-        .weight = 2,
-        .description = COMPOUND_STRING(
-            "The swirl pattern in this Pokémon's\n"
-            "body is its weakness. If it gets\n"
-            "stirred, the swirl loses its shape, and\n"
-            "Sinistea gets dizzy."),
-        .pokemonScale = 682,
-        .pokemonOffset = 24,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Sinistea,
-        .frontPicSize = MON_COORDS_SIZE(40, 32),
-        .frontPicYOffset = 17,
-        .frontAnimFrames = sAnims_Sinistea,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 10,
-        .backPic = gMonBackPic_Sinistea,
-        .backPicSize = MON_COORDS_SIZE(48, 32),
-        .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_Sinistea,
-        .shinyPalette = gMonShinyPalette_Sinistea,
-        .iconSprite = gMonIcon_Sinistea,
-        .iconPalIndex = 2,
-        FOOTPRINT(Sinistea)
-        OVERWORLD(
-            sPicTable_Sinistea,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_Sinistea,
-            gShinyOverworldPalette_Sinistea
-        )
-        .levelUpLearnset = sSinisteaLevelUpLearnset,
-        .teachableLearnset = sSinisteaTeachableLearnset,
-        .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
-    },
+[SPECIES_SINISTEA_ANTIQUE] =
+{
+    .baseHP        = 40,
+    .baseAttack    = 45,
+    .baseDefense   = 45,
+    .baseSpeed     = 50,
+    .baseSpAttack  = 74,
+    .baseSpDefense = 54,
+    .types = MON_TYPES(TYPE_GHOST),
+    .catchRate = 120,
+    .expYield = 62,
+    .evYield_SpAttack = 1,
+    .genderRatio = MON_GENDERLESS,
+    .eggCycles = 20,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
+    .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
+    .bodyColor = BODY_COLOR_PURPLE,
+    .speciesName = _("Sinistea"),
+    .cryId = CRY_SINISTEA,
+    .natDexNum = NATIONAL_DEX_SINISTEA,
+    .categoryName = _("Black Tea"),
+    .height = 1,
+    .weight = 2,
+    .description = COMPOUND_STRING(
+        "El patrón de remolino en el cuerpo de\n"
+        "este Pokémon es su debilidad. Si se\n"
+        "revuelve, el remolino pierde su forma y\n"
+        "Sinistea se marea."),
+    .pokemonScale = 682,
+    .pokemonOffset = 24,
+    .trainerScale = 256,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_Sinistea,
+    .frontPicSize = MON_COORDS_SIZE(40, 32),
+    .frontPicYOffset = 17,
+    .frontAnimFrames = sAnims_Sinistea,
+    //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+    .enemyMonElevation = 10,
+    .backPic = gMonBackPic_Sinistea,
+    .backPicSize = MON_COORDS_SIZE(48, 32),
+    .backPicYOffset = 16,
+    //.backAnimId = BACK_ANIM_NONE,
+    .palette = gMonPalette_Sinistea,
+    .shinyPalette = gMonShinyPalette_Sinistea,
+    .iconSprite = gMonIcon_Sinistea,
+    .iconPalIndex = 2,
+    FOOTPRINT(Sinistea)
+    OVERWORLD(
+        sPicTable_Sinistea,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_Sinistea,
+        gShinyOverworldPalette_Sinistea
+    )
+    .levelUpLearnset = sSinisteaLevelUpLearnset,
+    .teachableLearnset = sSinisteaTeachableLearnset,
+    .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
+    .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
+},
 
     [SPECIES_POLTEAGEIST_PHONY] =
-    {
-        .baseHP        = 60,
-        .baseAttack    = 65,
-        .baseDefense   = 65,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 134,
-        .baseSpDefense = 114,
-        .types = MON_TYPES(TYPE_GHOST),
-        .catchRate = 60,
-        .expYield = 178,
-        .evYield_SpAttack = 2,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
-        .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Polteageis", "Polteageist"),
-        .cryId = CRY_POLTEAGEIST,
-        .natDexNum = NATIONAL_DEX_POLTEAGEIST,
-        .categoryName = _("Black Tea"),
-        .height = 2,
-        .weight = 4,
-        .description = COMPOUND_STRING(
-            "This species lives in antique teapots.\n"
-            "Most pots are forgeries, but on rare\n"
-            "occasions, an authentic work is found."),
-        .pokemonScale = 682,
-        .pokemonOffset = 24,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Polteageist,
-        .frontPicSize = MON_COORDS_SIZE(48, 48),
-        .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Polteageist,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 12,
-        .backPic = gMonBackPic_Polteageist,
-        .backPicSize = MON_COORDS_SIZE(64, 40),
-        .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_Polteageist,
-        .shinyPalette = gMonShinyPalette_Polteageist,
-        .iconSprite = gMonIcon_Polteageist,
-        .iconPalIndex = 2,
-        FOOTPRINT(Polteageist)
-        OVERWORLD(
-            sPicTable_Polteageist,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_Polteageist,
-            gShinyOverworldPalette_Polteageist
-        )
-        .levelUpLearnset = sPolteageistLevelUpLearnset,
-        .teachableLearnset = sPolteageistTeachableLearnset,
-        .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
-    },
+{
+    .baseHP        = 60,
+    .baseAttack    = 65,
+    .baseDefense   = 65,
+    .baseSpeed     = 70,
+    .baseSpAttack  = 134,
+    .baseSpDefense = 114,
+    .types = MON_TYPES(TYPE_GHOST),
+    .catchRate = 60,
+    .expYield = 178,
+    .evYield_SpAttack = 2,
+    .genderRatio = MON_GENDERLESS,
+    .eggCycles = 20,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
+    .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
+    .bodyColor = BODY_COLOR_PURPLE,
+    .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Polteageis", "Polteageist"),
+    .cryId = CRY_POLTEAGEIST,
+    .natDexNum = NATIONAL_DEX_POLTEAGEIST,
+    .categoryName = _("Té Negro"),
+    .height = 2,
+    .weight = 4,
+    .description = COMPOUND_STRING(
+        "Esta especie vive en teteras antiguas.\n"
+        "La mayoría de las teteras son falsificaciones,\n"
+        "pero en raras ocasiones se encuentra una obra auténtica."),
+    .pokemonScale = 682,
+    .pokemonOffset = 24,
+    .trainerScale = 256,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_Polteageist,
+    .frontPicSize = MON_COORDS_SIZE(48, 48),
+    .frontPicYOffset = 11,
+    .frontAnimFrames = sAnims_Polteageist,
+    //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+    .enemyMonElevation = 12,
+    .backPic = gMonBackPic_Polteageist,
+    .backPicSize = MON_COORDS_SIZE(64, 40),
+    .backPicYOffset = 13,
+    //.backAnimId = BACK_ANIM_NONE,
+    .palette = gMonPalette_Polteageist,
+    .shinyPalette = gMonShinyPalette_Polteageist,
+    .iconSprite = gMonIcon_Polteageist,
+    .iconPalIndex = 2,
+    FOOTPRINT(Polteageist)
+    OVERWORLD(
+        sPicTable_Polteageist,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_Polteageist,
+        gShinyOverworldPalette_Polteageist
+    )
+    .levelUpLearnset = sPolteageistLevelUpLearnset,
+    .teachableLearnset = sPolteageistTeachableLearnset,
+    .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
+},
 
-    [SPECIES_POLTEAGEIST_ANTIQUE] =
-    {
-        .baseHP        = 60,
-        .baseAttack    = 65,
-        .baseDefense   = 65,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 134,
-        .baseSpDefense = 114,
-        .types = MON_TYPES(TYPE_GHOST),
-        .catchRate = 60,
-        .expYield = 178,
-        .evYield_SpAttack = 2,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
-        .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Polteageis", "Polteageist"),
-        .cryId = CRY_POLTEAGEIST,
-        .natDexNum = NATIONAL_DEX_POLTEAGEIST,
-        .categoryName = _("Black Tea"),
-        .height = 2,
-        .weight = 4,
-        .description = COMPOUND_STRING(
-            "Trainers Polteageist trusts will be\n"
-            "allowed to experience its\n"
-            "distinctive flavor and aroma firsthand by\n"
-            "sampling just a tiny bit of its tea."),
-        .pokemonScale = 682,
-        .pokemonOffset = 24,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Polteageist,
-        .frontPicSize = MON_COORDS_SIZE(48, 48),
-        .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Polteageist,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 11,
-        .backPic = gMonBackPic_Polteageist,
-        .backPicSize = MON_COORDS_SIZE(64, 40),
-        .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_Polteageist,
-        .shinyPalette = gMonShinyPalette_Polteageist,
-        .iconSprite = gMonIcon_Polteageist,
-        .iconPalIndex = 2,
-        FOOTPRINT(Polteageist)
-        OVERWORLD(
-            sPicTable_Polteageist,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_Polteageist,
-            gShinyOverworldPalette_Polteageist
-        )
-        .levelUpLearnset = sPolteageistLevelUpLearnset,
-        .teachableLearnset = sPolteageistTeachableLearnset,
-        .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
-    },
+[SPECIES_POLTEAGEIST_ANTIQUE] =
+{
+    .baseHP        = 60,
+    .baseAttack    = 65,
+    .baseDefense   = 65,
+    .baseSpeed     = 70,
+    .baseSpAttack  = 134,
+    .baseSpDefense = 114,
+    .types = MON_TYPES(TYPE_GHOST),
+    .catchRate = 60,
+    .expYield = 178,
+    .evYield_SpAttack = 2,
+    .genderRatio = MON_GENDERLESS,
+    .eggCycles = 20,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
+    .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
+    .bodyColor = BODY_COLOR_PURPLE,
+    .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Polteageis", "Polteageist"),
+    .cryId = CRY_POLTEAGEIST,
+    .natDexNum = NATIONAL_DEX_POLTEAGEIST,
+    .categoryName = _("Té Negro"),
+    .height = 2,
+    .weight = 4,
+    .description = COMPOUND_STRING(
+        "Los entrenadores en los que confía Polteageist\n"
+        "podrán experimentar su sabor y aroma\n"
+        "distintivos de primera mano al probar solo un\n"
+        "pequeño sorbo de su té."),
+    .pokemonScale = 682,
+    .pokemonOffset = 24,
+    .trainerScale = 256,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_Polteageist,
+    .frontPicSize = MON_COORDS_SIZE(48, 48),
+    .frontPicYOffset = 11,
+    .frontAnimFrames = sAnims_Polteageist,
+    //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+    .enemyMonElevation = 11,
+    .backPic = gMonBackPic_Polteageist,
+    .backPicSize = MON_COORDS_SIZE(64, 40),
+    .backPicYOffset = 13,
+    //.backAnimId = BACK_ANIM_NONE,
+    .palette = gMonPalette_Polteageist,
+    .shinyPalette = gMonShinyPalette_Polteageist,
+    .iconSprite = gMonIcon_Polteageist,
+    .iconPalIndex = 2,
+    FOOTPRINT(Polteageist)
+    OVERWORLD(
+        sPicTable_Polteageist,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_Polteageist,
+        gShinyOverworldPalette_Polteageist
+    )
+    .levelUpLearnset = sPolteageistLevelUpLearnset,
+    .teachableLearnset = sPolteageistTeachableLearnset,
+    .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
+},
 #endif //P_FAMILY_SINISTEA
 
 #if P_FAMILY_HATENNA
@@ -4871,10 +4871,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 14,
         .weight = 890,
         .description = COMPOUND_STRING(
-            "It drifted in on the flow of ocean waters\n"
-            "from a frigid place. It keeps its head\n"
-            "iced constantly to make sure it stays\n"
-            "nice and cold."),
+            "Arribó a través de la corriente oceánica\n"
+"desde un lugar gélido. Mantiene su\n"
+"cabeza constantemente helada para\n"
+"asegurarse de que se mantenga fresca."),
         .pokemonScale = 265,
         .pokemonOffset = 2,
         .trainerScale = 262,
@@ -4934,10 +4934,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 14,
         .weight = 890,
         .description = COMPOUND_STRING(
-            "The hair on its head connects to\n"
-            "the surface of its brain. When this\n"
-            "Pokémon has something on its mind,\n"
-            "its hair chills the air around it."),
+            "El pelo en su cabeza está conectado a\n"
+"la superficie de su cerebro. Cuando\n"
+"está pensando en algo, su cabello\n"
+"enfría el aire a su alrededor."),
         .pokemonScale = 265,
         .pokemonOffset = 2,
         .trainerScale = 262,
@@ -4991,10 +4991,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 9,
         .weight = 280,
         .description = COMPOUND_STRING(
-            "It uses the horns on its head to sense the\n"
-            "emotions of others. Males will act as\n"
-            "valets for those they serve, looking\n"
-            "after their every need."),
+            "Utiliza sus cuernos para sentir las\n"
+"emociones de los demás. Los machos\n"
+"actúan como sirvientes para sus amos,\n"
+"cuidando de todas sus necesidades."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -5052,10 +5052,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 9,
         .weight = 280,
         .description = COMPOUND_STRING(
-            "They diligently serve people and\n"
-            "Pokémon so they can gather feelings\n"
-            "of gratitude. The females are\n"
-            "particularly good at babysitting."),
+            "Sirven diligentemente para poder\n"
+"recoger sentimientos de gratitud.\n"
+"Las hembras son particularmente\n"
+"buenas cuidando niños."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -5108,10 +5108,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 3,
         .weight = 30,
         .description = COMPOUND_STRING(
-            "As it eats the seeds stored up in its\n"
-            "pocket-like pouches, this Pokémon is not\n"
-            "just satisfying its constant hunger. It's\n"
-            "also generating electricity."),
+            "Al comer las semillas guardadas en sus\n"
+"sacos, este Pokémon no sólo está\n"
+"satisfaciendo su hambre constante.\n"
+"También está generando electricidad."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5171,10 +5171,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 3,
         .weight = 30,
         .description = COMPOUND_STRING(
-            "Intense hunger drives it to\n"
-            "extremes of violence, and the electricity\n"
-            "in its cheek sacs has converted into\n"
-            "a Dark-type energy."),
+            "El hambre intensa lo lleva a extremos de\n"
+"violencia, y la electricidad en sus\n"
+"mejillas se ha convertido en\n"
+"energía de tipo Siniestro."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5983,9 +5983,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 28,
         .weight = 1100,
         .description = COMPOUND_STRING(
-            "Known as a legendary hero, this Pokémon\n"
-            "absorbs metal particles, transforming them\n"
-            "into a weapon it uses to battle."),
+            "Conocido como un héroe, este Pokémon\n"
+        "absorbe partículas metálicas, convirtiendolas\n"
+        "en un arma que usa para combatir."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6046,10 +6046,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 28,
         .weight = 3550,
         .description = COMPOUND_STRING(
-            "Able to cut down anything with a\n"
-            "single strike, it became known as the\n"
-            "Fairy King's Sword, and it inspired\n"
-            "awe in friend and foe alike."),
+            "Capaz de cortar cualquier cosa con un\n"
+        "solo golpe, se hizo conocido como la\n"
+        "Espada del Rey Hada, y inspiró\n"
+        "asombro tanto en amigos como en enemigos."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6112,10 +6112,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 29,
         .weight = 2100,
         .description = COMPOUND_STRING(
-            "In times past, it worked together with a\n"
-            "king of the people to save the Galar\n"
-            "region. It absorbs metal that it then\n"
-            "uses in battle."),
+            "En tiempos pasados, trabajó junto a un\n"
+        "rey del pueblo para salvar la región de\n"
+        "Galar. Absorbe metal que luego utiliza\n"
+        "en batalla."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6176,10 +6176,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 29,
         .weight = 7850,
         .description = COMPOUND_STRING(
-            "Its ability to deflect any attack\n"
-            "led to it being known as the Fighting\n"
-            "Master's Shield. It was feared and\n"
-            "respected by all."),
+            "Su habilidad para desviar cualquier ataque\n"
+        "le valió el título de Escudo del Maestro de\n"
+        "Lucha. Era temido y respetado por todos."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6302,10 +6301,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 1000,
         .weight = 0,
         .description = COMPOUND_STRING(
-            "As a result of Rose's meddling,\n"
-            "Eternatus absorbed all the energy in\n"
-            "the Galar region. It's now in a state\n"
-            "of power overload."),
+            "Como resultado de la intromisión de Rose,\n"
+        "Eternatus absorbió toda la energía en\n"
+        "la región de Galar. Ahora está en un\n"
+        "estado de sobrecarga de energía."),
         .pokemonScale = 230,
         .pokemonOffset = 0,
         .trainerScale = 4852,
@@ -6541,10 +6540,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 19,
         .weight = 1050,
         .description = COMPOUND_STRING(
-            "This form of Urshifu is a strong\n"
-            "believer in defeating foes by raining\n"
-            "many blows down on them. Its\n"
-            "strikes are nonstop, flowing like a river."),
+            "Esta forma de Urshifu es una fuerte\n"
+        "creyente en derrotar a sus enemigos\n"
+        "con un aluvión de golpes. Sus ataques\n"
+        "son ininterrumpidos, fluyendo el río."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,

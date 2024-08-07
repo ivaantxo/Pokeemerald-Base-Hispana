@@ -1149,184 +1149,186 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .formSpeciesIdTable = sVivillonFormSpeciesIdTable
 
     [SPECIES_VIVILLON_ICY_SNOW] =
-    {
-        VIVILLON_MISC_INFO(IcySnow, BODY_COLOR_WHITE, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from frigid lands.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_POLAR] =
-    {
-        VIVILLON_MISC_INFO(Polar, BODY_COLOR_BLUE, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from snowy lands.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_TUNDRA] =
-    {
-        VIVILLON_MISC_INFO(Tundra, BODY_COLOR_BLUE, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from lands of severe cold.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_CONTINENTAL] =
-    {
-        VIVILLON_MISC_INFO(Continental, BODY_COLOR_YELLOW, 2),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from lands of vast space.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_GARDEN] =
-    {
-        VIVILLON_MISC_INFO(Garden, BODY_COLOR_GREEN, 1),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from verdant lands.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_ELEGANT] =
-    {
-        VIVILLON_MISC_INFO(Elegant, BODY_COLOR_PURPLE, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands with distinct seasons.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_MEADOW] =
-    {
-        VIVILLON_MISC_INFO(Meadow, BODY_COLOR_PINK, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands where flowers bloom.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_MODERN] =
-    {
-        VIVILLON_MISC_INFO(Modern, BODY_COLOR_RED, 2),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from sun-drenched lands.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_MARINE] =
-    {
-        VIVILLON_MISC_INFO(Marine, BODY_COLOR_BLUE, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands with ocean breezes.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_ARCHIPELAGO] =
-    {
-        VIVILLON_MISC_INFO(Archipelago, BODY_COLOR_BROWN, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from places with many islands.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_HIGH_PLAINS] =
-    {
-        VIVILLON_MISC_INFO(HighPlains, BODY_COLOR_BROWN, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from lands with little rain.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_SANDSTORM] =
-    {
-        VIVILLON_MISC_INFO(Sandstorm, BODY_COLOR_BROWN, 1),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from parched lands.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_RIVER] =
-    {
-        VIVILLON_MISC_INFO(River, BODY_COLOR_BROWN, 2),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands where large rivers flow.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_MONSOON] =
-    {
-        VIVILLON_MISC_INFO(Monsoon, BODY_COLOR_GRAY, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands with intense rainfall.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_SAVANNA] =
-    {
-        VIVILLON_MISC_INFO(Savanna, BODY_COLOR_GREEN, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands with a tropical climate.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_SUN] =
-    {
-        VIVILLON_MISC_INFO(Sun, BODY_COLOR_RED, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from lands bathed in light.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_OCEAN] =
-    {
-        VIVILLON_MISC_INFO(Ocean, BODY_COLOR_RED, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands of perpetual summer.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_JUNGLE] =
-    {
-        VIVILLON_MISC_INFO(Jungle, BODY_COLOR_GREEN, 0),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in. This\n"
-            "form is from lands of tropical rainforests.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_FANCY] =
-    {
-        VIVILLON_MISC_INFO(Fancy, BODY_COLOR_PINK, 1),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from a mysterious land.\n"
-            "It scatters toxic color scales in battle."),
-    },
-    [SPECIES_VIVILLON_POKE_BALL] =
-    {
-        VIVILLON_MISC_INFO(PokeBall, BODY_COLOR_RED, 2),
-        .description = COMPOUND_STRING(
-            "Its pattern depends on the climate and\n"
-            "topography of the land it was born in.\n"
-            "This form is from a special land.\n"
-            "It scatters toxic color scales in battle."),
+{
+    VIVILLON_MISC_INFO(IcySnow, BODY_COLOR_WHITE, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras heladas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_POLAR] =
+{
+    VIVILLON_MISC_INFO(Polar, BODY_COLOR_BLUE, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras nevadas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_TUNDRA] =
+{
+    VIVILLON_MISC_INFO(Tundra, BODY_COLOR_BLUE, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras de frío extremo.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_CONTINENTAL] =
+{
+    VIVILLON_MISC_INFO(Continental, BODY_COLOR_YELLOW, 2),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras de vastos espacios.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+}
+[SPECIES_VIVILLON_GARDEN] =
+{
+    VIVILLON_MISC_INFO(Garden, BODY_COLOR_GREEN, 1),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras verdes.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_ELEGANT] =
+{
+    VIVILLON_MISC_INFO(Elegant, BODY_COLOR_PURPLE, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras con estaciones bien definidas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_MEADOW] =
+{
+    VIVILLON_MISC_INFO(Meadow, BODY_COLOR_PINK, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras donde florecen las flores.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_MODERN] =
+{
+    VIVILLON_MISC_INFO(Modern, BODY_COLOR_RED, 2),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras bañadas por el sol.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_MARINE] =
+{
+    VIVILLON_MISC_INFO(Marine, BODY_COLOR_BLUE, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras con brisas oceánicas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_ARCHIPELAGO] =
+{
+    VIVILLON_MISC_INFO(Archipelago, BODY_COLOR_BROWN, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de lugares con muchas islas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_HIGH_PLAINS] =
+{
+    VIVILLON_MISC_INFO(HighPlains, BODY_COLOR_BROWN, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras con poca lluvia.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_SANDSTORM] =
+{
+    VIVILLON_MISC_INFO(Sandstorm, BODY_COLOR_BROWN, 1),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras áridas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_RIVER] =
+{
+    VIVILLON_MISC_INFO(River, BODY_COLOR_BROWN, 2),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras donde fluyen grandes ríos.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_MONSOON] =
+{
+    VIVILLON_MISC_INFO(Monsoon, BODY_COLOR_GRAY, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras con lluvias intensas.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_SAVANNA] =
+{
+    VIVILLON_MISC_INFO(Savanna, BODY_COLOR_GREEN, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras con clima tropical.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_SUN] =
+{
+    VIVILLON_MISC_INFO(Sun, BODY_COLOR_RED, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de tierras bañadas por la luz.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_OCEAN] =
+{
+    VIVILLON_MISC_INFO(Ocean, BODY_COLOR_RED, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras de verano perpetuo.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_JUNGLE] =
+{
+    VIVILLON_MISC_INFO(Jungle, BODY_COLOR_GREEN, 0),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació. Esta\n"
+        "forma es de tierras de selvas tropicales.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_FANCY] =
+{
+    VIVILLON_MISC_INFO(Fancy, BODY_COLOR_PINK, 1),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de una tierra misteriosa.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+[SPECIES_VIVILLON_POKE_BALL] =
+{
+    VIVILLON_MISC_INFO(PokeBall, BODY_COLOR_RED, 2),
+    .description = COMPOUND_STRING(
+        "Su patrón depende del clima y la\n"
+        "topografía de la tierra en la que nació.\n"
+        "Esta forma es de una tierra especial.\n"
+        "Dispensa escamas tóxicas de colores en batalla."),
+},
+
     },
 #endif //P_FAMILY_SCATTERBUG
 
@@ -1514,46 +1516,45 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     {
         FLABEBE_MISC_INFO(Red, RED, 1),
         .description = COMPOUND_STRING(
-            "This Flabébé rides a red flower.\n"
-            "Immediately after birth, this Pokémon\n"
-            "begins flying around in search of a\n"
-            "flower it likes."),
+            "Este Flabébé monta una flor roja.\n"
+"Inmediatamente después de nacer, este\n"
+"Pokémon comienza a volar en busca de\n"
+"una flor que le guste."),
     },
     [SPECIES_FLABEBE_YELLOW_FLOWER] =
     {
         FLABEBE_MISC_INFO(Yellow, YELLOW, 1),
         .description = COMPOUND_STRING(
-            "It unleashes a variety of moves by\n"
-            "drawing forth the power hidden\n"
-            "within flowers. This Pokémon is\n"
-            "particularly fond of yellow flowers."),
+            "Desata una variedad de movimientos al\n"
+"desplegar el poder oculto dentro de las\n"
+"flores. Este Pokémon tiene una especial\n"
+"preferencia por las flores amarillas."),
     },
     [SPECIES_FLABEBE_ORANGE_FLOWER] =
     {
         FLABEBE_MISC_INFO(Orange, ORANGE, 0),
         .description = COMPOUND_STRING(
-            "It receives strength from flowers\n"
-            "and gives them some of its energy in\n"
-            "return. This Pokémon likes orange\n"
-            "flowers best of all."),
+            "Recibe fuerza de las flores y les da algo\n"
+"de su energía a cambio. A este Pokémon\n"
+"le gustan las flores naranjas sobre\n"
+"todas las demás."),
     },
     [SPECIES_FLABEBE_BLUE_FLOWER]   =
     {
         FLABEBE_MISC_INFO(Blue, BLUE, 0),
         .description = COMPOUND_STRING(
-            "This Pokémon likes blue flowers\n"
-            "best of all. It floats upward using the\n"
-            "power emanating from its flower\n"
-            "and bobs along lightly through the air."),
+            "A este Pokémon le gustan más que nada\n"
+"las flores azules. Flota hacia arriba\n"
+"usando el poder que emana de su flor\n"
+"y se desliza suavemente por el aire."),
     },
     [SPECIES_FLABEBE_WHITE_FLOWER]  =
     {
         FLABEBE_MISC_INFO(White, WHITE, 1),
         .description = COMPOUND_STRING(
-            "When evening falls, it searches out\n"
-            "a place blooming with flowers of\n"
-            "the same white color as itself, and\n"
-            "then it goes to sleep."),
+            "Cuando cae la tarde, busca un lugar\n"
+"lleno de flores del mismo color blanco\n"
+"que él mismo, y luego se duerme."),
     },
 
 #define FLOETTE_MISC_INFO(form, FORM, iconPal)                                  \
@@ -1619,46 +1620,45 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     {
         FLOETTE_NORMAL_INFO(Red, RED, 1),
         .description = COMPOUND_STRING(
-            "This Pokémon uses red wavelengths\n"
-            "of light to pour its own energy\n"
-            "into flowers and draw forth their\n"
-            "latent potential."),
+            "Este Pokémon usa largas ondas rojas\n"
+"de luz para transferir su energía\n"
+"a las flores y liberar su potencial."),
     },
     [SPECIES_FLOETTE_YELLOW_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(Yellow, YELLOW, 1),
         .description = COMPOUND_STRING(
-            "This Pokémon can draw forth the\n"
-            "power hidden within yellow flowers.\n"
-            "This power then becomes the moves\n"
-            "Floette uses to protect itself."),
+            "Puede extraer el poder oculto en\n"
+"flores amarillas. Este poder se\n"
+"convierte en los movimientos que\n"
+"Floette usa para protegerse."),
     },
     [SPECIES_FLOETTE_ORANGE_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(Orange, ORANGE, 0),
         .description = COMPOUND_STRING(
-            "This Pokémon can draw forth the\n"
-            "most power when in sync with orange\n"
-            "flowers, compared to flowers of other\n"
-            "colors."),
+            "Este Pokémon puede extraer el mayor\n"
+"poder cuando está en sintonía con\n"
+"flores naranjas, en comparación con\n"
+"flores de otros colores."),
     },
     [SPECIES_FLOETTE_BLUE_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(Blue, BLUE, 0),
         .description = COMPOUND_STRING(
-            "Whenever this Pokémon finds\n"
-            "flowering plants that are withering, it\n"
-            "will bring them back to its territory\n"
-            "and care for them."),
+            "Siempre que este Pokémon encuentra\n"
+"plantas con flores que se están\n"
+"marchitando, las lleva a su territorio\n"
+"y se encarga de cuidarlas."),
     },
     [SPECIES_FLOETTE_WHITE_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(White, WHITE, 1),
         .description = COMPOUND_STRING(
-            "If it finds someone messing up a\n"
-            "flower bed, it will attack them\n"
-            "without mercy. This Floette takes\n"
-            "particularly good care of white flowers."),
+            "Si encuentra a alguien desordenando un\n"
+"parterre de flores, lo atacará\n"
+"sin piedad. Este Floette cuida\n"
+"muy bien de las flores blancas."),
     },
     [SPECIES_FLOETTE_ETERNAL_FLOWER] =
     {
@@ -1673,10 +1673,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .cryId = CRY_FLOETTE_ETERNAL_FLOWER,
         .description = COMPOUND_STRING(
-            "The flower it's holding can no\n"
-            "longer be found blooming anywhere. It's\n"
-            "also thought to contain terrifying\n"
-            "power."),
+            "La flor que sostiene ya no se puede\n"
+"encontrar en flor en ningún lugar.\n"
+"También se cree que contiene\n"
+"un poder aterrador."),
         .frontPic = gMonFrontPic_FloetteEternalFlower,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
@@ -1746,45 +1746,46 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     {
         FLORGES_MISC_INFO(Red, 0),
         .description = COMPOUND_STRING(
-            "This Pokémon creates an\n"
-            "impressive flower garden in its territory. It\n"
-            "draws forth the power of the red\n"
-            "flowers around its neck."),
+            "Este Pokémon crea un impresionante\n"
+"jardín de flores en su territorio. Extrae\n"
+"el poder de las flores rojas\n"
+"alrededor de su cuello."),
     },
     [SPECIES_FLORGES_YELLOW_FLOWER] =
     {
         FLORGES_MISC_INFO(Yellow, 1),
         .description = COMPOUND_STRING(
-            "This Pokémon battles by drawing\n"
-            "forth the power of yellow flowers. It\n"
-            "ruthlessly punishes anyone who\n"
-            "tramples on flowering plants."),
+            "Este Pokémon lucha extrayendo el poder\n"
+"de las flores amarillas. Castiga sin\n"
+"piedad a cualquiera que pise\n"
+"las plantas en flor."),
     },
     [SPECIES_FLORGES_ORANGE_FLOWER] =
     {
         FLORGES_MISC_INFO(Orange, 0),
         .description = COMPOUND_STRING(
-            "In times long past, castle\n"
-            "governors would lovingly raise Florges to\n"
-            "care for their castles' exquisite\n"
-            "gardens."),
+            "En tiempos antiguos, los gobernadores\n"
+"solían criar a Florges con cariño\n"
+"para cuidar los exquisitos jardines\n"
+"de sus castillos."),
     },
     [SPECIES_FLORGES_BLUE_FLOWER] =
     {
         FLORGES_MISC_INFO(Blue, 0),
         .description = COMPOUND_STRING(
-            "Blue pigments were tremendously\n"
-            "expensive in the past, so paintings\n"
-            "of blue Florges are highly valuable."),
+            "En el pasado, los pigmentos azules eran\n"
+"tremendamente costosos, por lo que las\n"
+"pinturas de Florges azules son\n"
+"altamente valiosas."),
     },
     [SPECIES_FLORGES_WHITE_FLOWER] =
     {
         FLORGES_MISC_INFO(White, 0),
         .description = COMPOUND_STRING(
-            "A flower garden made by a white-\n"
-            "flowered Florges will be beautifully\n"
-            "decorated with flowering plants of\n"
-            "many different colors."),
+            "Un jardín de flores creado por un\n"
+"Florges de flores blancas estará\n"
+"bellamente decorado con plantas en flor\n"
+"de muchos colores diferentes."),
     },
 #endif //P_FAMILY_FLABEBE
 
@@ -2181,10 +2182,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 6,
         .weight = 85,
         .description = COMPOUND_STRING(
-            "The defensive instinct of the\n"
-            "males is strong. It's when they're\n"
-            "protecting themselves or their partners\n"
-            "that they unleash their full power."),
+            "El instinto defensivo de los machos es\n"
+"fuerte. Es cuando están protegiéndose\n"
+"a sí mismos o a sus aliados que\n"
+"desatan todo su poder."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -2242,10 +2243,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 6,
         .weight = 85,
         .description = COMPOUND_STRING(
-            "Females are a bit more selfish and\n"
-            "aggressive than males. If they\n"
-            "don't get what they want, they will\n"
-            "torment you with their psychic abilities."),
+            "Las hembras son un poco más egoístas\n"
+"y agresivas que los machos. Si no\n"
+"obtienen lo que quieren, te\n"
+"atormentarán con sus habilidades."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -2425,10 +2426,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 17,
         .weight = 530,
         .description = COMPOUND_STRING(
-            "In this defensive stance,\n"
-            "Aegislash uses its steel body and a force\n"
-            "field of spectral power to reduce the\n"
-            "damage of any attack."),
+            "En esta postura defensiva, Aegislash\n"
+"usa su cuerpo de acero y un campo\n"
+"de fuerza espectral para reducir el\n"
+"daño de cualquier ataque."),
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 290,
@@ -2494,10 +2495,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 17,
         .weight = 530,
         .description = COMPOUND_STRING(
-            "Once upon a time, a king with an\n"
-            "Aegislash reigned over the land. His\n"
-            "Pokémon eventually drained him of\n"
-            "life, and his kingdom fell with him."),
+            "Érase una vez un rey con un\n"
+"Aegislash que gobernaba la tierra. Su\n"
+"Pokémon eventualmente le drenó la\n"
+"vida, y su reino cayó con él."),
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 290,
@@ -3965,10 +3966,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 7,
         .weight = 685,
         .description = COMPOUND_STRING(
-            "A creature given to melancholy.\n"
-            "Its metallic shell developed as a\n"
-            "result of the mucus on its skin reacting\n"
-            "with the iron in Hisui's water."),
+           "Una criatura propensa a la melancolía.\n"
+"Su concha metálica se desarrolló como\n"
+"resultado de la reacción del moco de su\n"
+"piel con el hierro en el agua de Hisui."),
         .pokemonScale = 366,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -4029,10 +4030,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 17,
         .weight = 3341,
         .description = COMPOUND_STRING(
-            "It loathes solitude and is\n"
-            "extremely clingy-it will fume and run riot if\n"
-            "those dearest to it ever leave its\n"
-            "side."),
+            "Detesta la soledad y es demasiado\n"
+"pegajoso: se enfurece y hace\n"
+"desmanes si las personas queridas para\n"
+"él alguna vez se alejan de su lado."),
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -4851,9 +4852,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 14,
         .weight = 2624,
         .description = COMPOUND_STRING(
-            "The armor of ice covering its lower\n"
-            "jaw puts steel to shame and can\n"
-            "shatter rocks with ease."),
+            "La armadura de hielo que cubre su\n"
+"mandíbula inferior pone al acero en\n"
+"vergüenza y puede romper rocas\n"
+"con facilidad."),
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -5450,10 +5452,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 45,
         .weight = 6100,
         .description = COMPOUND_STRING(
-            "This is Zygarde's perfected form.\n"
-            "From the orifice on its chest, it\n"
-            "radiates high-powered energy that\n"
-            "eliminates everything."),
+            "Esta es la forma perfeccionada de\n"
+"Zygarde. Desde el orificio en su pecho,\n"
+"irradia energía de alta potencia\n"
+"que elimina todo a su alrededor."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 721,
@@ -5631,10 +5633,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 5,
         .weight = 90,
         .description = COMPOUND_STRING(
-            "In its true form, it possess a huge amount\n"
-            "of power. When its powers are sealed away,\n"
-            "it is transformed into a much smaller form.\n"
-            "It teleports things to a secret place."),
+            "En su forma verdadera, posee mucho\n"
+"poder. Si sus poderes están sellados,\n"
+"se transforma en una forma más pequeña.\n"
+"Esconde cosas a un lugar secreto."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5696,10 +5698,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 65,
         .weight = 490,
         .description = COMPOUND_STRING(
-            "It is the true form of Hoopa, which has had\n"
-            "its power sealed away. The rings it carries\n"
-            "have the power to bend dimensions and are\n"
-            "able to seize anything in the world."),
+            "Es su verdadera forma, que ha desatado\n"
+"su poder sellado. Sus anillos tienen\n"
+"el poder de doblar dimensiones y\n"
+"apoderarse de cualquier cosa del mundo."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,

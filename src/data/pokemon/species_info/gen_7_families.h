@@ -205,10 +205,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 16,
         .weight = 370,
         .description = COMPOUND_STRING(
-            "The air stored inside the rachises\n"
-            "of Decidueye's feathers insulates\n"
-            "the Pokémon against Hisui's extreme\n"
-            "cold."),
+            "El aire almacenado dentro de los raquis\n"
+"de las plumas de Decidueye aísla\n"
+"al Pokémon contra el frío\n"
+"extremo de Hisui."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -1327,10 +1327,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 6,
         .weight = 34,
         .description = COMPOUND_STRING(
-            "It wins the hearts of its enemies\n"
-            "with its passionate dancing and then\n"
-            "uses the opening it creates to\n"
-            "burn them up with blazing flames."),
+            "Gana los corazones de sus enemigos\n"
+        "con su apasionada danza y luego\n"
+        "utiliza la apertura que crea para\n"
+        "quemarlos con llamas ardientes."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1391,10 +1391,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 6,
         .weight = 34,
         .description = COMPOUND_STRING(
-            "This form of Oricorio has sipped\n"
-            "yellow nectar. It uses nimble steps to\n"
-            "approach opponents, then knocks\n"
-            "them out with electric punches."),
+            "Esta forma de Oricorio ha bebido\n"
+        "nectar amarillo. Usa pasos ágiles para\n"
+        "acercarse a los oponentes, y luego\n"
+        "los noquea con golpes eléctricos."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1447,10 +1447,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 6,
         .weight = 34,
         .description = COMPOUND_STRING(
-            "This form of Oricorio has sipped\n"
-            "pink nectar. It elevates its mind with\n"
-            "the gentle steps of its dance, then\n"
-            "unleashes its psychic energy."),
+            "Esta forma de Oricorio ha bebido\n"
+        "nectar rosa. Eleva su mente con\n"
+        "los suaves pasos de su danza y luego\n"
+        "desata su energía psíquica."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1503,10 +1503,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 6,
         .weight = 34,
         .description = COMPOUND_STRING(
-            "It charms its opponents with its\n"
-            "refined dancing. When they let their\n"
-            "guard down, it places a curse on\n"
-            "them that will bring on their demise."),
+            "Encanta a sus oponentes con su\n"
+        "danza refinada. Cuando bajan la\n"
+        "guardia, les lanza una maldición\n"
+        "que traerá su perdición."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1836,187 +1836,187 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     },
 
     [SPECIES_LYCANROC_MIDDAY] =
-    {
-        .baseHP        = 75,
-        .baseAttack    = 115,
-        .baseDefense   = 65,
-        .baseSpeed     = 112,
-        .baseSpAttack  = 55,
-        .baseSpDefense = 65,
-        .types = MON_TYPES(TYPE_ROCK),
-        .catchRate = 90,
-        .expYield = 170,
-        .evYield_Attack = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_KEEN_EYE, ABILITY_SAND_RUSH, ABILITY_STEADFAST },
-        .bodyColor = BODY_COLOR_BROWN,
-        .speciesName = _("Lycanroc"),
-        .cryId = CRY_LYCANROC_MIDDAY,
-        .natDexNum = NATIONAL_DEX_LYCANROC,
-        .categoryName = _("Wolf"),
-        .height = 8,
-        .weight = 250,
-        .description = COMPOUND_STRING(
-            "It has a calm and collected\n"
-            "demeanor. It swiftly closes in on its prey,\n"
-            "then slices them with the rocks in\n"
-            "its mane."),
-        .pokemonScale = 366,
-        .pokemonOffset = 7,
-        .trainerScale = 257,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_LycanrocMidday,
-        .frontPicSize = MON_COORDS_SIZE(57, 53),
-        .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_LycanrocMidday,
-        .frontAnimId = ANIM_V_SHAKE,
-        .backPic = gMonBackPic_LycanrocMidday,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
-        .backPicYOffset = 7,
-        .backAnimId = BACK_ANIM_V_SHAKE,
-        .palette = gMonPalette_LycanrocMidday,
-        .shinyPalette = gMonShinyPalette_LycanrocMidday,
-        .iconSprite = gMonIcon_LycanrocMidday,
-        .iconPalIndex = 2,
-        FOOTPRINT(Lycanroc)
-        OVERWORLD(
-            sPicTable_LycanrocMidday,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_LycanrocMidday,
-            gShinyOverworldPalette_LycanrocMidday
-        )
-        .levelUpLearnset = sLycanrocMiddayLevelUpLearnset,
-        .teachableLearnset = sLycanrocMiddayTeachableLearnset,
-        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
-    },
+{
+    .baseHP        = 75,
+    .baseAttack    = 115,
+    .baseDefense   = 65,
+    .baseSpeed     = 112,
+    .baseSpAttack  = 55,
+    .baseSpDefense = 65,
+    .types = MON_TYPES(TYPE_ROCK),
+    .catchRate = 90,
+    .expYield = 170,
+    .evYield_Attack = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    .abilities = { ABILITY_KEEN_EYE, ABILITY_SAND_RUSH, ABILITY_STEADFAST },
+    .bodyColor = BODY_COLOR_BROWN,
+    .speciesName = _("Lycanroc"),
+    .cryId = CRY_LYCANROC_MIDDAY,
+    .natDexNum = NATIONAL_DEX_LYCANROC,
+    .categoryName = _("Lobo"),
+    .height = 8,
+    .weight = 250,
+    .description = COMPOUND_STRING(
+        "Tiene un comportamiento tranquilo y\n"
+        "sereno. Se acerca rápidamente a su presa,\n"
+        "y luego la corta con las rocas de su\n"
+        "manga."),
+    .pokemonScale = 366,
+    .pokemonOffset = 7,
+    .trainerScale = 257,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_LycanrocMidday,
+    .frontPicSize = MON_COORDS_SIZE(57, 53),
+    .frontPicYOffset = 5,
+    .frontAnimFrames = sAnims_LycanrocMidday,
+    .frontAnimId = ANIM_V_SHAKE,
+    .backPic = gMonBackPic_LycanrocMidday,
+    .backPicSize = MON_COORDS_SIZE(64, 56),
+    .backPicYOffset = 7,
+    .backAnimId = BACK_ANIM_V_SHAKE,
+    .palette = gMonPalette_LycanrocMidday,
+    .shinyPalette = gMonShinyPalette_LycanrocMidday,
+    .iconSprite = gMonIcon_LycanrocMidday,
+    .iconPalIndex = 2,
+    FOOTPRINT(Lycanroc)
+    OVERWORLD(
+        sPicTable_LycanrocMidday,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_LycanrocMidday,
+        gShinyOverworldPalette_LycanrocMidday
+    )
+    .levelUpLearnset = sLycanrocMiddayLevelUpLearnset,
+    .teachableLearnset = sLycanrocMiddayTeachableLearnset,
+    .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
+},
 
-    [SPECIES_LYCANROC_MIDNIGHT] =
-    {
-        .baseHP        = 85,
-        .baseAttack    = 115,
-        .baseDefense   = 75,
-        .baseSpeed     = 82,
-        .baseSpAttack  = 55,
-        .baseSpDefense = 75,
-        .types = MON_TYPES(TYPE_ROCK),
-        .catchRate = 90,
-        .expYield = 170,
-        .evYield_Attack = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_NO_GUARD },
-        .bodyColor = BODY_COLOR_RED,
-        .speciesName = _("Lycanroc"),
-        .cryId = CRY_LYCANROC_MIDNIGHT,
-        .natDexNum = NATIONAL_DEX_LYCANROC,
-        .categoryName = _("Wolf"),
-        .height = 11,
-        .weight = 250,
-        .description = COMPOUND_STRING(
-            "This Pokémon uses its rocky mane\n"
-            "to slash any who approach. It will\n"
-            "even disobey its Trainer if it dislikes\n"
-            "the orders it was given."),
-        .pokemonScale = 366,
-        .pokemonOffset = 7,
-        .trainerScale = 257,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_LycanrocMidnight,
-        .frontPicSize = MON_COORDS_SIZE(56, 61),
-        .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_LycanrocMidnight,
-        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
-        .backPic = gMonBackPic_LycanrocMidnight,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
-        .backPicYOffset = 7,
-        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .palette = gMonPalette_LycanrocMidnight,
-        .shinyPalette = gMonShinyPalette_LycanrocMidnight,
-        .iconSprite = gMonIcon_LycanrocMidnight,
-        .iconPalIndex = 0,
-        FOOTPRINT(Lycanroc)
-        OVERWORLD(
-            sPicTable_LycanrocMidnight,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_LycanrocMidnight,
-            gShinyOverworldPalette_LycanrocMidnight
-        )
-        .levelUpLearnset = sLycanrocMidnightLevelUpLearnset,
-        .teachableLearnset = sLycanrocMidnightTeachableLearnset,
-        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
-    },
+[SPECIES_LYCANROC_MIDNIGHT] =
+{
+    .baseHP        = 85,
+    .baseAttack    = 115,
+    .baseDefense   = 75,
+    .baseSpeed     = 82,
+    .baseSpAttack  = 55,
+    .baseSpDefense = 75,
+    .types = MON_TYPES(TYPE_ROCK),
+    .catchRate = 90,
+    .expYield = 170,
+    .evYield_Attack = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    .abilities = { ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_NO_GUARD },
+    .bodyColor = BODY_COLOR_RED,
+    .speciesName = _("Lycanroc"),
+    .cryId = CRY_LYCANROC_MIDNIGHT,
+    .natDexNum = NATIONAL_DEX_LYCANROC,
+    .categoryName = _("Lobo"),
+    .height = 11,
+    .weight = 250,
+    .description = COMPOUND_STRING(
+        "Este Pokémon usa su melena rocosa\n"
+        "para cortar a cualquiera que se acerque.\n"
+        "Incluso desobedecerá a su Entrenador si no\n"
+        "le gustan las órdenes que recibe."),
+    .pokemonScale = 366,
+    .pokemonOffset = 7,
+    .trainerScale = 257,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_LycanrocMidnight,
+    .frontPicSize = MON_COORDS_SIZE(56, 61),
+    .frontPicYOffset = 0,
+    .frontAnimFrames = sAnims_LycanrocMidnight,
+    .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
+    .backPic = gMonBackPic_LycanrocMidnight,
+    .backPicSize = MON_COORDS_SIZE(64, 56),
+    .backPicYOffset = 7,
+    .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+    .palette = gMonPalette_LycanrocMidnight,
+    .shinyPalette = gMonShinyPalette_LycanrocMidnight,
+    .iconSprite = gMonIcon_LycanrocMidnight,
+    .iconPalIndex = 0,
+    FOOTPRINT(Lycanroc)
+    OVERWORLD(
+        sPicTable_LycanrocMidnight,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_LycanrocMidnight,
+        gShinyOverworldPalette_LycanrocMidnight
+    )
+    .levelUpLearnset = sLycanrocMidnightLevelUpLearnset,
+    .teachableLearnset = sLycanrocMidnightTeachableLearnset,
+    .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
+},
 
-    [SPECIES_LYCANROC_DUSK] =
-    {
-        .baseHP        = 75,
-        .baseAttack    = 117,
-        .baseDefense   = 65,
-        .baseSpeed     = 110,
-        .baseSpAttack  = 55,
-        .baseSpDefense = 65,
-        .types = MON_TYPES(TYPE_ROCK),
-        .catchRate = 90,
-        .expYield = 170,
-        .evYield_Attack = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_NONE, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_BROWN,
-        .speciesName = _("Lycanroc"),
-        .cryId = CRY_LYCANROC_DUSK,
-        .natDexNum = NATIONAL_DEX_LYCANROC,
-        .categoryName = _("Wolf"),
-        .height = 8,
-        .weight = 250,
-        .description = COMPOUND_STRING(
-            "These Pokémon have both calm and\n"
-            "ferocious qualities. It's said that\n"
-            "this form of Lycanroc is the most\n"
-            "troublesome to raise."),
-        .pokemonScale = 366,
-        .pokemonOffset = 7,
-        .trainerScale = 257,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_LycanrocDusk,
-        .frontPicSize = MON_COORDS_SIZE(57, 58),
-        .frontPicYOffset = 6,
-        .frontAnimFrames = sAnims_LycanrocDusk,
-        .frontAnimId = ANIM_V_SHAKE,
-        .backPic = gMonBackPic_LycanrocDusk,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
-        .backPicYOffset = 6,
-        .backAnimId = BACK_ANIM_V_SHAKE,
-        .palette = gMonPalette_LycanrocDusk,
-        .shinyPalette = gMonShinyPalette_LycanrocDusk,
-        .iconSprite = gMonIcon_LycanrocDusk,
-        .iconPalIndex = 0,
-        FOOTPRINT(Lycanroc)
-        OVERWORLD(
-            sPicTable_LycanrocDusk,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_LycanrocDusk,
-            gShinyOverworldPalette_LycanrocDusk
-        )
-        .levelUpLearnset = sLycanrocDuskLevelUpLearnset,
-        .teachableLearnset = sLycanrocDuskTeachableLearnset,
-        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
-    },
+[SPECIES_LYCANROC_DUSK] =
+{
+    .baseHP        = 75,
+    .baseAttack    = 117,
+    .baseDefense   = 65,
+    .baseSpeed     = 110,
+    .baseSpAttack  = 55,
+    .baseSpDefense = 65,
+    .types = MON_TYPES(TYPE_ROCK),
+    .catchRate = 90,
+    .expYield = 170,
+    .evYield_Attack = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = STANDARD_FRIENDSHIP,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_NONE, ABILITY_NONE },
+    .bodyColor = BODY_COLOR_BROWN,
+    .speciesName = _("Lycanroc"),
+    .cryId = CRY_LYCANROC_DUSK,
+    .natDexNum = NATIONAL_DEX_LYCANROC,
+    .categoryName = _("Lobo"),
+    .height = 8,
+    .weight = 250,
+    .description = COMPOUND_STRING(
+        "Estos Pokémon tienen cualidades tanto\n"
+        "tranquilas como feroces. Se dice que\n"
+        "esta forma de Lycanroc es la más\n"
+        "problemática de criar."),
+    .pokemonScale = 366,
+    .pokemonOffset = 7,
+    .trainerScale = 257,
+    .trainerOffset = 0,
+    .frontPic = gMonFrontPic_LycanrocDusk,
+    .frontPicSize = MON_COORDS_SIZE(57, 58),
+    .frontPicYOffset = 6,
+    .frontAnimFrames = sAnims_LycanrocDusk,
+    .frontAnimId = ANIM_V_SHAKE,
+    .backPic = gMonBackPic_LycanrocDusk,
+    .backPicSize = MON_COORDS_SIZE(64, 56),
+    .backPicYOffset = 6,
+    .backAnimId = BACK_ANIM_V_SHAKE,
+    .palette = gMonPalette_LycanrocDusk,
+    .shinyPalette = gMonShinyPalette_LycanrocDusk,
+    .iconSprite = gMonIcon_LycanrocDusk,
+    .iconPalIndex = 0,
+    FOOTPRINT(Lycanroc)
+    OVERWORLD(
+        sPicTable_LycanrocDusk,
+        SIZE_32x32,
+        SHADOW_SIZE_M,
+        TRACKS_FOOT,
+        gOverworldPalette_LycanrocDusk,
+        gShinyOverworldPalette_LycanrocDusk
+    )
+    .levelUpLearnset = sLycanrocDuskLevelUpLearnset,
+    .teachableLearnset = sLycanrocDuskTeachableLearnset,
+    .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
+},
 #endif //P_FAMILY_ROCKRUFF
 
 #if P_FAMILY_WISHIWASHI
@@ -5948,10 +5948,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 38,
         .weight = 4600,
         .description = COMPOUND_STRING(
-            "This is its form while it is\n"
-            "devouring the light of Solgaleo. It pounces\n"
-            "on foes and then slashes them with\n"
-            "the claws on its four limbs and back."),
+            "Esta es su forma mientras devora la\n"
+        "luz de Solgaleo. Ataca a sus enemigos\n"
+        "y luego los desgarran con las garras en\n"
+        "sus cuatro extremidades y su espalda."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6014,10 +6014,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 42,
         .weight = 3500,
         .description = COMPOUND_STRING(
-            "This is its form while it's\n"
-            "devouring the light of Lunala. It grasps\n"
-            "foes in its giant claws and rips them\n"
-            "apart with brute force."),
+            "Esta es su forma mientras devora la\n"
+        "luz de Lunala. Agarra a sus enemigos\n"
+        "con sus enormes garras y los destruye\n"
+        "con fuerza bruta."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6084,10 +6084,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 75,
         .weight = 2300,
         .description = COMPOUND_STRING(
-            "The light pouring out from all over\n"
-            "its body affects living things and\n"
-            "nature, impacting them in various\n"
-            "ways."),
+            "La luz que emana de todo su cuerpo\n"
+        "afecta a los seres vivos y a la\n"
+        "naturaleza, impactándolos de diversas\n"
+        "maneras."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6204,10 +6204,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 10,
         .weight = 805,
         .description = COMPOUND_STRING(
-            "This is its form from almost 500\n"
-            "years ago. Its body is nothing more\n"
-            "than a container-its artificial heart\n"
-            "is the actual life-form."),
+            "Esta es su forma de hace casi 500\n"
+        "años. Su cuerpo no es más que un\n"
+        "contenedor; su corazón artificial\n"
+        "es el verdadero organismo."),
         .pokemonScale = 305,
         .pokemonOffset = 7,
         .trainerScale = 257,

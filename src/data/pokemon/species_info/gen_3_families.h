@@ -7389,10 +7389,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 3,
         .weight = 8,
         .description = COMPOUND_STRING(
-            "It alters its form depending on the\n"
-            "weather. Changes in the climate such as\n"
-            "the temperature and humidity appear to\n"
-            "affect its cellular structure."),
+            "Cambia su forma dependiendo del\n"
+        "clima. Las variaciones en la temperatura\n"
+        "y la humedad parecen afectar su\n"
+        "estructura celular."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -7455,10 +7455,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 3,
         .weight = 8,
         .description = COMPOUND_STRING(
-            "Castform takes this form on bright days.\n"
-            "In an experiment where is was placed in\n"
-            "front of a heater, it didn't change to this\n"
-            "form. Its body is warm and toasty."),
+            "Castform toma esta forma en días soleados.\n"
+        "En un experimento donde se le colocó\n"
+        "frente a un calefactor, no cambió a esta\n"
+        "forma. Su cuerpo está cálido y acogedor."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -7521,10 +7521,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 3,
         .weight = 8,
         .description = COMPOUND_STRING(
-            "This is Castform's form while it's raining.\n"
-            "In an experiment where it was placed in a\n"
-            "shower, it didn't change to this form. Its\n"
-            "body is soft, slightly swollen with water."),
+            "Esta es la forma de Castform mientras llueve.\n"
+        "En un experimento donde se le colocó en\n"
+        "una ducha, no cambió a esta forma. Su cuerpo\n"
+        "es suave, ligeramente hinchado con agua."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -7587,10 +7587,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .height = 3,
         .weight = 8,
         .description = COMPOUND_STRING(
-            "This is Castform's form in a hailstorm.\n"
-            "In an experiment where it was placed\n"
-            "in a freezer, it didn't change to this form.\n"
-            "Its cold skin is as smooth as ice."),
+            "Esta es la forma de una tormenta\n"
+        "de granizo. En un experimento donde se le\n"
+        "colocó en un congelador, no cambió a esta\n"
+        "forma. Su piel fría es tan lisa como el hielo."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,

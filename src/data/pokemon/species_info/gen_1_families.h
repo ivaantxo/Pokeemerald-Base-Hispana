@@ -3741,10 +3741,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 4,
         .weight = 70,
         .description = COMPOUND_STRING(
-            "Its highly toxic barbs are thought to have\n"
-            "developed as protection for this small-\n"
-            "bodied Pokémon. When enraged, it releases\n"
-            "a horrible toxin from its horn."),
+            "Se cree que sus espinas tóxicas se\n"
+"crearon como protección para esta\n"
+"especie de cuerpo pequeño. Al enfadarse\n"
+"libera una horrible toxina."),
         .pokemonScale = 488,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -6623,10 +6623,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 8,
         .weight = 227,
         .description = COMPOUND_STRING(
-            "They patrol their territory in pairs.\n"
-            "It's believed the igneous rock components\n"
-            "in the fur of this species are the result\n"
-            "of volcanic activity in its habitat."),
+           "Patrullan su territorio en parejas. Se\n"
+"cree que los restos de roca ígnea en el\n"
+"pelaje de esta especie son el resultado\n"
+"de la actividad volcánica en su hábitat."),
         .pokemonScale = 346,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6686,10 +6686,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 20,
         .weight = 1680,
         .description = COMPOUND_STRING(
-            "Snaps at its foes with fangs cloaked in\n"
-            "blazing flame. Despite its bulk, it deftly\n"
-            "feints every which way, leading opponents\n"
-            "on a deceptively merry chase."),
+            "Ataca con sus colmillos ardientes.\n"
+"A pesar de su cuerpo, se mueve ágilmente,\n"
+"haciéndo creer a sus rivales que están\n"
+"siguiendolo en una falsa y alegre caza."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 312,
@@ -10865,10 +10865,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 5,
         .weight = 130,
         .description = COMPOUND_STRING(
-            "It esembles an ancient Poké Ball design.\n"
-            "When excited, it discharges the electric\n"
-            "current it has stored in its belly, then\n"
-            "lets out a great, uproarious laugh."),
+           "Recuerda el diseño de una Poké Ball\n"
+"antigua. Al emocionarse, descarga la\n"
+"corriente que almacena en su vientre, y\n"
+"luego emite una gran risa estruendosa."),
         .pokemonScale = 364,
         .pokemonOffset = -8,
         .trainerScale = 256,
@@ -10928,10 +10928,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 12,
         .weight = 710,
         .description = COMPOUND_STRING(
-            "The tissue on the surface of its body is\n"
-            "similar in composition to an Apricorn.\n"
-            "When irritated, it lets loose an electric\n"
-            "current equal to 20 lightning bolts."),
+            "El tejido en la superficie de su cuerpo\n"
+"es similar en composición a un Apricorn.\n"
+"Cuando se irrita, libera una corriente\n"
+"eléctrica equivalente a 20 rayos."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,

@@ -399,10 +399,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 16,
         .weight = 698,
         .description = COMPOUND_STRING(
-            "Said to purify lost, forsaken souls with\n"
-            "its flames and guide them to the afterlife.\n"
-            "It's believed its form was influenced by\n"
-            "the energy of Mt. Coronet in ancient times."),
+            "Se dice que purifica almas perdidas con\n"
+"sus llamas y las guía hacia el más allá.\n"
+"Se cree que su forma fue influenciada\n"
+"por la energía del Monte Corona antaño."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
@@ -4115,10 +4115,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 5,
         .weight = 39,
         .description = COMPOUND_STRING(
-            "A form of Qwilfish from the distant past.\n"
-            "Fishers detest this troublesome Pokémon\n"
-            "because it sprays poison from its spines,\n"
-            "getting it everywhere."),
+            "Una forma de Qwilfish del pasado.\n"
+"Los pescadores lo detestan\n"
+"porque rocía veneno desde sus\n"
+"espinas, manchando todo de él."),
         .pokemonScale = 430,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -4178,7 +4178,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .categoryName = _("Pin Cluster"),
         .height = 25,
         .weight = 605,
-        .description = COMPOUND_STRING("Its lancelike spikes and savage\ntemperament have earned it the\nnickname “Sea Fiend”.\nIt slurps up poison to nourish itself."),
+        .description = COMPOUND_STRING("Sus espinas en forma de lanza y su\n"
+"temperamento sanguinario le han valido\n"
+"el apodo de “Demonio del Mar”.\n"
+"Absorbe veneno para nutrirse."),
         .pokemonScale = 257,
         .pokemonOffset = 10,
         .trainerScale = 423,
@@ -4559,10 +4562,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 9,
         .weight = 270,
         .description = COMPOUND_STRING(
-            "Its sturdy, curved claws are ideal for\n"
-            "traversing precipitous cliffs. From the\n"
-            "tips of these claws drips a venom that\n"
-            "infiltrates the nerves of any prey caught."),
+            "Sus garras curvas y robustas son\n"
+"ideales para recorrer acantilados. De\n"
+"sus puntas gotea un veneno que infiltra\n"
+"los nervios de cualquier presa atrapada."),
         .pokemonScale = 413,
         .pokemonOffset = -3,
         .trainerScale = 256,
@@ -4626,7 +4629,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .categoryName = _("Free Climb"),
         .height = 13,
         .weight = 430,
-        .description = COMPOUND_STRING("Because of its wicked poison and daunting\nphysical prowess, no other species could\nhope to best it on frozen highlands. It\nprefers solitude and doesn't form packs."),
+        .description = COMPOUND_STRING("Debido a su veneno mortal y su gran\n"
+"poder físico, ninguna otra especie\n"
+"podría esperar vencerlo en su terreno.\n"
+"Prefiere la soledad y no forma manadas."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
