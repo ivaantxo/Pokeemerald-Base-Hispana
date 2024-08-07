@@ -694,6 +694,7 @@ static bool8 StartMenuPokemonCallback(void)
     return FALSE;
 }
 
+#include "tutorial.h"
 static bool8 StartMenuBagCallback(void)
 {
     if (!gPaletteFade.active)
@@ -701,7 +702,8 @@ static bool8 StartMenuBagCallback(void)
         PlayRainStoppingSoundEffect();
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
-        SetMainCallback2(CB2_BagMenuFromStartMenu); // Display bag menu
+        // SetMainCallback2(CB2_BagMenuFromStartMenu); // Display bag menu
+        SetMainCallback2(CB2_InitTutorialSetUp);
 
         return TRUE;
     }
