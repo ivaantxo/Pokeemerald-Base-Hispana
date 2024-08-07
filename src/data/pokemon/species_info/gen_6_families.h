@@ -1183,7 +1183,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         "topografía de la tierra en la que nació.\n"
         "Esta forma es de tierras de vastos espacios.\n"
         "Dispensa escamas tóxicas de colores en batalla."),
-}
+},
 [SPECIES_VIVILLON_GARDEN] =
 {
     VIVILLON_MISC_INFO(Garden, BODY_COLOR_GREEN, 1),
@@ -1329,7 +1329,6 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         "Dispensa escamas tóxicas de colores en batalla."),
 },
 
-    },
 #endif //P_FAMILY_SCATTERBUG
 
 #if P_FAMILY_LITLEO
