@@ -3669,9 +3669,9 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
-    dst->type1 = gSpeciesInfo[dst->species].types[0];
-    dst->type2 = gSpeciesInfo[dst->species].types[1];
-    dst->type3 = TYPE_MYSTERY;
+    dst->types[0] = gSpeciesInfo[dst->species].types[0];
+    dst->types[1] = gSpeciesInfo[dst->species].types[1];
+    dst->types[2] = TYPE_MYSTERY;
     dst->isShiny = IsMonShiny(src);
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
@@ -6995,12 +6995,12 @@ u8 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
             type = type2;
         else if (GetBattlerTeraType(battler) != TYPE_STELLAR && (GetActiveGimmick(battler) == GIMMICK_TERA || IsGimmickSelected(battler, GIMMICK_TERA)))
             type = GetMonData(mon, MON_DATA_TERA_TYPE);       
-        else if (gBattleMons[battler].type1 != TYPE_MYSTERY)
-            type = gBattleMons[battler].type1;
-        else if (gBattleMons[battler].type2 != TYPE_MYSTERY)
-            type = gBattleMons[battler].type2;
-        else if (gBattleMons[battler].type3 != TYPE_MYSTERY)
-            type = gBattleMons[battler].type3;
+        else if (gBattleMons[battler].types[0] != TYPE_MYSTERY)
+            type = gBattleMons[battler].types[0];
+        else if (gBattleMons[battler].types[1] != TYPE_MYSTERY)
+            type = gBattleMons[battler].types[1];
+        else if (gBattleMons[battler].types[2] != TYPE_MYSTERY)
+            type = gBattleMons[battler].types[2];
     }
     else if (gMovesInfo[move].effect == EFFECT_TERRAIN_PULSE 
           && ((IsMonGrounded(heldItemEffect, ability, type1, type2) && gBattleMons[battler].species != species) 

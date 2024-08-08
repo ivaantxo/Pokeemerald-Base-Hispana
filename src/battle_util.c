@@ -1138,7 +1138,6 @@ void PrepareStringBattle(u16 stringId, u32 battler)
               && ((gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget) || gBattleScripting.stickyWebStatDrop == 1)
               && !(gBattleScripting.stickyWebStatDrop == 1 && gSideTimers[targetSide].stickyWebBattlerSide == targetSide)) // Sticky Web must have been set by the foe
     {
-        gBattleScripting.stickyWebStatDrop = 0;
         gBattlerAbility = gBattlerTarget;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
@@ -10600,8 +10599,8 @@ s32 GetStealthHazardDamageByTypesAndHP(u8 hazardType, u8 type1, u8 type2, u32 ma
 
 s32 GetStealthHazardDamage(u8 hazardType, u32 battler)
 {
-    u8 type1 = gBattleMons[battler].type1;
-    u8 type2 = gBattleMons[battler].type2;
+    u8 type1 = gBattleMons[battler].types[0];
+    u8 type2 = gBattleMons[battler].types[1];
     u32 maxHp = gBattleMons[battler].maxHP;
 
     return GetStealthHazardDamageByTypesAndHP(hazardType, type1, type2, maxHp);
@@ -11493,9 +11492,9 @@ void CopyMonLevelAndBaseStatsToBattleMon(u32 battler, struct Pokemon *mon)
 void CopyMonAbilityAndTypesToBattleMon(u32 battler, struct Pokemon *mon)
 {
     gBattleMons[battler].ability = GetMonAbility(mon);
-    gBattleMons[battler].type1 = gSpeciesInfo[gBattleMons[battler].species].types[0];
-    gBattleMons[battler].type2 = gSpeciesInfo[gBattleMons[battler].species].types[1];
-    gBattleMons[battler].type3 = TYPE_MYSTERY;
+    gBattleMons[battler].types[0] = gSpeciesInfo[gBattleMons[battler].species].types[0];
+    gBattleMons[battler].types[1] = gSpeciesInfo[gBattleMons[battler].species].types[1];
+    gBattleMons[battler].types[2] = TYPE_MYSTERY;
 }
 
 void RecalcBattlerStats(u32 battler, struct Pokemon *mon)
@@ -11700,9 +11699,9 @@ u8 GetBattlerType(u32 battler, u8 typeIndex, bool32 ignoreTera)
 {
     u32 teraType = GetBattlerTeraType(battler);
     u16 types[3] = {0};
-    types[0] = gBattleMons[battler].type1;
-    types[1] = gBattleMons[battler].type2;
-    types[2] = gBattleMons[battler].type3;
+    types[0] = gBattleMons[battler].types[0];
+    types[1] = gBattleMons[battler].types[1];
+    types[2] = gBattleMons[battler].types[2];
 
     // Handle Terastallization
     if (GetActiveGimmick(battler) == GIMMICK_TERA && teraType != TYPE_STELLAR && !ignoreTera)
@@ -11731,8 +11730,8 @@ void RemoveBattlerType(u32 battler, u8 type)
         return;
     for (i = 0; i < 3; i++)
     {
-        if (*(u8 *)(&gBattleMons[battler].type1 + i) == type)
-            *(u8 *)(&gBattleMons[battler].type1 + i) = TYPE_MYSTERY;
+        if (*(u8 *)(&gBattleMons[battler].types[0] + i) == type)
+            *(u8 *)(&gBattleMons[battler].types[0] + i) = TYPE_MYSTERY;
     }
 }
 
