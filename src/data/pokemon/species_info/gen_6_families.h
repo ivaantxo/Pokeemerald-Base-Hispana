@@ -1149,180 +1149,180 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     VIVILLON_MISC_INFO(IcySnow, BODY_COLOR_WHITE, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de tierras heladas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_POLAR] =
 {
     VIVILLON_MISC_INFO(Polar, BODY_COLOR_BLUE, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de tierras nevadas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_TUNDRA] =
 {
     VIVILLON_MISC_INFO(Tundra, BODY_COLOR_BLUE, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de tierras de frío extremo.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_CONTINENTAL] =
 {
     VIVILLON_MISC_INFO(Continental, BODY_COLOR_YELLOW, 2),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de tierras de vastos espacios.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_GARDEN] =
 {
     VIVILLON_MISC_INFO(Garden, BODY_COLOR_GREEN, 1),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de tierras verdes.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_ELEGANT] =
 {
     VIVILLON_MISC_INFO(Elegant, BODY_COLOR_PURPLE, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
-        "forma es de tierras con estaciones bien definidas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de estaciones definidas.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_MEADOW] =
 {
     VIVILLON_MISC_INFO(Meadow, BODY_COLOR_PINK, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
-        "forma es de tierras donde florecen las flores.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de donde florecen las flores.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_MODERN] =
 {
     VIVILLON_MISC_INFO(Modern, BODY_COLOR_RED, 2),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
-        "Esta forma es de tierras bañadas por el sol.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de tierras bañadas por el Sol.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_MARINE] =
 {
     VIVILLON_MISC_INFO(Marine, BODY_COLOR_BLUE, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
+        "topografía de donde nació. Esta\n"
         "forma es de tierras con brisas oceánicas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_ARCHIPELAGO] =
 {
     VIVILLON_MISC_INFO(Archipelago, BODY_COLOR_BROWN, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
-        "Esta forma es de lugares con muchas islas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de lugares con muchas islas.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_HIGH_PLAINS] =
 {
     VIVILLON_MISC_INFO(HighPlains, BODY_COLOR_BROWN, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
-        "Esta forma es de tierras con poca lluvia.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de tierras con poca lluvia.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_SANDSTORM] =
 {
     VIVILLON_MISC_INFO(Sandstorm, BODY_COLOR_BROWN, 1),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de tierras áridas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_RIVER] =
 {
     VIVILLON_MISC_INFO(River, BODY_COLOR_BROWN, 2),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
-        "forma es de tierras donde fluyen grandes ríos.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de tierras con grandes ríos.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_MONSOON] =
 {
     VIVILLON_MISC_INFO(Monsoon, BODY_COLOR_GRAY, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
+        "topografía de donde nació. Esta\n"
         "forma es de tierras con lluvias intensas.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_SAVANNA] =
 {
     VIVILLON_MISC_INFO(Savanna, BODY_COLOR_GREEN, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
+        "topografía de donde nació. Esta\n"
         "forma es de tierras con clima tropical.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_SUN] =
 {
     VIVILLON_MISC_INFO(Sun, BODY_COLOR_RED, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
-        "Esta forma es de tierras bañadas por la luz.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "topografía de donde nació. Esta\n"
+        "forma es de tierras bañadas por la luz.\n"
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_OCEAN] =
 {
     VIVILLON_MISC_INFO(Ocean, BODY_COLOR_RED, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
+        "topografía de donde nació. Esta\n"
         "forma es de tierras de verano perpetuo.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_JUNGLE] =
 {
     VIVILLON_MISC_INFO(Jungle, BODY_COLOR_GREEN, 0),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació. Esta\n"
+        "topografía de donde nació. Esta\n"
         "forma es de tierras de selvas tropicales.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_FANCY] =
 {
     VIVILLON_MISC_INFO(Fancy, BODY_COLOR_PINK, 1),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de una tierra misteriosa.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 [SPECIES_VIVILLON_POKE_BALL] =
 {
     VIVILLON_MISC_INFO(PokeBall, BODY_COLOR_RED, 2),
     .description = COMPOUND_STRING(
         "Su patrón depende del clima y la\n"
-        "topografía de la tierra en la que nació.\n"
+        "topografía de donde nació.\n"
         "Esta forma es de una tierra especial.\n"
-        "Dispensa escamas tóxicas de colores en batalla."),
+        "Suelta escamas tóxicas de color al luchar."),
 },
 
 #endif //P_FAMILY_SCATTERBUG
@@ -4269,10 +4269,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 4,
         .weight = 50,
         .description = COMPOUND_STRING(
-            "The light that streams out from\n"
-            "the holes in the pumpkin can\n"
-            "hypnotize and control the people and\n"
-            "Pokémon that see it."),
+            "La luz que proviene de los\n"
+            "agujeros en la calabaza pueden\n"
+            "hipnotizar y controlar a los\n"
+            "Pokémon y personas que los ven."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -4333,9 +4333,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 3,
         .weight = 35,
         .description = COMPOUND_STRING(
-            "When taking spirits to the\n"
-            "afterlife, small Pumpkaboo prefer the\n"
-            "spirits of children to those of adults."),
+            "Cuando se trata de llevarse\n"
+            "espíritus al Otro Mundo, los\n"
+            "pequeños Pumpkaboo prefieren\n"
+            "los de los niños a los adultos."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -4388,9 +4389,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 5,
         .weight = 75,
         .description = COMPOUND_STRING(
-            "When taking spirits to the\n"
-            "afterlife, large Pumpkaboo prefer the\n"
-            "spirits of adults to those of children."),
+            "Cuando se trata de llevarse\n"
+            "espíritus al Otro Mundo, los\n"
+            "Pumpkaboo grandes prefieren\n"
+            "los de los adultos a los niños."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -4445,9 +4447,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 8,
         .weight = 150,
         .description = COMPOUND_STRING(
-            "Supersized Pumpkaboo are very\n"
-            "partial to the spirits of people who\n"
-            "were of similarly superior proportions."),
+            "Los Pumpkaboo extragrandes\n"
+            "tienen debilidad por las\n"
+            "personas cuyo espíritu es\n"
+            "de grandes proporciones."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,

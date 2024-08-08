@@ -5997,10 +5997,10 @@ static const struct SpriteFrameImage sPicTable_Baxcalibur[] = {
 #endif //P_FAMILY_FRIGIBAX
 
 #if P_FAMILY_GIMMIGHOUL
-/*static const struct SpriteFrameImage sPicTable_GimmighoulChest[] = {
+static const struct SpriteFrameImage sPicTable_GimmighoulChest[] = {
     overworld_ascending_frames(gObjectEventPic_GimmighoulChest, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_GimmighoulRoaming[] = {
+/*static const struct SpriteFrameImage sPicTable_GimmighoulRoaming[] = {
     overworld_ascending_frames(gObjectEventPic_GimmighoulRoaming, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_Gholdengo[] = {

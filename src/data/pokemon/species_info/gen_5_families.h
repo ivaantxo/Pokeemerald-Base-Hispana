@@ -6740,7 +6740,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
             "Lo llaman el presagio de primavera\n"
             "porque las plantas de sus cuernos\n"
             "cambian según la estación. El líder\n"
-            "posee los más grandes."),
+            "posee los cuernos más grandes."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,

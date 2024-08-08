@@ -18,7 +18,7 @@ const u8 gPichuPokedexText[] = _(
     "el tiempo, mejora en ello.");
 
 const u8 gPikachuPokedexText[] = _(
-    "Almacena electricidad en sus mejillas\n"
+    "Almacena electricidad en sus mejillas.\n"
     "Cuando libera la energía acumulada\n"
     "en una explosión, la potencia\n"
     "eléctrica es equivalente a un rayo.");
@@ -83,16 +83,16 @@ const u8 gScatterbugPokedexText[] = _(
 "puede vivir en cualquier región o clima.");
 
 const u8 gSpewpaPokedexText[] = _(
-    "Vive oculto en las sombras de los matorrales.\n"
-"Cuando los depredadores atacan, rápidamente\n"
-"eriza el pelaje que cubre su cuerpo para\n"
-"intimidarlos.");
+    "Vive oculto en sombras de matorrales.\n"
+    "Cuando atacan depredadores, rápidamente\n"
+    "eriza el pelaje de su cuerpo para\n"
+    "intimidarlos.");
 
 const u8 gFurfrouPokedexText[] = _(
-   "Recortar su pelaje esponjoso no solo lo hace\n"
-"más elegante, sino que también aumenta la\n"
-"rapidez de sus movimientos. Estos Pokémon\n"
-"fueron los guardianes de los reyes.");
+    "Recortar su pelaje no solo lo hace\n"
+    "más elegante, sino que aumenta su\n"
+    "rapidez de movimientos. Fueron\n"
+    "los guardianes de reyes antiguos.");
 
 const u8 gXerneasPokedexText[] = _(
     "Las leyendas dicen que cuando los cuernos\n"

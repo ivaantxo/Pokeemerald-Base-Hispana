@@ -21497,9 +21497,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u8 gMonFootprint_GimmighoulChest[] = INCBIN_U8("graphics/pokemon/gimmighoul/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_GimmighoulChest[] = INCBIN_COMP("graphics/pokemon/gimmighoul/overworld.4bpp");
+     const u32 gObjectEventPic_GimmighoulChest[] = INCBIN_COMP("graphics/pokemon/gimmighoul/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/overworld_normal.gbapal.lz");
+     const u32 gOverworldPalette_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/overworld_normal.gbapal.lz");
     // const u32 gShinyOverworldPalette_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS

@@ -13069,7 +13069,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .description = COMPOUND_STRING(
             "Para intentar confundir al rival,\n"
             "Mime Jr. le copia sus movimientos.\n"
-            "Una vez que lo ha imitado, no\n"
+            "Una vez que lo ha imitado, este no\n"
             "puede apartar su mirada de él."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
