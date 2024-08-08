@@ -608,11 +608,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .categoryName = _("Ninja"),
         .height = 15,
         .weight = 400,
-        .description = COMPOUND_STRING(
-            "Aparece y desaparece con la gracia de un ninja.\n"
-"Juega con sus enemigos usando movimientos rápidos,\n"
-"mientras los corta con estrellas arrojadizas\n"
-"hechas de agua comprimida."),
+        .description = gGreninjaPokedexText,
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,

@@ -131,11 +131,11 @@ static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size
 static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}ALTERNAR   {DPAD_UPDOWN}MOVS.");
 static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Alternar   {DPAD_UPDOWN}Movs.");
 static const u8 sText_Stats_HP[] = _("PS");
-static const u8 sText_Stats_Attack[] = _("At.");
-static const u8 sText_Stats_Defense[] = _("Def.");
-static const u8 sText_Stats_Speed[] = _("Vel.");
-static const u8 sText_Stats_SpAttack[] = _("A.esp.");
-static const u8 sText_Stats_SpDefense[] = _("D.esp.");
+static const u8 sText_Stats_Attack[] = _("AT");
+static const u8 sText_Stats_Defense[] = _("DEF");
+static const u8 sText_Stats_Speed[] = _("VEL");
+static const u8 sText_Stats_SpAttack[] = _("A ESP");
+static const u8 sText_Stats_SpDefense[] = _("D ESP");
 static const u8 sText_Stats_EV_Plus1[] = _("{UP_ARROW_2}");
 static const u8 sText_Stats_EV_Plus2[] = _("{UP_ARROW_2}{UP_ARROW_2}");
 static const u8 sText_Stats_EV_Plus3[] = _("{UP_ARROW_2}{UP_ARROW_2}{UP_ARROW_2}");
@@ -149,21 +149,21 @@ static const u8 sText_Stats_Gender_50[] = _("♀ 1/1 ♂");     //_("♀ 50 / 50
 static const u8 sText_Stats_Gender_75[] = _("♀ 3/1 ♂");     //_("♀ 75 / 25 ♂");
 static const u8 sText_Stats_Gender_87_5[] = _("♀ 7/1 ♂");
 static const u8 sText_Stats_Gender_100[] = _("♀");
-static const u8 sText_Stats_CatchRate[] = _("{0x5B}Capt: ");
+static const u8 sText_Stats_CatchRate[] = _("{0x5B}CAPT");
 static const u8 sText_Stats_CatchRate_Legend[] = _("Legendario");
 static const u8 sText_Stats_CatchRate_VeryHard[] = _("{UP_ARROW} Difícil");
 static const u8 sText_Stats_CatchRate_Difficult[] = _("Difícil");
 static const u8 sText_Stats_CatchRate_Medium[] = _("Medio");
 static const u8 sText_Stats_CatchRate_Relaxed[] = _("Relajado");
 static const u8 sText_Stats_CatchRate_Easy[] = _("Fácil");
-static const u8 sText_Stats_ExpYield[] = _("Exp. base: ");
-static const u8 sText_Stats_EggCycles[] = _("Pasos ecl.:");
+static const u8 sText_Stats_ExpYield[] = _("EXP BASE");
+static const u8 sText_Stats_EggCycles[] = _("PASOS HUEVO");
 static const u8 sText_Stats_EggCycles_VeryFast[] = _("{EMOJI_BOLT}{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Fast[] = _("{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Normal[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Slow[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_Growthrate[] = _("Crec.: ");
-static const u8 sText_Stats_Friendship[] = _("Amistad:");
+static const u8 sText_Stats_Growthrate[] = _("CREC");
+static const u8 sText_Stats_Friendship[] = _("AMISTAD");
 static const u8 sText_Stats_Friendship_BigAnger[] = _("{EMOJI_BIGANGER}");
 static const u8 sText_Stats_Friendship_Neutral[] = _("{EMOJI_NEUTRAL}");
 static const u8 sText_Stats_Friendship_Happy[] = _("{EMOJI_HAPPY}");
@@ -203,56 +203,56 @@ static const u8 sText_EVO_Buttons_PE[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}MIRAR  
 static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Mirar  {START_BUTTON}Formas");
 static const u8 sText_EVO_Name[] = _("{STR_VAR_3}:");
 static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evoluciona de {STR_VAR_2}.");
-static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} Mega Evoluciona con {STR_VAR_2}.");
-static const u8 sText_EVO_FRIENDSHIP[] = _("{LV}{UP_ARROW}, amistad elevada.");
-static const u8 sText_EVO_FRIENDSHIP_DAY[] = _("{LV}{UP_ARROW}, amistad elevada, día.");
-static const u8 sText_EVO_FRIENDSHIP_NIGHT[] = _("{LV}{UP_ARROW}, amistad elevada, noche.");
-static const u8 sText_EVO_FRIENDSHIP_MOVE_TYPE[] = _("{LV}{UP_ARROW}, amistad elevada, mov. {STR_VAR_2}.");
-static const u8 sText_EVO_LEVEL[] = _("{LV}{UP_ARROW} a {STR_VAR_2}.");
+static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} megaevoluciona con {STR_VAR_2}.");
+static const u8 sText_EVO_FRIENDSHIP[] = _("{UP_ARROW}{LV}, amistad elevada.");
+static const u8 sText_EVO_FRIENDSHIP_DAY[] = _("{UP_ARROW}{LV}, amistad elevada, día.");
+static const u8 sText_EVO_FRIENDSHIP_NIGHT[] = _("{UP_ARROW}{LV}, amistad elevada, noche.");
+static const u8 sText_EVO_FRIENDSHIP_MOVE_TYPE[] = _("{UP_ARROW}{LV}, amistad elevada, mov. {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL[] = _("{UP_ARROW}{LV} a {STR_VAR_2}.");
 static const u8 sText_EVO_TRADE[] = _("Intercambio.");
 static const u8 sText_EVO_TRADE_ITEM[] = _("Intercambio con {STR_VAR_2}.");
 static const u8 sText_EVO_ITEM[] = _("Usando {STR_VAR_2}.");
-static const u8 sText_EVO_LEVEL_ATK_GT_DEF[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, Atq > Def.");
-static const u8 sText_EVO_LEVEL_ATK_EQ_DEF[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, Atq = Def.");
-static const u8 sText_EVO_LEVEL_ATK_LT_DEF[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, Atq < Def.");
-static const u8 sText_EVO_LEVEL_SILCOON[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, {0x5B}Silcoon.");
-static const u8 sText_EVO_LEVEL_CASCOON[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, {0x5B}Cascoon.");
-static const u8 sText_EVO_LEVEL_NINJASK[] = _("{LV}{UP_ARROW} a {STR_VAR_2}.");
-static const u8 sText_EVO_LEVEL_SHEDINJA[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, equipo<6, 1x POKéBALL.");
-static const u8 sText_EVO_BEAUTY[] = _("{LV}{UP_ARROW}, belleza alta.");
-static const u8 sText_EVO_LEVEL_FEMALE[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, si chica.");
-static const u8 sText_EVO_LEVEL_MALE[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, si chico.");
-static const u8 sText_EVO_LEVEL_NIGHT[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, noche.");
-static const u8 sText_EVO_LEVEL_DAY[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, día.");
-static const u8 sText_EVO_LEVEL_DUSK[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, tarde.");
-static const u8 sText_EVO_ITEM_HOLD_DAY[] = _("{LV}{UP_ARROW} con {STR_VAR_2}, día.");
-static const u8 sText_EVO_ITEM_HOLD_NIGHT[] = _("{LV}{UP_ARROW} con {STR_VAR_2}, noche.");
-static const u8 sText_EVO_MOVE[] = _("{LV}{UP_ARROW}, sabiendo {STR_VAR_2}.");
-static const u8 sText_EVO_MAPSEC[] = _("{LV}{UP_ARROW} en {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL_ATK_GT_DEF[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, Atq > Def.");
+static const u8 sText_EVO_LEVEL_ATK_EQ_DEF[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, Atq = Def.");
+static const u8 sText_EVO_LEVEL_ATK_LT_DEF[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, Atq < Def.");
+static const u8 sText_EVO_LEVEL_SILCOON[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, {0x5B}Silcoon.");
+static const u8 sText_EVO_LEVEL_CASCOON[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, {0x5B}Cascoon.");
+static const u8 sText_EVO_LEVEL_NINJASK[] = _("{UP_ARROW}{LV} a {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL_SHEDINJA[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, equipo<6, 1x POKéBALL.");
+static const u8 sText_EVO_BEAUTY[] = _("{UP_ARROW}{LV}, belleza alta.");
+static const u8 sText_EVO_LEVEL_FEMALE[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, si chica.");
+static const u8 sText_EVO_LEVEL_MALE[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, si chico.");
+static const u8 sText_EVO_LEVEL_NIGHT[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, noche.");
+static const u8 sText_EVO_LEVEL_DAY[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, día.");
+static const u8 sText_EVO_LEVEL_DUSK[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, tarde.");
+static const u8 sText_EVO_ITEM_HOLD_DAY[] = _("{UP_ARROW}{LV} con {STR_VAR_2}, día.");
+static const u8 sText_EVO_ITEM_HOLD_NIGHT[] = _("{UP_ARROW}{LV} con {STR_VAR_2}, noche.");
+static const u8 sText_EVO_MOVE[] = _("{UP_ARROW}{LV}, sabiendo {STR_VAR_2}.");
+static const u8 sText_EVO_MAPSEC[] = _("{UP_ARROW}{LV} en {STR_VAR_2}.");
 static const u8 sText_EVO_ITEM_MALE[] = _("{STR_VAR_2} usado en chico.");
 static const u8 sText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} usado en chica.");
-static const u8 sText_EVO_LEVEL_RAIN[] = _("{LV}{UP_ARROW} a {STR_VAR_2} en lluvia.");
-static const u8 sText_EVO_SPECIFIC_MON_IN_PARTY[] = _("{LV}{UP_ARROW} con {STR_VAR_2} en equipo.");
-static const u8 sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[] = _("{LV}{UP_ARROW} con tipo sin. en equipo.");
+static const u8 sText_EVO_LEVEL_RAIN[] = _("{UP_ARROW}{LV} a {STR_VAR_2} en lluvia.");
+static const u8 sText_EVO_SPECIFIC_MON_IN_PARTY[] = _("{UP_ARROW}{LV} con {STR_VAR_2} en equipo.");
+static const u8 sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[] = _("{UP_ARROW}{LV} con tipo sin. en equipo.");
 static const u8 sText_EVO_TRADE_SPECIFIC_MON[] = _("Cambiado por {STR_VAR_2}.");
-static const u8 sText_EVO_SPECIFIC_MAP[] = _("{LV}{UP_ARROW} en {STR_VAR_2}.");
-static const u8 sText_EVO_LEVEL_NATURE_AMPED[] = _("{LV}{UP_ARROW} a {STR_VAR_2}, naturaleza aguda.");
-static const u8 sText_EVO_LEVEL_NATURE_LOW_KEY[] = _("{LV}{UP_ARROW} A {STR_VAR_2}, naturaleza grave.");
+static const u8 sText_EVO_SPECIFIC_MAP[] = _("{UP_ARROW}{LV} en {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL_NATURE_AMPED[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, naturaleza aguda.");
+static const u8 sText_EVO_LEVEL_NATURE_LOW_KEY[] = _("{UP_ARROW}{LV} A {STR_VAR_2}, naturaleza grave.");
 static const u8 sText_EVO_CRITICAL_HITS[] = _("Hace {STR_VAR_2} golpes críticos\nen una batalla.");
 static const u8 sText_EVO_SCRIPT_TRIGGER_DMG[] = _("Recibiendo {STR_VAR_2} PS de daño.");
 static const u8 sText_EVO_DARK_SCROLL[] = _("Usando p. oscuro.");
 static const u8 sText_EVO_WATER_SCROLL[] = _("Usando p. aguas.");
 static const u8 sText_EVO_ITEM_NIGHT[] = _("{STR_VAR_2} es usado, noche.");
 static const u8 sText_EVO_ITEM_DAY[] = _("{STR_VAR_2} es usado, día.");
-static const u8 sText_EVO_ITEM_HOLD[] = _("{LV}{UP_ARROW}, teniendo {STR_VAR_2}.");
-static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{LV}{UP_ARROW} después de 20x {STR_VAR_2}.");
-static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{LV}{UP_ARROW} con {STR_VAR_2} de daño de retroceso, macho.");
-static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} con {STR_VAR_2} de daño de retroceso, hembra.");
-static const u8 sText_EVO_ITEM_COUNT_999[] = _("{LV}{UP_ARROW} con 999 {STR_VAR_2} en la mochila.");
+static const u8 sText_EVO_ITEM_HOLD[] = _("{UP_ARROW}{LV}, teniendo {STR_VAR_2}.");
+static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{UP_ARROW}{LV} después de 20x {STR_VAR_2}.");
+static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, macho.");
+static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, hembra.");
+static const u8 sText_EVO_ITEM_COUNT_999[] = _("{UP_ARROW}{LV} con 999 {STR_VAR_2} en la mochila.");
 static const u8 sText_EVO_UNKNOWN[] = _("Método desconocido.");
 static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} no tiene evolución.");
-static const u8 sText_EVO_DEFEAT_THREE_WITH_ITEM[] = _("{LV}{UP_ARROW} derrotando 3 {STR_VAR_3} llevando {STR_VAR_2}.");
-static const u8 sText_EVO_OVERWORLD_STEPS[] = _("{LV}{UP_ARROW} después de {STR_VAR_2} pasos.");
+static const u8 sText_EVO_DEFEAT_THREE_WITH_ITEM[] = _("{UP_ARROW}{LV} derrotando 3 {STR_VAR_3} llevando {STR_VAR_2}.");
+static const u8 sText_EVO_OVERWORLD_STEPS[] = _("{UP_ARROW}{LV} después de {STR_VAR_2} pasos.");
 
 static const u8 sText_FORMS_Buttons_PE[] = _("{A_BUTTON}MODO FORMAs  {START_BUTTON}EVOs");
 static const u8 sText_FORMS_Buttons_Decapped_PE[] = _("{START_BUTTON}Evos");
@@ -459,8 +459,6 @@ struct PokedexView
     u16 scrollMonIncrement;
     u16 maxScrollTimer;
     u16 scrollSpeed;
-    u16 unkArr1[4]; // Cleared, never read
-    u8 filler[8];
     u8 currentPage;
     u8 currentPageBackup;
     bool8 isSearchResults:1;
@@ -469,8 +467,6 @@ struct PokedexView
     u8 menuIsOpen;
     u16 menuCursorPos;
     s16 menuY;     //Menu Y position (inverted because we use REG_BG0VOFS for this)
-    u8 unkArr2[8]; // Cleared, never read
-    u8 unkArr3[8]; // Cleared, never read
 };
 
 static void ResetPokedexView(struct PokedexView *pokedexView);
@@ -2125,8 +2121,6 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->scrollMonIncrement = 0;
     pokedexView->maxScrollTimer = 0;
     pokedexView->scrollSpeed = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr1); i++)
-        pokedexView->unkArr1[i] = 0;
     pokedexView->currentPage = PAGE_MAIN;
     pokedexView->currentPageBackup = PAGE_MAIN;
     pokedexView->isSearchResults = FALSE;
@@ -2135,10 +2129,6 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->menuIsOpen = 0;
     pokedexView->menuCursorPos = 0;
     pokedexView->menuY = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr2); i++)
-        pokedexView->unkArr2[i] = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr3); i++)
-        pokedexView->unkArr3[i] = 0;
 }
 
 static void VBlankCB_Pokedex(void)
@@ -4416,7 +4406,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         category = gText_5MarksPokemon;
     }
     PrintInfoScreenText(category, 123, 31);
-    PrintMonMeasurements(species,owned);
+    PrintMonMeasurements(species, owned);
     if (owned)
         description = GetSpeciesPokedexDescription(species);
     else

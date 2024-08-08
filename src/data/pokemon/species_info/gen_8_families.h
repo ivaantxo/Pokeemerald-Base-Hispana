@@ -2131,7 +2131,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
             "Su cuerpo es una estufa colosal. Con\n"
             "la energía de Gigantamax avivando el\n"
             "fuego, la llama de este Pokémon arde\n"
-            "a una temperatura superior a 3,600 ºC."),
+            "a una temperatura superior a 3.600 ºC."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,

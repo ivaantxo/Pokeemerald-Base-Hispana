@@ -53,12 +53,8 @@ struct EggHatchData
     u8 state;
     u8 delayTimer;
     u8 eggPartyId;
-    u8 unused_5;
-    u8 unused_6;
     u8 eggShardVelocityId;
     u8 windowId;
-    u8 unused_9;
-    u8 unused_A;
     u16 species;
     u8 textColor[3];
 };

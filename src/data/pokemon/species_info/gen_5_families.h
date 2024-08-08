@@ -3137,7 +3137,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .categoryName = _("Pupaciempiés"),
         .height = 12,
         .weight = 585,
-        .description = COMPOUND_STRING("Normalmente no se mueve, pero se\npone a rodar frenéticamente y contraataca\ncon placajes si lo atacan."),
+        .description = COMPOUND_STRING("Normalmente no se mueve, pero se pone\na rodar frenéticamente y contraataca\ncon placajes si le agobian."),
         .pokemonScale = 282,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6737,10 +6737,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 19,
         .weight = 925,
         .description = COMPOUND_STRING(
-            "Algunas personas llaman a Sawsbuck los\n"
-        "presagios de la primavera porque las\n"
-        "plantas de sus cuernos cambian según\n"
-        "la estación. El líder posee cuernos magníficos."),
+            "Lo llaman el presagio de primavera\n"
+            "porque las plantas de sus cuernos\n"
+            "cambian según la estación. El líder\n"
+            "posee los más grandes."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -11050,9 +11050,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     .height = 14,
     .weight = 485,
     .description = COMPOUND_STRING(
-        "Cuando está decidido, su cuerpo se llena de\n"
-        "poder y se vuelve más rápido. Cruza el mundo,\n"
-        "corriendo sobre la superficie de océanos y ríos."),
+        "Cuando está decidido, se llena de\n"
+        "poder y se vuelve más rápido. Cruza\n"
+        "el mundo corriendo sobre la superficie\n"
+        "de océanos y ríos."),
     .pokemonScale = 265,
     .pokemonOffset = 2,
     .trainerScale = 262,
@@ -11115,8 +11116,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     .weight = 485,
     .description = COMPOUND_STRING(
         "El poder que yacía oculto en su cuerpo\n"
-        "ahora cubre su cuerno, convirtiéndolo en una\n"
-        "espada que puede cortar a través de cualquier cosa."),
+        "ahora cubre su cuerno, convirtiéndolo\n"
+        "en una espada que puede cortar a través\n"
+        "de cualquier cosa."),
     .pokemonScale = 265,
     .pokemonOffset = 2,
     .trainerScale = 262,
@@ -11176,10 +11178,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 65,
         .description = COMPOUND_STRING(
-             "Las melodías que canta tienen el poder\n"
-        "de hacer que los Pokémon que las escuchan\n"
-        "se sientan felices o tristes. Muchas canciones\n"
-        "famosas han sido inspiradas por sus melodías."),
+            "Sus melodías tienen el poder\n"
+            "de hacer que los que las escuchan\n"
+            "se sientan felices o tristes. Ha\n"
+            "inspirado muchas canciones famosas."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -11246,9 +11248,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .height = 6,
         .weight = 65,
         .description = COMPOUND_STRING(
-           "Las melodías son cantadas con\n"
-        "un método vocal especial que puede\n"
-        "controlar los sentimientos."),
+            "Las melodías son cantadas con\n"
+            "un método vocal especial que puede\n"
+            "controlar los sentimientos."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,

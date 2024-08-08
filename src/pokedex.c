@@ -4367,6 +4367,7 @@ static u8* ConvertMonHeightToMetricString(u32 height)
     u8* heightString = ConvertMeasurementToMetricString(height, &index);
 
     heightString[index++] = CHAR_m;
+    heightString[index++] = CHAR_PERIOD;
     heightString[index++] = EOS;
     return heightString;
 }

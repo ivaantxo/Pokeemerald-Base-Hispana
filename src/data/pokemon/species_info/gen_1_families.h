@@ -276,7 +276,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 0,
         .description = COMPOUND_STRING(
             "Escupe grandes cantidades de polen\n"
-            "como un volcán. Que puede provocar\n"
+            "como un volcán que puede provocar\n"
             "desmayos. Posee 2 gruesas enredaderas\n"
             "que pueden derribar edificios de 10 pisos."),
         .pokemonScale = 256,
@@ -626,9 +626,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 0,
         .description = COMPOUND_STRING(
             "La llama dentro de su cuerpo arde\n"
-"más caliente que 3,600 ºC.\n"
-"Cuando Charizard ruge, esa\n"
-"temperatura sube aún más alto."),
+            "más caliente que 3.600 ºC.\n"
+            "Cuando Charizard ruge, esa\n"
+            "temperatura sube aún más alto."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 302,
@@ -3937,10 +3937,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 5,
         .weight = 90,
         .description = COMPOUND_STRING(
-            "The male Nidoran has developed muscles\n"
-            "that freely move its ears in any direction.\n"
-            "Even the slightest sound does not escape\n"
-            "this Pokémon's notice."),
+            "Ha desarrollado músculos para mover\n"
+            "sus orejas en todas direcciones. Incluso\n"
+            "el sonido más mínimo no escapa a la\n"
+            "atención de este Pokémon."),
         .pokemonScale = 511,
         .pokemonOffset = 20,
         .trainerScale = 256,
@@ -5444,7 +5444,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .speciesName = _("Venomoth"),
         .cryId = CRY_VENOMOTH,
         .natDexNum = NATIONAL_DEX_VENOMOTH,
-        .categoryName = _("polilla ven."),
+        .categoryName = _("Polilla ven."),
         .height = 15,
         .weight = 125,
         .description = COMPOUND_STRING("Es nocturno, solo actúa en la oscuridad.\nSu alimento preferido son los pequeños\ninsectos que se concentran por\nla noche cerca de los focos de luz."),
@@ -9373,7 +9373,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Ave triple"),
         .height = 18,
         .weight = 852,
-        .description = COMPOUND_STRING("Las tres cabezas expresan alegría, enfado\ny preocupación cuando planean estrategias.\nAl dormir, una cabeza permanece despierta."),
+        .description = COMPOUND_STRING(
+            "Las tres cabezas expresan alegría,\n"
+            "enfado y preocupación cuando planean\n"
+            "estrategias. Al dormir, una cabeza\n" 
+            "permanece despierta."),        
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
@@ -13063,10 +13067,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 6,
         .weight = 130,
         .description = COMPOUND_STRING(
-            "In an attempt to confuse its enemy,\n"
-            "it mimics the enemy's movements.\n"
-            "Once mimicked, the foe cannot take\n"
-            "its eyes off this Pokémon."),
+            "Para intentar confundir al rival,\n"
+            "Mime Jr. le copia sus movimientos.\n"
+            "Una vez que lo ha imitado, no\n"
+            "puede apartar su mirada de él."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -13131,10 +13135,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 13,
         .weight = 545,
         .description = COMPOUND_STRING(
-            "A Mr. Mime is a master of pantomime. It can\n"
-            "convince others that something unseeable\n"
-            "actually exists. Once believed, the\n"
-            "imaginary object does become real."),
+            "Es un maestro de la pantomima. Puede\n"
+            "convencer a otros de que algo invisible\n"
+            "existe realmente. Una vez convencidos,\n"
+            "el objeto imaginario se vuelve real."),
         .pokemonScale = 258,
         .pokemonOffset = 6,
         .trainerScale = 256,
@@ -15584,10 +15588,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 9,
         .weight = 340,
         .description = COMPOUND_STRING(
-            "In order to create a more advanced\n"
-            "Pokémon, an additional program was\n"
-            "installed, but apparently it contained a\n"
-            "defect that made it move oddly."),
+            "Para crear un Pokémon más avanzado,\n"
+            "le instalaron un programa adicional,\n"
+            "pero este contenía un virus que hace\n"
+            "que se mueva extrañamente."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,

@@ -1453,10 +1453,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 2,
         .weight = 34,
         .description = COMPOUND_STRING(
-            "Si su capa se daña aunque sea ligeramente, la\n"
-        "reparará inmediatamente con lo que tenga\n"
-        "cerca. El Pokémon dentro de la capa es\n"
-        "delgado y vulnerable al frío."),
+            "Si su capa se daña aunque sea poco, la\n"
+            "reparará inmediatamente con lo que pueda\n"
+            "El Pokémon dentro de la capa es delgado\n"
+            "y vulnerable al frío."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -5571,10 +5571,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 45,
         .weight = 7500,
         .description = COMPOUND_STRING(
-            "Se dice que este Pokémon vive en un\n"
-        "mundo en el reverso del nuestro, donde\n"
-        "el conocimiento común está distorsionado\n"
-        "y es extraño. Fue desterrado por su violencia."),
+            "Se dice que vive en un mundo\n"
+            "reverso del nuestro, que está\n"
+            "distorsionado extrañamente.\n"
+            "Fue desterrado por su violencia."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 614,
@@ -5979,9 +5979,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 21,
         .description = COMPOUND_STRING(
             "Las flores que le recubren florecen si\n"
-        "es abrazado con cariño y siente gratitud.\n"
-        "Disuelve las toxinas en el aire para cambiar\n"
-        "tierras asoladas en hemosos campos florales."),
+            "es abrazado y siente gratitud. Disuelve\n"
+            "toxinas en el aire para cambiar tierras\n"
+            "asoladas en hermosos campos florales."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,

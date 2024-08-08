@@ -12,16 +12,16 @@ const u8 gRaticateAlolanPokedexText[] = _(
 "por la comida ocurren a menudo.");
 
 const u8 gPichuPokedexText[] = _(
-    "Todavía es inepto para retener electricidad.\n"
-"Cuando se asusta, libera energía\n"
-"accidentalmente. Mejora en retener\n"
-"energía a medida que envejece.");
+    "Todavía es inepto para retener.\n"
+    "electricidad. Cuando se asusta,\n"
+    "la libera accidentalmente. Con\n"
+    "el tiempo, mejora en ello.");
 
 const u8 gPikachuPokedexText[] = _(
-   "Almacena electricidad en los sacos eléctricos\n"
-"de sus mejillas. Cuando libera la energía\n"
-"acumulada en una explosión, la potencia\n"
-"eléctrica es equivalente a un rayo.");
+    "Almacena electricidad en sus mejillas\n"
+    "Cuando libera la energía acumulada\n"
+    "en una explosión, la potencia\n"
+    "eléctrica es equivalente a un rayo.");
 
 const u8 gMarowakAlolanPokedexText[] = _(
     "Se dice que las llamas malditas que iluminan\n"
@@ -37,10 +37,10 @@ const u8 gEeveePokedexText[] = _(
 
 // Gen 2 families
 const u8 gUnownPokedexText[] = _(
-    "Este Pokémon tiene la forma de caracteres\n"
-"de textos antiguos. Aunque la investigación\n"
-"continúa, es un misterio cuál surgió primero,\n"
-"los escritos antiguos o los diversos Unown.");
+    "Este Pokémon tiene forma de caracteres\n"
+    "de textos antiguos. Aunque sigue la\n"
+    "investigación, es un misterio cuál surgió\n"
+    "primero: los escritos o los Unown.");
 
 // Gen 3 families
 const u8 gDeoxysNormalPokedexText[] = _(
@@ -57,10 +57,10 @@ const u8 gMothimPokedexText[] = _(
 "robar la miel recolectada por Combee.");
 
 const u8 gArceusPokedexText[] = _(
-   "Según la mitología, se dice que este Pokémon\n"
-"surgió de un huevo y dio forma a todo lo que\n"
-"existe en este mundo, incluso antes de que el\n"
-"universo existiera.");
+    "Según la mitología, se dice que surgió\n"
+    "de un huevo y dio forma a todo lo que\n"
+    "existe, incluso previamente al nacimiento\n"
+    "del Universo.");
 
 // Gen 5 families
 const u8 gGenesectPokedexText[] = _(
@@ -71,10 +71,10 @@ const u8 gGenesectPokedexText[] = _(
 
 // Gen 6 families
 const u8 gGreninjaPokedexText[] = _(
-    "Aparece y desaparece con la gracia de un ninja.\n"
-"Juega con sus enemigos usando movimientos rápidos,\n"
-"mientras los corta con estrellas arrojadizas\n"
-"hechas de agua comprimida.");
+        "Aparece y desaparece como un ninja.\n"
+        "Juega con sus enemigos con movimientos\n"
+        "rápidos, mientras les lanza estrellas\n"
+        "arrojadizas hechas con agua comprimida.");
 
 const u8 gScatterbugPokedexText[] = _(
     "Cuando es atacado por Pokémon pájaro,\n"

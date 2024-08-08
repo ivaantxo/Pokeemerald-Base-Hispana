@@ -6900,10 +6900,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 38,
         .weight = 1990,
         .description = COMPOUND_STRING(
-           "Sus plumas--que brillan en siete colores\n"
-"dependiendo del ángulo en el que son\n"
-"iluminadas--se cree que traen alegría.\n"
-"Se dice que vive al pie de un arcoíris."),
+           "Sus plumas -que brillan en siete colores\n"
+            "dependiendo del ángulo en el que son\n"
+            "iluminadas- se cree que traen alegría.\n"
+            "Se dice que vive al pie de un arcoíris."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 610,
