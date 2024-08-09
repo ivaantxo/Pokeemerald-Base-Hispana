@@ -2096,10 +2096,10 @@ static void HBlankCB_PokeStorage(void)
             u32 j;
             for (j = 0; j < IN_BOX_COLUMNS; j++, position += 16, dst += 16)
             {
-            // If palette color is empty, skip
-            if (!(sPaletteSwapBuffer[position] & 0x7FFF))
-                continue;
-            CpuFastCopy(&sPaletteSwapBuffer[position], dst, PLTT_SIZE_4BPP);
+                // If palette color is empty, skip
+                if (!(sPaletteSwapBuffer[position] & 0x7FFF))
+                    continue;
+                CpuFastCopy(&sPaletteSwapBuffer[position], dst, PLTT_SIZE_4BPP);
             }
             break;
         }
