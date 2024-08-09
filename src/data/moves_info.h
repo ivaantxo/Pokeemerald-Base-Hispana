@@ -443,7 +443,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Danza espada"),
         .description = COMPOUND_STRING(
             "Baile que mejora\n"
-            "el Ataque."),
+            "el ataque."),
         .effect = EFFECT_ATTACK_UP_2,
         .power = 0,
         .type = TYPE_NORMAL,
@@ -6332,7 +6332,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Camelo"),
         .description = COMPOUND_STRING(
             "Confunde al rival, pero\n"
-            "sube su At. esp."),
+            "sube su at. esp."),
         .effect = EFFECT_FLATTER,
         .power = 0,
         .type = TYPE_DARK,
@@ -16805,7 +16805,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Cepo"),
         .description = COMPOUND_STRING(
             "Atrapa al objetivo en una\n"
-    "trampa durante 4 o 5 turnos."),
+            "trampa durante 4 o 5 turnos."),
         .effect = EFFECT_HIT,
         .power = 35,
         .type = TYPE_GRASS,

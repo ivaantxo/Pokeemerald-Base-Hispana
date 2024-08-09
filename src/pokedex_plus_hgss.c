@@ -131,7 +131,7 @@ static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size
 static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}ALTERNAR   {DPAD_UPDOWN}MOVS");
 static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Alternar   {DPAD_UPDOWN}Movs");
 static const u8 sText_Stats_HP[] = _("PS");
-static const u8 sText_Stats_Attack[] = _("AT");
+static const u8 sText_Stats_Attack[] = _("ATA");
 static const u8 sText_Stats_Defense[] = _("DEF");
 static const u8 sText_Stats_Speed[] = _("VEL");
 static const u8 sText_Stats_SpAttack[] = _("A ESP");
@@ -246,8 +246,8 @@ static const u8 sText_EVO_ITEM_NIGHT[] = _("{STR_VAR_2} es usado, noche.");
 static const u8 sText_EVO_ITEM_DAY[] = _("{STR_VAR_2} es usado, día.");
 static const u8 sText_EVO_ITEM_HOLD[] = _("{UP_ARROW}{LV}, teniendo {STR_VAR_2}.");
 static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{UP_ARROW}{LV} después de 20x {STR_VAR_2}.");
-static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, macho.");
-static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, hembra.");
+static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, ♂.");
+static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, ♀.");
 static const u8 sText_EVO_ITEM_COUNT_999[] = _("{UP_ARROW}{LV} con 999 {STR_VAR_2} en la mochila.");
 static const u8 sText_EVO_UNKNOWN[] = _("Método desconocido.");
 static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} no tiene evolución.");
@@ -4707,7 +4707,7 @@ static void LoadTilesetTilemapHGSS(u8 page)
 static u8 ShowCategoryIcon(u32 category)
 {
     if (sPokedexView->categoryIconSpriteId == 0xFF)
-        sPokedexView->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 160, 90, 0);
+        sPokedexView->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 109, 90, 0);
 
     gSprites[sPokedexView->categoryIconSpriteId].invisible = FALSE;
     StartSpriteAnim(&gSprites[sPokedexView->categoryIconSpriteId], category);
@@ -4994,7 +4994,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelBuffer(WIN_STATS_MOVES_DESCRIPTION, PIXEL_FILL(0));
         PrintStatsScreen_Moves_Description(taskId);
 
-        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 32, 0, 20, 16);
+        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 49, 0, 20, 16);
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
@@ -5009,7 +5009,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelBuffer(WIN_STATS_MOVES_DESCRIPTION, PIXEL_FILL(0));
         PrintStatsScreen_Moves_Description(taskId);
 
-        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 32, 0, 20, 16);
+        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 49, 0, 20, 16);
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
@@ -5240,7 +5240,7 @@ static void PrintStatsScreen_Moves_BottomText(u8 taskId)
     u8 moves_y = 3;
     if (gTasks[taskId].data[5] == 0)
     {
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Poder,  moves_x, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Poder,  moves_x + 16, moves_y);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Accuracy2,  moves_x + 66, moves_y);
     }
     else
@@ -5272,7 +5272,7 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
             ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 29, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 46, moves_y);
         //Physical/Special/Status Category
         DestroyCategoryIcon();
         ShowCategoryIcon(GetBattleMoveCategory(move));
