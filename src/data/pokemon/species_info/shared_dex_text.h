@@ -24,8 +24,8 @@ const u8 gPikachuPokedexText[] = _(
     "eléctrica es equivalente a un rayo.");
 
 const u8 gMarowakAlolanPokedexText[] = _(
-    "Se dice que las llamas malditas que iluminan\n"
-    "el hueso que lleva este Pokémon causan\n"
+    "Se dice que las llamas malditas que\n"
+    "iluminan el hueso que lleva causan\n"
     "dolor tanto mental como físico que nunca\n"
     "se desvanecerá.");
 

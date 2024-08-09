@@ -8793,10 +8793,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 16,
         .weight = 705,
         .description = COMPOUND_STRING(
-            "A Shellder bite set off a chemical reaction\n"
-            "with the spices inside Slowbro's body,\n"
-            "causing Slowbro to become a\n"
-            "Poison-type Pokémon."),
+            "Un mordisco de Shellder desencadenó una\n"
+"reacción con las especias dentro de su\n"
+"cuerpo, haciendo que se convirtiera en un\n"
+"Pokémon de tipo Veneno.\n"),
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 296,
@@ -8856,10 +8856,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 18,
         .weight = 795,
         .description = COMPOUND_STRING(
-            "A combination of toxins and the shock of\n"
-            "evolving has increased Shellder's\n"
-            "intelligence to the point that Shellder\n"
-            "now controls Slowking."),
+            "Una combinación de toxinas y el impacto de\n"
+"evolucionar ha incrementado la astucia\n"
+"de Shellder hasta el punto de\n"
+"controlar a Slowking."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
