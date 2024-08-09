@@ -156,7 +156,7 @@ const u8 gSalazzlePokedexText[] = _(
     "Salandit machos.");
 
 const u8 gSilvallyNormalPokedexText[] = _(
-    "La confianza con su Entrenador ha.\n"
+    "La confianza con su Entrenador ha\n"
     "despertado su potencial. Ahora\n"
     "es capaz de cambiar de tipo a\n"
     "voluntad durante el combate.");
@@ -198,11 +198,10 @@ const u8 gMimikyuBustedPokedexText[] = _(
     "está ileso, pero aún se siente triste.");
 
 const u8 gKommoOPokedexText[] = _(
-    "Las escamas rígidas le funcionan\n"
-    "ftanto para el ataque como para la\n"
-    "defensa. En el pasado, sus escamas\n"
-    "se procesaban y se utilizaban para hacer\n"
-    "armas y otros productos valiosos.");
+    "Sus sólidas escamas le sirven tanto\n"
+    "para atacar como para defenderse.\n"
+    "Antaño se usaban para fabricar\n"
+    "armas u otros objetos cotidianos.");
 
 // Gen 8 families
 const u8 gAlcremieVanillaCreamPokedexText[] = _(

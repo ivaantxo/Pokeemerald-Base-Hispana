@@ -400,9 +400,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .weight = 698,
         .description = COMPOUND_STRING(
             "Se dice que purifica almas perdidas con\n"
-"sus llamas y las guía hacia el más allá.\n"
-"Se cree que su forma fue influenciada\n"
-"por la energía del Monte Corona antaño."),
+            "sus llamas y las guía hacia el más allá.\n"
+            "Se cree que su forma fue influenciada\n"
+            "por la energía del Monte Corona antaño."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
@@ -3682,10 +3682,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 36,
         .weight = 392,
         .description = COMPOUND_STRING(
-            "This Pokémon uses its hard tail to\n"
-            "make its nest by boring holes into\n"
-            "bedrock deep underground. The nest\n"
-            "can reach lengths of over six miles."),
+            "Para expulsar a los intrusos de su\n"
+            "madriguera, infla sus largos y finos\n"
+            "pulmones y luego libera el aire de\n"
+            "golpe en una intensa y explosiva ráfaga."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -3735,10 +3735,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 45,
         .weight = 474,
         .description = COMPOUND_STRING(
-            "A recent study uncovered that the\n"
-            "number of segments a\n"
-            "Dudunsparce's body has is determined by the\n"
-            "Pokémon's genes."),
+            "En un estudio reciente se descubrió\n"
+            "que el número de segmentos de su\n"
+            "cuerpo está determinado por su\n"
+            "genética."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4822,7 +4822,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .categoryName = _("Turba"),
         .height = 24,
         .weight = 2900,
-        .description = COMPOUND_STRING("Swampy terrain gives Ursaluna its burly\nphysique and newfound capacity to\nmanipulate peat at will."),
+        .description = COMPOUND_STRING(
+            "El terreno pantanoso de Hisui\n"
+            "favoreció el desarrollo de su\n"
+            "constitución robusta, así como\n"
+            "su capacidad de manipular."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -4880,10 +4884,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .height = 27,
         .weight = 3330,
         .description = COMPOUND_STRING(
-            "It crossed the sea and drifted\n"
-            "ashore in a new land. Surviving in this\n"
-            "place led it to take on a unique\n"
-            "appearance and gain special powers."),
+            "Se protege el cuerpo con una\n"
+            "capa de barro tan dura como el\n"
+            "hierro. Su ojo izquierdo le\n"
+            "permite ver en la oscuridad."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6184,10 +6188,14 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .speciesName = _("Wyrdeer"),
         .cryId = CRY_WYRDEER,
         .natDexNum = NATIONAL_DEX_WYRDEER,
-        .categoryName = _("Grancuerno"),
+        .categoryName = _("Gran cuerno"),
         .height = 18,
         .weight = 951,
-        .description = COMPOUND_STRING("The black orbs shine with an uncanny light\nwhen it is erecting invisible barriers.\nThe fur shed from its beard retains heat\nand is useful for winter clothing."),
+        .description = COMPOUND_STRING(
+            "Sus orbes negro brillan con un\n"
+            "fulgor misterioso cuando erige\n"
+            "muros invisibles. El pelaje de\n"
+            "sus barbas es muy codiciado."),
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,

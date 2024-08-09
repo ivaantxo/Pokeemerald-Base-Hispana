@@ -319,7 +319,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .categoryName = _("Conejo"),
         .height = 6,
         .weight = 90,
-        .description = COMPOUND_STRING("Su suave pelaje lo protege del frío\ny le permite incrementar todavía más\nla temperatura de sus movimientos de\ntipo fuego."),
+        .description = COMPOUND_STRING("Su suave pelaje lo protege del frío\ny le permite incrementar todavía más\nla temperatura de sus movimientos de\ntipo Fuego."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -2478,6 +2478,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .categoryName = _("Manzamelo"),
         .height = 4,
         .weight = 44,
+        .description = COMPOUND_STRING(
+            "Ha evolucionado gracias a una\n"
+            "manzana especial que solo se\n"
+            "cultiva en cierta zona. Está\n"
+            "formado por dos individuos."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -2526,6 +2531,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .categoryName = _("Manzanhidra"),
         .height = 18,
         .weight = 930,
+        .description = COMPOUND_STRING(
+            "Se trata de siete víboras que\n"
+            "viven juntas en una manzana de\n"
+            "caramelo. El del centro es el\n"
+            "líder del grupo."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -3098,10 +3108,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 16,
         .weight = 400,
         .description = COMPOUND_STRING(
-            "Cuando este Pokémon suena como si estuviera\n"
-"rasgueando una guitarra, en realidad está\n"
-"arañando las protuberancias en su pecho para\n"
-"generar electricidad."),
+            "Cuando suena como si estuviera\n"
+            "tocando una guitarra, en realidad\n"
+            "está arañando las protuberancias de\n"
+            "su pecho para generar electricidad."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -3213,9 +3223,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 16,
         .weight = 400,
         .description = COMPOUND_STRING(
-            "Capaz de generar 15,000 voltios de electricidad,\n"
-"este Pokémon menosprecia a todos los que\n"
-"se atrevan a desafiarlo."),
+            "Es capaz de generar 15.000 voltios\n"
+            "de electricidad. Este Pokémon\n"
+            "menosprecia a todos los que se\n"
+            "atrevan a desafiarlo."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -3753,9 +3764,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     .height = 2,
     .weight = 4,
     .description = COMPOUND_STRING(
-        "Esta especie vive en teteras antiguas.\n"
-        "La mayoría de las teteras son falsificaciones,\n"
-        "pero en raras ocasiones se encuentra una obra auténtica."),
+        "Vive en teteras antiguas. La\n"
+        "mayoría de estas son falsificaciones,\n"
+        "pero en raras ocasiones se encuentra"
+        "una obra auténtica."),
     .pokemonScale = 682,
     .pokemonOffset = 24,
     .trainerScale = 256,
@@ -5756,6 +5768,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .categoryName = _("Aleación"),
         .height = 20,
         .weight = 600,
+        .description = COMPOUND_STRING(
+            "Acumula electricidad estática de su\n"
+            "entorno. El rayo que dispara cuando\n"
+            "está a cuatro patas posee una\n"
+            "potencia colosal."),
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,
@@ -5984,8 +6001,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 1100,
         .description = COMPOUND_STRING(
             "Conocido como un héroe, este Pokémon\n"
-        "absorbe partículas metálicas, convirtiendolas\n"
-        "en un arma que usa para combatir."),
+            "asbosrbe partículas metálicas, y\n"
+            "las convierte en un arma que usa"
+            "para combatir."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,

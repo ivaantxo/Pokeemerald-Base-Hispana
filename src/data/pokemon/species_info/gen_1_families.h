@@ -13515,7 +13515,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Hacha"),
         .height = 18,
         .weight = 890,
-        .description = COMPOUND_STRING("A violent creature that fells trees with\nits crude axes and shields itself with hard\nstone. Should one encounter this Pokémon\nin the wild, one's only recourse is to flee."),
+        .description = COMPOUND_STRING(
+            "Las dos toscas hachas le permiten\n"
+            "talar árboles mientras su piel le\n"
+            "protege. Es agresivo: se aconseja\n"
+            "escapar en caso de toparse con uno."),
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,

@@ -206,9 +206,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 370,
         .description = COMPOUND_STRING(
             "El aire almacenado dentro de los raquis\n"
-"de las plumas de Decidueye aísla\n"
-"al Pokémon contra el frío\n"
-"extremo de Hisui."),
+            "de las plumas de Decidueye aísla\n"
+            "al Pokémon contra el frío\n"
+            "extremo de Hisui."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -4722,10 +4722,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 6,
         .weight = 297,
         .description = COMPOUND_STRING(
-            "Expresa sus sentimientos golpeando sus\n"
-"escamas. Sonidos metálicos resuenan a través\n"
-"de las altas montañas donde viven los Jangmo-o.\n"
-"Crecen poco a poco al enfrentarse entre sí."),
+            "Se expresa golpeando sus escamas\n"
+            "Sonidos metálicos resuenan a través\n"
+            "de las altas montañas donde viven.\n"
+            "Crecen paulatinamente entre luchas."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -4785,10 +4785,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 12,
         .weight = 470,
         .description = COMPOUND_STRING(
-            "Desprende y regenera sus escamas de manera\n"
-"continua. Las escamas se vuelven más duras\n"
-"cada vez que se regeneran. Sus golpes escamosos\n"
-"desgarran a sus enemigos en pedazos."),
+            "Desprende y regenera sus escamas\n"
+            "continuamente, y estas se vuelven\n"
+            "más duras cada vez. Con sus golpes\n"
+            "desgarran a sus enemigos en pedazos."),
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -4966,10 +4966,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 18,
         .weight = 205,
         .description = COMPOUND_STRING(
-            "Confunde a sus enemigos volando tan\n"
-"rápidamente que el ojo no puede seguirlo. Tiene\n"
-"un temperamento explosivo pero olvida\n"
-"lo que lo enfureció un instante después."),
+            "Confunde a sus enemigos volando más\n"
+            "rápido de lo que el ojo puede seguirlo.\n"
+            "Tiene un temperamento explosivo, pero\n"
+            "olvida lo que le enfadó instantáneamente."),
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,
@@ -5031,9 +5031,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 186,
         .description = COMPOUND_STRING(
             "Un fragante aroma de flores lo sigue.\n"
-"Mientras revolotea, dispersa sus\n"
-"extrañas escamas brillantes. Se dice que\n"
-"tocarlas restaura la buena salud."),
+            "Mientras revolotea, dispersa sus\n"
+            "extrañas escamas brillantes. Se dice que\n"
+            "tocarlas restaura la buena salud."),
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -5095,9 +5095,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 455,
         .description = COMPOUND_STRING(
             "Hace que la vegetación crezca, y luego\n"
-"absorbe energía del crecimiento.\n"
-"Arranca grandes árboles de raíz y\n"
-"los agita contra sus enemigos."),
+            "absorbe energía del crecimiento.\n"
+            "Arranca grandes árboles de raíz y\n"
+            "los agita contra sus enemigos."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -5158,10 +5158,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 13,
         .weight = 212,
         .description = COMPOUND_STRING(
-            "La gente dice que puede crear agua pura que\n"
-"lavará cualquier corrupción. La densa\n"
-"niebla que crea provoca la caída y\n"
-"destrucción de sus enemigos confundidos."),
+            "Dicen que puede crear agua pura que\n"
+            "lavará cualquier corrupción. La densa\n"
+            "niebla que crea provoca la caída y\n"
+            "destrucción de sus enemigos confundidos."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -5346,7 +5346,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Corona solar"),
         .height = 34,
         .weight = 2300,
-        .description = COMPOUND_STRING("Aparece en obras de la literatura\nantigua en las que se refieren a él\ncomo “la criatura que se nutre\ndel sol”."),
+        .description = COMPOUND_STRING("Aparece en obras de la literatura\nantigua en las que se refieren a él\ncomo “la criatura que se nutre\ndel Sol”."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 405,
@@ -5404,7 +5404,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Corona lunar"),
         .height = 40,
         .weight = 1200,
-        .description = COMPOUND_STRING("Aparece en obras de la literatura\nantigua en las que se refieren a él\ncomo “la criatura que evoca a\nla luna”."),
+        .description = COMPOUND_STRING("Aparece en obras de la literatura\nantigua en las que se refieren a él\ncomo “la criatura que evoca a\nla Luna”."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 411,
@@ -6561,7 +6561,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Fulgor"),
         .height = 15,
         .weight = 445,
-        .description = COMPOUND_STRING("Hace jirones al oponente con sus\ngarras electrificadas. Aunque este esquive\nlos golpes, acaba electrocutado por\nlas descargas."),
+        .description = COMPOUND_STRING(
+            "Hace jirones al rival con sus\n"
+            "garras electrificadas. Aunque\n"
+            "lo esquive, acaba electrocutado\n"
+            "por las descargas."),   
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -6621,7 +6625,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Tuerca"),
         .height = 2,
         .weight = 80,
-        .description = COMPOUND_STRING("Su cuerpo está compuesto de acero líquido.\nFunde las partículas de hierro y otros\nmetales del subsuelo para luego\nabsorberlas."),
+        .description = COMPOUND_STRING(
+            "Está compuesto de acero líquido.\n"
+            "Funde las partículas de metales\n"
+            "del subsuelo para luego nutrirse\n"
+            "de ellas."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,

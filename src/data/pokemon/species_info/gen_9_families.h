@@ -1288,7 +1288,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 3,
         .weight = 65,
         .description = COMPOUND_STRING(
-            "Este Pokémon convierte los nutrientes en\n aceite,que almacena en el fruto en su\ncabeza.Puede pasar fácilmente una semana\nsin comer ni beber."),
+            "Convierte los nutrientes en aceite,\n"
+            "que almacena en el fruto de su\n"
+            "cabeza. Puede pasar fácilmente\n"
+            "una semana sin comer ni beber."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -1747,7 +1750,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 23,
         .weight = 2400,
         .description = COMPOUND_STRING(
-            "Garganacl se frotará las yemas de los\ndedos y espolvoreará sal sobre los\n Pokémon heridos.Incluso las heridas\ngraves se curarán rápidamente después."),
+            "Se frota las yemas de los dedos\n"
+            "y espolvorea la sal sobre los\n"
+            "Pokémon heridos para curar sus\n"
+            "heridas, incluso las más graves."),        
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -3799,7 +3805,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 16,
         .weight = 370,
         .description = COMPOUND_STRING(
-            "Gracias a un comportamiento llamado\n'sincronización', toda una bandada de\nestos Pokémon puede atacar\nsimultáneamente en perfecta armonía."),
+            "Presenta conducta sincrónica\n"
+            "que le permite a la colonia\n"
+            "atacar simultáneamente como\n"
+            "una única entidad."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4749,7 +4758,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 12,
         .weight = 360,
         .description = COMPOUND_STRING(
-            "No existen registros de que esta especie\nhaya sido capturada. La info. es escasa,\npero las carac. del Pokémon coinciden con\nun objeto descrito en un libro antiguo."),
+            "No existen registros de que haya sido\n"
+            "capturado. La información es escasa,\n"
+            "pero las características coinciden\n"
+            "con un objeto descrito en un pergamino."),        
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -5647,7 +5659,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 15,
         .weight = 1250,
         .description = COMPOUND_STRING(
-            "Según los pocos testimonios presenciales\nque existen, usaba sus cuchillas brillantes\npara hacer juliana de grandes árboles y\nrocas."),
+            "Según los pocos testimonios presenciales\n"
+            "que hay, usaba sus cuchillas brillantes\n"
+            "para cortar en juliana grandes árboles\n"
+            "y montañas."),        
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -5901,7 +5916,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 18,
         .weight = 920,
         .description = COMPOUND_STRING(
-            "Después de que todos sus músculos fueran\nestimulados por la cadena alrededor de su\ncuello,Okidogi se transformó y adquirió\nuna complexión poderosa."),
+            "Después de que todos sus músculos fueran\n"
+            "estimulados por la cadena de su cuello,\n"
+            "Okidogi se transformó y adquirió una\n"
+            "complexión poderosa."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -6523,10 +6541,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 3,
         .weight = 3,
         .description = COMPOUND_STRING(
-            "Alimenta a otros con mochis tóxicos que\n"
-"sacan a relucir deseos y capacidades.\n"
-"Quienes comen el mochi caen bajo el control\n"
-"de Pecharunt, encadenados a su voluntad."),
+            "Hace comer a su objetivo un mochi\n"
+            "tóxico que saca a relucir todo su\n"
+            "potencial y ambición, para después\n"
+            "controlarlo con sus cadenas."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 365,

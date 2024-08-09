@@ -9378,6 +9378,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .categoryName = _("Gran Espada"),
         .height = 20,
         .weight = 1200,
+        .description = COMPOUND_STRING(
+            "Cuenta con un enorme ejercito a sus\n"
+            "órdenes. Sin embargo, debido a su\n"
+            "falta de dote como estratega,\n"
+            "termina recurriendo a la fuerza bruta."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,

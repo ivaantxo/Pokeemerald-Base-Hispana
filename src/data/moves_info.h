@@ -4883,7 +4883,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Enfado"),
         .description = COMPOUND_STRING(
-            "Embestida que dura 2 ó 3\n"
+            "Embestida que dura 2 o 3\n"
             "turnos y te confunde."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 120 : 90,
@@ -6396,7 +6396,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Imagen"),
         .description = COMPOUND_STRING(
-            "Potencia el Ataque al estar\n"
+            "Potencia el ataque al estar\n"
             "quemado, paraliz. o enven."),
         .effect = EFFECT_FACADE,
         .power = 70,
@@ -15771,7 +15771,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = HANDLE_EXPANDED_MOVE_NAME("Pataleta", "Pataleta"),
         .description = COMPOUND_STRING(
             "Pisa alrededor con furia.\n"
-    "Más poderoso si falló antes."),
+            "Más poderoso si falló antes."),
         .effect = EFFECT_STOMPING_TANTRUM,
         .power = 75,
         .type = TYPE_GROUND,
