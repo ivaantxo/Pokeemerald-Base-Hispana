@@ -35,6 +35,8 @@
 #include "window.h"
 #include "random.h"
 
+#if TUTORIAL== TRUE
+
 static void HandleMovement_Zubat();
 u8 GetZubatPositionY(u8 cord);
 u8 isZubatColisionKoffing(struct Sprite *spriteZubat);
@@ -836,18 +838,22 @@ void CB2_InitTutorialSetUp()
         SetMainCallback2(CB2_Tutorial);
     }
 }
+#endif
 
 //==========CALLNATIVE FUNC==========//
 bool8 StartTutorial_CB2()
 {
+    #if TUTORIAL
     if (!gPaletteFade.active)
     {
         gMain.state = 0;
         CleanupOverworldWindowsAndTilemaps();
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         SetMainCallback2(CB2_InitTutorialSetUp);
 
         return TRUE;
     }
+    #endif
 
     return FALSE;
 }

@@ -360,7 +360,9 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokemon_sprite_visualizer.o(.text);
         src/expansion_intro.o(.text);
-        src/tutorial.o(.text);
+        src/tutorialMiniGame.o(.text);
+        src/tutorialBgs.o(.text);
+        src/tutorialSprites.o(.text);
     } > ROM =0
 
     script_data :
@@ -729,6 +731,9 @@ SECTIONS {
         data/sound_data.o(.rodata);
         src/pokemon_sprite_visualizer.o(.rodata);
         src/expansion_intro.o(.rodata);
+        src/tutorialMiniGame.o(.rodata);
+        src/tutorialBgs.o(.rodata);
+        src/tutorialSprites.o(.rodata);
     } > ROM =0
 
     song_data :

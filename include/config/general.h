@@ -72,6 +72,7 @@
 #define SUMMARY_SCREEN_NATURE_COLORS TRUE    // If TRUE, nature-based stat boosts and reductions will be red and blue in the summary screen.
 #define HQ_RANDOM                    TRUE    // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
 #define COMPETITIVE_PARTY_SYNTAX     TRUE    // If TRUE, parties are defined in "competitive syntax".
+#define TUTORIAL                     FALSE 
 
 // Measurement system constants to be used for UNITS
 #define UNITS_IMPERIAL               0       // Inches, feet, pounds
