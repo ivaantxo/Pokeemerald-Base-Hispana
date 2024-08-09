@@ -1512,44 +1512,44 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FLABEBE_MISC_INFO(Red, RED, 1),
         .description = COMPOUND_STRING(
             "Este Flabébé monta una flor roja.\n"
-"Inmediatamente después de nacer, este\n"
-"Pokémon comienza a volar en busca de\n"
-"una flor que le guste."),
+            "Inmediatamente después de nacer, este\n"
+            "Pokémon comienza a volar en busca de\n"
+            "una flor que le guste."),
     },
     [SPECIES_FLABEBE_YELLOW_FLOWER] =
     {
         FLABEBE_MISC_INFO(Yellow, YELLOW, 1),
         .description = COMPOUND_STRING(
             "Desata una variedad de movimientos al\n"
-"desplegar el poder oculto dentro de las\n"
-"flores. Este Pokémon tiene una especial\n"
-"preferencia por las flores amarillas."),
+            "desplegar el poder oculto dentro de las\n"
+            "flores. Este Pokémon tiene una especial\n"
+            "preferencia por las flores amarillas."),
     },
     [SPECIES_FLABEBE_ORANGE_FLOWER] =
     {
         FLABEBE_MISC_INFO(Orange, ORANGE, 0),
         .description = COMPOUND_STRING(
             "Recibe fuerza de las flores y les da algo\n"
-"de su energía a cambio. A este Pokémon\n"
-"le gustan las flores naranjas sobre\n"
-"todas las demás."),
+            "de su energía a cambio. A este Pokémon\n"
+            "le gustan las flores naranjas sobre\n"
+            "todas las demás."),
     },
     [SPECIES_FLABEBE_BLUE_FLOWER]   =
     {
         FLABEBE_MISC_INFO(Blue, BLUE, 0),
         .description = COMPOUND_STRING(
             "A este Pokémon le gustan más que nada\n"
-"las flores azules. Flota hacia arriba\n"
-"usando el poder que emana de su flor\n"
-"y se desliza suavemente por el aire."),
+            "las flores azules. Flota hacia arriba\n"
+            "usando el poder que emana de su flor\n"
+            "y se desliza suavemente por el aire."),
     },
     [SPECIES_FLABEBE_WHITE_FLOWER]  =
     {
         FLABEBE_MISC_INFO(White, WHITE, 1),
         .description = COMPOUND_STRING(
             "Cuando cae la tarde, busca un lugar\n"
-"lleno de flores del mismo color blanco\n"
-"que él mismo, y luego se duerme."),
+            "lleno de flores del mismo color blanco\n"
+            "que él mismo, y luego se duerme."),
     },
 
 #define FLOETTE_MISC_INFO(form, FORM, iconPal)                                  \
@@ -1616,44 +1616,44 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FLOETTE_NORMAL_INFO(Red, RED, 1),
         .description = COMPOUND_STRING(
             "Este Pokémon usa largas ondas rojas\n"
-"de luz para transferir su energía\n"
-"a las flores y liberar su potencial."),
+            "de luz para transferir su energía\n"
+            "a las flores y liberar su potencial."),
     },
     [SPECIES_FLOETTE_YELLOW_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(Yellow, YELLOW, 1),
         .description = COMPOUND_STRING(
             "Puede extraer el poder oculto en\n"
-"flores amarillas. Este poder se\n"
-"convierte en los movimientos que\n"
-"Floette usa para protegerse."),
+            "flores amarillas. Este poder se\n"
+            "convierte en los movimientos que\n"
+            "Floette usa para protegerse."),
     },
     [SPECIES_FLOETTE_ORANGE_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(Orange, ORANGE, 0),
         .description = COMPOUND_STRING(
             "Este Pokémon puede extraer el mayor\n"
-"poder cuando está en sintonía con\n"
-"flores naranjas, en comparación con\n"
-"flores de otros colores."),
+            "poder cuando está en sintonía con\n"
+            "flores naranjas, en comparación con\n"
+            "flores de otros colores."),
     },
     [SPECIES_FLOETTE_BLUE_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(Blue, BLUE, 0),
         .description = COMPOUND_STRING(
             "Siempre que este Pokémon encuentra\n"
-"plantas con flores que se están\n"
-"marchitando, las lleva a su territorio\n"
-"y se encarga de cuidarlas."),
+            "plantas con flores que se están\n"
+            "marchitando, las lleva a su territorio\n"
+            "y se encarga de cuidarlas."),
     },
     [SPECIES_FLOETTE_WHITE_FLOWER] =
     {
         FLOETTE_NORMAL_INFO(White, WHITE, 1),
         .description = COMPOUND_STRING(
             "Si encuentra a alguien desordenando un\n"
-"parterre de flores, lo atacará\n"
-"sin piedad. Este Floette cuida\n"
-"muy bien de las flores blancas."),
+            "parterre de flores, lo atacará\n"
+            "sin piedad. Este Floette cuida\n"
+            "muy bien de las flores blancas."),
     },
     [SPECIES_FLOETTE_ETERNAL_FLOWER] =
     {
@@ -1669,9 +1669,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .cryId = CRY_FLOETTE_ETERNAL_FLOWER,
         .description = COMPOUND_STRING(
             "La flor que sostiene ya no se puede\n"
-"encontrar en flor en ningún lugar.\n"
-"También se cree que contiene\n"
-"un poder aterrador."),
+            "encontrar en flor en ningún lugar.\n"
+            "También se cree que contiene\n"
+            "un poder aterrador."),
         .frontPic = gMonFrontPic_FloetteEternalFlower,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
@@ -1742,45 +1742,45 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FLORGES_MISC_INFO(Red, 0),
         .description = COMPOUND_STRING(
             "Este Pokémon crea un impresionante\n"
-"jardín de flores en su territorio. Extrae\n"
-"el poder de las flores rojas\n"
-"alrededor de su cuello."),
+            "jardín de flores en su territorio. Extrae\n"
+            "el poder de las flores rojas\n"
+            "alrededor de su cuello."),
     },
     [SPECIES_FLORGES_YELLOW_FLOWER] =
     {
         FLORGES_MISC_INFO(Yellow, 1),
         .description = COMPOUND_STRING(
             "Este Pokémon lucha extrayendo el poder\n"
-"de las flores amarillas. Castiga sin\n"
-"piedad a cualquiera que pise\n"
-"las plantas en flor."),
+            "de las flores amarillas. Castiga sin\n"
+            "piedad a cualquiera que pise\n"
+            "las plantas en flor."),
     },
     [SPECIES_FLORGES_ORANGE_FLOWER] =
     {
         FLORGES_MISC_INFO(Orange, 0),
         .description = COMPOUND_STRING(
             "En tiempos antiguos, los gobernadores\n"
-"solían criar a Florges con cariño\n"
-"para cuidar los exquisitos jardines\n"
-"de sus castillos."),
+            "solían criar a Florges con cariño\n"
+            "para cuidar los exquisitos jardines\n"
+            "de sus castillos."),
     },
     [SPECIES_FLORGES_BLUE_FLOWER] =
     {
         FLORGES_MISC_INFO(Blue, 0),
         .description = COMPOUND_STRING(
             "En el pasado, los pigmentos azules eran\n"
-"tremendamente costosos, por lo que las\n"
-"pinturas de Florges azules son\n"
-"altamente valiosas."),
+            "tremendamente costosos, por lo que las\n"
+            "pinturas de Florges azules son\n"
+            "altamente valiosas."),
     },
     [SPECIES_FLORGES_WHITE_FLOWER] =
     {
         FLORGES_MISC_INFO(White, 0),
         .description = COMPOUND_STRING(
             "Un jardín de flores creado por un\n"
-"Florges de flores blancas estará\n"
-"bellamente decorado con plantas en flor\n"
-"de muchos colores diferentes."),
+            "Florges de flores blancas estará\n"
+            "bellamente decorado con plantas en flor\n"
+            "de muchos colores diferentes."),
     },
 #endif //P_FAMILY_FLABEBE
 
@@ -4503,10 +4503,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 9,
         .weight = 125,
         .description = COMPOUND_STRING(
-            "Eerie cries emanate from its body\n"
-            "in the dead of night. The sounds are\n"
-            "said to be the wails of spirits who\n"
-            "are suffering in the afterlife."),
+            "Se dice que los espeluznantes\n"
+            "alaridos que emite bien entrada\n"
+            "la noche son los lamentos de las\n"
+            "almas en pena desde el más allá."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -4564,10 +4564,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 7,
         .weight = 95,
         .description = COMPOUND_STRING(
-            "A small-sized Pumpkaboo evolves\n"
-            "into a small-sized Gourgeist. Its\n"
-            "bodily proportions also get passed on\n"
-            "to its descendants."),
+            "Los Gourgeist de tamaño pequeño\n"
+            "se hacen pasar por niños para\n"
+            "que los adultos bajen la guardia\n"
+            "y así llevárselos al otro mundo."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -4617,10 +4617,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 11,
         .weight = 140,
         .description = COMPOUND_STRING(
-            "A large-sized Pumpkaboo evolves\n"
-            "into a large-sized Gourgeist. Its\n"
-            "bodily proportions also get passed on\n"
-            "to its descendants."),
+            "Los Gourgeist tamaño grande se\n"
+            "hacen pasar por adultos para\n"
+            "tomar a los niños de la mano y\n"
+            "llevárselos al otro mundo."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -4672,10 +4672,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .height = 17,
         .weight = 390,
         .description = COMPOUND_STRING(
-            "A supersized Pumpkaboo evolves\n"
-            "into a supersized Gourgeist. Its\n"
-            "bodily proportions also get passed on to\n"
-            "its descendants."),
+            "Los Gourgeist tamaño extragrande\n"
+            "se llevan a cualquiera al otro\n"
+            "mundo, pues nadie puede\n"
+            "resistir su fuerza."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,

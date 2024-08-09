@@ -3827,10 +3827,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .height = 19,
         .weight = 1205,
         .description = COMPOUND_STRING(
-            "Debido al peligro de que este Pokémon sintético\n"
-"pueda desatar una furia, lleva una máscara de\n"
-"control para restringir sus capacidades.\n"
-"Posee un poder especial oculto."),
+            "Fue creado a imagen de un Pokémon\n"
+            "mitológico. Lleva una máscara de\n"
+            "contención para evitar que su poder\n"
+            "se descontrole."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
