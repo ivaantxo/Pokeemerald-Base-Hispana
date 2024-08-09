@@ -21488,7 +21488,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //P_FAMILY_FRIGIBAX
 
 #if P_FAMILY_GIMMIGHOUL
-    const u32 gMonFrontPic_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/front.4bpp.lz");
+    const u32 gMonFrontPic_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/anim_front.4bpp.lz");
     const u32 gMonPalette_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/normal.gbapal.lz");
     const u32 gMonBackPic_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/back.4bpp.lz");
     const u32 gMonShinyPalette_GimmighoulChest[] = INCBIN_U32("graphics/pokemon/gimmighoul/shiny.gbapal.lz");
