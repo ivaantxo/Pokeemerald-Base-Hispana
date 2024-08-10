@@ -2473,3 +2473,9 @@ void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
 {
     sIsScriptedWildDouble = TRUE;
 }
+
+void RemoveAllItem(struct ScriptContext *ctx)
+{
+    u16 itemId = VarGet(ScriptReadHalfword(ctx));
+    RemoveBagItem(itemId, CountTotalItemQuantityInBag(itemId));
+}

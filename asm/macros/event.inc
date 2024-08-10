@@ -2321,3 +2321,9 @@
 	.macro togglefakertc
 	callnative Script_ToggleFakeRtc
 	.endm
+
+	@ Remove all of specified item from the player's bag
+	.macro removeallitem itemId:req
+	callnative RemoveAllItem
+	.2byte \itemId
+	.endm
