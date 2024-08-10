@@ -2313,7 +2313,7 @@ static void DebugAction_Util_WatchCredits(u8 taskId)
 
 static void DebugAction_Util_Player_Name(u8 taskId)
 {
-    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
+    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript, 0);
 }
 
 static void DebugAction_Util_Player_Gender(u8 taskId)
@@ -3161,7 +3161,6 @@ static void DebugAction_Give_PokemonSimple(u8 taskId)
     gTasks[taskId].tDigit = 0;
     gTasks[taskId].tIsComplex = FALSE;
 
-    FreeMonIconPalettes();
     LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(gTasks[taskId].tInput, 0, 0xFFFF), OBJ_PLTT_ID(15), PLTT_SIZE_4BPP);
     gTasks[taskId].tSpriteId = CreateMonIconNoPersonality(gTasks[taskId].tInput, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4);
     gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
@@ -3201,7 +3200,6 @@ static void DebugAction_Give_PokemonComplex(u8 taskId)
     gTasks[taskId].tDigit = 0;
     gTasks[taskId].tIsComplex = TRUE;
 
-    FreeMonIconPalettes();
     LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(gTasks[taskId].tInput, 0, 0xFFFF), OBJ_PLTT_ID(15), PLTT_SIZE_4BPP);
     gTasks[taskId].tSpriteId = CreateMonIconNoPersonality(gTasks[taskId].tInput, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4);
     gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
@@ -3246,7 +3244,6 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
 
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
-        FreeMonIconPalettes();
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(gTasks[taskId].tInput, 0, 0xFFFF), OBJ_PLTT_ID(15), PLTT_SIZE_4BPP);
         gTasks[taskId].tSpriteId = CreateMonIconNoPersonality(gTasks[taskId].tInput, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4);
         gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
@@ -3271,7 +3268,6 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
     {
         PlaySE(SE_SELECT);
         Free(sDebugMonData);
-        FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3315,7 +3311,6 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
         if (gTasks[taskId].tIsComplex == FALSE)
         {
@@ -3345,7 +3340,6 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
     {
         PlaySE(SE_SELECT);
         Free(sDebugMonData);
-        FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
         DebugAction_DestroyExtraWindow(taskId);
     }

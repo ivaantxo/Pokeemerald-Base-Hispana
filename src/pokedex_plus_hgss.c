@@ -4877,12 +4877,11 @@ static void Task_LoadStatsScreen(u8 taskId)
     case 5:
         if (gTasks[taskId].data[1] == 0)
         {
-            //Icon
+        //Icon
             u32 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
-            u32 personality = GetPokedexMonPersonality(species);
             FreeMonIconPalettes(); //Free space for new pallete
-            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, personality), OBJ_PLTT_ID(4), PLTT_SIZE_4BPP);
-            gTasks[taskId].data[4] = CreateMonIcon(species, SpriteCB_MonIcon, 18, 31, 4, personality); //Create pokemon sprite
+            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, 0), OBJ_PLTT_ID(4), PLTT_SIZE_4BPP);
+            gTasks[taskId].data[4] = CreateMonIconNoPersonality(species, SpriteCB_MonIcon, 18, 31, 4); //Create pokemon sprite, LISTO
             gSprites[gTasks[taskId].data[4]].oam.priority = 0;
             gSprites[gTasks[taskId].data[4]].oam.paletteNum = 4;
         }
@@ -6022,15 +6021,16 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         if (gTasks[taskId].data[1] == 0)
         {
             u32 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
-            u32 personality = GetPokedexMonPersonality(species);
             sPokedexView->selectedScreen = EVO_SCREEN;
             ResetEvoScreenDataStruct();
             //Icon
             FreeMonIconPalettes(); //Free space for new pallete
+            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, 0), OBJ_PLTT_ID(4), PLTT_SIZE_4BPP);
             PrintPreEvolutions(taskId, species);
-            gTasks[taskId].data[4] = CreateMonIcon(species, SpriteCB_MonIcon, 18 + 32*sPokedexView->numPreEvolutions, 31, 4, personality); //Create pokemon sprite
+            gTasks[taskId].data[4] = CreateMonIconNoPersonality(species, SpriteCB_MonIcon, 18 + 32 * sPokedexView->numPreEvolutions, 31, 4); //Create pokemon sprite
             EvoFormsPage_PrintNavigationButtons(); // Navigation buttons
             gSprites[gTasks[taskId].data[4]].oam.priority = 0;
+            gSprites[gTasks[taskId].data[4]].oam.paletteNum = 4;
         }
         gMain.state++;
         break;
@@ -6209,12 +6209,13 @@ static void HandleTargetSpeciesPrintText(u32 targetSpecies, u32 base_x, u32 base
 
 static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i, u8 iterations)
 {
-    u32 personality = GetPokedexMonPersonality(targetSpecies);
+    LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(targetSpecies, 0, 0), OBJ_PLTT_ID(5 + base_i), PLTT_SIZE_4BPP);
     if (iterations > 6) // Print icons closer to each other if there are many evolutions
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality);
+        gTasks[taskId].data[5 + base_i] = CreateMonIconNoPersonality(targetSpecies, SpriteCB_MonIcon, 45 + 26 * base_i, 31, 4);
     else
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality);
-    gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
+        gTasks[taskId].data[5 + base_i] = CreateMonIconNoPersonality(targetSpecies, SpriteCB_MonIcon, 50 + 32 * base_i, 31, 4);
+    gSprites[gTasks[taskId].data[5 + base_i]].oam.priority = 0;
+    gSprites[gTasks[taskId].data[5 + base_i]].oam.paletteNum = 5 + base_i;
 }
 
 static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y, u16 unused)
@@ -6253,9 +6254,10 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
 
     if (base_i < 3)
     {
-        u32 personality = GetPokedexMonPersonality(preSpecies);
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
-        gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
+        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(preSpecies, 0, 0), OBJ_PLTT_ID(5 + base_i), PLTT_SIZE_4BPP);
+        gTasks[taskId].data[5 + base_i] = CreateMonIconNoPersonality(preSpecies, SpriteCB_MonIcon, 18 + 32 * base_i, 31, 4); //Create pokemon sprite
+        gSprites[gTasks[taskId].data[5 + base_i]].oam.priority = 0;
+        gSprites[gTasks[taskId].data[5 + base_i]].oam.paletteNum = 5 + base_i;
     }
 }
 
@@ -6749,10 +6751,11 @@ static void Task_LoadFormsScreen(u8 taskId)
         {
             //Icon
             u32 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
-            u32 personality = GetPokedexMonPersonality(species);
             FreeMonIconPalettes(); //Free space for new pallete
-            gTasks[taskId].data[4] = CreateMonIcon(species, SpriteCB_MonIcon, 18, 31, 4, personality); //Create pokemon sprite
+            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, 0, 0), OBJ_PLTT_ID(4), PLTT_SIZE_4BPP);
+            gTasks[taskId].data[4] = CreateMonIconNoPersonality(species, SpriteCB_MonIcon, 18, 31, 4); //Create pokemon sprite
             gSprites[gTasks[taskId].data[4]].oam.priority = 0;
+            gSprites[gTasks[taskId].data[4]].oam.paletteNum = 4;
         }
         EvoFormsPage_PrintNavigationButtons(); // Navigation buttons
         sPokedexView->sFormScreenData.menuPos = 1;
@@ -6933,11 +6936,13 @@ static void PrintForms(u8 taskId, u16 species)
             u32 personality = GetPokedexMonPersonality(speciesForm);
             sPokedexView->sFormScreenData.formIds[j++] = i;
             times += 1;
+            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(speciesForm, 0, personality), OBJ_PLTT_ID(5 + times), PLTT_SIZE_4BPP);
             if (times < 7)
-                gTasks[taskId].data[4+times] = CreateMonIcon(speciesForm, SpriteCB_MonIcon, 52 + 34*(times-1), 31, 4, personality); //Create pokemon sprite
+                gTasks[taskId].data[5 + times] = CreateMonIconNoPersonality(speciesForm, SpriteCB_MonIcon, 52 + 34 * (times  -1), 31, 4); //Create pokemon sprite
             else if (times < 14)
-                gTasks[taskId].data[4+times] = CreateMonIcon(speciesForm, SpriteCB_MonIcon, 18 + 34*(times-7), 70 - y_offset_icons, 4, personality); //Create pokemon sprite
-            gSprites[gTasks[taskId].data[4+times]].oam.priority = 0;
+                gTasks[taskId].data[5 + times] = CreateMonIconNoPersonality(speciesForm, SpriteCB_MonIcon, 18 + 34 * (times - 7), 70 - y_offset_icons, 4); //Create pokemon sprite
+            gSprites[gTasks[taskId].data[5 + times]].oam.priority   = 0;
+            gSprites[gTasks[taskId].data[5 + times]].oam.paletteNum = 5 + times;
         }
     }
     gTasks[taskId].data[3] = times;
