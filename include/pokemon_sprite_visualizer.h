@@ -50,7 +50,6 @@ struct PokemonSpriteVisualizer
     u8 InstructionsWindowId;
     u8 frontspriteId;
     u8 backspriteId;
-    u8 iconspriteId;
     u8 followerspriteId;
     u8 frontShadowSpriteId;
     bool8 isShiny;

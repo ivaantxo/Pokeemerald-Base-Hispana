@@ -177,6 +177,7 @@ struct NamingScreenData
     u16 monSpecies;
     u16 monGender;
     u32 monPersonality;
+    bool32 isShiny;
     MainCallback returnCallback;
 };
 
@@ -392,7 +393,7 @@ static void VBlankCB_NamingScreen(void);
 static void NamingScreen_ShowBgs(void);
 static bool8 IsWideLetter(u8);
 
-void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback)
+void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback, bool32 isShiny)
 {
     sNamingScreen = Alloc(sizeof(struct NamingScreenData));
     if (!sNamingScreen)
@@ -407,6 +408,7 @@ void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGende
         sNamingScreen->monPersonality = monPersonality;
         sNamingScreen->destBuffer = destBuffer;
         sNamingScreen->returnCallback = returnCallback;
+        sNamingScreen->isShiny = isShiny;
 
         if (templateNum == NAMING_SCREEN_PLAYER)
             StartTimer1();
@@ -1417,8 +1419,10 @@ static void NamingScreen_CreateMonIcon(void)
 {
     u8 spriteId;
 
-    LoadMonIconPalettes();
+    //LoadMonIconPalettes();
     spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality);
+    LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(sNamingScreen->monSpecies, sNamingScreen->isShiny, sNamingScreen->monPersonality), OBJ_PLTT_ID(15), PLTT_SIZE_4BPP);
+    gSprites[spriteId].oam.paletteNum = 15;
     gSprites[spriteId].oam.priority = 3;
 }
 
@@ -2074,27 +2078,6 @@ static bool8 IsWideLetter(u8 character)
             return FALSE;
     }
     return FALSE;
-}
-
-// Debug? Arguments aren't sensible for non-player screens.
-static void UNUSED Debug_NamingScreenPlayer(void)
-{
-    DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
-}
-
-static void UNUSED Debug_NamingScreenBox(void)
-{
-    DoNamingScreen(NAMING_SCREEN_BOX, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
-}
-
-static void UNUSED Debug_NamingScreenCaughtMon(void)
-{
-    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
-}
-
-static void UNUSED Debug_NamingScreenNickname(void)
-{
-    DoNamingScreen(NAMING_SCREEN_NICKNAME, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
 //--------------------------------------------------

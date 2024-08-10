@@ -184,7 +184,7 @@ u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum)
 {
     if (paletteNum < 16)
     {
-        LoadCompressedPalette(GetMonFrontSpritePal(mon), OBJ_PLTT_OFFSET + PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+        LoadCompressedPalette(GetMonFrontSpritePal(mon), OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
         if (sprite)
         sprite->oam.paletteNum = paletteNum;
     }
