@@ -1132,6 +1132,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             //Palettes
             palette = GetMonSpritePalFromSpecies(species, data->isShiny, data->isFemale);
             LoadCompressedSpritePaletteWithTag(palette, species);
+            LoadCompressedPalette(palette, OBJ_PLTT_ID(5), PLTT_SIZE_4BPP);
             //Front
             HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             data->isShiny = FALSE;
@@ -1141,7 +1142,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             gMultiuseSpriteTemplate.paletteTag = species;
             front_y = GetBattlerSpriteFinal_YCustom(species, 0, 0);
             data->frontspriteId = CreateSprite(&gMultiuseSpriteTemplate, front_x, front_y, 0);
-            gSprites[data->frontspriteId].oam.paletteNum = 1;
+            gSprites[data->frontspriteId].oam.paletteNum = 5;
             gSprites[data->frontspriteId].callback = SpriteCallbackDummy;
             gSprites[data->frontspriteId].oam.priority = 0;
             //Front Shadow
@@ -1157,13 +1158,10 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             gSprites[data->backspriteId].callback = SpriteCallbackDummy;
             gSprites[data->backspriteId].oam.priority = 0;
 
-            //Icon Sprite
-            data->iconspriteId = CreateMonIcon(species, SpriteCB_MonIcon, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 4, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
-            gSprites[data->iconspriteId].oam.priority = 0;
-
-            //Follower Sprite
-            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species, SpriteCB_Follower, VISUALIZER_FOLLOWER_X, VISUALIZER_FOLLOWER_Y, 0);
+            //Icon & Follower Sprite
+            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species, SpriteCB_Follower, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 0);      
             gSprites[data->followerspriteId].oam.priority = 0;
+            gSprites[data->followerspriteId].oam.paletteNum = 5;
             gSprites[data->followerspriteId].anims = sAnims_Follower;
 
             //Modify Arrows
@@ -1671,7 +1669,6 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
 
     DestroySprite(&gSprites[data->frontspriteId]);
     DestroySprite(&gSprites[data->backspriteId]);
-    DestroySprite(&gSprites[data->iconspriteId]);
     DestroySprite(&gSprites[data->followerspriteId]);
 
     FreeMonSpritesGfx();
@@ -1689,6 +1686,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     //Palettes
     palette = GetMonSpritePalFromSpecies(species, data->isShiny, data->isFemale);
     LoadCompressedSpritePaletteWithTag(palette, species);
+    LoadCompressedPalette(palette, OBJ_PLTT_ID(5), PLTT_SIZE_4BPP);
     //Front
     HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->spritesGfx[1], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 1);
@@ -1696,7 +1694,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     gMultiuseSpriteTemplate.paletteTag = species;
     front_y = GetBattlerSpriteFinal_YCustom(species, 0, 0);
     data->frontspriteId = CreateSprite(&gMultiuseSpriteTemplate, front_x, front_y, 0);
-    gSprites[data->frontspriteId].oam.paletteNum = 1;
+    gSprites[data->frontspriteId].oam.paletteNum = 5;
     gSprites[data->frontspriteId].callback = SpriteCallbackDummy;
     gSprites[data->frontspriteId].oam.priority = 0;
     //Front Shadow
@@ -1712,17 +1710,10 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     gSprites[data->backspriteId].callback = SpriteCallbackDummy;
     gSprites[data->backspriteId].oam.priority = 0;
 
-    //Icon Sprite
-    data->iconspriteId = CreateMonIcon(species, SpriteCB_MonIcon, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 4, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
-    gSprites[data->iconspriteId].oam.priority = 0;
-
-    //Follower Sprite
-    data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species + (data->isShiny ? SPECIES_SHINY_TAG : 0),
-                                                        SpriteCB_Follower,
-                                                        VISUALIZER_FOLLOWER_X,
-                                                        VISUALIZER_FOLLOWER_Y,
-                                                        0);
+    //Icon & Follower Sprite
+    data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species + (data->isShiny ? SPECIES_SHINY_TAG : 0), SpriteCB_Follower, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 0);    
     gSprites[data->followerspriteId].oam.priority = 0;
+    gSprites[data->followerspriteId].oam.paletteNum = 5;
     gSprites[data->followerspriteId].anims = sAnims_Follower;
 
     //Modify Arrows
