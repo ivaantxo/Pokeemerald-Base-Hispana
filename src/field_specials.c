@@ -4294,3 +4294,19 @@ void GetObjectPosition(void)
         *y = objTemplate->y;
     }
 }
+
+// special to check if there is any object at a given position
+u16 CheckObjectAtXY(void)
+{
+    u16 x = gSpecialVar_0x8005 + 7;
+    u16 y = gSpecialVar_0x8006 + 7;
+    u32 i;
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (gObjectEvents[i].active && gObjectEvents[i].currentCoords.x == x && gObjectEvents[i].currentCoords.y == y)
+            return TRUE;
+    }
+    return FALSE;
+}
+
