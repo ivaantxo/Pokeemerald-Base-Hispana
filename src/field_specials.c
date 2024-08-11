@@ -4266,3 +4266,31 @@ void PreparePartyForSkyBattle(void)
     VarSet(B_VAR_SKY_BATTLE,participatingPokemonSlot);
     CompactPartySlots();
 }
+
+// get position (0 for current, 1 for map) of object event, return to VAR_0x8007, VAR_0x8008
+void GetObjectPosition(void)
+{
+    u16 localId      = gSpecialVar_0x8000;
+    u16 useTemplate  = gSpecialVar_0x8001;
+
+    u16 *x = &gSpecialVar_0x8007;
+    u16 *y = &gSpecialVar_0x8008;
+
+    if (!useTemplate)
+    {
+        /* current position */
+        const u16 objId = GetObjectEventIdByLocalId(localId);
+        const struct ObjectEvent *objEvent = &gObjectEvents[objId];
+        *x = objEvent->currentCoords.x - 7; // subtract out camera size
+        *y = objEvent->currentCoords.y - 7;
+    }
+    else
+    {
+        const struct ObjectEventTemplate *objTemplate =
+            FindObjectEventTemplateByLocalId(localId,
+                    gSaveBlock1Ptr->objectEventTemplates,
+                    gMapHeader.events->objectEventCount);
+        *x = objTemplate->x;
+        *y = objTemplate->y;
+    }
+}
