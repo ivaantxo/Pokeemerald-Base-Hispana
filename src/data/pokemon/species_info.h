@@ -92,7 +92,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_CircledQuestionMark,
         .shinyPalette = gMonShinyPalette_CircledQuestionMark,
-        .iconSprite = gMonIcon_QuestionMark,
+        .iconSprite = gObjectEventPic_QuestionMark,
         FOOTPRINT(QuestionMark)
     #if OW_POKEMON_OBJECT_EVENTS
         .overworldData = {
@@ -139,7 +139,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 20,
         .palette = gMonPalette_Egg,
         .shinyPalette = gMonPalette_Egg,
-        .iconSprite = gMonIcon_Egg,
+        .iconSprite = gObjectEventPic_Egg,
     },
 
     /* You may add any custom species below this point based on the following structure: */
@@ -198,7 +198,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_CircledQuestionMark,
         //.paletteFemale = gMonPalette_CircledQuestionMarkF,
         .shinyPaletteFemale = gMonShinyPalette_CircledQuestionMarkF,
-        .iconSprite = gMonIcon_QuestionMark,
+        .iconSprite = gObjectEventPic_QuestionMark,
         //.iconSpriteFemale = gMonIcon_QuestionMarkF,
         FOOTPRINT(QuestionMark)
         .levelUpLearnset = sNoneLevelUpLearnset,
