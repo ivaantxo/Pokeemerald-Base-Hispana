@@ -30,7 +30,7 @@ void ActivateTera(u32 battler)
     if (B_FLAG_TERA_ORB_CHARGED != 0
         && (B_FLAG_TERA_ORB_NO_COST == 0 || !FlagGet(B_FLAG_TERA_ORB_NO_COST))
         && side == B_SIDE_PLAYER
-        && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !IsPartnerMonFromSameTrainer(battler)))
+        && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler)))
     {
         FlagClear(B_FLAG_TERA_ORB_CHARGED);
     }
