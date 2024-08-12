@@ -1093,9 +1093,7 @@ static bool32 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u32 m
 {
     const u8 *script;
 
-    if (JOY_HELD(DPAD_LEFT | DPAD_RIGHT))
-        return FALSE;
-    if (playerDirection != DIR_NORTH)
+    if ((JOY_HELD(DPAD_LEFT | DPAD_RIGHT)) || (playerDirection != DIR_NORTH))
         return FALSE;
 
     switch (GetFacingSignpostType(metatileBehavior, playerDirection))
