@@ -183,18 +183,15 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             return TRUE;
     }
 
-    if (input->checkStandardWildEncounter)
-    {
-        if (input->dpadDirection == 0 || input->dpadDirection == playerDirection)
-        {
-            GetInFrontOfPlayerPosition(&position);
-            metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-            if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
-                return TRUE;
-            GetPlayerPosition(&position);
-            metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
-        }
-    }
+	if ((input->checkStandardWildEncounter) && ((input->dpadDirection == 0) || input->dpadDirection == playerDirection))
+	{
+		GetInFrontOfPlayerPosition(&position);
+		metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+		if (TrySetUpWalkIntoSignpostScript(&position, metatileBehavior, playerDirection) == TRUE)
+			return TRUE;
+		GetPlayerPosition(&position);
+		metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
+	}
 
     if (input->checkStandardWildEncounter && CheckStandardWildEncounter(metatileBehavior) == TRUE)
         return TRUE;
