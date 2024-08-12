@@ -27,8 +27,8 @@ static u8 sGlobalScriptContextStatus;
 static struct ScriptContext sGlobalScriptContext;
 static struct ScriptContext sImmediateScriptContext;
 static bool8 sLockFieldControls;
-static u8 sMsgIsSignPost;
-static u8 sMsgBoxIsCancelable;
+EWRAM_DATA u8 sMsgIsSignPost = FALSE;
+EWRAM_DATA u8 sMsgBoxIsCancelable = FALSE;
 
 extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
@@ -511,11 +511,6 @@ void SetWalkingIntoSignVars(void)
 {
     gWalkAwayFromSignpostTimer = WALK_AWAY_SIGNPOST_FRAMES;
     sMsgBoxIsCancelable = TRUE;
-}
-
-bool32 IsMsgSignPost(void)
-{
-    return sMsgIsSignPost;
 }
 
 void ResetFacingNpcOrSignPostVars(void)
