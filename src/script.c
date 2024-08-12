@@ -513,21 +513,6 @@ void SetWalkingIntoSignVars(void)
     sMsgBoxIsCancelable = TRUE;
 }
 
-void ResetFacingNpcOrSignPostVars(void)
-{
-    sMsgIsSignPost = FALSE;
-}
-
-void MsgSetSignPost(void)
-{
-    sMsgIsSignPost = TRUE;
-}
-
-void ClearMsgBoxCancelableState(void)
-{
-    sMsgBoxIsCancelable = FALSE;
-}
-
 bool32 CanWalkAwayToCancelMsgBox(void)
 {
     return sMsgBoxIsCancelable;

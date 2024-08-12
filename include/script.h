@@ -67,9 +67,6 @@ extern u8 sMsgIsSignPost;
 extern u8 sMsgBoxIsCancelable;
 
 void SetWalkingIntoSignVars(void);
-void MsgSetSignPost(void);
-void ResetFacingNpcOrSignPostVars(void);
 bool32 CanWalkAwayToCancelMsgBox(void);
-void ClearMsgBoxCancelableState(void);
 
 #endif // GUARD_SCRIPT_H

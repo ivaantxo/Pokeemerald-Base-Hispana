@@ -162,7 +162,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     gSpecialVar_LastTalked = 0;
     gSelectedObjectEvent = 0;
 
-    ResetFacingNpcOrSignPostVars();
+	sMsgIsSignPost = FALSE;
     playerDirection = GetPlayerFacingDirection();
     GetPlayerPosition(&position);
     metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
@@ -1130,7 +1130,7 @@ static u32 GetFacingSignpostType(u16 metatileBehavior, u32 playerDirection)
 static void SetMsgSignPostAndVarFacing(u32 playerDirection)
 {
     SetWalkingIntoSignVars();
-    MsgSetSignPost();
+	sMsgIsSignPost = TRUE;
     gSpecialVar_Facing = playerDirection;
 }
 
