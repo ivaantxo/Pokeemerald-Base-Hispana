@@ -561,3 +561,4 @@ gSpecials::
 	def_special SetSeenMon
 	def_special SetCaughtMon
 	def_special SetMonBall
+	def_special CheckPartyForMon
