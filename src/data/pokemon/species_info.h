@@ -17,15 +17,9 @@
 // Set .compressed = OW_GFX_COMPRESS
 #define COMP OW_GFX_COMPRESS
 
+//Para indicar que un Follower no es asimétrico (Es decir, tiene dos frames adicionales mirando a la derecha, que no son solo espejados de mirando a la izquierda),
+//añadimos un parámetro extra en OVERWORLD, que es sAnimTable_Following_Asym.
 #if OW_POKEMON_OBJECT_EVENTS
-#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-#define OVERWORLD_PAL(...)                                  \
-    .overworldPalette = DEFAULT(NULL, __VA_ARGS__),         \
-    .overworldShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
-#else
-#define OVERWORLD_PAL(...)
-#endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-
 #define OVERWORLD(picTable, _size, shadow, _tracks, ...)                                    \
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
@@ -41,11 +35,10 @@
     .tracks = _tracks,                                                                      \
     .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
     .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
-    .anims = sAnimTable_Following,                                                          \
+    .anims = DEFAULT(sAnimTable_Following, __VA_ARGS__),                                    \
     .images = picTable,                                                                     \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
-},                                                                                          \
-    OVERWORLD_PAL(__VA_ARGS__)
+},
 #else
 #define OVERWORLD(picTable, _size, shadow, _tracks, ...)
 #endif //OW_POKEMON_OBJECT_EVENTS

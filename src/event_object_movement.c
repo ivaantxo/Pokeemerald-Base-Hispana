@@ -1911,32 +1911,6 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
 {
     u32 paletteNum;
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
-#if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    if ((shiny && gSpeciesInfo[species].overworldPalette)
-    || (!shiny && gSpeciesInfo[species].overworldShinyPalette))
-    {
-        struct SpritePalette spritePalette;
-        u16 palTag = shiny ? (species + SPECIES_SHINY_TAG + OBJ_EVENT_PAL_TAG_DYNAMIC) : (species + OBJ_EVENT_PAL_TAG_DYNAMIC);
-        // palette already loaded
-        if ((paletteNum = IndexOfSpritePaletteTag(palTag)) < 16)
-            return paletteNum;
-        spritePalette.tag = palTag;
-        if (shiny)
-            spritePalette.data = gSpeciesInfo[species].overworldShinyPalette;
-        else
-            spritePalette.data = gSpeciesInfo[species].overworldPalette;
-        
-        // Check if pal data must be decompressed
-        if (IsLZ77Data(spritePalette.data, PLTT_SIZE_4BPP, PLTT_SIZE_4BPP))
-        {
-            // IsLZ77Data guarantees word-alignment, so casting this is safe
-            LZ77UnCompWram((u32*)spritePalette.data, gDecompressionBuffer);
-            spritePalette.data = (void*)gDecompressionBuffer;
-        }
-        paletteNum = LoadSpritePalette(&spritePalette);
-    }
-    else
-#endif //OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     {
         // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
         // so that palette tags do not overlap
