@@ -2476,6 +2476,6 @@ void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
 
 void RemoveAllItem(struct ScriptContext *ctx)
 {
-    u16 itemId = VarGet(ScriptReadHalfword(ctx));
+    u32 itemId = VarGet(ScriptReadHalfword(ctx));
     RemoveBagItem(itemId, CountTotalItemQuantityInBag(itemId));
 }
