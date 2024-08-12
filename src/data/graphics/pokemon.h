@@ -3875,7 +3875,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Lugia[] = INCBIN_U8("graphics/pokemon/lugia/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Lugia[] = INCBIN_COMP("graphics/pokemon/lugia/overworld.4bpp");   
+    const u32 gObjectEventPic_LugiaBig[] = INCBIN_COMP("graphics/pokemon/lugia/overworld_big.4bpp"); 
+    const u32 gObjectEventPic_LugiaSmall[] = INCBIN_COMP("graphics/pokemon/lugia/overworld_small.4bpp");
 #endif //P_FAMILY_LUGIA
 
 #if P_FAMILY_HO_OH
@@ -3886,7 +3887,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_HoOh[] = INCBIN_U8("graphics/pokemon/ho_oh/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_HoOh[] = INCBIN_COMP("graphics/pokemon/ho_oh/overworld.4bpp");   
+    const u32 gObjectEventPic_HoOhBig[] = INCBIN_COMP("graphics/pokemon/ho_oh/overworld_big.4bpp");
+    const u32 gObjectEventPic_HoOhSmall[] = INCBIN_COMP("graphics/pokemon/ho_oh/overworld_small.4bpp");      
 #endif //P_FAMILY_HO_OH
 
 #if P_FAMILY_CELEBI
@@ -4776,7 +4778,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Wailord[] = INCBIN_U8("graphics/pokemon/wailord/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Wailord[] = INCBIN_COMP("graphics/pokemon/wailord/overworld.4bpp");   
+    const u32 gObjectEventPic_WailordBig[] = INCBIN_COMP("graphics/pokemon/wailord/overworld_big.4bpp");
+    const u32 gObjectEventPic_WailordSmall[] = INCBIN_COMP("graphics/pokemon/wailord/overworld_small.4bpp");   
 #endif //P_FAMILY_WAILMER
 
 #if P_FAMILY_NUMEL
@@ -5528,7 +5531,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Kyogre[] = INCBIN_U8("graphics/pokemon/kyogre/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Kyogre[] = INCBIN_COMP("graphics/pokemon/kyogre/overworld.4bpp");   
+    const u32 gObjectEventPic_KyogreBig[] = INCBIN_COMP("graphics/pokemon/kyogre/overworld_big.4bpp");
+    const u32 gObjectEventPic_KyogreSmall[] = INCBIN_COMP("graphics/pokemon/kyogre/overworld_small.4bpp");      
 
 #if P_PRIMAL_REVERSIONS
     const u32 gMonFrontPic_KyogrePrimal[] = INCBIN_U32("graphics/pokemon/kyogre/primal/front.4bpp.lz");
@@ -5547,7 +5551,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Groudon[] = INCBIN_U8("graphics/pokemon/groudon/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Groudon[] = INCBIN_COMP("graphics/pokemon/groudon/overworld.4bpp");   
+    const u32 gObjectEventPic_GroudonBig[] = INCBIN_COMP("graphics/pokemon/groudon/overworld_big.4bpp");   
+    const u32 gObjectEventPic_GroudonSmall[] = INCBIN_COMP("graphics/pokemon/groudon/overworld_small.4bpp"); 
 
 #if P_PRIMAL_REVERSIONS
     const u32 gMonFrontPic_GroudonPrimal[] = INCBIN_U32("graphics/pokemon/groudon/primal/front.4bpp.lz");
@@ -5566,7 +5571,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Rayquaza[] = INCBIN_U8("graphics/pokemon/rayquaza/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Rayquaza[] = INCBIN_COMP("graphics/pokemon/rayquaza/overworld.4bpp");   
+    const u32 gObjectEventPic_RayquazaBig[] = INCBIN_COMP("graphics/pokemon/rayquaza/overworld_big.4bpp");   
+    const u32 gObjectEventPic_RayquazaSmall[] = INCBIN_COMP("graphics/pokemon/rayquaza/overworld_small.4bpp");   
 
 #if P_MEGA_EVOLUTIONS
     const u32 gMonFrontPic_RayquazaMega[] = INCBIN_U32("graphics/pokemon/rayquaza/mega/front.4bpp.lz");

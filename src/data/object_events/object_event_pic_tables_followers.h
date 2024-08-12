@@ -1844,8 +1844,11 @@ static const struct SpriteFrameImage sPicTable_LugiaSmall[] = {
 #endif //P_FAMILY_LUGIA
 
 #if P_FAMILY_HO_OH
-static const struct SpriteFrameImage sPicTable_HoOh[] = {
-    overworld_ascending_frames(gObjectEventPic_HoOh, 4, 4),
+static const struct SpriteFrameImage sPicTable_HoOhBig[] = {
+    overworld_ascending_frames(gObjectEventPic_HoOhBig, 8, 8),
+};
+static const struct SpriteFrameImage sPicTable_HoOhSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_HoOhSmall, 4, 4),
 };
 #endif //P_FAMILY_HO_OH
 
@@ -2238,8 +2241,11 @@ static const struct SpriteFrameImage sPicTable_SharpedoMega[] = {
 static const struct SpriteFrameImage sPicTable_Wailmer[] = {
     overworld_ascending_frames(gObjectEventPic_Wailmer, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_Wailord[] = {
-    overworld_ascending_frames(gObjectEventPic_Wailord, 4, 4),
+static const struct SpriteFrameImage sPicTable_WailordBig[] = {
+    overworld_ascending_frames(gObjectEventPic_WailordBig, 8, 8),
+};
+static const struct SpriteFrameImage sPicTable_WailordSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_WailordSmall, 4, 4),
 };
 #endif //P_FAMILY_WAILMER
 
@@ -2599,8 +2605,11 @@ static const struct SpriteFrameImage sPicTable_LatiosMega[] = {
 #endif //P_FAMILY_LATIOS
 
 #if P_FAMILY_KYOGRE
-static const struct SpriteFrameImage sPicTable_Kyogre[] = {
-    overworld_ascending_frames(gObjectEventPic_Kyogre, 4, 4),
+static const struct SpriteFrameImage sPicTable_KyogreBig[] = {
+    overworld_ascending_frames(gObjectEventPic_KyogreBig, 8, 8),
+};
+static const struct SpriteFrameImage sPicTable_KyogreSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_KyogreSmall, 4, 4),
 };
 #if P_PRIMAL_REVERSIONS
 static const struct SpriteFrameImage sPicTable_KyogrePrimal[] = {
@@ -2610,8 +2619,11 @@ static const struct SpriteFrameImage sPicTable_KyogrePrimal[] = {
 #endif //P_FAMILY_KYOGRE
 
 #if P_FAMILY_GROUDON
-static const struct SpriteFrameImage sPicTable_Groudon[] = {
-    overworld_ascending_frames(gObjectEventPic_Groudon, 4, 4),
+static const struct SpriteFrameImage sPicTable_GroudonBig[] = {
+    overworld_ascending_frames(gObjectEventPic_GroudonBig, 8, 8),
+};
+static const struct SpriteFrameImage sPicTable_GroudonSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_GroudonSmall, 4, 4),
 };
 #if P_PRIMAL_REVERSIONS
 static const struct SpriteFrameImage sPicTable_GroudonPrimal[] = {
@@ -2621,8 +2633,11 @@ static const struct SpriteFrameImage sPicTable_GroudonPrimal[] = {
 #endif //P_FAMILY_GROUDON
 
 #if P_FAMILY_RAYQUAZA
-static const struct SpriteFrameImage sPicTable_Rayquaza[] = {
-    overworld_ascending_frames(gObjectEventPic_Rayquaza, 4, 4),
+static const struct SpriteFrameImage sPicTable_RayquazaBig[] = {
+    overworld_ascending_frames(gObjectEventPic_RayquazaBig, 8, 8),
+};
+static const struct SpriteFrameImage sPicTable_RayquazaSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_RayquazaSmall, 4, 4),
 };
 #if P_MEGA_EVOLUTIONS
 static const struct SpriteFrameImage sPicTable_RayquazaMega[] = {

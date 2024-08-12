@@ -5468,11 +5468,16 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_Wailord,
         .shinyPalette = gMonShinyPalette_Wailord,
-        .iconSprite = gObjectEventPic_Wailord, 
+        .iconSprite = gObjectEventPic_WailordSmall, 
         FOOTPRINT(Wailord)
         OVERWORLD(
-            sPicTable_Wailord,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_WailordBig,
             SIZE_64x64,
+        #else
+            sPicTable_WailordSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE,  
         )
@@ -10228,11 +10233,16 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_Kyogre,
         .shinyPalette = gMonShinyPalette_Kyogre,
-        .iconSprite = gObjectEventPic_Kyogre, 
+        .iconSprite = gObjectEventPic_KyogreSmall, 
         FOOTPRINT(Kyogre)
         OVERWORLD(
-            sPicTable_Kyogre,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_KyogreBig,
             SIZE_64x64,
+        #else
+            sPicTable_KyogreSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE,  
         )
@@ -10354,11 +10364,16 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_Groudon,
         .shinyPalette = gMonShinyPalette_Groudon,
-        .iconSprite = gObjectEventPic_Groudon, 
+        .iconSprite = gObjectEventPic_GroudonSmall, 
         FOOTPRINT(Groudon)
         OVERWORLD(
-            sPicTable_Groudon,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_GroudonBig,
             SIZE_64x64,
+        #else
+            sPicTable_GroudonSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -10484,11 +10499,16 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_Rayquaza,
         .shinyPalette = gMonShinyPalette_Rayquaza,
-        .iconSprite = gObjectEventPic_Rayquaza, 
+        .iconSprite = gObjectEventPic_RayquazaSmall, 
         FOOTPRINT(Rayquaza)
         OVERWORLD(
-            sPicTable_Rayquaza,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_RayquazaBig,
             SIZE_64x64,
+        #else
+            sPicTable_RayquazaSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE,  
         )

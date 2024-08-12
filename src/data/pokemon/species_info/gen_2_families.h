@@ -6922,7 +6922,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_Lugia,
         .shinyPalette = gMonShinyPalette_Lugia,
-        .iconSprite = gObjectEventPic_Lugia, 
+        .iconSprite = gObjectEventPic_LugiaSmall, 
         FOOTPRINT(Lugia)
         OVERWORLD(
         #if OW_LARGE_OW_SUPPORT
@@ -6997,11 +6997,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_HoOh,
         .shinyPalette = gMonShinyPalette_HoOh,
-        .iconSprite = gObjectEventPic_HoOh, 
+        .iconSprite = gObjectEventPic_HoOhSmall, 
         FOOTPRINT(HoOh)
         OVERWORLD(
-            sPicTable_HoOh,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_HoOhBig,
             SIZE_64x64,
+        #else
+            sPicTable_HoOhSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE,  
         )

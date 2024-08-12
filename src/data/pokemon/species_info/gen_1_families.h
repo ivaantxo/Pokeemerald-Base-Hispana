@@ -11122,7 +11122,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_ExeggutorAlolan,
         .shinyPalette = gMonShinyPalette_ExeggutorAlolan,
-        .iconSprite = gObjectEventPic_ExeggutorAlolan, 
+        .iconSprite = gObjectEventPic_ExeggutorAlolanSmall, 
         FOOTPRINT(Exeggutor)
         OVERWORLD(
         #if OW_LARGE_OW_SUPPORT
