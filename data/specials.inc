@@ -556,10 +556,7 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special GetObjectPosition
 	def_special CheckObjectAtXY
-	def_special GetSeenMon
-	def_special GetCaughtMon
-	def_special SetSeenMon
-	def_special SetCaughtMon
+	def_special Script_GetSetPokedexFlag
 	def_special SetMonBall
 	def_special CheckPartyForMon
 	def_special Script_GetObjectFacingDirection

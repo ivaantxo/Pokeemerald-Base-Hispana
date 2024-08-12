@@ -2348,27 +2348,31 @@
 	@ Checks the state of the Pokédex Seen flag of the specified Pokemon
     @ The result is stored in VAR_RESULT
     .macro getseenmon species:req
-    setvar VAR_TEMP_1, \species
-    specialvar VAR_RESULT, GetSeenMon
+    setvar VAR_0x8005, \species
+	setvar VAR_0x8006, 0
+    specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
     @ Checks the state of the Pokédex Caught flag of the specified Pokemon
     @ The result is stored in VAR_RESULT
     .macro getcaughtmon species:req
-    setvar VAR_TEMP_1, \species
-    specialvar VAR_RESULT, GetCaughtMon
+    setvar VAR_0x8005, \species
+	setvar VAR_0x8006, 1
+    specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
     @ Sets the Pokédex Seen flag of the specified Pokemon
     .macro setseenmon species:req
-    setvar VAR_TEMP_1, \species
-    special SetSeenMon
+    setvar VAR_0x8005, \species
+	setvar VAR_0x8006, 2
+    specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
     @ Sets the Pokédex Caught flag of the specified Pokemon
     .macro setcaughtmon species:req
-    setvar VAR_TEMP_1, \species
-    special SetCaughtMon
+    setvar VAR_0x8005, \species
+	setvar VAR_0x8006, 3
+    specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
 	@ Changes the caught ball of a selected Pokémon

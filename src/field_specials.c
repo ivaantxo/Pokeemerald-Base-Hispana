@@ -4312,25 +4312,15 @@ bool32 CheckObjectAtXY(void)
 	return TRUE;
 }
 
-bool8 GetSeenMon(void)
+bool32 Script_GetSetPokedexFlag(void)
 {
-    return GetSetPokedexFlag(SpeciesToNationalPokedexNum(VarGet(VAR_TEMP_1)), FLAG_GET_SEEN);
-}
+	u32 speciesId = SpeciesToNationalPokedexNum(gSpecialVar_0x8005);
+	bool32 desiredFlag = gSpecialVar_0x8006;
 
-bool8 GetCaughtMon(void)
-{
-    return GetSetPokedexFlag(SpeciesToNationalPokedexNum(VarGet(VAR_TEMP_1)), FLAG_GET_CAUGHT);
-}
+	if (desiredFlag == FLAG_SET_CAUGHT)
+		GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
 
-void SetSeenMon(void)
-{
-    GetSetPokedexFlag(SpeciesToNationalPokedexNum(VarGet(VAR_TEMP_1)), FLAG_SET_SEEN);
-}
-
-void SetCaughtMon(void)
-{
-    GetSetPokedexFlag(SpeciesToNationalPokedexNum(VarGet(VAR_TEMP_1)), FLAG_SET_SEEN);
-    GetSetPokedexFlag(SpeciesToNationalPokedexNum(VarGet(VAR_TEMP_1)), FLAG_SET_CAUGHT);
+	return GetSetPokedexFlag(speciesId,desiredFlag);
 }
 
 void SetMonBall(void)
