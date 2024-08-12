@@ -4332,3 +4332,8 @@ void SetCaughtMon(void)
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(VarGet(VAR_TEMP_1)), FLAG_SET_CAUGHT);
 }
 
+void SetMonBall(void)
+{
+    u16 ballId = VarGet(VAR_TEMP_1);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_POKEBALL, &ballId);
+}
