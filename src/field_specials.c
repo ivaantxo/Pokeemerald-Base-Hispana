@@ -4325,18 +4325,23 @@ bool32 Script_GetSetPokedexFlag(void)
 
 void SetMonBall(void)
 {
-    u16 ballId = VarGet(VAR_TEMP_1);
+    u32 ballId = gSpecialVar_0x8005;
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_POKEBALL, &ballId);
 }
 
-bool8 CheckPartyForMon(void)
+bool32 CheckPartyHasSpecie(void)
 {
-    int i;
-    for (i = 0; i < CalculatePlayerPartyCount(); i++)
-    {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == VarGet(VAR_TEMP_1))
+	u32 partyIndex;
+
+	for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
+        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES) == gSpecialVar_0x8005)
             return TRUE;
-    }
+
     return FALSE;
+}
+
+bool32 CheckChosenMonMatchDesiredSpecie(void)
+{
+	return (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == gSpecialVar_0x8005);
 }
 

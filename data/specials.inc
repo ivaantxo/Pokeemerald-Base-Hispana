@@ -558,5 +558,6 @@ gSpecials::
 	def_special CheckObjectAtXY
 	def_special Script_GetSetPokedexFlag
 	def_special SetMonBall
-	def_special CheckPartyForMon
+	def_special CheckPartyHasSpecie
+	def_special CheckChosenMonMatchDesiredSpecie
 	def_special Script_GetObjectFacingDirection
