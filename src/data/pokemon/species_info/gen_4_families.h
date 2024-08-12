@@ -5196,7 +5196,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         .palette = gMonPalette_Dialga,
         .shinyPalette = gMonShinyPalette_Dialga,
-        .iconSprite = gObjectEventPic_Dialga, 
+        .iconSprite = gObjectEventPic_DialgaSmall, 
         FOOTPRINT(Dialga)
         OVERWORLD(
             sPicTable_Dialga,
@@ -6087,13 +6087,6 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #else
     #define ARCEUS_EXP_YIELD 255
 #endif
-#if P_ARCEUS_UNIQUE_FORM_ICONS >= GEN_9
-    #define ARCEUS_ICON(typeName)        \
-        .iconSprite = gObjectEventPic_Arceus ##typeName,
-#else
-    #define ARCEUS_ICON(typeName)           \
-        .iconSprite = gObjectEventPic_ArceusNormal,
-#endif
 
 #define ARCEUS_SPECIES_INFO(type, typeName)                                 \
     {                                                                       \
@@ -6136,10 +6129,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,                               \
         .palette = gMonPalette_Arceus ##typeName,                           \
         .shinyPalette = gMonShinyPalette_Arceus ##typeName,                 \
-        ARCEUS_ICON(typeName)                                               \
+        .iconSprite = gObjectEventPic_Arceus,                               \
         FOOTPRINT(Arceus)                                                   \
         OVERWORLD(                                                          \
-            sPicTable_Arceus ##typeName,                                    \
+            sPicTable_Arceus,                                               \
             SIZE_64x64,                                                     \
             SHADOW_SIZE_M,                                                  \
             TRACKS_FOOT,                                                    \  

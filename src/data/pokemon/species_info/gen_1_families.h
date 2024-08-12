@@ -10309,11 +10309,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         .palette = gMonPalette_Steelix,
         .shinyPalette = gMonShinyPalette_Steelix,
-        .iconSprite = gObjectEventPic_Steelix, 
+        .iconSprite = gObjectEventPic_SteelixSmall, 
         FOOTPRINT(Steelix)
         OVERWORLD(
-            sPicTable_Steelix,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_SteelixBig,
             SIZE_64x64,
+        #else
+            sPicTable_SteelixSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_SLITHER,  
         )
@@ -11120,8 +11125,13 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gObjectEventPic_ExeggutorAlolan, 
         FOOTPRINT(Exeggutor)
         OVERWORLD(
-            sPicTable_ExeggutorAlolan,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_ExeggutorAlolanBig,
             SIZE_64x64,
+        #else
+            sPicTable_ExeggutorAlolanSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )

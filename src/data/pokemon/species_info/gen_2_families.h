@@ -6925,8 +6925,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gObjectEventPic_Lugia, 
         FOOTPRINT(Lugia)
         OVERWORLD(
-            sPicTable_Lugia,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_LugiaBig,
             SIZE_64x64,
+        #else
+            sPicTable_LugiaSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE,  
         )

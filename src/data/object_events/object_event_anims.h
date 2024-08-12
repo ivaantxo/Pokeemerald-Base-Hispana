@@ -1053,29 +1053,9 @@ static const union AffineAnimCmd sAffineAnim_KyogreGroudon_GoSouth[] =
     AFFINEANIMCMD_JUMP(0),
 };
 
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_AttackEast[] =
-{
-    AFFINEANIMCMD_FRAME(0x100, 0x100, 10, 0),
-    AFFINEANIMCMD_END,
-};
-
 static const union AffineAnimCmd sAffineAnim_KyogreGroudon_AttackWest[] =
 {
     AFFINEANIMCMD_FRAME(0x100, 0x100, 10, 0),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_DipEast[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, -1, 1),
-    AFFINEANIMCMD_LOOP(8),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd sAffineAnim_KyogreGroudon_DipWest[] =
-{
-    AFFINEANIMCMD_FRAME(0x0, 0x0, 1, 1),
-    AFFINEANIMCMD_LOOP(8),
     AFFINEANIMCMD_END,
 };
 
@@ -1308,7 +1288,7 @@ static const union AnimCmd sAnim_RayquazaFaceEast[] =
 // Though they correspond to facing/walking movements, Rayquaza doesn't have
 // equivalent images aside from flying up. Its other frames aside from the 'normal'
 // frame are for the sequence where it awakens on Sky Pillar.
-static const union AnimCmd *const sAnimTable_Rayquaza[] = {
+static const union AnimCmd *const sAnimTable_RayquazaCutscene[] = {
     [ANIM_STD_FACE_SOUTH] = sAnim_RayquazaFaceSouth,
     [ANIM_STD_FACE_NORTH] = sAnim_RayquazaFaceNorth,
     [ANIM_STD_FACE_WEST] = sAnim_RayquazaFaceWest,
@@ -1495,9 +1475,6 @@ static const union AffineAnimCmd *const sAffineAnimTable_KyogreGroudon[] = {
     sAffineAnim_KyogreGroudon_GoSouthStart, // Used by Kyogre/Groudon when awakened
     sAffineAnim_KyogreGroudon_GoSouth,      // Used by Kyogre/Groudon when awakened
     sAffineAnim_KyogreGroudon_AttackWest,   // Used by Kyogre during Sootopolis fight
-    sAffineAnim_KyogreGroudon_AttackEast,   // Unused
-    sAffineAnim_KyogreGroudon_DipWest,      // Unused
-    sAffineAnim_KyogreGroudon_DipEast,      // Unused
 };
 
 // For animations with alternating steps

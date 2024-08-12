@@ -1524,8 +1524,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Steelix[] = INCBIN_U8("graphics/pokemon/steelix/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Steelix[] = INCBIN_COMP("graphics/pokemon/steelix/overworld.4bpp");   
-
+    const u32 gObjectEventPic_SteelixBig[] = INCBIN_COMP("graphics/pokemon/steelix/overworld_big.4bpp");   
+    const u32 gObjectEventPic_SteelixSmall[] = INCBIN_COMP("graphics/pokemon/steelix/overworld_small.4bpp");
+  
     const u32 gMonFrontPic_SteelixF[] = INCBIN_U32("graphics/pokemon/steelix/anim_frontf.4bpp.lz");
     const u32 gMonBackPic_SteelixF[] = INCBIN_U32("graphics/pokemon/steelix/backf.4bpp.lz");
 
@@ -1648,7 +1649,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_ExeggutorAlolan[] = INCBIN_U32("graphics/pokemon/exeggutor/alolan/normal.gbapal.lz");
     const u32 gMonBackPic_ExeggutorAlolan[] = INCBIN_U32("graphics/pokemon/exeggutor/alolan/back.4bpp.lz");
     const u32 gMonShinyPalette_ExeggutorAlolan[] = INCBIN_U32("graphics/pokemon/exeggutor/alolan/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_ExeggutorAlolan[] = INCBIN_COMP("graphics/pokemon/exeggutor/alolan/overworld.4bpp");   
+    const u32 gObjectEventPic_ExeggutorAlolanBig[] = INCBIN_COMP("graphics/pokemon/exeggutor/alolan/overworld_big.4bpp");   
+    const u32 gObjectEventPic_ExeggutorAlolanSmall[] = INCBIN_COMP("graphics/pokemon/exeggutor/alolan/overworld_small.4bpp");   
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_EXEGGCUTE
 
@@ -6474,7 +6476,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Dialga[] = INCBIN_U8("graphics/pokemon/dialga/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Dialga[] = INCBIN_COMP("graphics/pokemon/dialga/overworld.4bpp");   
+    const u32 gObjectEventPic_DialgaBig[] = INCBIN_COMP("graphics/pokemon/dialga/overworld_big.4bpp");   
+    const u32 gObjectEventPic_DialgaSmall[] = INCBIN_COMP("graphics/pokemon/dialga/overworld_small.4bpp");   
 
     const u32 gMonFrontPic_DialgaOrigin[] = INCBIN_U32("graphics/pokemon/dialga/origin/front.4bpp.lz");
     const u32 gMonPalette_DialgaOrigin[] = INCBIN_U32("graphics/pokemon/dialga/origin/normal.gbapal.lz");
@@ -6662,26 +6665,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_ArceusFairy[] = INCBIN_U32("graphics/pokemon/arceus/fairy/normal.gbapal.lz");
     const u32 gMonShinyPalette_ArceusFairy[] = INCBIN_U32("graphics/pokemon/arceus/fairy/shiny.gbapal.lz");
 
-#if P_ARCEUS_UNIQUE_FORM_ICONS >= GEN_9                 
-#endif //P_ARCEUS_UNIQUE_FORM_ICONS 
-    const u32 gObjectEventPic_ArceusNormal[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusFighting[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusFlying[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusPoison[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusGround[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusRock[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusBug[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusGhost[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusSteel[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusFire[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusWater[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusGrass[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusElectric[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusPsychic[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusIce[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusDragon[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusDark[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");
-    const u32 gObjectEventPic_ArceusFairy[] = INCBIN_COMP("graphics/pokemon/arceus/overworld.4bpp");                                     
+    const u32 gObjectEventPic_ArceusBig[] = INCBIN_COMP("graphics/pokemon/arceus/overworld_big.4bpp");
+    const u32 gObjectEventPic_ArceusSmall[] = INCBIN_COMP("graphics/pokemon/arceus/overworld_small.4bpp");                                
 #endif //P_FAMILY_ARCEUS
 
 #if P_FAMILY_VICTINI
