@@ -8256,8 +8256,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
 {
     u8 targetBattler = 0;
     u32 moveTarget, side;
-    u32 moveType;
-    GET_MOVE_TYPE(move, moveType);
+    u32 moveType = GetMoveType(move);
 
     if (setTarget != NO_TARGET_OVERRIDE)
         moveTarget = setTarget - 1;
@@ -10468,8 +10467,7 @@ uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk,
 uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
-    u32 moveType;
-    GET_MOVE_TYPE(move, moveType);
+    u32 moveType = GetMoveType(move);
 
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
