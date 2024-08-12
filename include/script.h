@@ -66,7 +66,4 @@ void SetMovingNpcId(u16 npcId);
 extern u8 sMsgIsSignPost;
 extern u8 sMsgBoxIsCancelable;
 
-void SetWalkingIntoSignVars(void);
-bool32 CanWalkAwayToCancelMsgBox(void);
-
 #endif // GUARD_SCRIPT_H

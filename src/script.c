@@ -505,15 +505,3 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
 #endif //FREE_MYSTERY_EVENT_BUFFERS
 }
 
-#define WALK_AWAY_SIGNPOST_FRAMES 6
-
-void SetWalkingIntoSignVars(void)
-{
-    gWalkAwayFromSignpostTimer = WALK_AWAY_SIGNPOST_FRAMES;
-    sMsgBoxIsCancelable = TRUE;
-}
-
-bool32 CanWalkAwayToCancelMsgBox(void)
-{
-    return sMsgBoxIsCancelable;
-}

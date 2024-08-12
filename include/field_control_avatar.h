@@ -36,4 +36,7 @@ const u8 *GetCoordEventScriptAtMapPosition(struct MapPosition *position);
 void ClearPoisonStepCounter(void);
 void CancelSignPostMessageBox(struct FieldInput *input);
 
+#define NOT_SIGNPOST 0
+#define WALK_AWAY_SIGNPOST_FRAMES 6
+
 #endif // GUARD_FIELDCONTROLAVATAR_H

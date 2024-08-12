@@ -44,8 +44,6 @@ static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
 
 u8 gSelectedObjectEvent;
 
-#define NOT_SIGNPOST 0
-
 static void GetPlayerPosition(struct MapPosition *);
 static void GetInFrontOfPlayerPosition(struct MapPosition *);
 static u16 GetPlayerCurMetatileBehavior(int);
@@ -1129,7 +1127,8 @@ static u32 GetFacingSignpostType(u16 metatileBehavior, u32 playerDirection)
 
 static void SetMsgSignPostAndVarFacing(u32 playerDirection)
 {
-    SetWalkingIntoSignVars();
+    gWalkAwayFromSignpostTimer = WALK_AWAY_SIGNPOST_FRAMES;
+    sMsgBoxIsCancelable = TRUE;
 	sMsgIsSignPost = TRUE;
     gSpecialVar_Facing = playerDirection;
 }
@@ -1176,8 +1175,8 @@ void CancelSignPostMessageBox(struct FieldInput *input)
         return;
     }
 
-    if (!CanWalkAwayToCancelMsgBox())
-        return;
+	if (!sMsgBoxIsCancelable)
+		return;
 
     if (IsDpadPushedToTurnOrMovePlayer(input))
     {
