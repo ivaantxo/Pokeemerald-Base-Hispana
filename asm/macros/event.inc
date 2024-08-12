@@ -2392,3 +2392,9 @@
         goto_if_eq VAR_RESULT, TRUE, \script
     .endif
     .endm
+
+	@ Gets the facing direction of a given event object and stores it in the variable \dest.
+    .macro getobjectfacingdirection evObjId:req, dest:req
+    setvar VAR_TEMP_1, \evObjId
+    specialvar \dest, Script_GetObjectFacingDirection
+    .endm

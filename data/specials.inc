@@ -562,3 +562,4 @@ gSpecials::
 	def_special SetCaughtMon
 	def_special SetMonBall
 	def_special CheckPartyForMon
+	def_special Script_GetObjectFacingDirection
