@@ -160,7 +160,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     gSpecialVar_LastTalked = 0;
     gSelectedObjectEvent = 0;
 
-	sMsgIsSignPost = FALSE;
+	gMsgIsSignPost = FALSE;
     playerDirection = GetPlayerFacingDirection();
     GetPlayerPosition(&position);
     metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
@@ -1128,8 +1128,8 @@ static u32 GetFacingSignpostType(u16 metatileBehavior, u32 playerDirection)
 static void SetMsgSignPostAndVarFacing(u32 playerDirection)
 {
     gWalkAwayFromSignpostTimer = WALK_AWAY_SIGNPOST_FRAMES;
-    sMsgBoxIsCancelable = TRUE;
-	sMsgIsSignPost = TRUE;
+    gMsgBoxIsCancelable = TRUE;
+	gMsgIsSignPost = TRUE;
     gSpecialVar_Facing = playerDirection;
 }
 
@@ -1175,7 +1175,7 @@ void CancelSignPostMessageBox(struct FieldInput *input)
         return;
     }
 
-	if (!sMsgBoxIsCancelable)
+	if (!gMsgBoxIsCancelable)
 		return;
 
     if (IsDpadPushedToTurnOrMovePlayer(input))
