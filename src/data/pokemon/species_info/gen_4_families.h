@@ -5199,8 +5199,13 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gObjectEventPic_DialgaSmall, 
         FOOTPRINT(Dialga)
         OVERWORLD(
-            sPicTable_Dialga,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_DialgaBig,
             SIZE_64x64,
+        #else
+            sPicTable_DialgaSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -5257,14 +5262,18 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_DialgaOrigin,
         .shinyPalette = gMonShinyPalette_DialgaOrigin,
-        .iconSprite = gObjectEventPic_DialgaOrigin, 
+        .iconSprite = gObjectEventPic_DialgaOriginSmall, 
         FOOTPRINT(Dialga)
         OVERWORLD(
-            sPicTable_DialgaOrigin,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_DialgaOriginBig,
             SIZE_64x64,
+        #else
+            sPicTable_DialgaOriginSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE, 
-            //, gShinyOverworldPalette_DialgaOrigin
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
@@ -5329,11 +5338,16 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_H_SHAKE,
         .palette = gMonPalette_Palkia,
         .shinyPalette = gMonShinyPalette_Palkia,
-        .iconSprite = gObjectEventPic_Palkia, 
+        .iconSprite = gObjectEventPic_PalkiaSmall, 
         FOOTPRINT(Palkia)
         OVERWORLD(
-            sPicTable_Palkia,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_PalkiaBig,
             SIZE_64x64,
+        #else
+            sPicTable_PalkiaSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -5390,14 +5404,18 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PalkiaOrigin,
         .shinyPalette = gMonShinyPalette_PalkiaOrigin,
-        .iconSprite = gObjectEventPic_PalkiaOrigin, 
+        .iconSprite = gObjectEventPic_PalkiaOriginSmall, 
         FOOTPRINT(Palkia)
         OVERWORLD(
-            sPicTable_PalkiaOrigin,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_PalkiaOriginBig,
             SIZE_64x64,
+        #else
+            sPicTable_PalkiaOriginSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_NONE, 
-            //, gShinyOverworldPalette_PalkiaOrigin
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
@@ -5526,11 +5544,16 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_Regigigas,
         .shinyPalette = gMonShinyPalette_Regigigas,
-        .iconSprite = gObjectEventPic_Regigigas, 
+        .iconSprite = gObjectEventPic_RegigigasSmall, 
         FOOTPRINT(Regigigas)
         OVERWORLD(
-            sPicTable_Regigigas,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_RegigigasBig,
             SIZE_64x64,
+        #else
+            sPicTable_RegigigasSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -5594,11 +5617,16 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_GiratinaAltered,
         .shinyPalette = gMonShinyPalette_GiratinaAltered,
-        .iconSprite = gObjectEventPic_GiratinaAltered, 
+        .iconSprite = gObjectEventPic_GiratinaAlteredSmall, 
         FOOTPRINT(GiratinaAltered)
         OVERWORLD(
-            sPicTable_GiratinaAltered,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_GiratinaAlteredBig,
             SIZE_64x64,
+        #else
+            sPicTable_GiratinaAlteredSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -5656,14 +5684,18 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_GiratinaOrigin,
         .shinyPalette = gMonShinyPalette_GiratinaOrigin,
-        .iconSprite = gObjectEventPic_GiratinaOrigin, 
+        .iconSprite = gObjectEventPic_GiratinaOriginSmall, 
         FOOTPRINT(GiratinaOrigin)
         OVERWORLD(
-            sPicTable_GiratinaOrigin,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_GiratinaOriginBig,
             SIZE_64x64,
+        #else
+            sPicTable_GiratinaOriginSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
-            TRACKS_FOOT, 
-            //, gShinyOverworldPalette_GiratinaOrigin
+            TRACKS_FOOT,
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
@@ -6070,6 +6102,13 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_ShayminSky,
         .iconSprite = gObjectEventPic_ShayminSky, 
         FOOTPRINT(Shaymin)
+        OVERWORLD(
+            sPicTable_ShayminSky,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+        )
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sShayminSkyLevelUpLearnset,
@@ -6129,13 +6168,18 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,                               \
         .palette = gMonPalette_Arceus ##typeName,                           \
         .shinyPalette = gMonShinyPalette_Arceus ##typeName,                 \
-        .iconSprite = gObjectEventPic_Arceus,                               \
+        .iconSprite = gObjectEventPic_ArceusSmall,                          \
         FOOTPRINT(Arceus)                                                   \
         OVERWORLD(                                                          \
-            sPicTable_Arceus,                                               \
+        #if OW_LARGE_OW_SUPPORT                                             \
+            sPicTable_ArceusBig,                                            \
             SIZE_64x64,                                                     \
+        #else                                                               \
+            sPicTable_ArceusSmall,                                          \
+            SIZE_32x32,                                                     \
+        #endif //OW_LARGE_OW_SUPPORT                                        \
             SHADOW_SIZE_M,                                                  \
-            TRACKS_FOOT,                                                    \  
+            TRACKS_FOOT,                                                    \
         )                                                                   \
         .levelUpLearnset = sArceusLevelUpLearnset,                          \
         .teachableLearnset = sArceusTeachableLearnset,                      \

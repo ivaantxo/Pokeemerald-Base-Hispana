@@ -3753,8 +3753,14 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Dudunsparce,
         .shinyPalette = gMonShinyPalette_Dudunsparce,
-        .iconSprite = gObjectEventPic_Dudunsparce, 
+        .iconSprite = gObjectEventPic_DudunsparceTwoSegment, 
         FOOTPRINT(Dudunsparce)
+        OVERWORLD(
+            sPicTable_DudunsparceTwoSegment,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER
+        )
         .levelUpLearnset = sDudunsparceLevelUpLearnset,
         .teachableLearnset = sDudunsparceTeachableLearnset,
         .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
@@ -3805,8 +3811,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Dudunsparce,
         .shinyPalette = gMonShinyPalette_Dudunsparce,
-        .iconSprite = gObjectEventPic_Dudunsparce, 
+        .iconSprite = gObjectEventPic_DudunsparceThreeSegmentsSmall, 
         FOOTPRINT(Dudunsparce)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_DudunsparceThreeSegmentsBig,
+            SIZE_64x64,
+        #else
+            sPicTable_DudunsparceThreeSegmentsSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER
+        )
         .levelUpLearnset = sDudunsparceLevelUpLearnset,
         .teachableLearnset = sDudunsparceTeachableLearnset,
         .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,

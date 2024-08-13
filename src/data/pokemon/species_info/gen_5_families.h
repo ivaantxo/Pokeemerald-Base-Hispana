@@ -9454,6 +9454,17 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_Kingambit,
         .iconSprite = gObjectEventPic_KingambitSmall, 
         FOOTPRINT(Kingambit)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_KingambitBig,
+            SIZE_64x64,
+        #else
+            sPicTable_KingambitSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sKingambitLevelUpLearnset,
         .teachableLearnset = sKingambitTeachableLearnset,
     },
@@ -10698,11 +10709,16 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_Reshiram,
         .shinyPalette = gMonShinyPalette_Reshiram,
-        .iconSprite = gObjectEventPic_Reshiram, 
+        .iconSprite = gObjectEventPic_ReshiramSmall, 
         FOOTPRINT(Reshiram)
         OVERWORLD(
-            sPicTable_Reshiram,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_ReshiramBig,
             SIZE_64x64,
+        #else
+            sPicTable_ReshiramSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -10759,11 +10775,16 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_Zekrom,
         .shinyPalette = gMonShinyPalette_Zekrom,
-        .iconSprite = gObjectEventPic_Zekrom, 
+        .iconSprite = gObjectEventPic_ZekromSmall, 
         FOOTPRINT(Zekrom)
         OVERWORLD(
-            sPicTable_Zekrom,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_ZekromBig,
             SIZE_64x64,
+        #else
+            sPicTable_ZekromSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -10940,11 +10961,16 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_Kyurem,
         .shinyPalette = gMonShinyPalette_Kyurem,
-        .iconSprite = gObjectEventPic_Kyurem, 
+        .iconSprite = gObjectEventPic_KyuremSmall, 
         FOOTPRINT(Kyurem)
         OVERWORLD(
-            sPicTable_Kyurem,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_KyuremBig,
             SIZE_64x64,
+        #else
+            sPicTable_KyuremSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )

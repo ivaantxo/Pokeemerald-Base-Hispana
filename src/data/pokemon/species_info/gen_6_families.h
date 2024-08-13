@@ -5048,15 +5048,18 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_XerneasNeutral,
         .shinyPalette = gMonShinyPalette_XerneasNeutral,
-        .iconSprite = gObjectEventPic_XerneasNeutral, 
+        .iconSprite = gObjectEventPic_XerneasNeutralSmall, 
         FOOTPRINT(Xerneas)
         OVERWORLD(
-            sPicTable_XerneasNeutral,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_XerneasNeutralBig,
             SIZE_64x64,
+        #else
+            sPicTable_XerneasNeutralSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT
-            //, gOverworldPalette_XerneasNeutral
-            //, gShinyOverworldPalette_XerneasNeutral
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
@@ -5107,11 +5110,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .palette = gMonPalette_XerneasActive,
         .shinyPalette = gMonShinyPalette_XerneasActive,
-        .iconSprite = gObjectEventPic_XerneasActive, 
+        .iconSprite = gObjectEventPic_XerneasActiveSmall, 
         FOOTPRINT(Xerneas)
         OVERWORLD(
-            sPicTable_XerneasNeutral,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_XerneasActiveBig,
             SIZE_64x64,
+        #else
+            sPicTable_XerneasActiveSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -5171,11 +5179,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .palette = gMonPalette_Yveltal,
         .shinyPalette = gMonShinyPalette_Yveltal,
-        .iconSprite = gObjectEventPic_Yveltal, 
+        .iconSprite = gObjectEventPic_YveltalSmall, 
         FOOTPRINT(Yveltal)
         OVERWORLD(
-            sPicTable_Yveltal,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_YveltalBig,
             SIZE_64x64,
+        #else
+            sPicTable_YveltalSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
@@ -5229,13 +5242,18 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Zygarde50,
         .shinyPalette = gMonShinyPalette_Zygarde50,
-        .iconSprite = gObjectEventPic_Zygarde50, 
+        .iconSprite = gObjectEventPic_Zygarde50Small, 
         FOOTPRINT(Zygarde)
         OVERWORLD(
-            sPicTable_Zygarde50,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_Zygarde50Big,
             SIZE_64x64,
+        #else
+            sPicTable_Zygarde50Small,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
-            TRACKS_FOOT,  
+            TRACKS_SLITHER,  
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
@@ -5286,13 +5304,18 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         .palette = gMonPalette_Zygarde50,
         .shinyPalette = gMonShinyPalette_Zygarde50,
-        .iconSprite = gObjectEventPic_Zygarde50, 
+        .iconSprite = gObjectEventPic_Zygarde50Small, 
         FOOTPRINT(Zygarde)
         OVERWORLD(
-            sPicTable_Zygarde50,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_Zygarde50Big,
             SIZE_64x64,
+        #else
+            sPicTable_Zygarde50Small,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
-            TRACKS_FOOT,  
+            TRACKS_SLITHER,  
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
@@ -5694,11 +5717,16 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_HoopaUnbound,
         .shinyPalette = gMonShinyPalette_HoopaUnbound,
-        .iconSprite = gObjectEventPic_HoopaUnbound, 
+        .iconSprite = gObjectEventPic_HoopaUnboundSmall, 
         FOOTPRINT(Hoopa)
         OVERWORLD(
-            sPicTable_HoopaUnbound,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_HoopaUnboundBig,
             SIZE_64x64,
+        #else
+            sPicTable_HoopaUnboundSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )

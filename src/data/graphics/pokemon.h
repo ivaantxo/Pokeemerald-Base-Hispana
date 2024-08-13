@@ -412,12 +412,12 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonBackPic_PikachuLibre[] = INCBIN_U32("graphics/pokemon/pikachu/libre/back.4bpp.lz");
     const u32 gMonShinyPalette_PikachuLibre[] = INCBIN_U32("graphics/pokemon/pikachu/libre/shiny.gbapal.lz"); 
  
-    const u32 gObjectEventPic_PikachuCosplay[] = INCBIN_COMP("graphics/pokemon/pikachu/cosplay/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuRockStar[] = INCBIN_COMP("graphics/pokemon/pikachu/rock_star/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuBelle[] = INCBIN_COMP("graphics/pokemon/pikachu/belle/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuPopStar[] = INCBIN_COMP("graphics/pokemon/pikachu/pop_star/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuPhD[] = INCBIN_COMP("graphics/pokemon/pikachu/ph_d/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuLibre[] = INCBIN_COMP("graphics/pokemon/pikachu/libre/overworld.4bpp"); 
+    //const u32 gObjectEventPic_PikachuCosplay[] = INCBIN_COMP("graphics/pokemon/pikachu/cosplay/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuRockStar[] = INCBIN_COMP("graphics/pokemon/pikachu/rock_star/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuBelle[] = INCBIN_COMP("graphics/pokemon/pikachu/belle/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuPopStar[] = INCBIN_COMP("graphics/pokemon/pikachu/pop_star/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuPhD[] = INCBIN_COMP("graphics/pokemon/pikachu/ph_d/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuLibre[] = INCBIN_COMP("graphics/pokemon/pikachu/libre/overworld.4bpp"); 
 #endif //P_COSPLAY_PIKACHU_FORMS
 
 #if P_CAP_PIKACHU_FORMS
@@ -461,14 +461,14 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonBackPic_PikachuWorldCap[] = INCBIN_U32("graphics/pokemon/pikachu/world_cap/back.4bpp.lz");
     const u32 gMonShinyPalette_PikachuWorldCap[] = INCBIN_U32("graphics/pokemon/pikachu/world_cap/shiny.gbapal.lz"); 
  
-    const u32 gObjectEventPic_PikachuOriginalCap[] = INCBIN_COMP("graphics/pokemon/pikachu/original_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuHoennCap[] = INCBIN_COMP("graphics/pokemon/pikachu/hoenn_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuSinnohCap[] = INCBIN_COMP("graphics/pokemon/pikachu/sinnoh_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuUnovaCap[] = INCBIN_COMP("graphics/pokemon/pikachu/unova_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuKalosCap[] = INCBIN_COMP("graphics/pokemon/pikachu/kalos_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuAlolaCap[] = INCBIN_COMP("graphics/pokemon/pikachu/alola_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuPartnerCap[] = INCBIN_COMP("graphics/pokemon/pikachu/partner_cap/overworld.4bpp");
-    const u32 gObjectEventPic_PikachuWorldCap[] = INCBIN_COMP("graphics/pokemon/pikachu/world_cap/overworld.4bpp"); 
+    //const u32 gObjectEventPic_PikachuOriginalCap[] = INCBIN_COMP("graphics/pokemon/pikachu/original_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuHoennCap[] = INCBIN_COMP("graphics/pokemon/pikachu/hoenn_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuSinnohCap[] = INCBIN_COMP("graphics/pokemon/pikachu/sinnoh_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuUnovaCap[] = INCBIN_COMP("graphics/pokemon/pikachu/unova_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuKalosCap[] = INCBIN_COMP("graphics/pokemon/pikachu/kalos_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuAlolaCap[] = INCBIN_COMP("graphics/pokemon/pikachu/alola_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuPartnerCap[] = INCBIN_COMP("graphics/pokemon/pikachu/partner_cap/overworld.4bpp");
+    //const u32 gObjectEventPic_PikachuWorldCap[] = INCBIN_COMP("graphics/pokemon/pikachu/world_cap/overworld.4bpp"); 
 #endif //P_CAP_PIKACHU_FORMS
 
 #if P_GIGANTAMAX_FORMS
@@ -3344,13 +3344,15 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Dudunsparce[] = INCBIN_U8("graphics/pokemon/dudunsparce/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Dudunsparce[] = INCBIN_COMP("graphics/pokemon/dudunsparce/overworld.4bpp");     
+    const u32 gObjectEventPic_DudunsparceTwoSegment[] = INCBIN_COMP("graphics/pokemon/dudunsparce/overworld.4bpp");     
 
     const u32 gMonFrontPic_DudunsparceTwoSegment[] = INCBIN_U32("graphics/pokemon/dudunsparce/front.4bpp.lz");
     const u32 gMonBackPic_DudunsparceTwoSegment[] = INCBIN_U32("graphics/pokemon/dudunsparce/back.4bpp.lz");
 
     const u32 gMonFrontPic_DudunsparceThreeSegment[] = INCBIN_U32("graphics/pokemon/dudunsparce/three_segment/front.4bpp.lz");
     const u32 gMonBackPic_DudunsparceThreeSegment[] = INCBIN_U32("graphics/pokemon/dudunsparce/three_segment/back.4bpp.lz");
+    const u32 gObjectEventPic_DudunsparceThreeSegmentBig[] = INCBIN_COMP("graphics/pokemon/dudunsparce/three_segment/overworld_big.4bpp"); 
+    const u32 gObjectEventPic_DudunsparceThreeSegmentSmall[] = INCBIN_COMP("graphics/pokemon/dudunsparce/three_segment/overworld_small.4bpp"); 
 #endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_DUNSPARCE
 
@@ -6489,7 +6491,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_DialgaOrigin[] = INCBIN_U32("graphics/pokemon/dialga/origin/normal.gbapal.lz");
     const u32 gMonBackPic_DialgaOrigin[] = INCBIN_U32("graphics/pokemon/dialga/origin/back.4bpp.lz");
     const u32 gMonShinyPalette_DialgaOrigin[] = INCBIN_U32("graphics/pokemon/dialga/origin/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_DialgaOrigin[] = INCBIN_COMP("graphics/pokemon/dialga/origin/overworld.4bpp");  
+    const u32 gObjectEventPic_DialgaOriginSmall[] = INCBIN_COMP("graphics/pokemon/dialga/origin/overworld_small.4bpp");
+    const u32 gObjectEventPic_DialgaOriginBig[] = INCBIN_COMP("graphics/pokemon/dialga/origin/overworld_big.4bpp"); 
 #endif //P_FAMILY_DIALGA
 
 #if P_FAMILY_PALKIA
@@ -6500,13 +6503,15 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Palkia[] = INCBIN_U8("graphics/pokemon/palkia/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Palkia[] = INCBIN_COMP("graphics/pokemon/palkia/overworld.4bpp");   
+    const u32 gObjectEventPic_PalkiaSmall[] = INCBIN_COMP("graphics/pokemon/palkia/overworld_small.4bpp");   
+    const u32 gObjectEventPic_PalkiaBig[] = INCBIN_COMP("graphics/pokemon/palkia/overworld_big.4bpp");
 
     const u32 gMonFrontPic_PalkiaOrigin[] = INCBIN_U32("graphics/pokemon/palkia/origin/front.4bpp.lz");
     const u32 gMonPalette_PalkiaOrigin[] = INCBIN_U32("graphics/pokemon/palkia/origin/normal.gbapal.lz");
     const u32 gMonBackPic_PalkiaOrigin[] = INCBIN_U32("graphics/pokemon/palkia/origin/back.4bpp.lz");
     const u32 gMonShinyPalette_PalkiaOrigin[] = INCBIN_U32("graphics/pokemon/palkia/origin/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_PalkiaOrigin[] = INCBIN_COMP("graphics/pokemon/palkia/origin/overworld.4bpp");  
+    const u32 gObjectEventPic_PalkiaOriginBig[] = INCBIN_COMP("graphics/pokemon/palkia/origin/overworld_big.4bpp");
+    const u32 gObjectEventPic_PalkiaOriginSmall[] = INCBIN_COMP("graphics/pokemon/palkia/origin/overworld_small.4bpp");  
 #endif //P_FAMILY_PALKIA
 
 #if P_FAMILY_HEATRAN
@@ -6528,7 +6533,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Regigigas[] = INCBIN_U8("graphics/pokemon/regigigas/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Regigigas[] = INCBIN_COMP("graphics/pokemon/regigigas/overworld.4bpp");   
+    const u32 gObjectEventPic_RegigigasBig[] = INCBIN_COMP("graphics/pokemon/regigigas/overworld_big.4bpp");
+    const u32 gObjectEventPic_RegigigasSmall[] = INCBIN_COMP("graphics/pokemon/regigigas/overworld_small.4bpp");   
 #endif //P_FAMILY_REGIGIGAS
 
 #if P_FAMILY_GIRATINA
@@ -6539,7 +6545,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_GiratinaAltered[] = INCBIN_U8("graphics/pokemon/giratina/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_GiratinaAltered[] = INCBIN_COMP("graphics/pokemon/giratina/overworld.4bpp");   
+    const u32 gObjectEventPic_GiratinaAlteredSmall[] = INCBIN_COMP("graphics/pokemon/giratina/overworld_small.4bpp");   
+    const u32 gObjectEventPic_GiratinaAlteredBig[] = INCBIN_COMP("graphics/pokemon/giratina/overworld_big.4bpp");   
 
     const u32 gMonFrontPic_GiratinaOrigin[] = INCBIN_U32("graphics/pokemon/giratina/origin/anim_front.4bpp.lz");
     const u32 gMonPalette_GiratinaOrigin[] = INCBIN_U32("graphics/pokemon/giratina/origin/normal.gbapal.lz");
@@ -6548,7 +6555,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_GiratinaOrigin[] = INCBIN_U8("graphics/pokemon/giratina/origin/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_GiratinaOrigin[] = INCBIN_COMP("graphics/pokemon/giratina/origin/overworld.4bpp");   
+    const u32 gObjectEventPic_GiratinaOriginSmall[] = INCBIN_COMP("graphics/pokemon/giratina/origin/overworld_small.4bpp");
+    const u32 gObjectEventPic_GiratinaOriginBig[] = INCBIN_COMP("graphics/pokemon/giratina/origin/overworld_big.4bpp");   
 #endif //P_FAMILY_GIRATINA
 
 #if P_FAMILY_CRESSELIA
@@ -6672,7 +6680,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_ArceusFairy[] = INCBIN_U32("graphics/pokemon/arceus/fairy/shiny.gbapal.lz");
 
     const u32 gObjectEventPic_ArceusBig[] = INCBIN_COMP("graphics/pokemon/arceus/overworld_big.4bpp");
-    const u32 gObjectEventPic_ArceusSmall[] = INCBIN_COMP("graphics/pokemon/arceus/overworld_small.4bpp");                                
+    const u32 gObjectEventPic_ArceusSmall[] = INCBIN_COMP("graphics/pokemon/arceus/overworld_small.4bpp");                            
 #endif //P_FAMILY_ARCEUS
 
 #if P_FAMILY_VICTINI
@@ -8385,7 +8393,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Reshiram[] = INCBIN_U8("graphics/pokemon/reshiram/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Reshiram[] = INCBIN_COMP("graphics/pokemon/reshiram/overworld.4bpp");   
+    const u32 gObjectEventPic_ReshiramBig[] = INCBIN_COMP("graphics/pokemon/reshiram/overworld_big.4bpp");
+    const u32 gObjectEventPic_ReshiramSmall[] = INCBIN_COMP("graphics/pokemon/reshiram/overworld_small.4bpp");
 #endif //P_FAMILY_RESHIRAM
 
 #if P_FAMILY_ZEKROM
@@ -8396,7 +8405,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Zekrom[] = INCBIN_U8("graphics/pokemon/zekrom/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Zekrom[] = INCBIN_COMP("graphics/pokemon/zekrom/overworld.4bpp");   
+    const u32 gObjectEventPic_ZekromBig[] = INCBIN_COMP("graphics/pokemon/zekrom/overworld_big.4bpp");
+    const u32 gObjectEventPic_ZekromSmall[] = INCBIN_COMP("graphics/pokemon/zekrom/overworld_small.4bpp");  
 #endif //P_FAMILY_ZEKROM
 
 #if P_FAMILY_LANDORUS
@@ -8441,7 +8451,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Kyurem[] = INCBIN_U8("graphics/pokemon/kyurem/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Kyurem[] = INCBIN_COMP("graphics/pokemon/kyurem/overworld.4bpp");   
+    const u32 gObjectEventPic_KyuremBig[] = INCBIN_COMP("graphics/pokemon/kyurem/overworld_big.4bpp");   
+    const u32 gObjectEventPic_KyuremSmall[] = INCBIN_COMP("graphics/pokemon/kyurem/overworld_small.4bpp"); 
 
 #if P_FUSION_FORMS
     const u32 gMonFrontPic_KyuremWhite[] = INCBIN_U32("graphics/pokemon/kyurem/white/anim_front.4bpp.lz");
@@ -9472,13 +9483,15 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Xerneas[] = INCBIN_U8("graphics/pokemon/xerneas/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_XerneasNeutral[] = INCBIN_COMP("graphics/pokemon/xerneas/overworld.4bpp");   
+    const u32 gObjectEventPic_XerneasNeutralBig[] = INCBIN_COMP("graphics/pokemon/xerneas/overworld_big.4bpp");   
+    const u32 gObjectEventPic_XerneasNeutralSmall[] = INCBIN_COMP("graphics/pokemon/xerneas/overworld_small.4bpp"); 
 
     const u32 gMonFrontPic_XerneasActive[] = INCBIN_U32("graphics/pokemon/xerneas/active/anim_front.4bpp.lz");
     const u32 gMonPalette_XerneasActive[] = INCBIN_U32("graphics/pokemon/xerneas/active/normal.gbapal.lz");
     const u32 gMonBackPic_XerneasActive[] = INCBIN_U32("graphics/pokemon/xerneas/active/back.4bpp.lz");
     const u32 gMonShinyPalette_XerneasActive[] = INCBIN_U32("graphics/pokemon/xerneas/active/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_XerneasActive[] = INCBIN_COMP("graphics/pokemon/xerneas/active/overworld.4bpp");     
+    const u32 gObjectEventPic_XerneasActiveBig[] = INCBIN_COMP("graphics/pokemon/xerneas/active/overworld_big.4bpp");
+    const u32 gObjectEventPic_XerneasActiveSmall[] = INCBIN_COMP("graphics/pokemon/xerneas/active/overworld_small.4bpp");    
 #endif //P_FAMILY_XERNEAS
 
 #if P_FAMILY_YVELTAL
@@ -9489,7 +9502,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Yveltal[] = INCBIN_U8("graphics/pokemon/yveltal/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Yveltal[] = INCBIN_COMP("graphics/pokemon/yveltal/overworld.4bpp");   
+    const u32 gObjectEventPic_YveltalBig[] = INCBIN_COMP("graphics/pokemon/yveltal/overworld_big.4bpp");
+    const u32 gObjectEventPic_YveltalSmall[] = INCBIN_COMP("graphics/pokemon/yveltal/overworld_small.4bpp"); 
 #endif //P_FAMILY_YVELTAL
 
 #if P_FAMILY_ZYGARDE
@@ -9500,8 +9514,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Zygarde[] = INCBIN_U8("graphics/pokemon/zygarde/footprint.1bpp");
 #endif //P_FOOTPRINTS
- 
-    const u32 gObjectEventPic_Zygarde50[] = INCBIN_COMP("graphics/pokemon/zygarde/overworld.4bpp");   
+    const u32 gObjectEventPic_Zygarde50Big[] = INCBIN_COMP("graphics/pokemon/zygarde/overworld_big.4bpp");   
+    const u32 gObjectEventPic_Zygarde50Small[] = INCBIN_COMP("graphics/pokemon/zygarde/overworld_small.4bpp"); 
 
     const u32 gMonFrontPic_Zygarde10[] = INCBIN_U32("graphics/pokemon/zygarde/10_percent/anim_front.4bpp.lz");
     const u32 gMonPalette_Zygarde10[] = INCBIN_U32("graphics/pokemon/zygarde/10_percent/normal.gbapal.lz");
@@ -9549,7 +9563,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_HoopaUnbound[] = INCBIN_U32("graphics/pokemon/hoopa/unbound/normal.gbapal.lz");
     const u32 gMonBackPic_HoopaUnbound[] = INCBIN_U32("graphics/pokemon/hoopa/unbound/back.4bpp.lz");
     const u32 gMonShinyPalette_HoopaUnbound[] = INCBIN_U32("graphics/pokemon/hoopa/unbound/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_HoopaUnbound[] = INCBIN_COMP("graphics/pokemon/hoopa/unbound/overworld.4bpp");   
+    const u32 gObjectEventPic_HoopaUnboundBig[] = INCBIN_COMP("graphics/pokemon/hoopa/unbound/overworld_big.4bpp");
+    const u32 gObjectEventPic_HoopaUnboundSmall[] = INCBIN_COMP("graphics/pokemon/hoopa/unbound/overworld_small.4bpp");   
 #endif //P_FAMILY_HOOPA
 
 #if P_FAMILY_VOLCANION
@@ -9764,25 +9779,22 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Oricorio[] = INCBIN_U8("graphics/pokemon/oricorio/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_OricorioBaile[] = INCBIN_COMP("graphics/pokemon/oricorio/overworld.4bpp");   
+    const u32 gObjectEventPic_Oricorio[] = INCBIN_COMP("graphics/pokemon/oricorio/overworld.4bpp");   
 
     const u32 gMonFrontPic_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/front.4bpp.lz");
     const u32 gMonPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/normal.gbapal.lz");
     const u32 gMonBackPic_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/back.4bpp.lz");
     const u32 gMonShinyPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_OricorioPomPom[] = INCBIN_COMP("graphics/pokemon/oricorio/pom_pom/overworld.4bpp");     
 
     const u32 gMonFrontPic_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/front.4bpp.lz");
     const u32 gMonPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/normal.gbapal.lz");
     const u32 gMonBackPic_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/back.4bpp.lz");
     const u32 gMonShinyPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_OricorioPau[] = INCBIN_COMP("graphics/pokemon/oricorio/pau/overworld.4bpp");     
 
     const u32 gMonFrontPic_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/front.4bpp.lz");
     const u32 gMonPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/normal.gbapal.lz");
     const u32 gMonBackPic_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/back.4bpp.lz");
-    const u32 gMonShinyPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_OricorioSensu[] = INCBIN_COMP("graphics/pokemon/oricorio/sensu/overworld.4bpp");     
+    const u32 gMonShinyPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/shiny.gbapal.lz");      
 #endif //P_FAMILY_ORICORIO
 
 #if P_FAMILY_CUTIEFLY
@@ -11033,7 +11045,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Hydrapple[] = INCBIN_U8("graphics/pokemon/hydrapple/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Hydrapple[] = INCBIN_COMP("graphics/pokemon/hydrapple/overworld.4bpp");     
+    const u32 gObjectEventPic_HydrappleBig[] = INCBIN_COMP("graphics/pokemon/hydrapple/overworld_big.4bpp");
+    const u32 gObjectEventPic_HydrappleSmall[] = INCBIN_COMP("graphics/pokemon/hydrapple/overworld_small.4bpp");      
 #endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_APPLIN
 
@@ -12085,19 +12098,16 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 
     const u32 gMonPalette_SquawkabillyGreenPlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/normal.gbapal.lz");
     const u32 gMonShinyPalette_SquawkabillyGreenPlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_SquawkabillyGreenPlumage[] = INCBIN_COMP("graphics/pokemon/squawkabilly/green_plumage/overworld.4bpp");     
+    const u32 gObjectEventPic_Squawkabilly[] = INCBIN_COMP("graphics/pokemon/squawkabilly/overworld.4bpp");     
 
     const u32 gMonPalette_SquawkabillyBluePlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/blue_plumage/normal.gbapal.lz");
     const u32 gMonShinyPalette_SquawkabillyBluePlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/blue_plumage/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_SquawkabillyBluePlumage[] = INCBIN_COMP("graphics/pokemon/squawkabilly/blue_plumage/overworld.4bpp");     
 
     const u32 gMonPalette_SquawkabillyYellowPlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/yellow_plumage/normal.gbapal.lz");
     const u32 gMonShinyPalette_SquawkabillyYellowPlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/yellow_plumage/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_SquawkabillyYellowPlumage[] = INCBIN_COMP("graphics/pokemon/squawkabilly/yellow_plumage/overworld.4bpp");     
 
     const u32 gMonPalette_SquawkabillyWhitePlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/white_plumage/normal.gbapal.lz");
-    const u32 gMonShinyPalette_SquawkabillyWhitePlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/white_plumage/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_SquawkabillyWhitePlumage[] = INCBIN_COMP("graphics/pokemon/squawkabilly/white_plumage/overworld.4bpp");     
+    const u32 gMonShinyPalette_SquawkabillyWhitePlumage[] = INCBIN_U32("graphics/pokemon/squawkabilly/white_plumage/shiny.gbapal.lz");      
 #endif //P_FAMILY_SQUAWKABILLY
 
 #if P_FAMILY_NACLI
@@ -12579,7 +12589,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_TatsugiriCurly[] = INCBIN_COMP("graphics/pokemon/tatsugiri/curly/overworld.4bpp");     
+    const u32 gObjectEventPic_TatsugiriCurly[] = INCBIN_COMP("graphics/pokemon/tatsugiri/overworld.4bpp");     
 
     const u32 gMonFrontPic_TatsugiriDroopy[] = INCBIN_U32("graphics/pokemon/tatsugiri/droopy/front.4bpp.lz");
     const u32 gMonPalette_TatsugiriDroopy[] = INCBIN_U32("graphics/pokemon/tatsugiri/droopy/normal.gbapal.lz");
@@ -12858,7 +12868,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Koraidon[] = INCBIN_U8("graphics/pokemon/koraidon/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Koraidon[] = INCBIN_COMP("graphics/pokemon/koraidon/overworld.4bpp");     
+    const u32 gObjectEventPic_KoraidonSmall[] = INCBIN_COMP("graphics/pokemon/koraidon/overworld_small.4bpp");
+    const u32 gObjectEventPic_KoraidonBig[] = INCBIN_COMP("graphics/pokemon/koraidon/overworld_big.4bpp");   
 #endif //P_FAMILY_KORAIDON
 
 #if P_FAMILY_MIRAIDON
@@ -12869,7 +12880,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Miraidon[] = INCBIN_U8("graphics/pokemon/miraidon/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Miraidon[] = INCBIN_COMP("graphics/pokemon/miraidon/overworld.4bpp");     
+    const u32 gObjectEventPic_MiraidonBig[] = INCBIN_COMP("graphics/pokemon/miraidon/overworld_big.4bpp");
+    const u32 gObjectEventPic_MiraidonSmall[] = INCBIN_COMP("graphics/pokemon/miraidon/overworld_small.4bpp");       
 #endif //P_FAMILY_MIRAIDON
 
 #if P_FAMILY_WALKING_WAKE
@@ -13016,7 +13028,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_RagingBolt[] = INCBIN_U8("graphics/pokemon/raging_bolt/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_RagingBolt[] = INCBIN_COMP("graphics/pokemon/raging_bolt/overworld.4bpp");     
+    const u32 gObjectEventPic_RagingBoltBig[] = INCBIN_COMP("graphics/pokemon/raging_bolt/overworld_big.4bpp");
+    const u32 gObjectEventPic_RagingBoltSmall[] = INCBIN_COMP("graphics/pokemon/raging_bolt/overworld_small.4bpp");      
 #endif //P_FAMILY_RAGING_BOLT
 
 #if P_FAMILY_IRON_BOULDER
@@ -13067,7 +13080,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_TerapagosStellar[] = INCBIN_U8("graphics/pokemon/terapagos/stellar/footprint.1bpp");
 #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_TerapagosStellar[] = INCBIN_COMP("graphics/pokemon/terapagos/stellar/overworld.4bpp");     
+    const u32 gObjectEventPic_TerapagosStellarBig[] = INCBIN_COMP("graphics/pokemon/terapagos/stellar/overworld_big.4bpp");
+    const u32 gObjectEventPic_TerapagosStellarSmall[] = INCBIN_COMP("graphics/pokemon/terapagos/stellar/overworld_small.4bpp"); 
 #endif //P_FAMILY_TERAPAGOS
 
 #if P_FAMILY_PECHARUNT

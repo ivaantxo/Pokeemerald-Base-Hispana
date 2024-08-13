@@ -1348,10 +1348,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioBaile,
         .shinyPalette = gMonShinyPalette_OricorioBaile,
-        .iconSprite = gObjectEventPic_OricorioBaile, 
+        .iconSprite = gObjectEventPic_Oricorio, 
         FOOTPRINT(Oricorio)
         OVERWORLD(
-            sPicTable_OricorioBaile,
+            sPicTable_Oricorio,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
@@ -1409,8 +1409,14 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioPomPom,
         .shinyPalette = gMonShinyPalette_OricorioPomPom,
-        .iconSprite = gObjectEventPic_OricorioPomPom, 
+        .iconSprite = gObjectEventPic_Oricorio, 
         FOOTPRINT(Oricorio)
+        OVERWORLD(
+            sPicTable_Oricorio,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sOricorioLevelUpLearnset,
         .teachableLearnset = sOricorioTeachableLearnset,
         .eggMoveLearnset = sOricorioEggMoveLearnset,
@@ -1464,8 +1470,14 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioPau,
         .shinyPalette = gMonShinyPalette_OricorioPau,
-        .iconSprite = gObjectEventPic_OricorioPau, 
+        .iconSprite = gObjectEventPic_Oricorio, 
         FOOTPRINT(Oricorio)
+        OVERWORLD(
+            sPicTable_Oricorio,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sOricorioLevelUpLearnset,
         .teachableLearnset = sOricorioTeachableLearnset,
         .eggMoveLearnset = sOricorioEggMoveLearnset,
@@ -1519,8 +1531,14 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioSensu,
         .shinyPalette = gMonShinyPalette_OricorioSensu,
-        .iconSprite = gObjectEventPic_OricorioSensu, 
+        .iconSprite = gObjectEventPic_Oricorio, 
         FOOTPRINT(Oricorio)
+        OVERWORLD(
+            sPicTable_Oricorio,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sOricorioLevelUpLearnset,
         .teachableLearnset = sOricorioTeachableLearnset,
         .eggMoveLearnset = sOricorioEggMoveLearnset,
@@ -4358,6 +4376,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MimikyuBusted,
         .iconSprite = gObjectEventPic_MimikyuBusted, 
         FOOTPRINT(Mimikyu)
+        OVERWORLD(
+            sPicTable_MimikyuBusted,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sMimikyuLevelUpLearnset,
         .teachableLearnset = sMimikyuTeachableLearnset,
         .eggMoveLearnset = sMimikyuEggMoveLearnset,
@@ -6047,6 +6072,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_NecrozmaUltra,
         .iconSprite = gObjectEventPic_NecrozmaUltra, 
         FOOTPRINT(Necrozma)
+        OVERWORLD(
+            sPicTable_NecrozmaUltra,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            sAnimTable_Following_Asym,
+        )
         .isLegendary = TRUE,
         .isUltraBurst = TRUE,
         .cannotBeTraded = TRUE,

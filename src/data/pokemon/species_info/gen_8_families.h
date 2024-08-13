@@ -2561,8 +2561,19 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Hydrapple,
         .shinyPalette = gMonShinyPalette_Hydrapple,
-        .iconSprite = gObjectEventPic_Hydrapple, 
+        .iconSprite = gObjectEventPic_HydrappleSmall, 
         FOOTPRINT(Hydrapple)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_HydrappleBig,
+            SIZE_64x64,
+        #else
+            sPicTable_HydrappleSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+        )
         .levelUpLearnset = sHydrappleLevelUpLearnset,
         .teachableLearnset = sHydrappleTeachableLearnset,
     },
@@ -4549,12 +4560,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gObjectEventPic_AlcremieGigantamaxSmall, 
         FOOTPRINT(Alcremie)
         OVERWORLD(
-            sPicTable_Alcremie,
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_AlcreamieGigantamaxBig,
             SIZE_64x64,
+        #else
+            sPicTable_AlcreamieGigantamaxSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,
             TRACKS_SPOT,
-            gMonPalette_AlcremieGigantamax,
-            gMonShinyPalette_AlcremieGigantamax
         )
         .isGigantamax = TRUE,
         .levelUpLearnset = sAlcremieLevelUpLearnset,
@@ -7224,11 +7238,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         FOOTPRINT(Enamorus)
         OVERWORLD(
             sPicTable_EnamorusIncarnate,
-            SIZE_64x64,
+            SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_NONE
-            //, gOverworldPalette_EnamorusIncarnate
-            //, gShinyOverworldPalette_EnamorusIncarnate
         )
         .isLegendary = TRUE,
         .levelUpLearnset = sEnamorusLevelUpLearnset,
@@ -7285,11 +7297,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         FOOTPRINT(Enamorus)
         OVERWORLD(
             sPicTable_EnamorusTherian,
-            SIZE_64x64,
+            SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_NONE
-            //, gOverworldPalette_EnamorusTherian
-            //, gShinyOverworldPalette_EnamorusTherian
         )
         .isLegendary = TRUE,
         .levelUpLearnset = sEnamorusLevelUpLearnset,

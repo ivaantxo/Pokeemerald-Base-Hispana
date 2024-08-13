@@ -1475,7 +1475,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         /*.backAnimId = BACK_ANIM_NONE,*/
         .palette = gMonPalette_SquawkabillyGreenPlumage,
         .shinyPalette = gMonShinyPalette_SquawkabillyGreenPlumage,
-        .iconSprite = gObjectEventPic_SquawkabillyGreenPlumage, 
+        .iconSprite = gObjectEventPic_Squawkabilly, 
         FOOTPRINT(Squawkabilly)
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,
         .teachableLearnset = sSquawkabillyTeachableLearnset,
@@ -1528,7 +1528,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         /*.backAnimId = BACK_ANIM_NONE,*/
         .palette = gMonPalette_SquawkabillyBluePlumage,
         .shinyPalette = gMonShinyPalette_SquawkabillyBluePlumage,
-        .iconSprite = gObjectEventPic_SquawkabillyBluePlumage, 
+        .iconSprite = gObjectEventPic_Squawkabilly, 
         FOOTPRINT(Squawkabilly)
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,
         .teachableLearnset = sSquawkabillyTeachableLearnset,
@@ -1581,7 +1581,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         /*.backAnimId = BACK_ANIM_NONE,*/
         .palette = gMonPalette_SquawkabillyYellowPlumage,
         .shinyPalette = gMonShinyPalette_SquawkabillyYellowPlumage,
-        .iconSprite = gObjectEventPic_SquawkabillyYellowPlumage, 
+        .iconSprite = gObjectEventPic_Squawkabilly, 
         FOOTPRINT(Squawkabilly)
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,
         .teachableLearnset = sSquawkabillyTeachableLearnset,
@@ -1634,7 +1634,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         /*.backAnimId = BACK_ANIM_NONE,*/
         .palette = gMonPalette_SquawkabillyWhitePlumage,
         .shinyPalette = gMonShinyPalette_SquawkabillyWhitePlumage,
-        .iconSprite = gObjectEventPic_SquawkabillyWhitePlumage, 
+        .iconSprite = gObjectEventPic_Squawkabilly, 
         FOOTPRINT(Squawkabilly)
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,
         .teachableLearnset = sSquawkabillyTeachableLearnset,
@@ -4141,6 +4141,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Dondozo,
         .iconSprite = gObjectEventPic_DondozoSmall, 
         FOOTPRINT(Dondozo)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_DondozoBig,
+            SIZE_64x64,
+        #else
+            sPicTable_DondozoSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_SPOT
+        )
         .levelUpLearnset = sDondozoLevelUpLearnset,
         .teachableLearnset = sDondozoTeachableLearnset,
         .eggMoveLearnset = sDondozoEggMoveLearnset,
@@ -5660,8 +5671,19 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Koraidon,
         .shinyPalette = gMonShinyPalette_Koraidon,
-        .iconSprite = gObjectEventPic_Koraidon, 
+        .iconSprite = gObjectEventPic_KoraidonSmall, 
         FOOTPRINT(Koraidon)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_KoraidonBig,
+            SIZE_64x64,
+        #else
+            sPicTable_KoraidonSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sKoraidonLevelUpLearnset,
@@ -5715,8 +5737,19 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Miraidon,
         .shinyPalette = gMonShinyPalette_Miraidon,
-        .iconSprite = gObjectEventPic_Miraidon, 
+        .iconSprite = gObjectEventPic_MiraidonSmall, 
         FOOTPRINT(Miraidon)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_MiraidonBig,
+            SIZE_64x64,
+        #else
+            sPicTable_MiraidonSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sMiraidonLevelUpLearnset,
@@ -5986,6 +6019,13 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Sinistcha,
         .iconSprite = gObjectEventPic_Sinistcha, 
         FOOTPRINT(Sinistcha)
+        OVERWORLD(
+            sPicTable_Sinistcha,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sSinistchaLevelUpLearnset,
         .teachableLearnset = sSinistchaTeachableLearnset,
     },
@@ -6037,6 +6077,13 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Sinistcha,
         .iconSprite = gObjectEventPic_Sinistcha, 
         FOOTPRINT(Sinistcha)
+        OVERWORLD(
+            sPicTable_Sinistcha,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sSinistchaLevelUpLearnset,
         .teachableLearnset = sSinistchaTeachableLearnset,
     },
@@ -6651,8 +6698,20 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_TerapagosStellar,
         .shinyPalette = gMonShinyPalette_TerapagosStellar,
-        .iconSprite = gObjectEventPic_TerapagosStellar, 
+        .iconSprite = gObjectEventPic_TerapagosStellarSmall, 
         FOOTPRINT(TerapagosStellar)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_TerapagosStellarBig,
+            SIZE_64x64,
+        #else
+            sPicTable_TerapagosStellarSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            sAnimTable_Following_Asym,
+        )
         .isLegendary = TRUE,
         .isTeraForm = TRUE,
         .isFrontierBanned = TRUE,
