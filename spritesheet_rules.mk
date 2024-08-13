@@ -2126,6 +2126,9 @@ $(POKEMONGFXDIR)/lampent/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/landorus/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/landorus/therian/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/lanturn/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
@@ -3419,6 +3422,9 @@ $(POKEMONGFXDIR)/throh/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/thundurus/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/thundurus/therian/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/thwackey/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
@@ -3465,6 +3471,9 @@ $(POKEMONGFXDIR)/torkoal/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/tornadus/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+$(POKEMONGFXDIR)/tornadus/therian/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/torracat/overworld.4bpp: %.4bpp: %.png
@@ -3842,7 +3851,7 @@ $(POKEMONGFXDIR)/alcremie/gigantamax/overworld_big.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/alcremie/gigantamax/overworld_small.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/alcremie/strawberry/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/alcremie/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/altaria/mega/overworld.4bpp: %.4bpp: %.png
@@ -4628,7 +4637,7 @@ $(POKEMONGFXDIR)/vulpix/alolan/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/weezing/galarian/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/wooper/wooper_paldean/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/wooper/paldean/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/wormadam/sandy_cloak/overworld.4bpp: %.4bpp: %.png
@@ -4637,7 +4646,10 @@ $(POKEMONGFXDIR)/wormadam/sandy_cloak/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/wormadam/trash_cloak/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/xerneas/active/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/xerneas/active/overworld_big.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 8
+
+$(POKEMONGFXDIR)/xerneas/active/overworld_small.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/yamask/galarian/overworld.4bpp: %.4bpp: %.png

@@ -3904,7 +3904,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
             sPicTable_Silvally,                                             \
             SIZE_32x32,                                                     \
             SHADOW_SIZE_M,                                                  \
-            TRACKS_FOOT,                                                    \  
+            TRACKS_FOOT,                                                    \
         )                                                                   \
         .levelUpLearnset = sSilvallyLevelUpLearnset,                        \
         .teachableLearnset = sSilvallyTeachableLearnset,                    \
@@ -3958,6 +3958,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .trainerScale = 256,                                                \
         .trainerOffset = 0,                                                 \
         FOOTPRINT(Minior)                                                   \
+        .iconSprite = gObjectEventPic_Minior,                               \
+        OVERWORLD(                                                          \
+            sPicTable_Minior,                                               \
+            SIZE_32x32,                                                     \
+            SHADOW_SIZE_M,                                                  \
+            TRACKS_NONE,                                                    \
+        )                                                                   \
         .levelUpLearnset = sMiniorLevelUpLearnset,                          \
         .teachableLearnset = sMiniorTeachableLearnset,                      \
         .formSpeciesIdTable = sMiniorFormSpeciesIdTable
@@ -3984,13 +3991,6 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/                   \
         .palette = gMonPalette_MiniorMeteor,                \
         .shinyPalette = gMonShinyPalette_MiniorMeteor,      \
-        .iconSprite = gObjectEventPic_MiniorMeteor,                \
-        OVERWORLD(                                          \
-            sPicTable_MiniorMeteor,                         \
-            SIZE_32x32,                                     \
-            SHADOW_SIZE_M,                                  \
-            TRACKS_FOOT,                                    \  
-        )                                                   \
         .formChangeTable = sMinior ##Form##FormChangeTable, \
         MINIOR_MISC_INFO(BODY_COLOR_BROWN),                 \
     }
@@ -4017,7 +4017,6 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/                       \
         .palette = gMonPalette_MiniorCore##Form,                \
         .shinyPalette = gMonShinyPalette_MiniorCore,            \
-        .iconSprite = gObjectEventPic_MiniorCore##Form,                \
         .formChangeTable = sMinior ##Form##FormChangeTable,     \
         MINIOR_MISC_INFO(color),                                \
     }

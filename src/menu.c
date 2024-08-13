@@ -2076,11 +2076,6 @@ static void UNUSED UnusedBlitBitmapRect(const struct Bitmap *src, struct Bitmap 
     }
 }
 
-static void UNUSED DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y)
-{
-    BlitBitmapToWindow(windowId, GetMonIconPtr(speciesId, personality), x, y, 32, 32);
-}
-
 void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
 {
     const u16 *palette;

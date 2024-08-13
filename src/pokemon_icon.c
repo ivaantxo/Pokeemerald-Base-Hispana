@@ -12,7 +12,7 @@
 struct MonIconSpriteTemplate
 {
     const struct OamData *oam;
-    const u8 *image;
+    const u32 *image;
     const union AnimCmd *const *anims;
     const union AffineAnimCmd *const *affineAnims;
     void (*callback)(struct Sprite *);
@@ -222,7 +222,7 @@ u16 GetIconSpeciesNoPersonality(u16 species)
     return GetIconSpecies(species, 0);
 }
 
-const u8 *GetMonIconPtr(u16 species, u32 personality)
+const u32 *GetMonIconPtr(u16 species, u32 personality)
 {
     return GetMonIconTiles(GetIconSpecies(species, personality), personality);
 }
@@ -256,9 +256,9 @@ void SpriteCB_MonIcon(struct Sprite *sprite)
     UpdateMonIconFrame(sprite);
 }
 
-const u8 *GetMonIconTiles(u16 species, u32 personality)
+const u32 *GetMonIconTiles(u16 species, u32 personality)
 {
-    const u8 *iconSprite;
+    const u32 *iconSprite;
 
     if (species > NUM_SPECIES)
         species = SPECIES_NONE;

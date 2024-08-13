@@ -4450,13 +4450,13 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         /*.backAnimId = BACK_ANIM_NONE,*/                                                       \
         .palette = gMonPalette_Alcremie ##sweet##cream,                                         \
         .shinyPalette = gMonShinyPalette_Alcremie ##sweet,                                      \
-        .iconSprite = gObjectEventPic_AlcremieStrawberryVanillaCream, /*AlcremieStrawberry##cream##*/  \
+        .iconSprite = gObjectEventPic_Alcremie,                                                 \
         FOOTPRINT(Alcremie)                                                                     \
         OVERWORLD(                                                                              \
-            sPicTable_AlcremieStrawberry, /*Alcremie ##sweet*/                                  \
+            sPicTable_Alcremie,                                                                 \
             SIZE_32x32,                                                                         \
             SHADOW_SIZE_M,                                                                      \
-            TRACKS_FOOT,                                                                        \  
+            TRACKS_FOOT,                                                                        \
         )                                                                                       \
         .levelUpLearnset = sAlcremieLevelUpLearnset,                                            \
         .teachableLearnset = sAlcremieTeachableLearnset,                                        \
@@ -4561,10 +4561,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         FOOTPRINT(Alcremie)
         OVERWORLD(
         #if OW_LARGE_OW_SUPPORT
-            sPicTable_AlcreamieGigantamaxBig,
+            sPicTable_AlcremieGigantamaxBig,
             SIZE_64x64,
         #else
-            sPicTable_AlcreamieGigantamaxSmall,
+            sPicTable_AlcremieGigantamaxSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,

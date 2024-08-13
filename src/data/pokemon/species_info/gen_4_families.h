@@ -1870,7 +1870,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             sPicTable_Mothim,                                               \
             SIZE_32x32,                                                     \
             SHADOW_SIZE_M,                                                  \
-            TRACKS_FOOT,                                                    \  
+            TRACKS_FOOT,                                                    \
         )                                                                   \
         .levelUpLearnset = sMothimLevelUpLearnset,                          \
         .teachableLearnset = sMothimTeachableLearnset,                      \
@@ -3859,7 +3859,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPaletteFemale = gMonShinyPalette_HippopotasF,
         .iconSprite = gObjectEventPic_Hippopotas, 
     #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_HippopotasF,
+        //.iconSpriteFemale = gObjectEventPic_HippopotasF,
     #endif
         FOOTPRINT(Hippopotas)
         OVERWORLD(
@@ -3923,7 +3923,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPaletteFemale = gMonShinyPalette_HippowdonF,
         .iconSprite = gObjectEventPic_Hippowdon, 
     #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_HippowdonF,
+        //.iconSpriteFemale = gObjectEventPic__HippowdonF,
     #endif
         FOOTPRINT(Hippowdon)
         OVERWORLD(
@@ -6127,6 +6127,14 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     #define ARCEUS_EXP_YIELD 255
 #endif
 
+#if OW_LARGE_SUPPORT
+    #define ARCEUS_PIC_TABLE sPicTable_ArceusBig
+    #define ARCEUS_SIZE SIZE_64x64
+#else
+    #define ARCEUS_PIC_TABLE sPicTable_ArceusSmall
+    #define ARCEUS_SIZE SIZE_32x32
+#endif //OW_LARGE_SUPPORT
+
 #define ARCEUS_SPECIES_INFO(type, typeName)                                 \
     {                                                                       \
         .baseHP        = 120,                                               \
@@ -6170,17 +6178,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_Arceus ##typeName,                 \
         .iconSprite = gObjectEventPic_ArceusSmall,                          \
         FOOTPRINT(Arceus)                                                   \
-        OVERWORLD(                                                          \
-        #if OW_LARGE_OW_SUPPORT                                             \
-            sPicTable_ArceusBig,                                            \
-            SIZE_64x64,                                                     \
-        #else                                                               \
-            sPicTable_ArceusSmall,                                          \
-            SIZE_32x32,                                                     \
-        #endif //OW_LARGE_OW_SUPPORT                                        \
-            SHADOW_SIZE_M,                                                  \
-            TRACKS_FOOT,                                                    \
-        )                                                                   \
+        OVERWORLD(ARCEUS_PIC_TABLE, ARCEUS_SIZE, SHADOW_SIZE_M, TRACKS_FOOT)\
         .levelUpLearnset = sArceusLevelUpLearnset,                          \
         .teachableLearnset = sArceusTeachableLearnset,                      \
         .formSpeciesIdTable = sArceusFormSpeciesIdTable,                    \

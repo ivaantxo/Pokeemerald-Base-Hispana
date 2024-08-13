@@ -407,8 +407,8 @@ struct SpeciesInfo /*0xC4*/
  /* 0x5C */ const u32 *paletteFemale;
  /* 0x60 */ const u32 *shinyPalette;
  /* 0x64 */ const u32 *shinyPaletteFemale;
- /* 0x68 */ const u8 *iconSprite;
- /* 0x6C */ const u8 *iconSpriteFemale;
+ /* 0x68 */ const u32 *iconSprite;
+ /* 0x6C */ const u32 *iconSpriteFemale;
 #if P_FOOTPRINTS
  /* 0x70 */ const u8 *footprint;
 #endif

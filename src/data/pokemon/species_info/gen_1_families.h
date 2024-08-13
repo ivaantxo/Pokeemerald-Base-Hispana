@@ -2440,15 +2440,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Pikachu,
         .iconSprite = gObjectEventPic_Pikachu, 
     #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_PikachuF,
+        //.iconSpriteFemale = gObjectEventPic_PikachuF,
     #endif
+        FOOTPRINT(Pikachu)
         OVERWORLD(
             sPicTable_Pikachu,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
-        FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2500,7 +2500,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuCosplay,
         .shinyPalette = gMonShinyPalette_PikachuCosplay,
-        .iconSprite = gObjectEventPic_Pikachu //.iconSprite = gObjectEventPic_PikachuCosplay, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuCosplay, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2549,7 +2549,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuRockStar,
         .shinyPalette = gMonShinyPalette_PikachuRockStar,
-        .iconSprite = gObjectEventPic_Pikachu //.iconSprite = gObjectEventPic_PikachuRockStar, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuRockStar, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2599,7 +2599,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuBelle,
         .shinyPalette = gMonShinyPalette_PikachuBelle,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuBelle, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuBelle, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2649,7 +2649,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuPopStar,
         .shinyPalette = gMonShinyPalette_PikachuPopStar,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuPopStar, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuPopStar, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2698,7 +2698,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuPhD,
         .shinyPalette = gMonShinyPalette_PikachuPhD,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuPhD, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuPhD, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2747,7 +2747,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuLibre,
         .shinyPalette = gMonShinyPalette_PikachuLibre,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuLibre, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuLibre, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2804,7 +2804,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuOriginalCap,
         .shinyPalette = gMonShinyPalette_PikachuOriginalCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuOriginalCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuOriginalCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2857,7 +2857,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuHoennCap,
         .shinyPalette = gMonShinyPalette_PikachuHoennCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuHoennCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuHoennCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2910,7 +2910,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuSinnohCap,
         .shinyPalette = gMonShinyPalette_PikachuSinnohCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuSinnohCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuSinnohCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -2963,7 +2963,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuUnovaCap,
         .shinyPalette = gMonShinyPalette_PikachuUnovaCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuUnovaCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuUnovaCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -3016,7 +3016,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuKalosCap,
         .shinyPalette = gMonShinyPalette_PikachuKalosCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuKalosCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuKalosCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -3069,7 +3069,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuAlolaCap,
         .shinyPalette = gMonShinyPalette_PikachuAlolaCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuAlolaCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuAlolaCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -3123,7 +3123,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuPartnerCap,
         .shinyPalette = gMonShinyPalette_PikachuPartnerCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuPartnerCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuPartnerCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -3176,7 +3176,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_PikachuWorldCap,
         .shinyPalette = gMonShinyPalette_PikachuWorldCap,
-        .iconSprite = gObjectEventPic_Pikachu //        .iconSprite = gObjectEventPic_PikachuWorldCap, 
+        .iconSprite = gObjectEventPic_Pikachu, //.iconSprite = gObjectEventPic_PikachuWorldCap, 
         FOOTPRINT(Pikachu)
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
@@ -3289,9 +3289,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         .palette = gMonPalette_Pikachu,
         .shinyPalette = gMonShinyPalette_Pikachu,
-        .iconSprite = gObjectEventPic_PikachuPartner, 
+        .iconSprite = gObjectEventPic_Pikachu, 
     #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_PikachuPartnerF,
+        //.iconSpriteFemale = gObjectEventPic_PikachuPartnerF,
     #endif
         FOOTPRINT(Pikachu)
         .cannotBeTraded = TRUE,
@@ -14950,9 +14950,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .palette = gMonPalette_Eevee,
         .shinyPalette = gMonShinyPalette_Eevee,
-        .iconSprite = gObjectEventPic_EeveePartner, 
+        .iconSprite = gObjectEventPic_Eevee, 
     #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_EeveePartnerF,
+        //.iconSpriteFemale = gObjectEventPic__EeveeF,
     #endif
         FOOTPRINT(Eevee)
         .cannotBeTraded = TRUE,

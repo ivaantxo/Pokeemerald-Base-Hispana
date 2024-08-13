@@ -1304,7 +1304,7 @@ static void CB2_InitRayquazaScene(void)
     ScanlineEffect_Stop();
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
-        if (gObjectEvents[i].graphicsId == OBJ_EVENT_GFX_RAYQUAZA)
+        if (gObjectEvents[i].graphicsId == OBJ_EVENT_GFX_RAYQUAZA_CUTSCENE)
             gObjectEvents[i].invisible = FALSE;
     }
     FreeAllSpritePalettes();

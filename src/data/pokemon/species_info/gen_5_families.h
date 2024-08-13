@@ -1726,7 +1726,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_Unfezant,
         .shinyPaletteFemale = gMonShinyPalette_UnfezantF,
         .iconSprite = gObjectEventPic_Unfezant,
-        .iconSpriteFemale = gMonIcon_UnfezantF, 
+        //.iconSpriteFemale = gObjectEventPic__UnfezantF, 
         FOOTPRINT(Unfezant)
         OVERWORLD(
             sPicTable_Unfezant,
@@ -7331,7 +7331,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_Frillish,
         .shinyPaletteFemale = gMonShinyPalette_FrillishF,
         .iconSprite = gObjectEventPic_Frillish,
-        .iconSpriteFemale = gMonIcon_FrillishF, 
+        //.iconSpriteFemale = gObjectEventPic_FrillishF, 
         FOOTPRINT(Frillish)
         OVERWORLD(
             sPicTable_Frillish,
@@ -7397,7 +7397,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_Jellicent,
         .shinyPaletteFemale = gMonShinyPalette_JellicentF,
         .iconSprite = gObjectEventPic_Jellicent,
-        .iconSpriteFemale = gMonIcon_JellicentF, 
+        //.iconSpriteFemale = gObjectEventPic__JellicentF, 
         FOOTPRINT(Jellicent)
         OVERWORLD(
             sPicTable_Jellicent,
@@ -11427,13 +11427,13 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,                \
         .palette = gMonPalette_##form,                                  \
         .shinyPalette = gMonShinyPalette_##form,                        \
-        .iconSprite = gObjectEventPic_Genesect,                                \
+        .iconSprite = gObjectEventPic_Genesect,                         \
         FOOTPRINT(Genesect)                                             \
         OVERWORLD(                                                      \
             sPicTable_Genesect,                                         \
             SIZE_32x32,                                                 \
             SHADOW_SIZE_M,                                              \
-            TRACKS_FOOT,                                                \  
+            TRACKS_FOOT,                                                \
         )                                                               \
         .levelUpLearnset = sGenesectLevelUpLearnset,                    \
         .teachableLearnset = sGenesectTeachableLearnset,                \

@@ -983,7 +983,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_Scatterbug,                                                           \
             SIZE_32x32,                                                                     \
             SHADOW_SIZE_M,                                                                  \
-            TRACKS_FOOT,                                                                    \  
+            TRACKS_FOOT,                                                                    \
         )                                                                                   \
         .tmIlliterate = TRUE,                                                               \
         .levelUpLearnset = sScatterbugLevelUpLearnset,                                      \
@@ -1061,7 +1061,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_Spewpa,                                                   \
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
-            TRACKS_FOOT,                                                        \  
+            TRACKS_FOOT,                                                        \
         )                                                                       \
         .tmIlliterate = TRUE,                                                   \
         .levelUpLearnset = sSpewpaLevelUpLearnset,                              \
@@ -1139,7 +1139,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_Vivillon ##form,                                                      \
             SIZE_32x32,                                                                     \
             SHADOW_SIZE_M,                                                                  \
-            TRACKS_FOOT,                                                                    \  
+            TRACKS_FOOT,                                                                    \
         )                                                                                   \
         .levelUpLearnset = sVivillonLevelUpLearnset,                                        \
         .teachableLearnset = sVivillonTeachableLearnset,                                    \
@@ -1437,7 +1437,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .palette = gMonPalette_Pyroar,
         .shinyPalette = gMonShinyPalette_Pyroar,
         .iconSprite = gObjectEventPic_Pyroar,
-        .iconSpriteFemale = gMonIcon_PyroarF, 
+        //.iconSpriteFemale = gObjectEventPic__PyroarF, 
         FOOTPRINT(Pyroar)
         OVERWORLD(
             sPicTable_Pyroar,
@@ -1497,7 +1497,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_Flabebe##Form##Flower,                                    \
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
-            TRACKS_FOOT,                                                        \  
+            TRACKS_FOOT,                                                        \
         )                                                                       \
         .levelUpLearnset = sFlabebeLevelUpLearnset,                             \
         .teachableLearnset = sFlabebeTeachableLearnset,                         \
@@ -1581,7 +1581,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_Floette ##form##Flower,                                   \
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
-            TRACKS_FOOT,                                                        \  
+            TRACKS_FOOT,                                                        \
         )                                                                       \
         .formSpeciesIdTable = sFloetteFormSpeciesIdTable
 
@@ -1719,13 +1719,13 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                            \
         .palette = gMonPalette_Florges##Form##Flower,                           \
         .shinyPalette = gMonShinyPalette_Florges##Form##Flower,                 \
-        .iconSprite = gObjectEventPic_Florges##Form##Flower,                           \
+        .iconSprite = gObjectEventPic_Florges##Form##Flower,                    \
         FOOTPRINT(Florges)                                                      \
         OVERWORLD(                                                              \
             sPicTable_Florges ##Form##Flower,                                   \
             SIZE_32x32,                                                         \
             SHADOW_SIZE_M,                                                      \
-            TRACKS_FOOT,                                                        \  
+            TRACKS_FOOT,                                                        \
         )                                                                       \
         .levelUpLearnset = sFlorgesLevelUpLearnset,                             \
         .teachableLearnset = sFlorgesTeachableLearnset,                         \
@@ -2064,7 +2064,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             sPicTable_Furfrou##_form,                                                                   \
             SIZE_32x32,                                                                                 \
             SHADOW_SIZE_M,                                                                              \
-            TRACKS_FOOT,                                                                                \  
+            TRACKS_FOOT,                                                                                \
         )                                                                                               \
         .levelUpLearnset = sFurfrouLevelUpLearnset,                                                     \
         .teachableLearnset = sFurfrouTeachableLearnset,                                                 \
@@ -4299,7 +4299,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gObjectEventPic_Pumpkaboo, 
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_PumpkabooAverage,
+            sPicTable_Pumpkaboo,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
@@ -4524,7 +4524,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gObjectEventPic_Gourgeist, 
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_GourgeistAverage,
+            sPicTable_Gourgeist,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,  

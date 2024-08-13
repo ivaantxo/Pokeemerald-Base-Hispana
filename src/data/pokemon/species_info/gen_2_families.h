@@ -3236,7 +3236,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             sPicTable_Unown ##letter,                                                                   \
             SIZE_32x32,                                                                                 \
             SHADOW_SIZE_M,                                                                              \
-            TRACKS_NONE,                                                                                \  
+            TRACKS_NONE,                                                                                \
         )                                                                                               \
         .levelUpLearnset = sUnownLevelUpLearnset,                                                       \
         .teachableLearnset = sUnownTeachableLearnset,                                                   \
@@ -3388,7 +3388,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Wobbuffet,
         .iconSprite = gObjectEventPic_Wobbuffet, 
     #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_WobbuffetF,
+        //.iconSpriteFemale = gObjectEventPic__WobbuffetF,
     #endif
         FOOTPRINT(Wobbuffet)
         OVERWORLD(
@@ -3811,14 +3811,14 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Dudunsparce,
         .shinyPalette = gMonShinyPalette_Dudunsparce,
-        .iconSprite = gObjectEventPic_DudunsparceThreeSegmentsSmall, 
+        .iconSprite = gObjectEventPic_DudunsparceThreeSegmentSmall, 
         FOOTPRINT(Dudunsparce)
         OVERWORLD(
         #if OW_LARGE_OW_SUPPORT
-            sPicTable_DudunsparceThreeSegmentsBig,
+            sPicTable_DudunsparceThreeSegmentBig,
             SIZE_64x64,
         #else
-            sPicTable_DudunsparceThreeSegmentsSmall,
+            sPicTable_DudunsparceThreeSegmentSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
             SHADOW_SIZE_M,

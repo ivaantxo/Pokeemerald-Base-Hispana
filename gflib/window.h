@@ -71,7 +71,7 @@ u32 GetWindowAttribute(u32 windowId, u32 attributeId);
 u32 AddWindow8Bit(const struct WindowTemplate *template);
 void FillWindowPixelBuffer8Bit(u32 windowId, u8 fillValue);
 void FillWindowPixelRect8Bit(u32 windowId, u8 fillValue, u16 x, u16 y, u16 width, u16 height);
-void BlitBitmapRectToWindow4BitTo8Bit(u32 windowId, const u8 *pixels, u16 srcX, u16 srcY, u16 srcWidth, int srcHeight, u16 destX, u16 destY, u16 rectWidth, u16 rectHeight, u8 paletteNum);
+void BlitBitmapRectToWindow4BitTo8Bit(u32 windowId, const u32 *pixels, u16 srcX, u16 srcY, u16 srcWidth, int srcHeight, u16 destX, u16 destY, u16 rectWidth, u16 rectHeight, u8 paletteNum);
 void CopyWindowToVram8Bit(u32 windowId, u8 mode);
 u32 WindowWidthPx(u32 windowId);
 u32 WindowTemplateWidthPx(const struct WindowTemplate *template);

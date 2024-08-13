@@ -1093,7 +1093,7 @@ static void Task_FlashStarsAndHearts(u8 taskId)
 
 static void LoadContestMonIcon(u16 species, u8 monIndex, u8 srcOffset, u8 useDmaNow, u32 personality)
 {
-    const u8 *iconPtr;
+    const u32 *iconPtr;
     u16 var0, var1;
 
     iconPtr = GetMonIconPtr(species, personality);

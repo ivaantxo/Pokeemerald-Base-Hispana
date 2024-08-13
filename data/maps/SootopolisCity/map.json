@@ -145,7 +145,7 @@
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_KYOGRE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_RAYQUAZA",
+      "graphics_id": "OBJ_EVENT_GFX_RAYQUAZA_CUTSCENE",
       "x": 31,
       "y": 41,
       "elevation": 1,
