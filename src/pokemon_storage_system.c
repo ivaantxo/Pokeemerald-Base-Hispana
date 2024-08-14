@@ -110,9 +110,7 @@ enum {
 // IDs for how to resolve variables in the above messages
 enum {
     MSG_VAR_NONE,
-    MSG_VAR_MON_NAME_1,
-    MSG_VAR_MON_NAME_2, // Unused
-    MSG_VAR_MON_NAME_3, // Unused
+    MSG_VAR_MON_NAME,
     MSG_VAR_RELEASE_MON_1,
     MSG_VAR_RELEASE_MON_2, // Unused
     MSG_VAR_RELEASE_MON_3,
@@ -169,8 +167,6 @@ enum {
 enum {
     INPUT_NONE,
     INPUT_MOVE_CURSOR,
-    INPUT_2, // Unused
-    INPUT_3, // Unused
     INPUT_CLOSE_BOX,
     INPUT_SHOW_PARTY,
     INPUT_HIDE_PARTY,
@@ -1083,10 +1079,10 @@ static const struct StorageMessage sMessages[] =
     [MSG_WHAT_YOU_DO]          = {gText_WhatDoYouWantToDo,       MSG_VAR_NONE},
     [MSG_PICK_A_THEME]         = {gText_PleasePickATheme,        MSG_VAR_NONE},
     [MSG_PICK_A_WALLPAPER]     = {gText_PickTheWallpaper,        MSG_VAR_NONE},
-    [MSG_IS_SELECTED]          = {gText_PkmnIsSelected,          MSG_VAR_MON_NAME_1},
+    [MSG_IS_SELECTED]          = {gText_PkmnIsSelected,          MSG_VAR_MON_NAME},
     [MSG_JUMP_TO_WHICH_BOX]    = {gText_JumpToWhichBox,          MSG_VAR_NONE},
     [MSG_DEPOSIT_IN_WHICH_BOX] = {gText_DepositInWhichBox,       MSG_VAR_NONE},
-    [MSG_WAS_DEPOSITED]        = {gText_PkmnWasDeposited,        MSG_VAR_MON_NAME_1},
+    [MSG_WAS_DEPOSITED]        = {gText_PkmnWasDeposited,        MSG_VAR_MON_NAME},
     [MSG_BOX_IS_FULL]          = {gText_BoxIsFull2,              MSG_VAR_NONE},
     [MSG_RELEASE_POKE]         = {gText_ReleaseThisPokemon,      MSG_VAR_NONE},
     [MSG_WAS_RELEASED]         = {gText_PkmnWasReleased,         MSG_VAR_RELEASE_MON_1},
@@ -1098,7 +1094,7 @@ static const struct StorageMessage sMessages[] =
     [MSG_WHICH_ONE_WILL_TAKE]  = {gText_WhichOneWillYouTake,     MSG_VAR_NONE},
     [MSG_CANT_RELEASE_EGG]     = {gText_YouCantReleaseAnEgg,     MSG_VAR_NONE},
     [MSG_CONTINUE_BOX]         = {gText_ContinueBoxOperations,   MSG_VAR_NONE},
-    [MSG_CAME_BACK]            = {gText_PkmnCameBack,            MSG_VAR_MON_NAME_1},
+    [MSG_CAME_BACK]            = {gText_PkmnCameBack,            MSG_VAR_MON_NAME},
     [MSG_WORRIED]              = {gText_WasItWorriedAboutYou,    MSG_VAR_NONE},
     [MSG_SURPRISE]             = {gText_FourEllipsesExclamation, MSG_VAR_NONE},
     [MSG_PLEASE_REMOVE_MAIL]   = {gText_PleaseRemoveTheMail,     MSG_VAR_NONE},
@@ -4411,9 +4407,7 @@ static void PrintMessage(u8 id)
     {
     case MSG_VAR_NONE:
         break;
-    case MSG_VAR_MON_NAME_1:
-    case MSG_VAR_MON_NAME_2:
-    case MSG_VAR_MON_NAME_3:
+    case MSG_VAR_MON_NAME:
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sStorage->displayMonName);
         break;
     case MSG_VAR_RELEASE_MON_1:

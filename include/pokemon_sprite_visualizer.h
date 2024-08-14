@@ -69,5 +69,4 @@ struct PokemonSpriteVisualizer
 
 void CB2_Pokemon_Sprite_Visualizer(void);
 
-
 #endif // GUARD_POKEMON_SPRITE_VISUALIZER_H
