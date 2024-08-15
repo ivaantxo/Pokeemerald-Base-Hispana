@@ -2383,10 +2383,7 @@
     special SetMonBall
     .endm
 
-    OPEN_PARTY_SCREEN = FALSE
-    NO_PARTY_SCREEN = TRUE
-
-    @ Check if the Player has \speciesId in their party.
+    @ Check if the Player has \speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.
     .macro checkspecies speciesId:req, mode:req
 	setvar VAR_0x8005, \speciesId
     .if \mode == OPEN_PARTY_SCREEN
