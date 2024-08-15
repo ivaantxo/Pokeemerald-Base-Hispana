@@ -2349,7 +2349,7 @@
     @ The result is stored in VAR_RESULT
     .macro getseenmon species:req
     setvar VAR_0x8005, \species
-	setvar VAR_0x8006, 0
+	setvar VAR_0x8006, FLAG_GET_SEEN
     specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
@@ -2357,21 +2357,21 @@
     @ The result is stored in VAR_RESULT
     .macro getcaughtmon species:req
     setvar VAR_0x8005, \species
-	setvar VAR_0x8006, 1
+	setvar VAR_0x8006, FLAG_GET_CAUGHT
     specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
     @ Sets the Pokédex Seen flag of the specified Pokemon
     .macro setseenmon species:req
     setvar VAR_0x8005, \species
-	setvar VAR_0x8006, 2
+	setvar VAR_0x8006, FLAG_SET_SEEN
     specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
     @ Sets the Pokédex Caught flag of the specified Pokemon
     .macro setcaughtmon species:req
     setvar VAR_0x8005, \species
-	setvar VAR_0x8006, 3
+	setvar VAR_0x8006, FLAG_SET_CAUGHT
     specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 

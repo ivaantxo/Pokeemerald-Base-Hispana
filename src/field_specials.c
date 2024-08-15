@@ -30,6 +30,7 @@
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokeblock.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
@@ -68,7 +69,6 @@
 #include "constants/metatile_labels.h"
 #include "palette.h"
 #include "battle_util.h"
-#include "pokedex.h"
 
 #define TAG_ITEM_ICON 5500
 
