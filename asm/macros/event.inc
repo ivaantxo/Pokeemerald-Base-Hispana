@@ -2407,8 +2407,8 @@
 	.endm
 
 	@ Gets the facing direction of a given event object and stores it in the variable \dest.
-    .macro getobjectfacingdirection evObjId:req, dest:req
-    setvar VAR_0x8005, \evObjId
+    .macro getobjectfacingdirection localId:req, dest:req
+    setvar VAR_0x8005, \localId
     specialvar \dest, Script_GetObjectFacingDirection
     .endm
 
