@@ -4270,58 +4270,58 @@ void PreparePartyForSkyBattle(void)
 
 void GetObjectPosition(void)
 {
-	u32 localId = gSpecialVar_0x8000;
-	u32 useTemplate = gSpecialVar_0x8001;
-	u32 objectId;
-	struct ObjectEvent* objEvent;
+    u32 localId = gSpecialVar_0x8000;
+    u32 useTemplate = gSpecialVar_0x8001;
+    u32 objectId;
+    struct ObjectEvent* objEvent;
 
-	u16 *x = &gSpecialVar_0x8007;
-	u16 *y = &gSpecialVar_0x8008;
+    u16 *x = &gSpecialVar_0x8007;
+    u16 *y = &gSpecialVar_0x8008;
 
-	if (useTemplate)
-	{
-		const struct ObjectEventTemplate *objTemplate = FindObjectEventTemplateByLocalId(localId, gSaveBlock1Ptr->objectEventTemplates, gMapHeader.events->objectEventCount);
-		*x = objTemplate->x;
-		*y = objTemplate->y;
-		return;
-	}
+    if (useTemplate)
+    {
+        const struct ObjectEventTemplate *objTemplate = FindObjectEventTemplateByLocalId(localId, gSaveBlock1Ptr->objectEventTemplates, gMapHeader.events->objectEventCount);
+        *x = objTemplate->x;
+        *y = objTemplate->y;
+        return;
+    }
 
-	objectId = GetObjectEventIdByLocalId(localId);
-	objEvent = &gObjectEvents[objectId];
-	*x = objEvent->currentCoords.x - 7;
-	*y = objEvent->currentCoords.y - 7;
+    objectId = GetObjectEventIdByLocalId(localId);
+    objEvent = &gObjectEvents[objectId];
+    *x = objEvent->currentCoords.x - 7;
+    *y = objEvent->currentCoords.y - 7;
 }
 
 bool32 CheckObjectAtXY(void)
 {
-	u32 x = gSpecialVar_0x8005 + 7;
-	u32 y = gSpecialVar_0x8006 + 7;
-	u32 i;
+    u32 x = gSpecialVar_0x8005 + 7;
+    u32 y = gSpecialVar_0x8006 + 7;
+    u32 i;
 
-	for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
-	{
-		if (!gObjectEvents[i].active)
-			continue;
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (!gObjectEvents[i].active)
+            continue;
 
-		if (gObjectEvents[i].currentCoords.x != x)
-			continue;
+        if (gObjectEvents[i].currentCoords.x != x)
+            continue;
 
-		if (gObjectEvents[i].currentCoords.y != y)
-			continue;
-		return TRUE;
-	}
-	return FALSE;
+        if (gObjectEvents[i].currentCoords.y != y)
+            continue;
+        return TRUE;
+    }
+    return FALSE;
 }
 
 bool32 Script_GetSetPokedexFlag(void)
 {
-	u32 speciesId = SpeciesToNationalPokedexNum(gSpecialVar_0x8005);
-	bool32 desiredFlag = gSpecialVar_0x8006;
+    u32 speciesId = SpeciesToNationalPokedexNum(gSpecialVar_0x8005);
+    bool32 desiredFlag = gSpecialVar_0x8006;
 
-	if (desiredFlag == FLAG_SET_CAUGHT)
-		GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
+    if (desiredFlag == FLAG_SET_CAUGHT)
+        GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
 
-	return GetSetPokedexFlag(speciesId,desiredFlag);
+    return GetSetPokedexFlag(speciesId,desiredFlag);
 }
 
 void SetMonBall(void)
@@ -4332,9 +4332,9 @@ void SetMonBall(void)
 
 bool32 CheckPartyHasSpecie(void)
 {
-	u32 partyIndex;
+    u32 partyIndex;
 
-	for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
+    for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
         if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES) == gSpecialVar_0x8005)
             return TRUE;
 
@@ -4343,6 +4343,6 @@ bool32 CheckPartyHasSpecie(void)
 
 bool32 CheckChosenMonMatchDesiredSpecie(void)
 {
-	return (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == gSpecialVar_0x8005);
+    return (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == gSpecialVar_0x8005);
 }
 
