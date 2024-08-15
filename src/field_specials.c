@@ -4301,15 +4301,16 @@ bool32 CheckObjectAtXY(void)
 	for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
 	{
 		if (!gObjectEvents[i].active)
-			return FALSE;
+			continue;
 
 		if (gObjectEvents[i].currentCoords.x != x)
-			return FALSE;
+			continue;
 
 		if (gObjectEvents[i].currentCoords.y != y)
-			return FALSE;
+			continue;
+		return TRUE;
 	}
-	return TRUE;
+	return FALSE;
 }
 
 bool32 Script_GetSetPokedexFlag(void)
