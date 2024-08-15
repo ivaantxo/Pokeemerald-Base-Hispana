@@ -2328,13 +2328,22 @@
 	.2byte \itemId
 	.endm
 
-    CURRENT_POSITION = FALSE
-    TEMPLATE_POSITION = TRUE
-
-	@ Stores the CURRENT / TEMPLATE position of the given object in VAR_0x8007 (x) and VAR_0x8008 (y)
+	@ Stores the position of the given object in VAR_0x8007 (x) and VAR_0x8008 (y). Mode CURRENT_POSITION will take the object's current position. Mode TEMPLATE_POSITION will takje the object's template position.
 	.macro getobjectxy localId:req, posType:req
 	setvar VAR_0x8000, \localId
 	setvar VAR_0x8001, \posType
+	special GetObjectPosition
+	.endm
+
+	.macro getobjecttemplatexy localId:req
+	setvar VAR_0x8000, \localId
+	setvar VAR_0x8001, TEMPLATE_POSITION
+	special GetObjectPosition
+	.endm
+
+	.macro getobjectcurrentxy localId:req
+	setvar VAR_0x8000, \localId
+	setvar VAR_0x8001, CURRENT_POSITION
 	special GetObjectPosition
 	.endm
 
