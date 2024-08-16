@@ -448,9 +448,8 @@ struct SpeciesInfo /*0xC4*/
  /* 0x8C */ const struct Evolution *evolutions;
  /* 0x90 */ const u16 *formSpeciesIdTable;
  /* 0x94 */ const struct FormChange *formChangeTable;
-#if OW_POKEMON_OBJECT_EVENTS
  /* 0x98 */ struct ObjectEventGraphicsInfo overworldData;
-#endif //OW_POKEMON_OBJECT_EVENTS
+            struct ObjectEventGraphicsInfo overworldDataFemale;
 };
 
 struct MoveInfo

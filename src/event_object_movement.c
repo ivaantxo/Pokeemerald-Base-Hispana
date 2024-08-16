@@ -1845,7 +1845,6 @@ struct ObjectEvent *GetFollowerObject(void)
 static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, u8 form)
 {
     const struct ObjectEventGraphicsInfo *graphicsInfo = NULL;
-#if OW_POKEMON_OBJECT_EVENTS
     switch (species)
     {
     case SPECIES_UNOWN: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
@@ -1856,6 +1855,19 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
         graphicsInfo = &gSpeciesInfo[species].overworldData;
         break;
     }
+
+    if (gSpeciesInfo[species].frontPicFemale != NULL)
+    {
+        if(form == 0)
+        {
+            graphicsInfo = &gSpeciesInfo[species].overworldData;
+        }
+        else
+        {
+            graphicsInfo = &gSpeciesInfo[species].overworldDataFemale;
+        }
+    }
+
     // Try to avoid OOB or undefined access
     if ((graphicsInfo->tileTag == 0 && species < NUM_SPECIES) || (graphicsInfo->tileTag != TAG_NONE && species >= NUM_SPECIES))
     {
@@ -1863,7 +1875,6 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
             return &gSpeciesInfo[SPECIES_NONE].overworldData;
         return NULL;
     }
-#endif // OW_POKEMON_OBJECT_EVENTS
     return graphicsInfo;
 }
 
@@ -1988,6 +1999,10 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
     }
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *shiny = IsMonShiny(mon);
+    if (gSpeciesInfo[*species].frontPicFemale != NULL)
+    {
+        *form = GetMonGender(mon);
+    }
     switch (*species)
     {
     case SPECIES_UNOWN:

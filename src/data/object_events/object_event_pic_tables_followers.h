@@ -13,6 +13,9 @@ static const struct SpriteFrameImage sPicTable_Ivysaur[] = {
 static const struct SpriteFrameImage sPicTable_Venusaur[] = {
     overworld_ascending_frames(gObjectEventPic_Venusaur, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_VenusaurF[] = {
+    overworld_ascending_frames(gObjectEventPic_VenusaurF, 4, 4),
+};
 #if P_MEGA_EVOLUTIONS
 static const struct SpriteFrameImage sPicTable_VenusaurMega[] = {
     overworld_ascending_frames(gObjectEventPic_VenusaurMega, 4, 4),

@@ -6,7 +6,6 @@
 #include "pokemon_sprite_visualizer.h"
 #include "pokemon_icon.h"
 #include "sprite.h"
-#include "data.h"
 #include "constants/pokemon_icon.h"
 
 struct MonIconSpriteTemplate
@@ -332,8 +331,7 @@ u8 UpdateMonIconFrame(struct Sprite *sprite)
 static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x, s16 y, u8 subpriority)
 {
     u8 spriteId;
-
-    struct SpriteFrameImage image = { NULL, sSpriteImageSizes[iconTemplate->oam->shape][iconTemplate->oam->size] };
+    struct SpriteFrameImage image = {NULL, sSpriteImageSizes[iconTemplate->oam->shape][iconTemplate->oam->size]};
 
     struct SpriteTemplate spriteTemplate =
     {
@@ -355,7 +353,7 @@ static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x,
 
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite)
 {
-    struct SpriteFrameImage image = { NULL, sSpriteImageSizes[sprite->oam.shape][sprite->oam.size] };
+    struct SpriteFrameImage image = {NULL, sSpriteImageSizes[sprite->oam.shape][sprite->oam.size]};
     sprite->images = &image;
     DestroySprite(sprite);
 }
