@@ -2,7 +2,6 @@ static const struct SpriteFrameImage sPicTable_Substitute[] = {
     overworld_ascending_frames(gObjectEventPic_Substitute, 4, 4),
 };
 
-#if OW_POKEMON_OBJECT_EVENTS
 #if P_FAMILY_BULBASAUR
 static const struct SpriteFrameImage sPicTable_Bulbasaur[] = {
     overworld_ascending_frames(gObjectEventPic_Bulbasaur, 4, 4),
@@ -6205,5 +6204,3 @@ static const struct SpriteFrameImage sPicTable_Pecharunt[] = {
     overworld_ascending_frames(gObjectEventPic_Pecharunt, 4, 4),
 };
 #endif //P_FAMILY_PECHARUNT
-
-#endif //OW_POKEMON_OBJECT_EVENTS

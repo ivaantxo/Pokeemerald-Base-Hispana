@@ -14,9 +14,6 @@
 #define SIZE_32x32 1
 #define SIZE_64x64 0
 
-// Set .compressed = OW_GFX_COMPRESS
-#define COMP OW_GFX_COMPRESS
-
 //Para indicar que un Follower no es asimétrico (Es decir, tiene dos frames adicionales mirando a la derecha, que no son solo espejados de mirando a la izquierda),
 //añadimos un parámetro extra en OVERWORLD, que es sAnimTable_Following_Asym.
 #define OVERWORLD(picTable, _size, shadow, _tracks, ...)                                    \
@@ -30,7 +27,7 @@
     .paletteSlot = PALSLOT_NPC_1,                                                           \
     .shadowSize = shadow,                                                                   \
     .inanimate = FALSE,                                                                     \
-    .compressed = COMP,                                                                     \
+    .compressed = FALSE,                                                                    \
     .tracks = _tracks,                                                                      \
     .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
     .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
@@ -50,7 +47,7 @@
     .paletteSlot = PALSLOT_NPC_1,                                                           \
     .shadowSize = shadow,                                                                   \
     .inanimate = FALSE,                                                                     \
-    .compressed = COMP,                                                                     \
+    .compressed = FALSE,                                                                    \
     .tracks = _tracks,                                                                      \
     .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
     .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
@@ -103,7 +100,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_CircledQuestionMark,
         .iconSprite = gObjectEventPic_Substitute,
         FOOTPRINT(QuestionMark)
-    #if OW_POKEMON_OBJECT_EVENTS
         .overworldData = {
             .tileTag = TAG_NONE,
             .paletteTag = OBJ_EVENT_PAL_TAG_SUBSTITUTE,
@@ -114,7 +110,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             .paletteSlot = PALSLOT_NPC_1,
             .shadowSize = SHADOW_SIZE_M,
             .inanimate = FALSE,
-            .compressed = COMP,
+            .compressed = FALSE,
             .tracks = TRACKS_FOOT,
             .oam = &gObjectEventBaseOam_32x32,
             .subspriteTables = sOamTables_32x32,
@@ -122,7 +118,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
             .images = sPicTable_Substitute,
             .affineAnims = gDummySpriteAffineAnimTable,
         },
-    #endif
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sNoneEggMoveLearnset,

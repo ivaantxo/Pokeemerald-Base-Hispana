@@ -1,9 +1,7 @@
 #include "global.h"
 #include "data.h"
 #include "graphics.h"
-#include "decompress.h"
 #include "mail.h"
-#include "malloc.h"
 #include "palette.h"
 #include "pokemon_sprite_visualizer.h"
 #include "pokemon_icon.h"
@@ -335,7 +333,6 @@ static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x,
 {
     u8 spriteId;
     struct SpriteFrameImage image = {NULL, sSpriteImageSizes[iconTemplate->oam->shape][iconTemplate->oam->size]};
-    void *decompressionIconBuffer = Alloc(3072);
 
     struct SpriteTemplate spriteTemplate =
     {
@@ -348,13 +345,11 @@ static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x,
         .callback = iconTemplate->callback,
     };
 
-    LZ77UnCompVram(iconTemplate->image, decompressionIconBuffer);
     spriteId = CreateSprite(&spriteTemplate, x, y, subpriority);
     gSprites[spriteId].animPaused = TRUE;
     gSprites[spriteId].animBeginning = FALSE;
-    gSprites[spriteId].images = (const struct SpriteFrameImage *)decompressionIconBuffer;
+    gSprites[spriteId].images = (const struct SpriteFrameImage *)iconTemplate->image;
     return spriteId;
-    Free(decompressionIconBuffer);
 }
 
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite)
