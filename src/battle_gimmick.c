@@ -45,7 +45,7 @@ bool32 IsGimmickSelected(u32 battler, enum Gimmick gimmick)
 {
     // There's no player select in tests, but some gimmicks need to test choice before they are fully activated.
     if (TESTING)
-        return (gBattleStruct->gimmick.toActivate & gBitTable[battler]) && gBattleStruct->gimmick.usableGimmick[battler] == gimmick;
+        return (gBattleStruct->gimmick.toActivate & (1u << battler)) && gBattleStruct->gimmick.usableGimmick[battler] == gimmick;
     else
         return gBattleStruct->gimmick.usableGimmick[battler] == gimmick && gBattleStruct->gimmick.playerSelect;
 }
@@ -99,7 +99,7 @@ bool32 HasTrainerUsedGimmick(u32 battler, enum Gimmick gimmick)
     if (IsDoubleBattle()
         && IsPartnerMonFromSameTrainer(battler)
         && (gBattleStruct->gimmick.activated[BATTLE_PARTNER(battler)][gimmick]
-        || ((gBattleStruct->gimmick.toActivate & gBitTable[BATTLE_PARTNER(battler)]
+        || ((gBattleStruct->gimmick.toActivate & (1u << BATTLE_PARTNER(battler))
         && gBattleStruct->gimmick.usableGimmick[BATTLE_PARTNER(battler)] == gimmick))))
     {
         return TRUE;
