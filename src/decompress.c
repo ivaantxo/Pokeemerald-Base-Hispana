@@ -6,7 +6,7 @@
 #include "pokemon_sprite_visualizer.h"
 #include "text.h"
 
-EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
+EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[16384] = {0};
 
 void LZDecompressWram(const u32 *src, void *dest)
 {

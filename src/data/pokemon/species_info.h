@@ -39,8 +39,8 @@
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },
 
-#define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)                                    \
-.overworldDataFemale = {                                                                          \
+#define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)                             \
+.overworldDataFemale = {                                                                    \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \

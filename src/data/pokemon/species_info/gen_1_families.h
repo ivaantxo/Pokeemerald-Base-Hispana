@@ -179,6 +179,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Venusaur,
         .shinyPalette = gMonShinyPalette_Venusaur,
         .iconSprite = gObjectEventPic_Venusaur,
+        .iconSpriteFemale = gObjectEventPic_VenusaurF,
         FOOTPRINT(Venusaur)
         OVERWORLD(
             sPicTable_Venusaur,
