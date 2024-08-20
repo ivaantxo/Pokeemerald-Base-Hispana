@@ -1142,13 +1142,20 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .palette = gMonPalette_Butterfree,
         .shinyPalette = gMonShinyPalette_Butterfree,
-        .iconSprite = gObjectEventPic_Butterfree, 
+        .iconSprite = gObjectEventPic_Butterfree,
+        .iconSpriteFemale = gObjectEventPic_ButterfreeF,
         FOOTPRINT(Butterfree)
         OVERWORLD(
             sPicTable_Butterfree,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_ButterfreeF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
         )
         .levelUpLearnset = sButterfreeLevelUpLearnset,
         .teachableLearnset = sButterfreeTeachableLearnset,
@@ -1401,7 +1408,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             sPicTable_Beedrill,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .levelUpLearnset = sBeedrillLevelUpLearnset,
         .teachableLearnset = sBeedrillTeachableLearnset,
@@ -1589,7 +1596,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             sPicTable_Pidgeotto,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .levelUpLearnset = sPidgeottoLevelUpLearnset,
         .teachableLearnset = sPidgeottoTeachableLearnset,
@@ -1662,7 +1669,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             sPicTable_Pidgeot,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .levelUpLearnset = sPidgeotLevelUpLearnset,
         .teachableLearnset = sPidgeotTeachableLearnset,
@@ -1777,10 +1784,17 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .palette = gMonPalette_Rattata,
         .shinyPalette = gMonShinyPalette_Rattata,
-        .iconSprite = gObjectEventPic_Rattata, 
+        .iconSprite = gObjectEventPic_Rattata,
+        .iconSpriteFemale = gObjectEventPic_RattataF,
         FOOTPRINT(Rattata)
         OVERWORLD(
             sPicTable_Rattata,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,  
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_RattataF,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
@@ -1841,10 +1855,17 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .palette = gMonPalette_Raticate,
         .shinyPalette = gMonShinyPalette_Raticate,
-        .iconSprite = gObjectEventPic_Raticate, 
+        .iconSprite = gObjectEventPic_Raticate,
+        .iconSpriteFemale = gObjectEventPic_RaticateF,
         FOOTPRINT(Raticate)
         OVERWORLD(
             sPicTable_Raticate,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,  
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_RaticateF,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,  
@@ -1894,11 +1915,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_RattataAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_RattataAlolan,
         .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .palette = gMonPalette_RattataAlolan,
         .shinyPalette = gMonShinyPalette_RattataAlolan,
         .iconSprite = gObjectEventPic_RattataAlolan, 
@@ -1953,11 +1974,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_RaticateAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_H_SHAKE,
         .backPic = gMonBackPic_RaticateAlolan,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .palette = gMonPalette_RaticateAlolan,
         .shinyPalette = gMonShinyPalette_RaticateAlolan,
         .iconSprite = gObjectEventPic_RaticateAlolan, 

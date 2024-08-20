@@ -178,7 +178,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
     #if P_FOOTPRINTS
         const u8 gMonFootprint_Butterfree[] = INCBIN_U8("graphics/pokemon/butterfree/footprint.1bpp");
     #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Butterfree[] = INCBIN_U32("graphics/pokemon/butterfree/overworld.4bpp");   
+    const u32 gObjectEventPic_Butterfree[] = INCBIN_U32("graphics/pokemon/butterfree/overworld.4bpp");
+    const u32 gObjectEventPic_ButterfreeF[] = INCBIN_U32("graphics/pokemon/butterfree/overworldf.4bpp");  
 
     const u32 gMonFrontPic_ButterfreeF[] = INCBIN_U32("graphics/pokemon/butterfree/anim_frontf.4bpp.lz");
     const u32 gMonBackPic_ButterfreeF[] = INCBIN_U32("graphics/pokemon/butterfree/backf.4bpp.lz");
@@ -275,6 +276,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
         const u8 gMonFootprint_Rattata[] = INCBIN_U8("graphics/pokemon/rattata/footprint.1bpp");
     #endif //P_FOOTPRINTS 
     const u32 gObjectEventPic_Rattata[] = INCBIN_U32("graphics/pokemon/rattata/overworld.4bpp");   
+    const u32 gObjectEventPic_RattataF[] = INCBIN_U32("graphics/pokemon/rattata/overworldf.4bpp");
 
     const u32 gMonFrontPic_RattataF[] = INCBIN_U32("graphics/pokemon/rattata/anim_frontf.4bpp.lz");
     const u32 gMonBackPic_RattataF[] = INCBIN_U32("graphics/pokemon/rattata/backf.4bpp.lz");
@@ -286,19 +288,20 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
     #if P_FOOTPRINTS
         const u8 gMonFootprint_Raticate[] = INCBIN_U8("graphics/pokemon/raticate/footprint.1bpp");
     #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Raticate[] = INCBIN_U32("graphics/pokemon/raticate/overworld.4bpp");   
+    const u32 gObjectEventPic_Raticate[] = INCBIN_U32("graphics/pokemon/raticate/overworld.4bpp");
+    const u32 gObjectEventPic_RaticateF[] = INCBIN_U32("graphics/pokemon/raticate/overworldf.4bpp");
 
     const u32 gMonFrontPic_RaticateF[] = INCBIN_U32("graphics/pokemon/raticate/anim_frontf.4bpp.lz");
     const u32 gMonBackPic_RaticateF[] = INCBIN_U32("graphics/pokemon/raticate/backf.4bpp.lz");
 
 #if P_ALOLAN_FORMS
-    const u32 gMonFrontPic_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/front.4bpp.lz");
+    const u32 gMonFrontPic_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/anim_front.4bpp.lz");
     const u32 gMonPalette_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/normal.gbapal.lz");
     const u32 gMonBackPic_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/back.4bpp.lz");
     const u32 gMonShinyPalette_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/shiny.gbapal.lz");  
-    const u32 gObjectEventPic_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/overworld.4bpp");   
+    const u32 gObjectEventPic_RattataAlolan[] = INCBIN_U32("graphics/pokemon/rattata/alolan/overworld.4bpp");
 
-    const u32 gMonFrontPic_RaticateAlolan[] = INCBIN_U32("graphics/pokemon/raticate/alolan/front.4bpp.lz");
+    const u32 gMonFrontPic_RaticateAlolan[] = INCBIN_U32("graphics/pokemon/raticate/alolan/anim_front.4bpp.lz");
     const u32 gMonPalette_RaticateAlolan[] = INCBIN_U32("graphics/pokemon/raticate/alolan/normal.gbapal.lz");
     const u32 gMonBackPic_RaticateAlolan[] = INCBIN_U32("graphics/pokemon/raticate/alolan/back.4bpp.lz");
     const u32 gMonShinyPalette_RaticateAlolan[] = INCBIN_U32("graphics/pokemon/raticate/alolan/shiny.gbapal.lz");  

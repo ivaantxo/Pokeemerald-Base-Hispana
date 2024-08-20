@@ -968,6 +968,9 @@ $(POKEMONGFXDIR)/burmy/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/butterfree/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/butterfree/overworldf.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/buzzwole/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
@@ -2849,7 +2852,13 @@ $(POKEMONGFXDIR)/rapidash/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/raticate/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/raticate/overworldf.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/rattata/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+$(POKEMONGFXDIR)/rattata/overworldf.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/rayquaza/overworld_big.4bpp: %.4bpp: %.png

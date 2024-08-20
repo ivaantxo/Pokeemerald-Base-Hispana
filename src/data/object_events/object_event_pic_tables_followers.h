@@ -84,6 +84,9 @@ static const struct SpriteFrameImage sPicTable_Metapod[] = {
 static const struct SpriteFrameImage sPicTable_Butterfree[] = {
     overworld_ascending_frames(gObjectEventPic_Butterfree, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_ButterfreeF[] = {
+    overworld_ascending_frames(gObjectEventPic_ButterfreeF, 4, 4),
+};
 #if P_GIGANTAMAX_FORMS
 static const struct SpriteFrameImage sPicTable_ButterfreeGigantamax[] = {
     overworld_ascending_frames(gObjectEventPic_ButterfreeGigantamax, 4, 4),
@@ -129,8 +132,14 @@ static const struct SpriteFrameImage sPicTable_PidgeotMega[] = {
 static const struct SpriteFrameImage sPicTable_Rattata[] = {
     overworld_ascending_frames(gObjectEventPic_Rattata, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_RattataF[] = {
+    overworld_ascending_frames(gObjectEventPic_RattataF, 4, 4),
+};
 static const struct SpriteFrameImage sPicTable_Raticate[] = {
     overworld_ascending_frames(gObjectEventPic_Raticate, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_RaticateF[] = {
+    overworld_ascending_frames(gObjectEventPic_RaticateF, 4, 4),
 };
 #if P_ALOLAN_FORMS
 static const struct SpriteFrameImage sPicTable_RattataAlolan[] = {

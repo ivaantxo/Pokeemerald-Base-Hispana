@@ -278,8 +278,31 @@ static const union AnimCmd sAnim_Raticate_1[] =
 };
 
 #if P_ALOLAN_FORMS
-PLACEHOLDER_ANIM_SINGLE_FRAME(RattataAlolan);
-PLACEHOLDER_ANIM_SINGLE_FRAME(RaticateAlolan);
+static const union AnimCmd sAnim_RattataAlolan_1[] =
+{
+    ANIMCMD_FRAME(1, 11),
+    ANIMCMD_FRAME(0, 11),
+    ANIMCMD_FRAME(1, 11),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_RaticateAlolan_1[] =
+{
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END,
+};
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_RATTATA
 
