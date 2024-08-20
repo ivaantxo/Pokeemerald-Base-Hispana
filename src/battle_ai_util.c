@@ -482,7 +482,7 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
             return TRUE;
         break;
     case EFFECT_POLTERGEIST:
-        if (AI_DATA->items[battlerDef] == ITEM_NONE)
+        if (AI_DATA->items[battlerDef] == ITEM_NONE || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || battlerDefAbility == ABILITY_KLUTZ)
             return TRUE;
         break;
     case EFFECT_FIRST_TURN_ONLY:
@@ -2513,7 +2513,7 @@ u32 GetBattlerSecondaryDamage(u32 battlerId)
 bool32 BattlerWillFaintFromWeather(u32 battler, u32 ability)
 {
     if ((BattlerAffectedBySandstorm(battler, ability) || BattlerAffectedByHail(battler, ability))
-      && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 16)
+      && gBattleMons[battler].hp <= max(1, gBattleMons[battler].maxHP / 16))
         return TRUE;
 
     return FALSE;
@@ -2522,7 +2522,7 @@ bool32 BattlerWillFaintFromWeather(u32 battler, u32 ability)
 bool32 BattlerWillFaintFromSecondaryDamage(u32 battler, u32 ability)
 {
     if (GetBattlerSecondaryDamage(battler) != 0
-      && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 16)
+      && gBattleMons[battler].hp <= max(1, gBattleMons[battler].maxHP / 16))
         return TRUE;
     return FALSE;
 }

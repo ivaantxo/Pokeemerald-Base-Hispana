@@ -7150,7 +7150,7 @@ BattleScript_TargetFormChangeWithStringNoPopup::
 
 BattleScript_BattlerFormChangeWithStringEnd3::
 	pause 5
-	call BattleScript_AbilityPopUp
+	call BattleScript_AbilityPopUpScripting
 	flushtextbox
 	handleformchange BS_SCRIPTING, 0
 	handleformchange BS_SCRIPTING, 1
@@ -7754,6 +7754,15 @@ BattleScript_CheekPouchActivates::
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	return
 
+BattleScript_PickupActivates::
+	pause 5
+	tryrecycleitem BattleScript_PickupActivatesEnd
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_XFOUNDONEY
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_PickupActivatesEnd:
+	end3
+
 BattleScript_HarvestActivates::
 	pause 5
 	tryrecycleitem BattleScript_HarvestActivatesEnd
@@ -8001,7 +8010,7 @@ BattleScript_DeltaStreamActivates::
 	end3
 
 BattleScript_ProtosynthesisActivates::
-	call BattleScript_AbilityPopUp
+	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_SUNLIGHTACTIVATEDABILITY
 	waitmessage B_WAIT_TIME_MED
 	printstring STRINGID_STATWASHEIGHTENED

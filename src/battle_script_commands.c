@@ -3491,7 +3491,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         && GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) != ABILITY_MAGIC_GUARD)
                 {
                     gBattleScripting.savedBattler = BATTLE_PARTNER(gBattlerTarget);
-                    gBattleMoveDamage = gBattleMons[BATTLE_PARTNER(gBattlerTarget)].hp / 16;
+                    gBattleMoveDamage = gBattleMons[BATTLE_PARTNER(gBattlerTarget)].maxHP / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     gBattlescriptCurrInstr = BattleScript_MoveEffectFlameBurst;
@@ -7281,18 +7281,31 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
 
         gDisableStructs[battler].truantSwitchInHack = 0;
 
-        for (i = 0; i < gBattlersCount; i++)
-        {
-            if (i != battler
-             && GetBattlerAbility(i) == ABILITY_TRACE
-             && AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, i, 0, 0, 0))
-                return TRUE;
-        }
-
         if (DoSwitchInAbilities(battler) || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battler, FALSE))
             return TRUE;
         else if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0))
             return TRUE;
+
+        for (i = 0; i < gBattlersCount; i++)
+        {
+            if (i == battler)
+                continue;
+
+            switch (GetBattlerAbility(i))
+            {
+            case ABILITY_TRACE:
+                if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, i, 0, 0, 0))
+                    return TRUE;
+                break;
+            case ABILITY_FORECAST:
+            case ABILITY_FLOWER_GIFT:
+            case ABILITY_ICE_FACE:
+            case ABILITY_PROTOSYNTHESIS:
+                if (AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, i, 0, 0, 0))
+                    return TRUE;
+                break;
+            }
+        }
 
         gDisableStructs[battler].stickyWebDone = FALSE;
         gDisableStructs[battler].spikesDone = FALSE;
@@ -8060,6 +8073,7 @@ static void Cmd_removeitem(void)
         gBattleStruct->usedHeldItems[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = itemId; // Remember if switched out
 
     gBattleMons[battler].item = ITEM_NONE;
+    gBattleStruct->canPickupItem |= (1u << battler);
     CheckSetUnburden(battler);
 
     BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[battler].item), &gBattleMons[battler].item);
@@ -14845,7 +14859,10 @@ static void Cmd_tryrecycleitem(void)
 
     u16 *usedHeldItem;
 
-    usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)];
+    if (gCurrentMove == MOVE_NONE && GetBattlerAbility(gBattlerAttacker) == ABILITY_PICKUP)
+        usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)];
+    else
+        usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gBattlerAttacker]][GetBattlerSide(gBattlerAttacker)];
     if (*usedHeldItem != ITEM_NONE && gBattleMons[gBattlerAttacker].item == ITEM_NONE)
     {
         gLastUsedItem = *usedHeldItem;
@@ -15657,17 +15674,26 @@ static void Cmd_swapstatstages(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static u16 *GetBattlerStat(struct BattlePokemon *battler, u32 stat)
+{
+    switch (stat)
+    {
+    case STAT_ATK:   return &battler->attack;
+    case STAT_DEF:   return &battler->defense;
+    case STAT_SPATK: return &battler->spAttack;
+    case STAT_SPDEF: return &battler->spDefense;
+    default:         return NULL;
+    }
+}
+
 static void Cmd_averagestats(void)
 {
     CMD_ARGS(u8 stat);
 
-    u8 stat = cmd->stat;
-    u16 atkStat = *(u16 *)((&gBattleMons[gBattlerAttacker].attack) + (stat - 1));
-    u16 defStat = *(u16 *)((&gBattleMons[gBattlerTarget].attack) + (stat - 1));
-    u16 average = (atkStat + defStat) / 2;
-
-    *(u16 *)((&gBattleMons[gBattlerAttacker].attack) + (stat - 1)) = average;
-    *(u16 *)((&gBattleMons[gBattlerTarget].attack) + (stat - 1)) = average;
+    u16 *stat1 = GetBattlerStat(&gBattleMons[gBattlerAttacker], cmd->stat);
+    u16 *stat2 = GetBattlerStat(&gBattleMons[gBattlerTarget], cmd->stat);
+    u16 avg = (*stat1 + *stat2) / 2;
+    *stat1 = *stat2 = avg;
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
