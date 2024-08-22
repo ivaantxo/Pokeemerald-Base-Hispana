@@ -1334,5 +1334,3 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_Rayquaza = {
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = UpdateRayquazaSpotlightEffect,
 };
-
-static const struct SpritePalette sSpritePalette_Unused = {gObjectEventPal_Npc3, FLDEFF_PAL_TAG_UNKNOWN};

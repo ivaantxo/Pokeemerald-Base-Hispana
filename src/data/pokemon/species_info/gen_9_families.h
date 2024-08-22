@@ -4149,7 +4149,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             sPicTable_DondozoSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_SPOT
         )
         .levelUpLearnset = sDondozoLevelUpLearnset,
@@ -5178,15 +5177,20 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Gimmighoul,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_SHAKE_FLASH_YELLOW_FAST,
         .backPic = gMonBackPic_GimmighoulChest,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_GimmighoulChest,
         .shinyPalette = gMonShinyPalette_GimmighoulChest,
         .iconSprite = gObjectEventPic_GimmighoulChest, 
         FOOTPRINT(GimmighoulChest)
+        OVERWORLD(
+            sPicTable_GimmighoulChest,
+            SIZE_32x32,
+            TRACKS_SPOT
+        )
         .levelUpLearnset = sGimmighoulLevelUpLearnset,
         .teachableLearnset = sGimmighoulTeachableLearnset,
         .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,
@@ -5681,7 +5685,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             sPicTable_KoraidonSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_FOOT
         )
         .isLegendary = TRUE,
@@ -5747,7 +5750,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             sPicTable_MiraidonSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_FOOT
         )
         .isLegendary = TRUE,
@@ -6022,7 +6024,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         OVERWORLD(
             sPicTable_Sinistcha,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_SPOT,
             sAnimTable_Following_Asym,
         )
@@ -6080,7 +6081,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         OVERWORLD(
             sPicTable_Sinistcha,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_SPOT,
             sAnimTable_Following_Asym,
         )
@@ -6708,7 +6708,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             sPicTable_TerapagosStellarSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_SPOT,
             sAnimTable_Following_Asym,
         )

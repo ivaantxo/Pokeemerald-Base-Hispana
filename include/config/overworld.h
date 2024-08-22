@@ -35,7 +35,7 @@
 
 // Overworld Pokémon
 #define OW_SUBSTITUTE_PLACEHOLDER      TRUE       // Use a substitute OW for Pokémon that are missing overworld sprites
-#define OW_LARGE_OW_SUPPORT            TRUE       // If true, adds a small amount of overhead to OW code so that large (48x48, 64x64) OWs will display correctly under bridges, etc.
+#define OW_LARGE_OW_SUPPORT            FALSE      // If true, adds a small amount of overhead to OW code so that large (48x48, 64x64) OWs will display correctly under bridges, etc.
 
 // Follower Pokémon
 #define OW_FOLLOWERS_ENABLED           TRUE       // Enables follower Pokémon, HGSS style. Note that additional scripting may be required for them to be fully supported!

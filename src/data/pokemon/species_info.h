@@ -16,7 +16,7 @@
 
 //Para indicar que un Follower no es asimétrico (Es decir, tiene dos frames adicionales mirando a la derecha, que no son solo espejados de mirando a la izquierda),
 //añadimos un parámetro extra en OVERWORLD, que es sAnimTable_Following_Asym.
-#define OVERWORLD(picTable, _size, shadow, _tracks, ...)                                    \
+#define OVERWORLD(picTable, _size, _tracks, ...)                                            \
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
@@ -25,7 +25,7 @@
     .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
     .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
     .paletteSlot = PALSLOT_NPC_1,                                                           \
-    .shadowSize = shadow,                                                                   \
+    .shadowSize = (_size == SIZE_32x32 ? SHADOW_SIZE_M : SHADOW_SIZE_L),                    \
     .inanimate = FALSE,                                                                     \
     .compressed = FALSE,                                                                    \
     .tracks = _tracks,                                                                      \
@@ -36,7 +36,7 @@
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },
 
-#define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)                             \
+#define OVERWORLD_FEMALE(picTable, _size, _tracks, ...)                                     \
 .overworldDataFemale = {                                                                    \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
@@ -45,7 +45,7 @@
     .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
     .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
     .paletteSlot = PALSLOT_NPC_1,                                                           \
-    .shadowSize = shadow,                                                                   \
+    .shadowSize = (_size == SIZE_32x32 ? SHADOW_SIZE_M : SHADOW_SIZE_L),                    \
     .inanimate = FALSE,                                                                     \
     .compressed = FALSE,                                                                    \
     .tracks = _tracks,                                                                      \

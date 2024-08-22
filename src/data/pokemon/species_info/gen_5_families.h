@@ -54,7 +54,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Victini,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isMythical = TRUE,
@@ -115,7 +114,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Snivy,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSnivyLevelUpLearnset,
@@ -174,7 +172,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Servine,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sServineLevelUpLearnset,
@@ -232,7 +229,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Serperior,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSerperiorLevelUpLearnset,
@@ -291,7 +287,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Tepig,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sTepigLevelUpLearnset,
@@ -350,7 +345,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Pignite,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPigniteLevelUpLearnset,
@@ -409,7 +403,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Emboar,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sEmboarLevelUpLearnset,
@@ -468,7 +461,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Oshawott,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sOshawottLevelUpLearnset,
@@ -527,7 +519,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Dewott,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDewottLevelUpLearnset,
@@ -586,7 +577,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Samurott,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSamurottLevelUpLearnset,
@@ -645,7 +635,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_SamurottHisuian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isHisuianForm = TRUE,
@@ -707,7 +696,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Patrat,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPatratLevelUpLearnset,
@@ -766,7 +754,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Watchog,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sWatchogLevelUpLearnset,
@@ -825,7 +812,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Lillipup,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLillipupLevelUpLearnset,
@@ -884,7 +870,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Herdier,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sHerdierLevelUpLearnset,
@@ -948,7 +933,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Stoutland,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sStoutlandLevelUpLearnset,
@@ -1007,7 +991,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Purrloin,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPurrloinLevelUpLearnset,
@@ -1066,7 +1049,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Liepard,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLiepardLevelUpLearnset,
@@ -1125,7 +1107,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Pansage,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPansageLevelUpLearnset,
@@ -1184,7 +1165,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Simisage,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSimisageLevelUpLearnset,
@@ -1244,7 +1224,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Pansear,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPansearLevelUpLearnset,
@@ -1304,7 +1283,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Simisear,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSimisearLevelUpLearnset,
@@ -1363,7 +1341,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Panpour,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPanpourLevelUpLearnset,
@@ -1422,7 +1399,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Simipour,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSimipourLevelUpLearnset,
@@ -1482,7 +1458,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Munna,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMunnaLevelUpLearnset,
@@ -1542,7 +1517,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Musharna,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMusharnaLevelUpLearnset,
@@ -1601,7 +1575,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Pidove,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPidoveLevelUpLearnset,
@@ -1660,7 +1633,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Tranquill,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sTranquillLevelUpLearnset,
@@ -1731,7 +1703,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Unfezant,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sUnfezantLevelUpLearnset,
@@ -1790,7 +1761,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Blitzle,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBlitzleLevelUpLearnset,
@@ -1849,7 +1819,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Zebstrika,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sZebstrikaLevelUpLearnset,
@@ -1914,7 +1883,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Roggenrola,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sRoggenrolaLevelUpLearnset,
@@ -1980,7 +1948,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Boldore,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBoldoreLevelUpLearnset,
@@ -2051,7 +2018,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Gigalith,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGigalithLevelUpLearnset,
@@ -2111,7 +2077,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Woobat,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sWoobatLevelUpLearnset,
@@ -2171,7 +2136,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Swoobat,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSwoobatLevelUpLearnset,
@@ -2231,7 +2195,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Drilbur,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDrilburLevelUpLearnset,
@@ -2291,7 +2254,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Excadrill,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sExcadrillLevelUpLearnset,
@@ -2352,7 +2314,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Audino,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sAudinoLevelUpLearnset,
@@ -2473,7 +2434,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Timburr,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sTimburrLevelUpLearnset,
@@ -2532,7 +2492,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Gurdurr,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGurdurrLevelUpLearnset,
@@ -2591,7 +2550,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Conkeldurr,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sConkeldurrLevelUpLearnset,
@@ -2650,7 +2608,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Tympole,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sTympoleLevelUpLearnset,
@@ -2709,7 +2666,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Palpitoad,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPalpitoadLevelUpLearnset,
@@ -2773,7 +2729,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Seismitoad,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSeismitoadLevelUpLearnset,
@@ -2833,7 +2788,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Throh,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sThrohLevelUpLearnset,
@@ -2894,7 +2848,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Sawk,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSawkLevelUpLearnset,
@@ -2954,7 +2907,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Sewaddle,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSewaddleLevelUpLearnset,
@@ -3014,7 +2966,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Swadloon,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSwadloonLevelUpLearnset,
@@ -3079,7 +3030,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Leavanny,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLeavannyLevelUpLearnset,
@@ -3143,7 +3093,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Venipede,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sVenipedeLevelUpLearnset,
@@ -3207,7 +3156,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Whirlipede,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sWhirlipedeLevelUpLearnset,
@@ -3276,7 +3224,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Scolipede,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sScolipedeLevelUpLearnset,
@@ -3342,7 +3289,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Cottonee,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCottoneeLevelUpLearnset,
@@ -3402,7 +3348,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Whimsicott,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sWhimsicottLevelUpLearnset,
@@ -3463,7 +3408,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Petilil,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPetililLevelUpLearnset,
@@ -3525,7 +3469,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Lilligant,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLilligantLevelUpLearnset,
@@ -3587,7 +3530,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_LilligantHisuian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isHisuianForm = TRUE,
@@ -3651,7 +3593,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_BasculinRedStriped,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBasculinLevelUpLearnset,
@@ -3712,7 +3653,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_BasculinBlueStriped,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBasculinLevelUpLearnset,
@@ -3774,7 +3714,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_BasculinWhiteStriped,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBasculinWhiteStripedLevelUpLearnset,
@@ -3835,7 +3774,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_BasculegionMale,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBasculegionLevelUpLearnset,
@@ -3893,7 +3831,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_BasculegionFemale,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBasculegionLevelUpLearnset,
@@ -3955,7 +3892,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Sandile,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSandileLevelUpLearnset,
@@ -4015,7 +3951,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Krokorok,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sKrokorokLevelUpLearnset,
@@ -4080,7 +4015,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Krookodile,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sKrookodileLevelUpLearnset,
@@ -4139,7 +4073,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Darumaka,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDarumakaLevelUpLearnset,
@@ -4199,7 +4132,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DarmanitanStandardMode,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDarmanitanLevelUpLearnset,
@@ -4311,7 +4243,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DarumakaGalarian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isGalarianForm = TRUE,
@@ -4372,7 +4303,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DarmanitanGalarianStandardMode,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isGalarianForm = TRUE,
@@ -4490,7 +4420,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Maractus,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMaractusLevelUpLearnset,
@@ -4551,7 +4480,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Dwebble,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDwebbleLevelUpLearnset,
@@ -4611,7 +4539,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Crustle,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCrustleLevelUpLearnset,
@@ -4671,7 +4598,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Scraggy,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sScraggyLevelUpLearnset,
@@ -4732,7 +4658,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Scrafty,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sScraftyLevelUpLearnset,
@@ -4792,7 +4717,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Sigilyph,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSigilyphLevelUpLearnset,
@@ -4854,7 +4778,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Yamask,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sYamaskLevelUpLearnset,
@@ -4915,7 +4838,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Cofagrigus,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCofagrigusLevelUpLearnset,
@@ -4974,7 +4896,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_YamaskGalarian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isGalarianForm = TRUE,
@@ -5035,7 +4956,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Runerigus,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sRunerigusLevelUpLearnset,
@@ -5095,7 +5015,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Tirtouga,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sTirtougaLevelUpLearnset,
@@ -5154,7 +5073,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Carracosta,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCarracostaLevelUpLearnset,
@@ -5213,7 +5131,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Archen,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sArchenLevelUpLearnset,
@@ -5273,7 +5190,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Archeops,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sArcheopsLevelUpLearnset,
@@ -5333,7 +5249,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Trubbish,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sTrubbishLevelUpLearnset,
@@ -5395,7 +5310,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Garbodor,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGarbodorLevelUpLearnset,
@@ -5515,7 +5429,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Zorua,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sZoruaLevelUpLearnset,
@@ -5575,7 +5488,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Zoroark,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sZoroarkLevelUpLearnset,
@@ -5634,7 +5546,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_ZoruaHisuian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isHisuianForm = TRUE,
@@ -5694,7 +5605,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_ZoroarkHisuian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isHisuianForm = TRUE,
@@ -5756,7 +5666,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Minccino,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMinccinoLevelUpLearnset,
@@ -5816,7 +5725,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Cinccino,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCinccinoLevelUpLearnset,
@@ -5879,7 +5787,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Gothita,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGothitaLevelUpLearnset,
@@ -5942,7 +5849,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Gothorita,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGothoritaLevelUpLearnset,
@@ -6004,7 +5910,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Gothitelle,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGothitelleLevelUpLearnset,
@@ -6065,7 +5970,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Solosis,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSolosisLevelUpLearnset,
@@ -6125,7 +6029,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Duosion,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDuosionLevelUpLearnset,
@@ -6184,7 +6087,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Reuniclus,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sReuniclusLevelUpLearnset,
@@ -6243,7 +6145,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Ducklett,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDucklettLevelUpLearnset,
@@ -6302,7 +6203,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Swanna,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSwannaLevelUpLearnset,
@@ -6366,7 +6266,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Vanillite,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sVanilliteLevelUpLearnset,
@@ -6430,7 +6329,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Vanillish,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sVanillishLevelUpLearnset,
@@ -6493,7 +6391,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Vanilluxe,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sVanilluxeLevelUpLearnset,
@@ -6552,7 +6449,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DeerlingSpring,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDeerlingLevelUpLearnset,
@@ -6612,7 +6508,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DeerlingSummer,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDeerlingLevelUpLearnset,
@@ -6672,7 +6567,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DeerlingAutumn,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDeerlingLevelUpLearnset,
@@ -6732,7 +6626,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_DeerlingWinter,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDeerlingLevelUpLearnset,
@@ -6792,7 +6685,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_SawsbuckSpring,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSawsbuckLevelUpLearnset,
@@ -6850,7 +6742,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_SawsbuckSummer,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSawsbuckLevelUpLearnset,
@@ -6908,7 +6799,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_SawsbuckAutumn,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSawsbuckLevelUpLearnset,
@@ -6966,7 +6856,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_SawsbuckWinter,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sSawsbuckLevelUpLearnset,
@@ -7028,7 +6917,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Emolga,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sEmolgaLevelUpLearnset,
@@ -7088,7 +6976,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Karrablast,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sKarrablastLevelUpLearnset,
@@ -7147,7 +7034,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Escavalier,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sEscavalierLevelUpLearnset,
@@ -7208,7 +7094,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Foongus,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sFoongusLevelUpLearnset,
@@ -7270,7 +7155,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Amoonguss,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sAmoongussLevelUpLearnset,
@@ -7336,7 +7220,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Frillish,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sFrillishLevelUpLearnset,
@@ -7402,7 +7285,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Jellicent,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sJellicentLevelUpLearnset,
@@ -7461,7 +7343,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Alomomola,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sAlomomolaLevelUpLearnset,
@@ -7521,7 +7402,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Joltik,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sJoltikLevelUpLearnset,
@@ -7580,7 +7460,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Galvantula,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGalvantulaLevelUpLearnset,
@@ -7640,7 +7519,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Ferroseed,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sFerroseedLevelUpLearnset,
@@ -7705,7 +7583,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Ferrothorn,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sFerrothornLevelUpLearnset,
@@ -7766,7 +7643,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Klink,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sKlinkLevelUpLearnset,
@@ -7826,7 +7702,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Klang,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sKlangLevelUpLearnset,
@@ -7886,7 +7761,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Klinklang,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sKlinklangLevelUpLearnset,
@@ -7946,7 +7820,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Tynamo,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .tmIlliterate = TRUE,
@@ -8006,7 +7879,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Eelektrik,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sEelektrikLevelUpLearnset,
@@ -8065,7 +7937,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Eelektross,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sEelektrossLevelUpLearnset,
@@ -8124,7 +7995,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Elgyem,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sElgyemLevelUpLearnset,
@@ -8183,7 +8053,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Beheeyem,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBeheeyemLevelUpLearnset,
@@ -8247,7 +8116,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Litwick,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLitwickLevelUpLearnset,
@@ -8311,7 +8179,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Lampent,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLampentLevelUpLearnset,
@@ -8374,7 +8241,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Chandelure,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sChandelureLevelUpLearnset,
@@ -8433,7 +8299,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Axew,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sAxewLevelUpLearnset,
@@ -8492,7 +8357,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Fraxure,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sFraxureLevelUpLearnset,
@@ -8550,7 +8414,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Haxorus,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sHaxorusLevelUpLearnset,
@@ -8613,7 +8476,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Cubchoo,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCubchooLevelUpLearnset,
@@ -8676,7 +8538,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Beartic,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBearticLevelUpLearnset,
@@ -8737,7 +8598,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Cryogonal,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sCryogonalLevelUpLearnset,
@@ -8796,7 +8656,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Shelmet,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sShelmetLevelUpLearnset,
@@ -8855,7 +8714,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Accelgor,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sAccelgorLevelUpLearnset,
@@ -8915,7 +8773,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Stunfisk,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sStunfiskLevelUpLearnset,
@@ -8975,7 +8832,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_StunfiskGalarian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isGalarianForm = TRUE,
@@ -9038,7 +8894,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Mienfoo,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMienfooLevelUpLearnset,
@@ -9097,7 +8952,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Mienshao,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMienshaoLevelUpLearnset,
@@ -9157,7 +9011,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Druddigon,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDruddigonLevelUpLearnset,
@@ -9219,7 +9072,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Golett,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGolettLevelUpLearnset,
@@ -9279,7 +9131,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Golurk,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sGolurkLevelUpLearnset,
@@ -9338,7 +9189,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Pawniard,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sPawniardLevelUpLearnset,
@@ -9398,7 +9248,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Bisharp,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBisharpLevelUpLearnset,
@@ -9462,7 +9311,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
             sPicTable_KingambitSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_FOOT
         )
         .levelUpLearnset = sKingambitLevelUpLearnset,
@@ -9522,7 +9370,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Bouffalant,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBouffalantLevelUpLearnset,
@@ -9582,7 +9429,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Rufflet,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sRuffletLevelUpLearnset,
@@ -9642,7 +9488,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Braviary,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sBraviaryLevelUpLearnset,
@@ -9701,7 +9546,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_BraviaryHisuian,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isHisuianForm = TRUE,
@@ -9763,7 +9607,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Vullaby,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sVullabyLevelUpLearnset,
@@ -9822,7 +9665,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Mandibuzz,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sMandibuzzLevelUpLearnset,
@@ -9881,7 +9723,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Heatmor,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sHeatmorLevelUpLearnset,
@@ -9941,7 +9782,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Durant,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDurantLevelUpLearnset,
@@ -10001,7 +9841,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Deino,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sDeinoLevelUpLearnset,
@@ -10060,7 +9899,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Zweilous,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sZweilousLevelUpLearnset,
@@ -10119,7 +9957,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Hydreigon,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sHydreigonLevelUpLearnset,
@@ -10178,7 +10015,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Larvesta,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sLarvestaLevelUpLearnset,
@@ -10240,7 +10076,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Volcarona,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .levelUpLearnset = sVolcaronaLevelUpLearnset,
@@ -10299,7 +10134,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Cobalion,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10359,7 +10193,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Terrakion,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10419,7 +10252,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_Virizion,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10480,7 +10312,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_TornadusIncarnate,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10597,7 +10428,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_ThundurusIncarnate,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10719,7 +10549,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
             sPicTable_ReshiramSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10785,7 +10614,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
             sPicTable_ZekromSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10847,7 +10675,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_LandorusIncarnate,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -10971,7 +10798,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
             sPicTable_KyuremSmall,
             SIZE_32x32,
         #endif //OW_LARGE_OW_SUPPORT
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isLegendary = TRUE,
@@ -11039,7 +10865,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_KyuremWhite,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,
             sAnimTable_Following_Asym,
         )
@@ -11108,7 +10933,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_KyuremWhite,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,
             sAnimTable_Following_Asym,
         )
@@ -11173,7 +10997,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_KeldeoOrdinary,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,
         )
         .isMythical = TRUE,
@@ -11235,7 +11058,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_KeldeoResolute,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,
             sAnimTable_Following_Asym,
         )
@@ -11305,7 +11127,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_MeloettaAria,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isMythical = TRUE,
@@ -11371,7 +11192,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_MeloettaPirouette,
             SIZE_32x32,
-            SHADOW_SIZE_M,
             TRACKS_FOOT,  
         )
         .isMythical = TRUE,
@@ -11432,7 +11252,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(                                                      \
             sPicTable_Genesect,                                         \
             SIZE_32x32,                                                 \
-            SHADOW_SIZE_M,                                              \
             TRACKS_FOOT,                                                \
         )                                                               \
         .levelUpLearnset = sGenesectLevelUpLearnset,                    \

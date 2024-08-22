@@ -181,6 +181,9 @@ static const struct SpriteFrameImage sPicTable_PichuSpikyEared[] = {
 static const struct SpriteFrameImage sPicTable_Pikachu[] = {
     overworld_ascending_frames(gObjectEventPic_Pikachu, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_PikachuF[] = {
+    overworld_ascending_frames(gObjectEventPic_PikachuF, 4, 4),
+};
 #if P_COSPLAY_PIKACHU_FORMS
 //static const struct SpriteFrameImage sPicTable_PikachuCosplay[] = {
 //    overworld_ascending_frames(gObjectEventPic_PikachuCosplay, 4, 4),
@@ -237,6 +240,9 @@ static const struct SpriteFrameImage sPicTable_PikachuGigantamax[] = {
 
 static const struct SpriteFrameImage sPicTable_Raichu[] = {
     overworld_ascending_frames(gObjectEventPic_Raichu, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_RaichuF[] = {
+    overworld_ascending_frames(gObjectEventPic_RaichuF, 4, 4),
 };
 #if P_ALOLAN_FORMS
 static const struct SpriteFrameImage sPicTable_RaichuAlolan[] = {
@@ -332,8 +338,14 @@ static const struct SpriteFrameImage sPicTable_Wigglytuff[] = {
 static const struct SpriteFrameImage sPicTable_Zubat[] = {
     overworld_ascending_frames(gObjectEventPic_Zubat, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_ZubatF[] = {
+    overworld_ascending_frames(gObjectEventPic_ZubatF, 4, 4),
+};
 static const struct SpriteFrameImage sPicTable_Golbat[] = {
     overworld_ascending_frames(gObjectEventPic_Golbat, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_GolbatF[] = {
+    overworld_ascending_frames(gObjectEventPic_GolbatF, 4, 4),
 };
 #if P_GEN_2_CROSS_EVOS
 static const struct SpriteFrameImage sPicTable_Crobat[] = {
@@ -349,8 +361,14 @@ static const struct SpriteFrameImage sPicTable_Oddish[] = {
 static const struct SpriteFrameImage sPicTable_Gloom[] = {
     overworld_ascending_frames(gObjectEventPic_Gloom, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_GloomF[] = {
+    overworld_ascending_frames(gObjectEventPic_GloomF, 4, 4),
+};
 static const struct SpriteFrameImage sPicTable_Vileplume[] = {
     overworld_ascending_frames(gObjectEventPic_Vileplume, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_VileplumeF[] = {
+    overworld_ascending_frames(gObjectEventPic_VileplumeF, 4, 4),
 };
 #if P_GEN_2_CROSS_EVOS
 static const struct SpriteFrameImage sPicTable_Bellossom[] = {
