@@ -7026,16 +7026,35 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
           && ((IsMonGrounded(heldItemEffect, ability, type1, type2) && gBattleMons[battler].species != species)
            || (IsBattlerTerrainAffected(battler, STATUS_FIELD_TERRAIN_ANY) && gBattleMons[battler].species == species)))
     {
-        if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-            return TYPE_ELECTRIC;
-        else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
-            return TYPE_GRASS;
-        else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
-            return TYPE_FAIRY;
-        else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
-            return TYPE_PSYCHIC;
-        else //failsafe
-            type = TYPE_NORMAL;
+        if (gMain.inBattle)
+        {
+            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+                return TYPE_ELECTRIC;
+            else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+                return TYPE_GRASS;
+            else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+                return TYPE_FAIRY;
+            else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+                return TYPE_PSYCHIC;
+            else //failsafe
+                type = TYPE_NORMAL;
+        }
+        else
+        {
+            switch (gWeatherPtr->currWeather)
+            {
+            case WEATHER_RAIN_THUNDERSTORM:
+                if (B_THUNDERSTORM_TERRAIN)
+                    return TYPE_ELECTRIC;
+                break;
+            case WEATHER_FOG_HORIZONTAL:
+            case WEATHER_FOG_DIAGONAL:
+                if (B_OVERWORLD_FOG >= GEN_8)
+                    return TYPE_FAIRY;
+                break;
+            }
+            return TYPE_NORMAL;
+        }
     }
 
     if (effect == EFFECT_WEATHER_BALL)
@@ -7057,11 +7076,12 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
         {
             switch (gWeatherPtr->currWeather)
             {
-            case WEATHER_SUNNY:
+            case WEATHER_DROUGHT:
                 if (heldItem != ITEM_UTILITY_UMBRELLA)
                     return TYPE_FIRE;
                 break;
             case WEATHER_RAIN:
+            case WEATHER_RAIN_THUNDERSTORM:
                 if (heldItem != ITEM_UTILITY_UMBRELLA)
                     return TYPE_WATER;
                 break;
