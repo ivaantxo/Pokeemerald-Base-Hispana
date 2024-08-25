@@ -9285,3 +9285,13 @@ static void AnimMakingItRain(struct Sprite *sprite)
     sprite->callback = TranslateSpriteInEllipse;
     sprite->callback(sprite);
 }
+
+void AnimTask_RandomBool(u8 taskId)
+{
+    if (RandomPercentage(RNG_NONE, 50))
+        gBattleAnimArgs[ARG_RET_ID] = TRUE;
+    else
+        gBattleAnimArgs[ARG_RET_ID] = FALSE;
+
+    DestroyAnimVisualTask(taskId);
+}
