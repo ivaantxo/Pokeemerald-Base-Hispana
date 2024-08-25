@@ -1410,7 +1410,6 @@ void FogHorizontal_Main(void)
     case 0:
         CreateFogHorizontalSprites();
         if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL) {
-          u8 paletteNum = IndexOfSpritePaletteTag(TAG_WEATHER_START);
           Weather_SetTargetBlendCoeffs(12, 8, 3);
           UpdateShadowColor(0x3DEF); // Gray
         } else
