@@ -2472,7 +2472,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gObjectEventPic_AegislashBlade, 
         FOOTPRINT(Aegislash)
         OVERWORLD(
-            sPicTable_AegislashSword,
+            sPicTable_AegislashBlade,
             SIZE_32x32,
             TRACKS_FOOT,  
         )

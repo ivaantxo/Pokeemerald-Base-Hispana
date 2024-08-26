@@ -4370,7 +4370,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gObjectEventPic_DarmanitanGalarianZenMode, 
         FOOTPRINT(Darmanitan)
         OVERWORLD(
-            sPicTable_DarumakaGalarianZenMode,
+            sPicTable_DarmanitanGalarianZenMode,
             SIZE_32x32,
             TRACKS_SPOT,  
         )
