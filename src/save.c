@@ -89,11 +89,9 @@ u32 gDamagedSaveSectors;
 u32 gSaveCounter;
 struct SaveSector *gReadWriteSector; // Pointer to a buffer for reading/writing a sector
 u16 gIncrementalSectorId;
-u16 gSaveUnusedVar;
 u16 gSaveFileStatus;
 void (*gGameContinueCallback)(void);
 struct SaveSectorLocation gRamSaveSectorLocations[NUM_SECTORS_PER_SLOT];
-u16 gSaveUnusedVar2;
 u16 gSaveAttemptStatus;
 
 EWRAM_DATA struct SaveSector gSaveDataBuffer = {0}; // Buffer used for reading/writing sectors

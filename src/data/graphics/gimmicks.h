@@ -26,8 +26,8 @@ static const struct SpritePalette sSpritePalette_TeraTrigger = {sTeraTriggerPal,
 static const struct OamData sOamData_GimmickTrigger =
 {
     .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = 0,
     .bpp = 0,
     .shape = ST_OAM_SQUARE,
