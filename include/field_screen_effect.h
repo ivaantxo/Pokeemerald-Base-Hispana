@@ -43,6 +43,6 @@ void FadeOutOrbEffect(void);
 void WriteFlashScanlineEffectBuffer(u8 flashLevel);
 bool8 IsPlayerStandingStill(void);
 void DoStairWarp(u16 metatileBehavior, u16 delay);
-bool8 IsDirectionalStairWarpMetatileBehavior(u16 metatileBehavior, u8 playerDirection);
+bool32 IsDirectionalStairWarpMetatileBehavior(u16 metatileBehavior, u8 playerDirection);
 
 #endif // GUARD_FIELD_SCREEN_EFFECT_H

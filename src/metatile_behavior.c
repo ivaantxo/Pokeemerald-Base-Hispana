@@ -1435,7 +1435,10 @@ bool8 MetatileBehavior_IsDirectionalDownLeftStairWarp(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsDirectionalStairWarp(u8 metatileBehavior)
 {
-    if (metatileBehavior >= MB_UP_RIGHT_STAIR_WARP && metatileBehavior <= MB_DOWN_LEFT_STAIR_WARP)
+    if (metatileBehavior == MB_UP_RIGHT_STAIR_WARP
+     || metatileBehavior == MB_UP_LEFT_STAIR_WARP
+     || metatileBehavior == MB_DOWN_RIGHT_STAIR_WARP
+     || metatileBehavior == MB_DOWN_LEFT_STAIR_WARP)
         return TRUE;
     else
         return FALSE;

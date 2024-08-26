@@ -727,34 +727,38 @@ static bool8 CheckStandardWildEncounter(u16 metatileBehavior)
     return FALSE;
 }
 
+static void StorePlayerStateAndSetupWarp(struct MapPosition *position, s32 warpEventId)
+{
+    StoreInitialPlayerAvatarState();
+    SetupWarp(&gMapHeader, warpEventId, position);
+}
+
 static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8 direction)
 {
-    s8 warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
-    u16 delay;
+    s32 warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
+    u32 delay;
 
-    if (warpEventId != WARP_ID_NONE)
+    if (warpEventId == WARP_ID_NONE)
+        return FALSE;
+
+    if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
     {
-        if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
+        StorePlayerStateAndSetupWarp(position, warpEventId);
+        DoWarp();
+        return TRUE;
+    }
+    else if (IsDirectionalStairWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
+    {
+        delay = 0;
+        if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_BIKE)
         {
-            StoreInitialPlayerAvatarState();
-            SetupWarp(&gMapHeader, warpEventId, position);
-            DoWarp();
-            return TRUE;
+            SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
+            delay = 12;
         }
-        else if (IsDirectionalStairWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
-        {
-            delay = 0;
-            if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
-            {
-                SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
-                delay = 12;
-            }
-            
-            StoreInitialPlayerAvatarState();
-            SetupWarp(&gMapHeader, warpEventId, position);
-            DoStairWarp(metatileBehavior, delay);
-            return TRUE;
-        }
+
+        StorePlayerStateAndSetupWarp(position, warpEventId);
+        DoStairWarp(metatileBehavior, delay);
+        return TRUE;
     }
     return FALSE;
 }
