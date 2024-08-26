@@ -622,6 +622,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_GreninjaAsh,
         .iconSprite = gObjectEventPic_GreninjaAsh, 
         FOOTPRINT(Greninja)
+        OVERWORLD(
+            sPicTable_GreninjaAsh,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sGreninjaLevelUpLearnset,
         .teachableLearnset = sGreninjaTeachableLearnset,
         .formSpeciesIdTable = sGreninjaFormSpeciesIdTable,
@@ -2466,6 +2471,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_AegislashBlade,
         .iconSprite = gObjectEventPic_AegislashBlade, 
         FOOTPRINT(Aegislash)
+        OVERWORLD(
+            sPicTable_AegislashSword,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sAegislashLevelUpLearnset,
         .teachableLearnset = sAegislashTeachableLearnset,
         .formSpeciesIdTable = sAegislashFormSpeciesIdTable,
@@ -4294,6 +4304,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
         .iconSprite = gObjectEventPic_Pumpkaboo, 
         FOOTPRINT(Pumpkaboo)
+        OVERWORLD(
+            sPicTable_Pumpkaboo,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sPumpkabooLevelUpLearnset,
         .teachableLearnset = sPumpkabooTeachableLearnset,
         .eggMoveLearnset = sPumpkabooEggMoveLearnset,
@@ -4348,6 +4363,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
         .iconSprite = gObjectEventPic_Pumpkaboo, 
         FOOTPRINT(Pumpkaboo)
+        OVERWORLD(
+            sPicTable_Pumpkaboo,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sPumpkabooLevelUpLearnset,
         .teachableLearnset = sPumpkabooTeachableLearnset,
         .eggMoveLearnset = sPumpkabooEggMoveLearnset,
@@ -4404,6 +4424,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
         .iconSprite = gObjectEventPic_Pumpkaboo, 
         FOOTPRINT(Pumpkaboo)
+        OVERWORLD(
+            sPicTable_Pumpkaboo,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sPumpkabooLevelUpLearnset,
         .teachableLearnset = sPumpkabooTeachableLearnset,
         .eggMoveLearnset = sPumpkabooEggMoveLearnset,
@@ -4516,6 +4541,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Gourgeist,
         .iconSprite = gObjectEventPic_Gourgeist, 
         FOOTPRINT(Gourgeist)
+        OVERWORLD(
+            sPicTable_Gourgeist,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sGourgeistLevelUpLearnset,
         .teachableLearnset = sGourgeistTeachableLearnset,
         .formSpeciesIdTable = sGourgeistFormSpeciesIdTable,
@@ -4568,6 +4598,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Gourgeist,
         .iconSprite = gObjectEventPic_Gourgeist, 
         FOOTPRINT(Gourgeist)
+        OVERWORLD(
+            sPicTable_Gourgeist,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sGourgeistLevelUpLearnset,
         .teachableLearnset = sGourgeistTeachableLearnset,
         .formSpeciesIdTable = sGourgeistFormSpeciesIdTable,
@@ -4622,6 +4657,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Gourgeist,
         .iconSprite = gObjectEventPic_Gourgeist, 
         FOOTPRINT(Gourgeist)
+        OVERWORLD(
+            sPicTable_Gourgeist,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sGourgeistLevelUpLearnset,
         .teachableLearnset = sGourgeistTeachableLearnset,
         .formSpeciesIdTable = sGourgeistFormSpeciesIdTable,
@@ -5462,7 +5502,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         OVERWORLD(
             sPicTable_Diancie,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
@@ -5521,6 +5561,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_DiancieMega,
         .iconSprite = gObjectEventPic_DiancieMega, 
         FOOTPRINT(Diancie)
+        OVERWORLD(
+            sPicTable_DiancieMega,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .isMythical = TRUE,
         .isMegaEvolution = TRUE,
         .isFrontierBanned = TRUE,

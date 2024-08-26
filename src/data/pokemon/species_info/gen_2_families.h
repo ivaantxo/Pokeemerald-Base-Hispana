@@ -1760,6 +1760,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_AmpharosMega,
         .iconSprite = gObjectEventPic_AmpharosMega, 
         FOOTPRINT(Ampharos)
+        OVERWORLD(
+            sPicTable_AmpharosMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sAmpharosLevelUpLearnset,
         .teachableLearnset = sAmpharosTeachableLearnset,
@@ -4394,6 +4399,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_HeracrossMega,
         .iconSprite = gObjectEventPic_HeracrossMega, 
         FOOTPRINT(Heracross)
+        OVERWORLD(
+            sPicTable_HeracrossMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sHeracrossLevelUpLearnset,
         .teachableLearnset = sHeracrossTeachableLearnset,
@@ -5954,6 +5964,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_HoundoomMega,
         .iconSprite = gObjectEventPic_HoundoomMega, 
         FOOTPRINT(Houndoom)
+        OVERWORLD(
+            sPicTable_HoundoomMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sHoundoomLevelUpLearnset,
         .teachableLearnset = sHoundoomTeachableLearnset,
@@ -6774,6 +6789,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_TyranitarMega,
         .iconSprite = gObjectEventPic_TyranitarMega, 
         FOOTPRINT(Tyranitar)
+        OVERWORLD(
+            sPicTable_TyranitarMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sTyranitarLevelUpLearnset,
         .teachableLearnset = sTyranitarTeachableLearnset,

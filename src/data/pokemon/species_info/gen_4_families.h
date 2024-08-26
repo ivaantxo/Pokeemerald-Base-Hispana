@@ -2323,6 +2323,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_CherrimSunshine,
         .iconSprite = gObjectEventPic_CherrimSunshine, 
         FOOTPRINT(Cherrim)
+        OVERWORLD(
+            sPicTable_CherrimSunshine,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sCherrimLevelUpLearnset,
         .teachableLearnset = sCherrimTeachableLearnset,
         .formSpeciesIdTable = sCherrimFormSpeciesIdTable,
@@ -2847,6 +2852,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_LopunnyMega,
         .iconSprite = gObjectEventPic_LopunnyMega, 
         FOOTPRINT(Lopunny)
+        OVERWORLD(
+            sPicTable_LopunnyMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sLopunnyLevelUpLearnset,
         .teachableLearnset = sLopunnyTeachableLearnset,
@@ -3566,6 +3576,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_GarchompMega,
         .iconSprite = gObjectEventPic_GarchompMega, 
         FOOTPRINT(Garchomp)
+        OVERWORLD(
+            sPicTable_GarchompMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sGarchompLevelUpLearnset,
         .teachableLearnset = sGarchompTeachableLearnset,
@@ -3742,6 +3757,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_LucarioMega,
         .iconSprite = gObjectEventPic_LucarioMega, 
         FOOTPRINT(Lucario)
+        OVERWORLD(
+            sPicTable_LucarioMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sLucarioLevelUpLearnset,
         .teachableLearnset = sLucarioTeachableLearnset,
@@ -4477,6 +4497,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .shinyPalette = gMonShinyPalette_AbomasnowMega,
         .iconSprite = gObjectEventPic_AbomasnowMega, 
         FOOTPRINT(Abomasnow)
+        OVERWORLD(
+            sPicTable_AbomasnowMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sAbomasnowLevelUpLearnset,
         .teachableLearnset = sAbomasnowTeachableLearnset,

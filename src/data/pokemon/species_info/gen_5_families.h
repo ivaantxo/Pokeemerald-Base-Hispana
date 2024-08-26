@@ -2373,6 +2373,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_AudinoMega,
         .iconSprite = gObjectEventPic_AudinoMega, 
         FOOTPRINT(Audino)
+        OVERWORLD(
+            sPicTable_AudinoMega,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sAudinoLevelUpLearnset,
         .teachableLearnset = sAudinoTeachableLearnset,
@@ -4186,6 +4191,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_DarmanitanZenMode,
         .iconSprite = gObjectEventPic_DarmanitanZenMode, 
         FOOTPRINT(Darmanitan)
+        OVERWORLD(
+            sPicTable_DarmanitanZenMode,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .levelUpLearnset = sDarmanitanLevelUpLearnset,
         .teachableLearnset = sDarmanitanTeachableLearnset,
         .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
@@ -4359,6 +4369,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_DarmanitanGalarianZenMode,
         .iconSprite = gObjectEventPic_DarmanitanGalarianZenMode, 
         FOOTPRINT(Darmanitan)
+        OVERWORLD(
+            sPicTable_DarumakaGalarianZenMode,
+            SIZE_32x32,
+            TRACKS_SPOT,  
+        )
         .isGalarianForm = TRUE,
         .levelUpLearnset = sDarmanitanGalarianLevelUpLearnset,
         .teachableLearnset = sDarmanitanGalarianTeachableLearnset,
@@ -10312,7 +10327,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_TornadusIncarnate,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .isLegendary = TRUE,
         .levelUpLearnset = sTornadusLevelUpLearnset,
@@ -10368,6 +10383,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_TornadusTherian,
         .iconSprite = gObjectEventPic_TornadusTherian, 
         FOOTPRINT(Tornadus)
+        OVERWORLD(
+            sPicTable_TornadusTherian,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .isLegendary = TRUE,
         .levelUpLearnset = sTornadusLevelUpLearnset,
         .teachableLearnset = sTornadusTeachableLearnset,
@@ -10428,7 +10448,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_ThundurusIncarnate,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .isLegendary = TRUE,
         .levelUpLearnset = sThundurusLevelUpLearnset,
@@ -10485,6 +10505,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_ThundurusTherian,
         .iconSprite = gObjectEventPic_ThundurusTherian, 
         FOOTPRINT(Thundurus)
+        OVERWORLD(
+            sPicTable_ThundurusTherian,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .isLegendary = TRUE,
         .levelUpLearnset = sThundurusLevelUpLearnset,
         .teachableLearnset = sThundurusTeachableLearnset,
@@ -10675,7 +10700,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         OVERWORLD(
             sPicTable_LandorusIncarnate,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .isLegendary = TRUE,
         .levelUpLearnset = sLandorusLevelUpLearnset,
@@ -10731,6 +10756,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_LandorusTherian,
         .iconSprite = gObjectEventPic_LandorusTherian, 
         FOOTPRINT(Landorus)
+        OVERWORLD(
+            sPicTable_LandorusTherian,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .isLegendary = TRUE,
         .levelUpLearnset = sLandorusLevelUpLearnset,
         .teachableLearnset = sLandorusTeachableLearnset,
@@ -10931,7 +10961,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gObjectEventPic_KyuremBlack, 
         FOOTPRINT(Kyurem)
         OVERWORLD(
-            sPicTable_KyuremWhite,
+            sPicTable_KyuremBlack,
             SIZE_32x32,
             TRACKS_FOOT,
             sAnimTable_Following_Asym,
