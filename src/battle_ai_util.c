@@ -3987,3 +3987,42 @@ bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, st
          && AI_IsFaster(battlerAtk, battlerAtkPartner, TRUE)
          && HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL));
 }
+
+void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
+{
+    if (gMovesInfo[move].effect == EFFECT_SUBSTITUTE) // Substitute specific
+    {
+        if (HasAnyKnownMove(battlerDef) && GetBestDmgFromBattler(battlerDef, battlerAtk) < gBattleMons[battlerAtk].maxHP / 4)
+            ADJUST_SCORE_PTR(GOOD_EFFECT);
+    }
+    else if (gMovesInfo[move].effect == EFFECT_SHED_TAIL) // Shed Tail specific
+    {
+        if ((ShouldPivot(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_THINKING_STRUCT->movesetIndex))
+        && (HasAnyKnownMove(battlerDef) && (GetBestDmgFromBattler(battlerDef, battlerAtk) < gBattleMons[battlerAtk].maxHP / 2)))
+            ADJUST_SCORE_PTR(BEST_EFFECT);
+    }
+
+    if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
+
+    if (gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
+    else if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
+        ADJUST_SCORE_PTR(DECENT_EFFECT);
+
+    // TODO:
+    // if (IsPredictedToSwitch(battlerDef, battlerAtk)
+    //     ADJUST_SCORE_PTR(DECENT_EFFECT);
+
+    if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
+     || HasMoveEffect(battlerDef, EFFECT_TOXIC)
+     || HasMoveEffect(battlerDef, EFFECT_POISON)
+     || HasMoveEffect(battlerDef, EFFECT_PARALYZE)
+     || HasMoveEffect(battlerDef, EFFECT_WILL_O_WISP)
+     || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
+     || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
+
+    if (AI_DATA->hpPercents[battlerAtk] > 70)
+        ADJUST_SCORE_PTR(WEAK_EFFECT);
+}
