@@ -857,6 +857,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_COUNTER:
         case EFFECT_MIRROR_COAT:
         case EFFECT_METAL_BURST:
+        case EFFECT_FINAL_GAMBIT:
+        case EFFECT_GUARDIAN_OF_ALOLA:
             break;
         default:
             RETURN_SCORE_MINUS(10);
@@ -1828,6 +1830,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_TRICK:
         case EFFECT_KNOCK_OFF:
+        case EFFECT_CORROSIVE_GAS:
             if (aiData->abilities[battlerDef] == ABILITY_STICKY_HOLD)
                 ADJUST_SCORE(-10);
             break;
@@ -2174,6 +2177,17 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
               || gAbilitiesInfo[aiData->abilities[battlerDef]].cantBeCopied)
                 ADJUST_SCORE(-10);
             else if (IsAbilityOfRating(aiData->abilities[battlerAtk], 5))
+                ADJUST_SCORE(-4);
+            break;
+        case EFFECT_DOODLE: // Same as Role Play, but also check if the partner's ability should be replaced
+            if (aiData->abilities[battlerAtk] == aiData->abilities[battlerDef]
+             || aiData->abilities[BATTLE_PARTNER(battlerAtk)] == aiData->abilities[battlerDef]
+             || aiData->abilities[battlerDef] == ABILITY_NONE
+             || gAbilitiesInfo[aiData->abilities[battlerAtk]].cantBeSuppressed
+             || gAbilitiesInfo[aiData->abilities[BATTLE_PARTNER(battlerAtk)]].cantBeSuppressed
+             || gAbilitiesInfo[aiData->abilities[battlerDef]].cantBeCopied)
+                ADJUST_SCORE(-10);
+            else if (IsAbilityOfRating(aiData->abilities[battlerAtk], 5) || IsAbilityOfRating(aiData->abilities[BATTLE_PARTNER(battlerAtk)], 5))
                 ADJUST_SCORE(-4);
             break;
         case EFFECT_WISH:
@@ -2889,7 +2903,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             switch (atkPartnerAbility)
             {
             case ABILITY_ANGER_POINT:
-                if (gMovesInfo[move].alwaysCriticalHit == TRUE 
+                if (gMovesInfo[move].alwaysCriticalHit == TRUE
                     && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_ATK)
                     && AI_IsFaster(battlerAtk, battlerAtkPartner, move)
                     && !CanIndexMoveFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 1))
@@ -3498,6 +3512,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         break;
     case EFFECT_MULTI_HIT:
     case EFFECT_TRIPLE_KICK:
+    case EFFECT_POPULATION_BOMB:
         if (AI_MoveMakesContact(aiData->abilities[battlerAtk], aiData->holdEffects[battlerAtk], move)
           && aiData->abilities[battlerAtk] != ABILITY_MAGIC_GUARD
           && aiData->holdEffects[battlerDef] == HOLD_EFFECT_ROCKY_HELMET)
@@ -4098,11 +4113,27 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             }
         }
         break;
+    case EFFECT_CORROSIVE_GAS:
+        if (CanKnockOffItem(battlerDef, aiData->items[battlerDef]))
+        {
+            switch (aiData->holdEffects[battlerDef])
+            {
+            case HOLD_EFFECT_IRON_BALL:
+                if (HasMoveEffect(battlerDef, EFFECT_FLING))
+                    ADJUST_SCORE(DECENT_EFFECT);
+                break;
+            case HOLD_EFFECT_LAGGING_TAIL:
+            case HOLD_EFFECT_STICKY_BARB:
+                break;
+            default:
+                ADJUST_SCORE(DECENT_EFFECT);
+                break;
+            }
+        }
+        break;
     case EFFECT_ROLE_PLAY:
-        if (!gAbilitiesInfo[aiData->abilities[battlerAtk]].cantBeSuppressed
-          && !gAbilitiesInfo[aiData->abilities[battlerDef]].cantBeCopied
-          && !IsAbilityOfRating(aiData->abilities[battlerAtk], 5)
-          && IsAbilityOfRating(aiData->abilities[battlerDef], 5))
+    case EFFECT_DOODLE:
+        if (IsAbilityOfRating(aiData->abilities[battlerDef], 5))
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_INGRAIN:
