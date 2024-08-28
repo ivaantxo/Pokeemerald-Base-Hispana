@@ -45,7 +45,7 @@ BattleScript_UseItemMessage:
 	printfromtable gTrainerUsedItemStringIds
 	waitmessage B_WAIT_TIME_LONG
 	return
-	
+
 BattleScript_ItemRestoreHPRet:
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
@@ -159,7 +159,6 @@ BattleScript_SafariBallThrow::
 BattleScript_SuccessBallThrow::
 	setbyte sMON_CAUGHT, TRUE
 	incrementgamestat GAME_STAT_POKEMON_CAPTURES
-BattleScript_PrintCaughtMonInfo::
 	printstring STRINGID_GOTCHAPKMNCAUGHTPLAYER
 	jumpifbyte CMP_NOT_EQUAL, sEXP_CATCH, TRUE, BattleScript_TryPrintCaughtMonInfo
 	setbyte sGIVEEXP_STATE, 0

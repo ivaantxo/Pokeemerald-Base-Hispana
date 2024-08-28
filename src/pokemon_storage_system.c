@@ -6,6 +6,7 @@
 #include "dma3.h"
 #include "dynamic_placeholder_text_util.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fldeff_misc.h"
@@ -1997,7 +1998,10 @@ static void VBlankCB_PokeStorage(void)
     ProcessSpriteCopyRequests();
     UnkUtil_Run();
     TransferPlttBuffer();
-    SetGpuReg(REG_OFFSET_BG2HOFS, sStorage->bg2_X);
+    if (sStorage != NULL)
+    {
+        SetGpuReg(REG_OFFSET_BG2HOFS, sStorage->bg2_X);
+    }
 }
 
 static void CB2_PokeStorage(void)
@@ -4205,11 +4209,14 @@ static void StopFlashingCloseBoxButton(void)
 
 static void UpdateCloseBoxButtonFlash(void)
 {
-    if (sStorage->closeBoxFlashing && ++sStorage->closeBoxFlashTimer > 30)
+    if (sStorage != NULL)
     {
-        sStorage->closeBoxFlashTimer = 0;
-        sStorage->closeBoxFlashState = (sStorage->closeBoxFlashState == FALSE);
-        UpdateCloseBoxButtonTilemap(sStorage->closeBoxFlashState);
+        if (sStorage->closeBoxFlashing && ++sStorage->closeBoxFlashTimer > 30)
+        {
+            sStorage->closeBoxFlashTimer = 0;
+            sStorage->closeBoxFlashState = (sStorage->closeBoxFlashState == FALSE);
+            UpdateCloseBoxButtonTilemap(sStorage->closeBoxFlashState);
+        }
     }
 }
 
@@ -6412,9 +6419,15 @@ static void RefreshDisplayMon(void)
 static void SetMovingMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
+    {
         sStorage->movingMon = gPlayerParty[sCursorPosition];
+        if (&gPlayerParty[sCursorPosition] == GetFirstLiveMon())
+            gFollowerSteps = 0;
+    }
     else
+    {
         BoxMonAtToMon(boxId, position, &sStorage->movingMon);
+    }
 
     PurgeMonOrBoxMon(boxId, position);
     sMovingMonOrigBoxId = boxId;
@@ -6427,9 +6440,15 @@ static void SetPlacedMonData(u8 boxId, u8 position)
         HealPokemon(&sStorage->movingMon);
 
     if (boxId == TOTAL_BOXES_COUNT)
+    {
         gPlayerParty[position] = sStorage->movingMon;
+        if (&gPlayerParty[position] == GetFirstLiveMon())
+            gFollowerSteps = 0;
+    }
     else
+    {
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
+    }
 }
 
 static void PurgeMonOrBoxMon(u8 boxId, u8 position)

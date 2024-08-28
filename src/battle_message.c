@@ -829,7 +829,6 @@ static const u8 sText_TeamGainedEXP[] = _("The rest of your team gained EXP.\nPo
 static const u8 sText_CurrentMoveCantSelect[] = _("{B_BUFF1} cannot be used!\p");
 static const u8 sText_TargetIsBeingSaltCured[] = _("{B_DEF_NAME_WITH_PREFIX} is being salt cured!");
 static const u8 sText_TargetIsHurtBySaltCure[] = _("{B_DEF_NAME_WITH_PREFIX} is hurt by {B_BUFF1}!");
-static const u8 sText_OpportunistCopied[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} copied its\nopponent's stat changes!");
 static const u8 sText_TargetCoveredInStickyCandySyrup[] = _("{B_DEF_NAME_WITH_PREFIX} got covered\nin sticky syrup!");
 static const u8 sText_PkmnTellChillingReceptionJoke[] = _("{B_ATK_NAME_WITH_PREFIX} is preparing to tell a\nchillingly bad joke!");
 static const u8 sText_ZeroToHeroTransformation[] = _("{B_ATK_NAME_WITH_PREFIX} underwent a heroic\ntransformation!");
@@ -850,9 +849,11 @@ static const u8 sText_ShedItsTail[] = _("{B_ATK_NAME_WITH_PREFIX} shed its tail\
 static const u8 sText_PkmnTerastallizedInto[] = _("{B_ATK_NAME_WITH_PREFIX} terastallized\ninto the {B_BUFF1} type!");
 static const u8 sText_SupersweetAromaWafts[] = _("A supersweet aroma is wafting from\nthe syrup covering {B_ATK_NAME_WITH_PREFIX}!");
 static const u8 sText_TidyingUpComplete[] = _("Tidying up complete!");
+static const u8 sText_FickleBeamDoubled[] = _("{B_ATK_NAME_WITH_PREFIX} is going all\nout for this attack!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_FICKLEBEAMDOUBLED - BATTLESTRINGS_TABLE_START] = sText_FickleBeamDoubled,
     [STRINGID_PKMNTERASTALLIZEDINTO - BATTLESTRINGS_TABLE_START] = sText_PkmnTerastallizedInto,
     [STRINGID_TIDYINGUPCOMPLETE - BATTLESTRINGS_TABLE_START] = sText_TidyingUpComplete,
     [STRINGID_SUPERSWEETAROMAWAFTS - BATTLESTRINGS_TABLE_START] = sText_SupersweetAromaWafts,
@@ -871,7 +872,6 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ZEROTOHEROTRANSFORMATION - BATTLESTRINGS_TABLE_START] = sText_ZeroToHeroTransformation,
     [STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE - BATTLESTRINGS_TABLE_START] = sText_PkmnTellChillingReceptionJoke,
     [STRINGID_MOVEBLOCKEDBYDYNAMAX - BATTLESTRINGS_TABLE_START] = sText_MoveBlockedByDynamax,
-    [STRINGID_OPPORTUNISTCOPIED - BATTLESTRINGS_TABLE_START] = sText_OpportunistCopied,
     [STRINGID_TARGETISHURTBYSALTCURE - BATTLESTRINGS_TABLE_START] = sText_TargetIsHurtBySaltCure,
     [STRINGID_TARGETISBEINGSALTCURED - BATTLESTRINGS_TABLE_START] = sText_TargetIsBeingSaltCured,
     [STRINGID_CURRENTMOVECANTSELECT - BATTLESTRINGS_TABLE_START] = sText_CurrentMoveCantSelect,
@@ -2828,7 +2828,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
                 stringPtr = sText_LegendaryPkmnAppeared;
-            else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)]]))
+            else if (IsDoubleBattle() && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)]]))
                 stringPtr = sText_TwoWildPkmnAppeared;
             else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)
                 stringPtr = sText_WildPkmnAppearedPause;
@@ -2839,7 +2839,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
     case STRINGID_INTROSENDOUT: // poke first send-out
         if (GetBattlerSide(battler) == B_SIDE_PLAYER)
         {
-            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsValidForBattle(&gPlayerParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]]))
+            if (IsDoubleBattle() && IsValidForBattle(&gPlayerParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]]))
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
                     stringPtr = sText_InGamePartnerSentOutZGoN;
@@ -2857,7 +2857,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
         }
         else
         {
-            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]]))
+            if (IsDoubleBattle() && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]]))
             {
                 if (BATTLE_TWO_VS_ONE_OPPONENT)
                     stringPtr = sText_Trainer1SentOutTwoPkmn;
@@ -2888,7 +2888,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
         {
             if (*(&gBattleStruct->hpScale) == 0)
                 stringPtr = sText_PkmnThatsEnough;
-            else if (*(&gBattleStruct->hpScale) == 1 || gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            else if (*(&gBattleStruct->hpScale) == 1 || IsDoubleBattle())
                 stringPtr = sText_PkmnComeBack;
             else if (*(&gBattleStruct->hpScale) == 2)
                 stringPtr = sText_PkmnOkComeBack;
@@ -2913,7 +2913,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
     case STRINGID_SWITCHINMON: // switch-in msg
         if (GetBattlerSide(gBattleScripting.battler) == B_SIDE_PLAYER)
         {
-            if (*(&gBattleStruct->hpScale) == 0 || gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            if (*(&gBattleStruct->hpScale) == 0 || IsDoubleBattle())
                 stringPtr = sText_GoPkmn2;
             else if (*(&gBattleStruct->hpScale) == 1)
                 stringPtr = sText_DoItPkmn;

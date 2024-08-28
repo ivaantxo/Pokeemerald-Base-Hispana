@@ -1652,6 +1652,12 @@
 	.4byte \failInstr
 	.endm
 
+	.macro copyfoesstatincrease battler:req, failInstr:req
+	callnative BS_CopyFoesStatIncrease
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
 	.macro removeweather
 	callnative BS_RemoveWeather
 	.endm
@@ -1662,6 +1668,10 @@
 
 	.macro damagetoquartertargethp
 	callnative BS_DamageToQuarterTargetHP
+	.endm
+
+	.macro ficklebeamdamagecalculation
+	callnative BS_FickleBeamDamageCalculation
 	.endm
 
 @ various command changed to more readable macros

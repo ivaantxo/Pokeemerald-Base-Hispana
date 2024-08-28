@@ -9,6 +9,7 @@
 #define OW_POISON_DAMAGE                GEN_LATEST // In Gen4, Pokémon no longer faint from Poison in the overworld. In Gen5+, they no longer take damage at all.
 #define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // If enabled, you can be spotted by two trainers at the same time even if you only have one eligible Pokémon in your party.
 #define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // If enabled, map popups will not appear if entering a map with the same Map Section Id as the last.
+#define OW_FRLG_WHITEOUT                FALSE      // If enabled, shows an additional whiteout message and post whiteout event script with healing NPC.
 
 // These generational defines only make a distinction for Berries and the OW_PC_MOVE_ORDER
 #define GEN_6_XY GEN_6
@@ -33,6 +34,7 @@
 #define OW_BERRY_GROWTH_RATE           GEN_3      // Presets for how long each Berry plant takes to grow.
 #define OW_BERRY_YIELD_RATE            GEN_3      // Presets for how many Berries each plant can yield.
 #define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // If OW_BERRY_MOISTURE is enabled, this setting changes how fast the soil dries out. GEN_4 uses a Berry-dependent drain rate, GEN_6_XY dries out in 24 hours (4 hours with the relevant Mulch) and GEN_6_ORAS dries out in 4 hours. Other values are illegal.
+#define OW_BERRY_IMMORTAL              FALSE      // If enabled, once a Berry tree has grown a Berry, the tree will not disappear until picked by the player.
 
 // Overworld Pokémon
 #define OW_POKEMON_OBJECT_EVENTS       TRUE       // Adds Object Event fields for every species. Can be used for NPCs using the OBJ_EVENT_GFX_SPECIES macro (eg. OBJ_EVENT_GFX_SPECIES(BULBASAUR))
