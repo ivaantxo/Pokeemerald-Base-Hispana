@@ -49,6 +49,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "config/tutoriales.h"
 
 enum {
     PSS_PAGE_INFO,
@@ -947,8 +948,8 @@ static const union AnimCmd *const sSpriteAnimTable_MoveTypes[NUMBER_OF_MON_TYPES
 
 const struct CompressedSpriteSheet gSpriteSheet_MoveTypes =
 {
-    .data = gMoveTypes_Gfx,
-    .size = (NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT) * 0x100,
+    .data = TUTORIAL_ICONOS_DE_TIPOS ? gIconosTipos_Gfx : gMoveTypes_Gfx,
+    .size = (NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT) * 256,
     .tag = TAG_MOVE_TYPES
 };
 const struct SpriteTemplate gSpriteTemplate_MoveTypes =
@@ -963,11 +964,11 @@ const struct SpriteTemplate gSpriteTemplate_MoveTypes =
 };
 static const u8 sContestCategoryToOamPaletteNum[CONTEST_CATEGORIES_COUNT] =
 {
-    [CONTEST_CATEGORY_COOL] = 13,
-    [CONTEST_CATEGORY_BEAUTY] = 14,
-    [CONTEST_CATEGORY_CUTE] = 14,
-    [CONTEST_CATEGORY_SMART] = 15,
-    [CONTEST_CATEGORY_TOUGH] = 13,
+    [CONTEST_CATEGORY_COOL] = TUTORIAL_ICONOS_DE_TIPOS ? 15 : 13,
+    [CONTEST_CATEGORY_BEAUTY] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 14,
+    [CONTEST_CATEGORY_CUTE] = TUTORIAL_ICONOS_DE_TIPOS ? 11 : 14,
+    [CONTEST_CATEGORY_SMART] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 15,
+    [CONTEST_CATEGORY_TOUGH] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 13,
 };
 static const struct OamData sOamData_MoveSelector =
 {
@@ -1438,7 +1439,10 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 12:
-        LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
+        if (TUTORIAL_ICONOS_DE_TIPOS)
+            LoadCompressedPalette(gIconosTipos_Pal, OBJ_PLTT_ID(11), 5 * PLTT_SIZE_4BPP);
+        else
+            LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
         LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
         LoadSpritePalette(&gSpritePal_CategoryIcons);
         sMonSummaryScreen->switchCounter = 0;
