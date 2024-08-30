@@ -39,7 +39,7 @@ const struct SpriteTemplate gSpriteTemplate_MoveTypes =
 {
     .tileTag = TAG_MOVE_TYPES,                                              La etiqueta de antes, pero para saber si está cargado el gráfico o no. 
     .paletteTag = TAG_MOVE_TYPES,                                           La misma etiqueta, pero para saber si la paleta está cargada o no.
-    .oam = &sOamData_MoveTypes,                                             Los datos de OAM (Object Attribute Memory, que son las características del sprite)
+    .oam = &sOamData_MoveTypes,                                             Los datos de OAM (Object Attribute Memory), que son las características del sprite, como su posición, si tiene animación afín, su modo (si es transparente se asigna aquí), su forma (tamaño adecuado) y su paleta correspondiente.
     .anims = sSpriteAnimTable_MoveTypes,                                    Las animaciones, que en nuestro caso, si lo comprobáis, veréis que es solo el tipo x 8 (Como son sprites de 32x16, cada uno tiene 8 tiles, por lo que si avanzamos 8 tiles, saltaremos al siguiente frame).
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
@@ -47,6 +47,12 @@ const struct SpriteTemplate gSpriteTemplate_MoveTypes =
 };
 
 Recomiendo jugar un poco con estos valores y ver cómo cambia lo que vemos en la pantalla y en la memoria para ir entendiendo qué hace realmente cada uno.
+
+¿Dónde se asigna qué paleta debe llevar nuestro sprite? En general, esto lo haremos en el parámetro .paletteNum del OamData (Un número del 0 al 15 que indica cuál de las 16 paletas de objetos usa nuestro sprite), o también podríamos hacerlo haciendo "sprite->oam.paletteNum = LoQueQueramos", si queremos hacerlo dinámico (que cambie según x condiciones).
+En el caso de los iconos de tipos, esto se hace directamente en TypesInfo, donde cada tipo tiene un parámetro .palette asignado (obviamente, también del 0 al 15), y que luego se lee en la función SetTypeSpritePosAndPal en pokemon_summary_screen.c, donde podemos ver que hace:
+
+    if (typeId < NUMBER_OF_MON_TYPES)                           Si el tipo está antes del índice de los tipos de concurso, entonces
+        sprite->oam.paletteNum = gTypesInfo[typeId].palette;    el índice de la paleta será el que se indique en el parámetro .palette dentro de la estructura gTypesInfo para el [typeId] que corresponda.
 
 Cuando ya tenemos esto, basta cargar el SpriteSheet mediante LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes), cargar la paleta con LoadCompressedPalette(gIconosTipos_Pal, tal, tal), y crear el sprite finalmente con CreateSprite(&gSpriteTemplate_MoveTypes, tal, tal, tal) en la función que queramos,
 y ya tendríamos nuestros nuevos sprites cargados en la pantalla de la GBA, y solo faltaría escribir el código para ver qué hacemos con ellos.
