@@ -149,20 +149,20 @@ static const u8 sText_Stats_Gender_50[] = _("♀ 1/1 ♂");     //_("♀ 50 / 50
 static const u8 sText_Stats_Gender_75[] = _("♀ 3/1 ♂");     //_("♀ 75 / 25 ♂");
 static const u8 sText_Stats_Gender_87_5[] = _("♀ 7/1 ♂");
 static const u8 sText_Stats_Gender_100[] = _("♀");
-static const u8 sText_Stats_CatchRate[] = _("{0x5B}CAPT");
+static const u8 sText_Stats_CatchRate[] = _("%CAPT.");
 static const u8 sText_Stats_CatchRate_Legend[] = _("Legendario");
-static const u8 sText_Stats_CatchRate_VeryHard[] = _("{UP_ARROW} Difícil");
-static const u8 sText_Stats_CatchRate_Difficult[] = _("Difícil");
-static const u8 sText_Stats_CatchRate_Medium[] = _("Medio");
-static const u8 sText_Stats_CatchRate_Relaxed[] = _("Relajado");
-static const u8 sText_Stats_CatchRate_Easy[] = _("Fácil");
-static const u8 sText_Stats_ExpYield[] = _("EXP BASE");
+static const u8 sText_Stats_CatchRate_VeryHard[] = _(" {UP_ARROW} Difícil");
+static const u8 sText_Stats_CatchRate_Difficult[] = _("   Difícil");
+static const u8 sText_Stats_CatchRate_Medium[] = _("       Medio");
+static const u8 sText_Stats_CatchRate_Relaxed[] = _("  Relajado");
+static const u8 sText_Stats_CatchRate_Easy[] = _("       Fácil");
+static const u8 sText_Stats_ExpYield[] = _("EXP. BASE");
 static const u8 sText_Stats_EggCycles[] = _("PASOS HUEVO");
 static const u8 sText_Stats_EggCycles_VeryFast[] = _("{EMOJI_BOLT}{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Fast[] = _("{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Normal[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Slow[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_Growthrate[] = _("CREC");
+static const u8 sText_Stats_Growthrate[] = _("CREC.");
 static const u8 sText_Stats_Friendship[] = _("AMISTAD");
 static const u8 sText_Stats_Friendship_BigAnger[] = _("{EMOJI_BIGANGER}");
 static const u8 sText_Stats_Friendship_Neutral[] = _("{EMOJI_NEUTRAL}");
@@ -227,7 +227,7 @@ static const u8 sText_EVO_LEVEL_DAY[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, día.")
 static const u8 sText_EVO_LEVEL_DUSK[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, tarde.");
 static const u8 sText_EVO_ITEM_HOLD_DAY[] = _("{UP_ARROW}{LV} con {STR_VAR_2}, día.");
 static const u8 sText_EVO_ITEM_HOLD_NIGHT[] = _("{UP_ARROW}{LV} con {STR_VAR_2}, noche.");
-static const u8 sText_EVO_MOVE[] = _("{UP_ARROW}{LV}, sabiendo {STR_VAR_2}.");
+static const u8 sText_EVO_MOVE[] = _("{UP_ARROW}{LV}, si sabe {STR_VAR_2}.");
 static const u8 sText_EVO_MAPSEC[] = _("{UP_ARROW}{LV} en {STR_VAR_2}.");
 static const u8 sText_EVO_ITEM_MALE[] = _("{STR_VAR_2} usado en chico.");
 static const u8 sText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} usado en chica.");
@@ -1287,11 +1287,14 @@ static const struct BgTemplate sInfoScreen_BgTemplate[] =
     }
 };
 
-#define WIN_INFO 0
-#define WIN_FOOTPRINT 1
-#define WIN_CRY_WAVE 2
-#define WIN_VU_METER 3
-#define WIN_NAVIGATION_BUTTONS 4
+enum InfoScreenWindows
+{
+    WIN_INFO,
+    WIN_FOOTPRINT,
+    WIN_CRY_WAVE,
+    WIN_VU_METER,
+    WIN_NAVIGATION_BUTTONS,
+};
 
 static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 {
@@ -1349,17 +1352,22 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
     DUMMY_WIN_TEMPLATE
 };
 
-#define WIN_STATS_TOPBAR 0
-#define WIN_STATS_SIDEBAR 1
-#define WIN_STATS_NAME_GENDER 2
-#define WIN_STATS_LEFT 3
-#define WIN_STATS_NAVIGATION_BUTTONS 4
-#define WIN_STATS_MOVES_TOP 5
-#define WIN_STATS_MOVES_DESCRIPTION 7
-#define WIN_STATS_MOVES_BOTTOM 8
-#define WIN_STATS_ABILITIES 9
-#define WIN_STATS_LEFT_UNUSED 10
-#define WIN_STATS_END WIN_STATS_LEFT_UNUSED
+enum StatsScreenWindows
+{
+    WIN_STATS_TOPBAR,
+    WIN_STATS_SIDEBAR,
+    WIN_STATS_NAME_GENDER,
+    WIN_STATS_LEFT,
+    WIN_STATS_NAVIGATION_BUTTONS,
+    WIN_STATS_MOVES_TOP,
+    WIN_STATS_MOVES_DESCRIPTION,
+    WIN_STATS_MOVES_BOTTOM,
+    WIN_STATS_ABILITIES,
+    WIN_STATS_LEFT_UNUSED,
+
+    WIN_STATS_END
+};
+
 static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
 {
     [WIN_STATS_TOPBAR] =
@@ -4748,7 +4756,7 @@ static void ResetStatsWindows(void)
     FreeAllWindowBuffers();
     InitWindows(sStatsScreen_WindowTemplates);
 
-    for (i = 0; i < WIN_STATS_END + 1; i++)
+    for (i = 0; i < WIN_STATS_END; i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
         PutWindowTilemap(i);
@@ -5324,7 +5332,7 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
         value = NationalToHoennOrder(num);
     else
         value = num;
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
+    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 4);
     PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, str, base_x, base_y + 10);
 
     //Gender ratio //MON_GENDERLESS == 0xFF
