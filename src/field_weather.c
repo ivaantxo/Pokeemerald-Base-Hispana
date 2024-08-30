@@ -551,11 +551,16 @@ static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex)
     }
     else
     {
-        if (MapHasNaturalLight(gMapHeader.mapType)) { // Time-blend
+        if (MapHasNaturalLight(gMapHeader.mapType))
+        {
+            // Time-blend
             u32 palettes = ((1 << numPalettes) - 1) << startPalIndex;
             UpdateAltBgPalettes(palettes & PALETTES_BG);
             UpdatePalettesWithTime(palettes);
-        } else { // copy
+        }
+        else
+        {
+            // copy
             CpuFastCopy(&gPlttBufferUnfaded[PLTT_ID(startPalIndex)], &gPlttBufferFaded[PLTT_ID(startPalIndex)], numPalettes * PLTT_SIZE_4BPP);
         }
     }
@@ -685,7 +690,8 @@ static void ApplyFogBlend(u8 blendCoeff, u32 blendColor)
     BlendPalettesFine(PALETTES_MAP, gPlttBufferFaded, gPlttBufferFaded, blendCoeff, blendColor);
 
     // Do fog blending on marked sprite palettes
-    for (curPalIndex = 16; curPalIndex < 32; curPalIndex++) {
+    for (curPalIndex = 16; curPalIndex < 32; curPalIndex++)
+    {
         if (LightenSpritePaletteInFog(curPalIndex))
             BlendPalettesFine(1, gPlttBufferFaded + PLTT_ID(curPalIndex), gPlttBufferFaded + PLTT_ID(curPalIndex), fogCoeff, RGB(28, 31, 28));
     }
@@ -798,17 +804,20 @@ void FadeScreen(u8 mode, s8 delay)
         gWeatherPtr->fadeDestColor = fadeColor;
         UpdateTimeOfDay();
         if (useWeatherPal)
-          gWeatherPtr->fadeScreenCounter = 0; // Triggers gamma-shift-based fade-in
-        else {
-          if (MapHasNaturalLight(gMapHeader.mapType)) {
+        {
+            gWeatherPtr->fadeScreenCounter = 0; // Triggers gamma-shift-based fade-in
+        }
+        else if (MapHasNaturalLight(gMapHeader.mapType))
+        {
             UpdateAltBgPalettes(PALETTES_BG);
             BeginTimeOfDayPaletteFade(PALETTES_ALL, delay, 16, 0,
-              (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
-              (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
-              currentTimeBlend.weight, fadeColor);
-          } else {
+                                      (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
+                                      (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
+                                      currentTimeBlend.weight, fadeColor);
+        }
+        else
+        {
             BeginNormalPaletteFade(PALETTES_ALL, delay, 16, 0, fadeColor);
-          }
         }
 
         gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_SCREEN_FADING_IN;
@@ -848,13 +857,18 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog)
     // WEATHER_PAL_STATE_CHANGING_WEATHER
     // WEATHER_PAL_STATE_CHANGING_IDLE
     default:
-        if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) {
+        if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL)
+        {
             if (gWeatherPtr->colorMapIndex)
                 ApplyColorMap(paletteIndex, 1, gWeatherPtr->colorMapIndex);
             else
                 UpdateSpritePaletteWithTime(spritePaletteIndex);
-        } else { // In horizontal fog, only specific palettes should be fog-blended
-            if (allowFog) {
+        }
+        else
+        {
+            // In horizontal fog, only specific palettes should be fog-blended
+            if (allowFog)
+            {
                 i = min((gTimeOfDay + 1) * 4, 12); // fog coeff, highest in day and lowest at night
                 paletteIndex = PLTT_ID(paletteIndex);
                 // First blend with time
@@ -862,7 +876,10 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog)
                 UpdateSpritePaletteWithTime(spritePaletteIndex);
                 // Then blend faded->faded with fog coeff
                 BlendPalettesFine(1, gPlttBufferFaded + paletteIndex, gPlttBufferFaded + paletteIndex, i, RGB(28, 31, 28));
-            } else { // Otherwise, just time-blend the palette
+            }
+            else
+            {
+                // Otherwise, just time-blend the palette
                 UpdateSpritePaletteWithTime(spritePaletteIndex);
             }
         }
@@ -884,7 +901,8 @@ void ApplyWeatherColorMapToPal(u8 paletteIndex) // now unused / obselete
     ApplyColorMap(paletteIndex, 1, gWeatherPtr->colorMapIndex);
 }
 
-void ApplyWeatherColorMapToPals(u8 startPalIndex, u8 numPalettes) {
+void ApplyWeatherColorMapToPals(u8 startPalIndex, u8 numPalettes)
+{
     ApplyColorMap(startPalIndex, numPalettes, gWeatherPtr->colorMapIndex);
 }
 

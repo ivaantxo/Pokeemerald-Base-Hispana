@@ -1478,7 +1478,8 @@ u16 LoadSpriteSheetByTemplateWithOffset(const struct SpriteTemplate *template, u
     return LoadSpriteSheetWithOffset(&sheet, offset);
 }
 // Like LoadSpriteSheet, but checks if already, and uses template image frames
-u16 LoadSpriteSheetByTemplate(const struct SpriteTemplate *template, u8 frame) {
+u16 LoadSpriteSheetByTemplate(const struct SpriteTemplate *template, u8 frame)
+{
     u16 tileStart;
     struct SpriteSheet tempSheet;
     // error if template is null or tile tag or images not set
@@ -1608,7 +1609,8 @@ void LoadSpritePalettes(const struct SpritePalette *palettes)
             break;
 }
 
-u8 LoadSpritePaletteInSlot(const struct SpritePalette *palette, u8 paletteNum) {
+u8 LoadSpritePaletteInSlot(const struct SpritePalette *palette, u8 paletteNum)
+{
     paletteNum = min(15, paletteNum);
     sSpritePaletteTags[paletteNum] = palette->tag;
     DoLoadSpritePalette(palette->data, paletteNum * 16);
@@ -1617,7 +1619,7 @@ u8 LoadSpritePaletteInSlot(const struct SpritePalette *palette, u8 paletteNum) {
 
 void DoLoadSpritePalette(const u16 *src, u16 paletteOffset)
 {
-    LoadPaletteFast(src, paletteOffset + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
+    LoadPaletteFast(src, OBJ_PLTT_OFFSET + paletteOffset, PLTT_SIZE_4BPP);
 }
 
 u8 AllocSpritePalette(u16 tag)

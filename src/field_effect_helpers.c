@@ -112,12 +112,14 @@ static void LoadObjectReflectionPalette(struct ObjectEvent *objectEvent, struct 
 }
 
 // Apply a blue tint effect to a palette
-static void ApplyPondFilter(u8 paletteNum, u16 *dest) {
+static void ApplyPondFilter(u8 paletteNum, u16 *dest)
+{
     u32 i;
     s32 r, g, b;
     u16 *src = gPlttBufferUnfaded + OBJ_PLTT_ID(paletteNum);
     *dest++ = *src++; // copy transparency
-    for (i = 0; i < 16 - 1; i++) {
+    for (i = 0; i < 16 - 1; i++)
+    {
         u32 color = *src++;
         r = (color << 27) >> 27;
         g = (color << 22) >> 27;
@@ -130,12 +132,14 @@ static void ApplyPondFilter(u8 paletteNum, u16 *dest) {
 }
 
 // Apply a ice tint effect to a palette
-static void ApplyIceFilter(u8 paletteNum, u16 *dest) {
+static void ApplyIceFilter(u8 paletteNum, u16 *dest)
+{
     u32 i;
     s32 r, g, b;
     u16 *src = gPlttBufferUnfaded + OBJ_PLTT_ID(paletteNum);
     *dest++ = *src++; // copy transparency
-    for (i = 0; i < 16 - 1; i++) {
+    for (i = 0; i < 16 - 1; i++)
+    {
         u32 color = *src++;
         r = (color << 27) >> 27;
         g = (color << 22) >> 27;
@@ -332,7 +336,8 @@ u32 FldEff_Shadow(void)
     const struct ObjectEventGraphicsInfo *graphicsInfo;
     u8 spriteId;
     s32 i;
-    for (i = MAX_SPRITES - 1; i > -1; i--) { // Search backwards, because of CreateSpriteAtEnd
+    for (i = MAX_SPRITES - 1; i > -1; i--) // Search backwards, because of CreateSpriteAtEnd
+    {
         // Return early if a shadow sprite already exists
         if (gSprites[i].data[0] == gFieldEffectArguments[0] && gSprites[i].callback == UpdateShadowFieldEffect)
             return 0;

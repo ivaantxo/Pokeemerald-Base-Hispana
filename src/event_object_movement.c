@@ -1534,11 +1534,13 @@ u16 LoadSheetGraphicsInfo(const struct ObjectEventGraphicsInfo *info, u16 uuid, 
             // Load, then free, in order to avoid displaying garbage data
             // before sprite's `sheetTileStart` is repointed
             tileStart = LoadCompressedSpriteSheetByTemplate(&template, TILE_SIZE_4BPP << sheetSpan);
-            if (oldTiles) {
+            if (oldTiles)
+            {
                 FieldEffectFreeTilesIfUnused(oldTiles);
                 // We weren't able to load the sheet;
                 // retry (after having freed), and set sprite to invisible until done
-                if (tileStart <= 0) {
+                if (tileStart <= 0)
+                {
                     if (sprite)
                         sprite->invisible = TRUE;
                     tileStart = LoadCompressedSpriteSheetByTemplate(&template, TILE_SIZE_4BPP << sheetSpan);
@@ -1764,7 +1766,8 @@ static u8 LoadDynamicFollowerPaletteFromGraphicsId(u16 graphicsId, bool8 shiny, 
 }
 
 // Like LoadObjectEventPalette, but overwrites the palette tag that is loaded
-static u8 LoadObjectEventPaletteWithTag(u16 paletteTag, u16 overTag) {
+static u8 LoadObjectEventPaletteWithTag(u16 paletteTag, u16 overTag)
+{
     u32 i = FindObjectEventPaletteIndexByTag(paletteTag);
     struct SpritePalette spritePalette;
     if (i == 0xFF)
@@ -1795,17 +1798,17 @@ u8 CreateObjectGraphicsSpriteWithTag(u16 graphicsId, void (*callback)(struct Spr
     {
         u32 paletteNum = LoadDynamicFollowerPaletteFromGraphicsId(graphicsId, isShiny, spriteTemplate);
         spriteTemplate->paletteTag = GetSpritePaletteTagByPaletteNum(paletteNum);
-    } 
-    else if (spriteTemplate->paletteTag != TAG_NONE) 
+    }
+    else if (spriteTemplate->paletteTag != TAG_NONE)
     {
         if (paletteTag == TAG_NONE)
             LoadObjectEventPalette(spriteTemplate->paletteTag);
-        else 
+        else
         {
             LoadObjectEventPaletteWithTag(spriteTemplate->paletteTag, paletteTag);
             spriteTemplate->paletteTag = paletteTag;
         }
-    }   
+    }
 
     if (OW_GFX_COMPRESS)
     {
@@ -1829,7 +1832,8 @@ u8 CreateObjectGraphicsSpriteWithTag(u16 graphicsId, void (*callback)(struct Spr
     return spriteId;
 }
 
-u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority) {
+u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority)
+{
     return CreateObjectGraphicsSpriteWithTag(graphicsId, callback, x, y, subpriority, TAG_NONE);
 }
 
@@ -1977,7 +1981,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
 
     if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
         UpdateSpritePaletteWithWeather(paletteNum, FALSE);
-        
+
     return paletteNum;
 }
 
@@ -2479,7 +2483,8 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
 }
 
 // Sprite callback for light sprites
-void UpdateLightSprite(struct Sprite *sprite) {
+void UpdateLightSprite(struct Sprite *sprite)
+{
     s16 left =   gSaveBlock1Ptr->pos.x - 2;
     s16 right =  gSaveBlock1Ptr->pos.x + 17;
     s16 top =    gSaveBlock1Ptr->pos.y;
@@ -2489,7 +2494,8 @@ void UpdateLightSprite(struct Sprite *sprite) {
     u16 sheetTileStart;
     u32 paletteNum;
     // Ripped from RemoveObjectEventIfOutsideView
-    if (!(x >= left && x <= right && y >= top && y <= bottom)) {
+    if (!(x >= left && x <= right && y >= top && y <= bottom))
+    {
         sheetTileStart = sprite->sheetTileStart;
         paletteNum = sprite->oam.paletteNum;
         DestroySprite(sprite);
@@ -2499,22 +2505,29 @@ void UpdateLightSprite(struct Sprite *sprite) {
         return;
     }
 
-    if (gTimeOfDay != TIME_OF_DAY_NIGHT) {
+    if (gTimeOfDay != TIME_OF_DAY_NIGHT)
+    {
         sprite->invisible = TRUE;
         return;
     }
 
-    switch (sprite->data[5]) { // lightType
+    switch (sprite->data[5]) // lightType
+    {
     case 0:
-        if (gPaletteFade.active) { // if palette fade is active, don't flicker since the timer won't be updated
+        if (gPaletteFade.active) // if palette fade is active, don't flicker since the timer won't be updated
+        {
             Weather_SetBlendCoeffs(7, 12);
             sprite->invisible = FALSE;
-        } else if (gPlayerAvatar.tileTransitionState) {
+        }
+        else if (gPlayerAvatar.tileTransitionState)
+        {
             Weather_SetBlendCoeffs(7, 12); // As long as the second coefficient stays 12, shadows will not change
             sprite->invisible = FALSE;
             if (GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) == OBJ_EVENT_PAL_TAG_LIGHT_2)
                 LoadSpritePaletteInSlot(&sObjectEventSpritePalettes[FindObjectEventPaletteIndexByTag(OBJ_EVENT_PAL_TAG_LIGHT)], sprite->oam.paletteNum);
-        } else if ((sprite->invisible = gTimeUpdateCounter & 1)) {
+        }
+        else if ((sprite->invisible = gTimeUpdateCounter & 1))
+        {
             Weather_SetBlendCoeffs(12, 12);
             if (GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) == OBJ_EVENT_PAL_TAG_LIGHT)
                 LoadSpritePaletteInSlot(&sObjectEventSpritePalettes[FindObjectEventPaletteIndexByTag(OBJ_EVENT_PAL_TAG_LIGHT_2)], sprite->oam.paletteNum);
@@ -2528,11 +2541,13 @@ void UpdateLightSprite(struct Sprite *sprite) {
 }
 
 // Spawn a light at a map coordinate
-static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType) {
+static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
+{
     struct Sprite *sprite;
     const struct SpriteTemplate *template;
     u8 i;
-    for (i = 0; i < MAX_SPRITES; i++) {
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
         sprite = &gSprites[i];
         if (sprite->inUse && sprite->callback == UpdateLightSprite && sprite->data[6] == x && sprite->data[7] == y)
             return;
@@ -2552,7 +2567,8 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType) {
     sprite->affineAnims = gDummySpriteAffineAnimTable;
     sprite->affineAnimBeginning = TRUE;
     sprite->coordOffsetEnabled = TRUE;
-    switch (lightType) {
+    switch (lightType)
+    {
     case 0: // Rustboro lanterns
         sprite->centerToCornerVecX = -(32 >> 1);
         sprite->centerToCornerVecY = -(32 >> 1);
@@ -2571,7 +2587,8 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType) {
     }
 }
 
-void TrySpawnLightSprites(s16 camX, s16 camY) {
+void TrySpawnLightSprites(s16 camX, s16 camY)
+{
     u8 i;
     u8 objectCount;
     s16 left = gSaveBlock1Ptr->pos.x - 2;
@@ -2588,7 +2605,8 @@ void TrySpawnLightSprites(s16 camX, s16 camY) {
     else
         objectCount = gMapHeader.events->objectEventCount;
 
-    for (i = 0; i < objectCount; i++) {
+    for (i = 0; i < objectCount; i++)
+    {
         struct ObjectEventTemplate *template = &gSaveBlock1Ptr->objectEventTemplates[i];
         s16 npcX = template->x + MAP_OFFSET;
         s16 npcY = template->y + MAP_OFFSET;
@@ -2623,10 +2641,11 @@ void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
             s16 npcX = template->x + MAP_OFFSET;
             s16 npcY = template->y + MAP_OFFSET;
 
-            if (top <= npcY && bottom >= npcY && left <= npcX && right >= npcX && !FlagGet(template->flagId)) {
-                if (template->graphicsId == OBJ_EVENT_GFX_LIGHT_SPRITE) {  // light sprite instead
-                    SpawnLightSprite(npcX, npcY, cameraX, cameraY, template->trainerRange_berryTreeId);
-                } else
+            if (top <= npcY && bottom >= npcY && left <= npcX && right >= npcX && !FlagGet(template->flagId))
+            {
+                if (template->graphicsId == OBJ_EVENT_GFX_LIGHT_SPRITE)
+                    SpawnLightSprite(npcX, npcY, cameraX, cameraY, template->trainerRange_berryTreeId); // light sprite instead
+                else
                     TrySpawnObjectEventTemplate(template, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, cameraX, cameraY);
             }
         }
@@ -2776,10 +2795,13 @@ static u8 UpdateSpritePalette(const struct SpritePalette *spritePalette, struct 
     sprite->inUse = FALSE;
     FieldEffectFreePaletteIfUnused(sprite->oam.paletteNum);
     sprite->inUse = TRUE;
-    if (IndexOfSpritePaletteTag(spritePalette->tag) == 0xFF) {
+    if (IndexOfSpritePaletteTag(spritePalette->tag) == 0xFF)
+    {
         sprite->oam.paletteNum = LoadSpritePalette(spritePalette);
         UpdateSpritePaletteWithWeather(sprite->oam.paletteNum, FALSE);
-    } else {
+    }
+    else
+    {
         sprite->oam.paletteNum = LoadSpritePalette(spritePalette);
     }
 
@@ -9795,7 +9817,7 @@ static void (*const sGroundEffectFuncs[])(struct ObjectEvent *objEvent, struct S
     GroundEffect_Seaweed                // GROUND_EFFECT_FLAG_SEAWEED
 };
 
-static void GroundEffect_Shadow(struct ObjectEvent *objEvent, struct Sprite *sprite) 
+static void GroundEffect_Shadow(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
     SetUpShadow(objEvent, sprite);
 }

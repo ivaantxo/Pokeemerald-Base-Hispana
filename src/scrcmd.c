@@ -632,7 +632,8 @@ static bool8 IsPaletteNotActive(void)
 }
 
 // pauses script until palette fade inactive
-bool8 ScrFunc_WaitPaletteNotActive(struct ScriptContext *ctx) {
+bool8 ScrFunc_WaitPaletteNotActive(struct ScriptContext *ctx)
+{
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
 }

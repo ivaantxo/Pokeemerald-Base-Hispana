@@ -3969,17 +3969,17 @@ static void SetMoveTypeIcons(void)
             if (P_SHOW_DYNAMIC_TYPES)
             {
                 type = CheckDynamicMoveType(mon, summary->moves[i], 0);
-                SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);  
+                SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
             }
             else
             {
-                SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE); 
+                SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
             }
         }
         else
         {
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
-        }     
+        }
     }
 }
 

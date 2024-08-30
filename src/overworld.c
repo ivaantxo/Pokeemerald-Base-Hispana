@@ -1533,43 +1533,57 @@ const struct BlendSettings gTimeOfDayBlend[] =
     [TIME_OF_DAY_DAY] = {.coeff = 0, .blendColor = 0},
 };
 
-u8 UpdateTimeOfDay(void) {
+u8 UpdateTimeOfDay(void)
+{
     s32 hours, minutes;
     RtcCalcLocalTime();
     hours = gLocalTime.hours;
     minutes = gLocalTime.minutes;
-    if (hours < 4) { // night
+    if (hours < 4) // night
+    {
         currentTimeBlend.weight = 256;
         currentTimeBlend.altWeight = 0;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_OF_DAY_NIGHT;
-    } else if (hours < 7) { // night->twilight
+    }
+    else if (hours < 7) // night->twilight
+    {
         currentTimeBlend.time0 = TIME_OF_DAY_NIGHT;
         currentTimeBlend.time1 = TIME_OF_DAY_TWILIGHT;
         currentTimeBlend.weight = 256 - 256 * ((hours - 4) * 60 + minutes) / ((7-4)*60);
         currentTimeBlend.altWeight = (256 - currentTimeBlend.weight) / 2;
         gTimeOfDay = TIME_OF_DAY_DAY;
-    } else if (hours < 10) { // twilight->day
+    }
+    else if (hours < 10) // twilight->day
+    {
         currentTimeBlend.time0 = TIME_OF_DAY_TWILIGHT;
         currentTimeBlend.time1 = TIME_OF_DAY_DAY;
         currentTimeBlend.weight = 256 - 256 * ((hours - 7) * 60 + minutes) / ((10-7)*60);
         currentTimeBlend.altWeight = (256 - currentTimeBlend.weight) / 2 + 128;
         gTimeOfDay = TIME_OF_DAY_DAY;
-    } else if (hours < 18) { // day
+    }
+    else if (hours < 18) // day
+    {
         currentTimeBlend.weight = currentTimeBlend.altWeight = 256;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_OF_DAY_DAY;
-    } else if (hours < 20) { // day->twilight
+    }
+    else if (hours < 20)
+    {
         currentTimeBlend.time0 = TIME_OF_DAY_DAY;
         currentTimeBlend.time1 = TIME_OF_DAY_TWILIGHT;
         currentTimeBlend.weight = 256 - 256 * ((hours - 18) * 60 + minutes) / ((20-18)*60);
         currentTimeBlend.altWeight = currentTimeBlend.weight / 2 + 128;
         gTimeOfDay = TIME_OF_DAY_TWILIGHT;
-    } else if (hours < 22) { // twilight->night
+    }
+    else if (hours < 22) // twilight->night
+    {
         currentTimeBlend.time0 = TIME_OF_DAY_TWILIGHT;
         currentTimeBlend.time1 = TIME_OF_DAY_NIGHT;
         currentTimeBlend.weight = 256 - 256 * ((hours - 20) * 60 + minutes) / ((22-20)*60);
         currentTimeBlend.altWeight = currentTimeBlend.weight / 2;
         gTimeOfDay = TIME_OF_DAY_NIGHT;
-    } else { // 22-24, night
+    }
+    else // 22-24, night
+    {
         currentTimeBlend.weight = 256;
         currentTimeBlend.altWeight = 0;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_OF_DAY_NIGHT;
@@ -1577,17 +1591,19 @@ u8 UpdateTimeOfDay(void) {
     return gTimeOfDay;
 }
 
-bool8 MapHasNaturalLight(u8 mapType) { // Whether a map type is naturally lit/outside
-    return (
-        mapType == MAP_TYPE_TOWN
-        || mapType == MAP_TYPE_CITY
-        || mapType == MAP_TYPE_ROUTE
-        || mapType == MAP_TYPE_OCEAN_ROUTE
+// Whether a map type is naturally lit/outside
+bool8 MapHasNaturalLight(u8 mapType)
+{
+    return (mapType == MAP_TYPE_TOWN
+         || mapType == MAP_TYPE_CITY
+         || mapType == MAP_TYPE_ROUTE
+         || mapType == MAP_TYPE_OCEAN_ROUTE
     );
 }
 
 // Update & mix day / night bg palettes (into unfaded)
-void UpdateAltBgPalettes(u16 palettes) {
+void UpdateAltBgPalettes(u16 palettes)
+{
     const struct Tileset *primary = gMapHeader.mapLayout->primaryTileset;
     const struct Tileset *secondary = gMapHeader.mapLayout->secondaryTileset;
     u32 i = 1;
@@ -1599,8 +1615,10 @@ void UpdateAltBgPalettes(u16 palettes) {
     palettes >>= 1; // start at palette 1
     if (!palettes)
         return;
-    while (palettes) {
-        if (palettes & 1) {
+    while (palettes)
+    {
+        if (palettes & 1)
+        {
             if (i < NUM_PALS_IN_PRIMARY)
                 AvgPaletteWeighted(&((u16*)primary->palettes)[i*16], &((u16*)primary->palettes)[((i+9)%16)*16], gPlttBufferUnfaded + i * 16, currentTimeBlend.altWeight);
             else
@@ -1611,8 +1629,10 @@ void UpdateAltBgPalettes(u16 palettes) {
     }
 }
 
-void UpdatePalettesWithTime(u32 palettes) {
-    if (MapHasNaturalLight(gMapHeader.mapType)) {
+void UpdatePalettesWithTime(u32 palettes)
+{
+    if (MapHasNaturalLight(gMapHeader.mapType))
+    {
         u32 i;
         u32 mask = 1 << 16;
         if (palettes >= (1 << 16))
@@ -1634,18 +1654,19 @@ void UpdatePalettesWithTime(u32 palettes) {
     }
 }
 
-u8 UpdateSpritePaletteWithTime(u8 paletteNum) {
-    if (MapHasNaturalLight(gMapHeader.mapType)) {
+u8 UpdateSpritePaletteWithTime(u8 paletteNum)
+{
+    if (MapHasNaturalLight(gMapHeader.mapType))
+    {
         if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(paletteNum)))
-        return paletteNum;
-    TimeMixPalettes(
-        1,
-        &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)],
-        &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)],
-        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
-        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
-        currentTimeBlend.weight
-    );
+            return paletteNum;
+        TimeMixPalettes(1,
+                        &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)],
+                        &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)],
+                        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
+                        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
+                        currentTimeBlend.weight
+        );
     }
     return paletteNum;
 }
@@ -1662,7 +1683,8 @@ static void OverworldBasic(void)
     UpdateTilesetAnimations();
     DoScheduledBgTilemapCopiesToVram();
     // Every minute if no palette fade is active, update TOD blending as needed
-    if (!gPaletteFade.active && ++gTimeUpdateCounter >= 3600) {
+    if (!gPaletteFade.active && ++gTimeUpdateCounter >= 3600)
+    {
         struct TimeBlendSettings cachedBlend = {
             .time0 = currentTimeBlend.time0,
             .time1 = currentTimeBlend.time1,
