@@ -50,6 +50,10 @@
 
 #define AI_FLAG_COUNT                       20
 
+// The following options are enough to have a basic/smart trainer. Any other addtion could make the trainer worse/better depending on the flag
+#define AI_FLAG_BASIC_TRAINER         (AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY)
+#define AI_FLAG_SMART_TRAINER         (AI_FLAG_BASIC_TRAINER | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES)
+
 // 'other' ai logic flags
 #define AI_FLAG_DYNAMIC_FUNC          (1 << 28)  // Create custom AI functions for specific battles via "setdynamicaifunc" cmd
 #define AI_FLAG_ROAMING               (1 << 29)
