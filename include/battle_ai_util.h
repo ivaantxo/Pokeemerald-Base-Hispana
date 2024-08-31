@@ -205,5 +205,6 @@ bool32 AI_ShouldCopyStatChanges(u32 battlerAtk, u32 battlerDef);
 bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData);
 void IncreaseTidyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score);
 bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, struct AiLogicData *aiData);
+void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score);
 
 #endif //GUARD_BATTLE_AI_UTIL_H
