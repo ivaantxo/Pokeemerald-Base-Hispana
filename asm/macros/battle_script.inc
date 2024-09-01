@@ -1674,14 +1674,51 @@
 	callnative BS_FickleBeamDamageCalculation
 	.endm
 
-@ various command changed to more readable macros
-	.macro cancelmultiturnmoves battler:req
-	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
+	.macro jumpifteainvulnerable battler:req, jumpInstr:req
+	callnative BS_TeatimeInvul
+	.byte \battler
+	.4byte \jumpInstr
+	.endm
+
+	.macro jumpifteanoberry failInstr:req
+	callnative BS_TeatimeTargets
+	.4byte \failInstr
+	.endm
+
+	.macro trywindriderpower battler:req, failInstr:req
+	callnative BS_TryWindRiderPower
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
+	.macro activateweatherchangeabilities battler:req
+	callnative BS_ActivateWeatherChangeAbilities
+	.byte \battler
+	.endm
+
+	.macro activateterrainchangeabilities battler:req
+	callnative BS_ActivateTerrainChangeAbilities
+	.byte \battler
 	.endm
 
 	@ Stores Healing Wish effect.
 	.macro storehealingwish battler:req
-	various \battler, VARIOUS_STORE_HEALING_WISH
+	callnative BS_StoreHealingWish
+	.byte \battler
+	.endm
+
+	.macro hitswitchtargetfailed
+	callnative BS_HitSwitchTargetFailed
+	.endm
+
+	.macro tryrevivalblessing, failInstr:req
+	callnative BS_TryRevivalBlessing
+	.4byte \failInstr
+	.endm
+
+@ various command changed to more readable macros
+	.macro cancelmultiturnmoves battler:req
+	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
 	.endm
 
 	.macro setmagiccoattarget battler:req
@@ -2230,16 +2267,6 @@
 	.4byte \failInstr
 	.endm
 
-	.macro jumpifteanoberry jumpInstr:req
-	various BS_ATTACKER, VARIOUS_TEATIME_TARGETS
-	.4byte \jumpInstr
-	.endm
-
-	.macro jumpifteainvulnerable battler:req, jumpInstr:req
-	various \battler, VARIOUS_TEATIME_INVUL
-	.4byte \jumpInstr
-	.endm
-
 	.macro curecertainstatuses battler:req
 	various \battler, VARIOUS_CURE_CERTAIN_STATUSES
 	.endm
@@ -2282,19 +2309,6 @@
 	.macro swapstats stat:req
 	various BS_ATTACKER, VARIOUS_SWAP_STATS
 	.byte \stat
-	.endm
-
-	.macro trywindriderpower battler:req, failInstr:req
-	various \battler, VARIOUS_TRY_WIND_RIDER_POWER
-	.4byte \failInstr
-	.endm
-
-	.macro activateweatherchangeabilities battler:req
-	various \battler, VARIOUS_ACTIVATE_WEATHER_CHANGE_ABILITIES
-	.endm
-
-	.macro activateterrainchangeabilities battler:req
-	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
 	.endm
 
 @ helpful macros
@@ -2489,15 +2503,6 @@
 		.endif
 	.endif
 	waitmessage B_WAIT_TIME_LONG
-	.endm
-
-	.macro hitswitchtargetfailed
-	various 0, VARIOUS_HIT_SWITCH_TARGET_FAILED
-	.endm
-
-	.macro tryrevivalblessing, jumpInstr:req
-	various 0, VARIOUS_TRY_REVIVAL_BLESSING
-	.4byte \jumpInstr
 	.endm
 
 	@ Will jump to script pointer if the specified battler has or has not fainted.
