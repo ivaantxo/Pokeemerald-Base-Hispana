@@ -5,9 +5,11 @@
 	.4byte \address
 	.endm
 
-	.macro field_eff_loadfadedpal address:req
+	@ 1 = COLOR_MAP_DARK_CONTRAST
+	.macro field_eff_loadfadedpal address:req, color_map_type=1
 	.byte 1
 	.4byte \address
+	.byte  \color_map_type
 	.endm
 
 	.macro field_eff_loadpal address:req
@@ -24,10 +26,12 @@
 	.byte 4
 	.endm
 
-	.macro field_eff_loadgfx_callnative tiles_address:req, palette_address:req, function_address:req
+	@ 1 = COLOR_MAP_DARK_CONTRAST
+	.macro field_eff_loadgfx_callnative tiles_address:req, palette_address:req, function_address:req, color_map_type=1
 	.byte 5
 	.4byte \tiles_address
 	.4byte \palette_address
+	.byte  \color_map_type
 	.4byte \function_address
 	.endm
 
@@ -37,8 +41,10 @@
 	.4byte \function_address
 	.endm
 
-	.macro field_eff_loadfadedpal_callnative palette_address:req, function_address:req
+	@ 1 = COLOR_MAP_DARK_CONTRAST
+	.macro field_eff_loadfadedpal_callnative palette_address:req, function_address:req, color_map_type=1
 	.byte 7
 	.4byte \palette_address
+	.byte  \color_map_type
 	.4byte \function_address
 	.endm

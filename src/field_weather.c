@@ -1136,11 +1136,27 @@ void SetWeatherPalStateIdle(void)
     gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
 }
 
+const u8* SetPaletteColorMapType(u8 paletteIndex, u8 colorMapType) {
+    if (sPaletteColorMapTypes[paletteIndex] == colorMapType)
+        return sPaletteColorMapTypes;
+    // setup field effect color map
+    if (sPaletteColorMapTypes != sFieldEffectPaletteColorMapTypes) {
+        CpuFastCopy(sBasePaletteColorMapTypes, sFieldEffectPaletteColorMapTypes, 32);
+        sPaletteColorMapTypes = sFieldEffectPaletteColorMapTypes;
+    }
+    sFieldEffectPaletteColorMapTypes[paletteIndex] = colorMapType;
+    return sPaletteColorMapTypes;
+}
+
 void PreservePaletteInWeather(u8 preservedPalIndex)
 {
-    CpuCopy16(sBasePaletteColorMapTypes, sFieldEffectPaletteColorMapTypes, 32);
-    sFieldEffectPaletteColorMapTypes[preservedPalIndex] = COLOR_MAP_NONE;
-    sPaletteColorMapTypes = sFieldEffectPaletteColorMapTypes;
+    SetPaletteColorMapType(preservedPalIndex, COLOR_MAP_NONE);
+}
+
+void ResetPaletteColorMapType(u8 paletteIndex) {
+    if (sPaletteColorMapTypes == sBasePaletteColorMapTypes)
+        return;
+    sFieldEffectPaletteColorMapTypes[paletteIndex] = sBasePaletteColorMapTypes[paletteIndex];
 }
 
 void ResetPreservedPalettesInWeather(void)

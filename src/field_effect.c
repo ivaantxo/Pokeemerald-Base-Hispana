@@ -781,9 +781,11 @@ void FieldEffectScript_LoadTiles(u8 **script)
 void FieldEffectScript_LoadFadedPalette(u8 **script)
 {
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
-    LoadSpritePalette(palette);
-    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag), TRUE);
+    u32 paletteSlot = LoadSpritePalette(palette);
     (*script) += 4;
+    SetPaletteColorMapType(paletteSlot + 16, T1_READ_8(*script));
+    UpdateSpritePaletteWithWeather(paletteSlot, TRUE);
+    (*script)++;
 }
 
 void FieldEffectScript_LoadPalette(u8 **script)
@@ -839,6 +841,7 @@ void FieldEffectFreePaletteIfUnused(u8 paletteNum)
         for (i = 0; i < MAX_SPRITES; i++)
             if (gSprites[i].inUse && gSprites[i].oam.paletteNum == paletteNum)
                 return;
+        ResetPaletteColorMapType(paletteNum + 16);
         FreeSpritePaletteByTag(tag);
     }
 }
