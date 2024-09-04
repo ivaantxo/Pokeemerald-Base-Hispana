@@ -1103,7 +1103,6 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/contest_strings.inc"
 	.include "data/text/contest_link.inc"
 	.include "data/text/contest_painting.inc"
-	.include "data/text/trick_house_mechadolls.inc"
 	.include "data/scripts/tv.inc"
 	.include "data/text/tv.inc"
 	.include "data/scripts/interview.inc"
