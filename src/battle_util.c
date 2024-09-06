@@ -8818,6 +8818,9 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
     if (GetActiveGimmick(battlerAtk) == GIMMICK_Z_MOVE)
         return GetZMovePower(gBattleStruct->zmove.baseMoves[battlerAtk]);
 
+    if (GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX)
+        return GetMaxMovePower(move);
+
     switch (gMovesInfo[move].effect)
     {
     case EFFECT_PLEDGE:
@@ -11787,5 +11790,10 @@ u32 GetMoveType(u32 move)
 {
     if (gMain.inBattle && gBattleStruct->dynamicMoveType)
         return gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
+    else if (B_UPDATED_MOVE_TYPES < GEN_5
+         && (move == MOVE_BEAT_UP
+          || move == MOVE_FUTURE_SIGHT
+          || move == MOVE_DOOM_DESIRE))
+          return TYPE_MYSTERY;
     return gMovesInfo[move].type;
 }

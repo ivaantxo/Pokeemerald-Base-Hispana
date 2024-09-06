@@ -11,6 +11,7 @@
 #include "pokeblock.h"
 #include "battle_setup.h"
 #include "roamer.h"
+#include "rtc.h"
 #include "tv.h"
 #include "link.h"
 #include "script.h"
@@ -354,9 +355,32 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     }
 }
 
+static bool8 IsExactTimeOfDayMatchForWildEncounters(u8 currentTimeOfDay, u8 encounterTimeOfDay)
+{
+    switch (currentTimeOfDay)
+    {
+    case TIME_MORNING:
+        if (OW_ENABLE_MORNING_WILD_ENCOUNTERS)
+            return encounterTimeOfDay == TIME_MORNING;
+        // fallthrough
+    case TIME_DAY:
+        return encounterTimeOfDay == TIME_DAY;
+    case TIME_EVENING:
+        if (OW_ENABLE_EVENING_WILD_ENCOUNTERS)
+            return encounterTimeOfDay == TIME_EVENING;
+        // fallthrough
+    case TIME_NIGHT:
+        return encounterTimeOfDay == TIME_NIGHT;
+    }
+    return FALSE;
+}
+
 static u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
+    u8 currentTimeOfDay = GetTimeOfDay();
+    u16 dayId = HEADER_NONE;
+    u16 nightId = HEADER_NONE;
 
     for (i = 0; ; i++)
     {
@@ -375,13 +399,30 @@ static u16 GetCurrentMapWildMonHeaderId(void)
                     alteringCaveId = 0;
 
                 i += alteringCaveId;
+                return i; // Altering cave is not affected by time-of-day encounters.
             }
 
-            return i;
+            if (OW_TIME_BASED_WILD_ENCOUNTERS)
+            {
+                if (IsExactTimeOfDayMatchForWildEncounters(currentTimeOfDay, gWildMonHeaders[i].timeOfDay))
+                    return i;
+                else if (gWildMonHeaders[i].timeOfDay == TIME_DAY && dayId == HEADER_NONE)
+                    dayId = i;
+                else if (gWildMonHeaders[i].timeOfDay == TIME_NIGHT && nightId == HEADER_NONE)
+                    nightId = i;
+            }
+            else
+                return i;
         }
     }
 
-    return HEADER_NONE;
+    if (!OW_TIME_BASED_WILD_ENCOUNTERS)
+        return HEADER_NONE;
+
+    // Exact match for time of day was not found. We fall back to other encounter groups for this map
+    if (currentTimeOfDay == TIME_EVENING && OW_ENABLE_EVENING_WILD_ENCOUNTERS && nightId != HEADER_NONE)
+        return nightId;
+    return dayId;
 }
 
 u8 PickWildMonNature(void)
