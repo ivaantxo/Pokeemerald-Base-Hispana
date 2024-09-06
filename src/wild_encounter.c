@@ -355,7 +355,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     }
 }
 
-static bool8 IsExactTimeOfDayMatchForWildEncounters(u8 currentTimeOfDay, u8 encounterTimeOfDay)
+static bool32 IsExactTimeOfDayMatchForWildEncounters(u32 currentTimeOfDay, u32 encounterTimeOfDay)
 {
     switch (currentTimeOfDay)
     {
