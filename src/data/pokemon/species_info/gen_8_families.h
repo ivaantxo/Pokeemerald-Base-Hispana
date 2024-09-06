@@ -1063,7 +1063,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_PRESSURE, ABILITY_UNNERVE, ABILITY_MIRROR_ARMOR },
         .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = _("Corviknigh"),
+        .speciesName = _("Corviknight"),
         .cryId = CRY_CORVIKNIGHT,
         .natDexNum = NATIONAL_DEX_CORVIKNIGHT,
         .categoryName = _("Raven"),
@@ -3605,7 +3605,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_FLASH_FIRE, ABILITY_WHITE_SMOKE, ABILITY_FLAME_BODY },
         .bodyColor = BODY_COLOR_RED,
-        .speciesName = _("Centiskorc"),
+        .speciesName = _("Centiskorch"),
         .cryId = CRY_CENTISKORCH,
         .natDexNum = NATIONAL_DEX_CENTISKORCH,
         .categoryName = _("Radiator"),
@@ -5280,6 +5280,14 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_IndeedeeFemale,
         .iconPalIndex = 2,
         FOOTPRINT(Indeedee)
+        OVERWORLD(
+            sPicTable_IndeedeeFemale,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_IndeedeeFemale,
+            gShinyOverworldPalette_IndeedeeFemale
+        )
         .levelUpLearnset = sIndeedeeFemaleLevelUpLearnset,
         .teachableLearnset = sIndeedeeFemaleTeachableLearnset,
         .eggMoveLearnset = sIndeedeeFemaleEggMoveLearnset,

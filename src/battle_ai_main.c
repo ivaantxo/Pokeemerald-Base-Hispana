@@ -46,7 +46,7 @@ EWRAM_DATA AiScoreFunc sDynamicAiFunc = NULL;
 static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
-static s32 AI_SetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
+static s32 AI_ForceSetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PreferStrongestMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PreferBatonPass(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
@@ -64,7 +64,7 @@ static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
     [0] = AI_CheckBadMove,           // AI_FLAG_CHECK_BAD_MOVE
     [1] = AI_TryToFaint,             // AI_FLAG_TRY_TO_FAINT
     [2] = AI_CheckViability,         // AI_FLAG_CHECK_VIABILITY
-    [3] = AI_SetupFirstTurn,         // AI_FLAG_SETUP_FIRST_TURN
+    [3] = AI_ForceSetupFirstTurn,    // AI_FLAG_FORCE_SETUP_FIRST_TURN
     [4] = AI_Risky,                  // AI_FLAG_RISKY
     [5] = AI_PreferStrongestMove,    // AI_FLAG_PREFER_STRONGEST_MOVE
     [6] = AI_PreferBatonPass,        // AI_FLAG_PREFER_BATON_PASS
@@ -891,7 +891,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 break;
             case ABILITY_WONDER_GUARD:
                 if (effectiveness < AI_EFFECTIVENESS_x2)
-                    return 0;
+                    RETURN_SCORE_MINUS(20);
                 break;
             case ABILITY_JUSTIFIED:
                 if (moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
@@ -1500,7 +1500,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_OHKO:
             if (B_SHEER_COLD_IMMUNITY >= GEN_7 && move == MOVE_SHEER_COLD && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
-                return 0;
+                RETURN_SCORE_MINUS(20);
             if (!ShouldTryOHKO(battlerAtk, battlerDef, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], move))
                 ADJUST_SCORE(-10);
             else if (GetActiveGimmick(battlerDef) == GIMMICK_DYNAMAX)
@@ -2510,7 +2510,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
             {
                 if (gStatuses3[battlerDef] & STATUS3_HEAL_BLOCK)
-                    return 0;
+                    return 0; // cannot even select
                 if (AtMaxHp(battlerDef))
                     ADJUST_SCORE(-10);
                 else if (gBattleMons[battlerDef].hp > gBattleMons[battlerDef].maxHP / 2)
@@ -4821,7 +4821,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
 }
 
 // Effects that are encouraged on the first turn of battle
-static s32 AI_SetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
+static s32 AI_ForceSetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 {
     u8 i;
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef)
