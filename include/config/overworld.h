@@ -74,13 +74,6 @@
 #define OW_USE_FAKE_RTC                 FALSE      // When TRUE, seconds on the in-game clock will only advance once every 60 playTimeVBlanks (every 60 frames).
 #define OW_ALTERED_TIME_RATIO           GEN_LATEST // In GEN_8_PLA, the time in game moves forward 60 seconds for every second in the RTC. In GEN_9, it is 20 seconds. This has no effect if OW_USE_FAKE_RTC is FALSE.
 
-// Time-based wild Pokemon encounters - Allows you to create additional encounter groups in wild_encounters.json (or in porymap). 
-// The groups are processed by base label's suffix. For example, "gRoute101" (no suffix) contains daytime encounters, and "gRoute101_Night" contains nighttime encounters.
-// Not every group needs to be defined for every map - you could for example omit them inside caves and it would fall back to the unsuffixed daytime encounter group.
-#define OW_TIME_BASED_WILD_ENCOUNTERS           FALSE // Enables the system. If disabled, all suffixes are ignored and the first encounter group found for a map will be used for wild encounters.
-#define OW_ENABLE_MORNING_WILD_ENCOUNTERS       FALSE // If true, allows definition of morning encounter groups such as "gRoute101_Morning". Otherwise, morning is considered to be day for encounters. No effect if OW_TIME_BASED_WILD_ENCOUNTERS is false.
-#define OW_ENABLE_EVENING_WILD_ENCOUNTERS       FALSE // If true, allows definition of evening encounter groups such as "gRoute101_Evening". Otherwise, evening is considered to be night for encounters. No effect if OW_TIME_BASED_WILD_ENCOUNTERS is false.
-
 // Overworld flags
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
