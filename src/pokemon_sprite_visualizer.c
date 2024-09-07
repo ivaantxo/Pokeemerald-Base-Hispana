@@ -41,7 +41,6 @@
 #include "constants/items.h"
 #include "constants/event_objects.h"
 
-#if DEBUG_POKEMON_SPRITE_VISUALIZER == TRUE
 extern const struct BattleBackground sBattleTerrainTable[];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
@@ -1763,5 +1762,3 @@ static void Exit_PokemonSpriteVisualizer(u8 taskId)
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
     }
 }
-
-#endif
