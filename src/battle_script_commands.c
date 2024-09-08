@@ -6438,6 +6438,8 @@ static void Cmd_moveend(void)
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->fickleBeamBoosted = FALSE;
             gBattleStruct->distortedTypeMatchups = 0;
+            if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+                gBattleStruct->pledgeMove = FALSE;
             if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE)
                 SetActiveGimmick(gBattlerAttacker, GIMMICK_NONE);
             if (B_CHARGE <= GEN_8 || moveType == TYPE_ELECTRIC)
@@ -7439,7 +7441,7 @@ static void Cmd_trainerslidein(void)
 {
     CMD_ARGS(u8 battler);
 
-    u32 battler = GetBattlerAtPosition(cmd->battler);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
     BtlController_EmitTrainerSlide(battler, BUFFER_A);
     MarkBattlerForControllerExec(battler);
 
@@ -15647,7 +15649,7 @@ static void Cmd_trainerslideout(void)
 {
     CMD_ARGS(u8 position);
 
-    u32 battler = GetBattlerAtPosition(cmd->position);
+    u32 battler = GetBattlerForBattleScript(cmd->position);
     BtlController_EmitTrainerSlideBack(battler, BUFFER_A);
     MarkBattlerForControllerExec(battler);
 
@@ -16659,7 +16661,7 @@ void BS_SetPledge(void)
     u32 i = 0;
     u32 k = 0;
 
-    if (gBattleStruct->pledgeMove)
+    if (gBattleStruct->pledgeMove && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE))
     {
         PrepareStringBattle(STRINGID_USEDMOVE, gBattlerAttacker);
         gHitMarker |= HITMARKER_ATTACKSTRING_PRINTED;
@@ -16688,6 +16690,8 @@ void BS_SetPledge(void)
     else if ((gChosenActionByBattler[partner] == B_ACTION_USE_MOVE)
           && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
           && IsBattlerAlive(partner)
+          && GetBattlerTurnOrderNum(gBattlerAttacker) < GetBattlerTurnOrderNum(partner)
+          && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
           && gCurrentMove != partnerMove
           && gMovesInfo[partnerMove].effect == EFFECT_PLEDGE)
     {
@@ -16726,8 +16730,8 @@ void BS_SetPledge(void)
     }
     else
     {
+        gBattleStruct->pledgeMove = FALSE;
         gBattlescriptCurrInstr = cmd->jumpInstr;
-
     }
 }
 
