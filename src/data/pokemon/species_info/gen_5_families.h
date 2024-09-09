@@ -10501,9 +10501,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 610,
         .description = COMPOUND_STRING(
             "Su cola descarga inmensos rayos.\n"
-"Incontables restos carbonizados\n"
-"marcan el paisaje de los lugares\n"
-"por donde ha pasado Thundurus."),
+            "Incontables restos carbonizados\n"
+            "marcan el paisaje de los lugares\n"
+            "por donde ha pasado Thundurus."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10565,9 +10565,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 610,
         .description = COMPOUND_STRING(
             "Pulveriza a sus enemigos hasta\n"
-"convertirlos en nada con golpes de\n"
-"rayos devastadores. Lanzados desde\n"
-"la cadena de orbes en su cola."),
+            "convertirlos en nada con golpes de\n"
+            "rayos devastadores. Lanzados desde\n"
+            "la cadena de orbes en su cola."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,

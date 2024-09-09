@@ -963,7 +963,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DEFIANT] =
     {
         .name = _("Competitivo"),
-        .description = COMPOUND_STRING("Bajadas de est. suben at"),
+        .description = COMPOUND_STRING("Bajadas de est. suben ataque"),
         .aiRating = 5,
     },
 
