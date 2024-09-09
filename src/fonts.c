@@ -1,4 +1,5 @@
 #include "global.h"
+#include "characters.h"
 
 ALIGNED(4) const u16 gFontSmallNarrowLatinGlyphs[] = INCBIN_U16("graphics/fonts/small_narrow.latfont");
 ALIGNED(4) const u8 gFontSmallNarrowLatinGlyphWidths[] = {
@@ -146,7 +147,22 @@ ALIGNED(4) const u8 gFontShortLatinGlyphWidths[] = {
 
 ALIGNED(4) const u16 gFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/normal.latfont");
 ALIGNED(4) const u8 gFontNormalLatinGlyphWidths[] = {
-    3,  6,  6,  6,  6,  6,  6,  6,  6,  6,  3,  6,  6,  6,  6,  6,
+    [CHAR_SPACE] = 3,
+    [CHAR_A_GRAVE] = 6,
+    [CHAR_A_ACUTE] = 6,
+    [CHAR_A_CIRCUMFLEX] = 6,
+    [CHAR_C_CEDILLA] = 6,
+    [CHAR_E_GRAVE] = 6,
+    [CHAR_E_ACUTE] = 6,
+    [CHAR_E_CIRCUMFLEX] = 6,
+    [CHAR_E_DIAERESIS] = 6,
+    [CHAR_I_GRAVE] = 6,
+    /*UNUSED*/ 3,
+    [CHAR_I_CIRCUMFLEX] = 6,
+    [CHAR_I_DIAERESIS] = 6,
+    [CHAR_O_GRAVE] = 6,
+    [CHAR_O_ACUTE] = 6,
+    [CHAR_O_CIRCUMFLEX] = 6,
     8,  6,  6,  6,  6,  6,  6,  6,  3,  6,  6,  6,  6,  6,  6,  3,
     6,  6,  6,  6,  6,  8,  6,  6,  6,  6,  6,  6,  9,  7,  6,  3,
     3,  3,  3,  3, 10,  8,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,
