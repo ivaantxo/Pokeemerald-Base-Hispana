@@ -99,7 +99,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
     },
     [TYPE_FLYING] =
     {
-        .name = HANDLE_EXPANDED_TYPE_NAME("Volad", "Volador"),
+        .name = _("Volador"),
         .generic = _("a FLYING move"),
         .palette = 14,
         .zMove = MOVE_SUPERSONIC_SKYSTRIKE,
@@ -194,7 +194,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
     },
     [TYPE_GHOST] =
     {
-        .name = HANDLE_EXPANDED_TYPE_NAME("Fant", "Fantasma"),
+        .name = _("Fantasma"),
         .generic = _("a GHOST move"),
         .palette = 14,
         .zMove = MOVE_NEVER_ENDING_NIGHTMARE,
@@ -297,7 +297,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
     },
     [TYPE_ELECTRIC] =
     {
-        .name = HANDLE_EXPANDED_TYPE_NAME("Eléctr", "Eléctrico"),
+        .name = _("Eléctrico"),
         .generic = _("an ELECTRIC move"),
         .palette = 13,
         .zMove = MOVE_GIGAVOLT_HAVOC,
@@ -316,7 +316,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
     },
     [TYPE_PSYCHIC] =
     {
-        .name = HANDLE_EXPANDED_TYPE_NAME("Psíqui", "Psíquico"),
+        .name = _("Psíquico"),
         .generic = _("a PSYCHIC move"),
         .palette = 14,
         .zMove = MOVE_SHATTERED_PSYCHE,
@@ -373,7 +373,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
     },
     [TYPE_DARK] =
     {
-        .name = HANDLE_EXPANDED_TYPE_NAME("Sinies", "Siniestro"),
+        .name = _("Siniestro"),
         .generic = _("a DARK move"),
         .palette = 13,
         .zMove = MOVE_BLACK_HOLE_ECLIPSE,
@@ -411,7 +411,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
     },
     [TYPE_STELLAR] =
     {
-        .name = HANDLE_EXPANDED_TYPE_NAME("Estela", "Estelar"),
+        .name = _("Estelar"),
         .generic = _("a STELLAR move"),
         .palette = 15,
         .zMove = MOVE_BREAKNECK_BLITZ,

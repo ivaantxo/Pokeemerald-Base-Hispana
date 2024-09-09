@@ -130,7 +130,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_GREEN,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Meowscarad", "Meowscarada"),
+        .speciesName = _("Meowscarada"),
         .cryId = CRY_MEOWSCARADA,
         .natDexNum = NATIONAL_DEX_MEOWSCARADA,
         .categoryName = _("Mago"),
@@ -138,9 +138,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .weight = 312,
         .description = COMPOUND_STRING(
             "Este Pokémon utiliza el pelaje\n"
-"reflectante que reviste su capa para\n"
-"camuflar el tallo de su flor, creando\n"
-"la ilusión de que la flor está flotando."),
+            "reflectante que reviste su capa para\n"
+            "camuflar el tallo de su flor, creando\n"
+            "la ilusión de que la flor está flotando."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -1436,14 +1436,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_GREEN,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Sqawkabily", "Squawkabilly"),
+        .speciesName = _("Squawkabilly"),
         .cryId = CRY_SQUAWKABILLY,
         .natDexNum = NATIONAL_DEX_SQUAWKABILLY,
         .categoryName = _("Loro"),
         .height = 6,
         .weight = 24,
         .description = COMPOUND_STRING(
-            "Las bandadas con plumas verdes tienen\nmás influencia. Cuando salen en busca de\ncomida por las mañanas y\nlas tardes, se vuelve muy ruidoso."),
+            "Las bandadas con plumas verdes tienen\n"
+            "más influencia. Cuando salen en busca de\n"
+            "comida por las mañanas y\n"
+            "las tardes, se vuelve muy ruidoso."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -1487,14 +1490,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_BLUE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Sqawkabily", "Squawkabilly"),
+        .speciesName = _("Squawkabilly"),
         .cryId = CRY_SQUAWKABILLY,
         .natDexNum = NATIONAL_DEX_SQUAWKABILLY,
         .categoryName = _("Loro"),
         .height = 6,
         .weight = 24,
         .description = COMPOUND_STRING(
-            "La bandada más grande puede contener\nmás de 50 individuos. Vuelan alrededor de\npueblos y bosques, buscando comida\ny armando alboroto."),
+            "La bandada más grande puede contener\n"
+            "más de 50 individuos. Vuelan alrededor de\n"
+            "pueblos y bosques, buscando comida\n"
+            "y armando alboroto."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -1538,14 +1544,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Sqawkabily", "Squawkabilly"),
+        .speciesName = _("Squawkabilly"),
         .cryId = CRY_SQUAWKABILLY,
         .natDexNum = NATIONAL_DEX_SQUAWKABILLY,
         .categoryName = _("Loro"),
         .height = 6,
         .weight = 24,
         .description = COMPOUND_STRING(
-            "Estos Squawkabilly son temperamentales\ny su estilo de combate es feroz. Saltarán\ndentro del alcance de sus enemigos para\nparticipar en combates cercanos."),
+            "Estos Squawkabilly son temperamentales\n"
+            "y su estilo de combate es feroz. Saltarán\n"
+            "dentro del alcance de sus enemigos para\n"
+            "participar en combates cercanos."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -1589,14 +1598,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_WHITE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Sqawkabily", "Squawkabilly"),
+        .speciesName = _("Squawkabilly"),
         .cryId = CRY_SQUAWKABILLY,
         .natDexNum = NATIONAL_DEX_SQUAWKABILLY,
         .categoryName = _("Loro"),
         .height = 6,
         .weight = 24,
         .description = COMPOUND_STRING(
-            "Aunque estos Squawkabilly son los menos\nnumerosos, no tienen problemas para vivir\nen las ciudades ya que se mezclan\ncon los edificios blancos."),
+            "Aunque estos Squawkabilly son los menos\n"
+            "numerosos, no tienen problemas para vivir\n"
+            "en las ciudades ya que se mezclan\n"
+            "con los edificios blancos."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -2103,14 +2115,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FLYING),
         .abilities = { ABILITY_WIND_POWER, ABILITY_VOLT_ABSORB, ABILITY_COMPETITIVE },
         .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Kilowatrel", "Kilowattrel"),
+        .speciesName = _("Kilowattrel"),
         .cryId = CRY_KILOWATTREL,
         .natDexNum = NATIONAL_DEX_KILOWATTREL,
         .categoryName = _("Fregata"),
         .height = 14,
         .weight = 386,
         .description = COMPOUND_STRING(
-           "Emplea su saco de garganta para almacenar\nelectricidad generada por sus alas. Casi\nno tiene aceite en sus plumas, así que es\nun nadador mediocre."),
+           "Emplea su saco de garganta para almacenar\n"
+           "electricidad generada por sus alas. Casi\n"
+           "no tiene aceite en sus plumas, así que es\n"
+           "un nadador mediocre."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -2409,14 +2424,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
         .abilities = { ABILITY_WIND_RIDER, ABILITY_NONE, ABILITY_INFILTRATOR },
         .bodyColor = BODY_COLOR_BROWN,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Brmblghast", "Brambleghast"),
+        .speciesName = _("Brambleghast"),
         .cryId = CRY_BRAMBLEGHAST,
         .natDexNum = NATIONAL_DEX_BRAMBLEGHAST,
         .categoryName = _("Estepicursor"),
         .height = 12,
         .weight = 60,
         .description = COMPOUND_STRING(
-            "Abre las ramas de su cabeza para envolver\na su presa. Una vez que absorbe toda\nla energía vital que necesita,\nexpulsa la presa y la descarta."),
+            "Abre las ramas de su cabeza para envolver\n"
+            "a su presa. Una vez que absorbe toda\n"
+            "la energía vital que necesita,\n"
+            "expulsa la presa y la descarta."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4378,14 +4396,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PROTOSYNTHESIS, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GRAY,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Melenalete", "Melenaleteo"),
+        .speciesName = _("Melenaleteo"),
         .cryId = CRY_FLUTTER_MANE,
         .natDexNum = NATIONAL_DEX_FLUTTER_MANE,
         .categoryName = _("Paradoja"),
         .height = 14,
         .weight = 40,
         .description = COMPOUND_STRING(
-            "Tiene características similares a un\npterosaurio fantasmagórico que fue\nmencionado en una revista paranormal,\npero los dos tienen poco más en común."),
+            "Tiene características similares a un\n"
+            "pterosaurio fantasmagórico que fue\n"
+            "mencionado en una revista paranormal,\n"
+            "pero los dos tienen poco más en común."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4644,14 +4665,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GRAY,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Ferropalma", "Ferropalmas"),
+        .speciesName = _("Ferropalmas"),
         .cryId = CRY_IRON_HANDS,
         .natDexNum = NATIONAL_DEX_IRON_HANDS,
         .categoryName = _("Paradoja"),
         .height = 18,
         .weight = 3807,
         .description = COMPOUND_STRING(
-            "Es muy similar a un cíborg mencionado\nexclusivamente en una revista paranormal.\nSe dice que el cíborg era la forma\nmodificada de cierto atleta."),
+            "Es muy similar a un cíborg mencionado\n"
+            "exclusivamente en una revista paranormal.\n"
+            "Se dice que el cíborg era la forma\n"
+            "modificada de cierto atleta."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4697,14 +4721,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLUE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Ferocuello", "Ferrocuello"),
+        .speciesName = _("Ferrocuello"),
         .cryId = CRY_IRON_JUGULIS,
         .natDexNum = NATIONAL_DEX_IRON_JUGULIS,
         .categoryName = _("Paradoja"),
         .height = 13,
         .weight = 1110,
         .description = COMPOUND_STRING(
-            "Se asemeja a cierto Pokémon presentado\nen una revista paranormal, descrito\ncomo el hijo de un Hydreigon\nque se enamoró de un robot."),
+            "Se asemeja a cierto Pokémon presentado\n"
+            "en una revista paranormal, descrito\n"
+            "como el hijo de un Hydreigon\n"
+            "que se enamoró de un robot."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4751,7 +4778,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_WHITE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Feropolila", "Ferropolilla"),
+        .speciesName = _("Ferropolilla"),
         .cryId = CRY_IRON_MOTH,
         .natDexNum = NATIONAL_DEX_IRON_MOTH,
         .categoryName = _("Paradoja"),
@@ -5437,14 +5464,16 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_WHITE,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Feropaldín", "Ferropaladín"),
+        .speciesName = _("Ferropaladín"),
         .cryId = CRY_IRON_VALIANT,
         .natDexNum = NATIONAL_DEX_IRON_VALIANT,
         .categoryName = _("Paradoja"),
         .height = 14,
         .weight = 350,
         .description = COMPOUND_STRING(
-            "Tiene algunas similitudes con la invención\nde un científico loco cubierta\nen una revista paranormal."),
+            "Tiene algunas similitudes con la invención\n"
+            "de un científico loco cubierta\n"
+            "en una revista paranormal."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -5652,7 +5681,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GREEN,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Feroverdor", "Ferroverdor"),
+        .speciesName = _("Ferroverdor"),
         .cryId = CRY_IRON_LEAVES,
         .natDexNum = NATIONAL_DEX_IRON_LEAVES,
         .categoryName = _("Paradoja"),
@@ -5707,7 +5736,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_GREEN,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Ptchageist", "Poltchageist"),
+        .speciesName = _("Poltchageist"),
         .cryId = CRY_POLTCHAGEIST,
         .natDexNum = NATIONAL_DEX_POLTCHAGEIST,
         .categoryName = _("Matcha"),
@@ -5757,7 +5786,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_GREEN,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Ptchageist", "Poltchageist"),
+        .speciesName = _("Poltchageist"),
         .cryId = CRY_POLTCHAGEIST,
         .natDexNum = NATIONAL_DEX_POLTCHAGEIST,
         .categoryName = _("Matcha"),
@@ -6016,7 +6045,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_TOXIC_CHAIN, ABILITY_NONE, ABILITY_TECHNICIAN },
         .bodyColor = BODY_COLOR_BLACK,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Fezndipiti", "Fezandipiti"),
+        .speciesName = _("Fezandipiti"),
         .cryId = CRY_FEZANDIPITI,
         .natDexNum = NATIONAL_DEX_FEZANDIPITI,
         .categoryName = _("Esbirro"),
@@ -6192,7 +6221,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PROTOSYNTHESIS, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Elctrfuria", "Electrofuria"),
+        .speciesName = _("Electrofuria"),
         .cryId = CRY_RAGING_BOLT,
         .natDexNum = NATIONAL_DEX_RAGING_BOLT,
         .categoryName = _("Paradoja"),

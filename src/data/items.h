@@ -538,7 +538,7 @@ const struct Item gItemsInfo[] =
 
 [ITEM_CHERISH_BALL] =
 {
-    .name = _("Gloria ball"),
+    .name = _("Gloria Ball"),
     .price = 0,
     .description = COMPOUND_STRING(
         "Una Ball rara hecha\n"
@@ -639,7 +639,7 @@ const struct Item gItemsInfo[] =
 
 [ITEM_FULL_RESTORE] =
 {
-    .name = _("Rest. Todo"),
+    .name = _("Rest. todo"),
     .price = 3000,
     .holdEffectParam = 255,
     .description = COMPOUND_STRING(
@@ -676,7 +676,7 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_REVIVE] =
 {
-    .name = _("Max Revivir"),
+    .name = _("Revivir máx."),
     .price = 4000,
     .description = sMaxReviveDesc,
     .pocket = POCKET_ITEMS,
@@ -691,7 +691,7 @@ const struct Item gItemsInfo[] =
 
 [ITEM_FRESH_WATER] =
 {
-    .name = _("Agua Fresca"),
+    .name = _("Agua fresca"),
     .price = 200,
     .holdEffectParam = 30,
     .description = COMPOUND_STRING(
