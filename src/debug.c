@@ -1010,6 +1010,19 @@ static const struct WindowTemplate sDebugMenuWindowTemplateExtra =
     .baseBlock = 1,
 };
 
+//Cómo mostrar una ventana con su texto en pantalla:
+//Primero, necesitamos un WindowTemplate que nos indique los parámetros de la ventana:
+static const struct WindowTemplate sDebugMenuWindowTemplateItemDescription =
+{
+    .bg = 0, //En qué background está la ventana
+    .tilemapLeft = 15, //Cuántos tiles (8x8) a la izquierda tiene la ventana
+    .tilemapTop = 12, //Cuántos tiles (8x8) encima tiene la ventana
+    .width = 14, //Cuántos tiles (8x8) de ancho ocupa la ventana
+    .height = 6, //Cuántos tiles (8x8) de altura ocupa la ventana
+    .paletteNum = 15, //Qué paleta usa la ventana
+    .baseBlock = 100, //En qué parte de la VRAM se cargan los tiles de la ventana (OJO, incluye marco de la ventana y texto). Para calcularlo, basta con ir a mGba, herramientas->estado del juego->ver mosaicos, en la sección de bgs y ver qué parte de la memoria está vacía (en negro). La manera lógica de trabajar es cargar todas tus ventanas más o menos seguidas, para calcular cuánto ocupa cada una mejor.
+};
+
 static const struct WindowTemplate sDebugMenuWindowTemplateWeather =
 {
     .bg = 0,
@@ -2936,6 +2949,7 @@ static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
 static void DebugAction_Give_Item(u8 taskId)
 {
     u8 windowId;
+    u8 windowItemDescription; //Cómo mostrar una ventana con su texto en pantalla: Segundo, dentro de la función que la va a llamar, la definimos. Esto también podría hacerse con constantes tipo enum (WIN_DESCRIPCION, por ejemplo).
 
     ClearStdWindowAndFrame(gTasks[taskId].tWindowId, TRUE);
     RemoveWindow(gTasks[taskId].tWindowId);
@@ -2944,8 +2958,11 @@ static void DebugAction_Give_Item(u8 taskId)
     LoadMessageBoxAndBorderGfx();
     windowId = AddWindow(&sDebugMenuWindowTemplateExtra);
     DrawStdWindowFrame(windowId, FALSE);
+    windowItemDescription = AddWindow(&sDebugMenuWindowTemplateItemDescription); //Cómo mostrar una ventana con su texto en pantalla: Creamos la window, usando el Window Template que habíamos definido antes
+    DrawStdWindowFrame(windowItemDescription, FALSE); //Cómo mostrar una ventana con su texto en pantalla: Le damos su gráfico, en este caso usa los bordes de los mensajes por defecto.
 
     CopyWindowToVram(windowId, COPYWIN_FULL);
+    CopyWindowToVram(windowItemDescription, COPYWIN_FULL); //Cómo mostrar una ventana con su texto en pantalla: Copiamos la window que acabamos de crear a la VRAM, para que pueda cargarse al juego.
 
     // Display initial item
     StringCopy(gStringVar2, gText_DigitIndicator[0]);
@@ -2954,9 +2971,11 @@ static void DebugAction_Give_Item(u8 taskId)
     StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
     StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
     AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
+    AddTextPrinterParameterized(windowItemDescription, DEBUG_MENU_FONT, ItemId_GetDescription(1), 1, 1, 0, NULL); //Cómo mostrar una ventana con su texto en pantalla: Una vez tenemos la ventana creada, le vamos a printear un texto, en este caso la descripción del item. Al usar el 1 como argumento de ItemId_GetDescription(), le estamos diciendo que cargue la descripción del item nº1, que es la poké ball, y después lo actualizaremos al que sea.
 
     gTasks[taskId].func = DebugAction_Give_Item_SelectId;
     gTasks[taskId].tSubWindowId = windowId;
+    gTasks[taskId].tWindowId = windowItemDescription; //Cómo mostrar una ventana con su texto en pantalla: Le damos a nuestra window un id que pueda pasarse entre funciones para no tener que ir definiéndola cada vez (repito que esto podía haberse hecho directamente con una definición dentro de un enum) 
     gTasks[taskId].tInput = 1;
     gTasks[taskId].tDigit = 0;
     gTasks[taskId].tSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_TAG, gTasks[taskId].tInput);
@@ -3000,6 +3019,8 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
         StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
+        FillWindowPixelBuffer(gTasks[taskId].tWindowId, PIXEL_FILL(1)); //Cómo mostrar una ventana con su texto en pantalla: Esta función llena la memoria correspondiente a la window con el color que nosotros le digamos, lo que sirve como "limpieza", y evita que se queden restos de texto cuando cambiemos de item.
+        AddTextPrinterParameterized(gTasks[taskId].tWindowId, DEBUG_MENU_FONT, ItemId_GetDescription(gTasks[taskId].tInput), 1, 1, 0, NULL); //Cómo mostrar una ventana con su texto en pantalla: Aquí actualizamos la descripción del item según el id correspondiente
 
         FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
         FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
@@ -3033,7 +3054,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
         DestroySprite(&gSprites[gTasks[taskId].tSpriteId]);         //Destroy item icon
 
         PlaySE(SE_SELECT);
-        DebugAction_DestroyExtraWindow(taskId);
+        DebugAction_DestroyExtraWindow(taskId); //Cómo mostrar una ventana con su texto en pantalla: Esta función es la que destruye la window cuando pulsamos la B para volver al OW.
     }
 }
 
