@@ -3828,11 +3828,14 @@ void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
 
     if (AI_CanGiveFrostbite(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
     {
-        ADJUST_SCORE_PTR(WEAK_EFFECT); // frostbite is good
-        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL)
+            || (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_OMNISCIENT) // Not Omniscient but expects special attacker
+                && gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack + 10))
         {
-            if (CanTargetFaintAi(battlerDef, battlerAtk))
-                ADJUST_SCORE_PTR(DECENT_EFFECT); // frostbiting the target to stay alive is cool
+            if (gMovesInfo[GetBestDmgMoveFromBattler(battlerDef, battlerAtk)].category == DAMAGE_CATEGORY_SPECIAL)
+                ADJUST_SCORE_PTR(DECENT_EFFECT);
+            else
+                ADJUST_SCORE_PTR(WEAK_EFFECT);
         }
 
         if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_FROSTBITE)
