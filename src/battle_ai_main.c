@@ -3049,15 +3049,26 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             case EFFECT_SKILL_SWAP:
                 if (aiData->abilities[battlerAtk] != aiData->abilities[BATTLE_PARTNER(battlerAtk)] && !attackerHasBadAbility)
                 {
+                    // Partner abilities
                     if (aiData->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_TRUANT)
                     {
-                        RETURN_SCORE_PLUS(10);
+                        ADJUST_SCORE(10);
                     }
-                    else if (aiData->abilities[battlerAtk] == ABILITY_COMPOUND_EYES
-                     && HasMoveWithLowAccuracy(battlerAtkPartner, FOE(battlerAtkPartner), 90, TRUE, atkPartnerAbility, aiData->abilities[FOE(battlerAtkPartner)], atkPartnerHoldEffect, aiData->holdEffects[FOE(battlerAtkPartner)]))
+                    else if (aiData->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_INTIMIDATE)
                     {
-                        RETURN_SCORE_PLUS(3);
+                        ADJUST_SCORE(DECENT_EFFECT);
                     }
+                    // Active mon abilities
+                    if (aiData->abilities[battlerAtk] == ABILITY_COMPOUND_EYES
+                        && HasMoveWithLowAccuracy(battlerAtkPartner, FOE(battlerAtkPartner), 90, TRUE, atkPartnerAbility, aiData->abilities[FOE(battlerAtkPartner)], atkPartnerHoldEffect, aiData->holdEffects[FOE(battlerAtkPartner)]))
+                    {
+                        ADJUST_SCORE(GOOD_EFFECT);
+                    }
+                    else if (aiData->abilities[battlerAtk] == ABILITY_CONTRARY && HasMoveThatLowersOwnStats(battlerAtkPartner))
+                    {
+                        ADJUST_SCORE(GOOD_EFFECT);
+                    }
+                    return score;
                 }
                 break;
             case EFFECT_ROLE_PLAY:
