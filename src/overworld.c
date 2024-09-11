@@ -9,6 +9,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
+#include "fake_rtc.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
 #include "field_effect.h"
@@ -1686,7 +1687,7 @@ static void OverworldBasic(void)
     UpdateTilesetAnimations();
     DoScheduledBgTilemapCopiesToVram();
     // Every minute if no palette fade is active, update TOD blending as needed
-    if (!gPaletteFade.active && ++gTimeUpdateCounter >= 3600)
+    if (!gPaletteFade.active && ++gTimeUpdateCounter >= (SECONDS_PER_MINUTE * 60 / FakeRtc_GetSecondsRatio()))
     {
         struct TimeBlendSettings cachedBlend = {
             .time0 = currentTimeBlend.time0,
