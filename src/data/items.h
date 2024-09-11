@@ -23,8 +23,8 @@
 // Shared Item Description entries
 
 static const u8 sFullHealDesc[]       = _("Cura todos los\n"
-                                          "problemas de estado de\n"
-                                          "un Pokémon.");
+                                          "problemas de estado\n"
+                                          "de un Pokémon.");
 
 static const u8 sPokeDollDesc[]       = _("Usar para huir de\n"
                                           "cualquier batalla con\n"
@@ -34,29 +34,26 @@ static const u8 sMaxReviveDesc[]      = _("Revive a un Pokémon\n"
                                           "debilitado con todos\n"
                                           "sus PS.");
 
-static const u8 sHealthFeatherDesc[]  = _("Un objeto que aumenta\n"
-                                          "los PS base de\n"
-                                          "un Pokémon.");
+static const u8 sHealthFeatherDesc[]  = _("Aumenta puntos de\n"
+                                          "esfuerzo de PS.");
 
-static const u8 sMuscleFeatherDesc[]  = _("Un objeto que aumenta\n"
-                                          "el Ataque base de\n"
-                                          "un Pokémon.");
+static const u8 sMuscleFeatherDesc[]  = _("Aumenta puntos de\n"
+                                          "esfuerzo de Ataque.");
 
-static const u8 sResistFeatherDesc[]  = _("Un objeto que aumenta\n"
-                                          "la Defensa base de\n"
-                                          "un Pokémon.");
+static const u8 sResistFeatherDesc[]  = _("Aumenta puntos de\n"
+                                          "esfuerzo de Defensa.");
 
-static const u8 sGeniusFeatherDesc[]  = _("Un objeto que aumenta\n"
-                                          "el Ataque Especial\n"
-                                          "base de un Pokémon.");
+static const u8 sGeniusFeatherDesc[]  = _("Aumenta puntos de\n"
+                                          "esfuerzo de Ataque\n"
+                                          "Especial.");
 
-static const u8 sCleverFeatherDesc[]  = _("Un objeto que aumenta\n"
-                                          "la Defensa Especial\n"
-                                          "base de un Pokémon.");
+static const u8 sCleverFeatherDesc[]  = _("Aumenta puntos de\n"
+                                          "esfuerzo de Defensa\n"
+                                          "Especial.");
 
-static const u8 sSwiftFeatherDesc[]   = _("Un objeto que aumenta\n"
-                                          "la Velocidad base de\n"
-                                          "un Pokémon.");
+static const u8 sSwiftFeatherDesc[]   = _("Aumenta puntos de\n"
+                                          "esfuerzo de\n"
+                                          "Velocidad.");
 
 static const u8 sBigMushroomDesc[]    = _("Un hongo raro que\n"
                                           "se vendería a un\n"
@@ -590,6 +587,7 @@ const struct Item gItemsInfo[] =
     [ITEM_POTION] =
 {
     .name = _("Poción"),
+    .pluralName = _("Pociones"),
     .price = (I_PRICE >= GEN_7) ? 200 : 300,
     .holdEffectParam = 20,
     .description = COMPOUND_STRING(
@@ -609,6 +607,7 @@ const struct Item gItemsInfo[] =
 [ITEM_SUPER_POTION] =
 {
     .name = _("Superpoción"),
+    .pluralName = _("Superpociones"),
     .price = 700,
     .holdEffectParam = 60,
     .description = COMPOUND_STRING(
@@ -632,6 +631,7 @@ const struct Item gItemsInfo[] =
 [ITEM_HYPER_POTION] =
 {
     .name = _("Hiperpoción"),
+    .pluralName = _("Hiperpociones"),
     .price = (I_PRICE >= GEN_2 && I_PRICE <= GEN_6) ? 1200 : 1500,
     .holdEffectParam = 120,
     .description = COMPOUND_STRING(
@@ -654,7 +654,8 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_POTION] =
 {
-    .name = _("Maxipoción"),
+    .name = _("Poción máxima"),
+    .pluralName = _("Pociones máximas"),
     .price = 2500,
     .holdEffectParam = 255,
     .description = COMPOUND_STRING(
@@ -673,6 +674,7 @@ const struct Item gItemsInfo[] =
 [ITEM_FULL_RESTORE] =
 {
     .name = _("Restaurar todo"),
+    .pluralName = _("Restaurar todo"),
     .price = 3000,
     .holdEffectParam = 255,
     .description = COMPOUND_STRING(
@@ -692,11 +694,12 @@ const struct Item gItemsInfo[] =
 [ITEM_REVIVE] =
 {
     .name = _("Revivir"),
+    .pluralName = _("Revivir"),
     .price = (I_PRICE >= GEN_7) ? 2000 : 1500,
     .description = COMPOUND_STRING(
         "Revive a un Pokémon\n"
-        "derrotado con 50%\n"
-        "de sus PS."),
+        "derrotado con 50% de\n"
+        "sus PS."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -709,7 +712,8 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_REVIVE] =
 {
-    .name = _("Revivir máx."),
+    .name = _("Revivir máximo"),
+    .pluralName = _("Revivir máximo"),
     .price = 4000,
     .description = sMaxReviveDesc,
     .pocket = POCKET_ITEMS,
@@ -725,15 +729,16 @@ const struct Item gItemsInfo[] =
 [ITEM_FRESH_WATER] =
 {
     .name = _("Agua fresca"),
+    .pluralName = _("Aguas frescas"),
     .price = 200,
     .holdEffectParam = 30,
     .description = COMPOUND_STRING(
-        "Un agua mineral\n"
-        "que restaura PS\n"
+        "Un agua mineral que\n"
+        "restaura PS en\n"
     #if I_HEALTH_RECOVERY >= GEN_7
-        "en 30 puntos."),
+        "30 puntos."),
     #else
-        "en 50 puntos."),
+        "50 puntos."),
     #endif
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -752,11 +757,11 @@ const struct Item gItemsInfo[] =
     .holdEffectParam = 50,
     .description = COMPOUND_STRING(
         "Una bebida gaseosa\n"
-        "que restaura PS\n"
+        "que restaura PS en\n"
     #if I_HEALTH_RECOVERY >= GEN_7
-        "en 50 puntos."),
+        "50 puntos."),
     #else
-        "en 60 puntos."),
+        "60 puntos."),
     #endif
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -773,17 +778,14 @@ const struct Item gItemsInfo[] =
     .name = _("Limonada"),
     .price = (I_PRICE >= GEN_7) ? 400 : 350,
     .holdEffectParam = 70,
-#if I_HEALTH_RECOVERY >= GEN_7
     .description = COMPOUND_STRING(
         "Una bebida muy dulce\n"
-        "que restaura PS\n"
-        "en 70 puntos."),
-#else
-    .description = COMPOUND_STRING(
-        "Una bebida muy dulce\n"
-        "que restaura PS\n"
-        "en 80 puntos."),
-#endif
+        "que restaura PS en\n"
+    #if I_HEALTH_RECOVERY >= GEN_7
+        "70 puntos."),
+    #else
+        "80 puntos."),
+    #endif
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -797,13 +799,13 @@ const struct Item gItemsInfo[] =
 [ITEM_MOOMOO_MILK] =
 {
     .name = _("Leche Moomoo"),
-    .pluralName = _("Leche Moomoo"),
+    .pluralName = _("Leches Moomoo"),
     .price = (I_PRICE >= GEN_7) ? 600 : 500,
     .holdEffectParam = 100,
     .description = COMPOUND_STRING(
         "Una leche nutritiva\n"
-        "que restaura PS\n"
-        "en 100 puntos."),
+        "que restaura PS en\n"
+        "100 puntos."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -820,12 +822,12 @@ const struct Item gItemsInfo[] =
     .pluralName = _("Polvos energía"),
     .price = 500,
     .description = COMPOUND_STRING(
-        "Un polvo amargo\n"
-        "que restaura PS\n"
+        "Un polvo amargo que\n"
+        "restaura PS en\n"
     #if I_HEALTH_RECOVERY >= GEN_7
-        "en 60 puntos."),
+        "60 puntos."),
     #else
-        "en 50 puntos."),
+        "50 puntos."),
     #endif
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -839,15 +841,16 @@ const struct Item gItemsInfo[] =
 
 [ITEM_ENERGY_ROOT] =
 {
-    .name = _("Raíz Energía"),
+    .name = _("Raíz energía"),
+    .pluralName = _("Raíces energía"),
     .price = (I_PRICE >= GEN_7) ? 1200 : 800,
     .description = COMPOUND_STRING(
-        "Una raíz amarga\n"
-        "que restaura PS\n"
+        "Una raíz amarga que\n"
+        "restaura PS en\n"
     #if I_HEALTH_RECOVERY >= GEN_7
-        "en 120 puntos."),
+        "120 puntos."),
     #else
-        "en 200 puntos."),
+        "200 puntos."),
     #endif
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -862,10 +865,11 @@ const struct Item gItemsInfo[] =
 [ITEM_HEAL_POWDER] =
 {
     .name = _("Polvo curación"),
+    .pluralName = _("Polvos curación"),
     .price = (I_PRICE >= GEN_7) ? 300 : 450,
     .description = COMPOUND_STRING(
-        "Un polvo amargo\n"
-        "que cura todos los\n"
+        "Un polvo amargo que\n"
+        "cura todos los\n"
         "problemas de estado."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -879,7 +883,8 @@ const struct Item gItemsInfo[] =
 
 [ITEM_REVIVAL_HERB] =
 {
-    .name = _("Hierba rev."),
+    .name = _("Hierba revivir"),
+    .pluralName = _("Hierbas revivir"),
     .price = 2800,
     .description = COMPOUND_STRING(
         "Hierba muy amarga\n"
@@ -914,7 +919,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_PARALYZE_HEAL] =
 {
-    .name = _("Antiparaliz"),
+    .name = _("Antiparalizador"),
+    .pluralName = _("Antiparalizadores"),
     .price = (I_PRICE == GEN_7) ? 300 : 200,
     .description = COMPOUND_STRING(
         "Cura a un Pokémon\n"
@@ -932,6 +938,7 @@ const struct Item gItemsInfo[] =
 [ITEM_BURN_HEAL] =
 {
     .name = _("Antiquemar"),
+    .pluralName = _("Antiquemar"),
     .price = (I_PRICE == GEN_7) ? 300 : ((I_PRICE <= GEN_7) ? 250 : 200),
     .description = COMPOUND_STRING(
         "Cura al Pokémon\n"
@@ -949,10 +956,11 @@ const struct Item gItemsInfo[] =
 [ITEM_ICE_HEAL] =
 {
     .name = _("Antihielo"),
+    .pluralName = _("Antihielo"),
     .price = (I_PRICE == GEN_7) ? 100 : ((I_PRICE <= GEN_7) ? 250 : 200),
     .description = COMPOUND_STRING(
-        "Descongela a un Pokémon\n"
-        "congelado."),
+        "Cura al Pokémon\n"
+        "de una congelación."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -966,9 +974,10 @@ const struct Item gItemsInfo[] =
 [ITEM_AWAKENING] =
 {
     .name = _("Despertar"),
+    .pluralName = _("Despertares"),
     .price = (I_PRICE >= GEN_2 && I_PRICE <= GEN_6) ? 250 : ((I_PRICE == GEN_7) ? 100 : 200),
     .description = COMPOUND_STRING(
-        "Despierta a un Pokémon\n"
+        "Despierta al Pokémon\n"
         "dormido."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -983,6 +992,7 @@ const struct Item gItemsInfo[] =
 [ITEM_FULL_HEAL] =
 {
     .name = _("Cura total"),
+    .pluralName = _("Curas totales"),
     .price = (I_PRICE >= GEN_7) ? 400 : 600,
     .description = sFullHealDesc,
     .pocket = POCKET_ITEMS,
@@ -998,12 +1008,12 @@ const struct Item gItemsInfo[] =
 [ITEM_ETHER] =
 {
     .name = _("Éter"),
+    .pluralName = _("Éteres"),
     .price = (I_PRICE >= GEN_2) ? 1200 : 1,
     .holdEffectParam = 10,
     .description = COMPOUND_STRING(
-        "Restaura los PP\n"
-        "de un movimiento\n"
-        "en 10."),
+        "Restaura los PP de\n"
+        "un movimiento en 10."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU_MOVES,
     .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
@@ -1016,12 +1026,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_ETHER] =
 {
-    .name = _("Max éter"),
+    .name = _("Éter máximo"),
+    .pluralName = _("Éteres máximos"),
     .price = (I_PRICE >= GEN_2) ? 2000 : 1,
     .holdEffectParam = 255,
     .description = COMPOUND_STRING(
-        "Restaura por completo\n"
-        "los PP de un movimiento."),
+        "Restaura al 100% los\n"
+        "PP de un ataque."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU_MOVES,
     .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
@@ -1035,11 +1046,12 @@ const struct Item gItemsInfo[] =
 [ITEM_ELIXIR] =
 {
     .name = _("Elixir"),
+    .pluralName = _("Elixires"),
     .price = (I_PRICE >= GEN_2) ? 3000 : 1,
     .holdEffectParam = 10,
     .description = COMPOUND_STRING(
-        "Restaura los PP\n"
-        "de todos los movimientos\n"
+        "Restaura los PP de\n"
+        "todos los ataques\n"
         "en 10."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
@@ -1053,13 +1065,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_ELIXIR] =
 {
-    .name = _("Max elixir"),
+    .name = _("Elixir máximo"),
+    .pluralName = _("Elixires máximos"),
     .price = (I_PRICE >= GEN_2) ? 4500 : 1,
     .holdEffectParam = 255,
     .description = COMPOUND_STRING(
-        "Restaura por completo\n"
-        "los PP de los movimientos\n"
-        "de un Pokémon."),
+        "Restaura al 100% los\n"
+        "PP de ataques de\n"
+        "un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
@@ -1072,15 +1085,15 @@ const struct Item gItemsInfo[] =
 
 [ITEM_BERRY_JUICE] =
 {
-    .name = _("Zumo de Baya"),
-    .pluralName = _("Jugos de Baya"),
+    .name = _("Zumo de baya"),
+    .pluralName = _("Zumos de baya"),
     .price = 100,
     .holdEffect = HOLD_EFFECT_RESTORE_HP,
     .holdEffectParam = 20,
     .description = COMPOUND_STRING(
         "Un jugo 100% puro\n"
-        "que restaura PS\n"
-        "en 20 puntos."),
+        "que restaura PS en\n"
+        "20 puntos."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1093,13 +1106,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_SACRED_ASH] =
 {
-    .name = _("Ceniza sag."),
-    .pluralName = _("Ceniza Sagrada"),
+    .name = _("Ceniza sagrada"),
+    .pluralName = _("Cenizas sagradas"),
     .price = (I_PRICE >= GEN_7) ? 50000 : 200,
     .description = COMPOUND_STRING(
-        "Revive por completo y\n"
-        "restaura a todos\n"
-        "los Pokémon derrotados."),
+        "Revive y restaura\n"
+        "completamente a\n"
+        "todos los Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_SacredAsh,
@@ -1112,12 +1125,13 @@ const struct Item gItemsInfo[] =
 [ITEM_SWEET_HEART] =
 {
     .name = _("Corazón dulce"),
+    .pluralName = _("Corazones dulces"),
     .price = (I_PRICE >= GEN_7) ? 3000 : 100,
     .holdEffectParam = 20,
     .description = COMPOUND_STRING(
-        "Un dulce de chocolate\n"
-        "que restaura PS\n"
-        "en 20 puntos."),
+        "Dulce de chocolate\n"
+        "que restaura PS en\n"
+        "20 puntos."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1131,7 +1145,7 @@ const struct Item gItemsInfo[] =
 [ITEM_MAX_HONEY] =
 {
     .name = _("Maxipanal"),
-    .pluralName = _("Maxipanal"),
+    .pluralName = _("Maxipanales"),
     .price = 8000,
     .description = sMaxReviveDesc,
     .pocket = POCKET_ITEMS,
@@ -1146,140 +1160,146 @@ const struct Item gItemsInfo[] =
 
 // Regional Specialties
 
-    [ITEM_PEWTER_CRUNCHIES] =
-    {
-        .name = HANDLE_EXPANDED_ITEM_NAME("Rokikos"),
-        .pluralName = HANDLE_EXPANDED_ITEM_NAME("Rokikos"),
-        .price = 250,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_PewterCrunchies,
-        .iconPalette = gItemIconPalette_PewterCrunchies,
-    },
+[ITEM_PEWTER_CRUNCHIES] =
+{
+    .name = _("Rokikos"),
+    .pluralName = _("Rokikos"),
+    .price = 250,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_PewterCrunchies,
+    .iconPalette = gItemIconPalette_PewterCrunchies,
+},
 
-    [ITEM_RAGE_CANDY_BAR] =
-    {
-        .name = HANDLE_EXPANDED_ITEM_NAME("Caram. furia", "Caramelo furia"),
-        .price = (I_PRICE >= GEN_7) ? 350 : 300,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_RageCandyBar,
-        .iconPalette = gItemIconPalette_RageCandyBar,
-    },
+[ITEM_RAGE_CANDY_BAR] =
+{
+    .name = _("Caramelo furia"),
+    .pluralName = _("Caramelos furia"),
+    .price = (I_PRICE >= GEN_7) ? 350 : 300,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_RageCandyBar,
+    .iconPalette = gItemIconPalette_RageCandyBar,
+},
 
-    [ITEM_LAVA_COOKIE] =
-    {
-        .name = _("Galleta lava"),
-        .price = (I_PRICE >= GEN_7) ? 350 : 200,
-        .description = COMPOUND_STRING(
-            "A local specialty\n"
-            "that heals all\n"
-            "status problems."),
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_LavaCookie,
-        .iconPalette = gItemIconPalette_LavaCookieAndLetter,
-    },
+[ITEM_LAVA_COOKIE] =
+{
+    .name = _("Galleta lava"),
+    .pluralName = _("Galletas lava"),
+    .price = (I_PRICE >= GEN_7) ? 350 : 200,
+    .description = COMPOUND_STRING(
+        "Especialidad local\n"
+        "que cura todos los\n"
+        "problemas de estado."),
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_LavaCookie,
+    .iconPalette = gItemIconPalette_LavaCookieAndLetter,
+},
 
-    [ITEM_OLD_GATEAU] =
-    {
-        .name = _("Barrita plus"),
-        .pluralName = _("Barrita plus"),
-        .price = (I_PRICE >= GEN_7) ? 350 : 200,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_OldGateau,
-        .iconPalette = gItemIconPalette_OldGateau,
-    },
+[ITEM_OLD_GATEAU] =
+{
+    .name = _("Barrita plus"),
+    .pluralName = _("Barritas plus"),
+    .price = (I_PRICE >= GEN_7) ? 350 : 200,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_OldGateau,
+    .iconPalette = gItemIconPalette_OldGateau,
+},
 
-    [ITEM_CASTELIACONE] =
-    {
-        .name = _("Porcehelado"),
-        .price = (I_PRICE >= GEN_7) ? 350 : 100,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_Casteliacone,
-        .iconPalette = gItemIconPalette_Casteliacone,
-    },
+[ITEM_CASTELIACONE] =
+{
+    .name = _("Porcehelado"),
+    .price = (I_PRICE >= GEN_7) ? 350 : 100,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_Casteliacone,
+    .iconPalette = gItemIconPalette_Casteliacone,
+},
 
-    [ITEM_LUMIOSE_GALETTE] =
-    {
-        .name = HANDLE_EXPANDED_ITEM_NAME("Luminicola", "Luminicola"),
-        .price = (I_PRICE >= GEN_7) ? 350 : 200,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_LumioseGalette,
-        .iconPalette = gItemIconPalette_LumioseGalette,
-    },
+[ITEM_LUMIOSE_GALETTE] =
+{
+    .name = _("Crepe Luminalia"),
+    .pluralName = _("Crepes Luminalia"),
+    .price = (I_PRICE >= GEN_7) ? 350 : 200,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_LumioseGalette,
+    .iconPalette = gItemIconPalette_LumioseGalette,
+},
 
-    [ITEM_SHALOUR_SABLE] =
-    {
-        .name = HANDLE_EXPANDED_ITEM_NAME("Gall. Yantra", "Galleta Yantra"),
-        .price = (I_PRICE >= GEN_7) ? 350 : 200,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_ShalourSable,
-        .iconPalette = gItemIconPalette_ShalourSable,
-    },
+[ITEM_SHALOUR_SABLE] =
+{
+    .name = _("Galleta Yantra"),
+    .pluralName = _("Galletas Yantra"),
+    .price = (I_PRICE >= GEN_7) ? 350 : 200,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_ShalourSable,
+    .iconPalette = gItemIconPalette_ShalourSable,
+},
 
-    [ITEM_BIG_MALASADA] =
-    {
-        .name = _("Maxi malasada"),
-        .price = 350,
-        .description = sFullHealDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_FullHeal,
-        .flingPower = 30,
-        .iconPic = gItemIcon_BigMalasada,
-        .iconPalette = gItemIconPalette_BigMalasada,
-    },
+[ITEM_BIG_MALASADA] =
+{
+    .name = _("Malasada maxi"),
+    .pluralName = _("Malasadas maxi"),
+    .price = 350,
+    .description = sFullHealDesc,
+    .pocket = POCKET_ITEMS,
+    .type = ITEM_USE_PARTY_MENU,
+    .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+    .battleUsage = EFFECT_ITEM_CURE_STATUS,
+    .effect = gItemEffect_FullHeal,
+    .flingPower = 30,
+    .iconPic = gItemIcon_BigMalasada,
+    .iconPalette = gItemIconPalette_BigMalasada,
+},
 
 // Vitamins
 
-    [ITEM_HP_UP] =
+[ITEM_HP_UP] =
 {
     .name = _("Más PS"),
+    .pluralName = _("Más PS"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
-        "Aumenta PS base\n"
-        "de un Pokémon."),
+        "Aumenta PS base de\n"
+        "un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1294,9 +1314,8 @@ const struct Item gItemsInfo[] =
     .name = _("Proteína"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
-        "Aumenta el estad.\n"
-        "base de Ataque de un\n"
-        "Pokémon."),
+        "Aumenta Ataque base\n"
+        "de un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1311,9 +1330,8 @@ const struct Item gItemsInfo[] =
     .name = _("Hierro"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
-        "Aumenta el estad.\n"
-        "base de Defensa de\n"
-        "un Pokémon."),
+        "Aumenta Defensa\n"
+        "base de un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1328,9 +1346,8 @@ const struct Item gItemsInfo[] =
     .name = _("Calcio"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
-        "Aumenta el estad.\n"
-        "base de Sp. Atk de un\n"
-        "Pokémon."),
+        "Sube Ataque Especial\n"
+        "base de un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1345,9 +1362,9 @@ const struct Item gItemsInfo[] =
     .name = _("Zinc"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
-        "Aumenta el estad.\n"
-        "base de Sp. Def de\n"
-        "un Pokémon."),
+        "Sube Defensa\n"
+        "Especial base\n"
+        "de un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1360,12 +1377,10 @@ const struct Item gItemsInfo[] =
 [ITEM_CARBOS] =
 {
     .name = _("Carburante"),
-    .pluralName = _("Carburantes"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
-        "Aumenta el estad.\n"
-        "base de Velocidad de\n"
-        "un Pokémon."),
+        "Sube Velocidad base\n"
+        "de un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Medicine,
@@ -1378,10 +1393,11 @@ const struct Item gItemsInfo[] =
 [ITEM_PP_UP] =
 {
     .name = _("Más PP"),
+    .pluralName = _("Más PP"),
     .price = (I_PRICE == GEN_1) ? 1 : ((I_PRICE >= GEN_7) ? 10000 : 9800),
     .description = COMPOUND_STRING(
-        "Aumenta el máximo\n"
-        "de PP de un movimiento."),
+        "Aumenta máximo de\n"
+        "los PP de un ataque."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_PPUp,
@@ -1393,8 +1409,8 @@ const struct Item gItemsInfo[] =
 
 [ITEM_PP_MAX] =
 {
-    .name = _("Máx. PP"),
-    .pluralName = _("PP Máx."),
+    .name = _("PP máximos"),
+    .pluralName = _("PP máximos"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 9800,
     .description = COMPOUND_STRING(
         "Aumenta los PP de un\n"
@@ -1410,9 +1426,10 @@ const struct Item gItemsInfo[] =
 
 // EV Feathers
 
-    [ITEM_HEALTH_FEATHER] =
+[ITEM_HEALTH_FEATHER] =
 {
     .name = _("Pluma vigor"),
+    .pluralName = _("Plumas vigor"),
     .price = (I_PRICE >= GEN_7) ? 300 : 3000,
     .description = sHealthFeatherDesc,
     .pocket = POCKET_ITEMS,
@@ -1427,6 +1444,7 @@ const struct Item gItemsInfo[] =
 [ITEM_MUSCLE_FEATHER] =
 {
     .name = _("Pluma músculo"),
+    .pluralName = _("Plumas músculo"),
     .price = (I_PRICE >= GEN_7) ? 300 : 3000,
     .description = sMuscleFeatherDesc,
     .pocket = POCKET_ITEMS,
@@ -1441,6 +1459,7 @@ const struct Item gItemsInfo[] =
 [ITEM_RESIST_FEATHER] =
 {
     .name = _("Pluma aguante"),
+    .pluralName = _("Plumas aguante"),
     .price = (I_PRICE >= GEN_7) ? 300 : 3000,
     .description = sResistFeatherDesc,
     .pocket = POCKET_ITEMS,
@@ -1454,7 +1473,8 @@ const struct Item gItemsInfo[] =
 
 [ITEM_GENIUS_FEATHER] =
 {
-    .name = _("Pluma inte."),
+    .name = _("Pluma intelecto"),
+    .pluralName = _("Plumas intelecto"),
     .price = (I_PRICE >= GEN_7) ? 300 : 3000,
     .description = sGeniusFeatherDesc,
     .pocket = POCKET_ITEMS,
@@ -1469,6 +1489,7 @@ const struct Item gItemsInfo[] =
 [ITEM_CLEVER_FEATHER] =
 {
     .name = _("Pluma mente"),
+    .pluralName = _("Plumas mente"),
     .price = (I_PRICE >= GEN_7) ? 300 : 3000,
     .description = sCleverFeatherDesc,
     .pocket = POCKET_ITEMS,
@@ -1483,6 +1504,7 @@ const struct Item gItemsInfo[] =
 [ITEM_SWIFT_FEATHER] =
 {
     .name = _("Pluma ímpetu"),
+    .pluralName = _("Plumas ímpetu"),
     .price = (I_PRICE >= GEN_7) ? 300 : 3000,
     .description = sSwiftFeatherDesc,
     .pocket = POCKET_ITEMS,
@@ -1498,7 +1520,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_ABILITY_CAPSULE] =
 {
-    .name = _("Cápsula hab."),
+    .name = _("Cápsula habilidad"),
+    .pluralName = _("Cápsulas habilidad"),
     .price = (I_PRICE < GEN_7) ? 1000 : ((I_PRICE < GEN_9) ? 10000 : 100000),
     .holdEffectParam = 0,
     .description = COMPOUND_STRING(
@@ -1513,14 +1536,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_ABILITY_PATCH] =
 {
-    .name = _("Parche hab."),
-    .pluralName = _("Parche habilidad"),
+    .name = _("Parche habilidad"),
+    .pluralName = _("Parches habilidad"),
     .price = (I_PRICE >= GEN_9) ? 250000 : 20,
     .holdEffectParam = 0,
     .description = COMPOUND_STRING(
-        "Convierte la habilidad\n"
-        "de un Pokémon en\n"
-        "una habilidad rara."),
+        "Cambia la habilidad\n"
+        "de un Pokémon a su\n"
+        "habilidad oculta."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_AbilityPatch,
