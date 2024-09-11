@@ -518,11 +518,15 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 {
     struct SimulatedDamage simDamage;
     s32 moveType;
+    u32 moveEffect = gMovesInfo[move].effect;
     uq4_12_t effectivenessMultiplier;
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
     gBattleStruct->aiCalcInProgress = TRUE;
+
+    if (moveEffect == EFFECT_NATURE_POWER)
+        move = GetNaturePowerMove(battlerAtk);
 
     // Temporarily enable gimmicks for damage calcs if planned
     if (gBattleStruct->gimmick.usableGimmick[battlerAtk] && GetActiveGimmick(battlerAtk) == GIMMICK_NONE
@@ -536,12 +540,25 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
 
-    if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
-        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != gMovesInfo[gCurrentMove].category);
-    else if (gMovesInfo[move].effect == EFFECT_SHELL_SIDE_ARM)
-        gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] != gMovesInfo[gCurrentMove].category);
-    else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
-        move = GetNaturePowerMove(battlerAtk);
+    moveEffect = gMovesInfo[move].effect;
+    switch (moveEffect)
+    {
+    case EFFECT_PHOTON_GEYSER:
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL);
+        break;
+    case EFFECT_SHELL_SIDE_ARM:
+        if (gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] == DAMAGE_CATEGORY_PHYSICAL)
+            gBattleStruct->swapDamageCategory = TRUE;
+        break;
+    case EFFECT_TERA_BLAST:
+        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
+            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
+        break;
+    case EFFECT_TERA_STARSTORM:
+        if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA && gBattleMons[gBattlerAttacker].species == SPECIES_TERAPAGOS_STELLAR)
+            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
+        break;
+    }
 
     gBattleStruct->dynamicMoveType = 0;
 
@@ -558,7 +575,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
         ProteanTryChangeType(battlerAtk, aiData->abilities[battlerAtk], move, moveType);
         // Certain moves like Rollout calculate damage based on values which change during the move execution, but before calling dmg calc.
-        switch (gMovesInfo[move].effect)
+        switch (moveEffect)
         {
         case EFFECT_ROLLOUT:
             n = gDisableStructs[battlerAtk].rolloutTimer - 1;
@@ -605,7 +622,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         else
         {
             s32 nonCritDmg = 0;
-            if (gMovesInfo[move].effect == EFFECT_TRIPLE_KICK)
+            if (moveEffect == EFFECT_TRIPLE_KICK)
             {
                 for (gMultiHitCounter = gMovesInfo[move].strikeCount; gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
                 {
@@ -629,7 +646,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         if (GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
         {
             // Handle dynamic move damage
-            switch (gMovesInfo[move].effect)
+            switch (moveEffect)
             {
             case EFFECT_LEVEL_DAMAGE:
                 simDamage.expected = simDamage.minimum = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
@@ -845,7 +862,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
                 case MOVE_EFFECT_SP_DEF_MINUS_2:
                 case MOVE_EFFECT_ACC_MINUS_2:
                 case MOVE_EFFECT_EVS_MINUS_2:
-                    if (ShouldLowerStat(battlerDef, abilityDef, STAT_ATK + (gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_1)) && noOfHitsToKo != 1)
+                    if (ShouldLowerStat(battlerDef, abilityDef, STAT_ATK + (gMovesInfo[move].additionalEffects[i].moveEffect - MOVE_EFFECT_ATK_MINUS_2)) && noOfHitsToKo != 1)
                         return TRUE;
                     break;
             }
@@ -1386,14 +1403,6 @@ u32 AI_GetWeather(struct AiLogicData *aiData)
     if (!AI_WeatherHasEffect(aiData))
         return B_WEATHER_NONE;
     return gBattleWeather;
-}
-
-u32 AI_GetBattlerMoveTargetType(u32 battlerId, u32 move)
-{
-    if (gMovesInfo[move].effect == EFFECT_EXPANDING_FORCE && AI_IsTerrainAffected(battlerId, STATUS_FIELD_PSYCHIC_TERRAIN))
-        return MOVE_TARGET_BOTH;
-    else
-        return gMovesInfo[move].target;
 }
 
 bool32 IsAromaVeilProtectedMove(u32 move)
@@ -2080,6 +2089,26 @@ bool32 HasAnyKnownMove(u32 battlerId)
     return FALSE;
 }
 
+bool32 HasMoveThatLowersOwnStats(u32 battlerId)
+{
+    s32 i, j;
+    u32 aiMove;
+    u16 *moves = GetMovesArray(battlerId);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        aiMove = moves[i];
+        if (aiMove != MOVE_NONE && aiMove != MOVE_UNAVAILABLE)
+        {
+            for (j = 0; j < gMovesInfo[aiMove].numAdditionalEffects; j++)
+            {
+                if (IsSelfStatLoweringEffect(gMovesInfo[aiMove].additionalEffects[j].moveEffect) && gMovesInfo[aiMove].additionalEffects[j].self)
+                    return TRUE;
+            }
+        }
+    }
+    return FALSE;
+}
+
 bool32 HasMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef, u32 accCheck, bool32 ignoreStatus, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect)
 {
     s32 i;
@@ -2096,7 +2125,7 @@ bool32 HasMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef, u32 accCheck, bool
             if (ignoreStatus && IS_MOVE_STATUS(moves[i]))
                 continue;
             else if ((!IS_MOVE_STATUS(moves[i]) && gMovesInfo[moves[i]].accuracy == 0)
-              || AI_GetBattlerMoveTargetType(battlerAtk, moves[i]) & (MOVE_TARGET_USER | MOVE_TARGET_OPPONENTS_FIELD))
+                  || GetBattlerMoveTargetType(battlerAtk, moves[i]) & (MOVE_TARGET_USER | MOVE_TARGET_OPPONENTS_FIELD))
                 continue;
 
             if (AI_DATA->moveAccuracy[battlerAtk][battlerDef][i] <= accCheck)
@@ -2279,6 +2308,34 @@ bool32 IsStatLoweringEffect(u32 effect)
     case EFFECT_CAPTIVATE:
     case EFFECT_NOBLE_ROAR:
     case EFFECT_MEMENTO:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+bool32 IsSelfStatLoweringEffect(u32 effect)
+{
+    // Self stat lowering moves like Overheart, Superpower etc.
+    switch (effect)
+    {
+    case MOVE_EFFECT_ATK_MINUS_1:
+    case MOVE_EFFECT_DEF_MINUS_1:
+    case MOVE_EFFECT_SPD_MINUS_1:
+    case MOVE_EFFECT_SP_ATK_MINUS_1:
+    case MOVE_EFFECT_SP_DEF_MINUS_1:
+    case MOVE_EFFECT_EVS_MINUS_1:
+    case MOVE_EFFECT_ACC_MINUS_1:
+    case MOVE_EFFECT_ATK_MINUS_2:
+    case MOVE_EFFECT_DEF_MINUS_2:
+    case MOVE_EFFECT_SPD_MINUS_2:
+    case MOVE_EFFECT_SP_ATK_MINUS_2:
+    case MOVE_EFFECT_SP_DEF_MINUS_2:
+    case MOVE_EFFECT_EVS_MINUS_2:
+    case MOVE_EFFECT_ACC_MINUS_2:
+    case MOVE_EFFECT_V_CREATE:
+    case MOVE_EFFECT_ATK_DEF_DOWN:
+    case MOVE_EFFECT_DEF_SPDEF_DOWN:
         return TRUE;
     default:
         return FALSE;
@@ -3735,11 +3792,14 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 
     if (AI_CanBurn(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
     {
-        ADJUST_SCORE_PTR(WEAK_EFFECT); // burning is good
-        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL)
+            || (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_OMNISCIENT) // Not Omniscient but expects physical attacker
+                && gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack + 10))
         {
-            if (CanTargetFaintAi(battlerDef, battlerAtk))
-                ADJUST_SCORE_PTR(DECENT_EFFECT); // burning the target to stay alive is cool
+            if (gMovesInfo[GetBestDmgMoveFromBattler(battlerDef, battlerAtk)].category == DAMAGE_CATEGORY_PHYSICAL)
+                ADJUST_SCORE_PTR(DECENT_EFFECT);
+            else
+                ADJUST_SCORE_PTR(WEAK_EFFECT);
         }
 
         if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN)
@@ -3816,11 +3876,14 @@ void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
 
     if (AI_CanGiveFrostbite(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
     {
-        ADJUST_SCORE_PTR(WEAK_EFFECT); // frostbite is good
-        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL)
+            || (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_OMNISCIENT) // Not Omniscient but expects special attacker
+                && gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack + 10))
         {
-            if (CanTargetFaintAi(battlerDef, battlerAtk))
-                ADJUST_SCORE_PTR(DECENT_EFFECT); // frostbiting the target to stay alive is cool
+            if (gMovesInfo[GetBestDmgMoveFromBattler(battlerDef, battlerAtk)].category == DAMAGE_CATEGORY_SPECIAL)
+                ADJUST_SCORE_PTR(DECENT_EFFECT);
+            else
+                ADJUST_SCORE_PTR(WEAK_EFFECT);
         }
 
         if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_FROSTBITE)

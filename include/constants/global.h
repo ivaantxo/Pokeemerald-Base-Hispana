@@ -8,6 +8,7 @@
 #include "config/level_caps.h"
 #include "config/pokemon.h"
 #include "config/overworld.h"
+#include "config/ev_caps.h"
 
 // Invalid Versions show as "----------" in Gen 4 and Gen 5's summary screen.
 // In Gens 6 and 7, invalid versions instead show "a distant land" in the summary screen.
