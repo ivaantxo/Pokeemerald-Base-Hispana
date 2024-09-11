@@ -1556,11 +1556,12 @@ const struct Item gItemsInfo[] =
     [ITEM_LONELY_MINT] =
 {
     .name = _("Menta huraña"),
+    .pluralName = _("Mentas hurañas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Ataque, pero\n"
-        "reduce la Defensa."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Huraña."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1573,11 +1574,12 @@ const struct Item gItemsInfo[] =
 [ITEM_ADAMANT_MINT] =
 {
     .name = _("Menta firme"),
+    .pluralName = _("Mentas firmes"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Ataque, pero\n"
-        "reduce el Sp. Atk."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Firme."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1590,11 +1592,12 @@ const struct Item gItemsInfo[] =
 [ITEM_NAUGHTY_MINT] =
 {
     .name = _("Menta pícara"),
+    .pluralName = _("Mentas pícaras"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Ataque, pero\n"
-        "reduce el Sp. Def."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Pícara."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1607,11 +1610,12 @@ const struct Item gItemsInfo[] =
 [ITEM_BRAVE_MINT] =
 {
     .name = _("Menta audaz"),
+    .pluralName = _("Mentas audaces"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Ataque, pero\n"
-        "reduce la Velocidad."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Audaz."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1624,11 +1628,12 @@ const struct Item gItemsInfo[] =
 [ITEM_BOLD_MINT] =
 {
     .name = _("Menta osada"),
+    .pluralName = _("Mentas osadas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Defensa, pero\n"
-        "reduce el Ataque."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Osada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1641,11 +1646,12 @@ const struct Item gItemsInfo[] =
 [ITEM_IMPISH_MINT] =
 {
     .name = _("Menta agitada"),
+    .pluralName = _("Mentas agitadas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Defensa, pero\n"
-        "reduce el Sp. Atk."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Agitada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1658,11 +1664,12 @@ const struct Item gItemsInfo[] =
 [ITEM_LAX_MINT] =
 {
     .name = _("Menta floja"),
+    .pluralName = _("Mentas flojas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Defensa, pero\n"
-        "reduce el Sp. Def."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Floja."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1674,12 +1681,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_RELAXED_MINT] =
 {
-    .name = _("Menta Relajada"),
+    .name = _("Menta relajada"),
+    .pluralName = _("Mentas relajadas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Defensa, pero\n"
-        "reduce la Velocidad."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Relajada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1692,11 +1700,12 @@ const struct Item gItemsInfo[] =
 [ITEM_MODEST_MINT] =
 {
     .name = _("Menta modesta"),
+    .pluralName = _("Mentas modestas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Atk, pero\n"
-        "reduce el Ataque."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Modesta."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1709,11 +1718,12 @@ const struct Item gItemsInfo[] =
 [ITEM_MILD_MINT] =
 {
     .name = _("Menta afable"),
+    .pluralName = _("Mentas afables"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Atk, pero\n"
-        "reduce la Defensa."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Afable."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1726,11 +1736,12 @@ const struct Item gItemsInfo[] =
 [ITEM_RASH_MINT] =
 {
     .name = _("Menta alocada"),
+    .pluralName = _("Mentas alocadas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Atk, pero\n"
-        "reduce el Sp. Def."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Alocada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1743,11 +1754,12 @@ const struct Item gItemsInfo[] =
 [ITEM_QUIET_MINT] =
 {
     .name = _("Menta mansa"),
+    .pluralName = _("Mentas mansas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Atk, pero\n"
-        "reduce la Velocidad."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Mansa."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1760,11 +1772,12 @@ const struct Item gItemsInfo[] =
 [ITEM_CALM_MINT] =
 {
     .name = _("Menta serena"),
+    .pluralName = _("Mentas serenas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Def, pero\n"
-        "reduce el Ataque."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Serena."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1777,11 +1790,12 @@ const struct Item gItemsInfo[] =
 [ITEM_GENTLE_MINT] =
 {
     .name = _("Menta amable"),
+    .pluralName = _("Mentas amables"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Def, pero\n"
-        "reduce la Defensa."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Amables."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1793,12 +1807,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_CAREFUL_MINT] =
 {
-    .name = _("Menta grosera"),
+    .name = _("Menta cauta"),
+    .pluralName = _("Mentas cautas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Def, pero\n"
-        "reduce el Sp. Atk."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Cauta."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1811,11 +1826,12 @@ const struct Item gItemsInfo[] =
 [ITEM_SASSY_MINT] =
 {
     .name = _("Menta grosera"),
+    .pluralName = _("Mentas groseras"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "el Sp. Def, pero\n"
-        "reduce la Velocidad."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Grosera."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1828,11 +1844,12 @@ const struct Item gItemsInfo[] =
 [ITEM_TIMID_MINT] =
 {
     .name = _("Menta miedosa"),
+    .pluralName = _("Mentas miedosas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Velocidad, pero\n"
-        "reduce el Ataque."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Miedosa."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1845,11 +1862,12 @@ const struct Item gItemsInfo[] =
 [ITEM_HASTY_MINT] =
 {
     .name = _("Menta activa"),
+    .pluralName = _("Mentas activas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Velocidad, pero\n"
-        "reduce la Defensa."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Activa."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1862,11 +1880,12 @@ const struct Item gItemsInfo[] =
 [ITEM_JOLLY_MINT] =
 {
     .name = _("Menta alegre"),
+    .pluralName = _("Mentas alegres"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Velocidad, pero\n"
-        "reduce el Sp. Atk."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Alegre."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1879,11 +1898,12 @@ const struct Item gItemsInfo[] =
 [ITEM_NAIVE_MINT] =
 {
     .name = _("Menta ingenua"),
+    .pluralName = _("Mentas ingenuas"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Aumenta\n"
-        "la Velocidad, pero\n"
-        "reduce el Sp. Def."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Ingenuas."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1896,11 +1916,12 @@ const struct Item gItemsInfo[] =
 [ITEM_SERIOUS_MINT] =
 {
     .name = _("Menta seria"),
+    .pluralName = _("Mentas serias"),
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
-        "Se puede oler. Hace\n"
-        "que cada estadística\n"
-        "aumente por igual."),
+        "Cambia la naturaleza\n"
+        "del Pokémon a\n"
+        "Seria."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1912,15 +1933,14 @@ const struct Item gItemsInfo[] =
 
 // Candy
 
-    [ITEM_RARE_CANDY] =
+[ITEM_RARE_CANDY] =
 {
-    .name = _("Caramelo Raro"),
-    .pluralName = _("Caramelos Raros"),
+    .name = _("Caramelo raro"),
+    .pluralName = _("Caramelos raros"),
     .price = (I_PRICE >= GEN_7) ? 10000 : 4800,
     .description = COMPOUND_STRING(
         "Aumenta el nivel\n"
-        "de un Pokémon en\n"
-        "uno."),
+        "de un Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -1932,14 +1952,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_EXP_CANDY_XS] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. XS", "Caram. Exp. XS"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. XS", "Caram. Exp. XS"),
+    .name = _("Caramelo exp. XS"),
+    .pluralName = _("Caramelos exp. XS"),
     .price = 20,
     .holdEffectParam = EXP_100,
     .description = COMPOUND_STRING(
-        "Otorga una cantidad\n"
-        "muy pequeña de Exp.\n"
-        "a un solo Pokémon."),
+        "Otorga muy poca\n"
+        "experiencia a un\n"
+        "Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -1951,14 +1971,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_EXP_CANDY_S] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. S", "Caram. Exp. S"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. S", "Caram. Exp. S"),
+    .name = _("Caramelo exp. S"),
+    .pluralName = _("Caramelos exp. S"),
     .price = 240,
     .holdEffectParam = EXP_800,
     .description = COMPOUND_STRING(
-        "Otorga una cantidad\n"
-        "pequeña de Exp. a\n"
-        "un solo Pokémon."),
+        "Otorga poca\n"
+        "experiencia a un\n"
+        "Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -1970,14 +1990,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_EXP_CANDY_M] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. M", "Caram. Exp. M"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. M", "Caram. Exp. M"),
+    .name = _("Caramelo exp. M"),
+    .pluralName = _("Caramelos exp. M"),
     .price = 1000,
     .holdEffectParam = EXP_3000,
     .description = COMPOUND_STRING(
-        "Otorga una cantidad\n"
-        "moderada de Exp. a\n"
-        "un solo Pokémon."),
+        "Otorga bastante\n"
+        "experiencia a un\n"
+        "Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -1989,14 +2009,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_EXP_CANDY_L] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. L", "Caram. Exp. L"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. L", "Caram. Exp. L"),
+    .name = _("Caramelo exp. L"),
+    .pluralName = _("Caramelos exp. L"),
     .price = 3000,
     .holdEffectParam = EXP_10000,
     .description = COMPOUND_STRING(
-        "Otorga una cantidad\n"
-        "grande de Exp. a\n"
-        "un solo Pokémon."),
+        "Otorga mucha\n"
+        "experiencia a un\n"
+        "Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -2008,14 +2028,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_EXP_CANDY_XL] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. XL", "Caram. Exp. XL"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("Caram. Exp. XL", "Caram. Exp. XL"),
+    .name = _("Caramelo exp. XL"),
+    .pluralName = _("Caramelos exp. XL"),
     .price = 10000,
     .holdEffectParam = EXP_30000,
     .description = COMPOUND_STRING(
-        "Otorga una cantidad\n"
-        "muy grande de Exp.\n"
-        "a un solo Pokémon."),
+        "Otorga muchísima\n"
+        "experiencia a un\n"
+        "Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
@@ -2027,13 +2047,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_DYNAMAX_CANDY] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("Caram. Dynamax", "Caram. Dynamax"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("Caram. Dynamax", "Caram. Dynamax"),
+    .name = _("Caramelo Dynamax"),
+    .pluralName = _("Caramelos Dynamax"),
     .price = 0,
     .description = COMPOUND_STRING(
-        "Aumenta el Nivel\n"
-        "Dynamax de un solo\n"
-        "Pokémon en uno."),
+        "Sube el nivel\n"
+        "Dynamax de un\n"
+        "Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_DynamaxCandy,
@@ -2044,9 +2064,10 @@ const struct Item gItemsInfo[] =
 
 // Medicinal Flutes
 
-    [ITEM_BLUE_FLUTE] =
+[ITEM_BLUE_FLUTE] =
 {
-    .name = _("Flauta Azul"),
+    .name = _("Flauta azul"),
+    .pluralName = _("Flautas azules"),
     .price = (I_PRICE >= GEN_7) ? 20 : 100,
     .description = COMPOUND_STRING(
         "Una flauta de vidrio\n"
@@ -2064,12 +2085,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_YELLOW_FLUTE] =
 {
-    .name = _("Flauta Amarilla"),
+    .name = _("Flauta amarilla"),
+    .pluralName = _("Flautas amarillas"),
     .price = (I_PRICE >= GEN_7) ? 20 : 300,
     .description = COMPOUND_STRING(
         "Una flauta de vidrio\n"
-        "que elimina la\n"
-        "confusión de los Pokémon."),
+        "que cura confusión\n"
+        "de los Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2082,12 +2104,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_RED_FLUTE] =
 {
-    .name = _("Flauta Roja"),
+    .name = _("Flauta roja"),
+    .pluralName = _("Flautas rojas"),
     .price = (I_PRICE >= GEN_7) ? 20 : 200,
     .description = COMPOUND_STRING(
         "Una flauta de vidrio\n"
-        "que elimina la\n"
-        "atracción de los Pokémon."),
+        "que cura atracción\n"
+        "de los Pokémon."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2100,9 +2123,10 @@ const struct Item gItemsInfo[] =
 
 // Encounter-modifying Flutes
 
-    [ITEM_BLACK_FLUTE] =
+[ITEM_BLACK_FLUTE] =
 {
-    .name = _("Flauta Negra"),
+    .name = _("Flauta negra"),
+    .pluralName = _("Flautas negras"),
     .price = (I_PRICE >= GEN_7) ? 20 : 400,
     .holdEffectParam = 50,
     .description = COMPOUND_STRING(
@@ -2119,7 +2143,8 @@ const struct Item gItemsInfo[] =
 
 [ITEM_WHITE_FLUTE] =
 {
-    .name = _("Flauta Blanca"),
+    .name = _("Flauta blanca"),
+    .pluralName = _("Flautas blancas"),
     .price = (I_PRICE >= GEN_7) ? 20 : 500,
     .holdEffectParam = 150,
     .description = COMPOUND_STRING(
@@ -2142,7 +2167,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_7) ? 400 : 350,
     .holdEffectParam = 100,
     .description = COMPOUND_STRING(
-        "Repelente para Pokémon\n"
+        "Repele Pokémon\n"
         "salvajes débiles por\n"
         "100 pasos."),
     .pocket = POCKET_ITEMS,
@@ -2155,11 +2180,11 @@ const struct Item gItemsInfo[] =
 
 [ITEM_SUPER_REPEL] =
 {
-    .name = _("Super Repel"),
+    .name = _("Superrepelente"),
     .price = (I_PRICE >= GEN_7) ? 700 : 500,
     .holdEffectParam = 200,
     .description = COMPOUND_STRING(
-        "Repelente para Pokémon\n"
+        "Repele Pokémon\n"
         "salvajes débiles por\n"
         "200 pasos."),
     .pocket = POCKET_ITEMS,
@@ -2172,11 +2197,12 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_REPEL] =
 {
-    .name = _("Máx Repel"),
+    .name = _("Repelente máximo"),
+    .pluralName = _("Repelentes máximos"),
     .price = (I_PRICE >= GEN_7) ? 900 : 700,
     .holdEffectParam = 250,
     .description = COMPOUND_STRING(
-        "Repelente para Pokémon\n"
+        "Repele Pokémon\n"
         "salvajes débiles por\n"
         "250 pasos."),
     .pocket = POCKET_ITEMS,
@@ -2189,13 +2215,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_LURE] =
 {
-    .name = _("Cebo"),
+    .name = _("Colonia"),
     .price = 400,
     .holdEffectParam = 100,
     .description = COMPOUND_STRING(
-        "Hace que los Pokémon\n"
-        "sean más propensos a\n"
-        "aparecer por 100 pasos."),
+        "Hace a los Pokémon\n"
+        "más propensos durante\n"
+        "100 pasos."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Lure,
@@ -2207,13 +2233,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_SUPER_LURE] =
 {
-    .name = _("Super Cebo"),
+    .name = _("Supercolonia"),
     .price = 700,
     .holdEffectParam = 200,
     .description = COMPOUND_STRING(
-        "Hace que los Pokémon\n"
-        "sean más propensos a\n"
-        "aparecer por 200 pasos."),
+        "Hace a los Pokémon\n"
+        "más propensos durante\n"
+        "200 pasos."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Lure,
@@ -2225,13 +2251,14 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_LURE] =
 {
-    .name = _("Maxi Cebo"),
+    .name = _("Colonia máxima"),
+    .pluralName = _("Colonias máximas"),
     .price = 900,
     .holdEffectParam = 250,
     .description = COMPOUND_STRING(
-        "Hace que los Pokémon\n"
-        "sean más propensos a\n"
-        "aparecer por 250 pasos."),
+        "Hace a los Pokémon\n"
+        "más propensos durante\n"
+        "250 pasos."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Lure,
@@ -2243,11 +2270,12 @@ const struct Item gItemsInfo[] =
 
 [ITEM_ESCAPE_ROPE] =
 {
-    .name = _("Cuerda Huida"),
+    .name = _("Cuerda huida"),
+    .pluralName = _("Cuerdas huida"),
     .description = COMPOUND_STRING(
         "Úsala para escapar\n"
         "instantáneamente de\n"
-        "una cueva o un calabozo."),
+        "cuevas o calabozos."),
     #if I_KEY_ESCAPE_ROPE >= GEN_8
         .price = 0,
         .importance = 1,
@@ -2265,21 +2293,20 @@ const struct Item gItemsInfo[] =
 
 // X Items
 
-    [ITEM_X_ATTACK] =
+[ITEM_X_ATTACK] =
 {
     .name = _("Ataque X"),
+    .pluralName = _("Ataques X"),
     .price = (I_PRICE >= GEN_7) ? 1000 : 500,
     .holdEffectParam = X_ITEM_STAGES,
     .description = COMPOUND_STRING(
     #if B_X_ITEMS_BUFF >= GEN_7
-        "Aumenta drásticamente\n"
-        "el stat Ataque durante\n"
-        "una batalla."),
+        "Aumenta muchísimo\n"
     #else
-        "Aumenta el stat\n"
-        "Ataque durante una\n"
-        "batalla."),
+        "Aumenta\n"
     #endif
+        "el Ataque durante\n"
+        "una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2293,18 +2320,17 @@ const struct Item gItemsInfo[] =
 [ITEM_X_DEFENSE] =
 {
     .name = _("Defensa X"),
-    .price = (I_PRICE >= GEN_7) ? 2000 : 550,
+    .pluralName = _("Defensas X"),
+    .price = (I_PRICE >= GEN_7) ? 1000 : 500,
     .holdEffectParam = X_ITEM_STAGES,
     .description = COMPOUND_STRING(
     #if B_X_ITEMS_BUFF >= GEN_7
-        "Aumenta drásticamente\n"
-        "el stat Defensa durante\n"
-        "una batalla."),
+        "Aumenta muchísimo\n"
     #else
-        "Aumenta el stat\n"
-        "Defensa durante una\n"
-        "batalla."),
+        "Aumenta\n"
     #endif
+        "la Defensa durante\n"
+        "una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2317,19 +2343,18 @@ const struct Item gItemsInfo[] =
 
 [ITEM_X_SP_ATK] =
 {
-    .name = _("Atq. Esp. X"),
-    .price = (I_PRICE >= GEN_7) ? 1000 : 350,
+    .name = _("Ataque Especial X"),
+    .pluralName = _("Ataques Especiales X"),
+    .price = (I_PRICE >= GEN_7) ? 1000 : 500,
     .holdEffectParam = X_ITEM_STAGES,
     .description = COMPOUND_STRING(
     #if B_X_ITEMS_BUFF >= GEN_7
-        "Aumenta drásticamente\n"
-        "el stat Atq. Esp. durante\n"
-        "una batalla."),
+        "Aumenta muchísimo\n"
     #else
-        "Aumenta el stat\n"
-        "Atq. Esp. durante una\n"
-        "batalla."),
+        "Aumenta\n"
     #endif
+        "el Ataque Especial\n"
+        "durante una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2342,19 +2367,18 @@ const struct Item gItemsInfo[] =
 
 [ITEM_X_SP_DEF] =
 {
-    .name = _("Def. Esp. X"),
-    .price = (I_PRICE >= GEN_7) ? 2000 : 350,
+    .name = _("Defensa Especial X"),
+    .pluralName = _("Defensas Especiales X"),
+    .price = (I_PRICE >= GEN_7) ? 1000 : 500,
     .holdEffectParam = X_ITEM_STAGES,
     .description = COMPOUND_STRING(
     #if B_X_ITEMS_BUFF >= GEN_7
-        "Aumenta drásticamente\n"
-        "el stat Def. Esp. durante\n"
-        "una batalla."),
+        "Aumenta muchísimo\n"
     #else
-        "Aumenta el stat\n"
-        "Def. Esp. durante una\n"
-        "batalla."),
+        "Aumenta\n"
     #endif
+        "la Defensa Especial\n"
+        "durante una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2367,19 +2391,18 @@ const struct Item gItemsInfo[] =
 
 [ITEM_X_SPEED] =
 {
-    .name = _("Veloc. X"),
-    .price = (I_PRICE >= GEN_7) ? 1000 : 350,
+    .name = _("Velocidad X"),
+    .pluralName = _("Velocidades X"),
+    .price = (I_PRICE >= GEN_7) ? 1000 : 500,
     .holdEffectParam = X_ITEM_STAGES,
     .description = COMPOUND_STRING(
     #if B_X_ITEMS_BUFF >= GEN_7
-        "Aumenta drásticamente\n"
-        "el stat Velocidad durante\n"
-        "una batalla."),
+        "Aumenta muchísimo\n"
     #else
-        "Aumenta el stat\n"
-        "Velocidad durante una\n"
-        "batalla."),
+        "Aumenta\n"
     #endif
+        "la Velocidad\n"
+        "durante una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2393,19 +2416,17 @@ const struct Item gItemsInfo[] =
 [ITEM_X_ACCURACY] =
 {
     .name = _("Precisión X"),
-    .pluralName = _("X Precisiones"),
-    .price = (I_PRICE >= GEN_7) ? 1000 : 950,
+    .pluralName = _("Precisiones X"),
+    .price = (I_PRICE >= GEN_7) ? 1000 : 500,
     .holdEffectParam = X_ITEM_STAGES,
     .description = COMPOUND_STRING(
     #if B_X_ITEMS_BUFF >= GEN_7
-        "Aumenta drásticamente la\n"
-        "precisión de los movimientos\n"
-        "durante una batalla."),
+        "Aumenta muchísimo\n"
     #else
-        "Aumenta la precisión\n"
-        "de los movimientos de ataque\n"
-        "durante una batalla."),
+        "Aumenta\n"
     #endif
+        "la Precisión\n"
+        "durante una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2421,8 +2442,8 @@ const struct Item gItemsInfo[] =
     .name = _("Directo"),
     .price = (I_PRICE >= GEN_7) ? 1000 : 650,
     .description = COMPOUND_STRING(
-        "Aumenta el ratio de\n"
-        "golpes críticos durante\n"
+        "Aumenta ratio de\n"
+        "críticos durante\n"
         "una batalla."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
@@ -2436,13 +2457,13 @@ const struct Item gItemsInfo[] =
 
 [ITEM_GUARD_SPEC] =
 {
-    .name = _("Guardia Esp."),
-    .pluralName = _("Guardias Esp."),
+    .name = _("Guardia especial"),
+    .pluralName = _("Guardias especiales"),
     .price = (I_PRICE >= GEN_7) ? 1500 : 700,
     .description = COMPOUND_STRING(
-        "Previene la reducción\n"
-        "de stats cuando se usa\n"
-        "en batalla."),
+        "Previene reducción\n"
+        "de estadísticas\n"
+        "en combate."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2455,7 +2476,7 @@ const struct Item gItemsInfo[] =
 
 [ITEM_POKE_DOLL] =
 {
-    .name = _("Poké Muñeco"),
+    .name = _("Poké muñeco"),
     .price = (I_PRICE < GEN_7) ? 1000 : ((I_PRICE == GEN_7) ? 100 : 300),
     .description = sPokeDollDesc,
     .pocket = POCKET_ITEMS,
@@ -2470,6 +2491,7 @@ const struct Item gItemsInfo[] =
 [ITEM_FLUFFY_TAIL] =
 {
     .name = _("Cola Skitty"),
+    .pluralName = _("Colas Skitty"),
     .price = (I_PRICE >= GEN_7) ? 100 : 1000,
     .description = sPokeDollDesc,
     .pocket = POCKET_ITEMS,
@@ -2497,12 +2519,11 @@ const struct Item gItemsInfo[] =
 
 [ITEM_MAX_MUSHROOMS] =
 {
-    .name = HANDLE_EXPANDED_ITEM_NAME("MaxMushrooms", "Setas Max"),
-    .pluralName = HANDLE_EXPANDED_ITEM_NAME("MaxMushrooms", "Setas Max"),
+    .name = _("Maxiseta"),
     .price = 8000,
     .description = COMPOUND_STRING(
-        "Aumenta todos los stats\n"
-        "durante una batalla\n"
+        "Aumenta stats\n"
+        "durante combate\n"
         "en un nivel."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_BAG_MENU,
@@ -2515,17 +2536,18 @@ const struct Item gItemsInfo[] =
 
 // Treasures
 
-        [ITEM_BOTTLE_CAP] =
+    [ITEM_BOTTLE_CAP] =
     {
-        .name = _("Chapa plata"),
+        .name = _("Chapa plateada"),
+        .pluralName = _("Chapas plateadas"),
         .price = (I_PRICE >= GEN_9) ? 20000 : 5000,
         .description = COMPOUND_STRING(
-            "Una hermosa tapa de\n"
-            "botella que brilla\n"
-            "con un resplandor plateado."),
+            "Aumenta una stat\n"
+            "de Pokémon al 100\n"
+            "como si 31 IV."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, //To do
         .flingPower = 30,
         .iconPic = gItemIcon_BottleCap,
         .iconPalette = gItemIconPalette_BottleCap,
@@ -2533,15 +2555,16 @@ const struct Item gItemsInfo[] =
 
     [ITEM_GOLD_BOTTLE_CAP] =
     {
-        .name = HANDLE_EXPANDED_ITEM_NAME("Chapa oro", "Chapa de oro"),
+        .name = _("Chapa dorada"),
+        .pluralName = _("Chapas doradas"),
         .price = (I_PRICE >= GEN_9) ? 60000 : 10000,
         .description = COMPOUND_STRING(
-            "Una hermosa tapa de\n"
-            "botella que brilla\n"
-            "con un resplandor dorado."),
+            "Aumenta stats\n"
+            "de Pokémon al 100\n"
+            "como si 31 IV."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, //To do
         .flingPower = 30,
         .iconPic = gItemIcon_BottleCap,
         .iconPalette = gItemIconPalette_GoldBottleCap,
@@ -2568,7 +2591,7 @@ const struct Item gItemsInfo[] =
         .name = _("Maxipepita"),
         .price = (I_PRICE >= GEN_7) ? (40000 * TREASURE_FACTOR) : 20000,
         .description = COMPOUND_STRING(
-            "Una gran pepita de oro,\n"
+            "Gran pepita de oro,\n"
             "vendible a un alto\n"
             "precio."),
         .pocket = POCKET_ITEMS,
@@ -2581,7 +2604,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TINY_MUSHROOM] =
     {
-        .name = _("Seta Pequeña"),
+        .name = _("Miniseta"),
         .price = 500 * TREASURE_FACTOR,
         .description = COMPOUND_STRING(
             "Una seta común\n"
@@ -2597,7 +2620,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_BIG_MUSHROOM] =
     {
-        .name = _("Seta Grande"),
+        .name = _("Seta grande"),
+        .pluralName = _("Setas grandes"),
         .price = 5000 * TREASURE_FACTOR,
         .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
@@ -2611,6 +2635,7 @@ const struct Item gItemsInfo[] =
     [ITEM_BALM_MUSHROOM] =
     {
         .name = _("Seta aroma"),
+        .pluralName = _("Setas aroma"),
         .price = (I_PRICE >= GEN_7) ? 15000 * TREASURE_FACTOR : 12500,
         .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
@@ -2639,11 +2664,12 @@ const struct Item gItemsInfo[] =
 
     [ITEM_BIG_PEARL] =
     {
-        .name = _("Perla Grande"),
+        .name = _("Perla grande"),
+        .pluralName = _("Perlas grandes"),
         .price = (I_PRICE >= GEN_7) ? 8000 * TREASURE_FACTOR : 7500,
         .description = COMPOUND_STRING(
-            "Una hermosa perla\n"
-            "grande que se vendería\n"
+            "Hermosa perla grande\n"
+            "que se vendería\n"
             "a un precio alto."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -2655,11 +2681,12 @@ const struct Item gItemsInfo[] =
 
     [ITEM_PEARL_STRING] =
     {
-        .name = _("Cadena perlas"),
+        .name = _("Sarta de perlas"),
+        .pluralName = _("Sartas de perlas"),
         .price = (I_PRICE >= GEN_8) ? 15000 * TREASURE_FACTOR : ((I_PRICE == GEN_7) ? 30000 : 15000),
         .description = COMPOUND_STRING(
             "Cadenas de perlas\n"
-            "que se venderían\n"
+            "que se vendería\n"
             "a un precio alto."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -2671,8 +2698,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_STARDUST] =
     {
-        .name = _("Polvoestelar"),
-        .pluralName = _("Polvo Estelar"),
+        .name = _("Polvo estelar"),
+        .pluralName = _("Polvos estelares"),
         .price = (I_PRICE >= GEN_7) ? 3000 * TREASURE_FACTOR : 2000,
         .description = COMPOUND_STRING(
             "Hermosa arena roja.\n"
@@ -2689,6 +2716,7 @@ const struct Item gItemsInfo[] =
     [ITEM_STAR_PIECE] =
     {
         .name = _("Pieza estelar"),
+        .pluralName = _("Piezas estelares"),
         .price = (I_PRICE >= GEN_7) ? 12000 * TREASURE_FACTOR : 9800,
         .description = COMPOUND_STRING(
             "Un fragmento de gema\n"
@@ -2704,10 +2732,11 @@ const struct Item gItemsInfo[] =
 
     [ITEM_COMET_SHARD] =
     {
-        .name = _("Frag. Cometa"),
+        .name = _("Fragmento cometa"),
+        .pluralName = _("Fragmentos cometa"),
         .price = (I_PRICE <= GEN_5) ? 0 : ((I_PRICE == GEN_6) ? 30000 : ((I_PRICE == GEN_7) ? 60000 : 25000 * TREASURE_FACTOR)),
         .description = COMPOUND_STRING(
-            "Un fragmento de cometa.\n"
+            "Fragmento de cometa.\n"
             "Se vendería a un\n"
             "alto precio."),
         .pocket = POCKET_ITEMS,
@@ -2720,13 +2749,13 @@ const struct Item gItemsInfo[] =
 
     [ITEM_SHOAL_SALT] =
     {
-        .name = _("Sal Cardumen"),
-        .pluralName = _("Sales Cardumen"),
+        .name = _("Sal cardumen"),
+        .pluralName = _("Sales cardumen"),
         .price = 20,
         .description = COMPOUND_STRING(
             "Sal obtenida de\n"
             "lo profundo de la\n"
-            "Cueva Shoal."),
+            "Cueva Cardumen."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2737,13 +2766,13 @@ const struct Item gItemsInfo[] =
 
     [ITEM_SHOAL_SHELL] =
     {
-        .name = _("C. Cardumen"),
-        .pluralName = _("Concha Cardumen"),
+        .name = _("Concha cardumen"),
+        .pluralName = _("Conchas cardumen"),
         .price = 20,
         .description = COMPOUND_STRING(
             "Una concha obtenida\n"
             "de lo profundo de\n"
-            "la Cueva Shoal."),
+            "la Cueva Cardumen."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -2754,7 +2783,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_RED_SHARD] =
     {
-        .name = _("Frag. Rojo"),
+        .name = _("Parte roja"),
+        .pluralName = _("Partes rojas"),
         .price = 1000,
         .description = COMPOUND_STRING(
             "Un fragmento rojo\n"
