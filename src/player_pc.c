@@ -635,7 +635,6 @@ static void ItemStorage_Enter(u8 taskId, bool8 toss)
     gPlayerPCItemPageInfo.scrollIndicatorTaskId = TASK_NONE;
     SetPlayerPCListCount(taskId);
     ItemStorage_Init();
-    FreeAndReserveObjectSpritePalettes();
     LoadListMenuSwapLineGfx();
     CreateSwapLineSprites(sItemStorageMenu->swapLineSpriteIds, SWAP_LINE_LENGTH);
     ClearDialogWindowAndFrame(0, FALSE);

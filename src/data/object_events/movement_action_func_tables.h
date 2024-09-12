@@ -197,10 +197,6 @@ u8 MovementAction_AcroEndWheelieFaceDown_Step0(struct ObjectEvent *, struct Spri
 u8 MovementAction_AcroEndWheelieFaceUp_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_AcroEndWheelieFaceLeft_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_AcroEndWheelieFaceRight_Step0(struct ObjectEvent *, struct Sprite *);
-u8 MovementAction_UnusedAcroActionDown_Step0(struct ObjectEvent *, struct Sprite *);
-u8 MovementAction_UnusedAcroActionUp_Step0(struct ObjectEvent *, struct Sprite *);
-u8 MovementAction_UnusedAcroActionLeft_Step0(struct ObjectEvent *, struct Sprite *);
-u8 MovementAction_UnusedAcroActionRight_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_Figure8_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_Figure8_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_AcroWheelieHopFaceDown_Step0(struct ObjectEvent *, struct Sprite *);
@@ -1328,30 +1324,6 @@ u8 (*const gMovementActionFuncs_AcroEndWheelieFaceLeft[])(struct ObjectEvent *, 
 
 u8 (*const gMovementActionFuncs_AcroEndWheelieFaceRight[])(struct ObjectEvent *, struct Sprite *) = {
     MovementAction_AcroEndWheelieFaceRight_Step0,
-    MovementAction_WaitSpriteAnim,
-    MovementAction_PauseSpriteAnim,
-};
-
-u8 (*const gMovementActionFuncs_AcroUnusedAcroActionDown[])(struct ObjectEvent *, struct Sprite *) = {
-    MovementAction_UnusedAcroActionDown_Step0,
-    MovementAction_WaitSpriteAnim,
-    MovementAction_PauseSpriteAnim,
-};
-
-u8 (*const gMovementActionFuncs_AcroUnusedAcroActionUp[])(struct ObjectEvent *, struct Sprite *) = {
-    MovementAction_UnusedAcroActionUp_Step0,
-    MovementAction_WaitSpriteAnim,
-    MovementAction_PauseSpriteAnim,
-};
-
-u8 (*const gMovementActionFuncs_AcroUnusedAcroActionLeft[])(struct ObjectEvent *, struct Sprite *) = {
-    MovementAction_UnusedAcroActionLeft_Step0,
-    MovementAction_WaitSpriteAnim,
-    MovementAction_PauseSpriteAnim,
-};
-
-u8 (*const gMovementActionFuncs_AcroUnusedAcroActionRight[])(struct ObjectEvent *, struct Sprite *) = {
-    MovementAction_UnusedAcroActionRight_Step0,
     MovementAction_WaitSpriteAnim,
     MovementAction_PauseSpriteAnim,
 };
