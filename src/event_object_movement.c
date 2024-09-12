@@ -29,6 +29,7 @@
 #include "pokeball.h"
 #include "random.h"
 #include "region_map.h"
+#include "rtc.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -2505,7 +2506,7 @@ void UpdateLightSprite(struct Sprite *sprite)
         return;
     }
 
-    if (gTimeOfDay != TIME_OF_DAY_NIGHT)
+    if (gTimeOfDay != TIME_NIGHT)
     {
         sprite->invisible = TRUE;
         return;
