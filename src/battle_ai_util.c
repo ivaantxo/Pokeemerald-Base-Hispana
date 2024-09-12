@@ -1113,6 +1113,26 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
     return AI_IS_SLOWER;
 }
 
+static bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
+{
+    if (!BATTLER_MAX_HP(battlerTarget) || gMovesInfo[move].effect == EFFECT_MULTI_HIT)
+        return FALSE;
+    if (gMovesInfo[move].strikeCount > 1 && !(gMovesInfo[move].effect == EFFECT_DRAGON_DARTS && IsValidDoubleBattle(battlerTarget)))
+        return FALSE;
+    if (AI_DATA->holdEffects[battlerTarget] == HOLD_EFFECT_FOCUS_SASH)
+        return TRUE;
+
+    if (!DoesBattlerIgnoreAbilityChecks(AI_DATA->abilities[battler], move))
+    {
+        if (B_STURDY >= GEN_5 && AI_DATA->abilities[battlerTarget] == ABILITY_STURDY)
+            return TRUE;
+        if (gBattleMons[battlerTarget].species == SPECIES_MIMIKYU_DISGUISED)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 // Check if target has means to faint ai mon.
 bool32 CanTargetFaintAi(u32 battlerDef, u32 battlerAtk)
 {
@@ -1123,7 +1143,8 @@ bool32 CanTargetFaintAi(u32 battlerDef, u32 battlerAtk)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(unusable & (1u << i))
-            && AI_DATA->simulatedDmg[battlerDef][battlerAtk][i].expected >= gBattleMons[battlerAtk].hp)
+            && AI_DATA->simulatedDmg[battlerDef][battlerAtk][i].expected >= gBattleMons[battlerAtk].hp
+            && !CanEndureHit(battlerDef, battlerAtk, moves[i]))
         {
             return TRUE;
         }
@@ -1210,7 +1231,13 @@ bool32 CanAIFaintTarget(u32 battlerAtk, u32 battlerDef, u32 numHits)
                 dmg *= numHits;
 
             if (gBattleMons[battlerDef].hp <= dmg)
-                return TRUE;
+            {
+                if (numHits > 1)
+                    return TRUE;
+
+                if (!CanEndureHit(battlerAtk, battlerDef, moves[i]))
+                    return TRUE;
+            }
         }
     }
 
@@ -1922,13 +1949,14 @@ bool32 ShouldLowerEvasion(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 index, u32 numHits)
 {
     s32 dmg;
+    u16 *moves = gBattleMons[battlerAtk].moves;
 
     if (numHits)
         dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index].expected * numHits;
     else
         dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index].minimum;
 
-    if (gBattleMons[battlerDef].hp <= dmg)
+    if (gBattleMons[battlerDef].hp <= dmg && !CanEndureHit(battlerAtk, battlerDef, moves[index]))
         return TRUE;
     return FALSE;
 }
