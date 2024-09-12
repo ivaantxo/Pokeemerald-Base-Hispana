@@ -20,7 +20,6 @@ struct WildPokemonHeader
 {
     u8 mapGroup;
     u8 mapNum;
-    u8 timeOfDay;
     const struct WildPokemonInfo *landMonsInfo;
     const struct WildPokemonInfo *waterMonsInfo;
     const struct WildPokemonInfo *rockSmashMonsInfo;
