@@ -4334,12 +4334,6 @@ bool32 Script_GetSetPokedexFlag(void)
     return GetSetPokedexFlag(speciesId,desiredFlag);
 }
 
-void SetMonBall(void)
-{
-    u32 ballId = gSpecialVar_0x8005;
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_POKEBALL, &ballId);
-}
-
 bool32 CheckPartyHasSpecie(void)
 {
     u32 partyIndex;

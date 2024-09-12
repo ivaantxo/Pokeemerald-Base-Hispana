@@ -2401,14 +2401,6 @@
     specialvar VAR_RESULT, Script_GetSetPokedexFlag
     .endm
 
-	@ Changes the caught ball of a selected Pokémon
-    .macro setmonball ballId:req
-    special ChoosePartyMon
-    waitstate
-    setvar VAR_0x8005, \ballId
-    special SetMonBall
-    .endm
-
     @ Check if the Player has \speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.
     .macro checkspecies speciesId:req, mode:req
 	setvar VAR_0x8005, \speciesId
