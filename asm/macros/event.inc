@@ -2339,7 +2339,7 @@
 	callnative ScriptHideItemDescription
 	.endm
 
-	@ Remove all of specified item from the player's bag
+	@ Remove all of specified item from the player's bag and return the number of removed items to VAR_RESULT
 	.macro removeallitem itemId:req
 	callnative RemoveAllItem
 	.2byte \itemId
