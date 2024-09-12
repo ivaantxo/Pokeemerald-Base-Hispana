@@ -72,7 +72,6 @@ const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
     {
         .mapGroup = {% if wild_encounter_group.for_maps %}MAP_GROUP({{ removePrefix(encounter.map, "MAP_") }}){% else %}0{% endif %},
         .mapNum = {% if wild_encounter_group.for_maps %}MAP_NUM({{ removePrefix(encounter.map, "MAP_") }}){% else %}{{ loop.index1 }}{% endif %},
-        .timeOfDay = {% if stringEndsWith(encounter.base_label, "_Night") or stringContains(encounter.base_label, "_Night_") %}TIME_NIGHT{% else if stringEndsWith(encounter.base_label, "_Morning") or stringContains(encounter.base_label, "_Morning_") %}TIME_MORNING{% else if stringEndsWith(encounter.base_label, "_Evening") or stringContains(encounter.base_label, "_Evening_") %}TIME_EVENING{% else %}TIME_DAY{% endif %},
         .landMonsInfo = {% if existsIn(encounter, "land_mons") %}&{{ encounter.base_label }}_LandMonsInfo{% else %}NULL{% endif %},
         .waterMonsInfo = {% if existsIn(encounter, "water_mons") %}&{{ encounter.base_label }}_WaterMonsInfo{% else %}NULL{% endif %},
         .rockSmashMonsInfo = {% if existsIn(encounter, "rock_smash_mons") %}&{{ encounter.base_label }}_RockSmashMonsInfo{% else %}NULL{% endif %},
@@ -82,7 +81,6 @@ const struct WildPokemonHeader {{ wild_encounter_group.label }}[] =
     {
         .mapGroup = MAP_GROUP(UNDEFINED),
         .mapNum = MAP_NUM(UNDEFINED),
-        .timeOfDay = TIME_DAY,
         .landMonsInfo = NULL,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
