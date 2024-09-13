@@ -2347,21 +2347,21 @@
 
 	@ Stores the position of the given object in VAR_0x8007 (x) and VAR_0x8008 (y). Mode CURRENT_POSITION will take the object's current position. Mode TEMPLATE_POSITION will takje the object's template position.
 	.macro getobjectxy localId:req, posType:req
-	setvar VAR_0x8000, \localId
-	setvar VAR_0x8001, \posType
-	special GetObjectPosition
+	callnative GetObjectPosition
+    .2byte \localId
+    .2byte \posType
 	.endm
 
-	.macro getobjecttemplatexy localId:req
-	setvar VAR_0x8000, \localId
-	setvar VAR_0x8001, TEMPLATE_POSITION
-	special GetObjectPosition
+	.macro getobjecttemplatexy localId:req, posType = TEMPLATE_POSITION
+	callnative GetObjectPosition
+    .2byte \localId
+    .2byte \posType
 	.endm
 
-	.macro getobjectcurrentxy localId:req
-	setvar VAR_0x8000, \localId
-	setvar VAR_0x8001, CURRENT_POSITION
-	special GetObjectPosition
+	.macro getobjectcurrentxy localId:req, posType = CURRENT_POSITION
+	callnative GetObjectPosition
+    .2byte \localId
+    .2byte \posType
 	.endm
 
 	@ checks if there is any object at a given position

@@ -2481,3 +2481,28 @@ void RemoveAllItem(struct ScriptContext *ctx)
     gSpecialVar_Result = count;
     RemoveBagItem(itemId, count);
 }
+
+void GetObjectPosition(struct ScriptContext *ctx)
+{
+    u32 localId = VarGet(ScriptReadHalfword(ctx));
+    u32 useTemplate = gSpecialVar_0x8001;
+    u32 objectId;
+    struct ObjectEvent* objEvent;
+
+    u16 *x = &gSpecialVar_0x8007;
+    u16 *y = &gSpecialVar_0x8008;
+
+    if (useTemplate)
+    {
+        const struct ObjectEventTemplate *objTemplate = FindObjectEventTemplateByLocalId(localId, gSaveBlock1Ptr->objectEventTemplates, gMapHeader.events->objectEventCount);
+        *x = objTemplate->x;
+        *y = objTemplate->y;
+        return;
+    }
+
+    objectId = GetObjectEventIdByLocalId(localId);
+    objEvent = &gObjectEvents[objectId];
+    *x = objEvent->currentCoords.x - 7;
+    *y = objEvent->currentCoords.y - 7;
+}
+
