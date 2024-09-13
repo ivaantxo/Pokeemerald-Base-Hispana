@@ -1560,8 +1560,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Huraña."),
+        "del Pokémon a Huraña."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1578,8 +1577,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Firme."),
+        "del Pokémon a Firme."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1596,8 +1594,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Pícara."),
+        "del Pokémon a Pícara."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1614,8 +1611,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Audaz."),
+        "del Pokémon a Audaz."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1632,8 +1628,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Osada."),
+        "del Pokémon a Osada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1650,8 +1645,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Agitada."),
+        "del Pokémon a Agitada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1668,8 +1662,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Floja."),
+        "del Pokémon a Floja."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1686,8 +1679,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Relajada."),
+        "del Pokémon a Relajada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1704,8 +1696,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Modesta."),
+        "del Pokémon a Modesta."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1722,8 +1713,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Afable."),
+        "del Pokémon a Afable."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1740,8 +1730,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Alocada."),
+        "del Pokémon a Alocada."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1758,8 +1747,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Mansa."),
+        "del Pokémon a Mansa."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1776,8 +1764,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Serena."),
+        "del Pokémon a Serena."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1794,8 +1781,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Amables."),
+        "del Pokémon a Amable."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1812,8 +1798,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Cauta."),
+        "del Pokémon a Cauta."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1830,8 +1815,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Grosera."),
+        "del Pokémon a Grosera."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1848,8 +1832,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Miedosa."),
+        "del Pokémon a Miedosa."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1866,8 +1849,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Activa."),
+        "del Pokémon a Activa."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1884,8 +1866,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Alegre."),
+        "del Pokémon a Alegre."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1902,8 +1883,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Ingenuas."),
+        "del Pokémon a Ingenua."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,
@@ -1920,8 +1900,7 @@ const struct Item gItemsInfo[] =
     .price = (I_PRICE >= GEN_9) ? 20000 : 20,
     .description = COMPOUND_STRING(
         "Cambia la naturaleza\n"
-        "del Pokémon a\n"
-        "Seria."),
+        "del Pokémon a Seria."),
     .pocket = POCKET_ITEMS,
     .type = ITEM_USE_PARTY_MENU,
     .fieldUseFunc = ItemUseOutOfBattle_Mint,

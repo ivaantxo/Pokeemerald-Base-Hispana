@@ -1015,9 +1015,9 @@ static const struct WindowTemplate sDebugMenuWindowTemplateExtra =
 static const struct WindowTemplate sDebugMenuWindowTemplateItemDescription =
 {
     .bg = 0, //En qué background está la ventana
-    .tilemapLeft = 15, //Cuántos tiles (8x8) a la izquierda tiene la ventana
+    .tilemapLeft = 16, //Cuántos tiles (8x8) a la izquierda tiene la ventana
     .tilemapTop = 12, //Cuántos tiles (8x8) encima tiene la ventana
-    .width = 14, //Cuántos tiles (8x8) de ancho ocupa la ventana
+    .width = 13, //Cuántos tiles (8x8) de ancho ocupa la ventana
     .height = 6, //Cuántos tiles (8x8) de altura ocupa la ventana
     .paletteNum = 15, //Qué paleta usa la ventana
     .baseBlock = 100, //En qué parte de la VRAM se cargan los tiles de la ventana (OJO, incluye marco de la ventana y texto). Para calcularlo, basta con ir a mGba, herramientas->estado del juego->ver mosaicos, en la sección de bgs y ver qué parte de la memoria está vacía (en negro). La manera lógica de trabajar es cargar todas tus ventanas más o menos seguidas, para calcular cuánto ocupa cada una mejor.
@@ -2971,7 +2971,7 @@ static void DebugAction_Give_Item(u8 taskId)
     StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
     StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
     AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
-    AddTextPrinterParameterized(windowItemDescription, DEBUG_MENU_FONT, ItemId_GetDescription(1), 1, 1, 0, NULL); //Cómo mostrar una ventana con su texto en pantalla: Una vez tenemos la ventana creada, le vamos a printear un texto, en este caso la descripción del item. Al usar el 1 como argumento de ItemId_GetDescription(), le estamos diciendo que cargue la descripción del item nº1, que es la poké ball, y después lo actualizaremos al que sea.
+    AddTextPrinterParameterized(windowItemDescription, GetFontIdToFit(ItemId_GetDescription(1), DEBUG_MENU_FONT, 0, WindowWidthPx(windowItemDescription)), ItemId_GetDescription(1), 1, 1, 0, NULL); //Cómo mostrar una ventana con su texto en pantalla: Una vez tenemos la ventana creada, le vamos a printear un texto, en este caso la descripción del item. Al usar el 1 como argumento de ItemId_GetDescription(), le estamos diciendo que cargue la descripción del item nº1, que es la poké ball, y después lo actualizaremos al que sea.
 
     gTasks[taskId].func = DebugAction_Give_Item_SelectId;
     gTasks[taskId].tSubWindowId = windowId;
@@ -3020,8 +3020,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
         StringExpandPlaceholders(gStringVar4, sDebugText_ItemID);
         AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
         FillWindowPixelBuffer(gTasks[taskId].tWindowId, PIXEL_FILL(1)); //Cómo mostrar una ventana con su texto en pantalla: Esta función llena la memoria correspondiente a la window con el color que nosotros le digamos, lo que sirve como "limpieza", y evita que se queden restos de texto cuando cambiemos de item.
-        AddTextPrinterParameterized(gTasks[taskId].tWindowId, DEBUG_MENU_FONT, ItemId_GetDescription(gTasks[taskId].tInput), 1, 1, 0, NULL); //Cómo mostrar una ventana con su texto en pantalla: Aquí actualizamos la descripción del item según el id correspondiente
-
+        AddTextPrinterParameterized(gTasks[taskId].tWindowId, GetFontIdToFit(ItemId_GetDescription(gTasks[taskId].tInput), DEBUG_MENU_FONT, 0, WindowWidthPx(gTasks[taskId].tWindowId)), ItemId_GetDescription(gTasks[taskId].tInput), 1, 1, 0, NULL); //Cómo mostrar una ventana con su texto en pantalla: Aquí actualizamos la descripción del item según el id correspondiente
         FreeSpriteTilesByTag(ITEM_TAG);                             //Destroy item icon
         FreeSpritePaletteByTag(ITEM_TAG);                           //Destroy item icon
         FreeSpriteOamMatrix(&gSprites[gTasks[taskId].tSpriteId]);   //Destroy item icon
