@@ -2402,7 +2402,7 @@
     .endm
 
     @ Check if the Player has \speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.
-    .macro checkspecies speciesId:req, mode:req
+    .macro checkspecies speciesId:req, mode=NO_PARTY_SCREEN
 	setvar VAR_0x8005, \speciesId
     .if \mode == OPEN_PARTY_SCREEN
         special ChoosePartyMon
@@ -2416,10 +2416,6 @@
     .macro checkspecies_choose speciesId:req
 	checkspecies \speciesId, OPEN_PARTY_SCREEN
     .endm
-
-	.macro checkspecies_auto speciesId:req
-	checkspecies \speciesId, NO_PARTY_SCREEN
-	.endm
 
 	@ Gets the facing direction of a given event object and stores it in the variable \dest.
     .macro getobjectfacingdirection localId:req, dest:req
