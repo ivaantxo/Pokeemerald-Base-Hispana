@@ -2539,3 +2539,24 @@ void Script_GetSetPokedexFlag(struct ScriptContext *ctx)
     gSpecialVar_Result = GetSetPokedexFlag(speciesId,desiredFlag);
 }
 
+void CheckPartyHasSpecie(struct ScriptContext *ctx)
+{
+    u32 partyIndex;
+    u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
+    u32 hasSpecies = FALSE;
+
+    for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
+        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES) == givenSpecies)
+            hasSpecies = TRUE;
+
+    gSpecialVar_Result = hasSpecies;
+}
+
+void CheckChosenMonMatchDesiredSpecie(struct ScriptContext *ctx)
+{
+    u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
+
+    gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == givenSpecies);
+}
+
+

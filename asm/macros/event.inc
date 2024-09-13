@@ -2404,13 +2404,14 @@
 
     @ Check if the Player has \speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.
     .macro checkspecies speciesId:req, mode=NO_PARTY_SCREEN
-	setvar VAR_0x8005, \speciesId
     .if \mode == OPEN_PARTY_SCREEN
         special ChoosePartyMon
         waitstate
-        specialvar VAR_RESULT, CheckChosenMonMatchDesiredSpecie
+        callnative CheckChosenMonMatchDesiredSpecie
+        .2byte \speciesId
     .else
-        specialvar VAR_RESULT, CheckPartyHasSpecie
+        callnative CheckPartyHasSpecie
+        .2byte \speciesId
     .endif
     .endm
 

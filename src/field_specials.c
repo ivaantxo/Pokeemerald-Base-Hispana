@@ -4278,19 +4278,3 @@ void PreparePartyForSkyBattle(void)
     CompactPartySlots();
 }
 
-bool32 CheckPartyHasSpecie(void)
-{
-    u32 partyIndex;
-
-    for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
-        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES) == gSpecialVar_0x8005)
-            return TRUE;
-
-    return FALSE;
-}
-
-bool32 CheckChosenMonMatchDesiredSpecie(void)
-{
-    return (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == gSpecialVar_0x8005);
-}
-
