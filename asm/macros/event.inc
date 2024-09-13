@@ -2375,31 +2375,31 @@
 	@ Checks the state of the Pokédex Seen flag of the specified Pokemon
     @ The result is stored in VAR_RESULT
     .macro getseenmon species:req
-    setvar VAR_0x8005, \species
-	setvar VAR_0x8006, FLAG_GET_SEEN
-    specialvar VAR_RESULT, Script_GetSetPokedexFlag
+    callnative Script_GetSetPokedexFlag
+    .2byte \species
+    .2byte FLAG_GET_SEEN
     .endm
 
     @ Checks the state of the Pokédex Caught flag of the specified Pokemon
     @ The result is stored in VAR_RESULT
     .macro getcaughtmon species:req
-    setvar VAR_0x8005, \species
-	setvar VAR_0x8006, FLAG_GET_CAUGHT
-    specialvar VAR_RESULT, Script_GetSetPokedexFlag
+    callnative Script_GetSetPokedexFlag
+    .2byte \species
+    .2byte FLAG_GET_CAUGHT
     .endm
 
     @ Sets the Pokédex Seen flag of the specified Pokemon
     .macro setseenmon species:req
-    setvar VAR_0x8005, \species
-	setvar VAR_0x8006, FLAG_SET_SEEN
-    specialvar VAR_RESULT, Script_GetSetPokedexFlag
+    callnative Script_GetSetPokedexFlag
+    .2byte \species
+    .2byte FLAG_SET_SEEN
     .endm
 
     @ Sets the Pokédex Caught flag of the specified Pokemon
     .macro setcaughtmon species:req
-    setvar VAR_0x8005, \species
-	setvar VAR_0x8006, FLAG_SET_CAUGHT
-    specialvar VAR_RESULT, Script_GetSetPokedexFlag
+    callnative Script_GetSetPokedexFlag
+    .2byte \species
+    .2byte FLAG_SET_CAUGHT
     .endm
 
     @ Check if the Player has \speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.

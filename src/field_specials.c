@@ -4278,17 +4278,6 @@ void PreparePartyForSkyBattle(void)
     CompactPartySlots();
 }
 
-bool32 Script_GetSetPokedexFlag(void)
-{
-    u32 speciesId = SpeciesToNationalPokedexNum(gSpecialVar_0x8005);
-    bool32 desiredFlag = gSpecialVar_0x8006;
-
-    if (desiredFlag == FLAG_SET_CAUGHT)
-        GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
-
-    return GetSetPokedexFlag(speciesId,desiredFlag);
-}
-
 bool32 CheckPartyHasSpecie(void)
 {
     u32 partyIndex;

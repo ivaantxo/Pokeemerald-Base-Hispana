@@ -53,6 +53,7 @@
 #include "list_menu.h"
 #include "malloc.h"
 #include "constants/event_objects.h"
+#include "pokedex.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
@@ -2525,5 +2526,16 @@ bool32 CheckObjectAtXY(struct ScriptContext *ctx)
         return TRUE;
     }
     return FALSE;
+}
+
+void Script_GetSetPokedexFlag(struct ScriptContext *ctx)
+{
+    u32 speciesId = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
+    bool32 desiredFlag = VarGet(ScriptReadHalfword(ctx));
+
+    if (desiredFlag == FLAG_SET_CAUGHT)
+        GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
+
+    gSpecialVar_Result = GetSetPokedexFlag(speciesId,desiredFlag);
 }
 

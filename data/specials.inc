@@ -554,7 +554,6 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveEVs
 	def_special Script_GetChosenMonOffensiveIVs
 	def_special Script_GetChosenMonDefensiveIVs
-	def_special Script_GetSetPokedexFlag
 	def_special CheckPartyHasSpecie
 	def_special CheckChosenMonMatchDesiredSpecie
 	def_special Script_GetObjectFacingDirection
