@@ -2474,7 +2474,12 @@ static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId
     const u16 graphicsId = gBerryTreeObjectEventGraphicsIdTable[berryStage];
     const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
-    UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2], sprite);
+    if (berryStage == 0) //Arena
+        UpdateSpritePalette(&sObjectEventSpritePalettes[1], sprite); //OBJ_EVENT_PAL_TAG_NPC_2
+    else if (berryStage == 1) //Ha florecido
+        UpdateSpritePalette(&sObjectEventSpritePalettes[2], sprite); //OBJ_EVENT_PAL_TAG_NPC_3
+    else
+        UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteTagTable[berryId]], sprite);
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
     sprite->images = gBerryTreePicTablePointers[berryId];

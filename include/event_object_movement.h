@@ -94,7 +94,7 @@ extern const union AnimCmd *const sAnimTable_Following[];
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
 extern const struct SpriteFrameImage *const gBerryTreePicTablePointers[];
-extern const u8 *const gBerryTreePaletteSlotTablePointers[];
+extern const u8 gBerryTreePaletteTagTable[];
 
 void ResetObjectEvents(void);
 u8 GetMoveDirectionAnimNum(u8 direction);
