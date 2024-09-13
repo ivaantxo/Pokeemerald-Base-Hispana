@@ -4278,27 +4278,6 @@ void PreparePartyForSkyBattle(void)
     CompactPartySlots();
 }
 
-bool32 CheckObjectAtXY(void)
-{
-    u32 x = gSpecialVar_0x8005 + 7;
-    u32 y = gSpecialVar_0x8006 + 7;
-    u32 i;
-
-    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
-    {
-        if (!gObjectEvents[i].active)
-            continue;
-
-        if (gObjectEvents[i].currentCoords.x != x)
-            continue;
-
-        if (gObjectEvents[i].currentCoords.y != y)
-            continue;
-        return TRUE;
-    }
-    return FALSE;
-}
-
 bool32 Script_GetSetPokedexFlag(void)
 {
     u32 speciesId = SpeciesToNationalPokedexNum(gSpecialVar_0x8005);

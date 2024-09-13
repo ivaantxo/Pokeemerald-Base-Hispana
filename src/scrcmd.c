@@ -2485,12 +2485,12 @@ void RemoveAllItem(struct ScriptContext *ctx)
 void GetObjectPosition(struct ScriptContext *ctx)
 {
     u32 localId = VarGet(ScriptReadHalfword(ctx));
-    u32 useTemplate = gSpecialVar_0x8001;
+    u32 useTemplate = VarGet(ScriptReadHalfword(ctx));
+    u16 *x = &gSpecialVar_0x8007;
+    u16 *y = &gSpecialVar_0x8008;
     u32 objectId;
     struct ObjectEvent* objEvent;
 
-    u16 *x = &gSpecialVar_0x8007;
-    u16 *y = &gSpecialVar_0x8008;
 
     if (useTemplate)
     {
@@ -2504,5 +2504,26 @@ void GetObjectPosition(struct ScriptContext *ctx)
     objEvent = &gObjectEvents[objectId];
     *x = objEvent->currentCoords.x - 7;
     *y = objEvent->currentCoords.y - 7;
+}
+
+bool32 CheckObjectAtXY(struct ScriptContext *ctx)
+{
+    u32 x = VarGet(ScriptReadHalfword(ctx)) + 7;
+    u32 y = VarGet(ScriptReadHalfword(ctx)) + 7;
+    u32 i;
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (!gObjectEvents[i].active)
+            continue;
+
+        if (gObjectEvents[i].currentCoords.x != x)
+            continue;
+
+        if (gObjectEvents[i].currentCoords.y != y)
+            continue;
+        return TRUE;
+    }
+    return FALSE;
 }
 

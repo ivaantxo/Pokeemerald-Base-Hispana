@@ -2365,10 +2365,11 @@
 	.endm
 
 	@ checks if there is any object at a given position
-	.macro checkobjectat x:req, y:req
-	setorcopyvar VAR_0x8005, \x
-	setorcopyvar VAR_0x8006, \y
-	specialvar VAR_RESULT, CheckObjectAtXY
+	.macro checkobjectat x:req, y:req, dest = VAR_RESULT
+    callnative CheckObjectAtXY
+    .2byte \x
+    .2byte \y
+    .2byte \dest
 	.endm
 
 	@ Checks the state of the Pokédex Seen flag of the specified Pokemon
