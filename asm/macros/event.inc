@@ -2347,26 +2347,26 @@
 
 	@ Stores the position of the given object in VAR_0x8007 (x) and VAR_0x8008 (y). Mode CURRENT_POSITION will take the object's current position. Mode TEMPLATE_POSITION will takje the object's template position.
 	.macro getobjectxy localId:req, posType:req
-	callnative GetObjectPosition
+	callnative Script_GetObjectPosition
     .2byte \localId
     .2byte \posType
 	.endm
 
 	.macro getobjecttemplatexy localId:req, posType = TEMPLATE_POSITION
-	callnative GetObjectPosition
+	callnative Script_GetObjectPosition
     .2byte \localId
     .2byte \posType
 	.endm
 
 	.macro getobjectcurrentxy localId:req, posType = CURRENT_POSITION
-	callnative GetObjectPosition
+	callnative Script_GetObjectPosition
     .2byte \localId
     .2byte \posType
 	.endm
 
 	@ checks if there is any object at a given position
 	.macro checkobjectat x:req, y:req, dest = VAR_RESULT
-    callnative CheckObjectAtXY
+    callnative Script_CheckObjectAtXY
     .2byte \x
     .2byte \y
     .2byte \dest
@@ -2375,7 +2375,7 @@
 	@ Checks the state of the Pokédex Seen flag of the specified Pokemon
     @ The result is stored in VAR_RESULT
     .macro getseenmon species:req
-    callnative Script_GetSetPokedexFlag
+    callnative Script_Script_GetSetPokedexFlag
     .2byte \species
     .2byte FLAG_GET_SEEN
     .endm
@@ -2383,21 +2383,21 @@
     @ Checks the state of the Pokédex Caught flag of the specified Pokemon
     @ The result is stored in VAR_RESULT
     .macro getcaughtmon species:req
-    callnative Script_GetSetPokedexFlag
+    callnative Script_Script_GetSetPokedexFlag
     .2byte \species
     .2byte FLAG_GET_CAUGHT
     .endm
 
     @ Sets the Pokédex Seen flag of the specified Pokemon
     .macro setseenmon species:req
-    callnative Script_GetSetPokedexFlag
+    callnative Script_Script_GetSetPokedexFlag
     .2byte \species
     .2byte FLAG_SET_SEEN
     .endm
 
     @ Sets the Pokédex Caught flag of the specified Pokemon
     .macro setcaughtmon species:req
-    callnative Script_GetSetPokedexFlag
+    callnative Script_Script_GetSetPokedexFlag
     .2byte \species
     .2byte FLAG_SET_CAUGHT
     .endm
@@ -2407,10 +2407,10 @@
     .if \mode == OPEN_PARTY_SCREEN
         special ChoosePartyMon
         waitstate
-        callnative CheckChosenMonMatchDesiredSpecie
+        callnative Script_CheckChosenMonMatchDesiredSpecie
         .2byte \speciesId
     .else
-        callnative CheckPartyHasSpecie
+        callnative Script_CheckPartyHasSpecie
         .2byte \speciesId
     .endif
     .endm

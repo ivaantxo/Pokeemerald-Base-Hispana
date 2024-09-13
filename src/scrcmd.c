@@ -2483,79 +2483,40 @@ void RemoveAllItem(struct ScriptContext *ctx)
     RemoveBagItem(itemId, count);
 }
 
-void GetObjectPosition(struct ScriptContext *ctx)
+void Script_GetObjectPosition(struct ScriptContext *ctx)
 {
     u32 localId = VarGet(ScriptReadHalfword(ctx));
     u32 useTemplate = VarGet(ScriptReadHalfword(ctx));
-    u16 *x = &gSpecialVar_0x8007;
-    u16 *y = &gSpecialVar_0x8008;
-    u32 objectId;
-    struct ObjectEvent* objEvent;
 
-
-    if (useTemplate)
-    {
-        const struct ObjectEventTemplate *objTemplate = FindObjectEventTemplateByLocalId(localId, gSaveBlock1Ptr->objectEventTemplates, gMapHeader.events->objectEventCount);
-        *x = objTemplate->x;
-        *y = objTemplate->y;
-        return;
-    }
-
-    objectId = GetObjectEventIdByLocalId(localId);
-    objEvent = &gObjectEvents[objectId];
-    *x = objEvent->currentCoords.x - 7;
-    *y = objEvent->currentCoords.y - 7;
+    GetObjectPosition(localId,useTemplate);
 }
 
-bool32 CheckObjectAtXY(struct ScriptContext *ctx)
+void Script_CheckObjectAtXY(struct ScriptContext *ctx)
 {
     u32 x = VarGet(ScriptReadHalfword(ctx)) + 7;
     u32 y = VarGet(ScriptReadHalfword(ctx)) + 7;
-    u32 i;
-
-    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
-    {
-        if (!gObjectEvents[i].active)
-            continue;
-
-        if (gObjectEvents[i].currentCoords.x != x)
-            continue;
-
-        if (gObjectEvents[i].currentCoords.y != y)
-            continue;
-        return TRUE;
-    }
-    return FALSE;
+    gSpecialVar_Result = CheckObjectAtXY(x,y);
 }
 
 void Script_GetSetPokedexFlag(struct ScriptContext *ctx)
 {
     u32 speciesId = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
     bool32 desiredFlag = VarGet(ScriptReadHalfword(ctx));
+    gSpecialVar_Result = GetSetPokedexFlag(speciesId,desiredFlag);
 
     if (desiredFlag == FLAG_SET_CAUGHT)
         GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
-
-    gSpecialVar_Result = GetSetPokedexFlag(speciesId,desiredFlag);
 }
 
-void CheckPartyHasSpecie(struct ScriptContext *ctx)
+void Script_CheckPartyHasSpecie(struct ScriptContext *ctx)
 {
-    u32 partyIndex;
     u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
-    u32 hasSpecies = FALSE;
-
-    for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
-        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES) == givenSpecies)
-            hasSpecies = TRUE;
-
-    gSpecialVar_Result = hasSpecies;
+    gSpecialVar_Result = CheckPartyHasSpecie(givenSpecies);
 }
 
-void CheckChosenMonMatchDesiredSpecie(struct ScriptContext *ctx)
+void Script_CheckChosenMonMatchDesiredSpecie(struct ScriptContext *ctx)
 {
     u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
-
     gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == givenSpecies);
 }
 
