@@ -773,7 +773,7 @@ static const u8 *const sRoundResultTexts[] =
 {
     COMPOUND_STRING("{STR_VAR_1} no ha\ndestacado en absoluto…{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} no ha\ndestacado mucho…{PAUSE_UNTIL_PRESS}"),
-    COMPOUND_STRING("{STR_VAR_1} ha llamado\n\nalgo la atención.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} ha llamado\nalgo la atención.{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} logró atraer\nmucho la atención.{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} ha logrado\natraer toda la atención.{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} no se ha\nexhibido.{PAUSE_UNTIL_PRESS}"),
