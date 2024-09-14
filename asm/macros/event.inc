@@ -2341,76 +2341,74 @@
 
 	@ Remove all of specified item from the player's bag and return the number of removed items to VAR_RESULT
 	.macro removeallitem itemId:req
-	callnative RemoveAllItem
+    callnative ScrCmd_removeallitem
 	.2byte \itemId
 	.endm
 
-	@ Stores the position of the given object in VAR_0x8007 (x) and VAR_0x8008 (y). Mode CURRENT_POSITION will take the object's current position. Mode TEMPLATE_POSITION will takje the object's template position.
+	@ Stores the position of the given object in VAR_0x8007 (x) and VAR_0x8008 (y). Mode CURRENT_POSITION will take the object's current position. Mode TEMPLATE_POSITION will take the object's template position.
 	.macro getobjectxy localId:req, posType:req
-	callnative Script_GetObjectPosition
+	callnative ScrCmd_getobjectxy
     .2byte \localId
     .2byte \posType
 	.endm
 
 	.macro getobjecttemplatexy localId:req, posType = TEMPLATE_POSITION
-	callnative Script_GetObjectPosition
+	callnative ScrCmd_getobjectxy
     .2byte \localId
     .2byte \posType
 	.endm
 
 	.macro getobjectcurrentxy localId:req, posType = CURRENT_POSITION
-	callnative Script_GetObjectPosition
+	callnative ScrCmd_getobjectxy
     .2byte \localId
     .2byte \posType
 	.endm
 
-	@ checks if there is any object at a given position
+    @ Return TRUE to dest if there is an object at the position x and y.
 	.macro checkobjectat x:req, y:req, dest = VAR_RESULT
-    callnative Script_CheckObjectAtXY
+    callnative ScrCmd_checkobjectat
     .2byte \x
     .2byte \y
     .2byte \dest
 	.endm
 
-	@ Checks the state of the Pokédex Seen flag of the specified Pokemon
-    @ The result is stored in VAR_RESULT
+    @ Returns the state of the Pokedex Seen Flag to VAR_RESULT for the Pokemon with speciesId
     .macro getseenmon species:req
-    callnative Script_Script_GetSetPokedexFlag
+    callnative Scrcmd_getsetpokedexflag
     .2byte \species
     .2byte FLAG_GET_SEEN
     .endm
 
-    @ Checks the state of the Pokédex Caught flag of the specified Pokemon
-    @ The result is stored in VAR_RESULT
+    @ Returns the state of the Pokedex Caught Flag to VAR_RESULT for the Pokemon with speciesId
     .macro getcaughtmon species:req
-    callnative Script_Script_GetSetPokedexFlag
+    callnative Scrcmd_getsetpokedexflag
     .2byte \species
     .2byte FLAG_GET_CAUGHT
     .endm
 
-    @ Sets the Pokédex Seen flag of the specified Pokemon
+    @ Sets the Pokedex Seen Flag for the Pokemon with speciesId
     .macro setseenmon species:req
-    callnative Script_Script_GetSetPokedexFlag
+    callnative Scrcmd_getsetpokedexflag
     .2byte \species
     .2byte FLAG_SET_SEEN
     .endm
 
-    @ Sets the Pokédex Caught flag of the specified Pokemon
+    @ Sets the Pokedex Caught Flag for the Pokemon with speciesId
     .macro setcaughtmon species:req
-    callnative Script_Script_GetSetPokedexFlag
+    callnative Scrcmd_getsetpokedexflag
     .2byte \species
     .2byte FLAG_SET_CAUGHT
     .endm
 
-    @ Check if the Player has \speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.
+    @ Check if the Player has speciesId in their party. OPEN_PARTY_SCREEN will have the player select a mon from their party. NO_PARTY_SCREEN will automatically check every mon in the player's party.
     .macro checkspecies speciesId:req, mode=NO_PARTY_SCREEN
     .if \mode == OPEN_PARTY_SCREEN
         special ChoosePartyMon
         waitstate
-        callnative Script_CheckChosenMonMatchDesiredSpecie
+        callnative Scrcmd_checkspecies_choose
         .2byte \speciesId
     .else
-        callnative Script_CheckPartyHasSpecie
+        callnative Scrcmd_checkspecies
         .2byte \speciesId
     .endif
     .endm
@@ -2419,15 +2417,10 @@
 	checkspecies \speciesId, OPEN_PARTY_SCREEN
     .endm
 
-	@ Gets the facing direction of a given event object and stores it in the variable \dest.
+	@ Gets the facing direction of a given event object and stores it in the variable dest.
     .macro getobjectfacingdirection localId:req, dest:req
-    callnative Script_GetObjectFacingDirection
+    callnative Scrcmd_getobjectfacingdirection
     .2byte \localId
-    .byte \dest
+    .2byte \dest
     .endm
 
-	@ .macro checkobjectat x:req, y:req, dest = VAR_RESULT
-    @ callnative Script_CheckObjectAtXY
-    @ .2byte \x
-    @ .2byte \y
-    @ .2byte \dest
