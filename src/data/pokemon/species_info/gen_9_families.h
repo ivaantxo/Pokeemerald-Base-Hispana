@@ -5578,7 +5578,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 35,
         .weight = 2400,
         .description = COMPOUND_STRING(
-            "Esto parece ser la Serpiente de Hierro\nmencionada en un Libro Violeta. Se\ndice que convirtió la tierra en cenizas\ncon sus rayos."),
+            "Esto parece ser la Serpiente de Hierro\n"
+            "mencionada en un Libro Violeta. Se\n"
+            "dice que convirtió la tierra en cenizas\n"
+            "con sus rayos."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -5633,9 +5636,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .weight = 2800,
         .description = COMPOUND_STRING(
             "Esta criatura feroz está envuelta en\n"
-"misterio. Está nombrada en honor a un\n"
-"monstruo acuático mencionado en un\n"
-"antiguo diario."),
+            "misterio. Está nombrada en honor a un\n"
+            "monstruo acuático mencionado en un\n"
+            "antiguo diario."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,

@@ -6122,916 +6122,947 @@ const struct Item gItemsInfo[] =
 
     // Gems
     [ITEM_NORMAL_GEM] =
-{
-    .name = _("Gema normal"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Normal."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_NORMAL,
-    .iconPic = gItemIcon_NormalGem,
-    .iconPalette = gItemIconPalette_NormalGem,
-},
+    {
+        .name = _("Gema normal"),
+        .pluralName = _("Gemas normales"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Normal."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_NORMAL,
+        .iconPic = gItemIcon_NormalGem,
+        .iconPalette = gItemIconPalette_NormalGem,
+    },
 
-[ITEM_FIRE_GEM] =
-{
-    .name = _("Gema fuego"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Fuego."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FIRE,
-    .iconPic = gItemIcon_FireGem,
-    .iconPalette = gItemIconPalette_FireGem,
-},
+    [ITEM_FIRE_GEM] =
+    {
+        .name = _("Gema fuego"),
+        .pluralName = _("Gemas fuego"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Fuego."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FIRE,
+        .iconPic = gItemIcon_FireGem,
+        .iconPalette = gItemIconPalette_FireGem,
+    },
 
-[ITEM_WATER_GEM] =
-{
-    .name = _("Gema agua"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Agua."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_WATER,
-    .iconPic = gItemIcon_WaterGem,
-    .iconPalette = gItemIconPalette_WaterGem,
-},
+    [ITEM_WATER_GEM] =
+    {
+        .name = _("Gema agua"),
+        .pluralName = _("Gemas agua"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Agua."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_WATER,
+        .iconPic = gItemIcon_WaterGem,
+        .iconPalette = gItemIconPalette_WaterGem,
+    },
 
-[ITEM_ELECTRIC_GEM] =
-{
-    .name = _("Gema eléc."),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Eléctrico."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_ELECTRIC,
-    .iconPic = gItemIcon_ElectricGem,
-    .iconPalette = gItemIconPalette_ElectricGem,
-},
+    [ITEM_ELECTRIC_GEM] =
+    {
+        .name = _("Gema eléctrica"),
+        .pluralName = _("Gemas eléctricas"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Eléctrico."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_ELECTRIC,
+        .iconPic = gItemIcon_ElectricGem,
+        .iconPalette = gItemIconPalette_ElectricGem,
+    },
 
-[ITEM_GRASS_GEM] =
-{
-    .name = _("Gema planta"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Planta."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_GRASS,
-    .iconPic = gItemIcon_GrassGem,
-    .iconPalette = gItemIconPalette_GrassGem,
-},
+    [ITEM_GRASS_GEM] =
+    {
+        .name = _("Gema planta"),
+        .pluralName = _("Gemas planta"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Planta."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_GRASS,
+        .iconPic = gItemIcon_GrassGem,
+        .iconPalette = gItemIconPalette_GrassGem,
+    },
 
-[ITEM_ICE_GEM] =
-{
-    .name = _("Gema hielo"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Hielo."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_ICE,
-    .iconPic = gItemIcon_IceGem,
-    .iconPalette = gItemIconPalette_IceGem,
-},
+    [ITEM_ICE_GEM] =
+    {
+        .name = _("Gema hielo"),
+        .pluralName = _("Gemas hielo"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Hielo."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_ICE,
+        .iconPic = gItemIcon_IceGem,
+        .iconPalette = gItemIconPalette_IceGem,
+    },
 
-[ITEM_FIGHTING_GEM] =
-{
-    .name = _("Gema lucha"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Lucha."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FIGHTING,
-    .iconPic = gItemIcon_FightingGem,
-    .iconPalette = gItemIconPalette_FightingGem,
-},
+    [ITEM_FIGHTING_GEM] =
+    {
+        .name = _("Gema lucha"),
+        .pluralName = _("Gemas lucha"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Lucha."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FIGHTING,
+        .iconPic = gItemIcon_FightingGem,
+        .iconPalette = gItemIconPalette_FightingGem,
+    },
 
-[ITEM_POISON_GEM] =
-{
-    .name = _("Gema veneno"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Veneno."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_POISON,
-    .iconPic = gItemIcon_PoisonGem,
-    .iconPalette = gItemIconPalette_PoisonGem,
-},
+    [ITEM_POISON_GEM] =
+    {
+        .name = _("Gema veneno"),
+        .pluralName = _("Gemas veneno"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Veneno."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_POISON,
+        .iconPic = gItemIcon_PoisonGem,
+        .iconPalette = gItemIconPalette_PoisonGem,
+    },
 
-[ITEM_GROUND_GEM] =
-{
-    .name = _("Gema tierra"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Tierra."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_GROUND,
-    .iconPic = gItemIcon_GroundGem,
-    .iconPalette = gItemIconPalette_GroundGem,
-},
+    [ITEM_GROUND_GEM] =
+    {
+        .name = _("Gema tierra"),
+        .pluralName = _("Gemas tierra"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Tierra."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_GROUND,
+        .iconPic = gItemIcon_GroundGem,
+        .iconPalette = gItemIconPalette_GroundGem,
+    },
 
-[ITEM_FLYING_GEM] =
-{
-    .name = _("Gema volador"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Volador."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FLYING,
-    .iconPic = gItemIcon_FlyingGem,
-    .iconPalette = gItemIconPalette_FlyingGem,
-},
+    [ITEM_FLYING_GEM] =
+    {
+        .name = _("Gema volador"),
+        .pluralName = _("Gemas volador"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Volador."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FLYING,
+        .iconPic = gItemIcon_FlyingGem,
+        .iconPalette = gItemIconPalette_FlyingGem,
+    },
 
-[ITEM_PSYCHIC_GEM] =
-{
-    .name = _("Gema psíquica"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Psíquico."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_PSYCHIC,
-    .iconPic = gItemIcon_PsychicGem,
-    .iconPalette = gItemIconPalette_PsychicGem,
-},
+    [ITEM_PSYCHIC_GEM] =
+    {
+        .name = _("Gema psíquica"),
+        .pluralName = _("Gemas psíquicas"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Psíquico."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_PSYCHIC,
+        .iconPic = gItemIcon_PsychicGem,
+        .iconPalette = gItemIconPalette_PsychicGem,
+    },
 
-[ITEM_BUG_GEM] =
-{
-    .name = _("Gema bicho"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Bicho."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_BUG,
-    .iconPic = gItemIcon_BugGem,
-    .iconPalette = gItemIconPalette_BugGem,
-},
+    [ITEM_BUG_GEM] =
+    {
+        .name = _("Gema bicho"),
+        .pluralName = _("Gemas bicho"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Bicho."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_BUG,
+        .iconPic = gItemIcon_BugGem,
+        .iconPalette = gItemIconPalette_BugGem,
+    },
 
-[ITEM_ROCK_GEM] =
-{
-    .name = _("Gema roca"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Roca."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_ROCK,
-    .iconPic = gItemIcon_RockGem,
-    .iconPalette = gItemIconPalette_RockGem,
-},
+    [ITEM_ROCK_GEM] =
+    {
+        .name = _("Gema roca"),
+        .pluralName = _("Gemas roca"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Roca."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_ROCK,
+        .iconPic = gItemIcon_RockGem,
+        .iconPalette = gItemIconPalette_RockGem,
+    },
 
-[ITEM_GHOST_GEM] =
-{
-    .name = _("Gema fant."),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Fantasma."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_GHOST,
-    .iconPic = gItemIcon_GhostGem,
-    .iconPalette = gItemIconPalette_GhostGem,
-},
+    [ITEM_GHOST_GEM] =
+    {
+        .name = _("Gema fantasma"),
+        .pluralName = _("Gemas fantasma"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Fantasma."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_GHOST,
+        .iconPic = gItemIcon_GhostGem,
+        .iconPalette = gItemIconPalette_GhostGem,
+    },
 
-[ITEM_DRAGON_GEM] =
-{
-    .name = _("Gema dragón"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Dragón."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_DRAGON,
-    .iconPic = gItemIcon_DragonGem,
-    .iconPalette = gItemIconPalette_DragonGem,
-},
+    [ITEM_DRAGON_GEM] =
+    {
+        .name = _("Gema dragón"),
+        .pluralName = _("Gemas dragón"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Dragón."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_DRAGON,
+        .iconPic = gItemIcon_DragonGem,
+        .iconPalette = gItemIconPalette_DragonGem,
+    },
 
-[ITEM_DARK_GEM] =
-{
-    .name = _("Gema sin."),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Siniestro."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_DARK,
-    .iconPic = gItemIcon_DarkGem,
-    .iconPalette = gItemIconPalette_DarkGem,
-},
+    [ITEM_DARK_GEM] =
+    {
+        .name = _("Gema siniestro"),
+        .pluralName = _("Gemas siniestro"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Siniestro."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_DARK,
+        .iconPic = gItemIcon_DarkGem,
+        .iconPalette = gItemIconPalette_DarkGem,
+    },
 
-[ITEM_STEEL_GEM] =
-{
-    .name = _("Gema acero"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Acero."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_STEEL,
-    .iconPic = gItemIcon_SteelGem,
-    .iconPalette = gItemIconPalette_SteelGem,
-},
-
-
-[ITEM_FAIRY_GEM] =
-{
-    .name = _("Gema hada"),
-    .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
-    .holdEffect = HOLD_EFFECT_GEMS,
-    .holdEffectParam = GEM_BOOST_PARAM,
-    .description = COMPOUND_STRING(
-        "Aumenta la\n"
-        "potencia de los\n"
-        "movimientos de Tipo Hada."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FAIRY,
-    .iconPic = gItemIcon_FairyGem,
-    .iconPalette = gItemIconPalette_FairyGem,
-},
+    [ITEM_STEEL_GEM] =
+    {
+        .name = _("Gema acero"),
+        .pluralName = _("Gemas acero"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Acero."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_STEEL,
+        .iconPic = gItemIcon_SteelGem,
+        .iconPalette = gItemIconPalette_SteelGem,
+    },
 
 
-// Z-Crystals
+    [ITEM_FAIRY_GEM] =
+    {
+        .name = _("Gema hada"),
+        .pluralName = _("Gemas hada"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_GEMS,
+        .holdEffectParam = GEM_BOOST_PARAM,
+        .description = COMPOUND_STRING(
+            "Potencia un ataque\n"
+            "de Tipo Hada."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FAIRY,
+        .iconPic = gItemIcon_FairyGem,
+        .iconPalette = gItemIconPalette_FairyGem,
+    },
 
+    // Z-Crystals
     [ITEM_NORMALIUM_Z] =
-{
-    .name = _("Normastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Normal a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_NORMAL,
-    .iconPic = gItemIcon_NormaliumZ,
-    .iconPalette = gItemIconPalette_NormaliumZ,
-},
+    {
+        .name = _("Normastal Z"),
+        .pluralName = _("Normastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Normal a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_NORMAL,
+        .iconPic = gItemIcon_NormaliumZ,
+        .iconPalette = gItemIconPalette_NormaliumZ,
+    },
 
-[ITEM_FIRIUM_Z] =
-{
-    .name = _("Pirostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Fuego a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FIRE,
-    .iconPic = gItemIcon_FiriumZ,
-    .iconPalette = gItemIconPalette_FiriumZ,
-},
+    [ITEM_FIRIUM_Z] =
+    {
+        .name = _("Pirostal Z"),
+        .pluralName = _("Pirostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Fuego a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FIRE,
+        .iconPic = gItemIcon_FiriumZ,
+        .iconPalette = gItemIconPalette_FiriumZ,
+    },
 
-[ITEM_WATERIUM_Z] =
-{
-    .name = _("Hidrostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Agua a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_WATER,
-    .iconPic = gItemIcon_WateriumZ,
-    .iconPalette = gItemIconPalette_WateriumZ,
-},
+    [ITEM_WATERIUM_Z] =
+    {
+        .name = _("Hidrostal Z"),
+        .pluralName = _("Hidrostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Agua a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_WATER,
+        .iconPic = gItemIcon_WateriumZ,
+        .iconPalette = gItemIconPalette_WateriumZ,
+    },
 
-[ITEM_ELECTRIUM_Z] =
-{
-    .name = _("Electrostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Eléctrico a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_ELECTRIC,
-    .iconPic = gItemIcon_ElectriumZ,
-    .iconPalette = gItemIconPalette_ElectriumZ,
-},
+    [ITEM_ELECTRIUM_Z] =
+    {
+        .name = _("Electrostal Z"),
+        .pluralName = _("Electrostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Eléctrico a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_ELECTRIC,
+        .iconPic = gItemIcon_ElectriumZ,
+        .iconPalette = gItemIconPalette_ElectriumZ,
+    },
 
-[ITEM_GRASSIUM_Z] =
-{
-    .name = _("Fitostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Planta a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_GRASS,
-    .iconPic = gItemIcon_GrassiumZ,
-    .iconPalette = gItemIconPalette_GrassiumZ,
-},
+    [ITEM_GRASSIUM_Z] =
+    {
+        .name = _("Fitostal Z"),
+        .pluralName = _("Fitostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Planta a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_GRASS,
+        .iconPic = gItemIcon_GrassiumZ,
+        .iconPalette = gItemIconPalette_GrassiumZ,
+    },
 
-[ITEM_ICIUM_Z] =
-{
-    .name = _("Criostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Hielo a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_ICE,
-    .iconPic = gItemIcon_IciumZ,
-    .iconPalette = gItemIconPalette_IciumZ,
-},
+    [ITEM_ICIUM_Z] =
+    {
+        .name = _("Criostal Z"),
+        .pluralName = _("Criostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Hielo a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_ICE,
+        .iconPic = gItemIcon_IciumZ,
+        .iconPalette = gItemIconPalette_IciumZ,
+    },
 
-[ITEM_FIGHTINIUM_Z] =
-{
-    .name = _("Lizastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Lucha a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FIGHTING,
-    .iconPic = gItemIcon_FightiniumZ,
-    .iconPalette = gItemIconPalette_FightiniumZ,
-},
+    [ITEM_FIGHTINIUM_Z] =
+    {
+        .name = _("Lizastal Z"),
+        .pluralName = _("Lizastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Lucha a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FIGHTING,
+        .iconPic = gItemIcon_FightiniumZ,
+        .iconPalette = gItemIconPalette_FightiniumZ,
+    },
 
-[ITEM_POISONIUM_Z] =
-{
-    .name = _("Toxistal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Veneno a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_POISON,
-    .iconPic = gItemIcon_PoisoniumZ,
-    .iconPalette = gItemIconPalette_PoisoniumZ,
-},
+    [ITEM_POISONIUM_Z] =
+    {
+        .name = _("Toxistal Z"),
+        .pluralName = _("Toxistales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Veneno a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_POISON,
+        .iconPic = gItemIcon_PoisoniumZ,
+        .iconPalette = gItemIconPalette_PoisoniumZ,
+    },
 
-[ITEM_GROUNDIUM_Z] =
-{
-    .name = _("Geostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Tierra a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_GROUND,
-    .iconPic = gItemIcon_GroundiumZ,
-    .iconPalette = gItemIconPalette_GroundiumZ,
-},
+    [ITEM_GROUNDIUM_Z] =
+    {
+        .name = _("Geostal Z"),
+        .pluralName = _("Geostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Tierra a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_GROUND,
+        .iconPic = gItemIcon_GroundiumZ,
+        .iconPalette = gItemIconPalette_GroundiumZ,
+    },
 
-[ITEM_FLYINIUM_Z] =
-{
-    .name = _("Aerostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Mejora los movimientos\n"
-        "de tipo Volador a\n"
-        "movimientos Z."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FLYING,
-    .iconPic = gItemIcon_FlyiniumZ,
-    .iconPalette = gItemIconPalette_FlyiniumZ,
-},
+    [ITEM_FLYINIUM_Z] =
+    {
+        .name = _("Aerostal Z"),
+        .pluralName = _("Aerostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Mejora los movimientos\n"
+            "de tipo Volador a\n"
+            "movimientos Z."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FLYING,
+        .iconPic = gItemIcon_FlyiniumZ,
+        .iconPalette = gItemIconPalette_FlyiniumZ,
+    },
 
 
     [ITEM_PSYCHIUM_Z] =
-{
-    .name = _("Psicostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Psíquico en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_PSYCHIC,
-    .iconPic = gItemIcon_PsychiumZ,
-    .iconPalette = gItemIconPalette_PsychiumZ,
-},
+    {
+        .name = _("Psicostal Z"),
+        .pluralName = _("Psicostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Psíquico en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_PSYCHIC,
+        .iconPic = gItemIcon_PsychiumZ,
+        .iconPalette = gItemIconPalette_PsychiumZ,
+    },
 
-[ITEM_BUGINIUM_Z] =
-{
-    .name = _("Insectostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Bicho en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_BUG,
-    .iconPic = gItemIcon_BuginiumZ,
-    .iconPalette = gItemIconPalette_BuginiumZ,
-},
+    [ITEM_BUGINIUM_Z] =
+    {
+        .name = _("Insectostal Z"),
+        .pluralName = _("Insectostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Bicho en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_BUG,
+        .iconPic = gItemIcon_BuginiumZ,
+        .iconPalette = gItemIconPalette_BuginiumZ,
+    },
 
-[ITEM_ROCKIUM_Z] =
-{
-    .name = _("Litostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Roca en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_ROCK,
-    .iconPic = gItemIcon_RockiumZ,
-    .iconPalette = gItemIconPalette_RockiumZ,
-},
+    [ITEM_ROCKIUM_Z] =
+    {
+        .name = _("Litostal Z"),
+        .pluralName = _("Litostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Roca en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_ROCK,
+        .iconPic = gItemIcon_RockiumZ,
+        .iconPalette = gItemIconPalette_RockiumZ,
+    },
 
-[ITEM_GHOSTIUM_Z] =
-{
-    .name = _("Espect. Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Fantasma en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_GHOST,
-    .iconPic = gItemIcon_GhostiumZ,
-    .iconPalette = gItemIconPalette_GhostiumZ,
-},
+    [ITEM_GHOSTIUM_Z] =
+    {
+        .name = _("Espectrostal Z"),
+        .pluralName = _("Espectrostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Fantasma en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_GHOST,
+        .iconPic = gItemIcon_GhostiumZ,
+        .iconPalette = gItemIconPalette_GhostiumZ,
+    },
 
-[ITEM_DRAGONIUM_Z] =
-{
-    .name = _("Dracostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Dragón en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_DRAGON,
-    .iconPic = gItemIcon_DragoniumZ,
-    .iconPalette = gItemIconPalette_DragoniumZ,
-},
+    [ITEM_DRAGONIUM_Z] =
+    {
+        .name = _("Dracostal Z"),
+        .pluralName = _("Dracostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Dragón en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_DRAGON,
+        .iconPic = gItemIcon_DragoniumZ,
+        .iconPalette = gItemIconPalette_DragoniumZ,
+    },
 
-[ITEM_DARKINIUM_Z] =
-{
-    .name = _("Nictostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Siniestro en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_DARK,
-    .iconPic = gItemIcon_DarkiniumZ,
-    .iconPalette = gItemIconPalette_DarkiniumZ,
-},
+    [ITEM_DARKINIUM_Z] =
+    {
+        .name = _("Nictostal Z"),
+        .pluralName = _("Nictostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Siniestro en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_DARK,
+        .iconPic = gItemIcon_DarkiniumZ,
+        .iconPalette = gItemIconPalette_DarkiniumZ,
+    },
 
-[ITEM_STEELIUM_Z] =
-{
-    .name = _("Metalostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Acero en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_STEEL,
-    .iconPic = gItemIcon_SteeliumZ,
-    .iconPalette = gItemIconPalette_SteeliumZ,
-},
+    [ITEM_STEELIUM_Z] =
+    {
+        .name = _("Metalostal Z"),
+        .pluralName = _("Metalostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Acero en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_STEEL,
+        .iconPic = gItemIcon_SteeliumZ,
+        .iconPalette = gItemIconPalette_SteeliumZ,
+    },
 
-[ITEM_FAIRIUM_Z] =
-{
-    .name = _("Feeristal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza los movimientos\n"
-        "de tipo Hada en\n"
-        "Z-Moves."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = TYPE_FAIRY,
-    .iconPic = gItemIcon_FairiumZ,
-    .iconPalette = gItemIconPalette_FairiumZ,
-},
+    [ITEM_FAIRIUM_Z] =
+    {
+        .name = _("Feeristal Z"),
+        .pluralName = _("Feeristales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza los movimientos\n"
+            "de tipo Hada en\n"
+            "Z-Moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_FAIRY,
+        .iconPic = gItemIcon_FairiumZ,
+        .iconPalette = gItemIconPalette_FairiumZ,
+    },
 
-[ITEM_PIKANIUM_Z] =
-{
-    .name = _("Pikastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Volt Tackle\n"
-        "de Pikachu en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_PikaniumZ,
-    .iconPalette = gItemIconPalette_PikaniumZ,
-},
+    [ITEM_PIKANIUM_Z] =
+    {
+        .name = _("Pikastal Z"),
+        .pluralName = _("Pikastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Placaje eléctrico\n"
+            "de Pikachu en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_PikaniumZ,
+        .iconPalette = gItemIconPalette_PikaniumZ,
+    },
 
-[ITEM_EEVIUM_Z] =
-{
-    .name = _("Eeveestal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Last Resort\n"
-        "de Eevee en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_EeviumZ,
-    .iconPalette = gItemIconPalette_EeviumZ,
-},
+    [ITEM_EEVIUM_Z] =
+    {
+        .name = _("Eeveestal Z"),
+        .pluralName = _("Eeveestales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Última basa\n"
+            "de Eevee en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_EeviumZ,
+        .iconPalette = gItemIconPalette_EeviumZ,
+    },
 
-[ITEM_SNORLIUM_Z] =
-{
-    .name = _("Snorlastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Giga Impact\n"
-        "de Snorlax en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_SnorliumZ,
-    .iconPalette = gItemIconPalette_SnorliumZ,
-},
+    [ITEM_SNORLIUM_Z] =
+    {
+        .name = _("Snorlastal Z"),
+        .pluralName = _("Snorlastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Gigaimpacto\n"
+            "de Snorlax en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_SnorliumZ,
+        .iconPalette = gItemIconPalette_SnorliumZ,
+    },
 
-[ITEM_MEWNIUM_Z] =
-{
-    .name = _("Mewstal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Psíquico\n"
-        "de Mew en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_MewniumZ,
-    .iconPalette = gItemIconPalette_MewniumZ,
-},
+    [ITEM_MEWNIUM_Z] =
+    {
+        .name = _("Mewstal Z"),
+        .pluralName = _("Mewstales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Psíquico\n"
+            "de Mew en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_MewniumZ,
+        .iconPalette = gItemIconPalette_MewniumZ,
+    },
 
-[ITEM_DECIDIUM_Z] =
-{
-    .name = _("Dueyestal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Spirit Shackle\n"
-        "de Decidueye en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_DecidiumZ,
-    .iconPalette = gItemIconPalette_DecidiumZ,
-},
+    [ITEM_DECIDIUM_Z] =
+    {
+        .name = _("Dueyestal Z"),
+        .pluralName = _("Dueyestales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Puntada sombría\n"
+            "de Decidueye en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_DecidiumZ,
+        .iconPalette = gItemIconPalette_DecidiumZ,
+    },
 
-[ITEM_INCINIUM_Z] =
-{
-    .name = _("Incinostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Darkest Lariat\n"
-        "de Incineroar en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_InciniumZ,
-    .iconPalette = gItemIconPalette_InciniumZ,
-},
+    [ITEM_INCINIUM_Z] =
+    {
+        .name = _("Incinostal Z"),
+        .pluralName = _("Incinostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Lariat oscuro\n"
+            "de Incineroar en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_InciniumZ,
+        .iconPalette = gItemIconPalette_InciniumZ,
+    },
 
-[ITEM_PRIMARIUM_Z] =
-{
-    .name = _("Primastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Sparkling Aria\n"
-        "de Primarina en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_PrimariumZ,
-    .iconPalette = gItemIconPalette_PrimariumZ,
-},
+    [ITEM_PRIMARIUM_Z] =
+    {
+        .name = _("Primastal Z"),
+        .pluralName = _("Primastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Aria burbuja\n"
+            "de Primarina en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_PrimariumZ,
+        .iconPalette = gItemIconPalette_PrimariumZ,
+    },
 
-[ITEM_LYCANIUM_Z] =
-{
-    .name = _("Lycanrostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Stone Edge\n"
-        "de Lycanroc en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_LycaniumZ,
-    .iconPalette = gItemIconPalette_LycaniumZ,
-},
+    [ITEM_LYCANIUM_Z] =
+    {
+        .name = _("Lycanrostal Z"),
+        .pluralName = _("Lycanrostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Roca afilada\n"
+            "de Lycanroc en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_LycaniumZ,
+        .iconPalette = gItemIconPalette_LycaniumZ,
+    },
 
-[ITEM_MIMIKIUM_Z] =
-{
-    .name = _("Mimikyustal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Play Rough\n"
-        "de Mimikyu en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_MimikiumZ,
-    .iconPalette = gItemIconPalette_MimikiumZ,
-},
+    [ITEM_MIMIKIUM_Z] =
+    {
+        .name = _("Mimikyustal Z"),
+        .pluralName = _("Mimikyustales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Carantoña\n"
+            "de Mimikyu en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_MimikiumZ,
+        .iconPalette = gItemIconPalette_MimikiumZ,
+    },
 
-[ITEM_KOMMONIUM_Z] =
-{
-    .name = _("Kommostal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Clanging Scales\n"
-        "de Kommo-o en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_KommoniumZ,
-    .iconPalette = gItemIconPalette_KommoniumZ,
-},
+    [ITEM_KOMMONIUM_Z] =
+    {
+        .name = _("Kommostal Z"),
+        .pluralName = _("Kommostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Fragor escamas\n"
+            "de Kommo-o en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_KommoniumZ,
+        .iconPalette = gItemIconPalette_KommoniumZ,
+    },
 
-[ITEM_TAPUNIUM_Z] =
-{
-    .name = _("Tapistal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Nature's Madness\n"
-        "de los Tapus en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_TapuniumZ,
-    .iconPalette = gItemIconPalette_TapuniumZ,
-},
+    [ITEM_TAPUNIUM_Z] =
+    {
+        .name = _("Tapistal Z"),
+        .pluralName = _("Tapistales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Furia natural\n"
+            "de los Tapus en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_TapuniumZ,
+        .iconPalette = gItemIconPalette_TapuniumZ,
+    },
 
-[ITEM_SOLGANIUM_Z] =
-{
-    .name = _("Solgastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Sunsteel Strike\n"
-        "de Solgaleo en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_SolganiumZ,
-    .iconPalette = gItemIconPalette_SolganiumZ,
-},
+    [ITEM_SOLGANIUM_Z] =
+    {
+        .name = _("Solgastal Z"),
+        .pluralName = _("Solgastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Meteoimpacto\n"
+            "de Solgaleo en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_SolganiumZ,
+        .iconPalette = gItemIconPalette_SolganiumZ,
+    },
 
-[ITEM_LUNALIUM_Z] =
-{
-    .name = _("Lunalastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Moongeist Beam\n"
-        "de Lunala en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_LunaliumZ,
-    .iconPalette = gItemIconPalette_LunaliumZ,
-},
+    [ITEM_LUNALIUM_Z] =
+    {
+        .name = _("Lunalastal Z"),
+        .pluralName = _("Lunalastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Rayo umbrío\n"
+            "de Lunala en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_LunaliumZ,
+        .iconPalette = gItemIconPalette_LunaliumZ,
+    },
 
-[ITEM_MARSHADIUM_Z] =
-{
-    .name = _("Marshastal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Spectral Thief\n"
-        "de Marshadow en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_MarshadiumZ,
-    .iconPalette = gItemIconPalette_MarshadiumZ,
-},
+    [ITEM_MARSHADIUM_Z] =
+    {
+        .name = _("Marshastal Z"),
+        .pluralName = _("Marshastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza Robasombra\n"
+            "de Marshadow en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_MarshadiumZ,
+        .iconPalette = gItemIconPalette_MarshadiumZ,
+    },
 
-[ITEM_ALORAICHIUM_Z] =
-{
-    .name = _("Alo-Raistal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Thunderbolt\n"
-        "de Raichu de Alola en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_AloraichiumZ,
-    .iconPalette = gItemIconPalette_AloraichiumZ,
-},
+    [ITEM_ALORAICHIUM_Z] =
+    {
+        .name = _("Alo-Raistal Z"),
+        .pluralName = _("Alo-Raistales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza el Thunderbolt\n"
+            "de Raichu de Alola en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_AloraichiumZ,
+        .iconPalette = gItemIconPalette_AloraichiumZ,
+    },
 
-[ITEM_PIKASHUNIUM_Z] =
-{
-    .name = _("Ashtal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Actualiza el Thunderbolt\n"
-        "de Pikachu con una gorra en un Z-Move."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255,  // Z-move exclusivo
-    .iconPic = gItemIcon_PikashuniumZ,
-    .iconPalette = gItemIconPalette_PikashuniumZ,
-},
+    [ITEM_PIKASHUNIUM_Z] =
+    {
+        .name = _("Ash-Pikastal Z"),
+        .pluralName = _("Ash-Pikastales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Actualiza el Thunderbolt\n"
+            "de Pikachu con una gorra en un Z-Move."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255,  // Z-move exclusivo
+        .iconPic = gItemIcon_PikashuniumZ,
+        .iconPalette = gItemIconPalette_PikashuniumZ,
+    },
 
-[ITEM_ULTRANECROZIUM_Z] =
-{
-    .name = HANDLE_EXPANDED_ITEM_NAME("Ultranestal Z", "Ultranestal Z"),
-    .price = 0,
-    .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
-    .description = COMPOUND_STRING(
-        "Un cristal para transformar\n"
-        "a Necrozma fusionado\n"
-        "en una nueva forma."),
-    .pocket = POCKET_ITEMS,
-    .type = ITEM_USE_BAG_MENU,
-    .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    .secondaryId = 255, // Z-move exclusivo
-    .iconPic = gItemIcon_UltranecroziumZ,
-    .iconPalette = gItemIconPalette_UltranecroziumZ,
-},
+    [ITEM_ULTRANECROZIUM_Z] =
+    {
+        .name = _("Ultranecrostal Z"),
+        .pluralName = _("Ultranecrostales Z"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
+        .description = COMPOUND_STRING(
+            "Un cristal para transformar\n"
+            "a Necrozma fusionado\n"
+            "en una nueva forma."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 255, // Z-move exclusivo
+        .iconPic = gItemIcon_UltranecroziumZ,
+        .iconPalette = gItemIconPalette_UltranecroziumZ,
+    },
 
-
-// Species-specific Held Items
-
+    // Species-specific Held Items
    [ITEM_LIGHT_BALL] =
 {
     .name = _("Bola luminosa"),
