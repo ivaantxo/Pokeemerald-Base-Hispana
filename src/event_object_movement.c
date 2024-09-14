@@ -10633,8 +10633,3 @@ void GetDaycareGraphics(struct ScriptContext *ctx)
     gSpecialVar_Result = i;
 }
 
-u32 Script_GetObjectFacingDirection(void)
-{
-    return gObjectEvents[GetObjectEventIdByLocalId(gSpecialVar_0x8005)].facingDirection;
-}
-

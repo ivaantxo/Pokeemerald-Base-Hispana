@@ -2421,6 +2421,13 @@
 
 	@ Gets the facing direction of a given event object and stores it in the variable \dest.
     .macro getobjectfacingdirection localId:req, dest:req
-    setvar VAR_0x8005, \localId
-    specialvar \dest, Script_GetObjectFacingDirection
+    callnative Script_GetObjectFacingDirection
+    .2byte \localId
+    .byte \dest
     .endm
+
+	@ .macro checkobjectat x:req, y:req, dest = VAR_RESULT
+    @ callnative Script_CheckObjectAtXY
+    @ .2byte \x
+    @ .2byte \y
+    @ .2byte \dest

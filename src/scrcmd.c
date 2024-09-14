@@ -2520,4 +2520,10 @@ void Script_CheckChosenMonMatchDesiredSpecie(struct ScriptContext *ctx)
     gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == givenSpecies);
 }
 
+void Script_GetObjectFacingDirection(struct ScriptContext *ctx)
+{
+    u32 objectId = VarGet(ScriptReadHalfword(ctx));
+    u16 *varPointer = GetVarPointer(ScriptReadHalfword(ctx));
 
+    *varPointer = gObjectEvents[GetObjectEventIdByLocalId(objectId)].facingDirection;
+}
