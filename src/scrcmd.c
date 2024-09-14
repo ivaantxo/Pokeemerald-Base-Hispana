@@ -2489,8 +2489,9 @@ bool8 ScrCmd_getobjectxy(struct ScriptContext *ctx)
 {
     u32 localId = VarGet(ScriptReadHalfword(ctx));
     u32 useTemplate = VarGet(ScriptReadHalfword(ctx));
-
-    GetObjectPosition(localId,useTemplate);
+    u16 *pX = GetVarPointer(ScriptReadHalfword(ctx));
+    u16 *pY = GetVarPointer(ScriptReadHalfword(ctx));
+    GetObjectPosition(pX,pY,localId,useTemplate);
 
     return FALSE;
 }

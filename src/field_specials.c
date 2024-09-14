@@ -4278,26 +4278,23 @@ void PreparePartyForSkyBattle(void)
     CompactPartySlots();
 }
 
-void GetObjectPosition(u32 localId, u32 useTemplate)
+void GetObjectPosition(u16* xPointer, u16* yPointer, u32 localId, u32 useTemplate)
 {
     u32 objectId;
     struct ObjectEvent* objEvent;
 
-    u16 *x = &gSpecialVar_0x8007;
-    u16 *y = &gSpecialVar_0x8008;
-
     if (useTemplate)
     {
         const struct ObjectEventTemplate *objTemplate = FindObjectEventTemplateByLocalId(localId, gSaveBlock1Ptr->objectEventTemplates, gMapHeader.events->objectEventCount);
-        *x = objTemplate->x;
-        *y = objTemplate->y;
+        *xPointer = objTemplate->x;
+        *yPointer = objTemplate->y;
         return;
     }
 
     objectId = GetObjectEventIdByLocalId(localId);
     objEvent = &gObjectEvents[objectId];
-    *x = objEvent->currentCoords.x - 7;
-    *y = objEvent->currentCoords.y - 7;
+    *xPointer = objEvent->currentCoords.x - 7;
+    *yPointer = objEvent->currentCoords.y - 7;
 }
 
 bool32 CheckObjectAtXY(u32 x, u32 y)
