@@ -1397,7 +1397,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         OVERWORLD(
             sPicTable_Togekiss,
             SIZE_32x32,
-            TRACKS_FOOT,
+            TRACKS_NONE,
             sAnimTable_Following_Asym, 
         )
         .levelUpLearnset = sTogekissLevelUpLearnset,
