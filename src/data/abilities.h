@@ -963,7 +963,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DEFIANT] =
     {
         .name = _("Competitivo"),
-        .description = COMPOUND_STRING("Bajadas de estadísticas suben ataque."),
+        .description = COMPOUND_STRING("Bajón de estadísticas sube ataque."),
         .aiRating = 5,
     },
 
@@ -1088,7 +1088,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BIG_PECKS] =
     {
         .name = _("Sacapecho"),
-        .description = COMPOUND_STRING("Impide bajadas de defensa."),
+        .description = COMPOUND_STRING("Impide bajón de defensa."),
         .aiRating = 1,
         .breakable = TRUE,
     },
@@ -1812,7 +1812,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PROPELLER_TAIL] =
     {
         .name = _("Hélice caudal"),
-        .description = COMPOUND_STRING("Ignora cambio de posición."),
+        .description = COMPOUND_STRING("Ignora cambios de posición."),
         .aiRating = 2,
     },
 
@@ -1838,7 +1838,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_STALWART] =
     {
         .name = _("Acérrimo"),
-        .description = COMPOUND_STRING("Ignora cambio de posición."),
+        .description = COMPOUND_STRING("Ignora cambios de posición."),
         .aiRating = 2,
     },
 

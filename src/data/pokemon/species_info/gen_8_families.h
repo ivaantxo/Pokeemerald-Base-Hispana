@@ -6000,10 +6000,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .height = 28,
         .weight = 1100,
         .description = COMPOUND_STRING(
-            "Conocido como un héroe, este Pokémon\n"
-            "asbosrbe partículas metálicas, y\n"
-            "las convierte en un arma que usa"
-            "para combatir."),
+            "Con fama de héroe, este Pokémon\n"
+            "absorbe partículas metálicas, y\n"
+            "las convierte en un arma para"
+            "combatir."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6680,7 +6680,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .categoryName = _("Simiestro"),
         .height = 18,
         .weight = 700,
-        .description = COMPOUND_STRING("Viven en manada en la selva.\nDebido a su marcada agresividad, son muy\ntemidos por otros Pokémon selváticos."),
+        .description = COMPOUND_STRING(
+            "Viven en manada en la selva.\n"
+            "Debido a su agresividad, son muy\n"
+            "temidos por otros Pokémon."),
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,
