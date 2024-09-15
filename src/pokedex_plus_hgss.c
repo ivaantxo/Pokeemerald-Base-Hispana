@@ -4257,7 +4257,7 @@ static void PrintStatsScreenTextSmall(u8 windowId, const u8* str, u8 left, u8 to
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_LIGHT_GRAY;
 
-    AddTextPrinterParameterized4(windowId, GetFontIdToFit(str, FONT_SMALL, 0, WindowWidthPx(WIN_STATS_MOVES_DESCRIPTION)), left, top, 0, 0, color, 0, str);
+    AddTextPrinterParameterized4(windowId, GetFontIdToFit(str, FONT_SMALL, 0, WindowWidthPx(WIN_STATS_MOVES_DESCRIPTION - 2)), left, top, 0, 0, color, 0, str);
 }
 static void PrintStatsScreenTextSmallWhite(u8 windowId, const u8* str, u8 left, u8 top)
 {
@@ -4266,7 +4266,7 @@ static void PrintStatsScreenTextSmallWhite(u8 windowId, const u8* str, u8 left, 
     color[1] = TEXT_COLOR_WHITE;
     color[2] = TEXT_DYNAMIC_COLOR_6;
 
-    AddTextPrinterParameterized4(windowId, GetFontIdToFit(str, FONT_SMALL, 0, WindowWidthPx(WIN_STATS_MOVES_DESCRIPTION)), left, top, 0, 0, color, 0, str);
+    AddTextPrinterParameterized4(windowId, GetFontIdToFit(str, FONT_SMALL, 0, WindowWidthPx(WIN_STATS_MOVES_DESCRIPTION - 2)), left, top, 0, 0, color, 0, str);
 }
 
 //Type Icon
