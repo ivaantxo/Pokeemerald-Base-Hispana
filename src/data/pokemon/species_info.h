@@ -49,11 +49,9 @@
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
-    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \
     .size = (_size == SIZE_32x32 ? 512 : 2048),                                             \
     .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
     .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
-    .paletteSlot = PALSLOT_NPC_1,                                                           \
     .shadowSize = shadow,                                                                   \
     .inanimate = FALSE,                                                                     \
     .compressed = COMP,                                                                     \
