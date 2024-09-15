@@ -1763,8 +1763,8 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
 
     u8 pwr_num[3], acc_num[3];
     u8 cat_desc[7] = _("CAT: ");
-    u8 pwr_desc[7] = _("PWR: ");
-    u8 acc_desc[7] = _("ACC: ");
+    u8 pwr_desc[7] = _("POT: ");
+    u8 acc_desc[7] = _("PRE: ");
     u8 cat_start[] = _("{CLEAR_TO 0x03}");
     u8 pwr_start[] = _("{CLEAR_TO 0x38}");
     u8 acc_start[] = _("{CLEAR_TO 0x6D}");

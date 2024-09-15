@@ -2207,7 +2207,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BEADS_OF_RUIN] =
     {
         .name = _("Abalorio debacle"),
-        .description = COMPOUND_STRING("Reduce la def. esp. rival."),
+        .description = COMPOUND_STRING("Reduce defensa especial rival."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -2331,7 +2331,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_EMBODY_ASPECT_WELLSPRING_MASK] =
     {
         .name = _("Evocarrecuerdos"),
-        .description = COMPOUND_STRING("Aumenta def. esp."),
+        .description = COMPOUND_STRING("Aumenta defensa especial."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
