@@ -43,7 +43,6 @@ enum {
 
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
 
-static void Task_StaticCountdown(u8 taskId);
 static void Task_StaticCountdown_Init(u8 taskId);
 static void Task_StaticCountdown_Free(u8 taskId);
 static void Task_StaticCountdown_Start(u8 taskId);
@@ -158,53 +157,6 @@ static const TaskFunc sStaticCountdownFuncs[][4] =
 #define sTaskId         data[3]
 #define sId             data[4] // Never read
 #define sNumberSpriteId data[5] // Never read
-
-static u32 UNUSED CreateStaticCountdownTask(u8 funcSetId, u8 taskPriority)
-{
-    u8 taskId = CreateTask(Task_StaticCountdown, taskPriority);
-    struct Task *task = &gTasks[taskId];
-
-    task->tState = STATE_IDLE;
-    task->tFuncSetId = funcSetId;
-    sStaticCountdownFuncs[funcSetId][FUNC_INIT](taskId);
-    return taskId;
-}
-
-static bool32 UNUSED StartStaticCountdown(void)
-{
-    u8 taskId = FindTaskIdByFunc(Task_StaticCountdown);
-    if (taskId == TASK_NONE)
-        return FALSE;
-
-    gTasks[taskId].tState = STATE_START;
-    return TRUE;
-}
-
-static bool32 UNUSED IsStaticCountdownRunning(void)
-{
-    return FuncIsActiveTask(Task_StaticCountdown);
-}
-
-static void Task_StaticCountdown(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
-
-    switch (tState)
-    {
-    // STATE_IDLE does nothing; wait until started
-    case STATE_START:
-        sStaticCountdownFuncs[tFuncSetId][FUNC_START](taskId);
-        tState = STATE_RUN;
-        break;
-    case STATE_RUN:
-        sStaticCountdownFuncs[tFuncSetId][FUNC_RUN](taskId);
-        break;
-    case STATE_END:
-        sStaticCountdownFuncs[tFuncSetId][FUNC_FREE](taskId);
-        DestroyTask(taskId);
-        break;
-    }
-}
 
 static void StaticCountdown_CreateSprites(u8 taskId, s16 *data)
 {

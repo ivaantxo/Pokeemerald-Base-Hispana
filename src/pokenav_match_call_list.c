@@ -469,31 +469,6 @@ int GetIndexDeltaOfNextCheckPageUp(int index)
     return 0;
 }
 
-static bool32 UNUSED HasRematchEntry(void)
-{
-#if FREE_MATCH_CALL == FALSE
-    int i;
-
-    for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
-    {
-        if (IsRematchEntryRegistered(i) && gSaveBlock1Ptr->trainerRematches[i])
-            return TRUE;
-    }
-
-    for (i = 0; i < MC_HEADER_COUNT; i++)
-    {
-        if (MatchCall_GetEnabled(i))
-        {
-            int index = MatchCall_GetRematchTableIdx(i);
-            if (gSaveBlock1Ptr->trainerRematches[index])
-                return TRUE;
-        }
-    }
-#endif //FREE_MATCH_CALL
-
-    return FALSE;
-}
-
 static bool32 ShouldDoNearbyMessage(void)
 {
 #if FREE_MATCH_CALL == FALSE

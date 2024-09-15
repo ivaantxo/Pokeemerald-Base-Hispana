@@ -598,19 +598,3 @@ void DrawBattlerOnBg(int bgId, u8 x, u8 y, u8 battlerPosition, u8 paletteId, u8 
     }
     LoadBgTilemap(bgId, tilemap, BG_SCREEN_SIZE, 0);
 }
-
-static void UNUSED DrawBattlerOnBgDMA(u8 x, u8 y, u8 battlerPosition, u8 arg3, u8 paletteId, u16 arg5, u8 arg6, u8 arg7)
-{
-    int i, j, offset;
-
-    DmaCopy16(3, gMonSpritesGfxPtr->spritesGfx[battlerPosition] + BG_SCREEN_SIZE * arg3, (void *)BG_SCREEN_ADDR(0) + arg5, BG_SCREEN_SIZE);
-    offset = (arg5 >> 5) - (arg7 << 9);
-    for (i = y; i < y + 8; i++)
-    {
-        for (j = x; j < x + 8; j++)
-        {
-            *((u16 *)(BG_VRAM) + (i * 32) + (j + (arg6 << 10))) = offset | (paletteId << 12);
-            offset++;
-        }
-    }
-}

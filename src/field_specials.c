@@ -3510,11 +3510,6 @@ bool8 AbnormalWeatherHasExpired(void)
     }
 }
 
-void Unused_SetWeatherSunny(void)
-{
-    SetCurrentAndNextWeather(WEATHER_SUNNY);
-}
-
 // All mart employees have a local id of 1, so function always returns 1
 u32 GetMartEmployeeObjectEventId(void)
 {

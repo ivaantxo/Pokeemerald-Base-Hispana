@@ -1062,11 +1062,6 @@ static void BerryCrush_SetVBlankCB(void)
     SetVBlankCallback(VBlankCB);
 }
 
-static void UNUSED BerryCrush_InitVBlankCB(void)
-{
-    SetVBlankCallback(NULL);
-}
-
 static void SaveResults(void)
 {
     u32 time, presses;

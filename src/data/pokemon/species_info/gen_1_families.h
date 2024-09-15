@@ -10251,7 +10251,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Serp. Roca"),
         .height = 88,
         .weight = 2100,
-        .description = COMPOUND_STRING("Tiene un imán en el cerebro que le sirve\nde brújula para no perder la orientación\ncuando está cavando túneles. A medida que\ncrece, se le redondea y suaviza el cuerpo."),
+        .description = COMPOUND_STRING(
+            "Tiene un imán en el cerebro que le sirve\n
+            de brújula para no perder la orientación\n
+            cuando está cavando túneles. A medida que\n
+            crece, se le redondea y suaviza el cuerpo."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 515,
@@ -10312,7 +10316,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Serpférrea"),
         .height = 92,
         .weight = 4000,
-        .description = COMPOUND_STRING("Vive a aun mayor profundidad que Onix. Se\nle conoce por cavar hacia el centro de la\ntierra. Hay datos que demuestran que ha\nllegado a alcanzar 1 km de profundidad."),
+        .description = COMPOUND_STRING(
+            "Vive a aun mayor profundidad que Onix. Se\n
+            le conoce por cavar hacia el centro de la\n
+            tierra. Hay datos que demuestran que ha\n
+            llegado a alcanzar 1 km de profundidad."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 516,
@@ -10440,7 +10448,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Hipnosis"),
         .height = 10,
         .weight = 324,
-        .description = COMPOUND_STRING("Si te pica la nariz mientras duermes,\nseguro que es porque tienes a uno de\nellos en la almohada intentando sacarte\nlos sueños por la nariz para comérselos."),
+        .description = COMPOUND_STRING(
+            "Si te pica la nariz mientras duermes,\n
+            seguro que es porque tienes a uno de\n
+            ellos en la almohada intentando sacarte\n
+            los sueños por la nariz para comérselos."),
         .pokemonScale = 274,
         .pokemonOffset = 6,
         .trainerScale = 256,

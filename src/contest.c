@@ -3261,30 +3261,6 @@ static void SwapMoveDescAndContestTilemaps(void)
     CpuCopy16(gContestResources->contestBgTilemaps[2], gContestResources->contestBgTilemaps[2] + 0x500, 32 * 20);
 }
 
-// Functionally unused
-static u16 GetMoveEffectSymbolTileOffset(u16 move, u8 contestant)
-{
-    u16 offset;
-
-    switch (gContestEffects[gMovesInfo[move].contestEffect].effectType)
-    {
-    case 0:
-    case 1:
-    case 8:
-        offset = 0x9082;
-        break;
-    case 2:
-    case 3:
-        offset = 0x9088;
-        break;
-    default:
-        offset = 0x9086;
-        break;
-    }
-    offset += 0x9000 + (contestant << 12);
-    return offset;
-}
-
 static void PrintContestMoveDescription(u16 move)
 {
     u8 category;
@@ -3330,31 +3306,6 @@ static void PrintContestMoveDescription(u16 move)
     FillWindowPixelBuffer(WIN_MOVE_DESCRIPTION, PIXEL_FILL(0));
     Contest_PrintTextToBg0WindowStd(WIN_MOVE_DESCRIPTION, gContestEffectDescriptionPointers[gMovesInfo[move].contestEffect]);
     Contest_PrintTextToBg0WindowStd(WIN_SLASH, gText_Slash);
-}
-
-static void DrawMoveEffectSymbol(u16 move, u8 contestant)
-{
-    u8 contestantOffset = gContestantTurnOrder[contestant] * 5 + 2;
-
-    if (!Contest_IsMonsTurnDisabled(contestant) && move != MOVE_NONE)
-    {
-        u16 tile = GetMoveEffectSymbolTileOffset(move, contestant);
-
-        ContestBG_FillBoxWithIncrementingTile(0, tile,      20, contestantOffset,     2, 1, 17, 1);
-        ContestBG_FillBoxWithIncrementingTile(0, tile + 16, 20, contestantOffset + 1, 2, 1, 17, 1);
-    }
-    else
-    {
-        ContestBG_FillBoxWithTile(0, 0, 20, contestantOffset, 2, 2, 17);
-    }
-}
-
-static void UNUSED DrawMoveEffectSymbols(void)
-{
-    s32 i;
-
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-        DrawMoveEffectSymbol(eContestantStatus[i].currMove, i);
 }
 
 static u16 GetStarTileOffset(void)
@@ -4318,24 +4269,6 @@ static void SpriteCB_EndBlinkContestantBox(struct Sprite *sprite)
     ResetBlendForContestantBoxBlink();
 }
 
-static void UNUSED ContestDebugTogglePointTotal(void)
-{
-    if(eContestDebugMode == CONTEST_DEBUG_MODE_PRINT_POINT_TOTAL)
-        eContestDebugMode = CONTEST_DEBUG_MODE_OFF;
-    else
-        eContestDebugMode = CONTEST_DEBUG_MODE_PRINT_POINT_TOTAL;
-
-    if(eContestDebugMode == CONTEST_DEBUG_MODE_OFF)
-    {
-        DrawContestantWindowText();
-        SwapMoveDescAndContestTilemaps();
-    }
-    else
-    {
-        ContestDebugDoPrint();
-    }
-}
-
 static void ContestDebugDoPrint(void)
 {
     u8 i;
@@ -4970,17 +4903,6 @@ static void Task_ShowAndUpdateApplauseMeter(u8 taskId)
         }
         break;
     }
-}
-
-static void UNUSED HideApplauseMeterNoAnim(void)
-{
-    gSprites[eContest.applauseMeterSpriteId].x2 = 0;
-    gSprites[eContest.applauseMeterSpriteId].invisible = FALSE;
-}
-
-static void UNUSED ShowApplauseMeterNoAnim(void)
-{
-    gSprites[eContest.applauseMeterSpriteId].invisible = TRUE;
 }
 
 #define tDelay  data[10]
