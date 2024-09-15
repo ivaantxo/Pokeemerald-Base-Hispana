@@ -815,7 +815,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     else
         str = gNotDoneYetDescription;
 
-    AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NARROW, str, 0, 65, 0, NULL);
+    AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, GetFontIdToFit(str, FONT_NARROW, 0, WindowWidthPx(RELEARNERWIN_DESC_BATTLE)), str, 0, 65, 0, NULL);
 }
 
 static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
