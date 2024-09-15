@@ -1292,7 +1292,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_COMPETITIVE] =
     {
         .name = _("Tenacidad"),
-        .description = COMPOUND_STRING("Sube at. esp. si baja est"),
+        .description = COMPOUND_STRING("Sube ataque especial. si baja est"),
         .aiRating = 5,
     },
 
@@ -1507,7 +1507,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BERSERK] =
     {
         .name = _("Cólera"),
-        .description = COMPOUND_STRING("Sube at. esp. si pocos PS"),
+        .description = COMPOUND_STRING("Sube ataque especial. si pocos PS"),
         .aiRating = 5,
     },
 
@@ -1647,7 +1647,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BATTERY] =
     {
         .name = _("Batería"),
-        .description = COMPOUND_STRING("Sube at. esp. del aliado"),
+        .description = COMPOUND_STRING("Sube ataque especial. del aliado"),
         .aiRating = 0,
     },
 
@@ -1670,7 +1670,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SOUL_HEART] =
     {
         .name = _("Coránima"),
-        .description = COMPOUND_STRING("Debilitar sube el at. esp"),
+        .description = COMPOUND_STRING("Debilitar sube el ataque especial"),
         .aiRating = 7,
     },
 
@@ -2016,7 +2016,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GRIM_NEIGH] =
     {
         .name = _("Relincho negro"),
-        .description = COMPOUND_STRING("KOs suben at. esp"),
+        .description = COMPOUND_STRING("KOs suben ataque especial"),
         .aiRating = 7,
     },
 
@@ -2183,7 +2183,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_VESSEL_OF_RUIN] =
     {
         .name = _("Caldero debacle"),
-        .description = COMPOUND_STRING("Reduce at. esp. rival"),
+        .description = COMPOUND_STRING("Reduce ataque especial. rival"),
         .aiRating = 5,
         .breakable = TRUE,
     },
