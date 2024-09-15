@@ -1158,7 +1158,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_JUSTIFIED] =
     {
         .name = _("Justiciero"),
-        .description = COMPOUND_STRING("Siniestro suben ataque."),
+        .description = COMPOUND_STRING("Siniestro sube ataque."),
         .aiRating = 4,
     },
 
