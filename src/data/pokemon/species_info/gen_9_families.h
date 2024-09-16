@@ -2755,6 +2755,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Scovillain,
         .iconSprite = gObjectEventPic_Scovillain, 
         FOOTPRINT(Scovillain)
+        OVERWORLD(
+            sPicTable_Scovillain,
+            SIZE_32x32,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sScovillainLevelUpLearnset,
         .teachableLearnset = sScovillainTeachableLearnset,
     },
@@ -3020,6 +3026,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Tinkatink,
         .iconSprite = gObjectEventPic_Tinkatink, 
         FOOTPRINT(Tinkatink)
+        OVERWORLD(
+            sPicTable_Tinkatink,
+            SIZE_32x32,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sTinkatinkLevelUpLearnset,
         .teachableLearnset = sTinkatinkTeachableLearnset,
         .eggMoveLearnset = sTinkatinkEggMoveLearnset,
@@ -3073,6 +3085,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Tinkatuff,
         .iconSprite = gObjectEventPic_Tinkatuff, 
         FOOTPRINT(Tinkatuff)
+        OVERWORLD(
+            sPicTable_Tinkatuff,
+            SIZE_32x32,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sTinkatuffLevelUpLearnset,
         .teachableLearnset = sTinkatuffTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_TINKATON}),
@@ -3125,6 +3143,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Tinkaton,
         .iconSprite = gObjectEventPic_Tinkaton, 
         FOOTPRINT(Tinkaton)
+        OVERWORLD(
+            sPicTable_Tinkaton,
+            SIZE_32x32,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+        )
         .levelUpLearnset = sTinkatonLevelUpLearnset,
         .teachableLearnset = sTinkatonTeachableLearnset,
     },

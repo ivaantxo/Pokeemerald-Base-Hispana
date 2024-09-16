@@ -4243,10 +4243,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .palette = gMonPalette_Pumpkaboo,
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
-        .iconSprite = gObjectEventPic_Pumpkaboo, 
+        .iconSprite = gObjectEventPic_PumpkabooAverage, 
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_Pumpkaboo,
+            sPicTable_PumpkabooAverage,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4302,10 +4302,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .palette = gMonPalette_Pumpkaboo,
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
-        .iconSprite = gObjectEventPic_Pumpkaboo, 
+        .iconSprite = gObjectEventPic_PumpkabooSmall, 
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_Pumpkaboo,
+            sPicTable_PumpkabooSmall,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4361,10 +4361,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .palette = gMonPalette_Pumpkaboo,
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
-        .iconSprite = gObjectEventPic_Pumpkaboo, 
+        .iconSprite = gObjectEventPic_PumpkabooLarge, 
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_Pumpkaboo,
+            sPicTable_PumpkabooLarge,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4422,10 +4422,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .palette = gMonPalette_Pumpkaboo,
         .shinyPalette = gMonShinyPalette_Pumpkaboo,
-        .iconSprite = gObjectEventPic_Pumpkaboo, 
+        .iconSprite = gObjectEventPic_PumpkabooSuper, 
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_Pumpkaboo,
+            sPicTable_PumpkabooSuper,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4482,10 +4482,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Gourgeist,
         .shinyPalette = gMonShinyPalette_Gourgeist,
-        .iconSprite = gObjectEventPic_Gourgeist, 
+        .iconSprite = gObjectEventPic_GourgeistAverage, 
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_Gourgeist,
+            sPicTable_GourgeistAverage,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4539,10 +4539,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Gourgeist,
         .shinyPalette = gMonShinyPalette_Gourgeist,
-        .iconSprite = gObjectEventPic_Gourgeist, 
+        .iconSprite = gObjectEventPic_GourgeistSmall, 
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_Gourgeist,
+            sPicTable_GourgeistSmall,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4596,10 +4596,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Gourgeist,
         .shinyPalette = gMonShinyPalette_Gourgeist,
-        .iconSprite = gObjectEventPic_Gourgeist, 
+        .iconSprite = gObjectEventPic_GourgeistLarge, 
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_Gourgeist,
+            sPicTable_GourgeistLarge,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4655,10 +4655,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         .palette = gMonPalette_Gourgeist,
         .shinyPalette = gMonShinyPalette_Gourgeist,
-        .iconSprite = gObjectEventPic_Gourgeist, 
+        .iconSprite = gObjectEventPic_GourgeistSuper, 
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_Gourgeist,
+            sPicTable_GourgeistSuper,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -5333,6 +5333,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Zygarde10,
         .iconSprite = gObjectEventPic_Zygarde10, 
         FOOTPRINT(Zygarde)
+        OVERWORLD(
+            sPicTable_Zygarde10,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
@@ -5385,6 +5390,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_Zygarde10,
         .iconSprite = gObjectEventPic_Zygarde10, 
         FOOTPRINT(Zygarde)
+        OVERWORLD(
+            sPicTable_Zygarde10,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
@@ -5441,6 +5451,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .shinyPalette = gMonShinyPalette_ZygardeComplete,
         .iconSprite = gObjectEventPic_ZygardeComplete, 
         FOOTPRINT(Zygarde)
+        OVERWORLD(
+            sPicTable_ZygardeComplete,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,

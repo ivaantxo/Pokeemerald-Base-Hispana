@@ -9433,40 +9433,36 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
     #if P_FOOTPRINTS
         const u8 gMonFootprint_Pumpkaboo[] = INCBIN_U8("graphics/pokemon/pumpkaboo/footprint.1bpp");
     #endif //P_FOOTPRINTS
-
     const u32 gMonFrontPic_PumpkabooAverage[] = INCBIN_U32("graphics/pokemon/pumpkaboo/anim_front.4bpp.lz");
     const u32 gMonBackPic_PumpkabooAverage[] = INCBIN_U32("graphics/pokemon/pumpkaboo/back.4bpp.lz");
-
     const u32 gMonFrontPic_PumpkabooSmall[] = INCBIN_U32("graphics/pokemon/pumpkaboo/small/anim_front.4bpp.lz");
     const u32 gMonBackPic_PumpkabooSmall[] = INCBIN_U32("graphics/pokemon/pumpkaboo/small/back.4bpp.lz");
-
     const u32 gMonFrontPic_PumpkabooLarge[] = INCBIN_U32("graphics/pokemon/pumpkaboo/large/anim_front.4bpp.lz");
     const u32 gMonBackPic_PumpkabooLarge[] = INCBIN_U32("graphics/pokemon/pumpkaboo/large/back.4bpp.lz");
-
     const u32 gMonFrontPic_PumpkabooSuper[] = INCBIN_U32("graphics/pokemon/pumpkaboo/super/anim_front.4bpp.lz");
     const u32 gMonBackPic_PumpkabooSuper[] = INCBIN_U32("graphics/pokemon/pumpkaboo/super/back.4bpp.lz");
-   
-    const u32 gObjectEventPic_Pumpkaboo[] = INCBIN_U32("graphics/pokemon/pumpkaboo/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooAverage[] = INCBIN_U32("graphics/pokemon/pumpkaboo/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooSmall[] = INCBIN_U32("graphics/pokemon/pumpkaboo/small/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooLarge[] = INCBIN_U32("graphics/pokemon/pumpkaboo/large/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooSuper[] = INCBIN_U32("graphics/pokemon/pumpkaboo/super/overworld.4bpp");
 
     const u32 gMonPalette_Gourgeist[] = INCBIN_U32("graphics/pokemon/gourgeist/normal.gbapal.lz");
     const u32 gMonShinyPalette_Gourgeist[] = INCBIN_U32("graphics/pokemon/gourgeist/shiny.gbapal.lz");
     #if P_FOOTPRINTS
         const u8 gMonFootprint_Gourgeist[] = INCBIN_U8("graphics/pokemon/gourgeist/footprint.1bpp");
     #endif //P_FOOTPRINTS
-
     const u32 gMonFrontPic_GourgeistAverage[] = INCBIN_U32("graphics/pokemon/gourgeist/anim_front.4bpp.lz");
     const u32 gMonBackPic_GourgeistAverage[] = INCBIN_U32("graphics/pokemon/gourgeist/back.4bpp.lz");
-
     const u32 gMonFrontPic_GourgeistSmall[] = INCBIN_U32("graphics/pokemon/gourgeist/small/anim_front.4bpp.lz");
     const u32 gMonBackPic_GourgeistSmall[] = INCBIN_U32("graphics/pokemon/gourgeist/small/back.4bpp.lz");
-
     const u32 gMonFrontPic_GourgeistLarge[] = INCBIN_U32("graphics/pokemon/gourgeist/large/anim_front.4bpp.lz");
     const u32 gMonBackPic_GourgeistLarge[] = INCBIN_U32("graphics/pokemon/gourgeist/large/back.4bpp.lz");
-
     const u32 gMonFrontPic_GourgeistSuper[] = INCBIN_U32("graphics/pokemon/gourgeist/super/anim_front.4bpp.lz");
     const u32 gMonBackPic_GourgeistSuper[] = INCBIN_U32("graphics/pokemon/gourgeist/super/back.4bpp.lz");
-   
-    const u32 gObjectEventPic_Gourgeist[] = INCBIN_U32("graphics/pokemon/gourgeist/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistAverage[] = INCBIN_U32("graphics/pokemon/gourgeist/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistSmall[] = INCBIN_U32("graphics/pokemon/gourgeist/small/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistLarge[] = INCBIN_U32("graphics/pokemon/gourgeist/large/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistSuper[] = INCBIN_U32("graphics/pokemon/gourgeist/super/overworld.4bpp");
 #endif //P_FAMILY_PUMPKABOO
 
 #if P_FAMILY_BERGMITE
@@ -9831,22 +9827,25 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
     #if P_FOOTPRINTS
         const u8 gMonFootprint_Oricorio[] = INCBIN_U8("graphics/pokemon/oricorio/footprint.1bpp");
     #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Oricorio[] = INCBIN_U32("graphics/pokemon/oricorio/overworld.4bpp");   
+    const u32 gObjectEventPic_OricorioBaile[] = INCBIN_U32("graphics/pokemon/oricorio/overworld.4bpp");   
 
     const u32 gMonFrontPic_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/front.4bpp.lz");
     const u32 gMonPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/normal.gbapal.lz");
     const u32 gMonBackPic_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/back.4bpp.lz");
-    const u32 gMonShinyPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/shiny.gbapal.lz");  
+    const u32 gMonShinyPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/shiny.gbapal.lz");
+    const u32 gObjectEventPic_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/overworld.4bpp");
 
     const u32 gMonFrontPic_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/front.4bpp.lz");
     const u32 gMonPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/normal.gbapal.lz");
     const u32 gMonBackPic_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/back.4bpp.lz");
-    const u32 gMonShinyPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/shiny.gbapal.lz");  
+    const u32 gMonShinyPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/shiny.gbapal.lz");
+    const u32 gObjectEventPic_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/overworld.4bpp");
 
     const u32 gMonFrontPic_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/front.4bpp.lz");
     const u32 gMonPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/normal.gbapal.lz");
     const u32 gMonBackPic_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/back.4bpp.lz");
-    const u32 gMonShinyPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/shiny.gbapal.lz");      
+    const u32 gMonShinyPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/shiny.gbapal.lz");
+    const u32 gObjectEventPic_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/overworld.4bpp");
 #endif //P_FAMILY_ORICORIO
 
 #if P_FAMILY_CUTIEFLY

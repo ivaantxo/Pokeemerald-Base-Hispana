@@ -4493,11 +4493,30 @@ static const struct SpriteFrameImage sPicTable_Trevenant[] = {
 
 #if P_FAMILY_PUMPKABOO
 
-static const struct SpriteFrameImage sPicTable_Pumpkaboo[] = {
-    overworld_ascending_frames(gObjectEventPic_Pumpkaboo, 4, 4),
+static const struct SpriteFrameImage sPicTable_PumpkabooAverage[] = {
+    overworld_ascending_frames(gObjectEventPic_PumpkabooAverage, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_Gourgeist[] = {
-    overworld_ascending_frames(gObjectEventPic_Gourgeist, 4, 4),
+static const struct SpriteFrameImage sPicTable_PumpkabooSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_PumpkabooSmall, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_PumpkabooLarge[] = {
+    overworld_ascending_frames(gObjectEventPic_PumpkabooLarge, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_PumpkabooSuper[] = {
+    overworld_ascending_frames(gObjectEventPic_PumpkabooSuper, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_GourgeistAverage[] = {
+    overworld_ascending_frames(gObjectEventPic_GourgeistAverage, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_GourgeistSmall[] = {
+    overworld_ascending_frames(gObjectEventPic_GourgeistSmall, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_GourgeistLarge[] = {
+    overworld_ascending_frames(gObjectEventPic_GourgeistLarge, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_GourgeistSuper[] = {
+    overworld_ascending_frames(gObjectEventPic_GourgeistSuper, 4, 4),
 };
 #endif //P_FAMILY_PUMPKABOO
 
@@ -4685,9 +4704,17 @@ static const struct SpriteFrameImage sPicTable_Crabominable[] = {
 #endif //P_FAMILY_CRABRAWLER
 
 #if P_FAMILY_ORICORIO
-
-static const struct SpriteFrameImage sPicTable_Oricorio[] = {
-    overworld_ascending_frames(gObjectEventPic_Oricorio, 4, 4),
+static const struct SpriteFrameImage sPicTable_OricorioBaile[] = {
+    overworld_ascending_frames(gObjectEventPic_OricorioBaile, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_OricorioPomPom[] = {
+    overworld_ascending_frames(gObjectEventPic_OricorioPomPom, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_OricorioPau[] = {
+    overworld_ascending_frames(gObjectEventPic_OricorioPau, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_OricorioSensu[] = {
+    overworld_ascending_frames(gObjectEventPic_OricorioSensu, 4, 4),
 };
 #endif //P_FAMILY_ORICORIO
 

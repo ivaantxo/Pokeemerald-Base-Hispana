@@ -14,17 +14,18 @@
 #define SIZE_32x32 1
 #define SIZE_64x64 0
 
+#define FLIP    0
+#define NO_FLIP 1
+
 //Para indicar que un Follower no es asimétrico (Es decir, tiene dos frames adicionales mirando a la derecha, que no son solo espejados de mirando a la izquierda),
 //añadimos un parámetro extra en OVERWORLD, que es sAnimTable_Following_Asym.
 #define OVERWORLD(picTable, _size, _tracks, ...)                                            \
 .overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
-    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \
     .size = (_size == SIZE_32x32 ? 512 : 2048),                                             \
     .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
     .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
-    .paletteSlot = PALSLOT_NPC_1,                                                           \
     .shadowSize = (_size == SIZE_32x32 ? SHADOW_SIZE_M : SHADOW_SIZE_L),                    \
     .inanimate = FALSE,                                                                     \
     .compressed = FALSE,                                                                    \
@@ -40,11 +41,9 @@
 .overworldDataFemale = {                                                                    \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
-    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \
     .size = (_size == SIZE_32x32 ? 512 : 2048),                                             \
     .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
     .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
-    .paletteSlot = PALSLOT_NPC_1,                                                           \
     .shadowSize = (_size == SIZE_32x32 ? SHADOW_SIZE_M : SHADOW_SIZE_L),                    \
     .inanimate = FALSE,                                                                     \
     .compressed = FALSE,                                                                    \
@@ -62,9 +61,6 @@
 
 #define MON_TYPES(type1, ...) { type1, DEFAULT(type1, __VA_ARGS__) }
 #define MON_EGG_GROUPS(group1, ...) { group1, DEFAULT(group1, __VA_ARGS__) }
-
-#define FLIP    0
-#define NO_FLIP 1
 
 #if POKEMON_NAME_LENGTH >= 12
 #define HANDLE_EXPANDED_SPECIES_NAME(_name, ...) _(DEFAULT(_name, __VA_ARGS__))

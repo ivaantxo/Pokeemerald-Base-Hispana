@@ -1326,10 +1326,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioBaile,
         .shinyPalette = gMonShinyPalette_OricorioBaile,
-        .iconSprite = gObjectEventPic_Oricorio, 
+        .iconSprite = gObjectEventPic_OricorioBaile, 
         FOOTPRINT(Oricorio)
         OVERWORLD(
-            sPicTable_Oricorio,
+            sPicTable_OricorioBaile,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -1386,10 +1386,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioPomPom,
         .shinyPalette = gMonShinyPalette_OricorioPomPom,
-        .iconSprite = gObjectEventPic_Oricorio, 
+        .iconSprite = gObjectEventPic_OricorioPomPom, 
         FOOTPRINT(Oricorio)
         OVERWORLD(
-            sPicTable_Oricorio,
+            sPicTable_OricorioPomPom,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -1446,10 +1446,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioPau,
         .shinyPalette = gMonShinyPalette_OricorioPau,
-        .iconSprite = gObjectEventPic_Oricorio, 
+        .iconSprite = gObjectEventPic_OricorioPau, 
         FOOTPRINT(Oricorio)
         OVERWORLD(
-            sPicTable_Oricorio,
+            sPicTable_OricorioPau,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -1506,10 +1506,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_OricorioSensu,
         .shinyPalette = gMonShinyPalette_OricorioSensu,
-        .iconSprite = gObjectEventPic_Oricorio, 
+        .iconSprite = gObjectEventPic_OricorioSensu, 
         FOOTPRINT(Oricorio)
         OVERWORLD(
-            sPicTable_Oricorio,
+            sPicTable_OricorioSensu,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -4361,6 +4361,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MimikyuDisguised,
         .iconSprite = gObjectEventPic_MimikyuDisguised, 
         FOOTPRINT(Mimikyu)
+        OVERWORLD(
+            sPicTable_MimikyuDisguised,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isTotem = TRUE,
         .levelUpLearnset = sMimikyuLevelUpLearnset,
         .teachableLearnset = sMimikyuTeachableLearnset,
@@ -6098,6 +6103,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MagearnaOriginalColor,
         .iconSprite = gObjectEventPic_MagearnaOriginalColor, 
         FOOTPRINT(Magearna)
+        OVERWORLD(
+            sPicTable_MagearnaOriginalColor,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sMagearnaLevelUpLearnset,

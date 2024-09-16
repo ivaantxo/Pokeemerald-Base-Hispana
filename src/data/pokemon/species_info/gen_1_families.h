@@ -8899,7 +8899,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         OVERWORLD(
             sPicTable_SlowbroGalarian,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym
         )
         .isGalarianForm = TRUE,
         .levelUpLearnset = sSlowbroGalarianLevelUpLearnset,
@@ -9219,6 +9220,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             sPicTable_Farfetchd,
             SIZE_32x32,
             TRACKS_FOOT,  
+            sAnimTable_Following_Asym
         )
         .levelUpLearnset = sFarfetchdLevelUpLearnset,
         .teachableLearnset = sFarfetchdTeachableLearnset,
