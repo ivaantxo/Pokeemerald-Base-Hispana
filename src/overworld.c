@@ -1538,7 +1538,7 @@ const struct BlendSettings gTimeOfDayBlend[] =
     [TIME_NIGHT]   = {.coeff = 10, .blendColor = TINT_NIGHT, .isTint = TRUE},
 };
 
-u8 UpdateTimeOfDay(void)
+void UpdateTimeOfDay(void)
 {
     s32 hours, minutes;
     RtcCalcLocalTime();
@@ -1697,6 +1697,7 @@ static void OverworldBasic(void)
         };
         gTimeUpdateCounter = 0;
         UpdateTimeOfDay();
+        FormChangeTimeUpdate();
         if (cachedBlend.time0 != currentTimeBlend.time0
             || cachedBlend.time1 != currentTimeBlend.time1
             || cachedBlend.weight != currentTimeBlend.weight)
