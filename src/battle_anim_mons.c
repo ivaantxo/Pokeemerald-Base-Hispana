@@ -16,6 +16,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/battle_anim.h"
+#include "config/pbh.h"
 
 #define IS_DOUBLE_BATTLE() ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
 
@@ -2070,6 +2071,11 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     if (!isBackpic)
     {
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), OBJ_PLTT_ID(palette), PLTT_SIZE_4BPP);
+        if (PBH_PALETAS_UNICAS)
+        {
+            UniquePaletteByPersonality(OBJ_PLTT_ID(palette), species, personality);
+            CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(palette)], &gPlttBufferUnfaded[OBJ_PLTT_ID(palette)], PLTT_SIZE_4BPP);                
+        }
         LoadSpecialPokePic(gMonSpritesGfxPtr->buffer,
                            species,
                            personality,
@@ -2078,6 +2084,11 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     else
     {
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), OBJ_PLTT_ID(palette), PLTT_SIZE_4BPP);
+        if (PBH_PALETAS_UNICAS)
+        {
+            UniquePaletteByPersonality(OBJ_PLTT_ID(palette), species, personality);
+            CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(palette)], &gPlttBufferUnfaded[OBJ_PLTT_ID(palette)], PLTT_SIZE_4BPP);            
+        }
         LoadSpecialPokePic(gMonSpritesGfxPtr->buffer,
                            species,
                            personality,

@@ -6,7 +6,9 @@
 #include "pokemon_sprite_visualizer.h"
 #include "pokemon_icon.h"
 #include "sprite.h"
+#include "util.h"
 #include "constants/pokemon_icon.h"
+#include "config/pbh.h"
 
 struct MonIconSpriteTemplate
 {
@@ -185,6 +187,11 @@ u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum)
     if (paletteNum < 16)
     {
         LoadCompressedPalette(GetMonFrontSpritePal(mon), OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+        if (PBH_PALETAS_UNICAS)
+        {
+            UniquePalette(OBJ_PLTT_ID(paletteNum), &mon->box);
+            CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
+        }
         if (sprite)
         sprite->oam.paletteNum = paletteNum;
     }

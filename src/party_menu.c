@@ -64,6 +64,7 @@
 #include "text_window.h"
 #include "trade.h"
 #include "union_room.h"
+#include "util.h"
 #include "window.h"
 #include "constants/battle.h"
 #include "constants/battle_frontier.h"
@@ -77,6 +78,7 @@
 #include "constants/pokemon_icon.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "config/pbh.h"
 
 enum {
     MENU_SUMMARY,
@@ -1217,9 +1219,14 @@ static void CreatePartyMonSprites(u8 slot)
         {
             u8 index = slot < PARTY_SIZE ? IndexOfSpritePaletteTag(POKE_ICON_BASE_PAL_TAG + slot) : 0xFF;
             CreatePartyMonIconSpriteParameterized(gMultiPartnerParty[actualSlot].species, gMultiPartnerParty[actualSlot].personality, &sPartyMenuBoxes[slot], 0);
-            if (index < 16) 
-            { // Como SetMonIconPalette, pero por especie y personalidad
+            if (index < 16) // Como SetMonIconPalette, pero por especie y personalidad
+            {
                 LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(gMultiPartnerParty[actualSlot].species, 0, gMultiPartnerParty[actualSlot].personality), OBJ_PLTT_ID(index), PLTT_SIZE_4BPP);
+                if (PBH_PALETAS_UNICAS)
+                {
+                    UniquePaletteByPersonality(OBJ_PLTT_ID(index), gMultiPartnerParty[actualSlot].species, gMultiPartnerParty[actualSlot].personality);
+                    CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(index)], &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);                
+                }
                 gSprites[sPartyMenuBoxes[slot].monSpriteId].oam.paletteNum = index;
             }
 
