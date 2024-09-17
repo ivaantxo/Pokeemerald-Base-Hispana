@@ -4,7 +4,8 @@
 #define TUTORIAL_ICONOS_DE_TIPOS    TRUE
 
 /* Tutorial de Ivantxo
-Si el config es TRUE, los iconos de tipos son sustituidos por otros de estilo moderno (Colores de Pokémon HOME, iconos de ChefSrGio https://www.deviantart.com/chefsrgio/art/Type-Icons-Masters-Style-980891722, créditos a él).
+Si el config es TRUE, los iconos de tipos son sustituidos por otros de estilo moderno (Colores de Pokémon HOME, iconos basados en los de ChefSrGio https://www.deviantart.com/chefsrgio/art/Type-Icons-Masters-Style-980891722, créditos a él).
+¡OJO! Ten en cuenta que estos iconos ocupan 5 paletas en vez de las 3 que suelen ocupar los que vienen por defecto.
 
 Antes que nada, unos links a páginas que sirven de mucha ayuda para entender cómo funcionan los gráficos de la GBA, la diferencia entre sprites y bgs, cómo cargar unos y otros... /http://coranac.com/tonc/text/regobj.htm#sec-intro, https://ianfinlayson.net/class/cpsc305/notes/15-sprites)
 Un sprite en la GBA es un objeto de un tamaño de píxeles múltiplo de 8 (hasta 64x64, normalmente) que está indexado a una paleta a una paleta de máximo 16 colores.

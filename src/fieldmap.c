@@ -866,17 +866,6 @@ static void CopyTilesetToVramUsingHeap(struct Tileset const *tileset, u16 numTil
     }
 }
 
-// Below two are dummied functions from FRLG, used to tint the overworld palettes for the Quest Log
-static void ApplyGlobalTintToPaletteEntries(u16 offset, u16 size)
-{
-
-}
-
-static void UNUSED ApplyGlobalTintToPaletteSlot(u8 slot, u8 count)
-{
-
-}
-
 static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u16 size)
 {
     u16 black = RGB_BLACK;
@@ -887,17 +876,14 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
         {
             LoadPalette(&black, destOffset, PLTT_SIZEOF(1));
             LoadPalette(tileset->palettes[0] + 1, destOffset + 1, size - PLTT_SIZEOF(1));
-            ApplyGlobalTintToPaletteEntries(destOffset + 1, (size - PLTT_SIZEOF(1)) >> 1);
         }
         else if (tileset->isSecondary == TRUE)
         {
             LoadPalette(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
-            ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
         else
         {
             LoadCompressedPalette((const u32 *)tileset->palettes, destOffset, size);
-            ApplyGlobalTintToPaletteEntries(destOffset, size >> 1);
         }
     }
 }

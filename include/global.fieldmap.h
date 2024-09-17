@@ -228,12 +228,10 @@ struct ObjectEventGraphicsInfo
 {
     /*0x00*/ u16 tileTag;
     /*0x02*/ u16 paletteTag;
-    /*0x04*/ u16 reflectionPaletteTag;
     /*0x06*/ u16 size;
     /*0x08*/ s16 width;
     /*0x0A*/ s16 height;
-    /*0x0C*/ u8 paletteSlot:4;
-             u8 shadowSize:2;
+    /*0x0C*/ u8 shadowSize:2;
              u8 inanimate:1;
              u8 compressed:1;
     /*0x0D*/ u8 tracks;
