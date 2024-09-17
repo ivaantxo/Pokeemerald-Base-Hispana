@@ -6,6 +6,7 @@ BATINTGFXDIR := graphics/battle_interface
 MASKSGFXDIR := graphics/battle_anims/masks
 BATTRANSGFXDIR := graphics/battle_transitions
 TYPESGFXDIR := graphics/types
+TIPOSTUTOGFXDIR := graphics/types/tuto
 RAYQUAZAGFXDIR := graphics/rayquaza_scene
 ROULETTEGFXDIR := graphics/roulette
 SLOTMACHINEGFXDIR := graphics/slot_machine
@@ -21,6 +22,9 @@ SPINDAGFXDIR := graphics/pokemon/spinda/spots
 
 types := none normal fight flying poison ground rock bug ghost steel mystery fire water grass electric psychic ice dragon dark fairy stellar
 contest_types := cool beauty cute smart tough
+
+tipos := ninguno normal lucha volador veneno tierra roca bicho fantasma acero misterio fuego agua planta electrico psiquico hielo dragon siniestro hada astral
+tipos_concurso := carisma belleza dulzura ingenio dureza
 
 ### Tilesets ###
 
@@ -300,6 +304,16 @@ $(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types
 $(TYPESGFXDIR)/move_types.gbapal: $(TYPESGFXDIR)/move_types_1.gbapal \
                                   $(TYPESGFXDIR)/move_types_2.gbapal \
                                   $(TYPESGFXDIR)/move_types_3.gbapal
+	@cat $^ >$@
+
+$(TIPOSTUTOGFXDIR)/iconos_tipos.4bpp: $(tipos:%=$(TIPOSTUTOGFXDIR)/%.4bpp) $(tipos_concurso:%=$(TIPOSTUTOGFXDIR)/concurso_%.4bpp)
+	@cat $^ >$@
+
+$(TIPOSTUTOGFXDIR)/iconos_tipos.gbapal: $(TIPOSTUTOGFXDIR)/iconos_tipos_1.gbapal \
+                                  $(TIPOSTUTOGFXDIR)/iconos_tipos_2.gbapal \
+                                  $(TIPOSTUTOGFXDIR)/iconos_tipos_3.gbapal \
+                                  $(TIPOSTUTOGFXDIR)/iconos_tipos_4.gbapal \
+                                  $(TIPOSTUTOGFXDIR)/iconos_tipos_5.gbapal
 	@cat $^ >$@
 
 graphics/bag/menu.4bpp: %.4bpp: %.png

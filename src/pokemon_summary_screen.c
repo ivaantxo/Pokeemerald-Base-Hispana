@@ -49,6 +49,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "config/tutoriales.h"
 
 enum {
     PSS_PAGE_INFO,
@@ -128,6 +129,8 @@ enum
 #define TILE_FILLED_JAM_HEART    0x103C
 #define TILE_EMPTY_JAM_HEART     0x103D
 
+#define NUM_CATEGORY_ICONS 5
+
 static EWRAM_DATA struct PokemonSummaryScreenData
 {
     /*0x00*/ union {
@@ -193,7 +196,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     bool8 handleDeoxys;
     s16 switchCounter; // Used for various switch statement cases that decompress/load graphics or Pokémon data
     u8 unk_filler4[6];
-    u8 categoryIconSpriteId;
+    u8 categoryIconSpriteId[NUM_CATEGORY_ICONS];
 } *sMonSummaryScreen = NULL;
 
 EWRAM_DATA u8 gLastViewedMonIndex = 0;
@@ -732,7 +735,7 @@ static const u8 sMemoNatureTextColor[] = _("{COLOR LIGHT_RED}{SHADOW GREEN}");
 static const u8 sMemoMiscTextColor[] = _("{COLOR WHITE}{SHADOW DARK_GRAY}"); // This is also affected by palettes, apparently
 static const u8 sStatsLeftColumnLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}\n{DYNAMIC 2}\n{DYNAMIC 3}");
 static const u8 sStatsRightColumnLayout[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
-static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
+static const u8 sMovesPPLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}");
 
 #define TAG_MOVE_SELECTOR 30000
 #define TAG_MON_STATUS 30001
@@ -947,8 +950,8 @@ static const union AnimCmd *const sSpriteAnimTable_MoveTypes[NUMBER_OF_MON_TYPES
 
 const struct CompressedSpriteSheet gSpriteSheet_MoveTypes =
 {
-    .data = gMoveTypes_Gfx,
-    .size = (NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT) * 0x100,
+    .data = TUTORIAL_ICONOS_DE_TIPOS ? gIconosTipos_Gfx : gMoveTypes_Gfx,
+    .size = (NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT) * 256,
     .tag = TAG_MOVE_TYPES
 };
 const struct SpriteTemplate gSpriteTemplate_MoveTypes =
@@ -963,11 +966,11 @@ const struct SpriteTemplate gSpriteTemplate_MoveTypes =
 };
 static const u8 sContestCategoryToOamPaletteNum[CONTEST_CATEGORIES_COUNT] =
 {
-    [CONTEST_CATEGORY_COOL] = 13,
-    [CONTEST_CATEGORY_BEAUTY] = 14,
-    [CONTEST_CATEGORY_CUTE] = 14,
-    [CONTEST_CATEGORY_SMART] = 15,
-    [CONTEST_CATEGORY_TOUGH] = 13,
+    [CONTEST_CATEGORY_COOL] = TUTORIAL_ICONOS_DE_TIPOS ? 15 : 13,
+    [CONTEST_CATEGORY_BEAUTY] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 14,
+    [CONTEST_CATEGORY_CUTE] = TUTORIAL_ICONOS_DE_TIPOS ? 11 : 14,
+    [CONTEST_CATEGORY_SMART] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 15,
+    [CONTEST_CATEGORY_TOUGH] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 13,
 };
 static const struct OamData sOamData_MoveSelector =
 {
@@ -1141,21 +1144,53 @@ static const struct SpriteTemplate sSpriteTemplate_StatusCondition =
 static const u16 sMarkings_Pal[] = INCBIN_U16("graphics/summary_screen/markings.gbapal");
 
 // code
-static u8 ShowCategoryIcon(u32 category)
+static u8 ShowCategoryIcon(u8 index, u32 category, u8 x, u8 y)
 {
-    if (sMonSummaryScreen->categoryIconSpriteId == 0xFF)
-        sMonSummaryScreen->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 48, 128, 0);
+    if (sMonSummaryScreen->categoryIconSpriteId[index] == 0xFF)
+        sMonSummaryScreen->categoryIconSpriteId[index] = CreateSprite(&gSpriteTemplate_CategoryIcons, x, y, 0);
 
-    gSprites[sMonSummaryScreen->categoryIconSpriteId].invisible = FALSE;
-    StartSpriteAnim(&gSprites[sMonSummaryScreen->categoryIconSpriteId], category);
-    return sMonSummaryScreen->categoryIconSpriteId;
+    gSprites[sMonSummaryScreen->categoryIconSpriteId[index]].invisible = FALSE;
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->categoryIconSpriteId[index]], category);
+    return sMonSummaryScreen->categoryIconSpriteId[index];
+}
+
+static void SetInvisiblePropertyCaterogyIcon(bool8 isInvisible)
+{
+    u8 i;
+    for (i = 0; i < NUM_CATEGORY_ICONS; i++)
+    {
+        if(sMonSummaryScreen->categoryIconSpriteId[i] != 0xFF)
+        {
+            gSprites[sMonSummaryScreen->categoryIconSpriteId[i]].invisible = isInvisible;
+        }
+    }
+}
+
+static void SwapCategoriesIconsSprites(u8 moveIndex1, u8 moveIndex2)
+{
+    u8 i;
+
+    for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->summary.moves); i++)
+    {
+        if(sMonSummaryScreen->summary.moves[i] != MOVE_NONE)
+        {
+            gSprites[sMonSummaryScreen->categoryIconSpriteId[i]].animNum =  GetBattleMoveCategory(sMonSummaryScreen->summary.moves[i]);
+        }
+    }
 }
 
 static void DestroyCategoryIcon(void)
 {
-    if (sMonSummaryScreen->categoryIconSpriteId != 0xFF)
-        DestroySprite(&gSprites[sMonSummaryScreen->categoryIconSpriteId]);
-    sMonSummaryScreen->categoryIconSpriteId = 0xFF;
+    u8 i = 0;
+
+    for (i = 0; i < NUM_CATEGORY_ICONS; i++)
+    {
+        if (sMonSummaryScreen->categoryIconSpriteId[i] == 0xFF){
+            continue;
+        }
+        DestroySprite(&gSprites[sMonSummaryScreen->categoryIconSpriteId[i]]);
+        sMonSummaryScreen->categoryIconSpriteId[i] = 0xFF;
+    }
 }
 
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
@@ -1192,7 +1227,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     }
 
     sMonSummaryScreen->currPageIndex = sMonSummaryScreen->minPageIndex;
-    sMonSummaryScreen->categoryIconSpriteId = 0xFF;
+    memset(sMonSummaryScreen->categoryIconSpriteId, 0xFF, sizeof(sMonSummaryScreen->categoryIconSpriteId));
     SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
 
     if (gMonSpritesGfxPtr == NULL)
@@ -1438,7 +1473,10 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 12:
-        LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
+        if (TUTORIAL_ICONOS_DE_TIPOS)
+            LoadCompressedPalette(gIconosTipos_Pal, OBJ_PLTT_ID(11), 5 * PLTT_SIZE_4BPP);
+        else
+            LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
         LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
         LoadSpritePalette(&gSpritePal_CategoryIcons);
         sMonSummaryScreen->switchCounter = 0;
@@ -1748,6 +1786,7 @@ static void Task_ChangeSummaryMon(u8 taskId)
         break;
     case 9:
         SetTypeIcons();
+        SetInvisiblePropertyCaterogyIcon(TRUE);
         break;
     case 10:
         PrintMonInfo();
@@ -1847,6 +1886,7 @@ static void ChangePage(u8 taskId, s8 delta)
     else if (delta == 1 && sMonSummaryScreen->currPageIndex == sMonSummaryScreen->maxPageIndex)
         return;
 
+    SetInvisiblePropertyCaterogyIcon(TRUE);
     PlaySE(SE_SELECT);
     ClearPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
     sMonSummaryScreen->currPageIndex += delta;
@@ -2082,7 +2122,6 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
     {
         ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
         ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
-        DestroyCategoryIcon();
         ScheduleBgCopyTilemapToVram(0);
         HandlePowerAccTilemap(0, 3);
         HandleAppealJamTilemap(0, 3, 0);
@@ -2109,7 +2148,6 @@ static void CloseMoveSelectMode(u8 taskId)
     {
         ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
         ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
-        DestroyCategoryIcon();
         HandlePowerAccTilemap(0, 3);
         HandleAppealJamTilemap(0, 3, 0);
     }
@@ -2180,6 +2218,7 @@ static void ExitMovePositionSwitchMode(u8 taskId, bool8 swapMoves)
         CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
         SwapMovesNamesPP(sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
         SwapMovesTypeSprites(sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
+        SwapCategoriesIconsSprites(sMonSummaryScreen->firstMoveIndex, sMonSummaryScreen->secondMoveIndex);
         sMonSummaryScreen->firstMoveIndex = sMonSummaryScreen->secondMoveIndex;
     }
 
@@ -2312,6 +2351,7 @@ static void Task_HandleReplaceMoveInput(u8 taskId)
             }
             else if (JOY_NEW(B_BUTTON))
             {
+                DestroyCategoryIcon();
                 StopPokemonAnimations();
                 PlaySE(SE_SELECT);
                 sMoveSlotToReplace = MAX_MON_MOVES;
@@ -2336,7 +2376,6 @@ static void ShowCantForgetHMsWindow(u8 taskId)
 {
     ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
     ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_APPEAL_JAM);
-    gSprites[sMonSummaryScreen->categoryIconSpriteId].invisible = TRUE;
     ScheduleBgCopyTilemapToVram(0);
     HandlePowerAccTilemap(0, 3);
     HandleAppealJamTilemap(0, 3, 0);
@@ -3050,7 +3089,7 @@ static void ClearPageWindowTilemaps(u8 page)
             if (sMonSummaryScreen->newMove != MOVE_NONE || sMonSummaryScreen->firstMoveIndex != MAX_MON_MOVES)
             {
                 ClearWindowTilemap(PSS_LABEL_WINDOW_MOVES_POWER_ACC);
-                gSprites[sMonSummaryScreen->categoryIconSpriteId].invisible = TRUE;
+                SetInvisiblePropertyCaterogyIcon(TRUE);
             }
         }
         else
@@ -3570,6 +3609,10 @@ static void PrintBattleMoves(void)
     if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
     {
         PrintNewMoveDetailsOrCancelText();
+
+        if(sMonSummaryScreen->newMove != MOVE_NONE)
+            ShowCategoryIcon(4, GetBattleMoveCategory(sMonSummaryScreen->newMove), 200, 104);
+
         if (sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES)
         {
             if (sMonSummaryScreen->newMove != MOVE_NONE)
@@ -3636,6 +3679,7 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     u8 moveNameWindowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_NAMES);
     u8 ppValueWindowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_PP);
     u16 move = summary->moves[moveIndex];
+    u8 yPosition = 40;
 
     if (move != 0)
     {
@@ -3650,6 +3694,11 @@ static void PrintMoveNameAndPP(u8 moveIndex)
         text = gStringVar4;
         ppState = GetCurrentPpToMaxPpState(summary->pp[moveIndex], pp) + 9;
         x = GetStringRightAlignXOffset(FONT_NORMAL, text, 44);
+        if (B_SHOW_CATEGORY_ICON == TRUE)
+        {
+            yPosition += moveIndex * 16;
+            ShowCategoryIcon(moveIndex, GetBattleMoveCategory(move), 200, yPosition);
+        }
     }
     else
     {
@@ -3771,8 +3820,6 @@ static void PrintMoveDetails(u16 move)
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
             moveEffect = gMovesInfo[move].effect;
-            if (B_SHOW_CATEGORY_ICON == TRUE)
-                ShowCategoryIcon(GetBattleMoveCategory(move));
             PrintMovePowerAndAccuracy(move);
 
             if (moveEffect != EFFECT_PLACEHOLDER)

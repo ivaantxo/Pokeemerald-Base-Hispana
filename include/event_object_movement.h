@@ -7,28 +7,6 @@
 #error "OW_POKEMON_OBJECT_EVENTS needs to be TRUE in order for OW_FOLLOWERS_ENABLED to work."
 #endif
 
-// Palette slots for overworld NPCs.
-// The same standard set of palettes for overworld objects are normally always loaded at the same
-// time while walking around the overworld. The only exceptions are the palettes for the player and
-// the "special" NPC, which can be swapped out. This also means that e.g. two "special" NPCs
-// with competing palettes cannot be properly loaded at the same time.
-enum {
-    PALSLOT_PLAYER,
-    PALSLOT_PLAYER_REFLECTION,
-    PALSLOT_NPC_1,
-    PALSLOT_NPC_2,
-    PALSLOT_NPC_3,
-    PALSLOT_NPC_4,
-    PALSLOT_NPC_1_REFLECTION,
-    PALSLOT_NPC_2_REFLECTION,
-    PALSLOT_NPC_3_REFLECTION,
-    PALSLOT_NPC_4_REFLECTION,
-    PALSLOT_NPC_SPECIAL,
-    PALSLOT_NPC_SPECIAL_REFLECTION,
-    OBJ_PALSLOT_COUNT
-    // the remaining sprite palette slots (12-15) are used by field effects, the interface, etc.
-};
-
 enum SpinnerRunnerFollowPatterns
 {
     RUNFOLLOW_ANY,
@@ -113,11 +91,11 @@ extern const struct OamData gObjectEventBaseOam_64x64;
 extern const struct SubspriteTable sOamTables_32x32[];
 extern const struct SubspriteTable sOamTables_64x64[];
 extern const union AnimCmd *const sAnimTable_Following[];
+extern const union AnimCmd *const sAnimTable_Following_Asym[];
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
-extern const u8 gReflectionEffectPaletteMap[];
 
 extern const struct SpriteFrameImage *const gBerryTreePicTablePointers[];
-extern const u8 *const gBerryTreePaletteSlotTablePointers[];
+extern const u8 gBerryTreePaletteTagTable[];
 
 void ResetObjectEvents(void);
 u8 GetMoveDirectionAnimNum(u8 direction);
@@ -127,9 +105,7 @@ u8 GetObjectEventIdByXY(s16 x, s16 y);
 void SetObjectEventDirection(struct ObjectEvent *objectEvent, u8 direction);
 u8 GetFirstInactiveObjectEventId(void);
 void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
-void LoadSpecialObjectReflectionPalette(u16 tag, u8 slot);
 void TryMoveObjectEventToMapCoords(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s16 y);
-void PatchObjectPalette(u16 paletteTag, u8 paletteSlot);
 void SpawnObjectEventsOnReturnToField(s16 x, s16 y);
 void OverrideSecretBaseDecorationSpriteScript(u8 localId, u8 mapNum, u8 mapGroup, u8 decorCat);
 void GetMapCoordsFromSpritePos(s16 x, s16 y, s16 *destX, s16 *destY);
@@ -155,7 +131,6 @@ void ObjectEventTurn(struct ObjectEvent *, u8 direction);
 void ObjectEventTurnByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, u8 direction);
 const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u16 graphicsId);
 void SetObjectInvisibility(u8 localId, u8 mapNum, u8 mapGroup, bool8 invisible);
-void FreeAndReserveObjectSpritePalettes(void);
 u8 LoadObjectEventPalette(u16 paletteTag);
 u8 LoadPlayerObjectEventPalette(u8 gender);
 void SetObjectEventSpritePosByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s16 y);
@@ -166,7 +141,6 @@ void ObjectEventGetLocalIdAndMap(struct ObjectEvent *objectEvent, void *localId,
 void ShiftObjectEventCoords(struct ObjectEvent *, s16 x, s16 y);
 void MoveObjectEventToMapCoords(struct ObjectEvent *, s16 x, s16 y);
 void TryOverrideObjectEventTemplateCoords(u8 localId, u8 mapNum, u8 mapGroup);
-void InitObjectEventPalettes(u8 palSlot);
 void UpdateObjectEventCurrentMovement(struct ObjectEvent *, struct Sprite *, bool8(struct ObjectEvent *, struct Sprite *));
 u8 ObjectEventFaceOppositeDirection(struct ObjectEvent *, u8 direction);
 u8 GetOppositeDirection(u8 direction);
@@ -235,7 +209,6 @@ u8 GetMoveDirectionFasterAnimNum(u8 direction);
 u8 GetMoveDirectionFastestAnimNum(u8 direction);
 u8 GetLedgeJumpDirection(s16 x, s16 y, u8 direction);
 void CameraObjectSetFollowedSpriteId(u8 objectId);
-u16 GetObjectPaletteTag(u8 palSlot);
 void UpdateObjectEventSpriteInvisibility(struct Sprite *sprite, bool8 invisible);
 s16 GetFigure8XOffset(s16 idx);
 s16 GetFigure8YOffset(s16 idx);
@@ -309,7 +282,7 @@ u8 CreateCopySpriteAt(struct Sprite *sprite, s16 x, s16 y, u8 subpriority);
 u8 MovementType_WanderAround_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderAround_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderAround_Step2(struct ObjectEvent *, struct Sprite *);
-u8 MovementType_WanderAround_Step3(struct ObjectEvent *, struct Sprite *);
+u8 MovementType_Wander_Step3(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderAround_Step4(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderAround_Step5(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderAround_Step6(struct ObjectEvent *, struct Sprite *);
@@ -332,14 +305,12 @@ u8 MovementType_LookAround_Step4(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderUpAndDown_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderUpAndDown_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderUpAndDown_Step2(struct ObjectEvent *, struct Sprite *);
-u8 MovementType_WanderUpAndDown_Step3(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderUpAndDown_Step4(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderUpAndDown_Step5(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderUpAndDown_Step6(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderLeftAndRight_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderLeftAndRight_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderLeftAndRight_Step2(struct ObjectEvent *, struct Sprite *);
-u8 MovementType_WanderLeftAndRight_Step3(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderLeftAndRight_Step4(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderLeftAndRight_Step5(struct ObjectEvent *, struct Sprite *);
 u8 MovementType_WanderLeftAndRight_Step6(struct ObjectEvent *, struct Sprite *);

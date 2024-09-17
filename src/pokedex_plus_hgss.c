@@ -46,7 +46,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-
+#include "config/tutoriales.h"
 
 enum
 {
@@ -54,7 +54,6 @@ enum
     PAGE_INFO,
     PAGE_SEARCH,
     PAGE_SEARCH_RESULTS,
-    PAGE_UNK,
     PAGE_AREA,
     PAGE_CRY,
     PAGE_SIZE
@@ -4317,11 +4316,11 @@ static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible)
 }
 static const u8 sContestCategoryToOamPaletteNum[CONTEST_CATEGORIES_COUNT] =
 {
-    [CONTEST_CATEGORY_COOL] = 13,
-    [CONTEST_CATEGORY_BEAUTY] = 14,
-    [CONTEST_CATEGORY_CUTE] = 14,
-    [CONTEST_CATEGORY_SMART] = 15,
-    [CONTEST_CATEGORY_TOUGH] = 13,
+    [CONTEST_CATEGORY_COOL] = TUTORIAL_ICONOS_DE_TIPOS ? 15 : 13,
+    [CONTEST_CATEGORY_BEAUTY] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 14,
+    [CONTEST_CATEGORY_CUTE] = TUTORIAL_ICONOS_DE_TIPOS ? 11 : 14,
+    [CONTEST_CATEGORY_SMART] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 15,
+    [CONTEST_CATEGORY_TOUGH] = TUTORIAL_ICONOS_DE_TIPOS ? 12 : 13,
 };
 static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 {
@@ -4373,7 +4372,11 @@ static void CreateTypeIconSprites(void)
     u8 i;
 
     LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes);
-    LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60);
+    if (TUTORIAL_ICONOS_DE_TIPOS)
+        LoadCompressedPalette(gIconosTipos_Pal, OBJ_PLTT_ID(11), 5 * PLTT_SIZE_4BPP);
+    else
+        LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
+
     for (i = 0; i < 2; i++)
     {
         if (sPokedexView->typeIconSpriteIds[i] == 0xFF)
@@ -4859,7 +4862,11 @@ static void Task_LoadStatsScreen(u8 taskId)
         sPokedexView->typeIconSpriteIds[1] = 0xFF;
         CreateTypeIconSprites();
         sPokedexView->categoryIconSpriteId = 0xFF;
-        LoadCompressedPalette(gMoveTypes_Pal, 0x1D0, 0x60);
+        if (TUTORIAL_ICONOS_DE_TIPOS)
+            LoadCompressedPalette(gIconosTipos_Pal, OBJ_PLTT_ID(11), 5 * PLTT_SIZE_4BPP);
+        else
+            LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
+
         LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
         LoadSpritePalette(&gSpritePal_CategoryIcons);
         gMain.state++;
