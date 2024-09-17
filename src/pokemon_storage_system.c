@@ -226,12 +226,6 @@ enum {
 #define BOXID_CANCELED    201
 
 enum {
-    PALTAG_MON_ICON_0 = POKE_ICON_BASE_PAL_TAG,
-    PALTAG_MON_ICON_1, // Used implicitly in CreateMonIconSprite
-    PALTAG_MON_ICON_2, // Used implicitly in CreateMonIconSprite
-    PALTAG_MON_ICON_3, // Used implicitly in CreateMonIconSprite
-    PALTAG_MON_ICON_4, // Used implicitly in CreateMonIconSprite
-    PALTAG_MON_ICON_5, // Used implicitly in CreateMonIconSprite
     PALTAG_DISPLAY_MON,
     PALTAG_MISC_1,
     PALTAG_MARKING_COMBO,
@@ -270,7 +264,7 @@ enum {
     GFXTAG_ITEM_ICON_1, // Used implicitly in CreateItemIconSprites
     GFXTAG_ITEM_ICON_2, // Used implicitly in CreateItemIconSprites
     GFXTAG_CHOOSE_BOX_MENU,
-    GFXTAG_CHOOSE_BOX_MENU_SIDES, // Used implicitly in LoadChooseBoxMenuGfx
+    GFXTAG_CHOOSE_BOX_MENU_SIDES,
     GFXTAG_MARKING_MENU,
     GFXTAG_MARKING_COMBO,
     GFXTAG_MON_ICON,
@@ -383,15 +377,8 @@ struct ChooseBoxMenu
 {
     struct Sprite *menuSprite;
     struct Sprite *menuSideSprites[4];
-    u32 unused1[3];
     struct Sprite *arrowSprites[2];
-    u8 unused2[0x214];
-    bool32 loadedPalette;
-    u16 tileTag;
-    u16 paletteTag;
     u8 curBox;
-    u8 unused3;
-    u8 subpriority;
 };
 
 struct ItemIcon
@@ -955,12 +942,10 @@ static const union AffineAnimCmd *const sAffineAnims_ChooseBoxMenu[] =
 static const u8 sChooseBoxMenu_TextColors[] = {TEXT_COLOR_RED, TEXT_DYNAMIC_COLOR_6, TEXT_DYNAMIC_COLOR_5};
 static const u8 sText_OutOf30[] = _("/30");
 
-static const u16 sChooseBoxMenu_Pal[]        = INCBIN_U16("graphics/pokemon_storage/box_selection_popup.gbapal");
 static const u8 sChooseBoxMenuCenter_Gfx[]   = INCBIN_U8("graphics/pokemon_storage/box_selection_popup_center.4bpp");
 static const u8 sChooseBoxMenuSides_Gfx[]    = INCBIN_U8("graphics/pokemon_storage/box_selection_popup_sides.4bpp");
 static const u32 sScrollingBg_Gfx[]          = INCBIN_U32("graphics/pokemon_storage/scrolling_bg.4bpp.lz");
 static const u32 sScrollingBg_Tilemap[]      = INCBIN_U32("graphics/pokemon_storage/scrolling_bg.bin.lz");
-static const u16 sDisplayMenu_Pal[]          = INCBIN_U16("graphics/pokemon_storage/display_menu.gbapal"); // Unused
 static const u32 sDisplayMenu_Tilemap[]      = INCBIN_U32("graphics/pokemon_storage/display_menu.bin.lz");
 static const u16 sPkmnData_Tilemap[]         = INCBIN_U16("graphics/pokemon_storage/pkmn_data.bin");
 // sInterface_Pal - parts of the display frame, "PkmnData"'s normal color, Close Box
@@ -1202,7 +1187,7 @@ static const struct OamData sOamData_MonIcon;
 static const struct SpriteTemplate sSpriteTemplate_MonIcon =
 {
     .tileTag = GFXTAG_MON_ICON,
-    .paletteTag = PALTAG_MON_ICON_0,
+    .paletteTag = POKE_ICON_BASE_PAL_TAG,
     .oam = &sOamData_MonIcon,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
@@ -1334,9 +1319,9 @@ static const u8 sHandCursorShadow_Gfx[] = INCBIN_U8("graphics/pokemon_storage/ha
 //------------------------------------------------------------------------------
 
 
-void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero2, s32 bytesToBuffer)
+void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, s32 bytesToBuffer)
 {
-    s32 i, tileBytesToBuffer, remainingBytes;
+    s32 i, tileBytesToBuffer;
     u16 windowId;
     u8 txtColor[3];
     u8 *tileData1, *tileData2;
@@ -1345,14 +1330,11 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
     winTemplate.width = 24;
     winTemplate.height = 2;
     windowId = AddWindow(&winTemplate);
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(zero2));
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     tileData1 = (u8 *) GetWindowAttribute(windowId, WINDOW_TILE_DATA);
     tileData2 = (winTemplate.width * TILE_SIZE_4BPP) + tileData1;
 
-    if (!zero1)
-        txtColor[0] = TEXT_COLOR_TRANSPARENT;
-    else
-        txtColor[0] = zero2;
+    txtColor[0] = TEXT_COLOR_TRANSPARENT;
     txtColor[1] = TEXT_DYNAMIC_COLOR_6;
     txtColor[2] = TEXT_DYNAMIC_COLOR_5;
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, 0, 1, 0, 0, txtColor, TEXT_SKIP_DRAW, string);
@@ -1360,7 +1342,6 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
     tileBytesToBuffer = bytesToBuffer;
     if (tileBytesToBuffer > 6u)
         tileBytesToBuffer = 6;
-    remainingBytes = bytesToBuffer - 6;
     if (tileBytesToBuffer > 0)
     {
         for (i = tileBytesToBuffer; i != 0; i--)
@@ -1372,11 +1353,6 @@ void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero
             dst += 0x100;
         }
     }
-
-    // Never used. bytesToBuffer is always passed <= 6, so remainingBytes is always <= 0 here
-    if (remainingBytes > 0)
-        CpuFill16((zero2 << 4) | zero2, dst, (u32)(remainingBytes) * 0x100);
-
     RemoveWindow(windowId);
 }
 
@@ -1711,40 +1687,24 @@ void ResetPokemonStorageSystem(void)
 //------------------------------------------------------------------------------
 
 
-static void LoadChooseBoxMenuGfx(struct ChooseBoxMenu *menu, u16 tileTag, u16 palTag, u8 subpriority, bool32 loadPal)
+static void LoadChooseBoxMenuGfx(struct ChooseBoxMenu *menu)
 {
-    // Because loadPal is always false, the below palette is never used.
-    // The Choose Box menu instead uses the palette indicated by palTag, which is always PALTAG_MISC_1 (sHandCursor_Pal)
-    struct SpritePalette palette =
-    {
-        sChooseBoxMenu_Pal, palTag
-    };
     struct SpriteSheet sheets[] =
     {
-        {sChooseBoxMenuCenter_Gfx, 0x800, tileTag},
-        {sChooseBoxMenuSides_Gfx,  0x180, tileTag + 1},
+        {sChooseBoxMenuCenter_Gfx, 2048, GFXTAG_CHOOSE_BOX_MENU},
+        {sChooseBoxMenuSides_Gfx,  384, GFXTAG_CHOOSE_BOX_MENU_SIDES},
         {}
     };
 
-    if (loadPal) // Always false
-        LoadSpritePalette(&palette);
-
     CpuFastCopy(sHandCursor_Pal, sStorage->chooseBoxSwapPal, PLTT_SIZE_4BPP);
-
     LoadSpriteSheets(sheets);
     sChooseBoxMenu = menu;
-    menu->tileTag = tileTag;
-    menu->paletteTag = palTag;
-    menu->subpriority = subpriority;
-    menu->loadedPalette = loadPal;
 }
 
 static void FreeChooseBoxMenu(void)
 {
-    if (sChooseBoxMenu->loadedPalette)
-        FreeSpritePaletteByTag(sChooseBoxMenu->paletteTag);
-    FreeSpriteTilesByTag(sChooseBoxMenu->tileTag);
-    FreeSpriteTilesByTag(sChooseBoxMenu->tileTag + 1);
+    FreeSpriteTilesByTag(GFXTAG_CHOOSE_BOX_MENU);
+    FreeSpriteTilesByTag(GFXTAG_CHOOSE_BOX_MENU_SIDES);
     sStorage->chooseBoxSwapPal[0] = 0; // Stop dynamically loading choose box palette
 }
 
@@ -1797,20 +1757,20 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
     };
 
     sChooseBoxMenu->curBox = curBox;
-    template.tileTag = sChooseBoxMenu->tileTag;
-    template.paletteTag = sChooseBoxMenu->paletteTag;
+    template.tileTag = GFXTAG_CHOOSE_BOX_MENU;
+    template.paletteTag = PALTAG_MISC_1;
 
     spriteId = CreateSprite(&template, 160, 96, 0);
     sChooseBoxMenu->menuSprite = &gSprites[spriteId];
 
     oamData.shape = SPRITE_SHAPE(8x32);
     oamData.size = SPRITE_SIZE(8x32);
-    template.tileTag = sChooseBoxMenu->tileTag + 1;
+    template.tileTag = GFXTAG_CHOOSE_BOX_MENU_SIDES;
     template.anims = sAnims_ChooseBoxMenu;
     for (i = 0; i < ARRAY_COUNT(sChooseBoxMenu->menuSideSprites); i++)
     {
         u16 anim;
-        spriteId = CreateSprite(&template, 124, 80, sChooseBoxMenu->subpriority);
+        spriteId = CreateSprite(&template, 124, 80, 3);
         sChooseBoxMenu->menuSideSprites[i] = &gSprites[spriteId];
         anim = 0;
         if (i & 2)
@@ -1828,7 +1788,7 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
     }
     for (i = 0; i < ARRAY_COUNT(sChooseBoxMenu->arrowSprites); i++)
     {
-        sChooseBoxMenu->arrowSprites[i] = CreateChooseBoxArrows(72 * i + 124, 88, i, 0, sChooseBoxMenu->subpriority);
+        sChooseBoxMenu->arrowSprites[i] = CreateChooseBoxArrows(72 * i + 124, 88, i, 0, 3);
         if (sChooseBoxMenu->arrowSprites[i])
         {
             sChooseBoxMenu->arrowSprites[i]->data[0] = (i == 0 ? -1 : 1);
@@ -1902,7 +1862,7 @@ static void ChooseBoxMenu_PrintInfo(void)
     AddTextPrinterParameterized3(windowId, FONT_NORMAL, center, 17, sChooseBoxMenu_TextColors, TEXT_SKIP_DRAW, numBoxMonsText);
 
     winTileData = GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-    CpuCopy32((void *)winTileData, (void *)OBJ_VRAM0 + OBJ_PLTT_OFFSET + (GetSpriteTileStartByTag(sChooseBoxMenu->tileTag) * 32), 0x400);
+    CpuCopy32((void *)winTileData, (void *)OBJ_VRAM0 + OBJ_PLTT_OFFSET + (GetSpriteTileStartByTag(GFXTAG_CHOOSE_BOX_MENU) * 32), 0x400);
 
     RemoveWindow(windowId);
 }
@@ -2041,7 +2001,7 @@ static void ResetForPokeStorage(void)
     FreeSpriteTileRanges();
     FreeAllSpritePalettes();
     ClearDma3Requests();
-    gReservedSpriteTileCount = 0x280;
+    gReservedSpriteTileCount = 640;
     gKeyRepeatStartDelay = 20;
     ClearScheduledBgCopiesToVram();
     TilemapUtil_Init(TILEMAPID_COUNT);
@@ -2107,7 +2067,7 @@ static void HBlankCB_PokeStorage(void)
     if (vCount == 63 && sStorage && sStorage->chooseBoxSwapPal[0])
     // copy choose box palette
     {
-        u16 *dst = (u16*) (OBJ_PLTT + PLTT_ID(0)*2);
+        u16 *dst = (u16*) (OBJ_PLTT + PLTT_ID(0) * 2);
         CpuFastCopy(sStorage->chooseBoxSwapPal, dst, PLTT_SIZE_4BPP);
     }
 }
@@ -2904,7 +2864,7 @@ static void Task_DepositMenu(u8 taskId)
     {
     case 0:
         PrintMessage(MSG_DEPOSIT_IN_WHICH_BOX);
-        LoadChooseBoxMenuGfx(&sStorage->chooseBoxMenu, GFXTAG_CHOOSE_BOX_MENU, PALTAG_MISC_1, 3, FALSE);
+        LoadChooseBoxMenuGfx(&sStorage->chooseBoxMenu);
         CreateChooseBoxMenuSprites(sDepositBoxId);
         sStorage->state++;
         break;
@@ -3560,7 +3520,7 @@ static void Task_JumpBox(u8 taskId)
     {
     case 0:
         PrintMessage(MSG_JUMP_TO_WHICH_BOX);
-        LoadChooseBoxMenuGfx(&sStorage->chooseBoxMenu, GFXTAG_CHOOSE_BOX_MENU, PALTAG_MISC_1, 3, FALSE);
+        LoadChooseBoxMenuGfx(&sStorage->chooseBoxMenu);
         CreateChooseBoxMenuSprites(StorageGetCurrentBox());
         sStorage->state++;
         break;
@@ -5395,7 +5355,6 @@ static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s
     struct SpriteTemplate template = sSpriteTemplate_MonIcon;
 
     species = GetIconSpecies(species, personality);
-    template.paletteTag = PALTAG_MON_ICON_0;
     tileNum = TryLoadMonIconTiles(species, personality);
     if (tileNum == 0xFFFF)
         return NULL;
@@ -5743,7 +5702,7 @@ static void InitBoxTitle(u8 boxId)
     sStorage->wallpaperPalBits |= (1 << 16) << tagIndex;
 
     StringCopyPadded(sStorage->boxTitleText, GetBoxNamePtr(boxId), 0, BOX_NAME_LENGTH);
-    DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 0, 0, 2);
+    DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 2);
     LoadSpriteSheet(&spriteSheet);
     x = GetBoxTitleBaseX(GetBoxNamePtr(boxId));
 
@@ -5781,13 +5740,11 @@ static void CreateIncomingBoxTitle(u8 boxId, s8 direction)
     {
         spriteSheet.tag = GFXTAG_BOX_TITLE_ALT;
         template.tileTag = GFXTAG_BOX_TITLE_ALT;
-        // template.paletteTag = PALTAG_BOX_TITLE;
     }
 
     StringCopyPadded(sStorage->boxTitleText, GetBoxNamePtr(boxId), 0, BOX_NAME_LENGTH);
-    DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 0, 0, 2);
+    DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 2);
     LoadSpriteSheet(&spriteSheet);
-    // LoadPalette(sBoxTitleColors[GetBoxWallpaper(boxId)], palOffset, sizeof(sBoxTitleColors[0]));
     x = GetBoxTitleBaseX(GetBoxNamePtr(boxId));
     adjustedX = x;
     adjustedX += direction * 192;
@@ -9074,9 +9031,6 @@ static void CreateItemIconSprites(void)
             LoadCompressedSpriteSheet(&spriteSheet);
             sStorage->itemIcons[i].tiles = GetSpriteTileStartByTag(spriteSheet.tag) * TILE_SIZE_4BPP + (void*)(OBJ_VRAM0);
             // No longer allocated; item icons use palettes 14 & 15 now
-            // sStorage->itemIcons[i].palIndex = AllocSpritePalette(PALTAG_ITEM_ICON_0 + i);
-            // sStorage->itemIcons[i].palIndex *= 16;
-            // sStorage->itemIcons[i].palIndex += 0x100;
             spriteTemplate.tileTag = GFXTAG_ITEM_ICON_0 + i;
             spriteTemplate.paletteTag = PALTAG_ITEM_ICON_0 + i;
             spriteId = CreateSprite(&spriteTemplate, 0, 0, 11);
