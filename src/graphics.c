@@ -1563,9 +1563,6 @@ const u32 gCategoryIcons_Gfx[] = INCBIN_U32("graphics/interface/category_icons.4
 const u32 gMoveTypes_Gfx[] = INCBIN_U32("graphics/types/move_types.4bpp.lz");
 const u32 gMoveTypes_Pal[] = INCBIN_U32("graphics/types/move_types.gbapal.lz");
 
-const u32 gIconosTipos_Gfx[] = INCBIN_U32("graphics/types/tuto/iconos_tipos.4bpp.lz");
-const u32 gIconosTipos_Pal[] = INCBIN_U32("graphics/types/tuto/iconos_tipos.gbapal.lz");
-
 const u32 gSummaryMoveSelect_Gfx[] = INCBIN_U32("graphics/summary_screen/move_select.4bpp.lz");
 const u32 gSummaryMoveSelect_Pal[] = INCBIN_U32("graphics/summary_screen/move_select.gbapal.lz");
 
@@ -1965,3 +1962,27 @@ const u16 gFrontierPassCancelButtonHighlighted_Tilemap[] = INCBIN_U16("graphics/
 const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.gbapal");
 const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
+
+//Tutoriales
+    //Tutorial de iconos de tipos
+    const u32 gIconosTipos_Gfx[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp.lz");
+    const u32 gIconosTipos_Pal[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal.lz");
+
+    //Tutorial de minijuego de zubat
+        //Gráficos de bgs: Aquí se define su ruta (tanto del tileset como del tilemap como de su paleta). Si lleva .lz al final es que está comprimido.
+        const u32 TutorialBG2_Tileset[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg2_tileset.4bpp.lz");
+        const u32 TutorialBG2_Tilemap[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg2_tilemap.bin.lz");
+
+        const u32 TutorialBG3_Tileset[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg3_tileset.4bpp.lz");
+        const u32 TutorialBG3_Tilemap[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg3_tilemap.bin.lz");
+
+        const u16 TutorialBG_Palette[] = INCBIN_U16("graphics/tutoriales/minijuego_zubat/bg_pal.gbapal");
+
+        //Gráficos de sprites
+        const u8 Zubat_Sprite[] = INCBIN_U8("graphics/tutoriales/minijuego_zubat/sprites/zubat.4bpp");
+        const u8 Koffing_Sprite[] = INCBIN_U8("graphics/tutoriales/minijuego_zubat/sprites/koffing.4bpp");
+        const u8 Beam_Sprite[] = INCBIN_U8("graphics/tutoriales/minijuego_zubat/sprites/beam.4bpp");
+
+        const u8 ZubatIcon_Sprite[] = INCBIN_U8("graphics/tutoriales/minijuego_zubat/sprites/zubat_icon.4bpp");
+
+        const u16 ZubatKoffing_Palette[] = INCBIN_U16("graphics/tutoriales/minijuego_zubat/sprites/pal.gbapal");

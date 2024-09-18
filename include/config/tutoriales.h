@@ -11,20 +11,20 @@ Antes que nada, unos links a páginas que sirven de mucha ayuda para entender c�
 Un sprite en la GBA es un objeto de un tamaño de píxeles múltiplo de 8 (hasta 64x64, normalmente) que está indexado a una paleta a una paleta de máximo 16 colores.
 Esta paleta, para que el sprite pueda verse, debe de estar cargada en las paletas que el juego destina para objetos (Esto puede verse en mGBA->Herramientas->Estado del juego->Paletas), y el sprite debe de estar "unido" a esta paleta, como veremos después.
 
-Lo primero, es crear una paleta o paletas para el sprite; y el sprite en sí. En mi caso, he usado Aseprite para crear los sprites indexados a cada paleta con la que después se verán (en la carpeta graphics/types/tuto) más las paletas que después se usarán (en la misma carpeta, iconos_tipos_x.pal, 5 en total).
+Lo primero, es crear una paleta o paletas para el sprite; y el sprite en sí. En mi caso, he usado Aseprite para crear los sprites indexados a cada paleta con la que después se verán (en la carpeta graphics/tutoriales/iconos_tipos) más las paletas que después se usarán (en la misma carpeta, iconos_tipos_x.pal, 5 en total).
 Después, hay que "identificarlas", para que podamos trabajar con ellas en el código: en el caso de los tipos, estos se cargan de una manera especial, ya que se "unen" como si fuesen un solo sprite (y después se carga uno u otro como si fuese un sprite animado). 
 Esto puede verse en mGBA, en cualquier interfaz que los use, por ejemplo la pantalla de sumario, yendo a Herramientas->Ver mosaicos, y veremos en la memoria destinada a sprites/objetos como están cargados todos los iconos de los tipos + los de concurso.
 Para unir los sprites, se hace en graphics_file_rules.mk, donde se crean con lo que realmente trabaja la GBA: Archivos .4bpp, a partir de los .png, y archivos .gbapal, a partir de los .pal. 
 En nuestro caso, se han generado "iconos_tipos.4bpp" e "iconos_tipos.gbapal", el primero son todos los sprites de tipos unidos en uno solo, y el segundo las 5 paletas que también se cargan como una sola.
 
 Para la gran mayoría de sprites, este paso de "unión" no será necesario, y podemos directamente identificarlos en src/graphics.c y en include/graphics.h: 
-const u32 gIconosTipos_Gfx[] = INCBIN_U32("graphics/types/tuto/iconos_tipos.4bpp.lz");
-const u32 gIconosTipos_Pal[] = INCBIN_U32("graphics/types/tuto/iconos_tipos.gbapal.lz");
+const u32 gIconosTipos_Gfx[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp.lz");
+const u32 gIconosTipos_Pal[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal.lz");
 
 extern const u32 gIconosTipos_Gfx[];
 extern const u32 gIconosTipos_Pal[];
 
-En el primer caso en src/graphics.c estamos creando un u32 que contiene nuestro sprite que está en graphics/types/tuto/iconos_tipos.4bpp, y en el segundo estamos creando un u32 que son nuestras paletas, que están en graphics/types/tuto/iconos_tipos.gbapal. ¡OJO! El .lz al final de cada uno significa que están comprimidas, y que para cargarlas deberemos usar LoadCompressedPalette y similares (Si no, se verán pixelados = sin descomprimir).
+En el primer caso en src/graphics.c estamos creando un u32 que contiene nuestro sprite que está en graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp, y en el segundo estamos creando un u32 que son nuestras paletas, que están en graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal. ¡OJO! El .lz al final de cada uno significa que están comprimidas, y que para cargarlas deberemos usar LoadCompressedPalette y similares (Si no, se verán pixelados = sin descomprimir).
 En include/graphics.h es donde permitimos que los demás archivos .c que contengan #include "graphics.h" puedan reconocerlos.
 
 Ya tenemos nuestros gráficos adecuados para la GBA, convertidos en código, y reconocidos por los archivos donde queremos que se lean, ahora solo falta el código para que se muestren.
@@ -58,5 +58,7 @@ En el caso de los iconos de tipos, esto se hace directamente en TypesInfo, donde
 Cuando ya tenemos esto, basta cargar el SpriteSheet mediante LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes), cargar la paleta con LoadCompressedPalette(gIconosTipos_Pal, tal, tal), y crear el sprite finalmente con CreateSprite(&gSpriteTemplate_MoveTypes, tal, tal, tal) en la función que queramos,
 y ya tendríamos nuestros nuevos sprites cargados en la pantalla de la GBA, y solo faltaría escribir el código para ver qué hacemos con ellos.
 */
+
+#define TUTORIAL_MINIJUEGO_ZUBAT    TRUE 
 
 #endif // GUARD_CONFIG_TUTORIALES_H

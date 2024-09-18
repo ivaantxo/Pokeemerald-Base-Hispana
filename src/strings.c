@@ -1531,6 +1531,7 @@ const u8 gText_MenuPokenav[] = _("POKéNAV");
 const u8 gText_MenuPlayer[] = _("{PLAYER}");
 const u8 gText_MenuSave[] = _("SAVE");
 const u8 gText_MenuOption[] = _("OPTION");
+const u8 gText_MenuTutorial[] = _("TUTO");
 const u8 gText_MenuExit[] = _("EXIT");
 const u8 gText_MenuRetire[] = _("RETIRE");
 const u8 gText_MenuRest[] = _("REST");
@@ -1834,3 +1835,7 @@ const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
+
+const u8 gText_Bgs[] = _("BGs");
+const u8 gText_BgsSprites[] = _("BGs-Sprites");
+const u8 gText_Minijuego[] = _("Minijuego");

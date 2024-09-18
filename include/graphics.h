@@ -1986,9 +1986,6 @@ extern const u32 gStatusPal_Icons[];
 extern const u16 gCategoryIcons_Pal[];
 extern const u32 gCategoryIcons_Gfx[];
 
-extern const u32 gIconosTipos_Gfx[];
-extern const u32 gIconosTipos_Pal[];
-
 extern const u32 gShopMenu_Gfx[];
 extern const u32 gShopMenu_Tilemap[];
 extern const u32 gShopMenu_Pal[];
@@ -3372,5 +3369,22 @@ extern const u8 gMailTilemap_Retro[];
 
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
+
+//Tutoriales
+    //Iconos de tipos
+    extern const u32 gIconosTipos_Gfx[];
+    extern const u32 gIconosTipos_Pal[];
+
+    //Minijuego de Zubat
+    extern const u32 TutorialBG2_Tileset[];
+    extern const u32 TutorialBG2_Tilemap[];
+    extern const u32 TutorialBG3_Tileset[];
+    extern const u32 TutorialBG3_Tilemap[];
+    extern const u16 TutorialBG_Palette[];
+    extern const u8 Zubat_Sprite[];
+    extern const u8 Koffing_Sprite[];
+    extern const u8 Beam_Sprite[];
+    extern const u8 ZubatIcon_Sprite[];
+    extern const u16 ZubatKoffing_Palette[];
 
 #endif //GUARD_GRAPHICS_H

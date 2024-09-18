@@ -253,6 +253,7 @@ extern const u8 gText_MenuPokenav[];
 extern const u8 gText_MenuPlayer[];
 extern const u8 gText_MenuSave[];
 extern const u8 gText_MenuOption[];
+extern const u8 gText_MenuTutorial[];
 extern const u8 gText_MenuExit[];
 extern const u8 gText_MenuRetire[];
 extern const u8 gText_MenuRest[];
@@ -3045,5 +3046,10 @@ extern const u8 gText_PlantBerry[];
 // Map name pop-up
 extern const u8 gText_AM[];
 extern const u8 gText_PM[];
+
+// Tutorial Minijuego de Zubat
+extern const u8 gText_Bgs[];
+extern const u8 gText_BgsSprites[];
+extern const u8 gText_Minijuego[];
 
 #endif // GUARD_STRINGS_H
