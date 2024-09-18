@@ -33,6 +33,7 @@
 #include "constants/rgb.h"
 #include "sprite.h"
 #include "window.h"
+#include "config/tutoriales.h"
 
 /*
     NOTA:
@@ -41,25 +42,19 @@
     - Los puntos importantes a comprender son la definicion del BgTemplete, sobretodo los parametros de charbaseIndex y mapBaseIndex
     - Y el funcionamiento del task
 */
-#if TUTORIAL== TRUE
 
 //==========FUNCIONES STATIC==========//
-
+// Son las funciones q no van a ser llamadas fueras del .c en el que estan
+// Se declaran aqui, ya q estan definidas mas abajo de donde se les llama, si no se hace al compilar no encontra la funcion
 static void Task_FadeIn(u8 taskId);
-static void Task_Movement_Bgs(u8 taskId);
+static void Task_MainHandle(u8 taskId);
 static void Task_FadeOut(u8 taskId);
 
 
-//==========BG GRAPHICS==========//
-//Aqui se define la ruta del tileset, tilemap y con su correspondiente paleta. 
-//El lz significa q se esta cargando comprimido
-static const u32 TutorialBG2_Tileset[] = INCBIN_U32("graphics/tutorial/bg2_tileset.4bpp.lz");
-static const u32 TutorialBG2_Tilemap[] = INCBIN_U32("graphics/tutorial/bg2_tilemap.bin.lz");
-
-static const u32 TutorialBG3_Tileset[] = INCBIN_U32("graphics/tutorial/bg3_tileset.4bpp.lz");
-static const u32 TutorialBG3_Tilemap[] = INCBIN_U32("graphics/tutorial/bg3_tilemap.bin.lz");
-
-static const u16 TutorialBG_Palette[] = INCBIN_U16("graphics/tutorial/bgPal.gbapal");
+//==========VARIBLES EWRAM_DATA==========//
+// Son varibles globales(puenden ser llamadas en cualquier parte de codigo), las cuales las vamos a utilizar
+// para guardar informacion q vamos a necesitar en el transcurso de la ejecucion
+static EWRAM_DATA u8 zubatSpriteId = 0;//Va almacenar el id q generera al crear el sprite de Zubat
 
 //==========BG TEMPLATES==========//
 //Definimos los bgs q vamos a usar. Unicamente se puedn definir de 0 al 3 q son los 4 bgs q tienes GBA
@@ -87,6 +82,82 @@ static const struct BgTemplate TutorialBgTemplates[] =
         .priority = 2
     }
 };
+
+//==========SPRITE TEMPLATES==========//
+
+//definimos los valores de los TAGS q vamos a usar, cada sprite que se carge debe tener un TAG unico
+//Hay excepciones, el el caso de que tengais dos sprites q usen la misma paleta podeis usar el mismo TAG de la paleta para los dos
+#define TAG_SPRITE_ZUBAT 5400
+#define TAG_PALETTE 5403
+
+
+//Todos los sprites deben de tener una Oam definidad con el tamaño correcto 
+static const struct OamData gSpriteOamData32x32 =
+{
+    .y = 0,
+    .affineMode = 0,
+    .objMode = 0,
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = SPRITE_SHAPE(32x32),//modifcar este valor en caso de q el tamaño sea distinto
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(32x32),//modificar este valor en caso de q el tamaño sea distinto
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const struct SpriteSheet spriteSheetZubat =
+{
+            .data = Zubat_Sprite,//varible definidad previamente q indica donde se encuentra el grafico del sprite
+            .size = 2048, //IMPORTANTE: para calcular este valor debeis mirar el ancho y el alto de la imagen, lo podeis ver en la opcion de Propiedas > Detalles, ahora unicamente haceis este calculo simple (ancho * alto) / 2
+            .tag = TAG_SPRITE_ZUBAT,//Indicar el TAG definidod previamente
+};
+
+static const struct SpritePalette spritePaletteZubatKoffing =
+{
+        .data = ZubatKoffing_Palette,//varible definidad previamente q indica donde se encuentra la paleta del sprite
+        .tag = TAG_PALETTE, //Indicar el TAG definidod previamente
+};
+
+static const struct SpriteTemplate spriteTemplateZubat=
+{
+    .tileTag = TAG_SPRITE_ZUBAT,
+    .paletteTag = TAG_PALETTE,
+    .oam = &gSpriteOamData32x32, //indicamos la oam definida previamente para el sprite
+    .anims = gDummySpriteAnimTable, 
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+//==========SPRITES FUNC==========//
+
+//Funcion donde cargamos el SpriteSheet y el SpritePalette definidos previamente
+static void LoadSpritesResources()
+{
+    LoadSpriteSheet(&spriteSheetZubat); 
+    LoadSpritePalette(&spritePaletteZubatKoffing);
+}
+
+//Funcion deonde creamos el Sprite pasandole sus propiedad x e y, y la cual devuelve el id q genera
+static u8 CreateZubatSprite(u8 x, u8 y)
+{
+    u8 id;
+
+    id = CreateSprite(&spriteTemplateZubat, x, y, 0);
+    return id;
+}
+
+//Funcion q se encarga de destruir el sprite de ZUBAT
+static void DestroySpritesGame()
+{
+    DestroySprite(&gSprites[zubatSpriteId]);
+    //gSprites es un array donde se almacenan los datos de los Sprites cargados, en cual podemos hacer 
+    //referencia a un sprite especifico siempre q tengamos el id q se genero al crearlo
+}
 
 //==========BG LOAD FUNC==========//
 static void LoadBGs_Tutorial()
@@ -133,16 +204,28 @@ static void Task_FadeIn(u8 taskId)//el parametro taskId indica el id del task q 
 {
     if(!gPaletteFade.active) // esperamos a q se quite el fade de negro, cuando eso pase llamara a Task_Movement_Bgs
     {
-        gTasks[taskId].func = Task_Movement_Bgs;// con esto cambiaremos a la siguiente funcion q se indica
+        zubatSpriteId = CreateZubatSprite(50, 50);
+        gTasks[taskId].func = Task_MainHandle;// con esto cambiaremos a la siguiente funcion q se indica
     }
 }
+
 //Con esta funcion controlamos las acciones q hara cada btn cuando el usuario pulse
-static void Task_Movement_Bgs(u8 taskId)
+static void Task_MainHandle(u8 taskId)
 {
     if(JOY_NEW(B_BUTTON))//cuando pulsa B se hara un fade a negro y  saltara a la fucion Task_FadeOut
     {
         BeginNormalPaletteFade(PALETTES_ALL, 10, 0, 16, RGB_BLACK);//hace el fade a negro, el segundo parametro es el delay q va a tener fade
         gTasks[taskId].func = Task_FadeOut;
+    }
+
+    if(JOY_HELD(DPAD_UP))//cuando pulsa UP se hara un desplazamiento de un pixel del sprite
+    {
+        gSprites[zubatSpriteId].y -= 1; // con la funcion gSprites podemos acceder y modificar los valores x e y de un sprite detenerminado
+    }
+
+    if(JOY_HELD(DPAD_DOWN))//cuando pulsa DOWN se hara un desplazamiento de un pixel del sprite
+    {
+        gSprites[zubatSpriteId].y += 1;
     }
 }
 
@@ -150,6 +233,7 @@ static void Task_FadeOut(u8 taskId)
 {
     if(!gPaletteFade.active)//esperamos q se cabe de hacer la transion a negro del fade
     {
+        DestroySpritesGame();
         FreeAllWindowBuffers();
         SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);//Volvemos al mundo con el menu abierto, hay mas opciones CB2_ReturnToField, CB2_ReturnToFieldContinueScript
         DestroyTask(taskId);//Destruye la ejecucion del task 
@@ -157,7 +241,7 @@ static void Task_FadeOut(u8 taskId)
 }
 
 //==========GFX SETUP FUNC==========//
-void CB2_InitTutorialBgsSetUp()
+void CB2_InitTutorialSpritesSetUp()
 {
     switch (gMain.state)
     {
@@ -177,6 +261,7 @@ void CB2_InitTutorialBgsSetUp()
         break;
     case 2:
         LoadBGs_Tutorial(); //funcion que se llama para la carga de bgs
+        LoadSpritesResources();//funcion q cargar los rescuros necesarios para la creacion del sprite
         gMain.state++;
         break;
     case 3:
@@ -193,23 +278,22 @@ void CB2_InitTutorialBgsSetUp()
         SetMainCallback2(CB2_Tutorial);
     }
 }
-#endif
 
 //==========CALLNATIVE FUNC==========//
 //Esta funcion se suele utilizar para ser llamdas desde el comando callnative en un script
-bool8 StartTutorialBgs_CB2() 
+bool8 StartTutorialSprites_CB2() 
 {
-    #if TUTORIAL
-    if (!gPaletteFade.active)
+    if (TUTORIAL_MINIJUEGO_ZUBAT)
     {
-        gMain.state = 0;
-        CleanupOverworldWindowsAndTilemaps();
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-        SetMainCallback2(CB2_InitTutorialBgsSetUp);
-        
+        if (!gPaletteFade.active)
+        {
+            gMain.state = 0;
+            CleanupOverworldWindowsAndTilemaps();
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+            SetMainCallback2(CB2_InitTutorialSpritesSetUp);
 
-        return TRUE;
+            return TRUE;
+        }      
     }
-    #endif
     return FALSE;
 }

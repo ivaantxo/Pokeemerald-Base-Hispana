@@ -34,8 +34,7 @@
 #include "sprite.h"
 #include "window.h"
 #include "random.h"
-
-#if TUTORIAL== TRUE
+#include "config/tutoriales.h"
 
 static void HandleMovement_Zubat();
 u8 GetZubatPositionY(u8 cord);
@@ -50,26 +49,6 @@ static void Task_EndGame(u8 taskId);
 
 static void PrintLives();
 static void PrintDistance();
-
-//==========BG GRAPHICS==========//
-static const u32 TutorialBG2_Tileset[] = INCBIN_U32("graphics/tutorial/bg2_tileset.4bpp.lz");
-static const u32 TutorialBG2_Tilemap[] = INCBIN_U32("graphics/tutorial/bg2_tilemap.bin.lz");
-
-static const u32 TutorialBG3_Tileset[] = INCBIN_U32("graphics/tutorial/bg3_tileset.4bpp.lz");
-static const u32 TutorialBG3_Tilemap[] = INCBIN_U32("graphics/tutorial/bg3_tilemap.bin.lz");
-
-static const u16 TutorialBG_Palette[] = INCBIN_U16("graphics/tutorial/bgPal.gbapal");
-
-
-//==========SPRITES GRAPHICS==========//
-static const u8 Zubat_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/zubatSprite.4bpp");
-static const u8 Koffing_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/koffingSprite.4bpp");
-static const u8 Beam_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/beamSprite.4bpp");
-
-static const u8 ZubatIcon_Sprite[] = INCBIN_U8("graphics/tutorial/sprites/zubatIcon.4bpp");
-
-static const u16 ZubatKoffing_Palette[] = INCBIN_U16("graphics/tutorial/sprites/spritesPal.gbapal");
-
 
 //==========VARS==========//
 
@@ -838,22 +817,21 @@ void CB2_InitTutorialSetUp()
         SetMainCallback2(CB2_Tutorial);
     }
 }
-#endif
 
 //==========CALLNATIVE FUNC==========//
 bool8 StartTutorial_CB2()
 {
-    #if TUTORIAL
-    if (!gPaletteFade.active)
+    if (TUTORIAL_MINIJUEGO_ZUBAT)
     {
-        gMain.state = 0;
-        CleanupOverworldWindowsAndTilemaps();
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-        SetMainCallback2(CB2_InitTutorialSetUp);
+        if (!gPaletteFade.active)
+        {
+            gMain.state = 0;
+            CleanupOverworldWindowsAndTilemaps();
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+            SetMainCallback2(CB2_InitTutorialSetUp);
 
-        return TRUE;
+            return TRUE;
+        }
     }
-    #endif
-
     return FALSE;
 }

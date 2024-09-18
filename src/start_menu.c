@@ -48,6 +48,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "event_scripts.h"
+#include "config/tutoriales.h"
 
 // Menu actions
 enum
@@ -59,9 +60,7 @@ enum
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
-    #if TUTORIAL == TRUE
-    MENU_ACTION_TUTOS,
-    #endif
+    MENU_ACTION_TUTORIAL_MINIJUEGO_ZUBAT,
     MENU_ACTION_EXIT,
     MENU_ACTION_RETIRE_SAFARI,
     MENU_ACTION_PLAYER_LINK,
@@ -105,7 +104,7 @@ static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
 static bool8 StartMenuOptionCallback(void);
 static bool8 StartMenuExitCallback(void);
-static bool8 StartMenuTutorialCallback(void);
+static bool8 StartMenuTutorialMinijuegoZubatCallback(void);
 static bool8 StartMenuSafariZoneRetireCallback(void);
 static bool8 StartMenuLinkModePlayerNameCallback(void);
 static bool8 StartMenuBattlePyramidRetireCallback(void);
@@ -198,9 +197,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_PLAYER]          = {gText_MenuPlayer,  {.u8_void = StartMenuPlayerNameCallback}},
     [MENU_ACTION_SAVE]            = {gText_MenuSave,    {.u8_void = StartMenuSaveCallback}},
     [MENU_ACTION_OPTION]          = {gText_MenuOption,  {.u8_void = StartMenuOptionCallback}},
-    #if TUTORIAL == TRUE
-    [MENU_ACTION_TUTOS]           = {gText_MenuTutorial, {.u8_void = StartMenuTutorialCallback}},
-    #endif
+    [MENU_ACTION_TUTORIAL_MINIJUEGO_ZUBAT] = {gText_MenuTutorial, {.u8_void = StartMenuTutorialMinijuegoZubatCallback}},
     [MENU_ACTION_EXIT]            = {gText_MenuExit,    {.u8_void = StartMenuExitCallback}},
     [MENU_ACTION_RETIRE_SAFARI]   = {gText_MenuRetire,  {.u8_void = StartMenuSafariZoneRetireCallback}},
     [MENU_ACTION_PLAYER_LINK]     = {gText_MenuPlayer,  {.u8_void = StartMenuLinkModePlayerNameCallback}},
@@ -352,9 +349,8 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    #if TUTORIAL == TRUE
-        AddStartMenuAction(MENU_ACTION_TUTOS);
-    #endif
+    if (TUTORIAL_MINIJUEGO_ZUBAT)
+        AddStartMenuAction(MENU_ACTION_TUTORIAL_MINIJUEGO_ZUBAT);
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
@@ -657,7 +653,7 @@ static bool8 HandleStartMenuInput(void)
             && gMenuCallback != StartMenuDebugCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
             && gMenuCallback != StartMenuBattlePyramidRetireCallback
-            && gMenuCallback != StartMenuTutorialCallback)
+            && gMenuCallback != StartMenuTutorialMinijuegoZubatCallback)
         {
            FadeScreen(FADE_TO_BLACK, 0);
         }
@@ -782,13 +778,12 @@ static bool8 StartMenuOptionCallback(void)
     return FALSE;
 }
 
-static bool8 StartMenuTutorialCallback(void)
+static bool8 StartMenuTutorialMinijuegoZubatCallback(void)
 {
     RemoveExtraStartMenuWindows();
     HideStartMenu();
-    #if TUTORIAL == TRUE
-    ScriptContext_SetupScript(Tutorial_EventScript);
-    #endif
+    if (TUTORIAL_MINIJUEGO_ZUBAT)
+    ScriptContext_SetupScript(TutorialMinijuegoZubat_EventScript);
     return TRUE;
 }
 
