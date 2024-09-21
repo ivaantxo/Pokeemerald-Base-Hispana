@@ -360,9 +360,7 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokemon_sprite_visualizer.o(.text);
         src/expansion_intro.o(.text);
-        src/tutoriales/minijuego_zubat/mini_game.o(.text);
-        src/tutoriales/minijuego_zubat/bgs.o(.text);
-        src/tutoriales/minijuego_zubat/sprites.o(.text);
+        src/tutoriales/minijuego_zubat.o(.text);
     } > ROM =0
 
     script_data :
@@ -731,9 +729,7 @@ SECTIONS {
         data/sound_data.o(.rodata);
         src/pokemon_sprite_visualizer.o(.rodata);
         src/expansion_intro.o(.rodata);
-        src/tutoriales/minijuego_zubat/mini_game.o(.rodata);
-        src/tutoriales/minijuego_zubat/bgs.o(.rodata);
-        src/tutoriales/minijuego_zubat/sprites.o(.rodata);
+        src/tutoriales/minijuego_zubat.o(.rodata);
     } > ROM =0
 
     song_data :

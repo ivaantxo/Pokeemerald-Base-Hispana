@@ -167,7 +167,7 @@ static const struct OamData sOamData_DizzyEgg =
 {
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
@@ -178,7 +178,7 @@ static const struct OamData sOamData_Porygon =
 {
     .affineMode = ST_OAM_AFFINE_NORMAL,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),

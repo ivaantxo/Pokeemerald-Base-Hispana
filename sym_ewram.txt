@@ -152,5 +152,4 @@
 	.include "src/debug.o"
 	.include "src/battle_controller_player.o"
 	.include "src/pokedex_plus_hgss.o"
-	.include "src/tutorialMiniGame.o"
-	.include "src/tutorialSprites.o"
+	.include "src/tutoriales/minijuego_zubat.o"

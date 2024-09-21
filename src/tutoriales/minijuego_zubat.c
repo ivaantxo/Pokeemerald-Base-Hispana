@@ -36,30 +36,30 @@
 #include "random.h"
 #include "config/tutoriales.h"
 
-static void HandleMovement_Zubat();
+#if TUTORIAL_MINIJUEGO_ZUBAT == TRUE
+
+static void HandleMovementZubat(void);
 u8 GetZubatPositionY(u8 cord);
-u8 isZubatColisionKoffing(struct Sprite *spriteZubat);
-u8 isBeamColisionKoffing(struct Sprite *spriteBeam);
-static bool8 HasLivesToContinue();
+u8 IsZubatColisionKoffing(struct Sprite *spriteZubat);
+u8 IsBeamColisionKoffing(struct Sprite *spriteBeam);
+static bool8 HasLivesToContinue(void);
 static void DestroySpriteBeam(struct Sprite *sprite);
-static void Task_Movement_Bgs(u8 taskId);
-static void  Task_WaitToCreateKoffings(u8 taskId);
+static void Task_MovementBgs(u8 taskId);
+static void Task_WaitToCreateKoffings(u8 taskId);
 static void Task_ZubatFall(u8 taskId);
 static void Task_EndGame(u8 taskId);
-
-static void PrintLives();
-static void PrintDistance();
+static void PrintLives(void);
+static void PrintDistance(void);
 
 //==========VARS==========//
 
 #define tTimeToWait data[3]
 #define tTimer data[7]
 
-#define NUM_LIVES 5;
-#define HEIGHT_SCREEN 160
-#define WIDTH_SCREEN 240
+#define NUM_LIVES 5
 
-enum{
+enum CoordsZubat
+{
     CORD_TOP,
     CORD_BOTTOM,
 };
@@ -77,60 +77,63 @@ struct Tutorial
     u8 numLives;
 };
 
+//Los EWRAM_DATA son variables globales que vamos a utilizar a lo largo de muchas funciones (se pueden usar en todo el repo). Por eso, se definen ya en la memoria EWRAM para tenerlas siempre a mano.
 static EWRAM_DATA struct Tutorial tutorialObj = {0};
 
 const u8 sTextColors[]= {TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
 const u8 sTextColors2[]= {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 
-const u8 gText_HowToPlay[] = _("Zubat no ve nada. Ayudalo a volar por la\ncueva sin chocarse con los {PKMN} salvajes.\pPulsa {DPAD_UPDOWN} para moverte\nPulsa {A_BUTTON} localizar los obstaculos.");
+const u8 gText_HowToPlay[] = _("Zubat no ve nada. Ayúdalo a volar por la\n"
+                               "cueva sin chocarse con los {PKMN} salvajes.\p"
+                               "Pulsa {DPAD_UPDOWN} para moverte.\n"
+                               "Pulsa {A_BUTTON} localizar los obstaculos.");
 const u8 gText_Distance[] = _("Distancia: {STR_VAR_1}m");
 const u8 gText_Live[] = _(" x {STR_VAR_1}");
 
-//==========SPRITES TEMPLATES==========//
-
-#define TAG_SPRITE_ZUBAT 5400
-#define TAG_SPRITE_KOFFING 5401
-#define TAG_SPRITE_BEAM 5402
-#define TAG_PALETTE 5403
-
-static const struct OamData gSpriteOamData32x32 =
+enum ZubatStates
 {
-    .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = SPRITE_SHAPE(32x32),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(32x32),
-    .tileNum = 0,
-    .priority = 0,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-
-static const struct SpritePalette spritePaletteZubatKoffing =
-{
-        .data = ZubatKoffing_Palette,
-        .tag = TAG_PALETTE, 
-};
-
-
-//==========ZUBAT SPRITE==========//
-#define sTimer data[7] 
-
-static const struct SpriteSheet spriteSheetZubat =
-{
-            .data = Zubat_Sprite,
-            .size = 2048, // 32 * 128 /2
-            .tag = TAG_SPRITE_ZUBAT,
-};
-
-enum{
     ZUBAT_MOVEMENT,
     ZUBAT_DIE,
+};
+
+//==========SECCIÓN DE CARGA DE SPRITES==========//
+
+//Todo lo que necesitamos para cargar cualquier sprite es un OamData, una paleta (normalmente, un SpritePalette), un SpriteSheet y un SpriteTemplate. Una vez tengamos esto, basta con cargarlos mediante LoadSpriteSheet y LoadSpritePalette, y luego crear el sprite mediante CreateSprite.
+
+//Un tag es una manera de marcar que un sprite o una paleta ya están cargados. De esa forma, no es necesario cargar las paletas en un slot u otro, ya que se asigna dinámicamente. Cada sprite o paleta debe de tener su propia tag, aunque un tag puede servir para varios sprites o paletas.
+enum TagSpritesTutorialZubat
+{
+    TAG_SPRITE_ZUBAT = 5400,
+    TAG_SPRITE_KOFFING,
+    TAG_SPRITE_BEAM,
+    TAG_PALETTE_ZUBAT_KOFFING,
+};
+
+//Los OamData son los datos de un sprite: características como su tamaño, su forma o su prioridad. Es posible asignarle más datos, como si es transparente, o si tiene animaciones afines, pero estos 3 parámetros son los que nunca pueden faltar.
+static const struct OamData gSpriteOamDataSpritesTutorialZubat =
+{
+    .shape = SPRITE_SHAPE(32x32), //La forma del sprite, que debe de variar en función del tamaño (16x16, 32x32)
+    .size = SPRITE_SIZE(32x32), //El tamaño del sprite.
+    .priority = 0, //La prioridad es qué sprite se dibuja delante de otros. Va del 0 al 3, y cuanto menos valor, más prioridad (Un sprite de prioridad 1 se ve delante de uno de prioridad 3).
+};
+
+//Aquí definimos la paleta de nuestro sprite y le asignamos un tag, que será lo que luego "enlacemos" con el sprite, de modo que el juego sepa que x paleta va con x sprite.
+static const struct SpritePalette sSpritePaletteZubatKoffing =
+{
+    .data = ZubatKoffing_Palette, //La paleta como tal.
+    .tag = TAG_PALETTE_ZUBAT_KOFFING, //El tag, funciona igual que para los sprites.
+};
+
+//==========ZUBAT SPRITE==========//
+
+#define sTimer data[7]
+
+//Lo que son los "gráficos" del sprite.
+static const struct SpriteSheet sSpriteSheetZubat =
+{
+    .data = ZubatSprite, //Los gráficos del Sprite (en el caso de un SpriteSheet, sus tiles).
+    .size = 32 * 128 / 2, //Ancho * Alto / 2
+    .tag = TAG_SPRITE_ZUBAT, //El tag del sprite.
 };
 
 static const union AnimCmd sAnim_ZubatMovement[] =
@@ -157,41 +160,46 @@ static const union AnimCmd *const sAnims_ZubatSprite[] =
 
 void SpriteCallbackZubat(struct Sprite *sprite)
 {
-    if(!HasLivesToContinue()){
+    if (!HasLivesToContinue())
+    {
         StartSpriteAnim(sprite, ZUBAT_DIE);
         return;
     }
 
-    HandleMovement_Zubat();
+    HandleMovementZubat();
 
-    u8 idKoffing = isZubatColisionKoffing(sprite);
+    u8 idKoffing = IsZubatColisionKoffing(sprite);
 
-    if( idKoffing != 0xFF && sprite->sColision != TRUE)
+    if (idKoffing != 0xFF && sprite->sColision != TRUE)
     {
         sprite->sColision = TRUE;
         sprite->sTimer = 200;
         gSprites[idKoffing].invisible = FALSE;
         tutorialObj.numLives -= 1;
         PrintLives();
+        PlaySE(SE_M_STAT_DECREASE);
     }
 
-    if(sprite->sColision && --sprite->sTimer % 10 == 0)
+    if (sprite->sColision && --sprite->sTimer % 10 == 0)
     {
         sprite->invisible = !sprite->invisible;
+        //PlayCry_Normal(CRY_KOFFING, 0);
     }
 
-    if(sprite->sTimer == 0)
+    if (sprite->sTimer == 0)
     {
-         sprite->sColision = FALSE;
-         sprite->invisible = FALSE;
+        sprite->sColision = FALSE;
+        sprite->invisible = FALSE;
+        //PlayCry_Normal(CRY_KOFFING, 0);
     }
 }
 
-static const struct SpriteTemplate spriteTemplateZubat=
+//El SpriteTemplate es donde se unen las imágenes del sprite, su callback, su paletteTag...
+static const struct SpriteTemplate sSpriteTemplateZubat =
 {
     .tileTag = TAG_SPRITE_ZUBAT,
-    .paletteTag = TAG_PALETTE,
-    .oam = &gSpriteOamData32x32, 
+    .paletteTag = TAG_PALETTE_ZUBAT_KOFFING,
+    .oam = &gSpriteOamDataSpritesTutorialZubat, 
     .anims = sAnims_ZubatSprite, 
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
@@ -202,10 +210,10 @@ static const struct SpriteTemplate spriteTemplateZubat=
 
 #define sBeamIndex data[1]
 
-static const struct SpriteSheet spriteSheetBeam =
+static const struct SpriteSheet sSpriteSheetBeam =
 {
-    .data = Beam_Sprite,
-    .size = 512, // 32 * 32 /2
+    .data = BeamSprite,
+    .size = 32 * 32 / 2, //Ancho * Alto / 2
     .tag = TAG_SPRITE_BEAM,
 };
 
@@ -213,30 +221,30 @@ void SpriteCallbackBeam(struct Sprite *sprite)
 {
     u8 idKoffing;
 
-    if( sprite->x  >= WIDTH_SCREEN )
+    if (sprite->x  >= DISPLAY_WIDTH)
     {
         DestroySpriteBeam(sprite);
     }
 
-    idKoffing = isBeamColisionKoffing(sprite);
-    if( idKoffing != 0xFF)
+    idKoffing = IsBeamColisionKoffing(sprite);
+    if (idKoffing != 0xFF)
     {
         DestroySpriteBeam(sprite);
         gSprites[idKoffing].invisible = FALSE;
+        PlaySE(SE_WALL_HIT); //Sonido que hace cuando Koffing se vuelve visible.
     }
 
-    if(++ sprite->sTimer % 2 == 0){
+    if (++ sprite->sTimer % 2 == 0)
+    {
         sprite->x += 4;
     }
 }
 
-
-
-static const struct SpriteTemplate spriteTemplateBeam=
+static const struct SpriteTemplate sSpriteTemplateBeam =
 {
     .tileTag = TAG_SPRITE_BEAM,
-    .paletteTag = TAG_PALETTE,
-    .oam = &gSpriteOamData32x32, 
+    .paletteTag = TAG_PALETTE_ZUBAT_KOFFING,
+    .oam = &gSpriteOamDataSpritesTutorialZubat, 
     .anims = gDummySpriteAnimTable, 
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
@@ -244,15 +252,15 @@ static const struct SpriteTemplate spriteTemplateBeam=
 };
 
 //==========KOFFING SPRITE==========//
+
 #define sKoffingIndex data[2]
 
-static const struct SpriteSheet spriteSheetKoffing =
+static const struct SpriteSheet sSpriteSheetKoffing =
 {
-            .data = Koffing_Sprite,
-            .size = 1024, // 32 * 64 /2
-            .tag = TAG_SPRITE_KOFFING,
+    .data = KoffingSprite,
+    .size = 32 * 64 / 2, // Ancho * Alto / 2
+    .tag = TAG_SPRITE_KOFFING,
 };
-
 
 static const union AnimCmd sAnim_KoffingMovement[] =
 {
@@ -268,17 +276,19 @@ static const union AnimCmd *const sAnims_KoffingSprite[] =
 
 void SpriteCallbackKoffing(struct Sprite *sprite)
 {
-    if(!HasLivesToContinue())
+    if (!HasLivesToContinue())
     {
         sprite->invisible = FALSE;
-    }else{
-        if( sprite-> x  == 0)
+    }
+    else
+    {
+        if (sprite->x == 0)
         {
             tutorialObj.koffingSpritesId[sprite->sKoffingIndex] = 0xFF;
             DestroySprite(sprite);
         }
 
-        if(++ sprite->sTimer % 2 == 0)
+        if(++sprite->sTimer % 2 == 0)
         {
             sprite->x -= 2;
         }
@@ -287,31 +297,31 @@ void SpriteCallbackKoffing(struct Sprite *sprite)
 
 #undef sTimer
 
-static const struct SpriteTemplate spriteTemplateKoffing =
+static const struct SpriteTemplate sSpriteTemplateKoffing =
 {
     .tileTag = TAG_SPRITE_KOFFING,
-    .paletteTag = TAG_PALETTE,
-    .oam = &gSpriteOamData32x32, 
+    .paletteTag = TAG_PALETTE_ZUBAT_KOFFING,
+    .oam = &gSpriteOamDataSpritesTutorialZubat, 
     .anims = sAnims_KoffingSprite, 
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackKoffing,
 };
 
-void LoadSpritesResources()
+//Esta función es ejemplo de lo que siempre hay que hacer para poder mostrar sprites en pantalla: cargar el SpriteSheet y cargar el SpritePalette. Una vez estén cargados, ya podemos crear el sprite con CreateSprite(SpriteTemplate, x, y, subpriority).
+void LoadSpritesResources(void)
 {
-    LoadSpriteSheet(&spriteSheetZubat);
-    LoadSpriteSheet(&spriteSheetKoffing);
-    LoadSpriteSheet(&spriteSheetBeam);
-
-    LoadSpritePalette(&spritePaletteZubatKoffing);
+    LoadSpriteSheet(&sSpriteSheetZubat);
+    LoadSpriteSheet(&sSpriteSheetKoffing);
+    LoadSpriteSheet(&sSpriteSheetBeam);
+    LoadSpritePalette(&sSpritePaletteZubatKoffing);
 }
 
 u8 CreateZubatSprite(u8 x, u8 y, u8 animNum)
 {
     u8 id;
 
-    id = CreateSprite(&spriteTemplateZubat, x, y, 0);
+    id = CreateSprite(&sSpriteTemplateZubat, x, y, 0);
     StartSpriteAnim(&gSprites[id], animNum);
 
     gSprites[id].sColision = FALSE;
@@ -323,20 +333,20 @@ u8 CreateKoffingSprite(u8 x, u8 y, u8 animNum)
 {
     u8 id;
 
-    id = CreateSprite(&spriteTemplateKoffing, x, y, 0);
+    id = CreateSprite(&sSpriteTemplateKoffing, x, y, 0);
     StartSpriteAnim(&gSprites[id], animNum);
 
     return id;
 }
 
-u8 CreateBeamSprite()
+u8 CreateBeamSprite(void)
 {
     u8 id;
 
     u8 yPos = GetZubatPositionY(CORD_TOP);
     u8 xPos = gSprites[tutorialObj.zubatSpriteId].x + 16;
 
-    id = CreateSprite(&spriteTemplateBeam, xPos, yPos, 0);
+    id = CreateSprite(&sSpriteTemplateBeam, xPos, yPos, 0);
     return id;
 }
 
@@ -347,7 +357,7 @@ static void DestroySpriteBeam(struct Sprite *sprite)
     tutorialObj.countBeam -=1;
 }
 
-static void DestroySpritesGame()
+static void DestroySpritesGame(void)
 {
     u8 i;
 
@@ -371,59 +381,76 @@ static void DestroySpritesGame()
     }
 }
 
-//==========BG TEMPLATES==========//
+//==========SECCIÓN DE CREACIÓN DE BGS==========//
+
+//Para cargar un background o backgrounds, solo necesitamos un BgTemplate que defina sus características, InitBgsFromTemplates, cargar su tileset, cargar su tilemap y ShowBg(MI_BG). Con eso, si hemos limpiado la memoria previamente, se verán sin problemas.
+//Aquí hacemos un enum para poder usar constantes en vez de números: ShowBg(BG_VIDAS_Y_TEXTO) en vez de ShowBg(0). Esto no es necesario, pero facilita un poco el trabajo.
+enum BgsMinijuegoZubat
+{
+    BG_VIDAS_Y_TEXTO,
+    BG_CUEVA_CERCA,
+    BG_CUEVA_LEJOS
+};
+
+//En el BgTemplate definimos las características que van a tener nuestros backgrounds.
+//La GBA tiene 4 backgrounds (capas de video) que se numeran del 0 al 3.
 static const struct BgTemplate TutorialBgTemplates[] =
 {
+    [BG_VIDAS_Y_TEXTO] =
     {
-        .bg = 0,
-        .charBaseIndex = 0,
-        .mapBaseIndex = 6,
-        .paletteMode = 0,
-        .priority = 0
+        .bg = 0, //El background en el que se va a cargar.
+        .charBaseIndex = 0, //Posición en la que se cargan los tiles en la VRAM. Si quieres verlo en mGBA, ve a Herramientas > Game State Views > Ver mosaicos.
+        .mapBaseIndex = 28, //Posición en la que se carga el tilemap en la VRAM. Si quieres verlo en mGBA, ve a Herramientas > Game State Views > Ver mosaicos.
+        .priority = 0 //Prioridad: qué background se muestra encima de otros. Va de 0 a 3, y cuanto más bajo, más prioridad (Un bg con prioridad 1 se ve delante de uno con prioridad 2).
     },
+    [BG_CUEVA_CERCA] =
     {
-        .bg = 2,
+        .bg = 1,
         .charBaseIndex = 2,
-        .mapBaseIndex = 28,
-        .paletteMode = 0,
+        .mapBaseIndex = 30,
         .priority = 1
     },
+    [BG_CUEVA_LEJOS] =
     {
-        .bg = 3,
+        .bg = 2,
         .charBaseIndex = 3,
-        .mapBaseIndex = 30,
-        .paletteMode = 0,
+        .mapBaseIndex = 31,
         .priority = 2
     }
 };
+
 //==========BG LOAD FUNC==========//
-static void LoadBGs_EventStart()
+
+static void LoadBgs(void) //Esta función es la que carga los tiles y los tilemaps de los bgs, carga la paleta, y los muestra en pantalla. 
 {
-    InitBgsFromTemplates(0, TutorialBgTemplates, NELEMS(TutorialBgTemplates));
+    InitBgsFromTemplates(0, TutorialBgTemplates, ARRAY_COUNT(TutorialBgTemplates));
 
-    LZ77UnCompVram(TutorialBG3_Tileset, (void*) VRAM + 0x4000 * TutorialBgTemplates[2].charBaseIndex);
-    LZ77UnCompVram(TutorialBG3_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[2].mapBaseIndex));
+    LZ77UnCompVram(TutorialBG2_Tileset, (void*) BG_CHAR_ADDR(TutorialBgTemplates[BG_CUEVA_LEJOS].charBaseIndex)); //Descomprimimos el tileset del bg 2 en la VRAM según el charBaseIndex que le hemos asignado previamente.
+    LZ77UnCompVram(TutorialBG2_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[BG_CUEVA_LEJOS].mapBaseIndex)); //Descomprimos el tilemap del bg 2 en la VRAM según el mapBaseIndex que le hemos asignado previamente.
 
-    LZ77UnCompVram(TutorialBG2_Tileset, (void*) VRAM + 0x4000 * TutorialBgTemplates[1].charBaseIndex);
-    LZ77UnCompVram(TutorialBG2_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[1].mapBaseIndex));
+    LZ77UnCompVram(TutorialBG1_Tileset, (void*) BG_CHAR_ADDR(TutorialBgTemplates[BG_CUEVA_CERCA].charBaseIndex)); //Igual que arriba pero para el tileset del bg 1.
+    LZ77UnCompVram(TutorialBG1_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[BG_CUEVA_CERCA].mapBaseIndex)); //Igual que arriba pero para el tilemap del bg 1.
 
-    LoadPalette(TutorialBG_Palette, 0x00, 0x20);
+    LoadPalette(TutorialBG_Palette, BG_PLTT_ID(0), PLTT_SIZE_4BPP); //Cargamos la paleta o paletas de nuestros bgs en el índice que le hayamos asignado en el tilemap (en TilemapStudio)
 
-    ResetAllBgsCoordinates();
+    ResetAllBgsCoordinates(); //Ponemos a 0 las coordenadas de los bgs, porque los vamos a mover (efecto de scroll).
 
-    ShowBg(0);
-    ShowBg(2);
-    ShowBg(3);
+    //Estas funciones son las que, una vez tenemos cargados los tiles y tilemaps de los bgs, los muestran. Si quisiéramos que alguno no se viera, simplemente bastaría con HideBg(MI_BG).
+    ShowBg(BG_VIDAS_Y_TEXTO);
+    ShowBg(BG_CUEVA_CERCA);
+    ShowBg(BG_CUEVA_LEJOS);
 }
 
-static void VBlank_CB_Tutorial()
+//Estas funciones preparan la Oam para que funcione con los nuevos sprites al cambiar de pantalla.
+static void VBlank_CB_Tutorial(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
 }
 
-static void CB2_Tutorial()
+//Esta función empieza los Tasks, que son las funciones ejecutadas en orden de nuestro minijuego; anima los sprites, arranca el buffer del Oam, y actualiza el fade de paletas.
+static void CB2_Tutorial(void)
 {
     RunTasks();
     AnimateSprites();
@@ -433,16 +460,18 @@ static void CB2_Tutorial()
 
 //==========WINDOW LOAD FUNC==========//
 
-enum{
+//Aquí definimos las ventanas, en este caso 3. Como se ve en el tutorial, pueden usarse ventanas para muchas cosas: texto con vidas, texto con borde, una zona más oscura o diferente de la pantalla...
+enum
+{
     WINDOW_MSG,
     WINDOW_DISTANCE,
-    WINDOW_LIVE,
-
+    WINDOW_LIVES,
 };
 
 static const struct WindowTemplate sWindowTemplatesTutorial[] =
 {
-   [WINDOW_MSG]{
+    [WINDOW_MSG]
+    {
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 6,
@@ -451,7 +480,8 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .paletteNum = 15,
         .baseBlock = 1
     },
-    [WINDOW_DISTANCE]{
+    [WINDOW_DISTANCE]
+    {
         .bg = 0,
         .tilemapLeft = 18,
         .tilemapTop = 0,
@@ -460,7 +490,8 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .paletteNum = 15,
         .baseBlock = 169
     },
-     [WINDOW_LIVE]{
+    [WINDOW_LIVES]
+    {
         .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 0,
@@ -472,74 +503,76 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
     DUMMY_WIN_TEMPLATE,
 };
 
-static void InitWindowTutorial()
+static void InitWindowTutorial(void)
 {
 	InitWindows(sWindowTemplatesTutorial);
     DeactivateAllTextPrinters();
-	LoadPalette(GetOverworldTextboxPalettePtr(), 0xf0, 0x20);
+	LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP); //Cargamos la paleta de la ventana de texto del OW para poder utilizarla.
 }
 
-static void PrintDistance()
+static void PrintDistance(void)
 {
     FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0));
     ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar2, gText_Distance);
     AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextColors2, 0, gStringVar2);
-    CopyWindowToVram(WINDOW_DISTANCE, 2);
+    CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX);
 }
 
-static void PrintLives()
+static void PrintLives(void)
 {
-    FillWindowPixelBuffer(WINDOW_LIVE, PIXEL_FILL(0));
-    BlitBitmapToWindow(WINDOW_LIVE, ZubatIcon_Sprite, 0, 0, 16, 16);
+    FillWindowPixelBuffer(WINDOW_LIVES, PIXEL_FILL(0));
+    BlitBitmapToWindow(WINDOW_LIVES, ZubatIcon, 0, 0, 16, 16);
     ConvertIntToDecimalStringN(gStringVar1, tutorialObj.numLives, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar2, gText_Live);
-    AddTextPrinterParameterized3(WINDOW_LIVE, FONT_SMALL, 17, 0, sTextColors2, 0, gStringVar2);
-    CopyWindowToVram(WINDOW_LIVE, 2);
+    AddTextPrinterParameterized3(WINDOW_LIVES, FONT_SMALL, 17, 0, sTextColors2, 0, gStringVar2);
+    CopyWindowToVram(WINDOW_LIVES, COPYWIN_GFX);
 }
 
-//==========Other functions==========//
+//==========Otras funciones==========//
 
 u8 GetZubatPositionY(u8 cord)
 {
     u8 topEdge = gSprites[tutorialObj.zubatSpriteId].y - 16;
     u8 bottomEdge = gSprites[tutorialObj.zubatSpriteId].y + 16;
 
-    if(cord == CORD_TOP){
+    if (cord == CORD_TOP)
+    {
         return (topEdge <= 0) ? 0 : gSprites[tutorialObj.zubatSpriteId].y;
-    }else{
-        return (bottomEdge >= HEIGHT_SCREEN) ? HEIGHT_SCREEN : gSprites[tutorialObj.zubatSpriteId].y;
+    }
+    else
+    {
+        return (bottomEdge >= DISPLAY_HEIGHT) ? DISPLAY_HEIGHT : gSprites[tutorialObj.zubatSpriteId].y;
     }
 }
 
-u8 isBeamColisionKoffing(struct Sprite *spriteBeam)
+u8 IsBeamColisionKoffing(struct Sprite *spriteBeam)
 {
     s8 i;
     struct Sprite *sprite2;
 
-    for ( i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
+    for (i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
     {
-        if(tutorialObj.koffingSpritesId[i] == 0xFF)
+        if (tutorialObj.koffingSpritesId[i] == 0xFF)
             continue;
 
             sprite2 = &gSprites[tutorialObj.koffingSpritesId[i]];
 
             if (!(spriteBeam->x + 32 <= sprite2->x || spriteBeam->x >= sprite2->x + 32 ||
-             spriteBeam->y + 24 <= sprite2->y || spriteBeam->y >= sprite2->y + 24))
+                spriteBeam->y + 24 <= sprite2->y || spriteBeam->y >= sprite2->y + 24))
                 return tutorialObj.koffingSpritesId[i];
     }
-    
     return 0xFF;
 }
 
-u8 isZubatColisionKoffing(struct Sprite *spriteZubat)
+u8 IsZubatColisionKoffing(struct Sprite *spriteZubat)
 {
     s8 i;
     struct Sprite *sprite2;
 
-    for ( i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
+    for (i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
     {
-        if(tutorialObj.koffingSpritesId[i] == 0xFF)
+        if (tutorialObj.koffingSpritesId[i] == 0xFF)
             continue;
 
         sprite2 = &gSprites[tutorialObj.koffingSpritesId[i]];
@@ -552,12 +585,12 @@ u8 isZubatColisionKoffing(struct Sprite *spriteZubat)
     return 0xFF;
 }
 
-u8 GetFreeIndexKoffingSpritesIds()
+u8 GetFreeIndexKoffingSpritesIds(void)
 {
     u8 i;
-    for ( i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
+    for (i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
     {
-        if( tutorialObj.koffingSpritesId[i] == 0xFF)
+        if (tutorialObj.koffingSpritesId[i] == 0xFF)
             return i;
     }
     return 0xFF;
@@ -568,39 +601,39 @@ u8 RandomInRange(u8 min, u8 max)
     return Random() % (max - min + 1) + min;
 }
 
-static void HandleMovement_Zubat()
+static void HandleMovementZubat(void)
 {
      
-    if(JOY_HELD(DPAD_UP) && GetZubatPositionY(CORD_TOP) > 0)
+    if (JOY_HELD(DPAD_UP) && GetZubatPositionY(CORD_TOP) > 0)
     {
         gSprites[tutorialObj.zubatSpriteId].y -= 1;
     }
 
-    if(JOY_HELD(DPAD_DOWN) && GetZubatPositionY(CORD_BOTTOM) < HEIGHT_SCREEN)
+    if (JOY_HELD(DPAD_DOWN) && GetZubatPositionY(CORD_BOTTOM) < DISPLAY_HEIGHT)
     {
         gSprites[tutorialObj.zubatSpriteId].y += 1;
     }
 
-    if(JOY_NEW(A_BUTTON))
+    if (JOY_NEW(A_BUTTON))
     {
         if(tutorialObj.countBeam < MAX_NUM_BEAM_SPRITES)
         {
             tutorialObj.beamSpritesId[tutorialObj.countBeam] = CreateBeamSprite();
             gSprites[tutorialObj.beamSpritesId[tutorialObj.countBeam]].sBeamIndex = tutorialObj.countBeam;
             tutorialObj.countBeam += 1;
+            PlaySE(SE_M_SUPERSONIC); //Cada vez que lanza un supersónico, se emite el efecto de sonido.
         }
     }
 }
 
-static bool8 HasLivesToContinue()
+static bool8 HasLivesToContinue(void)
 {
-    if(tutorialObj.numLives == 0)
+    if (tutorialObj.numLives == 0)
         return FALSE;
-
     return TRUE;
 }
 
-//==========tasks==========//
+//==========Tasks==========//
 
 static void Task_StartGame(u8 taskId);
 static void Task_WaitToCreateKoffings(u8 taskId);
@@ -612,11 +645,11 @@ static void Task_MainWaitFadeIn(u8 taskId)
     if (!gPaletteFade.active)
     {
         PutWindowTilemap(WINDOW_DISTANCE);
-        PutWindowTilemap(WINDOW_LIVE);
+        PutWindowTilemap(WINDOW_LIVES);
         PutWindowTilemap(WINDOW_MSG);
         DrawStdWindowFrame(WINDOW_MSG, FALSE);
         FillWindowPixelBuffer(WINDOW_MSG, PIXEL_FILL(1));
-        CopyWindowToVram(WINDOW_MSG, 3);
+        CopyWindowToVram(WINDOW_MSG, COPYWIN_FULL);
         StringExpandPlaceholders(gStringVar4, gText_HowToPlay);
         AddTextPrinterForMessage(TRUE);
 
@@ -644,33 +677,35 @@ static void Task_StartGame(u8 taskId)
     memset(tutorialObj.koffingSpritesId, 0xFF, sizeof(tutorialObj.koffingSpritesId));
     PrintLives();
     PrintDistance();
-    tutorialObj.zubatSpriteId = CreateZubatSprite(50, 50 ,0);
+    tutorialObj.zubatSpriteId = CreateZubatSprite(50, 50, 0);
     CreateTask(Task_CreateKoffings, 1);
-    gTasks[taskId].func = Task_Movement_Bgs;
+    gTasks[taskId].func = Task_MovementBgs;
 }
 
-#define tBG2HOFS data[4]
-#define tBG3HOFS data[5]
+#define tBG1HOFS data[4]
+#define tBG2HOFS data[5]
 
-static void Task_Movement_Bgs(u8 taskId)
+static void Task_MovementBgs(u8 taskId)
 {
     if(!HasLivesToContinue())
     {
         gTasks[taskId].tTimer = 0;
         gTasks[taskId].func = Task_ZubatFall;
+        PlaySE(SE_RG_CARD_FLIP);
     }
 
     if(gTasks[taskId].tTimer % 4 == 0) 
     {
-        SetGpuReg(REG_OFFSET_BG2HOFS, ++gTasks[taskId].tBG2HOFS);
+        SetGpuReg(REG_OFFSET_BG1HOFS, ++gTasks[taskId].tBG1HOFS);
     }
 
     if(gTasks[taskId].tTimer % 8 == 0) 
     {
-        SetGpuReg(REG_OFFSET_BG3HOFS, ++gTasks[taskId].tBG3HOFS);
+        SetGpuReg(REG_OFFSET_BG2HOFS, ++gTasks[taskId].tBG2HOFS);
     }
 
-    if(gTasks[taskId].tTimer % 30 == 0){
+    if(gTasks[taskId].tTimer % 30 == 0)
+    {
         tutorialObj.distance += 1;
         PrintDistance();
     } 
@@ -678,10 +713,10 @@ static void Task_Movement_Bgs(u8 taskId)
     gTasks[taskId].tTimer += 1;
 }
 
+#undef tBG1HOFS
 #undef tBG2HOFS
-#undef tBG3HOFS
 
-static void  Task_CreateKoffings(u8 taskId)
+static void Task_CreateKoffings(u8 taskId)
 {
     u8 i, yPos, numSpriteToCreate, indexKoffing;
     bool8 positionValid;
@@ -689,31 +724,31 @@ static void  Task_CreateKoffings(u8 taskId)
 
     if (!gPaletteFade.active)
     {
-        if(!HasLivesToContinue())
+        if (!HasLivesToContinue())
         {
             DestroyTask(taskId);
         }
 
-       numSpriteToCreate = (Random() % (MAX_NUM_KOFFING_SPRITES/2)) + 1;
+       numSpriteToCreate = (Random() % (MAX_NUM_KOFFING_SPRITES / 2)) + 1;
 
-        for ( i = 0; i < numSpriteToCreate; i++)
+        for (i = 0; i < numSpriteToCreate; i++)
         {
-
             indexKoffing = GetFreeIndexKoffingSpritesIds();
-            if( indexKoffing == 0xFF)
+            if (indexKoffing == 0xFF)
                 break;
             
-            do{
+            do
+            {
                 positionValid = TRUE;
-                yPos = RandomInRange(16, HEIGHT_SCREEN-16);
+                yPos = RandomInRange(16, DISPLAY_HEIGHT-16);
 
-                // Verificar que no se solape con ningún sprite existente
+                // Comprobamos que no se solape con ningún sprite existente
                 for (u8 j = 0; j < MAX_NUM_KOFFING_SPRITES; j++)
                 {
                     if (tutorialObj.koffingSpritesId[j] != 0xFF)
                     {
                         u8 existingYPos = gSprites[tutorialObj.koffingSpritesId[j]].y;
-                        if (abs(yPos - existingYPos) < 32)  // 32 es el tamaño del sprite
+                        if (abs(yPos - existingYPos) < 32) // 32 es el tamaño del sprite
                         {
                             positionValid = FALSE;
                             break;
@@ -721,10 +756,10 @@ static void  Task_CreateKoffings(u8 taskId)
                     }
                 }
                 attempts++;
+            }
+            while (!positionValid && attempts < 10);
 
-            } while (!positionValid && attempts < 10);
-
-            if(positionValid)
+            if (positionValid)
             {
                 tutorialObj.koffingSpritesId[indexKoffing] = CreateKoffingSprite(240, yPos, 0);
                 gSprites[tutorialObj.koffingSpritesId[indexKoffing]].sKoffingIndex = indexKoffing;
@@ -736,17 +771,18 @@ static void  Task_CreateKoffings(u8 taskId)
     gTasks[taskId].func = Task_WaitToCreateKoffings;
 }
 
-static void  Task_WaitToCreateKoffings(u8 taskId)
+static void Task_WaitToCreateKoffings(u8 taskId)
 {
-    if(++gTasks[taskId].tTimer == gTasks[taskId].tTimeToWait)
+    if (++gTasks[taskId].tTimer == gTasks[taskId].tTimeToWait)
     {
         gTasks[taskId].tTimer = 0;
         gTasks[taskId].func = Task_CreateKoffings;
     }
-}   
+}
+
 static void Task_ZubatFall(u8 taskId)
 {
-    if(gSprites[tutorialObj.zubatSpriteId].y ==  HEIGHT_SCREEN)
+    if (gSprites[tutorialObj.zubatSpriteId].y == DISPLAY_HEIGHT)
     {
         gSprites[tutorialObj.zubatSpriteId].invisible = TRUE;
         gTasks[taskId].func = Task_EndGame;
@@ -758,26 +794,26 @@ static void Task_FadeOut(u8 taskId)
 {
     BeginNormalPaletteFade(PALETTES_ALL, 10, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_FadeOut;
-
 }
 
 static void Task_EndGame(u8 taskId)
 {
-    if(!gPaletteFade.active)
+    u16 music = GetCurrLocationDefaultMusic();
+
+    if (!gPaletteFade.active)
     {
         Free(&tutorialObj);
         FreeAllWindowBuffers();
         DestroySpritesGame();
         SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        FadeOutAndPlayNewMapMusic(music, 4);
         DestroyTask(taskId);
     }
 }
 
-
-
-
 //==========GFX SETUP FUNC==========//
-void CB2_InitTutorialSetUp()
+
+void CB2_InitTutorialSetUp(void)
 {
     switch (gMain.state)
     {
@@ -787,7 +823,7 @@ void CB2_InitTutorialSetUp()
         ResetTasks();
         ResetSpriteData();
         ResetPaletteFade();
-        DmaClearLarge16(3, (void *) VRAM, VRAM_SIZE, 0x1000);
+        DmaClearLarge16(3, (void *) VRAM, VRAM_SIZE, 4096);
         FreeAllSpritePalettes();
         gMain.state++;
     case 1:
@@ -796,17 +832,18 @@ void CB2_InitTutorialSetUp()
         gMain.state++;
         break;
     case 2:
-        LoadBGs_EventStart();
+        LoadBgs();
         InitWindowTutorial();
         LoadSpritesResources();
-        LoadMessageBoxAndBorderGfx();
-        LoadBgTiles(0, ZubatIcon_Sprite, 128, 0x200);
-        LoadPalette(ZubatKoffing_Palette, 0x10, 0x20);
+        //LoadMessageBoxAndFrameGfx(WINDOW_MSG, FALSE);
+        LoadUserWindowBorderGfx(WINDOW_MSG, 532, BG_PLTT_ID(14));
+        LoadPalette(ZubatKoffing_Palette, BG_PLTT_ID(1), PLTT_SIZE_4BPP); //"Reutilizamos" la paleta de los iconos en el bg para cargar el icono de Zubat. Si os dais cuenta, se ha cargado como parte del background, y, por tanto, se le ha asignado previamente (en TilemapStudio) el índice de paleta que usará.
+        FadeOutAndPlayNewMapMusic(MUS_WEATHER_GROUDON, 4); //Aquí es donde se hace la transición entre la música del OW y la música de nuestro menú. El 4 es el tiempo de transición: cuanto más alto, más lenta la transición.
         gMain.state++;
         break;
     case 3:
         CreateTask(Task_MainWaitFadeIn, 0);
-        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK); //Fundido a negro.
         gMain.state++;
         break;
     case 4:
@@ -818,8 +855,11 @@ void CB2_InitTutorialSetUp()
     }
 }
 
+#endif //TUTORIAL_MINIJUEGO_ZUBAT
+
 //==========CALLNATIVE FUNC==========//
-bool8 StartTutorial_CB2()
+
+bool8 StartTutorial_CB2(void)
 {
     if (TUTORIAL_MINIJUEGO_ZUBAT)
     {
