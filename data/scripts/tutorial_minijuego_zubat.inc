@@ -1,7 +1,0 @@
-TutorialMinijuegoZubat_EventScript::
-	lockall
-	goto TutorialMinijuegoZubat_EventScript_MiniGame
-	end
-
-TutorialMinijuegoZubat_EventScript_MiniGame::
-	callnative(StartTutorial_CB2)

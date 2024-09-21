@@ -859,7 +859,7 @@ void CB2_InitTutorialSetUp(void)
 
 //==========CALLNATIVE FUNC==========//
 
-bool8 StartTutorial_CB2(void)
+bool8 StartTutorialMinijuegoZubat_CB2(void)
 {
     if (TUTORIAL_MINIJUEGO_ZUBAT)
     {
