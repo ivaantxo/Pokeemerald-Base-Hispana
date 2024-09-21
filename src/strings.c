@@ -141,7 +141,6 @@ const u8 gText_Store[] = _("STORE");
 const u8 gMenuText_Check[] = _("CHECK");
 const u8 gText_None[] = _("NONE");
 const u8 gMenuText_Deselect[] = _("DESELECT");
-const u8 gText_ThreeMarks[] = _("???");
 const u8 gText_FiveMarks[] = _("?????");
 const u8 gText_Slash[] = _("/");
 const u8 gText_OneDash[] = _("-");
@@ -224,64 +223,19 @@ const u8 *const gPyramidBagMenu_ReturnToStrings[] =
 };
 
 const u8 gText_ReturnToVar1[] = _("Return to\n{STR_VAR_1}.");
-const u8 gText_ItemsPocket[] = _("ITEMS");
-const u8 gText_PokeBallsPocket[] = _("POKé BALLS");
-const u8 gText_TMHMPocket[] = _("TMs & HMs");
-const u8 gText_BerriesPocket[] = _("BERRIES");
-const u8 gText_KeyItemsPocket[] = _("KEY ITEMS");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
-    [ITEMS_POCKET] = gText_ItemsPocket,
-    [BALLS_POCKET] = gText_PokeBallsPocket,
-    [TMHM_POCKET]  = gText_TMHMPocket,
-    [BERRIES_POCKET] = gText_BerriesPocket,
-    [KEYITEMS_POCKET] = gText_KeyItemsPocket
+    [ITEMS_POCKET] =    COMPOUND_STRING("ITEMS"),
+    [BALLS_POCKET] =    COMPOUND_STRING("POKé BALLS"),
+    [TMHM_POCKET]  =    COMPOUND_STRING("TMs & HMs"),
+    [BERRIES_POCKET] =  COMPOUND_STRING("BERRIES"),
+    [KEYITEMS_POCKET] = COMPOUND_STRING("KEY ITEMS")
 };
 
 const u8 gText_NumberItem_TMBerry[] = _("{NO}{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");
 const u8 gText_NumberItem_HM[] = _("{CLEAR_TO 0x11}{STR_VAR_1}{CLEAR 0x05}{STR_VAR_2}");
-const u8 gText_SizeSlash[] = _("SIZE /");
-const u8 gText_FirmSlash[] = _("FIRM /");
-const u8 gText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
 
-// Berry firmness strings
-const u8 gBerryFirmnessString_VerySoft[] = _("Very soft");
-const u8 gBerryFirmnessString_Soft[] = _("Soft");
-const u8 gBerryFirmnessString_Hard[] = _("Hard");
-const u8 gBerryFirmnessString_VeryHard[] = _("Very hard");
-const u8 gBerryFirmnessString_SuperHard[] = _("Super hard");
-
-const u8 gText_NumberVar1Var2[] = _("{NO}{STR_VAR_1} {STR_VAR_2}");
-const u8 gText_BerryTag[] = _("BERRY TAG");
-const u8 gText_RedPokeblock[] = _("RED {POKEBLOCK}");
-const u8 gText_BluePokeblock[] = _("BLUE {POKEBLOCK}");
-const u8 gText_PinkPokeblock[] = _("PINK {POKEBLOCK}");
-const u8 gText_GreenPokeblock[] = _("GREEN {POKEBLOCK}");
-const u8 gText_YellowPokeblock[] = _("YELLOW {POKEBLOCK}");
-const u8 gText_PurplePokeblock[] = _("PURPLE {POKEBLOCK}");
-const u8 gText_IndigoPokeblock[] = _("INDIGO {POKEBLOCK}");
-const u8 gText_BrownPokeblock[] = _("BROWN {POKEBLOCK}");
-const u8 gText_LiteBluePokeblock[] = _("LITEBLUE {POKEBLOCK}");
-const u8 gText_OlivePokeblock[] = _("OLIVE {POKEBLOCK}");
-const u8 gText_GrayPokeblock[] = _("GRAY {POKEBLOCK}");
-const u8 gText_BlackPokeblock[] = _("BLACK {POKEBLOCK}");
-const u8 gText_WhitePokeblock[] = _("WHITE {POKEBLOCK}");
-const u8 gText_GoldPokeblock[] = _("GOLD {POKEBLOCK}");
-const u8 gText_Spicy[] = _("SPICY");
-const u8 gText_Dry[] = _("DRY");
-const u8 gText_Sweet[] = _("SWEET");
-const u8 gText_Bitter[] = _("BITTER");
-const u8 gText_Sour[] = _("SOUR");
-const u8 gText_Tasty[] = _("TASTY"); // Unused
-const u8 gText_Feel[] = _("FEEL"); // Unused
-const u8 gText_StowCase[] = _("Stow CASE.");
-const u8 gText_LvVar1[] = _("{LV}{STR_VAR_1}");
-const u8 gText_ThrowAwayVar1[] = _("Throw away this\n{STR_VAR_1}?");
-const u8 gText_Var1ThrownAway[] = _("The {STR_VAR_1}\nwas thrown away.");
-const u8 gText_Var1AteTheVar2[] = _("{STR_VAR_1} ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Var1HappilyAteVar2[] = _("{STR_VAR_1} happily ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Var1DisdainfullyAteVar2[] = _("{STR_VAR_1} disdainfully ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ShopBuy[] = _("BUY");
 const u8 gText_ShopSell[] = _("SELL");
 const u8 gText_ShopQuit[] = _("QUIT");
