@@ -835,8 +835,7 @@ void CB2_InitTutorialSetUp(void)
         LoadBgs();
         InitWindowTutorial();
         LoadSpritesResources();
-        //LoadMessageBoxAndFrameGfx(WINDOW_MSG, FALSE);
-        LoadUserWindowBorderGfx(WINDOW_MSG, 532, BG_PLTT_ID(14));
+        LoadMessageBoxAndBorderGfx();
         LoadPalette(ZubatKoffing_Palette, BG_PLTT_ID(1), PLTT_SIZE_4BPP); //"Reutilizamos" la paleta de los iconos en el bg para cargar el icono de Zubat. Si os dais cuenta, se ha cargado como parte del background, y, por tanto, se le ha asignado previamente (en TilemapStudio) el índice de paleta que usará.
         FadeOutAndPlayNewMapMusic(MUS_WEATHER_GROUDON, 4); //Aquí es donde se hace la transición entre la música del OW y la música de nuestro menú. El 4 es el tiempo de transición: cuanto más alto, más lenta la transición.
         gMain.state++;
