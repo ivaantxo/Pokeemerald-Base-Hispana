@@ -454,11 +454,20 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #include "data/object_events/object_event_graphics_info.h"
 #include "data/object_events/object_event_graphics_info_followers.h"
 
+//Índices para cargar los tags de los árboles de bayas mediante constantes (en src/data/object_events/berry_tree_graphics_tables.h)
+enum NpcSpritePalettes
+{
+    PAL_NPC_1,
+    PAL_NPC_2,
+    PAL_NPC_3,
+    PAL_NPC_4,
+};
+
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
-    {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_NPC_1},
-    {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
-    {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
-    {gObjectEventPal_Npc4,                  OBJ_EVENT_PAL_TAG_NPC_4},
+    [PAL_NPC_1] =   {gObjectEventPal_Npc1,  OBJ_EVENT_PAL_TAG_NPC_1},
+    [PAL_NPC_2] =   {gObjectEventPal_Npc2,  OBJ_EVENT_PAL_TAG_NPC_2},
+    [PAL_NPC_3] =   {gObjectEventPal_Npc3,  OBJ_EVENT_PAL_TAG_NPC_3},
+    [PAL_NPC_4] =   {gObjectEventPal_Npc4,  OBJ_EVENT_PAL_TAG_NPC_4},
     {gObjectEventPal_Brendan,               OBJ_EVENT_PAL_TAG_BRENDAN},
     {gObjectEventPal_PlayerUnderwater,      OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER},
     {gObjectEventPal_Truck,                 OBJ_EVENT_PAL_TAG_TRUCK},
@@ -2437,9 +2446,9 @@ static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId
     const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
     if (berryStage == 0) //Arena
-        UpdateSpritePalette(&sObjectEventSpritePalettes[1], sprite); //OBJ_EVENT_PAL_TAG_NPC_2
+        UpdateSpritePalette(&sObjectEventSpritePalettes[PAL_NPC_2], sprite);
     else if (berryStage == 1) //Ha florecido
-        UpdateSpritePalette(&sObjectEventSpritePalettes[2], sprite); //OBJ_EVENT_PAL_TAG_NPC_3
+        UpdateSpritePalette(&sObjectEventSpritePalettes[PAL_NPC_3], sprite);
     else
         UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteTagTable[berryId]], sprite);
     sprite->oam.shape = graphicsInfo->oam->shape;

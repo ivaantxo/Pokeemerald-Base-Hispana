@@ -3376,15 +3376,15 @@ extern const u16 gMonMarkingsMenu_Pal[];
     extern const u32 gIconosTipos_Pal[];
 
     //Minijuego de Zubat
+    extern const u32 TutorialBG1_Tileset[];
+    extern const u32 TutorialBG1_Tilemap[];
     extern const u32 TutorialBG2_Tileset[];
     extern const u32 TutorialBG2_Tilemap[];
-    extern const u32 TutorialBG3_Tileset[];
-    extern const u32 TutorialBG3_Tilemap[];
     extern const u16 TutorialBG_Palette[];
-    extern const u8 Zubat_Sprite[];
-    extern const u8 Koffing_Sprite[];
-    extern const u8 Beam_Sprite[];
-    extern const u8 ZubatIcon_Sprite[];
+    extern const u8 ZubatSprite[];
+    extern const u8 KoffingSprite[];
+    extern const u8 BeamSprite[];
+    extern const u8 ZubatIcon[];
     extern const u16 ZubatKoffing_Palette[];
 
 #endif //GUARD_GRAPHICS_H
