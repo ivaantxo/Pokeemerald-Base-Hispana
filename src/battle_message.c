@@ -3091,14 +3091,9 @@ static const u8 *TryGetStatusString(u8 *src)
 
 static void GetBattlerNick(u32 battler, u8 *dst)
 {
-    struct Pokemon *mon, *illusionMon;
+    struct Pokemon *illusionMon = GetIllusionMonPtr(battler);
+    struct Pokemon *mon = GetPartyBattlerData(battler);
 
-    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-        mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
-    else
-        mon = &gEnemyParty[gBattlerPartyIndexes[battler]];
-
-    illusionMon = GetIllusionMonPtr(battler);
     if (illusionMon != NULL)
         mon = illusionMon;
     GetMonData(mon, MON_DATA_NICKNAME, dst);

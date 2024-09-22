@@ -5936,7 +5936,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && HadMoreThanHalfHpNowDoesnt(gBattlerTarget)
              && !(TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove)))
             {
-                gBattlerAttacker = gBattlerTarget;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AngerShellActivates;
                 effect++;
@@ -8542,13 +8541,9 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
     if (gProtectStructs[battlerDef].maxGuarded && IsMoveBlockedByMaxGuard(move))
         return TRUE;
 
-    // Protective Pads doesn't stop Unseen Fist from bypassing Protect effects, so IsMoveMakingContact() isn't used here.
-    // This means extra logic is needed to handle Shell Side Arm.
-    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNSEEN_FIST
-        && (gMovesInfo[move].makesContact
-            || (gMovesInfo[move].effect == EFFECT_SHELL_SIDE_ARM
-                && gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] == DAMAGE_CATEGORY_PHYSICAL))
-        && !gProtectStructs[battlerDef].maxGuarded) // Max Guard cannot be bypassed by Unseen Fist
+    if (!gProtectStructs[battlerDef].maxGuarded // Max Guard cannot be bypassed by Unseen Fist
+     && IsMoveMakingContact(move, gBattlerAttacker)
+     && GetBattlerAbility(gBattlerAttacker) == ABILITY_UNSEEN_FIST)
         return FALSE;
     else if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_CRAFTY_SHIELD
              && IS_MOVE_STATUS(move))

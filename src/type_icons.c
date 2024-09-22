@@ -291,7 +291,7 @@ static bool32 UseDoubleBattleCoords(u32 position)
 
 static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
 {
-    struct Pokemon* mon = GetBattlerData(battlerId);
+    struct Pokemon* mon = GetPartyBattlerData(battlerId);
     u32 monSpecies = GetMonData(mon,MON_DATA_SPECIES,NULL);
     struct Pokemon* monIllusion;
     u32 illusionSpecies;

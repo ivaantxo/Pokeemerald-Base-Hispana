@@ -1153,11 +1153,10 @@ static inline u32 GetBattlerSide(u32 battler)
     return GetBattlerPosition(battler) & BIT_SIDE;
 }
 
-static inline struct Pokemon* GetBattlerData(u32 battlerId)
+static inline struct Pokemon* GetPartyBattlerData(u32 battler)
 {
-    u32 index = gBattlerPartyIndexes[battlerId];
-
-    return (GetBattlerSide(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
+    u32 index = gBattlerPartyIndexes[battler];
+    return (GetBattlerSide(battler) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
 static inline struct Pokemon *GetSideParty(u32 side)
@@ -1176,3 +1175,4 @@ static inline bool32 IsDoubleBattle(void)
 }
 
 #endif // GUARD_BATTLE_H
+

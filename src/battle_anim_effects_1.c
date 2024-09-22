@@ -5495,8 +5495,8 @@ static void AnimMilkBottle_Step2(struct Sprite *sprite, int unk1, int unk2)
 
 void AnimGrantingStars(struct Sprite *sprite)
 {
-    if (!gBattleAnimArgs[2])
-        SetSpriteCoordsToAnimAttackerCoords(sprite);
+    if (!InitSpritePosToAnimBattler(gBattleAnimArgs[2], sprite, FALSE))
+        return;
 
     SetAnimSpriteInitialXOffset(sprite, gBattleAnimArgs[0]);
     sprite->y += gBattleAnimArgs[1];
