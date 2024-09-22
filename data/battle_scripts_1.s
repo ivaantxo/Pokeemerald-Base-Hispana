@@ -4725,8 +4725,8 @@ BattleScript_ButItFailed::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 BattleScript_RestoreAttackerButItFailed:
-        restoreattacker
-        goto BattleScript_ButItFailed
+	restoreattacker
+	goto BattleScript_ButItFailed
 
 BattleScript_NotAffected::
 	pause B_WAIT_TIME_SHORT
