@@ -472,13 +472,13 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
 {
     [WINDOW_MSG]
     {
-        .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 6,
-        .width = 28,
-        .height = 5,
-        .paletteNum = 15,
-        .baseBlock = 1
+        .bg = 0,//bg donde va estar la window
+        .tilemapLeft = 1,// separacion del lado izq en bloques de 8x8 donde se va a posicion la window
+        .tilemapTop = 6,// separacion del borde superior en bloques de 8x8 donde se va a posicion la window
+        .width = 28,//ancho de la window, en bloques de 8x8
+        .height = 5,//alto de la window, en bloques de 8x8
+        .paletteNum = 15,//paleta de la window, siempre del lado de los BGS
+        .baseBlock = 1//posicionamiento de la window en VRAM, a la primera simpre se le da el valor 1
     },
     [WINDOW_DISTANCE]
     {
@@ -488,7 +488,7 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .width = 10,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 169
+        .baseBlock = 141// se calcula asi (ancho * alto) + baseblock, estos valores simpre son de la window previa, (28 * 5) + 1
     },
     [WINDOW_LIVES]
     {
@@ -498,25 +498,25 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .width = 6,
         .height = 2,
         .paletteNum = 1,
-        .baseBlock = 189
+        .baseBlock = 161
     },
     DUMMY_WIN_TEMPLATE,
 };
 
 static void InitWindowTutorial(void)
 {
-	InitWindows(sWindowTemplatesTutorial);
+	InitWindows(sWindowTemplatesTutorial); //incializamos la windows q se van a mostrar
     DeactivateAllTextPrinters();
 	LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP); //Cargamos la paleta de la ventana de texto del OW para poder utilizarla.
 }
 
 static void PrintDistance(void)
 {
-    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0));
-    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3);
+    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0));//Funcion q rellena con color la window, en este caso va colorcar el color 0(el transparete) del paleteNum indicada en WINDOW_DISTANCE
+    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3);//convierte el valor tutorialObj.distance en un string, y lo almacena en gStringVar1
     StringExpandPlaceholders(gStringVar2, gText_Distance);
-    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextColors2, 0, gStringVar2);
-    CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX);
+    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextColors2, 0, gStringVar2);//funcion para printear los textos
+    CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX);//funcion para q carge el texto en VRAM
 }
 
 static void PrintLives(void)
