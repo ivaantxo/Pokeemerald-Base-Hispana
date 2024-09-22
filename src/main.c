@@ -34,6 +34,7 @@ static void IntrDummy(void);
 
 // Defined in the linker script so that the test build can override it.
 extern void gInitialMainCB2(void);
+extern void CB2_FlashNotDetectedScreen(void);
 
 const u8 gGameVersion = GAME_VERSION;
 
@@ -114,7 +115,7 @@ void AgbMain()
     gSoftResetDisabled = FALSE;
 
     if (gFlashMemoryPresent != TRUE)
-        SetMainCallback2(NULL);
+        SetMainCallback2((SAVE_TYPE_ERROR_SCREEN) ? CB2_FlashNotDetectedScreen : NULL);
 
     gLinkTransferringData = FALSE;
 
