@@ -76,17 +76,6 @@ static bool32 IsCurMapReloadLocation(void)
     return IsCurMapInLocationList(sSaveLocationReloadLocList);
 }
 
-// Nulled out list. Unknown what this would have been.
-static const u16 sEmptyMapList[] =
-{
-    LIST_END,
-};
-
-static bool32 IsCurMapInEmptyList(void)
-{
-    return IsCurMapInLocationList(sEmptyMapList);
-}
-
 static void TrySetPokeCenterWarpStatus(void)
 {
     if (!IsCurMapPokeCenter())
@@ -103,20 +92,10 @@ static void TrySetReloadWarpStatus(void)
         gSaveBlock2Ptr->specialSaveWarpFlags |= LOBBY_SAVEWARP;
 }
 
-// Unknown save warp flag. Never set because map list is empty.
-static void TrySetUnknownWarpStatus(void)
-{
-    if (!IsCurMapInEmptyList())
-        gSaveBlock2Ptr->specialSaveWarpFlags &= ~UNK_SPECIAL_SAVE_WARP_FLAG_3;
-    else
-        gSaveBlock2Ptr->specialSaveWarpFlags |= UNK_SPECIAL_SAVE_WARP_FLAG_3;
-}
-
 void TrySetMapSaveWarpStatus(void)
 {
     TrySetPokeCenterWarpStatus();
     TrySetReloadWarpStatus();
-    TrySetUnknownWarpStatus();
 }
 
 // In FRLG, only bits 0, 4, and 5 are set when the Pokédex is received.

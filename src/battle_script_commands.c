@@ -8321,8 +8321,7 @@ static void DrawLevelUpBannerText(void)
     AddTextPrinter(&printerTemplate, TEXT_SKIP_DRAW, NULL);
 
     txtPtr = gStringVar4;
-    *(txtPtr)++ = CHAR_EXTRA_SYMBOL;
-    *(txtPtr)++ = CHAR_LV_2;
+    *(txtPtr)++ = CHAR_LV;
 
     var = (u32)(txtPtr);
     txtPtr = ConvertIntToDecimalStringN(txtPtr, monLevel, STR_CONV_MODE_LEFT_ALIGN, 3);

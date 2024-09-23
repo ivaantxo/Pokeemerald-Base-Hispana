@@ -929,11 +929,11 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     }
     else
     {
-        text[0] = CHAR_EXTRA_SYMBOL;
-        text[1] = CHAR_LV_2;
+        text[0] = CHAR_SPACE;
+        text[1] = CHAR_LV;
 
         objVram = ConvertIntToDecimalStringN(text + 2, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
-        xPos = 5 * (3 - (objVram - (text + 2)));
+        xPos = 5 * (3 - (objVram - (text + 2))) - 1;
         UpdateIndicatorVisibilityAndType(healthboxSpriteId, TRUE);
     }
 
@@ -944,14 +944,14 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     {
         objVram = (void *)(OBJ_VRAM0);
         if (!WhichBattleCoords(battler))
-            objVram += spriteTileNum + 0x820;
+            objVram += spriteTileNum + 2080;
         else
-            objVram += spriteTileNum + 0x420;
+            objVram += spriteTileNum + 1056;
     }
     else
     {
         objVram = (void *)(OBJ_VRAM0);
-        objVram += spriteTileNum + 0x400;
+        objVram += spriteTileNum + 1024;
     }
     TextIntoHealthboxObject(objVram, windowTileData, 3);
     RemoveWindowOnHealthbox(windowId);
@@ -979,7 +979,7 @@ static void PrintHpOnHealthbox(u32 spriteId, s16 currHp, s16 maxHp, u32 bgColor,
     if (maxHp >= 1000)
         x = 9, tilesCount = 3;
     else
-        x = 6, tilesCount = 2, leftTile += 0x20;
+        x = 6, tilesCount = 2, leftTile += 32;
     windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, x, 5, bgColor, &windowId);
     HpTextIntoHealthboxObject(objVram + leftTile, windowTileData, tilesCount);
     RemoveWindowOnHealthbox(windowId);
@@ -1011,13 +1011,13 @@ static void UpdateOpponentHpTextDoubles(u32 healthboxSpriteId, u32 barSpriteId, 
             {
                 CpuCopy32(&gMonSpritesGfxPtr->barFontGfx[((i - var) * 64) + 32],
                       (void *)((OBJ_VRAM0) + 32 * (1 + gSprites[barSpriteId].oam.tileNum + i)),
-                      0x20);
+                      32);
             }
             else
             {
                 CpuCopy32(&gMonSpritesGfxPtr->barFontGfx[((i - var) * 64) + 32],
-                      (void *)((OBJ_VRAM0 + 0x20) + 32 * (i + gSprites[barSpriteId].oam.tileNum)),
-                      0x20);
+                      (void *)((OBJ_VRAM0 + 32) + 32 * (i + gSprites[barSpriteId].oam.tileNum)),
+                      32);
             }
         }
 
@@ -1025,8 +1025,8 @@ static void UpdateOpponentHpTextDoubles(u32 healthboxSpriteId, u32 barSpriteId, 
         {
             CpuCopy32(&gMonSpritesGfxPtr->barFontGfx[224],
                       (void *)((OBJ_VRAM0) + ((gSprites[barSpriteId].oam.tileNum + 4) * TILE_SIZE_4BPP)),
-                      0x20);
-            CpuFill32(0, (void *)((OBJ_VRAM0) + (gSprites[barSpriteId].oam.tileNum * TILE_SIZE_4BPP)), 0x20);
+                      32);
+            CpuFill32(0, (void *)((OBJ_VRAM0) + (gSprites[barSpriteId].oam.tileNum * TILE_SIZE_4BPP)), 32);
         }
     }
 }

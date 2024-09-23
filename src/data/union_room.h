@@ -1,6 +1,6 @@
 ALIGNED(4) static const u8 sText_EmptyString[] = _("");
 ALIGNED(4) static const u8 sText_Colon[] = _(":");
-ALIGNED(4) static const u8 sText_ID[] = _("{ID}");
+ALIGNED(4) static const u8 sText_ID[] = _("ID");
 ALIGNED(4) static const u8 sText_PleaseStartOver[] = _("Please start over from the beginning.");
 ALIGNED(4) static const u8 sText_WirelessSearchCanceled[] = _("The WIRELESS COMMUNICATION\nSYSTEM search has been canceled.");
 ALIGNED(4) static const u8 sText_AwaitingCommunucation2[] = _("Awaiting communication\nfrom another player."); // Unused

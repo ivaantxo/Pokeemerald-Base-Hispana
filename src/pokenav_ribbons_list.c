@@ -5,6 +5,7 @@
 #include "palette.h"
 #include "window.h"
 #include "sound.h"
+#include "strings.h"
 #include "string_util.h"
 #include "international_string_util.h"
 #include "constants/songs.h"
@@ -119,10 +120,6 @@ static const struct WindowTemplate sRibbonsMonListWindowTemplate =
     .paletteNum = 1,
     .baseBlock = 20
 };
-
-static const u8 sText_MaleSymbol[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_RED}{WHITE}{GREEN}♂{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
-static const u8 sText_FemaleSymbol[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_GREEN}{WHITE}{BLUE}♀{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
-static const u8 sText_NoGenderSymbol[] = _("{UNK_SPACER}");
 
 bool32 PokenavCallback_Init_MonRibbonList(void)
 {
@@ -724,13 +721,13 @@ static void BufferRibbonMonInfoText(struct PokenavListItem * listItem, u8 *dest)
     switch (gender)
     {
     default:
-        genderStr = sText_NoGenderSymbol;
+        genderStr = gText_NoGenderSymbolPokeNav;
         break;
     case MON_MALE:
-        genderStr = sText_MaleSymbol;
+        genderStr = gText_MaleSymbolPokeNav;
         break;
     case MON_FEMALE:
-        genderStr = sText_FemaleSymbol;
+        genderStr = gText_FemaleSymbolPokeNav;
         break;
     }
     end = StringGet_Nickname(gStringVar3);
@@ -740,8 +737,7 @@ static void BufferRibbonMonInfoText(struct PokenavListItem * listItem, u8 *dest)
 
     s = StringCopy(gStringVar1, genderStr);
     *s++ = CHAR_SLASH;
-    *s++ = CHAR_EXTRA_SYMBOL;
-    *s++ = CHAR_LV_2;
+    *s++ = CHAR_LV;
     ConvertIntToDecimalStringN(s, level, STR_CONV_MODE_LEFT_ALIGN, 3);
     dest = GetStringClearToWidth(dest, FONT_NORMAL, gStringVar1, 54);
     ConvertIntToDecimalStringN(dest, item->data, STR_CONV_MODE_RIGHT_ALIGN, 2);

@@ -859,8 +859,8 @@ static const struct WindowTemplate sPokemonList_WindowTemplate[] =
     DUMMY_WIN_TEMPLATE
 };
 
-static const u8 sText_No0000[] = _("{NO}0000");
-static const u8 sText_No000[] = _("{NO}000");
+static const u8 sText_No0000[] = _("Nº0000");
+static const u8 sText_No000[] = _("Nº000");
 static const u8 sCaughtBall_Gfx[] = INCBIN_U8("graphics/pokedex/caught_ball.4bpp");
 static const u8 sText_TenDashes[] = _("----------");
 

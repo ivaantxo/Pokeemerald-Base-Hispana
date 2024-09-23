@@ -3052,4 +3052,9 @@ extern const u8 gText_Bgs[];
 extern const u8 gText_BgsSprites[];
 extern const u8 gText_Minijuego[];
 
+//PokéNav
+extern const u8 gText_MaleSymbolPokeNav[];
+extern const u8 gText_FemaleSymbolPokeNav[];
+extern const u8 gText_NoGenderSymbolPokeNav[];
+
 #endif // GUARD_STRINGS_H

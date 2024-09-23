@@ -31,7 +31,6 @@ static const u8 sTradeStripesBG3Tilemap[] = INCBIN_U8("graphics/trade/stripes_bg
 static const u8 sText_EmptyString[] = _("");
 static const u8 sText_UnusedTextFormat[] = _("{COLOR WHITE}{HIGHLIGHT TRANSPARENT}{SHADOW DARK_GRAY}");
 const u8 gText_MaleSymbol4[] = _("♂");
-const u8 gText_FemaleSymbol4[] = _("♀");
 const u8 gText_GenderlessSymbol[] = _("");
 static const u8 sText_SpaceMove[] = _(" MOVE"); // unused
 static const u8 sText_NewLine[] = _("\n");
