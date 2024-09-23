@@ -80,15 +80,15 @@ struct Tutorial
 //Los EWRAM_DATA son variables globales que vamos a utilizar a lo largo de muchas funciones (se pueden usar en todo el repo). Por eso, se definen ya en la memoria EWRAM para tenerlas siempre a mano.
 static EWRAM_DATA struct Tutorial tutorialObj = {0};
 
-const u8 sTextColors[]= {TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
-const u8 sTextColors2[]= {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
+const u8 sTextoNormal[]= {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
+const u8 sTextoLila[]= {0, 6, 12}; //Usa la paleta asignada a Zubat (BG_PLTT_ID(1)), el color 6 es violeta, y el 12 es violeta oscuro.
 
 const u8 gText_HowToPlay[] = _("Zubat no ve nada. Ayúdalo a volar por la\n"
                                "cueva sin chocarse con los {PKMN} salvajes.\p"
                                "Pulsa {DPAD_UPDOWN} para moverte.\n"
                                "Pulsa {A_BUTTON} localizar los obstaculos.");
 const u8 gText_Distance[] = _("Distancia: {STR_VAR_1}m");
-const u8 gText_Live[] = _(" x {STR_VAR_1}");
+const u8 gText_Lives[] = _(" x {STR_VAR_1}");
 
 enum ZubatStates
 {
@@ -472,13 +472,13 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
 {
     [WINDOW_MSG]
     {
-        .bg = 0,//bg donde va estar la window
-        .tilemapLeft = 1,// separacion del lado izq en bloques de 8x8 donde se va a posicion la window
-        .tilemapTop = 6,// separacion del borde superior en bloques de 8x8 donde se va a posicion la window
-        .width = 28,//ancho de la window, en bloques de 8x8
-        .height = 5,//alto de la window, en bloques de 8x8
-        .paletteNum = 15,//paleta de la window, siempre del lado de los BGS
-        .baseBlock = 1//posicionamiento de la window en VRAM, a la primera simpre se le da el valor 1
+        .bg = 0, //Bg donde va estar la window
+        .tilemapLeft = 1, //Cuantos bloques de 8x8 va a tener a la izquierda el inicio de la window
+        .tilemapTop = 6, //Cuantos bloques de 8x8 va a tener arriba el inicio de la window
+        .width = 28, //Ancho de la window, en bloques de 8x8
+        .height = 5, //Alto de la window, en bloques de 8x8
+        .paletteNum = 15, //Paleta que va a usar la window, siempre de las correspondientes a los backgrounds.
+        .baseBlock = 1 //Posicionamiento de la window en la VRAM, a la primera simpre se le da el valor 1
     },
     [WINDOW_DISTANCE]
     {
@@ -488,7 +488,7 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .width = 10,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 141// se calcula asi (ancho * alto) + baseblock, estos valores simpre son de la window previa, (28 * 5) + 1
+        .baseBlock = 28 * 5 + 1 //Para calcular el valor del baseblock, multiplicamos el ancho por el alto de la window previa, más el baseblock de la previa. Podemos escribir explícitamente el valor, o dejar que nos lo calcule.
     },
     [WINDOW_LIVES]
     {
@@ -498,25 +498,25 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .width = 6,
         .height = 2,
         .paletteNum = 1,
-        .baseBlock = 161
+        .baseBlock = (28 * 5 + 1) + (10 * 2)
     },
     DUMMY_WIN_TEMPLATE,
 };
 
 static void InitWindowTutorial(void)
 {
-	InitWindows(sWindowTemplatesTutorial); //incializamos la windows q se van a mostrar
+	InitWindows(sWindowTemplatesTutorial); //Esta función es la que inicializa las windows que vamos a usar.
     DeactivateAllTextPrinters();
 	LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP); //Cargamos la paleta de la ventana de texto del OW para poder utilizarla.
 }
 
 static void PrintDistance(void)
 {
-    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0));//Funcion q rellena con color la window, en este caso va colorcar el color 0(el transparete) del paleteNum indicada en WINDOW_DISTANCE
-    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3);//convierte el valor tutorialObj.distance en un string, y lo almacena en gStringVar1
+    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0)); //Funcion que rellena con color la window, en este caso coloca el color 0 (el transparete) del paleteNum indicada en WINDOW_DISTANCE
+    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3); //Convierte el valor tutorialObj.distance en un string, y lo almacena en gStringVar1 para ser utilizada como controlador de texto (STR_VAR_1) en gText_Distance.
     StringExpandPlaceholders(gStringVar2, gText_Distance);
-    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextColors2, 0, gStringVar2);//funcion para printear los textos
-    CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX);//funcion para q carge el texto en VRAM
+    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextoNormal, 0, gStringVar2); //Funcion para printear los textos.
+    CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX); //Funcion para que cargue el texto en la VRAM. Lo que hace es "actualizar" los cambios que hemos hecho en la window y la vuelve a copiar a la RAM de video.
 }
 
 static void PrintLives(void)
@@ -524,8 +524,8 @@ static void PrintLives(void)
     FillWindowPixelBuffer(WINDOW_LIVES, PIXEL_FILL(0));
     BlitBitmapToWindow(WINDOW_LIVES, ZubatIcon, 0, 0, 16, 16);
     ConvertIntToDecimalStringN(gStringVar1, tutorialObj.numLives, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(gStringVar2, gText_Live);
-    AddTextPrinterParameterized3(WINDOW_LIVES, FONT_SMALL, 17, 0, sTextColors2, 0, gStringVar2);
+    StringExpandPlaceholders(gStringVar2, gText_Lives);
+    AddTextPrinterParameterized3(WINDOW_LIVES, FONT_SMALL, 17, 0, sTextoLila, 0, gStringVar2);
     CopyWindowToVram(WINDOW_LIVES, COPYWIN_GFX);
 }
 
@@ -540,7 +540,7 @@ u8 GetZubatPositionY(u8 cord)
     {
         return (topEdge <= 0) ? 0 : gSprites[tutorialObj.zubatSpriteId].y;
     }
-    else
+    else //(cord == CORD_BOTTOM)
     {
         return (bottomEdge >= DISPLAY_HEIGHT) ? DISPLAY_HEIGHT : gSprites[tutorialObj.zubatSpriteId].y;
     }
