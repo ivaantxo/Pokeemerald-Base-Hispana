@@ -860,7 +860,7 @@ void CB2_InitTutorialSetUp(void)
 
 bool8 StartTutorialMinijuegoZubat_CB2(void)
 {
-    if (TUTORIAL_MINIJUEGO_ZUBAT)
+    #if TUTORIAL_MINIJUEGO_ZUBAT == TRUE
     {
         if (!gPaletteFade.active)
         {
@@ -872,5 +872,6 @@ bool8 StartTutorialMinijuegoZubat_CB2(void)
             return TRUE;
         }
     }
+    #endif //TUTORIAL_MINIJUEGO_ZUBAT
     return FALSE;
 }
