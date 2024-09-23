@@ -125,10 +125,6 @@ static const struct WindowTemplate sSearchResultListMenuWindowTemplate =
     .baseBlock = 20
 };
 
-static const u8 sText_MaleSymbol[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_RED}{WHITE}{GREEN}♂{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
-static const u8 sText_FemaleSymbol[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_GREEN}{WHITE}{BLUE}♀{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
-static const u8 sText_NoGenderSymbol[] = _("{UNK_SPACER}");
-
 bool32 PokenavCallback_Init_ConditionSearch(void)
 {
     struct Pokenav_SearchResults *menu = AllocSubstruct(POKENAV_SUBSTRUCT_CONDITION_SEARCH_RESULTS, sizeof(struct Pokenav_SearchResults));
@@ -716,13 +712,13 @@ static void BufferSearchMonListItem(struct PokenavMonListItem * item, u8 *dest)
     switch (gender)
     {
     default:
-        genderStr = sText_NoGenderSymbol;
+        genderStr = gText_NoGenderSymbolPokeNav;
         break;
     case MON_MALE:
-        genderStr = sText_MaleSymbol;
+        genderStr = gText_MaleSymbolPokeNav;
         break;
     case MON_FEMALE:
-        genderStr = sText_FemaleSymbol;
+        genderStr = gText_FemaleSymbolPokeNav;
         break;
     }
     end = StringGet_Nickname(gStringVar3);
@@ -732,8 +728,7 @@ static void BufferSearchMonListItem(struct PokenavMonListItem * item, u8 *dest)
 
     s = StringCopy(gStringVar1, genderStr);
     *s++ = CHAR_SLASH;
-    *s++ = CHAR_EXTRA_SYMBOL;
-    *s++ = CHAR_LV_2;
+    *s++ = CHAR_LV;
     ConvertIntToDecimalStringN(s, level, STR_CONV_MODE_LEFT_ALIGN, 3);
     GetStringClearToWidth(dest, FONT_NORMAL, gStringVar1, 40);
 }

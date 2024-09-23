@@ -1,6 +1,6 @@
 #ifndef GUARD_TUTORIAL_MINIJUEGO_ZUBAT_H
 #define GUARD_TUTORIAL_MINIJUEGO_ZUBAT_H
 
-void CB2_InitTutorialSetUp();
+void StartTutorialMinijuegoZubat_CB2();
 
 #endif // GUARD_TUTORIAL_MINIJUEGO_ZUBAT_H

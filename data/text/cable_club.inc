@@ -269,7 +269,7 @@ MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo:
 	.string "Command DODRIO's three heads to\n"
 	.string "catch falling BERRIES.\p"
 	.string "Press right, up, or left on the\n"
-	.string "{PLUS} Control Pad to move the heads.\p"
+	.string "+ Control Pad to move the heads.\p"
 	.string "To play this game, you must have\n"
 	.string "a DODRIO.$"
 

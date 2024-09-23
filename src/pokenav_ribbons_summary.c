@@ -855,7 +855,7 @@ static const struct WindowTemplate sRibbonSummaryMonNameWindowTemplate =
     .width = 13,
     .height = 2,
     .paletteNum = 10,
-    .baseBlock = 0x54,
+    .baseBlock = 84,
 };
 
 static void AddRibbonSummaryMonNameWindow(struct Pokenav_RibbonsSummaryMenu *menu)
@@ -864,10 +864,6 @@ static void AddRibbonSummaryMonNameWindow(struct Pokenav_RibbonsSummaryMenu *men
     PutWindowTilemap(menu->nameWindowId);
     PrintRibbbonsSummaryMonInfo(menu);
 }
-
-static const u8 sMaleIconString[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_RED}{WHITE}{GREEN}♂{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
-static const u8 sFemaleIconString[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_GREEN}{WHITE}{BLUE}♀{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
-static const u8 sGenderlessIconString[] = _("{UNK_SPACER}");
 
 static void PrintRibbbonsSummaryMonInfo(struct Pokenav_RibbonsSummaryMenu *menu)
 {
@@ -881,21 +877,20 @@ static void PrintRibbbonsSummaryMonInfo(struct Pokenav_RibbonsSummaryMenu *menu)
     switch (gender)
     {
     case MON_MALE:
-        genderTxt = sMaleIconString;
+        genderTxt = gText_MaleSymbolPokeNav;
         break;
     case MON_FEMALE:
-        genderTxt = sFemaleIconString;
+        genderTxt = gText_FemaleSymbolPokeNav;
         break;
     default:
-        genderTxt = sGenderlessIconString;
+        genderTxt = gText_NoGenderSymbolPokeNav;
         break;
     }
     AddTextPrinterParameterized(windowId, GetFontIdToFit(gStringVar3, FONT_NORMAL, 0, 60), gStringVar3, 0, 1, TEXT_SKIP_DRAW, NULL);
 
     txtPtr = StringCopy(gStringVar1, genderTxt);
     *(txtPtr++) = CHAR_SLASH;
-    *(txtPtr++) = CHAR_EXTRA_SYMBOL;
-    *(txtPtr++) = CHAR_LV_2;
+    *(txtPtr++) = CHAR_LV;
     ConvertIntToDecimalStringN(txtPtr, level, STR_CONV_MODE_LEFT_ALIGN, 3);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar1, 60, 1, TEXT_SKIP_DRAW, NULL);
     CopyWindowToVram(windowId, COPYWIN_GFX);

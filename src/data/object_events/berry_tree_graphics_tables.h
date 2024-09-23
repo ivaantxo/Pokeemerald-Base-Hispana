@@ -613,6 +613,12 @@ const struct SpriteFrameImage *const gBerryTreePicTablePointers[] = {
     [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX]  = sPicTable_DurinBerryTree,
 };
 
+/*
+    Para facilitar la creación de nuevos árboles, se han creado estas constantes para sObjectEventSpritePalettes, pero solo para las 4 primeras paletas (Las que originalmente correspondían con los NPCs, y que son las que usan los árboles de bayas del pokeemerald vanilla).
+    Si quisieras añadir nuevos árboles con paletas custom deberás añadir el índice de la paleta en sObjectEventSpritePalettes (La posición en la que esté, y empieza en 0), o podrías añadir una nueva constante al enum NpcSpritePalettes.
+    No necesariamente tiene que estar en orden, podrías poner simplemente MI_PAL = índice_que_ocupe_en_sObjectEventSpritePalettes (Por ejemplo, 17), y funcionará.
+*/
+
 const u8 gBerryTreePaletteTagTable[] = {
     [ITEM_CHERI_BERRY - FIRST_BERRY_INDEX]              = PAL_NPC_3,
     [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX]             = PAL_NPC_1,

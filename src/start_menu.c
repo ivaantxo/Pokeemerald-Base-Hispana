@@ -49,6 +49,7 @@
 #include "constants/songs.h"
 #include "event_scripts.h"
 #include "config/tutoriales.h"
+#include "tutoriales/minijuego_zubat.h"
 
 // Menu actions
 enum
@@ -782,14 +783,14 @@ static bool8 StartMenuTutorialMinijuegoZubatCallback(void)
 {
     RemoveExtraStartMenuWindows();
     HideStartMenu();
-    ScriptContext_SetupScript(TutorialMinijuegoZubat_EventScript);
+    SetMainCallback2(StartTutorialMinijuegoZubat_CB2);
     return TRUE;
 }
 
 static bool8 StartMenuExitCallback(void)
 {
     RemoveExtraStartMenuWindows();
-    HideStartMenu(); // Hide start menu
+    HideStartMenu();
     return TRUE;
 }
 
