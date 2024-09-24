@@ -6211,7 +6211,7 @@ static void HandleTargetSpeciesPrintText(u32 targetSpecies, u32 base_x, u32 base
     else
         StringCopy(gStringVar3, gText_ThreeQuestionMarks); //show questionmarks instead of name
     StringExpandPlaceholders(gStringVar3, sText_EVO_Name); //evolution mon name
-    PrintInfoScreenTextSmall(gStringVar3, base_x, base_y + base_y_offset*base_i); //evolution mon name
+    PrintInfoScreenTextSmall(gStringVar3, base_x, base_y + base_y_offset * base_i); //evolution mon name
 }
 
 static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i, u8 iterations)
@@ -6225,16 +6225,13 @@ static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i
     gSprites[gTasks[taskId].data[5 + base_i]].oam.paletteNum = 5 + base_i;
 }
 
-static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y, u16 unused)
+static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y)
 {
     bool8 owned = GetSetPokedexFlag(SpeciesToNationalPokedexNum(targetSpecies), FLAG_GET_CAUGHT);
     if (owned)
-        BlitBitmapToWindow(0, sCaughtBall_Gfx, x, y-1, 8, 16);
+        BlitBitmapToWindow(0, sCaughtBall_Gfx, x, y - 1, 8, 16);
     else
-    {
-        //FillWindowPixelRect(0, PIXEL_FILL(0), x, y, 8, 16); //not sure why this was even here
-        PrintInfoScreenTextSmall(gText_OneDash, x+1, y-1);
-    }
+        PrintInfoScreenTextSmall(gText_OneDash, x + 1, y - 1);
 }
 
 static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 species, u8 base_x, u8 base_y, u8 base_y_offset, u8 base_i)
@@ -6273,7 +6270,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
     u16 i;
     u16 j;
 
-    u8 base_x = 13+8;
+    u8 base_x = 13 + 8;
     u8 base_y = 51;
     u8 base_y_offset = 9;
 
@@ -6301,7 +6298,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
                 sPokedexView->sEvoScreenData.isMega = TRUE;
 
                 CopyItemName(GetSpeciesFormChanges(species)->param1, gStringVar2); //item
-                CreateCaughtBallEvolutionScreen(preEvolutionOne, base_x - 9 - 8, base_y + base_y_offset*(numPreEvolutions - 1), 0);
+                CreateCaughtBallEvolutionScreen(preEvolutionOne, base_x - 9 - 8, base_y + base_y_offset * (numPreEvolutions - 1));
                 HandlePreEvolutionSpeciesPrint(taskId, preEvolutionOne, species, base_x - 8, base_y, base_y_offset, numPreEvolutions - 1);
                 return numPreEvolutions;
             }
@@ -6341,7 +6338,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
                 {
                     preEvolutionTwo = i;
                     numPreEvolutions += 1;
-                    CreateCaughtBallEvolutionScreen(preEvolutionTwo, base_x - 9, base_y + base_y_offset*0, 0);
+                    CreateCaughtBallEvolutionScreen(preEvolutionTwo, base_x - 9, base_y + base_y_offset * 0);
                     HandlePreEvolutionSpeciesPrint(taskId, preEvolutionTwo, preEvolutionOne, base_x, base_y, base_y_offset, 0);
                     break;
                 }
@@ -6352,7 +6349,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
     //Print ball and name
     if (preEvolutionOne != 0)
     {
-        CreateCaughtBallEvolutionScreen(preEvolutionOne, base_x - 9, base_y + base_y_offset*(numPreEvolutions - 1), 0);
+        CreateCaughtBallEvolutionScreen(preEvolutionOne, base_x - 9, base_y + base_y_offset * (numPreEvolutions - 1));
         HandlePreEvolutionSpeciesPrint(taskId, preEvolutionOne, species, base_x, base_y, base_y_offset, numPreEvolutions - 1);
     }
 
@@ -6429,7 +6426,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
         targetSpecies = evolutions[i].targetSpecies;
         sPokedexView->sEvoScreenData.targetSpecies[*depth_i] = targetSpecies;
-        CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*(*depth_i), 0);
+        CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x * depth-9, base_y + base_y_offset * (*depth_i));
         HandleTargetSpeciesPrintText(targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, *depth_i); //evolution mon name
 
         for (j = 0; j < MAX_EVOLUTION_ICONS; j++)
@@ -6705,7 +6702,6 @@ static void Task_ExitEvolutionScreen(u8 taskId)
         DestroyTask(taskId);
     }
 }
-
 
 //************************************
 //*                                  *
