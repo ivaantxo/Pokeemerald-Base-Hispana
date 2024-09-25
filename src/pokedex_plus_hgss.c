@@ -623,6 +623,8 @@ static void DestroyCategoryIcon(void);
 
 static u16 NationalPokedexNumToSpeciesHGSS(u16 nationalNum);
 
+const u16 gPokedexPlusArrowPal[] = INCBIN_U16("graphics/pokedex/hgss/arrow.gbapal");
+
 //Stat bars by DizzyEgg
 #define TAG_STAT_BAR 4097
 #define TAG_STAT_BAR_BG 4098
@@ -6049,7 +6051,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         //Print evo info and icons
         gTasks[taskId].data[3] = 0;
         PrintEvolutionTargetSpeciesAndMethod(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), 0, &depth, alreadyPrintedIcons, &iconDepth);
-        LoadPalette(&gSpritePalette_Arrow, OBJ_PLTT_ID(15), PLTT_SIZE_4BPP);
+        LoadPalette(&gPokedexPlusArrowPal, OBJ_PLTT_ID(3), PLTT_SIZE_4BPP);
         GetSeenFlagTargetSpecies();
         if (sPokedexView->sEvoScreenData.numAllEvolutions > 0 && sPokedexView->sEvoScreenData.numSeen > 0)
         {
@@ -6059,7 +6061,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
             sPokedexView->sEvoScreenData.menuPos = pos;
             sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&gSpriteTemplate_Arrow, 7, 58 + 9 * pos, 0);
             gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].animNum = 2;
-            gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].oam.paletteNum = 15;
+            gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].oam.paletteNum = 3;
         }
         gMain.state++;
         break;
@@ -6769,7 +6771,7 @@ static void Task_LoadFormsScreen(u8 taskId)
         //Print form icons
         gTasks[taskId].data[3] = 0;
         PrintForms(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum));
-        LoadPalette(&gSpritePalette_Arrow, OBJ_PLTT_ID(15), PLTT_SIZE_4BPP);
+        LoadPalette(&gPokedexPlusArrowPal, OBJ_PLTT_ID(3), PLTT_SIZE_4BPP);
         gMain.state++;
         break;
     case 5:
@@ -6827,7 +6829,7 @@ static void Task_HandleFormsScreenInput(u8 taskId)
             sPokedexView->sFormScreenData.inSubmenu = TRUE;
             sPokedexView->sFormScreenData.arrowSpriteId = CreateSprite(&gSpriteTemplate_Arrow, base_x + offset_x, base_y, 0);
             gSprites[sPokedexView->sFormScreenData.arrowSpriteId].animNum = 2;
-            gSprites[sPokedexView->sFormScreenData.arrowSpriteId].oam.paletteNum = 15;
+            gSprites[sPokedexView->sFormScreenData.arrowSpriteId].oam.paletteNum = 3;
             EvoFormsPage_PrintNavigationButtons();
         }
 
