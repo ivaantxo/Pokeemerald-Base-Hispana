@@ -46,7 +46,7 @@ extern const struct BattleBackground sBattleTerrainTable[];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
 extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
-extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
+extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT];
 static const u16 sBgColor[] = {RGB_WHITE};
 
 static struct PokemonSpriteVisualizer *GetStructPtr(u8 taskId)
@@ -1080,7 +1080,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             SetVBlankCallback(NULL);
             FreeMonSpritesGfx();
             ResetBGs_PokemonSpriteVisualizer(0);
-            DmaFillLarge16(3, 0, (u8 *)VRAM, VRAM_SIZE, 0x1000)
+            DmaFillLarge16(3, 0, (u8 *)VRAM, VRAM_SIZE, 4096)
             DmaClear32(3, OAM, OAM_SIZE);
             DmaClear16(3, PLTT, PLTT_SIZE);
             gMain.state = 1;
@@ -1094,7 +1094,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             gReservedSpritePaletteCount = 8;
             ResetAllPicSprites();
             BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
-            LoadPalette(GetTextWindowPalette(0), PLTT_ID(15), 0x40);
+            LoadPalette(GetTextWindowPalette(0), BG_PLTT_ID(14), 2 * PLTT_SIZE_4BPP);
 
             FillBgTilemapBufferRect(0, 0, 0, 0, 32, 20, 15);
             InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
@@ -1154,14 +1154,18 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             SetMultiuseSpriteTemplateToPokemon(species, 2);
             offset_y = gSpeciesInfo[species].backPicYOffset;
             data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, VISUALIZER_MON_BACK_X, VISUALIZER_MON_BACK_Y + offset_y, 0);
-            gSprites[data->backspriteId].oam.paletteNum = 4;
+            gSprites[data->backspriteId].oam.paletteNum = 5;
             gSprites[data->backspriteId].callback = SpriteCallbackDummy;
             gSprites[data->backspriteId].oam.priority = 0;
 
             //Icon & Follower Sprite
-            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species, SpriteCB_Follower, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 0);     
+            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species,
+                                     SpriteCB_Follower,
+                                     VISUALIZER_ICON_X,
+                                     VISUALIZER_ICON_Y,
+                                     0);
             gSprites[data->followerspriteId].oam.priority = 0;
-            //gSprites[data->followerspriteId].oam.paletteNum = 5;
+            gSprites[data->followerspriteId].oam.paletteNum = 5;
             gSprites[data->followerspriteId].anims = sAnims_Follower;
 
             //Modify Arrows
@@ -1504,7 +1508,7 @@ static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             gTasks[taskId].func = Exit_PokemonSpriteVisualizer;
             PlaySE(SE_PC_OFF);
         }
@@ -1710,13 +1714,13 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     gSprites[data->backspriteId].oam.priority = 0;
 
     //Icon & Follower Sprite
-    data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species + (data->isShiny ? SPECIES_SHINY_TAG : 0),
+    data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species,
                                                         SpriteCB_Follower,
                                                         VISUALIZER_ICON_X,
                                                         VISUALIZER_ICON_Y,
                                                         0);
     gSprites[data->followerspriteId].oam.priority = 0;
-    //gSprites[data->followerspriteId].oam.paletteNum = 5;
+    gSprites[data->followerspriteId].oam.paletteNum = 5;
     gSprites[data->followerspriteId].anims = sAnims_Follower;
 
     //Modify Arrows

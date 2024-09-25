@@ -2372,6 +2372,9 @@ $(POKEMONGFXDIR)/meditite/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/meganium/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/meganium/overworldf.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/melmetal/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

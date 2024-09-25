@@ -1370,12 +1370,6 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
         objectEvent->graphicsId -= SPECIES_SHINY_TAG;
     }
 
-    if (objectEvent->graphicsId >= OBJ_EVENT_GFX_MON_BASE + SPECIES_SHINY_TAG)
-    {
-        objectEvent->shiny = TRUE;
-        objectEvent->graphicsId -= SPECIES_SHINY_TAG;
-    }
-
     spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
     if (spriteId == MAX_SPRITES)
     {
@@ -1651,7 +1645,7 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
 
     if (gSpeciesInfo[species].frontPicFemale != NULL)
     {
-        if(form == 0)
+        if (form == 0)
         {
             graphicsInfo = &gSpeciesInfo[species].overworldData;
         }

@@ -176,10 +176,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         .palette = gMonPalette_Meganium,
         .shinyPalette = gMonShinyPalette_Meganium,
-        .iconSprite = gObjectEventPic_Meganium, 
+        .iconSprite = gObjectEventPic_Meganium,
+        .iconSpriteFemale = gObjectEventPic_MeganiumF,
         FOOTPRINT(Meganium)
         OVERWORLD(
             sPicTable_Meganium,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MeganiumF,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
