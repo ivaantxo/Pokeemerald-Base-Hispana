@@ -52,6 +52,7 @@
 #include "constants/trainer_types.h"
 #include "constants/union_room.h"
 #include "constants/weather.h"
+#include "config/pbh.h"
 
 // this file was known as evobjmv.c in Game Freak's original source
 
@@ -1722,12 +1723,15 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
         // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
         // so that palette tags do not overlap
         const u32 *palette = GetMonSpritePalFromSpecies(species, shiny, FALSE); //ETODO
+        struct Pokemon *mon = GetFirstLiveMon();
         // palette already loaded
         if ((paletteNum = IndexOfSpritePaletteTag(species)) < 16)
             return paletteNum;
         // Use matching front sprite's normal/shiny palettes
-        // Load compressed palette
-        LoadCompressedSpritePaletteWithTag(palette, species);
+        if (PBH_PALETAS_UNICAS)
+            LoadCompressedSpritePaletteWithTagHueShifted(palette, species, &mon->box);
+        else
+            LoadCompressedSpritePaletteWithTag(palette, species);
         paletteNum = IndexOfSpritePaletteTag(species); // Tag is always present
     }
 

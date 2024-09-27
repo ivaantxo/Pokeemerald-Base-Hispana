@@ -7,7 +7,9 @@
 #include "trainer_pokemon_sprites.h"
 #include "data.h"
 #include "pokemon.h"
+#include "util.h"
 #include "constants/trainers.h"
+#include "config/pbh.h"
 
 #define PICS_COUNT 8
 
@@ -81,11 +83,19 @@ static void LoadPicPaletteByTagOrSlot(u16 species, bool8 isShiny, u32 personalit
         {
             sCreatingSpriteTemplate.paletteTag = TAG_NONE;
             LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), OBJ_PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
+            if (PBH_PALETAS_UNICAS)
+            {
+                UniquePaletteByPersonality(OBJ_PLTT_ID(paletteSlot), species, personality);
+                CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(paletteSlot)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteSlot)], PLTT_SIZE_4BPP);
+            }
         }
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
-            LoadCompressedSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species);
+            if (PBH_PALETAS_UNICAS)
+                LoadCompressedSpritePaletteWithTagHueShiftedByPersonality(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species, personality);
+            else
+                LoadCompressedSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species);
         }
     }
     else
@@ -106,7 +116,14 @@ static void LoadPicPaletteByTagOrSlot(u16 species, bool8 isShiny, u32 personalit
 static void LoadPicPaletteBySlot(u16 species, bool8 isShiny, u32 personality, u8 paletteSlot, bool8 isTrainer)
 {
     if (!isTrainer)
+    {
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
+        if (PBH_PALETAS_UNICAS)
+        {
+            UniquePaletteByPersonality(PLTT_ID(paletteSlot), species, personality);
+            CpuCopy32(&gPlttBufferFaded[PLTT_ID(paletteSlot)], &gPlttBufferUnfaded[PLTT_ID(paletteSlot)], PLTT_SIZE_4BPP);
+        }
+    }
     else
         LoadCompressedPalette(gTrainerSprites[species].palette.data, PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
 }

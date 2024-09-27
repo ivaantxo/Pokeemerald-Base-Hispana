@@ -93,7 +93,7 @@ static bool8 DoMonAnimStep(void);
 static bool8 LoadMonAndSceneGfx(struct Pokemon *);
 static u8 CreatePokeblockSprite(void);
 static u8 CreatePokeblockCaseSpriteForFeeding(void);
-static u8 CreateMonSprite(struct Pokemon *);
+static u8 CreateMonSpritePokeblock(struct Pokemon *);
 static void SpriteCB_ThrownPokeblock(struct Sprite *);
 
 EWRAM_DATA static struct PokeblockFeed *sPokeblockFeed = NULL;
@@ -577,7 +577,7 @@ static bool8 LoadPokeblockFeedScene(void)
         gMain.state++;
         break;
     case 9:
-        sPokeblockFeed->monSpriteId = CreateMonSprite(&gPlayerParty[gPokeblockMonId]);
+        sPokeblockFeed->monSpriteId = CreateMonSpritePokeblock(&gPlayerParty[gPokeblockMonId]);
         gMain.state++;
         break;
     case 10:
@@ -824,7 +824,7 @@ static void Task_FadeOutPokeblockFeed(u8 taskId)
 #define sAccel   data[1]
 #define sSpecies data[2]
 
-static u8 CreateMonSprite(struct Pokemon *mon)
+static u8 CreateMonSpritePokeblock(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
     u8 spriteId = CreateSprite(&gMultiuseSpriteTemplate, MON_X, MON_Y, 2);

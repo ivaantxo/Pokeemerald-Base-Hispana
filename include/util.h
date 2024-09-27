@@ -16,6 +16,8 @@ u32 CalcByteArraySum(const u8 *data, u32 length);
 void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u32 blendColor);
 void DoBgAffineSet(struct BgAffineDstData *dest, u32 texX, u32 texY, s16 scrX, s16 scrY, s16 sx, s16 sy, u16 alpha);
 void CopySpriteTiles(u8 shape, u8 size, u8 *tiles, u16 *tilemap, u8 *output);
-
+void UniquePalette(u16 palOffset, struct BoxPokemon *boxMon);
+void UniquePaletteByPersonality(u16 palOffset, u16 species, u32 personality);
+void UniquePaletteBuffered(u16 * buffer, u16 species, u32 personality);
 
 #endif // GUARD_UTIL_H
