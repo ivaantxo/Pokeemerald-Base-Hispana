@@ -275,8 +275,8 @@ static void SeedRngWithRtc(void)
 
 void InitKeys(void)
 {
-    gKeyRepeatContinueDelay = 5;
-    gKeyRepeatStartDelay = 40;
+    gKeyRepeatContinueDelay = 3;
+    gKeyRepeatStartDelay = 30;
 
     gMain.heldKeys = 0;
     gMain.newKeys = 0;
