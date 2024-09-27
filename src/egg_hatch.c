@@ -34,7 +34,7 @@
 #include "pokemon_storage_system.h"
 #include "field_screen_effect.h"
 #include "data.h"
-#include "battle.h" // to get rid of later
+#include "battle.h"
 #include "constants/rgb.h"
 #include "party_menu.h"
 #include "config/pbh.h"
@@ -54,12 +54,8 @@ struct EggHatchData
     u8 state;
     u8 delayTimer;
     u8 eggPartyId;
-    u8 unused_5;
-    u8 unused_6;
     u8 eggShardVelocityId;
     u8 windowId;
-    u8 unused_9;
-    u8 unused_A;
     u16 species;
     u8 textColor[3];
 };
@@ -420,25 +416,14 @@ bool8 CheckDaycareMonReceivedMail(void)
     return _CheckDaycareMonReceivedMail(&gSaveBlock1Ptr->daycare, gSpecialVar_0x8004);
 }
 
-static u8 EggHatchCreateMonSprite(u8 useAlt, u8 state, u8 partyId, u16 *speciesLoc)
+static u8 EggHatchCreateMonSprite(u8 state, u8 partyId, u16 *speciesLoc)
 {
-    u8 position = 0;
     u8 spriteId = 0;
     struct Pokemon *mon = NULL;
-    u16 species = SPECIES_NONE;
-
-    if (useAlt == FALSE)
-    {
-        mon = &gPlayerParty[partyId];
-        position = B_POSITION_OPPONENT_LEFT;
-    }
-    if (useAlt == TRUE)
-    {
-        // Alternate sprite allocation position. Never reached.
-        mon = &gPlayerParty[partyId];
-        position = B_POSITION_OPPONENT_RIGHT;
-    }
+    u16 species;
+    mon = &gPlayerParty[partyId];
     species = GetMonData(mon, MON_DATA_SPECIES);
+
     switch (state)
     {
     case 0:
@@ -446,7 +431,7 @@ static u8 EggHatchCreateMonSprite(u8 useAlt, u8 state, u8 partyId, u16 *speciesL
         {
             u32 pid = GetMonData(mon, MON_DATA_PERSONALITY);
             HandleLoadSpecialPokePic(TRUE,
-                                     gMonSpritesGfxPtr->spritesGfx[(useAlt * 2) + B_POSITION_OPPONENT_LEFT],
+                                     gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_LEFT],
                                      species, pid);
             if (PBH_PALETAS_UNICAS)
                 LoadCompressedSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, &mon->box);                
@@ -457,7 +442,7 @@ static u8 EggHatchCreateMonSprite(u8 useAlt, u8 state, u8 partyId, u16 *speciesL
         break;
     case 1:
         // Create mon sprite
-        SetMultiuseSpriteTemplateToPokemon(species, position);
+        SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_OPPONENT_LEFT);
         spriteId = CreateSprite(&gMultiuseSpriteTemplate, EGG_X, EGG_Y, 6);
         gSprites[spriteId].invisible = TRUE;
         gSprites[spriteId].callback = SpriteCallbackDummy;
@@ -493,6 +478,8 @@ static void Task_EggHatch(u8 taskId)
 
 static void CB2_LoadEggHatch(void)
 {
+    const struct CompressedSpritePalette *pal1, *pal2;
+
     switch (gMain.state)
     {
     case 0:
@@ -542,7 +529,14 @@ static void CB2_LoadEggHatch(void)
     case 3:
         LoadSpriteSheet(&sEggHatch_Sheet);
         LoadSpriteSheet(&sEggShards_Sheet);
-        LoadSpritePalette(&sEgg_SpritePalette);
+        if (PBH_HUEVOS_COLOR_TIPO)
+        {
+            pal1 = &gEgg1PaletteTable[gSpeciesInfo[GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES)].types[0]];
+            pal2 = &gEgg2PaletteTable[gSpeciesInfo[GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES)].types[1]];
+            LoadCompressedEggHatchSpritePalette(pal1, pal2);
+        }
+        else
+            LoadSpritePalette(&sEgg_SpritePalette);
         gMain.state++;
         break;
     case 4:
@@ -551,18 +545,18 @@ static void CB2_LoadEggHatch(void)
         gMain.state++;
         break;
     case 5:
-        EggHatchCreateMonSprite(FALSE, 0, sEggHatchData->eggPartyId, &sEggHatchData->species);
+        EggHatchCreateMonSprite(0, sEggHatchData->eggPartyId, &sEggHatchData->species);
         gMain.state++;
         break;
     case 6:
-        sEggHatchData->monSpriteId = EggHatchCreateMonSprite(FALSE, 1, sEggHatchData->eggPartyId, &sEggHatchData->species);
+        sEggHatchData->monSpriteId = EggHatchCreateMonSprite(1, sEggHatchData->eggPartyId, &sEggHatchData->species);
         gMain.state++;
         break;
     case 7:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
         LoadPalette(gTradeGba2_Pal, BG_PLTT_ID(1), 5 * PLTT_SIZE_4BPP);
-        LoadBgTiles(1, gTradeGba_Gfx, 0x1420, 0);
-        CopyToBgTilemapBuffer(1, gTradePlatform_Tilemap, 0x1000, 0);
+        LoadBgTiles(1, gTradeGba_Gfx, 5152, 0);
+        CopyToBgTilemapBuffer(1, gTradePlatform_Tilemap, 4096, 0);
         CopyBgTilemapBufferToVram(1);
         gMain.state++;
         break;
@@ -787,10 +781,8 @@ static void SpriteCB_Egg_Shake3(struct Sprite *sprite)
     {
         if (++sprite->sTimer > 38)
         {
-            u16 UNUSED species;
             sprite->callback = SpriteCB_Egg_WaitHatch;
             sprite->sTimer = 0;
-            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES);
             gSprites[sEggHatchData->monSpriteId].x2 = 0;
             gSprites[sEggHatchData->monSpriteId].y2 = 0;
         }

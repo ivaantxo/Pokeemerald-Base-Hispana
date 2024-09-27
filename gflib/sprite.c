@@ -1778,3 +1778,25 @@ u8 LoadUniqueSpritePaletteByPersonality(const struct SpritePalette *palette, u16
         return index;
     }
 }
+
+u8 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct SpritePalette *palette2)
+{
+    u8 index = IndexOfSpritePaletteTag(palette1->tag);
+
+    if (index != 0xFF)
+        return index;
+
+    index = IndexOfSpritePaletteTag(0xFFFF);
+
+    if (index == 0xFF)
+    {
+        return 0xFF;
+    }
+    else
+    {
+        sSpritePaletteTags[index] = palette1->tag;
+        DoLoadSpritePalette(palette1->data, PLTT_ID(index));
+        DoLoadSpritePalette(palette2->data, PLTT_ID(index) + 8);
+        return index;
+    }
+}

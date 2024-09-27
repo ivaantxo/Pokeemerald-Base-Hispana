@@ -83,7 +83,7 @@ EWRAM_DATA u8 gEnemyPartyCount = 0;
 EWRAM_DATA struct Pokemon gPlayerParty[PARTY_SIZE] = {0};
 EWRAM_DATA struct Pokemon gEnemyParty[PARTY_SIZE] = {0};
 EWRAM_DATA struct SpriteTemplate gMultiuseSpriteTemplate = {0};
-EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManagers[MON_SPR_GFX_MANAGERS_COUNT] = {NULL};
+EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManager = NULL;
 EWRAM_DATA static u8 sTriedEvolving = 0;
 EWRAM_DATA u16 gFollowerSteps = 0;
 
@@ -2193,10 +2193,8 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
 {
     if (gMonSpritesGfxPtr != NULL)
         gMultiuseSpriteTemplate = gMonSpritesGfxPtr->templates[battlerPosition];
-    else if (sMonSpritesGfxManagers[MON_SPR_GFX_MANAGER_A])
-        gMultiuseSpriteTemplate = sMonSpritesGfxManagers[MON_SPR_GFX_MANAGER_A]->templates[battlerPosition];
-    else if (sMonSpritesGfxManagers[MON_SPR_GFX_MANAGER_B])
-        gMultiuseSpriteTemplate = sMonSpritesGfxManagers[MON_SPR_GFX_MANAGER_B]->templates[battlerPosition];
+    else if (sMonSpritesGfxManager != NULL)
+        gMultiuseSpriteTemplate = sMonSpritesGfxManager->templates[battlerPosition];
     else
         gMultiuseSpriteTemplate = gBattlerSpriteTemplates[battlerPosition];
 
@@ -6266,117 +6264,57 @@ static bool8 ShouldSkipFriendshipChange(void)
 }
 
 // The below functions are for the 'MonSpritesGfxManager', a method of allocating
-// space for Pokémon sprites. These are only used for the summary screen Pokémon
-// sprites (unless gMonSpritesGfxPtr is in use), but were set up for more general use.
-// Only the 'default' mode (MON_SPR_GFX_MODE_NORMAL) is used, which is set
-// up to allocate 4 sprites using the battler sprite templates (gBattlerSpriteTemplates).
-// MON_SPR_GFX_MODE_BATTLE is identical but never used.
-// MON_SPR_GFX_MODE_FULL_PARTY is set up to allocate 7 sprites (party + trainer?)
-// using a generic 64x64 template, and is also never used.
-
-// Between the unnecessarily large sizes below, a mistake allocating the spritePointers
-// field, and the fact that ultimately only 1 of the 4 sprite positions is used, this
-// system wastes a good deal of memory.
+// space for Pokémon sprites. This is only used for the summary screen Pokémon
+// sprites (unless gMonSpritesGfxPtr is in use).
+// It is set up to allocate 4 sprites using the battler sprite templates (gBattlerSpriteTemplates).
 
 #define ALLOC_FAIL_BUFFER (1 << 0)
 #define ALLOC_FAIL_STRUCT (1 << 1)
-#define GFX_MANAGER_ACTIVE 0xA3 // Arbitrary value
 
-static void InitMonSpritesGfx_Battle(struct MonSpritesGfxManager* gfx)
+struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void)
 {
-    u16 i, j;
-    for (i = 0; i < gfx->numSprites; i++)
-    {
-        gfx->templates[i] = gBattlerSpriteTemplates[i];
-        for (j = 0; j < gfx->numFrames; j++)
-            gfx->frameImages[i * gfx->numFrames + j].data = &gfx->spritePointers[i][j * MON_PIC_SIZE];
-
-        gfx->templates[i].images = &gfx->frameImages[i * gfx->numFrames];
-    }
-}
-
-static void InitMonSpritesGfx_FullParty(struct MonSpritesGfxManager* gfx)
-{
-    u16 i, j;
-    for (i = 0; i < gfx->numSprites; i++)
-    {
-        gfx->templates[i] = sSpriteTemplate_64x64;
-        for (j = 0; j < gfx->numFrames; j++)
-            gfx->frameImages[i * gfx->numSprites + j].data = &gfx->spritePointers[i][j * MON_PIC_SIZE];
-
-        gfx->templates[i].images = &gfx->frameImages[i * gfx->numSprites];
-        gfx->templates[i].anims = gAnims_MonPic;
-        gfx->templates[i].paletteTag = i;
-    }
-}
-
-struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode)
-{
-    u8 i;
+    u32 i;
     u8 failureFlags;
     struct MonSpritesGfxManager *gfx;
 
     failureFlags = 0;
-    managerId %= MON_SPR_GFX_MANAGERS_COUNT;
     gfx = AllocZeroed(sizeof(*gfx));
     if (gfx == NULL)
         return NULL;
 
-    switch (mode)
-    {
-    case MON_SPR_GFX_MODE_FULL_PARTY:
-        gfx->numSprites = PARTY_SIZE + 1;
-        gfx->numSprites2 = PARTY_SIZE + 1;
-        gfx->numFrames = MAX_MON_PIC_FRAMES;
-        gfx->dataSize = 1;
-        gfx->mode = MON_SPR_GFX_MODE_FULL_PARTY;
-        break;
- // case MON_SPR_GFX_MODE_BATTLE:
-    case MON_SPR_GFX_MODE_NORMAL:
-    default:
-        gfx->numSprites = MAX_BATTLERS_COUNT;
-        gfx->numSprites2 = MAX_BATTLERS_COUNT;
-        gfx->numFrames = MAX_MON_PIC_FRAMES;
-        gfx->dataSize = 1;
-        gfx->mode = MON_SPR_GFX_MODE_NORMAL;
-        break;
-    }
-
     // Set up sprite / sprite pointer buffers
-    gfx->spriteBuffer = AllocZeroed(gfx->dataSize * MON_PIC_SIZE * MAX_MON_PIC_FRAMES * gfx->numSprites);
-    gfx->spritePointers = AllocZeroed(gfx->numSprites * 32); // ? Only * 4 is necessary, perhaps they were thinking bits.
+    gfx->spriteBuffer = AllocZeroed(MON_PIC_SIZE * MAX_MON_PIC_FRAMES * MAX_BATTLERS_COUNT);
+    gfx->spritePointers = AllocZeroed(MAX_BATTLERS_COUNT * MAX_MON_PIC_FRAMES);
     if (gfx->spriteBuffer == NULL || gfx->spritePointers == NULL)
     {
         failureFlags |= ALLOC_FAIL_BUFFER;
     }
     else
     {
-        for (i = 0; i < gfx->numSprites; i++)
-            gfx->spritePointers[i] = gfx->spriteBuffer + (gfx->dataSize * MON_PIC_SIZE * MAX_MON_PIC_FRAMES * i);
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            gfx->spritePointers[i] = gfx->spriteBuffer + (MON_PIC_SIZE * MAX_MON_PIC_FRAMES * i);
     }
 
     // Set up sprite structs
-    gfx->templates = AllocZeroed(sizeof(struct SpriteTemplate) * gfx->numSprites);
-    gfx->frameImages = AllocZeroed(sizeof(struct SpriteFrameImage) * gfx->numSprites * gfx->numFrames);
+    gfx->templates = AllocZeroed(sizeof(struct SpriteTemplate) * MAX_BATTLERS_COUNT);
+    gfx->frameImages = AllocZeroed(sizeof(struct SpriteFrameImage) * MAX_BATTLERS_COUNT * MAX_MON_PIC_FRAMES);
     if (gfx->templates == NULL || gfx->frameImages == NULL)
     {
         failureFlags |= ALLOC_FAIL_STRUCT;
     }
     else
     {
-        for (i = 0; i < gfx->numFrames * gfx->numSprites; i++)
+        u32 j;
+        for (i = 0; i < MAX_MON_PIC_FRAMES * MAX_BATTLERS_COUNT; i++)
             gfx->frameImages[i].size = MON_PIC_SIZE;
 
-        switch (gfx->mode)
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         {
-        case MON_SPR_GFX_MODE_FULL_PARTY:
-            InitMonSpritesGfx_FullParty(gfx);
-            break;
-        case MON_SPR_GFX_MODE_NORMAL:
-        case MON_SPR_GFX_MODE_BATTLE:
-        default:
-            InitMonSpritesGfx_Battle(gfx);
-            break;
+            gfx->templates[i] = gBattlerSpriteTemplates[i];
+            for (j = 0; j < MAX_MON_PIC_FRAMES; j++)
+                gfx->frameImages[i * MAX_MON_PIC_FRAMES + j].data = &gfx->spritePointers[i][j * MON_PIC_SIZE];
+
+            gfx->templates[i].images = &gfx->frameImages[i * MAX_MON_PIC_FRAMES];
         }
     }
 
@@ -6400,23 +6338,22 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode)
     }
     else
     {
-        gfx->active = GFX_MANAGER_ACTIVE;
-        sMonSpritesGfxManagers[managerId] = gfx;
+        gfx->active = TRUE;
+        sMonSpritesGfxManager = gfx;
     }
 
-    return sMonSpritesGfxManagers[managerId];
+    return sMonSpritesGfxManager;
 }
 
-void DestroyMonSpritesGfxManager(u8 managerId)
+void DestroyMonSpritesGfxManager(void)
 {
     struct MonSpritesGfxManager *gfx;
 
-    managerId %= MON_SPR_GFX_MANAGERS_COUNT;
-    gfx = sMonSpritesGfxManagers[managerId];
+    gfx = sMonSpritesGfxManager;
     if (gfx == NULL)
         return;
 
-    if (gfx->active != GFX_MANAGER_ACTIVE)
+    if (gfx->active == FALSE)
     {
         memset(gfx, 0, sizeof(*gfx));
     }
@@ -6431,19 +6368,16 @@ void DestroyMonSpritesGfxManager(u8 managerId)
     }
 }
 
-u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum)
+u8 *MonSpritesGfxManager_GetSpritePtr(void)
 {
-    struct MonSpritesGfxManager *gfx = sMonSpritesGfxManagers[managerId % MON_SPR_GFX_MANAGERS_COUNT];
-    if (gfx->active != GFX_MANAGER_ACTIVE)
+    struct MonSpritesGfxManager *gfx = sMonSpritesGfxManager;
+    if (gfx->active == FALSE)
     {
         return NULL;
     }
     else
     {
-        if (spriteNum >= gfx->numSprites)
-            spriteNum = 0;
-
-        return gfx->spritePointers[spriteNum];
+        return gfx->spritePointers[B_POSITION_OPPONENT_LEFT];
     }
 }
 

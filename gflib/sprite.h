@@ -334,5 +334,6 @@ u32 GetSpanPerImage(u32 shape, u32 size);
 struct BoxPokemon;
 u8 LoadUniqueSpritePalette(const struct SpritePalette *palette, struct BoxPokemon *boxMon);
 u8 LoadUniqueSpritePaletteByPersonality(const struct SpritePalette *palette, u16 species, u32 personality);
+u8 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct SpritePalette *palette2);
 
 #endif //GUARD_SPRITE_H

@@ -135,6 +135,10 @@ struct FollowerMessagePool
     u16 length;
 };
 
+// Egg palette tables
+extern const struct CompressedSpritePalette gEgg1PaletteTable[];
+extern const struct CompressedSpritePalette gEgg2PaletteTable[];
+
 extern const u16 gMinigameDigits_Pal[];
 extern const u32 gMinigameDigits_Gfx[];
 

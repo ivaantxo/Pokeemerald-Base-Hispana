@@ -1,5 +1,6 @@
 #include "global.h"
 #include "data.h"
+#include "decompress.h"
 #include "graphics.h"
 #include "mail.h"
 #include "palette.h"
@@ -184,16 +185,32 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
 // Carga la paleta del Pokémon en paletteNum.
 u8 SetMonIconPalette(struct Pokemon *mon, struct Sprite *sprite, u8 paletteNum) 
 {
+    const struct CompressedSpritePalette *pal1, *pal2;
+    pal1 = &gEgg1PaletteTable[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types[0]];
+    pal2 = &gEgg2PaletteTable[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types[1]];
+
     if (paletteNum < 16)
     {
-        LoadCompressedPalette(GetMonFrontSpritePal(mon), OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
-        if (PBH_PALETAS_UNICAS)
+        if (GetMonData(mon, MON_DATA_IS_EGG) && PBH_HUEVOS_COLOR_TIPO)
         {
-            UniquePalette(OBJ_PLTT_ID(paletteNum), &mon->box);
-            CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
+            LZ77UnCompWram(pal1->data, gEggDecompressionBuffer);
+            CpuCopy16(gEggDecompressionBuffer, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
+            CpuCopy16(gEggDecompressionBuffer, &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
+            LZ77UnCompWram(pal2->data, gEggDecompressionBuffer);
+            CpuCopy16(gEggDecompressionBuffer, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum) + 8], PLTT_SIZE_4BPP);
+            CpuCopy16(gEggDecompressionBuffer, &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum) + 8], PLTT_SIZE_4BPP);
+        }
+        else
+        {
+            LoadCompressedPalette(GetMonFrontSpritePal(mon), OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+            if (PBH_PALETAS_UNICAS)
+            {
+                UniquePalette(OBJ_PLTT_ID(paletteNum), &mon->box);
+                CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
+            }
         }
         if (sprite)
-        sprite->oam.paletteNum = paletteNum;
+            sprite->oam.paletteNum = paletteNum;
     }
     return paletteNum;
 }

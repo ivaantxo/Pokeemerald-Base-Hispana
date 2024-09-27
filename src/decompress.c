@@ -7,6 +7,7 @@
 #include "text.h"
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[16384] = {0};
+EWRAM_DATA ALIGNED(4) u8 gEggDecompressionBuffer[16] = {0};
 
 void LZDecompressWram(const u32 *src, void *dest)
 {
@@ -210,4 +211,30 @@ bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette 
     LoadSpritePalette(&dest);
     Free(buffer);
     return FALSE;
+}
+
+void LoadCompressedEggSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2)
+{
+    struct SpritePalette dest1, dest2;
+
+    LZ77UnCompWram(src1->data, gDecompressionBuffer);
+    dest1.data = (void*) gDecompressionBuffer;
+    dest1.tag = src1->tag;
+    LZ77UnCompWram(src2->data, gEggDecompressionBuffer);
+    dest2.data = (void*) gEggDecompressionBuffer;
+    dest2.tag = src2->tag;
+    LoadEggSpritePalette(&dest1, &dest2);
+}
+
+void LoadCompressedEggHatchSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2)
+{
+    struct SpritePalette dest1, dest2;
+
+    LZ77UnCompWram(src1->data, gDecompressionBuffer);
+    dest1.data = (void*) gDecompressionBuffer;
+    dest1.tag = 54321;
+    LZ77UnCompWram(src2->data, gEggDecompressionBuffer);
+    dest2.data = (void*) gEggDecompressionBuffer;
+    dest2.tag = src2->tag;
+    LoadEggSpritePalette(&dest1, &dest2);
 }

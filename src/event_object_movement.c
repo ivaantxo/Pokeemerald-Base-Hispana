@@ -1651,7 +1651,7 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
 
     if (gSpeciesInfo[species].frontPicFemale != NULL)
     {
-        if(form == 0)
+        if (form == 0)
         {
             graphicsInfo = &gSpeciesInfo[species].overworldData;
         }
@@ -9893,7 +9893,7 @@ static void MoveUnionRoomObjectDown(struct Sprite *sprite)
         sprite->sAnimState++;
     case 1:
         sprite->y2 += 8;
-        if(sprite->y2 == 0)
+        if (sprite->y2 == 0)
         {
             sprite->sAnimNum = 0;
             sprite->sAnimState = 0;
@@ -10084,10 +10084,10 @@ static void ApplyLevitateMovement(u8 taskId)
     LoadWordFromTwoHalfwords((u16*) &task->data[0], (u32 *)&objectEvent); // load the map object pointer.
     sprite = &gSprites[objectEvent->spriteId];
 
-    if(!(task->data[2] & 3))
+    if (!(task->data[2] & 3))
         sprite->y2 += task->data[3];
 
-    if(!(task->data[2] & 15))
+    if (!(task->data[2] & 15))
         task->data[3] = -task->data[3];
 
     task->data[2]++;
@@ -10109,7 +10109,7 @@ void FreezeObjectEventsExceptTwo(u8 objectEventId1, u8 objectEventId2)
 
     for(i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
-        if(i != objectEventId1 && i != objectEventId2 &&
+        if (i != objectEventId1 && i != objectEventId2 &&
             gObjectEvents[i].active && i != gPlayerAvatar.objectEventId)
                 FreezeObjectEvent(&gObjectEvents[i]);
     }
@@ -10126,7 +10126,7 @@ u8 MovementAction_FlyUp_Step1(struct ObjectEvent *objectEvent, struct Sprite *sp
 {
     sprite->y2 -= 8;
 
-    if(sprite->y2 == -DISPLAY_HEIGHT)
+    if (sprite->y2 == -DISPLAY_HEIGHT)
         sprite->sActionFuncId++;
     return FALSE;
 }
@@ -10142,7 +10142,7 @@ u8 MovementAction_FlyDown_Step1(struct ObjectEvent *objectEvent, struct Sprite *
 {
     sprite->y2 += 8;
 
-    if(!sprite->y2)
+    if (!sprite->y2)
         sprite->sActionFuncId++;
     return FALSE;
 }
@@ -10183,6 +10183,12 @@ void GetDaycareGraphics(struct ScriptContext *ctx)
         GetMonInfo((struct Pokemon *) &gSaveBlock1Ptr->daycare.mons[i].mon, &specGfx, &form, &shiny);
         if (specGfx == SPECIES_NONE)
             break;
+        if (gSpeciesInfo[specGfx].frontPicFemale != NULL)
+        {
+            form = GetMonGender((struct Pokemon *) &gSaveBlock1Ptr->daycare.mons[i].mon);
+            if (form == MON_FEMALE)
+                form = 1;
+        }
         // Assemble gfx ID like FollowerSetGraphics
         specGfx = (OBJ_EVENT_GFX_MON_BASE + specGfx) & OBJ_EVENT_GFX_SPECIES_MASK;
         specGfx |= form << OBJ_EVENT_GFX_SPECIES_BITS;
