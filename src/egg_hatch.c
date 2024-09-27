@@ -478,6 +478,8 @@ static void Task_EggHatch(u8 taskId)
 
 static void CB2_LoadEggHatch(void)
 {
+    const struct CompressedSpritePalette *pal1, *pal2;
+
     switch (gMain.state)
     {
     case 0:
@@ -527,7 +529,14 @@ static void CB2_LoadEggHatch(void)
     case 3:
         LoadSpriteSheet(&sEggHatch_Sheet);
         LoadSpriteSheet(&sEggShards_Sheet);
-        LoadSpritePalette(&sEgg_SpritePalette);
+        if (PBH_HUEVOS_COLOR_TIPO)
+        {
+            pal1 = &gEgg1PaletteTable[gSpeciesInfo[GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES)].types[0]];
+            pal2 = &gEgg2PaletteTable[gSpeciesInfo[GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES)].types[1]];
+            LoadCompressedEggHatchSpritePalette(pal1, pal2);
+        }
+        else
+            LoadSpritePalette(&sEgg_SpritePalette);
         gMain.state++;
         break;
     case 4:
@@ -546,8 +555,8 @@ static void CB2_LoadEggHatch(void)
     case 7:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
         LoadPalette(gTradeGba2_Pal, BG_PLTT_ID(1), 5 * PLTT_SIZE_4BPP);
-        LoadBgTiles(1, gTradeGba_Gfx, 0x1420, 0);
-        CopyToBgTilemapBuffer(1, gTradePlatform_Tilemap, 0x1000, 0);
+        LoadBgTiles(1, gTradeGba_Gfx, 5152, 0);
+        CopyToBgTilemapBuffer(1, gTradePlatform_Tilemap, 4096, 0);
         CopyBgTilemapBufferToVram(1);
         gMain.state++;
         break;

@@ -65,6 +65,44 @@ extern const u32 gOpenPokeballGfx[];
 // Pokémon gfx
 extern const u16 gMonIconPalettes[][16];
 
+//Pokémon eggs
+extern const u32 gMonPalette_Egg_Normal1[];
+extern const u32 gMonPalette_Egg_Normal2[];
+extern const u32 gMonPalette_Egg_Fighting1[];
+extern const u32 gMonPalette_Egg_Fighting2[];
+extern const u32 gMonPalette_Egg_Flying1[];
+extern const u32 gMonPalette_Egg_Flying2[];
+extern const u32 gMonPalette_Egg_Poison1[];
+extern const u32 gMonPalette_Egg_Poison2[];
+extern const u32 gMonPalette_Egg_Ground1[];
+extern const u32 gMonPalette_Egg_Ground2[];
+extern const u32 gMonPalette_Egg_Rock1[];
+extern const u32 gMonPalette_Egg_Rock2[];
+extern const u32 gMonPalette_Egg_Bug1[];
+extern const u32 gMonPalette_Egg_Bug2[];
+extern const u32 gMonPalette_Egg_Ghost1[];
+extern const u32 gMonPalette_Egg_Ghost2[];
+extern const u32 gMonPalette_Egg_Steel1[];
+extern const u32 gMonPalette_Egg_Steel2[];
+extern const u32 gMonPalette_Egg_Fire1[];
+extern const u32 gMonPalette_Egg_Fire2[];
+extern const u32 gMonPalette_Egg_Water1[];
+extern const u32 gMonPalette_Egg_Water2[];
+extern const u32 gMonPalette_Egg_Grass1[];
+extern const u32 gMonPalette_Egg_Grass2[];
+extern const u32 gMonPalette_Egg_Electric1[];
+extern const u32 gMonPalette_Egg_Electric2[];
+extern const u32 gMonPalette_Egg_Psychic1[];
+extern const u32 gMonPalette_Egg_Psychic2[];
+extern const u32 gMonPalette_Egg_Ice1[];
+extern const u32 gMonPalette_Egg_Ice2[];
+extern const u32 gMonPalette_Egg_Dragon1[];
+extern const u32 gMonPalette_Egg_Dragon2[];
+extern const u32 gMonPalette_Egg_Dark1[];
+extern const u32 gMonPalette_Egg_Dark2[];
+extern const u32 gMonPalette_Egg_Fairy1[];
+extern const u32 gMonPalette_Egg_Fairy2[];
+
 // pokeblock
 extern const u32 gMenuPokeblock_Gfx[];
 extern const u32 gMenuPokeblock_Pal[];

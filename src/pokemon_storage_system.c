@@ -545,8 +545,9 @@ struct PokemonStorageSystemData
     u16 displayMonPalBuffer[64];
     u8 ALIGNED(4) tileBuffer[MON_PIC_SIZE * MAX_MON_PIC_FRAMES];
     u8 ALIGNED(4) itemIconBuffer[2048];
-    u8 wallpaperBgTilemapBuffer[4096];
-    u8 displayMenuTilemapBuffer[2048];
+    u8 ALIGNED(4) wallpaperBgTilemapBuffer[4096];
+    u8 ALIGNED(4) displayMenuTilemapBuffer[2048];
+    u8 ALIGNED(4) eggPalette[2];
 };
 
 static u32 sItemIconGfxBuffer[98];
@@ -3883,10 +3884,24 @@ static void CreateDisplayMonSprite(void)
 
 static void LoadDisplayMonGfx(u16 species, u32 pid)
 {
+    const struct CompressedSpritePalette *pal1, *pal2;
+
     if (sStorage->displayMonSprite == NULL)
         return;
 
-    if (species != SPECIES_NONE)
+    if (PBH_HUEVOS_COLOR_TIPO && species == SPECIES_EGG)
+    {
+        pal1 = &gEgg1PaletteTable[sStorage->eggPalette[0]];
+        pal2 = &gEgg2PaletteTable[sStorage->eggPalette[1]];
+        LoadSpecialPokePic(sStorage->tileBuffer, species, pid, TRUE);
+        LZ77UnCompWram(pal1->data, sStorage->displayMonPalBuffer);
+        LZ77UnCompWram(pal2->data, gDecompressionBuffer);
+        CpuFastCopy(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
+        LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, PLTT_SIZE_4BPP/2);
+        LoadPalette(gDecompressionBuffer, sStorage->displayMonPalOffset + 8, PLTT_SIZE_4BPP/2);
+        sStorage->displayMonSprite->invisible = FALSE;
+    }
+    else if (species != SPECIES_NONE)
     {
         LoadSpecialPokePic(sStorage->tileBuffer, species, pid, TRUE);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
