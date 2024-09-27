@@ -1232,7 +1232,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
 
     if (gMonSpritesGfxPtr == NULL)
-        CreateMonSpritesGfxManager(MON_SPR_GFX_MANAGER_A, MON_SPR_GFX_MODE_NORMAL);
+        CreateMonSpritesGfxManager();
 
     SetMainCallback2(CB2_InitSummaryScreen);
 }
@@ -1628,9 +1628,9 @@ static void CloseSummaryScreen(u8 taskId)
         ResetSpriteData();
         FreeAllSpritePalettes();
         StopCryAndClearCrySongs();
-        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
+        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
         if (gMonSpritesGfxPtr == NULL)
-            DestroyMonSpritesGfxManager(MON_SPR_GFX_MANAGER_A);
+            DestroyMonSpritesGfxManager();
         FreeSummaryScreen();
         DestroyTask(taskId);
     }
@@ -4093,7 +4093,7 @@ static u8 LoadMonGfxAndSprite(s16 *state)
             else
             {
                 HandleLoadSpecialPokePic(TRUE,
-                                         MonSpritesGfxManager_GetSpritePtr(MON_SPR_GFX_MANAGER_A, B_POSITION_OPPONENT_LEFT),
+                                         MonSpritesGfxManager_GetSpritePtr(),
                                          summary->species2,
                                          summary->pid);
             }
