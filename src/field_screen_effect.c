@@ -1432,8 +1432,7 @@ static void GetStairsMovementDirection(u32 metatileBehavior, s16 *speedX, s16 *s
 
 static bool8 WaitStairExitMovementFinished(s16 *speedX, s16 *speedY, s16 *offsetX, s16 *offsetY, s16 *timer)
 {
-    struct Sprite *sprite;
-    sprite = &gSprites[gPlayerAvatar.spriteId];
+    struct Sprite *sprite = &gSprites[gPlayerAvatar.spriteId];
     if (*timer != 0)
     {
         *offsetX += *speedX;
