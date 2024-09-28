@@ -1563,7 +1563,9 @@ static void Task_StairWarp(u8 taskId)
         if (!ObjectEventIsMovementOverridden(playerObjectEvent) || ObjectEventClearHeldMovementIfFinished(playerObjectEvent))
         {
             if (tDelay != 0)
+            {
                 tDelay--;
+            }
             else
             {
                 TryFadeOutOldMapMusic();
