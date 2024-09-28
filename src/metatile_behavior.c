@@ -1406,7 +1406,7 @@ bool8 MetatileBehavior_IsTrainerHillTimer(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsDirectionalUpRightStairWarp(u8 metatileBehavior)
 {
-    if(metatileBehavior == MB_UP_RIGHT_STAIR_WARP)
+    if (metatileBehavior == MB_UP_RIGHT_STAIR_WARP)
         return TRUE;
     else
         return FALSE;
