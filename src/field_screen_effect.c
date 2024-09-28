@@ -1618,20 +1618,19 @@ void DoStairWarp(u16 metatileBehavior, u16 delay)
 
 bool32 IsDirectionalStairWarpMetatileBehavior(u16 metatileBehavior, u8 playerDirection)
 {
-    switch (playerDirection)
+    if (playerDirection == DIR_WEST)
     {
-        case DIR_WEST:
-            if (MetatileBehavior_IsDirectionalUpLeftStairWarp(metatileBehavior))
-                return TRUE;
-            if (MetatileBehavior_IsDirectionalDownLeftStairWarp(metatileBehavior))
-                return TRUE;
-            break;
-        case DIR_EAST:
-            if (MetatileBehavior_IsDirectionalUpRightStairWarp(metatileBehavior))
-                return TRUE;
-            if (MetatileBehavior_IsDirectionalDownRightStairWarp(metatileBehavior))
-                return TRUE;
-            break;
+        if (MetatileBehavior_IsDirectionalUpLeftStairWarp(metatileBehavior))
+            return TRUE;
+        if (MetatileBehavior_IsDirectionalDownLeftStairWarp(metatileBehavior))
+            return TRUE;
+    }
+    else if (playerDirection == DIR_EAST)
+    {
+        if (MetatileBehavior_IsDirectionalUpRightStairWarp(metatileBehavior))
+            return TRUE;
+        if (MetatileBehavior_IsDirectionalDownRightStairWarp(metatileBehavior))
+            return TRUE;
     }
     return FALSE;
 }
