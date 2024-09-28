@@ -1316,21 +1316,21 @@ static bool32 PrintWhiteOutRecoveryMessage(u8 taskId, const u8 *text, u32 x, u32
 
     switch (gTasks[taskId].tPrintState)
     {
-        case 0:
-            FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
-            StringExpandPlaceholders(gStringVar4, text);
-            AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 1, 0, sWhiteoutTextColors, 1, gStringVar4);
-            gTextFlags.canABSpeedUpPrint = FALSE;
-            gTasks[taskId].tPrintState = 1;
-            break;
-        case 1:
-            RunTextPrinters();
-            if (!IsTextPrinterActive(windowId))
-            {
-                gTasks[taskId].tPrintState = 0;
-                return TRUE;
-            }
-            break;
+    case 0:
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+        StringExpandPlaceholders(gStringVar4, text);
+        AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 1, 0, sWhiteoutTextColors, 1, gStringVar4);
+        gTextFlags.canABSpeedUpPrint = FALSE;
+        gTasks[taskId].tPrintState = 1;
+        break;
+    case 1:
+        RunTextPrinters();
+        if (!IsTextPrinterActive(windowId))
+        {
+            gTasks[taskId].tPrintState = 0;
+            return TRUE;
+        }
+        break;
     }
     return FALSE;
 }
@@ -1489,25 +1489,25 @@ static void Task_ExitStairs(u8 taskId)
     s16 * data = gTasks[taskId].data;
     switch (tState)
     {
-        default:
-            if (WaitForWeatherFadeIn() == TRUE)
-            {
-                CameraObjectReset();
-                UnlockPlayerFieldControls();
-                DestroyTask(taskId);
-            }
-            break;
-        case 0:
-            Overworld_PlaySpecialMapMusic();
-            WarpFadeInScreen();
-            LockPlayerFieldControls();
-            ExitStairsMovement(&tSpeedX, &tSpeedY, &tOffsetX, &tOffsetY, &tTimer);
+    default:
+        if (WaitForWeatherFadeIn() == TRUE)
+        {
+            CameraObjectReset();
+            UnlockPlayerFieldControls();
+            DestroyTask(taskId);
+        }
+        break;
+    case 0:
+        Overworld_PlaySpecialMapMusic();
+        WarpFadeInScreen();
+        LockPlayerFieldControls();
+        ExitStairsMovement(&tSpeedX, &tSpeedY, &tOffsetX, &tOffsetY, &tTimer);
+        tState++;
+        break;
+    case 1:
+        if (!WaitStairExitMovementFinished(&tSpeedX, &tSpeedY, &tOffsetX, &tOffsetY, &tTimer))
             tState++;
-            break;
-        case 1:
-            if (!WaitStairExitMovementFinished(&tSpeedX, &tSpeedY, &tOffsetX, &tOffsetY, &tTimer))
-                tState++;
-            break;
+        break;
     }
 }
 
@@ -1554,48 +1554,48 @@ static void Task_StairWarp(u8 taskId)
 
     switch (tState)
     {
-        case 0:
-            LockPlayerFieldControls();
-            FreezeObjectEvents();
-            CameraObjectFreeze();
+    case 0:
+        LockPlayerFieldControls();
+        FreezeObjectEvents();
+        CameraObjectFreeze();
+        tState++;
+        break;
+    case 1:
+        if (!ObjectEventIsMovementOverridden(playerObjectEvent) || ObjectEventClearHeldMovementIfFinished(playerObjectEvent))
+        {
+            if (tDelay != 0)
+                tDelay--;
+            else
+            {
+                TryFadeOutOldMapMusic();
+                PlayRainStoppingSoundEffect();
+                playerSprite->oam.priority = 1;
+                ForceStairsMovement(tMetatileBehavior, &tSpeedX, &tSpeedY);
+                PlaySE(SE_EXIT);
+                tState++;
+            }
+        }
+        break;
+    case 2:
+        UpdateStairsMovement(tSpeedX, tSpeedY, &tOffsetX, &tOffsetY, &tTimer);
+        tDelay++;
+        if (tDelay >= 12)
+        {
+            WarpFadeOutScreen();
             tState++;
-            break;
-        case 1:
-            if (!ObjectEventIsMovementOverridden(playerObjectEvent) || ObjectEventClearHeldMovementIfFinished(playerObjectEvent))
-            {
-                if (tDelay != 0)
-                    tDelay--;
-                else
-                {
-                    TryFadeOutOldMapMusic();
-                    PlayRainStoppingSoundEffect();
-                    playerSprite->oam.priority = 1;
-                    ForceStairsMovement(tMetatileBehavior, &tSpeedX, &tSpeedY);
-                    PlaySE(SE_EXIT);
-                    tState++;
-                }
-            }
-            break;
-        case 2:
-            UpdateStairsMovement(tSpeedX, tSpeedY, &tOffsetX, &tOffsetY, &tTimer);
-            tDelay++;
-            if (tDelay >= 12)
-            {
-                WarpFadeOutScreen();
-                tState++;
-            }
-            break;
-        case 3:
-            UpdateStairsMovement(tSpeedX, tSpeedY, &tOffsetX, &tOffsetY, &tTimer);
-            if (!PaletteFadeActive() && BGMusicStopped())
-                tState++;
-            break;
-        default:
-            gFieldCallback = FieldCB_DefaultWarpExit;
-            WarpIntoMap();
-            SetMainCallback2(CB2_LoadMap);
-            DestroyTask(taskId);
-            break;
+        }
+        break;
+    case 3:
+        UpdateStairsMovement(tSpeedX, tSpeedY, &tOffsetX, &tOffsetY, &tTimer);
+        if (!PaletteFadeActive() && BGMusicStopped())
+            tState++;
+        break;
+    default:
+        gFieldCallback = FieldCB_DefaultWarpExit;
+        WarpIntoMap();
+        SetMainCallback2(CB2_LoadMap);
+        DestroyTask(taskId);
+        break;
     }
 }
 
