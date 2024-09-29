@@ -1948,6 +1948,79 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     return CalcCritChanceStageArgs(battlerAtk, battlerDef, move, recordAbility, abilityAtk, abilityDef, holdEffectAtk);
 }
+
+// Bulbapedia: https://bulbapedia.bulbagarden.net/wiki/Critical_hit#Generation_I
+// Crit chance = Threshold / 256, Threshold maximum of 255
+// Threshold = Base Speed / 2
+// High crit move = 8 * (Base Speed / 2)
+// Focus Energy = 4 * (Base Speed / 2)
+s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
+{
+    // Vanilla
+    u32 focusEnergyScaler = 4;
+    u32 highCritRatioScaler = 8;
+
+    // Not vanilla
+    u32 superLuckScaler = 4;
+    u32 scopeLensScaler = 4;
+    u32 luckyPunchScaler = 8;
+    u32 farfetchedLeekScaler = 8;
+
+    s32 critChance = 0;
+    s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
+    s32 bonusCritStage = gBattleStruct->bonusCritStages[gBattlerAttacker]; // G-Max Chi Strike
+    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
+    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
+    u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
+
+    critChance = baseSpeed / 2;
+
+    // Crit scaling
+    if (moveCritStage > 0)
+        critChance = critChance * highCritRatioScaler * moveCritStage;
+    
+    if (bonusCritStage > 0)
+        critChance = critChance * bonusCritStage;
+
+    if ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
+        critChance = critChance * focusEnergyScaler;
+
+    if (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
+        critChance = critChance * scopeLensScaler;
+
+    if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
+        critChance = critChance * luckyPunchScaler;
+
+    if (BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
+        critChance = critChance * farfetchedLeekScaler;
+
+    if (abilityAtk == ABILITY_SUPER_LUCK)
+        critChance = critChance * superLuckScaler;
+
+    if (critChance > 255)
+        critChance = 255;
+
+    // Prevented crits
+    if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT)
+        critChance = -1;
+    else if (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
+    {
+        if (recordAbility)
+            RecordAbilityBattle(battlerDef, abilityDef);
+        critChance = -1;
+    }
+
+    // Guaranteed crits
+    else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
+             || gMovesInfo[move].alwaysCriticalHit == TRUE
+             || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY))
+    {
+        critChance = -2;
+    }
+
+    return critChance;
+}
 #undef BENEFITS_FROM_LEEK
 
 s32 GetCritHitOdds(s32 critChanceIndex)
@@ -1963,7 +2036,13 @@ static void Cmd_critcalc(void)
     CMD_ARGS();
 
     u16 partySlot;
-    s32 critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+    s32 critChance;
+
+    if (B_CRIT_CHANCE == GEN_1)
+        critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+    else
+        critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+
     gPotentialItemEffectBattler = gBattlerAttacker;
 
     if (gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
@@ -1973,7 +2052,18 @@ static void Cmd_critcalc(void)
     else if (critChance == -2)
         gIsCriticalHit = TRUE;
     else
-        gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, 1, sCriticalHitOdds[critChance]);
+    {
+        if (B_CRIT_CHANCE == GEN_1)
+        {
+            u8 critRoll = RandomUniform(RNG_CRITICAL_HIT, 1, 256);
+            if (critRoll <= critChance)
+                gIsCriticalHit = 1;
+            else
+                gIsCriticalHit = 0;
+        }
+        else
+            gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, 1, sCriticalHitOdds[critChance]);
+    }
 
     // Counter for EVO_CRITICAL_HITS.
     partySlot = gBattlerPartyIndexes[gBattlerAttacker];
