@@ -2031,7 +2031,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         OVERWORLD(
             sPicTable_WishiwashiSolo,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .levelUpLearnset = sWishiwashiLevelUpLearnset,
         .teachableLearnset = sWishiwashiTeachableLearnset,
@@ -2087,6 +2087,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_WishiwashiSchool,
         .iconSprite = gObjectEventPic_WishiwashiSchool, 
         FOOTPRINT(Wishiwashi)
+        OVERWORLD(
+            sPicTable_WishiwashiSchool,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .levelUpLearnset = sWishiwashiLevelUpLearnset,
         .teachableLearnset = sWishiwashiTeachableLearnset,
         .eggMoveLearnset = sWishiwashiEggMoveLearnset,
