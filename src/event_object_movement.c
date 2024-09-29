@@ -9812,7 +9812,7 @@ static void DoTracksGroundEffect_BikeTireTracks(struct ObjectEvent *objEvent, st
         gFieldEffectArguments[2] = 149;
         gFieldEffectArguments[3] = 2;
         gFieldEffectArguments[4] =
-            bikeTireTracks_Transitions[movementDir][objEvent->facingDirection - 5];
+        bikeTireTracks_Transitions[movementDir][objEvent->facingDirection - 5];
         FieldEffectStart(FLDEFF_BIKE_TIRE_TRACKS);
     }
 }
