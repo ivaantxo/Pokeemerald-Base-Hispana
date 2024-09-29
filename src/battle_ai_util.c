@@ -2699,10 +2699,8 @@ enum {
 bool32 ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, u32 moveIndex)
 {
     bool32 hasStatBoost = AnyUsefulStatIsRaised(battlerAtk) || gBattleMons[battlerDef].statStages[STAT_EVASION] >= 9; //Significant boost in evasion for any class
-    bool32 shouldSwitch;
     u32 battlerToSwitch;
 
-    shouldSwitch = ShouldSwitch(battlerAtk, FALSE);
     battlerToSwitch = gBattleStruct->AI_monToSwitchIntoId[battlerAtk];
 
     if (PartyBattlerShouldAvoidHazards(battlerAtk, battlerToSwitch))
@@ -2727,7 +2725,7 @@ bool32 ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, u32
                     if (CanTargetFaintAi(battlerDef, battlerAtk))
                         return PIVOT;   // Won't get the two turns, pivot
 
-                    if (!IS_MOVE_STATUS(move) && (shouldSwitch
+                    if (!IS_MOVE_STATUS(move) && ((AI_DATA->shouldSwitch & (1u << battlerAtk))
                         || (AtMaxHp(battlerDef) && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH
                         || (B_STURDY >= GEN_5 && defAbility == ABILITY_STURDY)
                         || defAbility == ABILITY_MULTISCALE
@@ -2742,7 +2740,7 @@ bool32 ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, u32
                         || defAbility == ABILITY_SHADOW_SHIELD)))
                         return PIVOT;   // pivot to break sash/sturdy/multiscale
 
-                    if (shouldSwitch)
+                    if (AI_DATA->shouldSwitch & (1u << battlerAtk))
                         return PIVOT;
 
                     /* TODO - check if switchable mon unafffected by/will remove hazards
@@ -2813,7 +2811,7 @@ bool32 ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, u32
                 else if (CanAIFaintTarget(battlerAtk, battlerDef, 2))
                 {
                     // can knock out foe in 2 hits
-                    if (IS_MOVE_STATUS(move) && (shouldSwitch //Damaging move
+                    if (IS_MOVE_STATUS(move) && ((AI_DATA->shouldSwitch & (1u << battlerAtk)) //Damaging move
                       //&& (switchScore >= SWITCHING_INCREASE_RESIST_ALL_MOVES + SWITCHING_INCREASE_KO_FOE //remove hazards
                      || (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH && AtMaxHp(battlerDef))))
                         return DONT_PIVOT; // Pivot to break the sash

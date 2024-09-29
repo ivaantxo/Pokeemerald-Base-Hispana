@@ -218,9 +218,9 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
 
 static bool32 ShouldSwitchIfAllBadMoves(u32 battler, bool32 emitResult)
 {
-    if (AI_DATA->shouldSwitchMon & (1u << battler))
+    if (AI_DATA->shouldSwitchIfBadMoves & (1u << battler))
     {
-        AI_DATA->shouldSwitchMon &= ~(1u << battler);
+        AI_DATA->shouldSwitchIfBadMoves &= ~(1u << battler);
         gBattleStruct->AI_monToSwitchIntoId[battler] = AI_DATA->monToSwitchId[battler];
         if (emitResult)
             BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_SWITCH, 0);
