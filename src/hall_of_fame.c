@@ -1199,7 +1199,7 @@ static void HallOfFame_PrintMonInfo(struct HallofFameMon* currMon, u8 unused1, u
         ConvertIntToDecimalStringN(stringPtr, currMon->lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         AddTextPrinterParameterized3(0, FONT_NORMAL, 0x24, 0x11, sMonInfoTextColors, TEXT_SKIP_DRAW, text);
 
-        stringPtr = StringCopy(text, gText_IDNumber);
+        stringPtr = StringCopy(text, gText_ID);
         ConvertIntToDecimalStringN(stringPtr, (u16)(currMon->tid), STR_CONV_MODE_LEADING_ZEROS, 5);
         AddTextPrinterParameterized3(0, FONT_NORMAL, 0x68, 0x11, sMonInfoTextColors, TEXT_SKIP_DRAW, text);
 
@@ -1222,7 +1222,7 @@ static void HallOfFame_PrintPlayerInfo(u8 unused1, u8 unused2)
     AddTextPrinterParameterized3(1, FONT_NORMAL, width, 1, sPlayerInfoTextColors, TEXT_SKIP_DRAW, gSaveBlock2Ptr->playerName);
 
     trainerId = (gSaveBlock2Ptr->playerTrainerId[0]) | (gSaveBlock2Ptr->playerTrainerId[1] << 8);
-    AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 0x11, sPlayerInfoTextColors, 0, gText_IDNumber);
+    AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 0x11, sPlayerInfoTextColors, 0, gText_ID);
     text[0] = (trainerId % 100000) / 10000 + CHAR_0;
     text[1] = (trainerId % 10000) / 1000 + CHAR_0;
     text[2] = (trainerId % 1000) / 100 + CHAR_0;

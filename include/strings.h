@@ -973,7 +973,7 @@ extern const u8 gText_Accuracy2[];
 extern const u8 gText_Appeal[];
 extern const u8 gText_Jam[];
 extern const u8 gText_OTSlash[];
-extern const u8 gText_IDNumber2[];
+extern const u8 gText_ID[];
 extern const u8 gText_XNature[];
 extern const u8 gText_XNatureHatchedAtYZ[];
 extern const u8 gText_XNatureHatchedSomewhereAt[];
@@ -2103,7 +2103,6 @@ extern const u8 gText_HOFCorrupted[];
 extern const u8 gText_WelcomeToHOF[];
 extern const u8 gText_Number[];
 extern const u8 gText_Level[];
-extern const u8 gText_IDNumber[];
 extern const u8 gText_Name[];
 extern const u8 gText_Time[];
 
