@@ -6273,7 +6273,7 @@ static bool8 ShouldSkipFriendshipChange(void)
 
 struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void)
 {
-    u32 i;
+    u32 i, j;
     u8 failureFlags;
     struct MonSpritesGfxManager *gfx;
 
@@ -6284,7 +6284,7 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void)
 
     // Set up sprite / sprite pointer buffers
     gfx->spriteBuffer = AllocZeroed(MON_PIC_SIZE * MAX_MON_PIC_FRAMES * MAX_BATTLERS_COUNT);
-    gfx->spritePointers = AllocZeroed(MAX_BATTLERS_COUNT * MAX_MON_PIC_FRAMES);
+    gfx->spritePointers = AllocZeroed(MAX_BATTLERS_COUNT * 32);
     if (gfx->spriteBuffer == NULL || gfx->spritePointers == NULL)
     {
         failureFlags |= ALLOC_FAIL_BUFFER;
@@ -6304,7 +6304,6 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void)
     }
     else
     {
-        u32 j;
         for (i = 0; i < MAX_MON_PIC_FRAMES * MAX_BATTLERS_COUNT; i++)
             gfx->frameImages[i].size = MON_PIC_SIZE;
 
@@ -6372,13 +6371,9 @@ u8 *MonSpritesGfxManager_GetSpritePtr(void)
 {
     struct MonSpritesGfxManager *gfx = sMonSpritesGfxManager;
     if (gfx->active == FALSE)
-    {
         return NULL;
-    }
     else
-    {
         return gfx->spritePointers[B_POSITION_OPPONENT_LEFT];
-    }
 }
 
 u16 GetFormSpeciesId(u16 speciesId, u8 formId)
