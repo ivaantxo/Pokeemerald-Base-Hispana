@@ -1686,7 +1686,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
             return paletteNum;
         // Use matching front sprite's normal/shiny palettes
         if (PBH_PALETAS_UNICAS)
-            LoadCompressedSpritePaletteWithTagHueShifted(palette, species, &mon->box);
+            LoadCompressedSpritePaletteWithTagHueShifted(palette, species, GetMonData(mon, MON_DATA_PERSONALITY));
         else
             LoadCompressedSpritePaletteWithTag(palette, species);
         paletteNum = IndexOfSpritePaletteTag(species); // Tag is always present

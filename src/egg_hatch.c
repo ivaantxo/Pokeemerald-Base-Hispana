@@ -434,7 +434,7 @@ static u8 EggHatchCreateMonSprite(u8 state, u8 partyId, u16 *speciesLoc)
                                      gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_LEFT],
                                      species, pid);
             if (PBH_PALETAS_UNICAS)
-                LoadCompressedSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, &mon->box);                
+                LoadCompressedSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, pid);                
             else
                 LoadCompressedSpritePaletteWithTag(GetMonFrontSpritePal(mon), species);
             *speciesLoc = species;

@@ -619,9 +619,9 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
     LoadPalette(gDecompressionBuffer, BG_PLTT_ID(8) + BG_PLTT_ID(battler), PLTT_SIZE_4BPP);
     if (PBH_PALETAS_UNICAS)
     {
-        UniquePalette(paletteOffset, &mon->box);
+        UniquePalette(paletteOffset, GetMonData(mon, MON_DATA_PERSONALITY));
         CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZE_4BPP);
-        UniquePalette(BG_PLTT_ID(8) + BG_PLTT_ID(battler), &mon->box);
+        UniquePalette(BG_PLTT_ID(8) + BG_PLTT_ID(battler), GetMonData(mon, MON_DATA_PERSONALITY));
         CpuCopy32(&gPlttBufferFaded[BG_PLTT_ID(8) + BG_PLTT_ID(battler)], &gPlttBufferUnfaded[BG_PLTT_ID(8) + BG_PLTT_ID(battler)], PLTT_SIZE_4BPP);
     }
     // transform's pink color
@@ -921,7 +921,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
     LoadPalette(gDecompressionBuffer, paletteOffset, PLTT_SIZE_4BPP);
     if (PBH_PALETAS_UNICAS)
     {
-        UniquePaletteByPersonality(paletteOffset, targetSpecies, personalityValue);
+        UniquePalette(paletteOffset, personalityValue);
         CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZE_4BPP);
     }
     if (!megaEvo)

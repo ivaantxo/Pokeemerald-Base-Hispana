@@ -267,7 +267,7 @@ void EvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, bool8 canStopEvo, u
     LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(currSpecies, isShiny, personality), OBJ_PLTT_ID(1), PLTT_SIZE_4BPP);
     if (PBH_PALETAS_UNICAS)
     {
-        UniquePalette(OBJ_PLTT_ID(1), &mon->box);
+        UniquePalette(OBJ_PLTT_ID(1), personality);
         CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(1)], &gPlttBufferUnfaded[OBJ_PLTT_ID(1)], PLTT_SIZE_4BPP);
     }
     SetMultiuseSpriteTemplateToPokemon(currSpecies, B_POSITION_OPPONENT_LEFT);
@@ -288,7 +288,7 @@ void EvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, bool8 canStopEvo, u
     {
         CopyMon(&boxMon, &mon->box, sizeof(boxMon));
         SetBoxMonData(&boxMon, MON_DATA_SPECIES, &postEvoSpecies);
-        UniquePalette(OBJ_PLTT_ID(2), &boxMon);
+        UniquePalette(OBJ_PLTT_ID(2), personality);
         CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(2)], &gPlttBufferUnfaded[OBJ_PLTT_ID(2)], PLTT_SIZE_4BPP);
     }
     SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, B_POSITION_OPPONENT_RIGHT);
@@ -372,7 +372,7 @@ static void CB2_EvolutionSceneLoadGraphics(void)
     {
         CopyMon(&boxMon, &mon->box, sizeof(boxMon));
         SetBoxMonData(&boxMon, MON_DATA_SPECIES, &postEvoSpecies);
-        UniquePalette(OBJ_PLTT_ID(2), &boxMon);
+        UniquePalette(OBJ_PLTT_ID(2), personality);
         CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(2)], &gPlttBufferUnfaded[OBJ_PLTT_ID(2)], PLTT_SIZE_4BPP);
     }
     SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, B_POSITION_OPPONENT_RIGHT);
@@ -388,7 +388,7 @@ static void CB2_EvolutionSceneLoadGraphics(void)
     SetVBlankCallback(VBlankCB_EvolutionScene);
     SetMainCallback2(CB2_EvolutionSceneUpdate);
 
-    BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
 
     ShowBg(0);
     ShowBg(1);

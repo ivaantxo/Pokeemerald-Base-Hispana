@@ -4003,7 +4003,7 @@ static void LoadDisplayMonGfx(u16 species, u32 pid)
         LoadCompressedPaletteFast(sStorage->displayMonPalette, sStorage->displayMonPalOffset, PLTT_SIZE_4BPP);
         if (PBH_PALETAS_UNICAS)
         {
-            UniquePaletteByPersonality(sStorage->displayMonPalOffset, species, pid);
+            UniquePalette(sStorage->displayMonPalOffset, pid);
             CpuFastCopy(&gPlttBufferFaded[sStorage->displayMonPalOffset], &gPlttBufferUnfaded[sStorage->displayMonPalOffset], PLTT_SIZE_4BPP);
         }
         sStorage->displayMonSprite->invisible = FALSE;
@@ -4536,7 +4536,7 @@ static void SetBoxMonDynamicPalette(u8 boxId, u8 position)
             LZ77UnCompWram(palette, &sPaletteSwapBuffer[PLTT_ID(position)]);
             if (PBH_PALETAS_UNICAS)
             {
-                UniquePaletteBuffered(&sPaletteSwapBuffer[PLTT_ID(position)], species, personality);
+                UniquePaletteBuffered(&sPaletteSwapBuffer[PLTT_ID(position)], personality);
             }
         }
     }
@@ -4920,7 +4920,7 @@ static void CreatePartyMonsSprites(bool8 visible)
         LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[0]), PLTT_ID(1) + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
         if (PBH_PALETAS_UNICAS)
         {
-            UniquePaletteByPersonality(OBJ_PLTT_ID(1), species, personality);
+            UniquePalette(OBJ_PLTT_ID(1), personality);
             CpuFastCopy(&gPlttBufferFaded[OBJ_PLTT_ID(1)], &gPlttBufferUnfaded[OBJ_PLTT_ID(1)], PLTT_SIZE_4BPP);
         }
     }
@@ -4954,7 +4954,7 @@ static void CreatePartyMonsSprites(bool8 visible)
                 LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[i]), PLTT_ID(paletteNum) + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
                 if (PBH_PALETAS_UNICAS)
                 {
-                    UniquePaletteByPersonality(OBJ_PLTT_ID(paletteNum), species, personality);
+                    UniquePalette(OBJ_PLTT_ID(paletteNum), personality);
                     CpuFastCopy(&gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
                 }
                 sStorage->partySprites[i]->oam.paletteNum = paletteNum;
@@ -5203,7 +5203,7 @@ static void SetPlacedMonSprite(u8 boxId, u8 position)
                 LoadCompressedPaletteFast(GetMonFrontSpritePal(&gPlayerParty[position]), PLTT_ID(paletteNum) + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
                 if (PBH_PALETAS_UNICAS)
                 {
-                    UniquePaletteByPersonality(OBJ_PLTT_ID(paletteNum), GetMonData(&gPlayerParty[position], MON_DATA_SPECIES), GetMonData(&gPlayerParty[position], MON_DATA_PERSONALITY));
+                    UniquePalette(OBJ_PLTT_ID(paletteNum), GetMonData(&gPlayerParty[position], MON_DATA_PERSONALITY));
                     CpuFastCopy(&gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], PLTT_SIZE_4BPP);
                 }
                 sStorage->partySprites[position]->oam.paletteNum = paletteNum;
@@ -6784,7 +6784,7 @@ static void SetShiftedMonSprites(u8 boxId, u8 position)
     LoadCompressedPaletteFast(sStorage->displayMonPalette, sStorage->displayMonPalOffset, PLTT_SIZE_4BPP);
     if (PBH_PALETAS_UNICAS)
     {
-        UniquePalette(sStorage->displayMonPalOffset, GetBoxedMonPtr(boxId, position));
+        UniquePalette(sStorage->displayMonPalOffset, GetBoxMonData(GetBoxedMonPtr(boxId, position), MON_DATA_PERSONALITY));
         CpuFastCopy(&gPlttBufferFaded[sStorage->displayMonPalOffset], &gPlttBufferUnfaded[sStorage->displayMonPalOffset], PLTT_SIZE_4BPP);
     }
     sStorage->movingMonSprite->oam.paletteNum = displayIndex;

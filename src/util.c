@@ -278,14 +278,16 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u32 blendColor)
     }
 }
 
-void UniquePalette(u16 palOffset, struct BoxPokemon *boxMon)
+#define CONSTANTE_DE_PALETAS_UNICAS 5  //Esta constante define la variación de colores que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
+
+void UniquePalette(u16 palOffset, u32 personality)
 {
     u32 i;
-    u32 value = (GetBoxMonData(boxMon, MON_DATA_PERSONALITY) >> 8) & 0xFFFF;
+    u32 value = (personality >> 8) & 0xFFFF;
 
-    s8 dr = ((value >> 8) & 0xF) % 5;
-    s8 dg = ((value >> 4) & 0xF) % 5;
-    s8 db = (value & 0xF) % 5;
+    s8 dr = ((value >> 8) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
+    s8 dg = ((value >> 4) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
+    s8 db = (value & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
 
     for (i = 0; i < 16; i++)
     {
@@ -312,48 +314,14 @@ void UniquePalette(u16 palOffset, struct BoxPokemon *boxMon)
     }
 }
 
-void UniquePaletteByPersonality(u16 palOffset, u16 species, u32 personality)
+void UniquePaletteBuffered(u16 * buffer, u32 personality)
 {
     u32 i;
     u32 value = (personality >> 8) & 0xFFFF;
 
-    s8 dr = ((value >> 8) & 0xF) % 5;
-    s8 dg = ((value >> 4) & 0xF) % 5;
-    s8 db = (value & 0xF) % 5;
-
-    for (i = 0; i < 16; i++)
-    {
-        u32 index = i + palOffset;
-        struct PlttData *data1 = (struct PlttData *)&gPlttBufferUnfaded[index];
-        s8 r = data1->r + dr - 2;
-        s8 g = data1->g + dg - 2;
-        s8 b = data1->b + db - 2;
-
-        if (r > 31)
-            r = 31 - dr / 2;
-        if (g > 31)
-            g = 31 - dg / 2;
-        if (b > 31)
-            b = 31 - db / 2;
-        if (r < 0)
-            r = dr / 2;
-        if (g < 0)
-            g = dg / 2;
-        if (b < 0)
-            b = db / 2;
-
-        gPlttBufferFaded[index] = RGB(r, g, b);
-    }
-}
-
-void UniquePaletteBuffered(u16 * buffer, u16 species, u32 personality)
-{
-    u32 i;
-    u32 value = (personality >> 8) & 0xFFFF;
-
-    s8 dr = ((value >> 8) & 0xF) % 5;
-    s8 dg = ((value >> 4) & 0xF) % 5;
-    s8 db = (value & 0xF) % 5;
+    s8 dr = ((value >> 8) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
+    s8 dg = ((value >> 4) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
+    s8 db = (value & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
 
     for (i = 0; i < 16; i++)
     {
