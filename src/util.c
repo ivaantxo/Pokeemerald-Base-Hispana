@@ -278,7 +278,7 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u32 blendColor)
     }
 }
 
-#define CONSTANTE_DE_PALETAS_UNICAS 4  //Esta constante define la variación de colores máxima en valores de 0 a 31 que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
+#define CONSTANTE_DE_PALETAS_UNICAS 5  //Esta constante define la variación de colores máxima en valores de 0 a 31 (Valores de 0 o 1 es lo mismo que sin variación) que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
 //Si la personalidad del Pokémon es par, la variación hará más clara la paleta; si es negativa, más oscura.
 
 void UniquePalette(u16 palOffset, u32 personality)
