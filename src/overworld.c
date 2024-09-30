@@ -1538,63 +1538,64 @@ const struct BlendSettings gTimeOfDayBlend[] =
     [TIME_NIGHT]   = {.coeff = 10, .blendColor = TINT_NIGHT, .isTint = TRUE},
 };
 
+#define DEFAULT_WEIGHT 256
+#define TIME_BLEND_WEIGHT(begin, end) (DEFAULT_WEIGHT - (DEFAULT_WEIGHT * ((hours - begin) * MINUTES_PER_HOUR + minutes) / ((end - begin) * MINUTES_PER_HOUR)))
+
+#define MORNING_HOUR_MIDDLE (MORNING_HOUR_BEGIN + ((MORNING_HOUR_END - MORNING_HOUR_BEGIN) / 2))
+
 void UpdateTimeOfDay(void)
 {
     s32 hours, minutes;
     RtcCalcLocalTime();
     hours = gLocalTime.hours;
     minutes = gLocalTime.minutes;
-    if (hours < 4) // night
-    {
-        currentTimeBlend.weight = 256;
-        currentTimeBlend.altWeight = 0;
-        gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_NIGHT;
-    }
-    else if (hours < 7) // night->morning
+
+    if (IsBetweenHours(hours, MORNING_HOUR_BEGIN, MORNING_HOUR_MIDDLE)) // night->morning
     {
         currentTimeBlend.time0 = TIME_NIGHT;
         currentTimeBlend.time1 = TIME_MORNING;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 4) * 60 + minutes) / ((7-4)*60);
-        currentTimeBlend.altWeight = (256 - currentTimeBlend.weight) / 2;
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_BEGIN, MORNING_HOUR_MIDDLE);
+        currentTimeBlend.altWeight = (DEFAULT_WEIGHT - currentTimeBlend.weight) / 2;
         gTimeOfDay = TIME_MORNING;
     }
-    else if (hours < 10) // morning->day
+    else if (IsBetweenHours(hours, MORNING_HOUR_MIDDLE, MORNING_HOUR_END)) // morning->day
     {
         currentTimeBlend.time0 = TIME_MORNING;
         currentTimeBlend.time1 = TIME_DAY;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 7) * 60 + minutes) / ((10-7)*60);
-        currentTimeBlend.altWeight = (256 - currentTimeBlend.weight) / 2 + 128;
-        gTimeOfDay = TIME_DAY;
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_MIDDLE, MORNING_HOUR_END);
+        currentTimeBlend.altWeight = (DEFAULT_WEIGHT - currentTimeBlend.weight) / 2 + (DEFAULT_WEIGHT / 2);
+        gTimeOfDay = TIME_MORNING;
     }
-    else if (hours < 18) // day
-    {
-        currentTimeBlend.weight = currentTimeBlend.altWeight = 256;
-        gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_DAY;
-    }
-    else if (hours < 20) // evening
+    else if (IsBetweenHours(hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END)) // evening
     {
         currentTimeBlend.time0 = TIME_DAY;
         currentTimeBlend.time1 = TIME_EVENING;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 18) * 60 + minutes) / ((20-18)*60);
-        currentTimeBlend.altWeight = currentTimeBlend.weight / 2 + 128;
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(EVENING_HOUR_BEGIN, EVENING_HOUR_END);
+        currentTimeBlend.altWeight = currentTimeBlend.weight / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_EVENING;
     }
-    else if (hours < 22) // evening->night
+    else if (IsBetweenHours(hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1)) // evening->night
     {
         currentTimeBlend.time0 = TIME_EVENING;
         currentTimeBlend.time1 = TIME_NIGHT;
-        currentTimeBlend.weight = 256 - 256 * ((hours - 20) * 60 + minutes) / ((22-20)*60);
+        currentTimeBlend.weight = TIME_BLEND_WEIGHT(NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1);
         currentTimeBlend.altWeight = currentTimeBlend.weight / 2;
         gTimeOfDay = TIME_NIGHT;
     }
-    else // 22-24, night
+    else if (IsBetweenHours(hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END)) // night
     {
-        currentTimeBlend.weight = 256;
+        currentTimeBlend.weight = DEFAULT_WEIGHT;
         currentTimeBlend.altWeight = 0;
         gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_NIGHT;
     }
-    return gTimeOfDay;
+    else // day
+    {
+        currentTimeBlend.weight = currentTimeBlend.altWeight = DEFAULT_WEIGHT;
+        gTimeOfDay = currentTimeBlend.time0 = currentTimeBlend.time1 = TIME_DAY;
+    }
 }
+
+#undef TIME_BLEND_WEIGHT
 
 // Whether a map type is naturally lit/outside
 bool8 MapHasNaturalLight(u8 mapType)
