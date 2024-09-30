@@ -62,15 +62,6 @@ extern const u8 gText_MultiLink[];
 extern const u8 gText_Single[];
 extern const u8 gText_Double[];
 
-extern const u8 gText_Spicy[];
-extern const u8 gText_Dry[];
-extern const u8 gText_Sweet[];
-extern const u8 gText_Bitter[];
-extern const u8 gText_Sour[];
-
-extern const u8 gText_StowCase[];
-extern const u8 gText_LvVar1[];
-
 extern const u8 gText_Spicy2[];
 extern const u8 gText_Dry2[];
 extern const u8 gText_Sweet2[];
@@ -116,9 +107,6 @@ extern const u8 gText_NoDecorationsInUse[];
 
 extern const u8 gText_Exit[];
 extern const u8 gText_Cancel[];
-
-extern const u8 gText_ThrowAwayVar1[];
-extern const u8 gText_Var1ThrownAway[];
 
 extern const u8 gText_Color161Shadow161[];
 extern const u8 gText_GoBackPrevMenu[];
@@ -183,25 +171,6 @@ extern const u8 gText_PkmnFainted_FldPsn[];
 extern const u8 gText_Coins[];
 extern const u8 gText_Silver[];
 extern const u8 gText_Gold[];
-
-extern const u8 gText_Var1AteTheVar2[];
-extern const u8 gText_Var1HappilyAteVar2[];
-extern const u8 gText_Var1DisdainfullyAteVar2[];
-
-extern const u8 gText_RedPokeblock[];
-extern const u8 gText_BluePokeblock[];
-extern const u8 gText_PinkPokeblock[];
-extern const u8 gText_GreenPokeblock[];
-extern const u8 gText_YellowPokeblock[];
-extern const u8 gText_PurplePokeblock[];
-extern const u8 gText_IndigoPokeblock[];
-extern const u8 gText_BrownPokeblock[];
-extern const u8 gText_LiteBluePokeblock[];
-extern const u8 gText_OlivePokeblock[];
-extern const u8 gText_GrayPokeblock[];
-extern const u8 gText_BlackPokeblock[];
-extern const u8 gText_WhitePokeblock[];
-extern const u8 gText_GoldPokeblock[];
 
 extern const u8 gMenuText_Use[];
 extern const u8 gMenuText_Toss[];
@@ -333,19 +302,6 @@ extern const u8 gText_PressAToLoadEvent[];
 extern const u8 gText_LoadingEvent[];
 extern const u8 gText_DontRemoveCableTurnOff[];
 extern const u8 gText_LinkStandby2[];
-
-// berry tag screen text
-extern const u8 gBerryFirmnessString_VerySoft[];
-extern const u8 gBerryFirmnessString_Soft[];
-extern const u8 gBerryFirmnessString_Hard[];
-extern const u8 gBerryFirmnessString_VeryHard[];
-extern const u8 gBerryFirmnessString_SuperHard[];
-extern const u8 gText_BerryTag[];
-extern const u8 gText_NumberVar1Var2[];
-extern const u8 gText_SizeSlash[];
-extern const u8 gText_Var1DotVar2[];
-extern const u8 gText_ThreeMarks[];
-extern const u8 gText_FirmSlash[];
 
 // item menu screen text
 extern const u8 gText_CloseBag[];
@@ -1262,36 +1218,6 @@ extern const u8 gText_FrontierFacilityClearStreak[];
 extern const u8 gText_FrontierFacilityRoomsCleared[];
 extern const u8 gText_FrontierFacilityKOsStreak[];
 extern const u8 gText_FrontierFacilityFloorsCleared[];
-
-// Frontier Brain
-extern const u8 gText_AnabelWonSilver[];
-extern const u8 gText_TuckerWonSilver[];
-extern const u8 gText_SpenserWonSilver[];
-extern const u8 gText_GretaWonSilver[];
-extern const u8 gText_NolandWonSilver[];
-extern const u8 gText_LucyWonSilver[];
-extern const u8 gText_BrandonWonSilver[];
-extern const u8 gText_AnabelDefeatSilver[];
-extern const u8 gText_TuckerDefeatSilver[];
-extern const u8 gText_SpenserDefeatSilver[];
-extern const u8 gText_GretaDefeatSilver[];
-extern const u8 gText_NolandDefeatSilver[];
-extern const u8 gText_LucyDefeatSilver[];
-extern const u8 gText_BrandonDefeatSilver[];
-extern const u8 gText_AnabelWonGold[];
-extern const u8 gText_TuckerWonGold[];
-extern const u8 gText_SpenserWonGold[];
-extern const u8 gText_GretaWonGold[];
-extern const u8 gText_NolandWonGold[];
-extern const u8 gText_LucyWonGold[];
-extern const u8 gText_BrandonWonGold[];
-extern const u8 gText_AnabelDefeatGold[];
-extern const u8 gText_TuckerDefeatGold[];
-extern const u8 gText_SpenserDefeatGold[];
-extern const u8 gText_GretaDefeatGold[];
-extern const u8 gText_NolandDefeatGold[];
-extern const u8 gText_LucyDefeatGold[];
-extern const u8 gText_BrandonDefeatGold[];
 
 // Battle Tower.
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_Apprentice1Intro[];

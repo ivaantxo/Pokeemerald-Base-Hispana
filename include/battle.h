@@ -93,7 +93,7 @@ struct ResourceFlags
 #define RESOURCE_FLAG_ROOST             0x2
 #define RESOURCE_FLAG_UNBURDEN          0x4
 #define RESOURCE_FLAG_UNUSED            0x8
-#define RESOURCE_FLAG_TRACED            0x10
+#define RESOURCE_FLAG_UNUSED_2          0x10
 #define RESOURCE_FLAG_EMERGENCY_EXIT    0x20
 #define RESOURCE_FLAG_NEUTRALIZING_GAS  0x40
 #define RESOURCE_FLAG_ICE_FACE          0x80
@@ -184,9 +184,9 @@ struct ProtectStruct
     u32 powderSelfDmg:1;
     u32 usedThroatChopPreventedMove:1;
     u32 statRaised:1;
-    u32 usedMicleBerry:1;
     u32 usedCustapBerry:1;    // also quick claw
     u32 touchedProtectLike:1;
+    u32 unused:1;
     // End of 32-bit bitfield
     u16 disableEjectPack:1;
     u16 statFell:1;
@@ -201,10 +201,13 @@ struct ProtectStruct
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
     u16 usedAllySwitch:1;
+    u16 padding:2;
+    // End of 16-bit bitfield
     u32 physicalDmg;
     u32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
+
 };
 
 struct SpecialStatus
@@ -366,11 +369,12 @@ struct AiLogicData
     u8 effectiveness[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
     u8 moveAccuracy[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
     u8 moveLimitations[MAX_BATTLERS_COUNT];
-    bool8 shouldSwitchMon; // Because all available moves have no/little effect. Each bit per battler.
+    u8 shouldSwitchIfBadMoves; // Because all available moves have no/little effect. Each bit per battler.
     u8 monToSwitchId[MAX_BATTLERS_COUNT]; // ID of the mon to switch.
     bool8 weatherHasEffect; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
     u8 mostSuitableMonId[MAX_BATTLERS_COUNT]; // Stores result of GetMostSuitableMonToSwitchInto, which decides which generic mon the AI would switch into if they decide to switch. This can be overruled by specific mons found in ShouldSwitch; the final resulting mon is stored in AI_monToSwitchIntoId.
     struct SwitchinCandidate switchinCandidate; // Struct used for deciding which mon to switch to in battle_ai_switch_items.c
+    u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
 };
 
 struct AI_ThinkingStruct
@@ -768,6 +772,7 @@ struct BattleStruct
     u8 blunderPolicy:1; // should blunder policy activate
     u8 swapDamageCategory:1; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
     u8 bouncedMoveIsUsed:1;
+    u8 snatchedMoveIsUsed:1;
     u8 descriptionSubmenu:1; // For Move Description window in move selection screen
     u8 ackBallUseBtn:1; // Used for the last used ball feature
     u8 ballSwapped:1; // Used for the last used ball feature
@@ -816,9 +821,14 @@ struct BattleStruct
     u8 boosterEnergyActivates;
     u8 distortedTypeMatchups;
     u8 categoryOverride; // for Z-Moves and Max Moves
+    u8 commandingDondozo;
+    u16 commanderActive[NUM_BATTLE_SIDES];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
     u8 fickleBeamBoosted:1;
     u8 obedienceResult:3;
+    u8 padding:4;
+    u8 usedEjectItem;
+    u8 usedMicleBerry;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
@@ -1153,11 +1163,10 @@ static inline u32 GetBattlerSide(u32 battler)
     return GetBattlerPosition(battler) & BIT_SIDE;
 }
 
-static inline struct Pokemon* GetBattlerData(u32 battlerId)
+static inline struct Pokemon* GetPartyBattlerData(u32 battler)
 {
-    u32 index = gBattlerPartyIndexes[battlerId];
-
-    return (GetBattlerSide(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
+    u32 index = gBattlerPartyIndexes[battler];
+    return (GetBattlerSide(battler) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
 static inline struct Pokemon *GetSideParty(u32 side)
@@ -1176,3 +1185,4 @@ static inline bool32 IsDoubleBattle(void)
 }
 
 #endif // GUARD_BATTLE_H
+

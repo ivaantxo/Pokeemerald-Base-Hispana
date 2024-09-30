@@ -6461,6 +6461,14 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 1,
         SHADOW(3, 7, SHADOW_SIZE_M)
         FOOTPRINT(Shaymin)
+        OVERWORLD(
+            sPicTable_ShayminSky,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_ShayminSky,
+            gShinyOverworldPalette_ShayminSky
+        )
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,

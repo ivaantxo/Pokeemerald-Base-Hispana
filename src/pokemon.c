@@ -19,7 +19,7 @@
 #include "field_weather.h"
 #include "graphics.h"
 #include "item.h"
-#include "level_caps.h"
+#include "caps.h"
 #include "link.h"
 #include "main.h"
 #include "overworld.h"
@@ -60,7 +60,6 @@
 #include "constants/union_room.h"
 #include "constants/weather.h"
 #include "wild_encounter.h"
-#include "ev_caps.h"
 
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_9) ? 160 : 220)
 
@@ -686,7 +685,7 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #elif P_LVL_UP_LEARNSETS >= GEN_8
 #include "data/pokemon/level_up_learnsets/gen_8.h" // Sword/Shield
 #elif P_LVL_UP_LEARNSETS >= GEN_7
-#include "data/pokemon/level_up_learnsets/gen_7.h" // Ultra Sun/ Ultra Moon
+#include "data/pokemon/level_up_learnsets/gen_7.h" // Ultra Sun/Ultra Moon
 #elif P_LVL_UP_LEARNSETS >= GEN_6
 #include "data/pokemon/level_up_learnsets/gen_6.h" // Omega Ruby/Alpha Sapphire
 #elif P_LVL_UP_LEARNSETS >= GEN_5
@@ -1800,29 +1799,19 @@ void CalculateMonStats(struct Pokemon *mon)
     CALC_STAT(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
     CALC_STAT(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
 
-    if (species == SPECIES_SHEDINJA)
-    {
-        if (currentHP != 0 || oldMaxHP == 0)
-            currentHP = 1;
-        else
-            return;
-    }
-    else
-    {
-        if (currentHP == 0 && oldMaxHP == 0)
-            currentHP = newMaxHP;
-        else if (currentHP != 0)
-        {
-            if (newMaxHP > oldMaxHP)
-                currentHP += newMaxHP - oldMaxHP;
-            if (currentHP <= 0)
-                currentHP = 1;
-            if (currentHP > newMaxHP)
-                currentHP = newMaxHP;
-        }
-        else
-            return;
-    }
+    // Since a pokemon's maxHP data could either not have
+    // been initialized at this point or this pokemon is
+    // just fainted, the check for oldMaxHP is important.
+    if (currentHP == 0 && oldMaxHP != 0)
+        return;
+
+    // Only add to currentHP if newMaxHP went up.
+    if (newMaxHP > oldMaxHP)
+        currentHP += newMaxHP - oldMaxHP;
+
+    // Ensure currentHP does not surpass newMaxHP.
+    if (currentHP > newMaxHP)
+        currentHP = newMaxHP;
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
 }
@@ -3889,11 +3878,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
                             // Ensure the increase does not exceed the max EV per stat (252)
                             evCap = (itemEffect[10] & ITEM10_IS_VITAMIN) ? EV_ITEM_RAISE_LIMIT : MAX_PER_STAT_EVS;
-                            
+
                             // Check if the per-stat limit is reached
                             if (dataSigned >= evCap)
                                 return TRUE;  // Prevents item use if the per-stat cap is already reached
-                            
+
                             if (dataSigned + evChange > evCap)
                                 temp2 = evCap - dataSigned;
                             else
@@ -4078,11 +4067,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
                             // Ensure the increase does not exceed the max EV per stat (252)
                             evCap = (itemEffect[10] & ITEM10_IS_VITAMIN) ? EV_ITEM_RAISE_LIMIT : MAX_PER_STAT_EVS;
-                            
+
                             // Check if the per-stat limit is reached
                             if (dataSigned >= evCap)
                                 return TRUE;  // Prevents item use if the per-stat cap is already reached
-                            
+
                             if (dataSigned + evChange > evCap)
                                 temp2 = evCap - dataSigned;
                             else

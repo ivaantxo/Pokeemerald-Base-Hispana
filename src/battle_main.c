@@ -44,6 +44,7 @@
 #include "roamer.h"
 #include "safari_zone.h"
 #include "scanline_effect.h"
+#include "script.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -304,7 +305,7 @@ static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
 // extra args are money and ball
 #define TRAINER_CLASS(trainerClass, trainerName, ...)   \
-    [TRAINER_CLASS_##trainerClass] =                    \
+    [trainerClass] =                                    \
     {                                                   \
         .name = _(trainerName),                         \
         .money = DEFAULT(5, __VA_ARGS__),               \
@@ -313,72 +314,72 @@ static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
 const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
 {
-    TRAINER_CLASS(PKMN_TRAINER_1, "{PKMN} TRAINER"),
-    TRAINER_CLASS(PKMN_TRAINER_2, "{PKMN} TRAINER"),
-    TRAINER_CLASS(HIKER, "HIKER", 10),
-    TRAINER_CLASS(TEAM_AQUA, "TEAM AQUA"),
-    TRAINER_CLASS(PKMN_BREEDER, "{PKMN} BREEDER", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_HEAL_BALL : ITEM_FRIEND_BALL),
-    TRAINER_CLASS(COOLTRAINER, "COOLTRAINER", 12, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(BIRD_KEEPER, "BIRD KEEPER", 8),
-    TRAINER_CLASS(COLLECTOR, "COLLECTOR", 15, ITEM_PREMIER_BALL),
-    TRAINER_CLASS(SWIMMER_M, "SWIMMER♂", 2, ITEM_DIVE_BALL),
-    TRAINER_CLASS(TEAM_MAGMA, "TEAM MAGMA"),
-    TRAINER_CLASS(EXPERT, "EXPERT", 10),
-    TRAINER_CLASS(AQUA_ADMIN, "AQUA ADMIN", 10),
-    TRAINER_CLASS(BLACK_BELT, "BLACK BELT", 8, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(AQUA_LEADER, "AQUA LEADER", 20, ITEM_MASTER_BALL),
-    TRAINER_CLASS(HEX_MANIAC, "HEX MANIAC", 6),
-    TRAINER_CLASS(AROMA_LADY, "AROMA LADY", 10),
-    TRAINER_CLASS(RUIN_MANIAC, "RUIN MANIAC", 15),
-    TRAINER_CLASS(INTERVIEWER, "INTERVIEWER", 12),
-    TRAINER_CLASS(TUBER_F, "TUBER", 1),
-    TRAINER_CLASS(TUBER_M, "TUBER", 1),
-    TRAINER_CLASS(LADY, "LADY", 50),
-    TRAINER_CLASS(BEAUTY, "BEAUTY", 20),
-    TRAINER_CLASS(RICH_BOY, "RICH BOY", 50),
-    TRAINER_CLASS(POKEMANIAC, "POKéMANIAC", 15),
-    TRAINER_CLASS(GUITARIST, "GUITARIST", 8),
-    TRAINER_CLASS(KINDLER, "KINDLER", 8),
-    TRAINER_CLASS(CAMPER, "CAMPER", 4),
-    TRAINER_CLASS(PICNICKER, "PICNICKER", 4),
-    TRAINER_CLASS(BUG_MANIAC, "BUG MANIAC", 15),
-    TRAINER_CLASS(PSYCHIC, "PSYCHIC", 6),
-    TRAINER_CLASS(GENTLEMAN, "GENTLEMAN", 20, ITEM_LUXURY_BALL),
-    TRAINER_CLASS(ELITE_FOUR, "ELITE FOUR", 25, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(LEADER, "LEADER", 25),
-    TRAINER_CLASS(SCHOOL_KID, "SCHOOL KID"),
-    TRAINER_CLASS(SR_AND_JR, "SR. AND JR.", 4),
-    TRAINER_CLASS(WINSTRATE, "WINSTRATE", 10),
-    TRAINER_CLASS(POKEFAN, "POKéFAN", 20),
-    TRAINER_CLASS(YOUNGSTER, "YOUNGSTER", 4),
-    TRAINER_CLASS(CHAMPION, "CHAMPION", 50),
-    TRAINER_CLASS(FISHERMAN, "FISHERMAN", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_DIVE_BALL : ITEM_LURE_BALL),
-    TRAINER_CLASS(TRIATHLETE, "TRIATHLETE", 10),
-    TRAINER_CLASS(DRAGON_TAMER, "DRAGON TAMER", 12),
-    TRAINER_CLASS(NINJA_BOY, "NINJA BOY", 3),
-    TRAINER_CLASS(BATTLE_GIRL, "BATTLE GIRL", 6),
-    TRAINER_CLASS(PARASOL_LADY, "PARASOL LADY", 10),
-    TRAINER_CLASS(SWIMMER_F, "SWIMMER♀", 2, ITEM_DIVE_BALL),
-    TRAINER_CLASS(TWINS, "TWINS", 3),
-    TRAINER_CLASS(SAILOR, "SAILOR", 8),
-    TRAINER_CLASS(COOLTRAINER_2, "COOLTRAINER", 5, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(MAGMA_ADMIN, "MAGMA ADMIN", 10),
-    TRAINER_CLASS(RIVAL, "{PKMN} TRAINER", 15),
-    TRAINER_CLASS(BUG_CATCHER, "BUG CATCHER", 4),
-    TRAINER_CLASS(PKMN_RANGER, "{PKMN} RANGER", 12),
-    TRAINER_CLASS(MAGMA_LEADER, "MAGMA LEADER", 20, ITEM_MASTER_BALL),
-    TRAINER_CLASS(LASS, "LASS", 4),
-    TRAINER_CLASS(YOUNG_COUPLE, "YOUNG COUPLE", 8),
-    TRAINER_CLASS(OLD_COUPLE, "OLD COUPLE", 10),
-    TRAINER_CLASS(SIS_AND_BRO, "SIS AND BRO", 3),
-    TRAINER_CLASS(SALON_MAIDEN, "SALON MAIDEN"),
-    TRAINER_CLASS(DOME_ACE, "DOME ACE"),
-    TRAINER_CLASS(PALACE_MAVEN, "PALACE MAVEN"),
-    TRAINER_CLASS(ARENA_TYCOON, "ARENA TYCOON"),
-    TRAINER_CLASS(FACTORY_HEAD, "FACTORY HEAD"),
-    TRAINER_CLASS(PIKE_QUEEN, "PIKE QUEEN"),
-    TRAINER_CLASS(PYRAMID_KING, "PYRAMID KING"),
-    TRAINER_CLASS(RS_PROTAG, "{PKMN} TRAINER"),
+    TRAINER_CLASS(TRAINER_CLASS_PKMN_TRAINER_1, "{PKMN} TRAINER"),
+    TRAINER_CLASS(TRAINER_CLASS_PKMN_TRAINER_2, "{PKMN} TRAINER"),
+    TRAINER_CLASS(TRAINER_CLASS_HIKER, "HIKER", 10),
+    TRAINER_CLASS(TRAINER_CLASS_TEAM_AQUA, "TEAM AQUA"),
+    TRAINER_CLASS(TRAINER_CLASS_PKMN_BREEDER, "{PKMN} BREEDER", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_HEAL_BALL : ITEM_FRIEND_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_COOLTRAINER, "COOLTRAINER", 12, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_BIRD_KEEPER, "BIRD KEEPER", 8),
+    TRAINER_CLASS(TRAINER_CLASS_COLLECTOR, "COLLECTOR", 15, ITEM_PREMIER_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_SWIMMER_M, "SWIMMER♂", 2, ITEM_DIVE_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_TEAM_MAGMA, "TEAM MAGMA"),
+    TRAINER_CLASS(TRAINER_CLASS_EXPERT, "EXPERT", 10),
+    TRAINER_CLASS(TRAINER_CLASS_AQUA_ADMIN, "AQUA ADMIN", 10),
+    TRAINER_CLASS(TRAINER_CLASS_BLACK_BELT, "BLACK BELT", 8, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_AQUA_LEADER, "AQUA LEADER", 20, ITEM_MASTER_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_HEX_MANIAC, "HEX MANIAC", 6),
+    TRAINER_CLASS(TRAINER_CLASS_AROMA_LADY, "AROMA LADY", 10),
+    TRAINER_CLASS(TRAINER_CLASS_RUIN_MANIAC, "RUIN MANIAC", 15),
+    TRAINER_CLASS(TRAINER_CLASS_INTERVIEWER, "INTERVIEWER", 12),
+    TRAINER_CLASS(TRAINER_CLASS_TUBER_F, "TUBER", 1),
+    TRAINER_CLASS(TRAINER_CLASS_TUBER_M, "TUBER", 1),
+    TRAINER_CLASS(TRAINER_CLASS_LADY, "LADY", 50),
+    TRAINER_CLASS(TRAINER_CLASS_BEAUTY, "BEAUTY", 20),
+    TRAINER_CLASS(TRAINER_CLASS_RICH_BOY, "RICH BOY", 50),
+    TRAINER_CLASS(TRAINER_CLASS_POKEMANIAC, "POKéMANIAC", 15),
+    TRAINER_CLASS(TRAINER_CLASS_GUITARIST, "GUITARIST", 8),
+    TRAINER_CLASS(TRAINER_CLASS_KINDLER, "KINDLER", 8),
+    TRAINER_CLASS(TRAINER_CLASS_CAMPER, "CAMPER", 4),
+    TRAINER_CLASS(TRAINER_CLASS_PICNICKER, "PICNICKER", 4),
+    TRAINER_CLASS(TRAINER_CLASS_BUG_MANIAC, "BUG MANIAC", 15),
+    TRAINER_CLASS(TRAINER_CLASS_PSYCHIC, "PSYCHIC", 6),
+    TRAINER_CLASS(TRAINER_CLASS_GENTLEMAN, "GENTLEMAN", 20, ITEM_LUXURY_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_ELITE_FOUR, "ELITE FOUR", 25, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_LEADER, "LEADER", 25),
+    TRAINER_CLASS(TRAINER_CLASS_SCHOOL_KID, "SCHOOL KID"),
+    TRAINER_CLASS(TRAINER_CLASS_SR_AND_JR, "SR. AND JR.", 4),
+    TRAINER_CLASS(TRAINER_CLASS_WINSTRATE, "WINSTRATE", 10),
+    TRAINER_CLASS(TRAINER_CLASS_POKEFAN, "POKéFAN", 20),
+    TRAINER_CLASS(TRAINER_CLASS_YOUNGSTER, "YOUNGSTER", 4),
+    TRAINER_CLASS(TRAINER_CLASS_CHAMPION, "CHAMPION", 50),
+    TRAINER_CLASS(TRAINER_CLASS_FISHERMAN, "FISHERMAN", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_DIVE_BALL : ITEM_LURE_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_TRIATHLETE, "TRIATHLETE", 10),
+    TRAINER_CLASS(TRAINER_CLASS_DRAGON_TAMER, "DRAGON TAMER", 12),
+    TRAINER_CLASS(TRAINER_CLASS_NINJA_BOY, "NINJA BOY", 3),
+    TRAINER_CLASS(TRAINER_CLASS_BATTLE_GIRL, "BATTLE GIRL", 6),
+    TRAINER_CLASS(TRAINER_CLASS_PARASOL_LADY, "PARASOL LADY", 10),
+    TRAINER_CLASS(TRAINER_CLASS_SWIMMER_F, "SWIMMER♀", 2, ITEM_DIVE_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_TWINS, "TWINS", 3),
+    TRAINER_CLASS(TRAINER_CLASS_SAILOR, "SAILOR", 8),
+    TRAINER_CLASS(TRAINER_CLASS_COOLTRAINER_2, "COOLTRAINER", 5, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_MAGMA_ADMIN, "MAGMA ADMIN", 10),
+    TRAINER_CLASS(TRAINER_CLASS_RIVAL, "{PKMN} TRAINER", 15),
+    TRAINER_CLASS(TRAINER_CLASS_BUG_CATCHER, "BUG CATCHER", 4),
+    TRAINER_CLASS(TRAINER_CLASS_PKMN_RANGER, "{PKMN} RANGER", 12),
+    TRAINER_CLASS(TRAINER_CLASS_MAGMA_LEADER, "MAGMA LEADER", 20, ITEM_MASTER_BALL),
+    TRAINER_CLASS(TRAINER_CLASS_LASS, "LASS", 4),
+    TRAINER_CLASS(TRAINER_CLASS_YOUNG_COUPLE, "YOUNG COUPLE", 8),
+    TRAINER_CLASS(TRAINER_CLASS_OLD_COUPLE, "OLD COUPLE", 10),
+    TRAINER_CLASS(TRAINER_CLASS_SIS_AND_BRO, "SIS AND BRO", 3),
+    TRAINER_CLASS(TRAINER_CLASS_SALON_MAIDEN, "SALON MAIDEN"),
+    TRAINER_CLASS(TRAINER_CLASS_DOME_ACE, "DOME ACE"),
+    TRAINER_CLASS(TRAINER_CLASS_PALACE_MAVEN, "PALACE MAVEN"),
+    TRAINER_CLASS(TRAINER_CLASS_ARENA_TYCOON, "ARENA TYCOON"),
+    TRAINER_CLASS(TRAINER_CLASS_FACTORY_HEAD, "FACTORY HEAD"),
+    TRAINER_CLASS(TRAINER_CLASS_PIKE_QUEEN, "PIKE QUEEN"),
+    TRAINER_CLASS(TRAINER_CLASS_PYRAMID_KING, "PYRAMID KING"),
+    TRAINER_CLASS(TRAINER_CLASS_RS_PROTAG, "{PKMN} TRAINER"),
 };
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -3342,6 +3343,16 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->palaceFlags &= ~(1u << battler);
     gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
 
+    if (gBattleStruct->commanderActive[battler] != SPECIES_NONE)
+    {
+        u32 partner = BATTLE_PARTNER(battler);
+        if (IsBattlerAlive(partner))
+        {
+            BtlController_EmitSpriteInvisibility(partner, BUFFER_A, FALSE);
+            MarkBattlerForControllerExec(partner);
+        }
+    }
+
     for (i = 0; i < ARRAY_COUNT(gSideTimers); i++)
     {
         // User of sticky web fainted, so reset the stored battler ID
@@ -4177,6 +4188,8 @@ static void HandleTurnActionSelectionState(void)
             if ((gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart())
                     && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE)))
             {
+                if (ShouldSwitch(battler, FALSE))
+                    AI_DATA->shouldSwitch |= (1u << battler);
                 if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_RISKY) // Risky AI switches aggressively even mid battle
                     AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, TRUE);
                 else
@@ -4191,7 +4204,7 @@ static void HandleTurnActionSelectionState(void)
                 || gBattleStruct->absentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(position)))
                 || gBattleCommunication[GetBattlerAtPosition(BATTLE_PARTNER(position))] == STATE_WAIT_ACTION_CONFIRMED)
             {
-                if (gBattleStruct->absentBattlerFlags & (1u << battler))
+                if ((gBattleStruct->absentBattlerFlags & (1u << battler)) || (gBattleStruct->commandingDondozo & (1u << battler)))
                 {
                     gChosenActionByBattler[battler] = B_ACTION_NOTHING_FAINTED;
                     if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
@@ -5113,6 +5126,9 @@ static void TurnValuesCleanUp(bool8 var0)
         if (gDisableStructs[i].substituteHP == 0)
             gBattleMons[i].status2 &= ~STATUS2_SUBSTITUTE;
 
+        if (!(gStatuses3[i] & STATUS3_COMMANDER))
+            gBattleStruct->commandingDondozo &= ~(1u << i);
+
         gSpecialStatuses[i].parentalBondState = PARENTAL_BOND_OFF;
     }
 
@@ -5121,6 +5137,7 @@ static void TurnValuesCleanUp(bool8 var0)
     gSideTimers[B_SIDE_PLAYER].followmeTimer = 0;
     gSideTimers[B_SIDE_OPPONENT].followmeTimer = 0;
 
+    gBattleStruct->usedEjectItem = 0;
     gBattleStruct->pledgeMove = FALSE; // combined pledge move may not have been used due to a canceller
 }
 
@@ -5184,15 +5201,15 @@ static bool32 TryDoMoveEffectsBeforeMoves(void)
             {
                 gBattleStruct->focusPunchBattlers |= 1u << battlers[i];
                 gBattlerAttacker = battlers[i];
-                switch (gChosenMoveByBattler[gBattlerAttacker])
+                switch (gMovesInfo[gChosenMoveByBattler[gBattlerAttacker]].effect)
                 {
-                case MOVE_FOCUS_PUNCH:
+                case EFFECT_FOCUS_PUNCH:
                     BattleScriptExecute(BattleScript_FocusPunchSetUp);
                     return TRUE;
-                case MOVE_BEAK_BLAST:
+                case EFFECT_BEAK_BLAST:
                     BattleScriptExecute(BattleScript_BeakBlastSetUp);
                     return TRUE;
-                case MOVE_SHELL_TRAP:
+                case EFFECT_SHELL_TRAP:
                     BattleScriptExecute(BattleScript_ShellTrapSetUp);
                     return TRUE;
                 }
@@ -6010,30 +6027,27 @@ void SetTypeBeforeUsingMove(u32 move, u32 battler)
         gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | F_DYNAMIC_TYPE_SET;
 
     // Check if a gem should activate.
-    moveType = GetMoveType(move);
-    if (holdEffect == HOLD_EFFECT_GEMS
-        && moveType == ItemId_GetSecondaryId(heldItem))
+    if (holdEffect == HOLD_EFFECT_GEMS && GetMoveType(move) == ItemId_GetSecondaryId(heldItem))
     {
         gSpecialStatuses[battler].gemParam = GetBattlerHoldEffectParam(battler);
         gSpecialStatuses[battler].gemBoost = TRUE;
     }
 }
 
-// special to set a field's totem boost(s)
-// inputs:
-//  var8000: battler
-//  var8001 - var8007: stat changes
-void SetTotemBoost(void)
+// Queues stat boosts for a given battler for totem battles
+void ScriptSetTotemBoost(struct ScriptContext *ctx)
 {
-    u32 battler = gSpecialVar_0x8000;
+    u32 battler = VarGet(ScriptReadHalfword(ctx));
+    u32 stat;
     u32 i;
 
     for (i = 0; i < (NUM_BATTLE_STATS - 1); i++)
     {
-        if (*(&gSpecialVar_0x8001 + i))
+        stat = VarGet(ScriptReadHalfword(ctx));
+        if (stat)
         {
             gQueuedStatBoosts[battler].stats |= (1 << i);
-            gQueuedStatBoosts[battler].statChanges[i] = *(&gSpecialVar_0x8001 + i);
+            gQueuedStatBoosts[battler].statChanges[i] = stat;
             gQueuedStatBoosts[battler].stats |= 0x80;  // used as a flag for the "totem flared to life" script
         }
     }
