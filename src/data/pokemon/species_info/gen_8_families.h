@@ -4916,6 +4916,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_EiscueNoiceFace,
         .iconSprite = gObjectEventPic_EiscueNoiceFace, 
         FOOTPRINT(Eiscue)
+        OVERWORLD(
+            sPicTable_EiscueNoiceFace,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sEiscueLevelUpLearnset,
         .teachableLearnset = sEiscueTeachableLearnset,
         .eggMoveLearnset = sEiscueEggMoveLearnset,
@@ -5029,6 +5034,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_IndeedeeFemale,
         .iconSprite = gObjectEventPic_IndeedeeFemale, 
         FOOTPRINT(Indeedee)
+        OVERWORLD(
+            sPicTable_IndeedeeFemale,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sIndeedeeFemaleLevelUpLearnset,
         .teachableLearnset = sIndeedeeFemaleTeachableLearnset,
         .eggMoveLearnset = sIndeedeeFemaleEggMoveLearnset,
@@ -5143,6 +5153,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_MorpekoHangry,
         .iconSprite = gObjectEventPic_MorpekoHangry, 
         FOOTPRINT(Morpeko)
+        OVERWORLD(
+            sPicTable_MorpekoHangry,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sMorpekoLevelUpLearnset,
         .teachableLearnset = sMorpekoTeachableLearnset,
         .eggMoveLearnset = sMorpekoEggMoveLearnset,
@@ -6256,6 +6271,16 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_EternatusEternamax,
         .iconSprite = gObjectEventPic_EternatusEternamaxSmall, 
         FOOTPRINT(Eternatus)
+        OVERWORLD(
+        #if OW_LARGE_OW_SUPPORT
+            sPicTable_EternatusEternamaxBig,
+            SIZE_64x64,
+        #else
+            sPicTable_EternatusEternamaxSmall,
+            SIZE_32x32,
+        #endif //OW_LARGE_OW_SUPPORT
+            TRACKS_NONE,
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sEternatusLevelUpLearnset,
@@ -6663,6 +6688,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_ZarudeDada,
         .iconSprite = gObjectEventPic_ZarudeDada, 
         FOOTPRINT(Zarude)
+        OVERWORLD(
+            sPicTable_ZarudeDada,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sZarudeLevelUpLearnset,

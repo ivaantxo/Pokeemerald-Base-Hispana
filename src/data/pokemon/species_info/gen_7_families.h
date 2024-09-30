@@ -4423,6 +4423,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MimikyuBusted,
         .iconSprite = gObjectEventPic_MimikyuBusted, 
         FOOTPRINT(Mimikyu)
+        OVERWORLD(
+            sPicTable_MimikyuBusted,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isTotem = TRUE,
         .levelUpLearnset = sMimikyuLevelUpLearnset,
         .teachableLearnset = sMimikyuTeachableLearnset,
