@@ -278,13 +278,14 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u32 blendColor)
     }
 }
 
-#define CONSTANTE_DE_PALETAS_UNICAS 5  //Esta constante define la variación de colores que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
+#define CONSTANTE_DE_PALETAS_UNICAS 4  //Esta constante define la variación de colores máxima en valores de 0 a 31 que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
+//Si la personalidad del Pokémon es par, la variación hará más clara la paleta; si es negativa, más oscura.
 
 void UniquePalette(u16 palOffset, u32 personality)
 {
     u32 i;
     u32 value = (personality >> 8) & 0xFFFF;
-
+    s8 r, g, b;
     s8 dr = ((value >> 8) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
     s8 dg = ((value >> 4) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
     s8 db = (value & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
@@ -292,10 +293,19 @@ void UniquePalette(u16 palOffset, u32 personality)
     for (i = 0; i < 16; i++)
     {
         u32 index = i + palOffset;
-        struct PlttData *data1 = (struct PlttData *)&gPlttBufferUnfaded[index];
-        s8 r = data1->r + dr - 2;
-        s8 g = data1->g + dg - 2;
-        s8 b = data1->b + db - 2;
+        struct PlttData *data = (struct PlttData *)&gPlttBufferUnfaded[index];
+        if (personality % 2 == 0) //Personalidad es par
+        {
+            r = data->r + dr;
+            g = data->g + dg;
+            b = data->b + db;
+        }
+        else //Personalidad es impar
+        {
+            r = data->r - dr;
+            g = data->g - dg;
+            b = data->b - db;
+        }
 
         if (r > 31)
             r = 31 - dr / 2;
@@ -318,17 +328,26 @@ void UniquePaletteBuffered(u16 * buffer, u32 personality)
 {
     u32 i;
     u32 value = (personality >> 8) & 0xFFFF;
-
+    s8 r, g, b;
     s8 dr = ((value >> 8) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
     s8 dg = ((value >> 4) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
     s8 db = (value & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
 
     for (i = 0; i < 16; i++)
     {
-        struct PlttData *data1 = (struct PlttData *)&buffer[i];
-        s8 r = data1->r + dr - 2;
-        s8 g = data1->g + dg - 2;
-        s8 b = data1->b + db - 2;
+        struct PlttData *data = (struct PlttData *)&buffer[i];
+        if (personality % 2 == 0) //Personalidad es par
+        {
+            r = data->r + dr;
+            g = data->g + dg;
+            b = data->b + db;
+        }
+        else //Personalidad es impar
+        {
+            r = data->r - dr;
+            g = data->g - dg;
+            b = data->b - db;
+        }
 
         if (r > 31)
             r = 31 - dr / 2;
