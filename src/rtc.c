@@ -418,3 +418,17 @@ void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24
     *txtPtr++ = EOS;
     *txtPtr = EOS;
 }
+
+// Returns current hour from RTC data
+u8 Rtc_GetCurrentHour(void) 
+{     
+    RtcGetInfo(&sRtc);	
+	return sRtc.hour - (sRtc.hour/0x10) * 6;
+}
+
+// Returns current minute from RTC data
+u8 Rtc_GetCurrentMinute(void)
+{ 
+    RtcGetInfo(&sRtc);
+    return sRtc.minute - (sRtc.minute/0x10) * 6;
+}

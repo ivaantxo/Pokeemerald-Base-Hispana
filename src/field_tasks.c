@@ -20,6 +20,7 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
+#include "rtc.h"
 
 /*  This file handles some persistent tasks that run in the overworld.
  *  - Task_RunTimeBasedEvents: Periodically updates local time and RTC events. Also triggers ambient cries.
@@ -162,6 +163,9 @@ static void RunTimeBasedEvents(s16 *data)
         if (!(gMain.vblankCounter1 & TIME_UPDATE_INTERVAL))
             tState--;
         break;
+    }
+    if(Rtc_GetCurrentHour() == 0 && Rtc_GetCurrentMinute() == 0){
+        gSaveBlock2Ptr->miningPlaces = 0xFFFFFFFF;
     }
 }
 
