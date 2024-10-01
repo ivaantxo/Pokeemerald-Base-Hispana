@@ -1,6 +1,54 @@
 .set LOCALID_BIRCH, 2
 .set LOCALID_ZIGZAGOON, 4
 
+Route101_Mineria1::
+	setvar 0x8001, 1
+	call MiningGame_Event
+
+Route101_Mineria2::
+	setvar 0x8001, 2
+	call MiningGame_Event
+
+Route101_Mineria3::
+	setvar 0x8001, 3
+	call MiningGame_Event
+
+Route101_Mineria4::
+	setvar 0x8001, 4
+	call MiningGame_Event
+
+Route101_Mineria5::
+	setvar 0x8001, 5
+	call MiningGame_Event
+
+Route101_Mineria6::
+	setvar 0x8001, 6
+	call MiningGame_Event
+
+Route101_Mineria7::
+	setvar 0x8001, 7
+	call MiningGame_Event
+
+Route101_Mineria8::
+	setvar 0x8001, 8
+	call MiningGame_Event
+
+Route101_Mineria9::
+	setvar 0x8001, 9
+	call MiningGame_Event
+
+Route101_Mineria10::
+	setvar 0x8001, 10
+	call MiningGame_Event
+
+Route101_Mineria11::
+	setvar 0x8001, 11
+	call MiningGame_Event
+
+Route101_Mineria12::
+	setvar 0x8001, 12
+	call MiningGame_Event
+
 Route101_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route101_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route101_OnFrame
