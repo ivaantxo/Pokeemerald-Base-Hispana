@@ -881,7 +881,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SNOW_WARNING] =
     {
         .name = _("Snow Warning"),
-        .description = COMPOUND_STRING("Summons a Hailstorm."),
+    #if B_SNOW_WARNING >= GEN_9
+        .description = COMPOUND_STRING("Summons snow in battle."),
+    #else
+        .description = COMPOUND_STRING("Summons hail in battle."),
+    #endif
         .aiRating = 8,
     },
 
@@ -2555,7 +2559,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TERA_SHIFT] =
     {
         .name = _("Tera Shift"),
-        .description = COMPOUND_STRING("Terasteralizes upon entry."),
+        .description = COMPOUND_STRING("Terastallizes upon entry."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,

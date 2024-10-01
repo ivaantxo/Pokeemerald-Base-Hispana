@@ -98,9 +98,7 @@ enum {
 
 // Special return values in gBattleBufferB from Battle Controller functions.
 #define RET_VALUE_LEVELED_UP   11
-#define RET_MEGA_EVOLUTION (1 << 7)
-#define RET_ULTRA_BURST    (1 << 6)
-#define RET_DYNAMAX        (1 << 5)
+#define RET_GIMMICK            (1 << 7)
 
 struct UnusedControllerStruct
 {
@@ -127,11 +125,7 @@ struct ChooseMoveStruct
     u8 currentPp[MAX_MON_MOVES];
     u8 maxPp[MAX_MON_MOVES];
     u16 species;
-    u8 monType1;
-    u8 monType2;
-    u8 monType3;
-    struct MegaEvolutionData mega;
-    struct UltraBurstData burst;
+    u8 monTypes[3];
     struct ZMoveData zmove;
 };
 
@@ -261,7 +255,7 @@ void BattleControllerComplete(u32 battler); // Can be used for all the controlle
 void BtlController_Empty(u32 battler); // Empty command, does nothing, only completes the execution.
 void BtlController_TerminatorNop(u32 battler); // Dummy function at the end of the table.
 void BattleControllerDummy(u32 battler);
-void StartSendOutAnim(u32 battler, bool32 dontClearSubstituteBit);
+void StartSendOutAnim(u32 battler, bool32 dontClearSubstituteBit, bool32 doSlideIn);
 void Controller_WaitForString(u32 battler);
 void Controller_WaitForHealthBar(u32 battler);
 

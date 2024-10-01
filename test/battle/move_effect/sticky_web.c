@@ -123,14 +123,20 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, BATTLER_PLAYER);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
 
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        SEND_IN_MESSAGE("Corviknight");
+        MESSAGE("Corviknight was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, BATTLER_OPPONENT);
         if (opponentSetUpper == 0) {
             MESSAGE("Foe Caterpie's Speed fell!");
+            NONE_OF {
+                MESSAGE("Foe Caterpie was caught in a Sticky Web!");
+            }
         } else {
             MESSAGE("Foe Weedle's Speed fell!");
+            NONE_OF {
+                MESSAGE("Foe Weedle was caught in a Sticky Web!");
+            }
         }
     }
 }
@@ -170,8 +176,8 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
             MESSAGE("A sticky web spreads out on the ground around the opposing team!");
         }
 
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        SEND_IN_MESSAGE("Corviknight");
+        MESSAGE("Corviknight was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
     } THEN {
@@ -219,8 +225,8 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
             MESSAGE("2 sent out Pidgey!");
         }
 
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        SEND_IN_MESSAGE("Corviknight");
+        MESSAGE("Corviknight was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
     } THEN {
@@ -230,5 +236,38 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
         EXPECT_EQ(playerLeft->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
         EXPECT_EQ(playerRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponentRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+    }
+}
+SINGLE_BATTLE_TEST("Sticky Web is placed on the correct side after Explosion")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_EXPLOSION); MOVE(opponent, MOVE_STICKY_WEB); SEND_OUT(player, 1);}
+    } SCENE {
+        HP_BAR(player, hp: 0);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
+        MESSAGE("Wobbuffet fainted!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
+        MESSAGE("A sticky web spreads out on the ground around your team!");
+   }
+}
+
+SINGLE_BATTLE_TEST("Sticky Web is placed on the correct side after Memento")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_MEMENTO); MOVE(opponent, MOVE_STICKY_WEB); SEND_OUT(player, 1); }
+    } SCENE {
+        HP_BAR(player, hp: 0);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MEMENTO, player);
+        MESSAGE("Wobbuffet fainted!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
+        MESSAGE("A sticky web spreads out on the ground around your team!");
     }
 }

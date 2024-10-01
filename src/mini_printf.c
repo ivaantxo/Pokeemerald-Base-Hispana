@@ -35,7 +35,7 @@
 #include "mini_printf.h"
 #include "gba/types.h"
 #include "gba/defines.h"
-#include "config.h"
+#include "config/general.h"
 #include "characters.h"
 #include "string_util.h"
 
@@ -141,9 +141,9 @@ static s32 _putsEncoded(char *s, s32 len, void *buf)
 
 static s32 mini_strlen(const char *s)
 {
-	s32 len = 0;
-	while (s[len] != '\0') len++;
-	return len;
+    s32 len = 0;
+    while (s[len] != '\0') len++;
+    return len;
 }
 
 static s32 mini_itoa(s32 value, u32 radix, s32 uppercase, bool32 unsig, char *buffer)

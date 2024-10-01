@@ -9,7 +9,7 @@ pokeemerald-expansion is a decomp hack base project based off pret's [pokeemeral
 If you use pokeemerald-expansion in your hack, please add RHH (Rom Hacking Hideout) to your credits list. Optionally, you can list the version used, so it can help players know what features to expect.
 You can phrase it as the following:
 ```
-Based off RHH's pokeemerald-expansion v1.8.0 https://github.com/rh-hideout/pokeemerald-expansion/
+Based off RHH's pokeemerald-expansion 1.9.2 https://github.com/rh-hideout/pokeemerald-expansion/
 ```
 
 ## What features are included?
@@ -141,6 +141,14 @@ Based off RHH's pokeemerald-expansion v1.8.0 https://github.com/rh-hideout/pokee
     - [Nature Colors](https://github.com/DizzyEggg/pokeemerald/tree/nature_color) in summary screen by @DizzyEggg
     - [Dynamic Multichoice](https://github.com/SBird1337/pokeemerald/tree/feature/dynmulti) by @SBird1337
     - [Saveblock Cleansing](https://github.com/ghoulslash/pokeemerald/tree/saveblock) by @ghoulslash
+    - [Followers & Expanded IDs](https://github.com/aarant/pokeemerald/tree/followers-expanded-id) by @aarant
+        - May be disabled.
+        - Includes Pokémon followers like in HGSS, including interactions.
+        - ***Expands the amount of possible object event IDs beyond 255.***
+        - ***Includes an implementation of dynamic overworld palettes (DOWP).***
+        - **Additional features**:
+            - *Pokémon overworld sprites up to Generation 8.*
+            - *Integration with our Pokémon Sprite Visualizer, allowing users to browse through the follower sprites alongside battle sprites.*
 - ***Other features***
     - Pressing B while holding a Pokémon drops them like in modern games (configurable).
     - Running indoors (configurable).
@@ -170,7 +178,7 @@ With this, you'll get the latest version of pokeemerald-expansion, plus a couple
 - Check your current version.
     - You can check in the debug menu's `Utilities -> Expansion Version` option.
     - If the option is not available, you possibly have version 1.6.2 or older. In that case, please check the [changelogs](CHANGELOG.md) to determine your version based on the features available on your repository.
-- Once you have your remote set up, run the command `git pull RHH expansion/X.Y.Z`, replacing X, Y and Z with the digits of the respective version you want to update to (eg, to update to 1.8.4, use `git pull RHH expansion/1.8.4`).
+- Once you have your remote set up, run the command `git pull RHH expansion/X.Y.Z`, replacing X, Y and Z with the digits of the respective version you want to update to (eg, to update to 1.9.2, use `git pull RHH expansion/1.9.2`).
     - ***Important:*** If you are several versions behind, we recommend updating one minor version at a time, skipping directly to the latest patch version (eg, 1.5.3 -> 1.6.2 -> 1.7.4 and so on)
 - Alternatively, you can update to unreleased versions of the expansion.
     - ***master (stable):*** It contains unreleased **bugfixes** that will come in the next patch version. To merge, use `git pull RHH master`.

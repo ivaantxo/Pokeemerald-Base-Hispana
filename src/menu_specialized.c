@@ -186,7 +186,8 @@ static const struct ListMenuTemplate sMoveRelearnerMovesListTemplate =
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
     .fontId = FONT_NORMAL,
-    .cursorKind = CURSOR_BLACK_ARROW
+    .cursorKind = CURSOR_BLACK_ARROW,
+    .textNarrowWidth = 68,
 };
 
 //--------------
@@ -754,6 +755,9 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     const struct MoveInfo *move;
     u8 buffer[32];
     const u8 *str;
+
+    if (B_SHOW_CATEGORY_ICON == TRUE)
+        MoveRelearnerShowHideCategoryIcon(chosenMove);
 
     FillWindowPixelBuffer(RELEARNERWIN_DESC_BATTLE, PIXEL_FILL(1));
     str = gText_MoveRelearnerBattleMoves;
