@@ -5915,16 +5915,16 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             return TYPE_MYSTERY;
     }
     else if (moveEffect == EFFECT_RAGING_BULL
-             && (species == SPECIES_TAUROS_PALDEAN_COMBAT_BREED
-              || species == SPECIES_TAUROS_PALDEAN_BLAZE_BREED
-              || species == SPECIES_TAUROS_PALDEAN_AQUA_BREED))
+             && (species == SPECIES_TAUROS_PALDEA_COMBAT
+              || species == SPECIES_TAUROS_PALDEA_BLAZE
+              || species == SPECIES_TAUROS_PALDEA_AQUA))
     {
         return type2;
     }
     else if (moveEffect == EFFECT_IVY_CUDGEL
-            && (species == SPECIES_OGERPON_WELLSPRING_MASK || species == SPECIES_OGERPON_WELLSPRING_MASK_TERA
-             || species == SPECIES_OGERPON_HEARTHFLAME_MASK || species == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
-             || species == SPECIES_OGERPON_CORNERSTONE_MASK || species == SPECIES_OGERPON_CORNERSTONE_MASK_TERA))
+            && (species == SPECIES_OGERPON_WELLSPRING || species == SPECIES_OGERPON_WELLSPRING_TERA
+             || species == SPECIES_OGERPON_HEARTHFLAME || species == SPECIES_OGERPON_HEARTHFLAME_TERA
+             || species == SPECIES_OGERPON_CORNERSTONE || species == SPECIES_OGERPON_CORNERSTONE_TERA))
     {
         return type2;
     }
