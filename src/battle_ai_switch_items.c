@@ -1792,7 +1792,7 @@ static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent)
 static inline bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 opposingBattler)
 {
     bool32 movedSecond = GetBattlerTurnOrderNum(battlerSwitchingOut) > GetBattlerTurnOrderNum(opposingBattler) ? TRUE : FALSE;
-    
+
     // Switch out effects
     if (!IsDoubleBattle()) // Not handling doubles' additional complexity
     {
