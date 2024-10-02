@@ -80,23 +80,23 @@ const u8 sMiningGetItems[] = _("Has obtenido {STR_VAR_1}.");
 
 //==========BG GRAPHICS==========//
 
-static const u32 MiningGameBG3_Tileset[] = INCBIN_U32("graphics/miningGame/bg_tileset.4bpp.lz");
-static const u32 MiningGameBG3_Tilemap[] = INCBIN_U32("graphics/miningGame/bg_tilemap.bin.lz");
+static const u32 MiningGameBG3_Tileset[] = INCBIN_U32("graphics/mining_game/bg_tileset.4bpp.lz");
+static const u32 MiningGameBG3_Tilemap[] = INCBIN_U32("graphics/mining_game/bg_tilemap.bin.lz");
 
-static const u16 MiningGameBG_Palette[] = INCBIN_U16("graphics/miningGame/bgPal.gbapal");
+static const u16 MiningGameBG_Palette[] = INCBIN_U16("graphics/mining_game/bgPal.gbapal");
 
-static const u8 StoneTiles_Gfx[] = INCBIN_U8("graphics/miningGame/sprites/tilesStones.4bpp");
-static const u16 GrietasStoneTiles_Palette[] = INCBIN_U16("graphics/miningGame/sprites/grietasTilesPal.gbapal");
+static const u8 StoneTiles_Gfx[] = INCBIN_U8("graphics/mining_game/sprites/tilesStones.4bpp");
+static const u16 GrietasStoneTiles_Palette[] = INCBIN_U16("graphics/mining_game/sprites/grietasTilesPal.gbapal");
 
 //==========SPRITES GRAPHICS==========//
 
-static const u8 Cursor_Sprite[] = INCBIN_U8("graphics/miningGame/sprites/cursorSprite.4bpp");
-static const u16 Cursor_Palette[] = INCBIN_U16("graphics/miningGame/sprites/cursorPal.gbapal");
+static const u8 Cursor_Sprite[] = INCBIN_U8("graphics/mining_game/sprites/cursorSprite.4bpp");
+static const u16 Cursor_Palette[] = INCBIN_U16("graphics/mining_game/sprites/cursorPal.gbapal");
 
-static const u8 Grieta_Sprite[] = INCBIN_U8("graphics/miningGame/sprites/grietaSprite.4bpp");
+static const u8 Grieta_Sprite[] = INCBIN_U8("graphics/mining_game/sprites/grietaSprite.4bpp");
 
-static const u8 Tool_Sprite[] = INCBIN_U8("graphics/miningGame/sprites/tools.4bpp");
-static const u16 Tool_Palette[] = INCBIN_U16("graphics/miningGame/sprites/toolsPal.gbapal");
+static const u8 Tool_Sprite[] = INCBIN_U8("graphics/mining_game/sprites/tools.4bpp");
+static const u16 Tool_Palette[] = INCBIN_U16("graphics/mining_game/sprites/toolsPal.gbapal");
 
 //==========BG TEMPLATES==========//
 
@@ -984,7 +984,9 @@ static void Task_GetItems(u8 taskId)
 
             gTasks[taskId].tIndexItem = GetIndexOfObtainedItems(gTasks[taskId].tIndexItem + 1);
             gTasks[taskId].func = Task_GetItems;
-        }else{
+        }
+        else
+        {
             RemoveWindowMiningGame(gTasks[taskId].tWindowId);
             gTasks[taskId].func = Task_ReturnToField;
         }

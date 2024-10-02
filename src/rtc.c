@@ -420,15 +420,15 @@ void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24
 }
 
 // Returns current hour from RTC data
-u8 Rtc_GetCurrentHour(void) 
+u8 RtcGetCurrentHour(void) 
 {     
     RtcGetInfo(&sRtc);	
-	return sRtc.hour - (sRtc.hour/0x10) * 6;
+	return sRtc.hour - (sRtc.hour / 16) * 6;
 }
 
 // Returns current minute from RTC data
-u8 Rtc_GetCurrentMinute(void)
+u8 RtcGetCurrentMinute(void)
 { 
     RtcGetInfo(&sRtc);
-    return sRtc.minute - (sRtc.minute/0x10) * 6;
+    return sRtc.minute - (sRtc.minute / 16) * 6;
 }

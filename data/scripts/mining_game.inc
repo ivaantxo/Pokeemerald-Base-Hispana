@@ -25,8 +25,8 @@ MiningGame_Event_6:
 
 
 MiningGame_Event_Text_0:
-	.string "Esta pared parece que puede picar.\n"
-	.string "¿Quieres intentarlo?$"
+	.string "Parece que esta pared está un poco suelta.\n"
+	.string "¿Quieres intentar picarla?$"
 
 MiningGame_Event_Text_1:
 	.string "Aquí has picado hace poco.$"
