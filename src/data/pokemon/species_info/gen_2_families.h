@@ -176,10 +176,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         .palette = gMonPalette_Meganium,
         .shinyPalette = gMonShinyPalette_Meganium,
-        .iconSprite = gObjectEventPic_Meganium, 
+        .iconSprite = gObjectEventPic_Meganium,
+        .iconSpriteFemale = gObjectEventPic_MeganiumF,
         FOOTPRINT(Meganium)
         OVERWORLD(
             sPicTable_Meganium,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MeganiumF,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -2833,6 +2839,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_WooperPaldean,
         .iconSprite = gObjectEventPic_WooperPaldean, 
         FOOTPRINT(Wooper)
+        OVERWORLD(
+            sPicTable_WooperPaldean,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isPaldeanForm = TRUE,
         .levelUpLearnset = sWooperPaldeanLevelUpLearnset,
         .teachableLearnset = sWooperPaldeanTeachableLearnset,
@@ -2888,6 +2899,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Clodsire,
         .iconSprite = gObjectEventPic_Clodsire, 
         FOOTPRINT(Clodsire)
+        OVERWORLD(
+            sPicTable_Clodsire,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sClodsireLevelUpLearnset,
         .teachableLearnset = sClodsireTeachableLearnset,
     },
@@ -3467,6 +3483,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Farigiraf,
         .iconSprite = gObjectEventPic_Farigiraf, 
         FOOTPRINT(Farigiraf)
+        OVERWORLD(
+            sPicTable_Farigiraf,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sFarigirafLevelUpLearnset,
         .teachableLearnset = sFarigirafTeachableLearnset,
     },
@@ -4905,6 +4926,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_UrsalunaBloodmoon,
         .iconSprite = gObjectEventPic_UrsalunaBloodmoon, 
         FOOTPRINT(Ursaluna)
+        OVERWORLD(
+            sPicTable_UrsalunaBloodmoon,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sUrsalunaBloodmoonLevelUpLearnset,
         .teachableLearnset = sUrsalunaBloodmoonTeachableLearnset,
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,

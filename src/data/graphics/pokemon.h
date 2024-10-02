@@ -2632,8 +2632,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
     #if P_FOOTPRINTS
         const u8 gMonFootprint_Meganium[] = INCBIN_U8("graphics/pokemon/meganium/footprint.1bpp");
     #endif //P_FOOTPRINTS 
-    const u32 gObjectEventPic_Meganium[] = INCBIN_U32("graphics/pokemon/meganium/overworld.4bpp");   
-
+    const u32 gObjectEventPic_Meganium[] = INCBIN_U32("graphics/pokemon/meganium/overworld.4bpp");  
+    const u32 gObjectEventPic_MeganiumF[] = INCBIN_U32("graphics/pokemon/meganium/overworldf.4bpp");
+ 
     const u32 gMonFrontPic_MeganiumF[] = INCBIN_U32("graphics/pokemon/meganium/anim_frontf.4bpp.lz");
     const u32 gMonBackPic_MeganiumF[] = INCBIN_U32("graphics/pokemon/meganium/backf.4bpp.lz");
 #endif //P_FAMILY_CHIKORITA

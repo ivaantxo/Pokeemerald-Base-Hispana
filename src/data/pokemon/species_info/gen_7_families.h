@@ -2031,7 +2031,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         OVERWORLD(
             sPicTable_WishiwashiSolo,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_NONE,  
         )
         .levelUpLearnset = sWishiwashiLevelUpLearnset,
         .teachableLearnset = sWishiwashiTeachableLearnset,
@@ -2087,6 +2087,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_WishiwashiSchool,
         .iconSprite = gObjectEventPic_WishiwashiSchool, 
         FOOTPRINT(Wishiwashi)
+        OVERWORLD(
+            sPicTable_WishiwashiSchool,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .levelUpLearnset = sWishiwashiLevelUpLearnset,
         .teachableLearnset = sWishiwashiTeachableLearnset,
         .eggMoveLearnset = sWishiwashiEggMoveLearnset,
@@ -4418,6 +4423,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MimikyuBusted,
         .iconSprite = gObjectEventPic_MimikyuBusted, 
         FOOTPRINT(Mimikyu)
+        OVERWORLD(
+            sPicTable_MimikyuBusted,
+            SIZE_32x32,
+            TRACKS_FOOT,
+        )
         .isTotem = TRUE,
         .levelUpLearnset = sMimikyuLevelUpLearnset,
         .teachableLearnset = sMimikyuTeachableLearnset,
@@ -6637,6 +6647,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MelmetalGigantamax,
         .iconSprite = gObjectEventPic_MelmetalGigantamax, 
         FOOTPRINT(Melmetal)
+        OVERWORLD(
+            sPicTable_MelmetalGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMythical = TRUE,
         .isGigantamax = TRUE,
         .isFrontierBanned = TRUE,

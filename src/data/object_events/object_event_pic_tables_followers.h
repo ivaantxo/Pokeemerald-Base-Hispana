@@ -1272,6 +1272,9 @@ static const struct SpriteFrameImage sPicTable_Bayleef[] = {
 static const struct SpriteFrameImage sPicTable_Meganium[] = {
     overworld_ascending_frames(gObjectEventPic_Meganium, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_MeganiumF[] = {
+    overworld_ascending_frames(gObjectEventPic_MeganiumF, 4, 4),
+};
 #endif //P_FAMILY_CHIKORITA
 
 #if P_FAMILY_CYNDAQUIL
@@ -6087,9 +6090,9 @@ static const struct SpriteFrameImage sPicTable_Baxcalibur[] = {
 static const struct SpriteFrameImage sPicTable_GimmighoulChest[] = {
     overworld_ascending_frames(gObjectEventPic_GimmighoulChest, 4, 4),
 };
-//static const struct SpriteFrameImage sPicTable_GimmighoulRoaming[] = {
-//    overworld_ascending_frames(gObjectEventPic_GimmighoulRoaming, 4, 4),
-//};
+static const struct SpriteFrameImage sPicTable_GimmighoulRoaming[] = {
+    overworld_ascending_frames(gObjectEventPic_GimmighoulRoaming, 4, 4),
+};
 static const struct SpriteFrameImage sPicTable_Gholdengo[] = {
     overworld_ascending_frames(gObjectEventPic_Gholdengo, 4, 4),
 };
