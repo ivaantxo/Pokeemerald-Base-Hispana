@@ -6647,6 +6647,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_MelmetalGigantamax,
         .iconSprite = gObjectEventPic_MelmetalGigantamax, 
         FOOTPRINT(Melmetal)
+        OVERWORLD(
+            sPicTable_MelmetalGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isMythical = TRUE,
         .isGigantamax = TRUE,
         .isFrontierBanned = TRUE,

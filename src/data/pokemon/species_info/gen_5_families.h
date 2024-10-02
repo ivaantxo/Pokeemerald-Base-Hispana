@@ -5384,6 +5384,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_GarbodorGigantamax,
         .iconSprite = gObjectEventPic_GarbodorGigantamax, 
         FOOTPRINT(Garbodor)
+        OVERWORLD(
+            sPicTable_GarbodorGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sGarbodorLevelUpLearnset,
         .teachableLearnset = sGarbodorTeachableLearnset,

@@ -222,6 +222,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_RillaboomGigantamax,
         .iconSprite = gObjectEventPic_RillaboomGigantamax, 
         FOOTPRINT(Rillaboom)
+        OVERWORLD(
+            sPicTable_RillaboomGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sRillaboomLevelUpLearnset,
         .teachableLearnset = sRillaboomTeachableLearnset,
@@ -452,6 +457,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_CinderaceGigantamax,
         .iconSprite = gObjectEventPic_CinderaceGigantamax, 
         FOOTPRINT(Cinderace)
+        OVERWORLD(
+            sPicTable_CinderaceGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sCinderaceLevelUpLearnset,
         .teachableLearnset = sCinderaceTeachableLearnset,
@@ -683,6 +693,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_InteleonGigantamax,
         .iconSprite = gObjectEventPic_InteleonGigantamax, 
         FOOTPRINT(Inteleon)
+        OVERWORLD(
+            sPicTable_InteleonGigantamax,
+            SIZE_32x32,
+            TRACKS_SLITHER,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sInteleonLevelUpLearnset,
         .teachableLearnset = sInteleonTeachableLearnset,
@@ -1032,6 +1047,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_CorviknightGigantamax,
         .iconSprite = gObjectEventPic_CorviknightGigantamax, 
         FOOTPRINT(Corviknight)
+        OVERWORLD(
+            sPicTable_CorviknightGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sCorviknightLevelUpLearnset,
         .teachableLearnset = sCorviknightTeachableLearnset,
@@ -1267,6 +1287,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_OrbeetleGigantamax,
         .iconSprite = gObjectEventPic_OrbeetleGigantamax, 
         FOOTPRINT(Orbeetle)
+        OVERWORLD(
+            sPicTable_OrbeetleGigantamax,
+            SIZE_32x32,
+            TRACKS_NONE,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sOrbeetleLevelUpLearnset,
         .teachableLearnset = sOrbeetleTeachableLearnset,
@@ -1787,6 +1812,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_DrednawGigantamax,
         .iconSprite = gObjectEventPic_DrednawGigantamax, 
         FOOTPRINT(Drednaw)
+        OVERWORLD(
+            sPicTable_DrednawGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sDrednawLevelUpLearnset,
         .teachableLearnset = sDrednawTeachableLearnset,
@@ -2133,6 +2163,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_CoalossalGigantamax,
         .iconSprite = gObjectEventPic_CoalossalGigantamax, 
         FOOTPRINT(Coalossal)
+        OVERWORLD(
+            sPicTable_CoalossalGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sCoalossalLevelUpLearnset,
         .teachableLearnset = sCoalossalTeachableLearnset,
@@ -2310,6 +2345,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_FlappleGigantamax,
         .iconSprite = gObjectEventPic_FlappleGigantamax, 
         FOOTPRINT(Flapple)
+        OVERWORLD(
+            sPicTable_FlappleGigantamax,
+            SIZE_32x32,
+            TRACKS_SPOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sFlappleLevelUpLearnset,
         .teachableLearnset = sFlappleTeachableLearnset,
@@ -2423,6 +2463,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_AppletunGigantamax,
         .iconSprite = gObjectEventPic_AppletunGigantamax, 
         FOOTPRINT(Appletun)
+        OVERWORLD(
+            sPicTable_AppletunGigantamax,
+            SIZE_32x32,
+            TRACKS_SPOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sAppletunLevelUpLearnset,
         .teachableLearnset = sAppletunTeachableLearnset,
@@ -2478,6 +2523,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_Dipplin,
         .iconSprite = gObjectEventPic_Dipplin, 
         FOOTPRINT(Dipplin)
+        OVERWORLD(
+            sPicTable_Dipplin,
+            SIZE_32x32,
+            TRACKS_SPOT,  
+        )
         .levelUpLearnset = sDipplinLevelUpLearnset,
         .teachableLearnset = sDipplinTeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_DRAGON_CHEER, SPECIES_HYDRAPPLE}),
@@ -2710,6 +2760,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_SandacondaGigantamax,
         .iconSprite = gObjectEventPic_SandacondaGigantamax, 
         FOOTPRINT(Sandaconda)
+        OVERWORLD(
+            sPicTable_SandacondaGigantamax,
+            SIZE_32x32,
+            TRACKS_SLITHER,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sSandacondaLevelUpLearnset,
         .teachableLearnset = sSandacondaTeachableLearnset,
@@ -3175,6 +3230,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_ToxtricityGigantamax,
         .iconSprite = gObjectEventPic_ToxtricityGigantamax, 
         FOOTPRINT(Toxtricity)
+        OVERWORLD(
+            sPicTable_ToxtricityGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sToxtricityAmpedLevelUpLearnset,
         .teachableLearnset = sToxtricityAmpedTeachableLearnset,
@@ -3285,7 +3345,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gObjectEventPic_ToxtricityGigantamax, 
         FOOTPRINT(Toxtricity)
         OVERWORLD(
-            sPicTable_ToxtricityLowKey,
+            sPicTable_ToxtricityGigantamax,
             SIZE_32x32,
             TRACKS_FOOT,  
         )
@@ -3462,6 +3522,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_CentiskorchGigantamax,
         .iconSprite = gObjectEventPic_CentiskorchGigantamax, 
         FOOTPRINT(Centiskorch)
+        OVERWORLD(
+            sPicTable_CentiskorchGigantamax,
+            SIZE_32x32,
+            TRACKS_SLITHER,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sCentiskorchLevelUpLearnset,
         .teachableLearnset = sCentiskorchTeachableLearnset,
@@ -4040,6 +4105,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_HattereneGigantamax,
         .iconSprite = gObjectEventPic_HattereneGigantamax, 
         FOOTPRINT(Hatterene)
+        OVERWORLD(
+            sPicTable_HattereneGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sHattereneLevelUpLearnset,
         .teachableLearnset = sHattereneTeachableLearnset,
@@ -4270,6 +4340,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_GrimmsnarlGigantamax,
         .iconSprite = gObjectEventPic_GrimmsnarlGigantamax, 
         FOOTPRINT(Grimmsnarl)
+        OVERWORLD(
+            sPicTable_GrimmsnarlGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sGrimmsnarlLevelUpLearnset,
         .teachableLearnset = sGrimmsnarlTeachableLearnset,
@@ -5333,6 +5408,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_CopperajahGigantamax,
         .iconSprite = gObjectEventPic_CopperajahGigantamax, 
         FOOTPRINT(Copperajah)
+        OVERWORLD(
+            sPicTable_CopperajahGigantamax,
+            SIZE_32x32,
+            TRACKS_SLITHER,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sCopperajahLevelUpLearnset,
         .teachableLearnset = sCopperajahTeachableLearnset,
@@ -5681,6 +5761,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_DuraludonGigantamax,
         .iconSprite = gObjectEventPic_DuraludonGigantamax, 
         FOOTPRINT(Duraludon)
+        OVERWORLD(
+            sPicTable_DuraludonGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isGigantamax = TRUE,
         .levelUpLearnset = sDuraludonLevelUpLearnset,
         .teachableLearnset = sDuraludonTeachableLearnset,
@@ -5738,6 +5823,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_Archaludon,
         .iconSprite = gObjectEventPic_Archaludon, 
         FOOTPRINT(Archaludon)
+        OVERWORLD(
+            sPicTable_Archaludon,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .levelUpLearnset = sArchaludonLevelUpLearnset,
         .teachableLearnset = sArchaludonTeachableLearnset,
     },
@@ -6457,6 +6547,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_UrshifuSingleStrikeStyleGigantamax,
         .iconSprite = gObjectEventPic_UrshifuSingleStrikeStyleGigantamax, 
         FOOTPRINT(Urshifu)
+        OVERWORLD(
+            sPicTable_UrshifuSingleStrikeStyleGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isLegendary = TRUE,
         .isGigantamax = TRUE,
         .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
@@ -6572,6 +6667,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_UrshifuRapidStrikeStyleGigantamax,
         .iconSprite = gObjectEventPic_UrshifuRapidStrikeStyleGigantamax, 
         FOOTPRINT(Urshifu)
+        OVERWORLD(
+            sPicTable_UrshifuRapidStrikeStyleGigantamax,
+            SIZE_32x32,
+            TRACKS_FOOT,  
+        )
         .isLegendary = TRUE,
         .isGigantamax = TRUE,
         .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,

@@ -3191,6 +3191,9 @@ $(POKEMONGFXDIR)/simisear/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/sinistea/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/sinistcha/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/sirfetchd/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
