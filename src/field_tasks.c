@@ -164,7 +164,8 @@ static void RunTimeBasedEvents(s16 *data)
             tState--;
         break;
     }
-    if(Rtc_GetCurrentHour() == 0 && Rtc_GetCurrentMinute() == 0){
+    if ((RtcGetCurrentHour() == 0) && (RtcGetCurrentMinute() == 0))
+    {
         gSaveBlock2Ptr->miningPlaces = 0xFFFFFFFF;
     }
 }
