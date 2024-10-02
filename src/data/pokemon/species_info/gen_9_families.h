@@ -5836,14 +5836,6 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_GimmighoulChest,
         .iconSprite = gMonIcon_GimmighoulChest,
         .iconPalIndex = 0,
-        OVERWORLD(
-            sPicTable_GimmighoulChest,
-            SIZE_32x32,
-            SHADOW_SIZE_M,
-            TRACKS_NONE,
-            gOverworldPalette_GimmighoulChest,
-            gOverworldPalette_GimmighoulChest //Cambiar, falta paleta shiny
-        )
         FOOTPRINT(GimmighoulChest)
         OVERWORLD(
             sPicTable_GimmighoulChest,
