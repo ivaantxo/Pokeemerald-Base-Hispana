@@ -283,8 +283,6 @@ static bool8 MugshotTrainerPic_SlideSlow(struct Sprite *);
 static bool8 MugshotTrainerPic_SlideOffscreen(struct Sprite *);
 
 static s16 sDebug_RectangularSpiralData;
-static u8 sTestingTransitionId;
-static u8 sTestingTransitionState;
 static struct RectangularSpiralLine sRectangularSpiralLines[4];
 
 EWRAM_DATA static struct TransitionData *sTransitionData = NULL;
@@ -891,35 +889,6 @@ static const u8 sFrontierSquaresScroll_Positions[] = {
 //---------------------------
 // Main transition functions
 //---------------------------
-
-static void CB2_TestBattleTransition(void)
-{
-    switch (sTestingTransitionState)
-    {
-    case 0:
-        LaunchBattleTransitionTask(sTestingTransitionId);
-        sTestingTransitionState++;
-        break;
-    case 1:
-        if (IsBattleTransitionDone())
-        {
-            sTestingTransitionState = 0;
-            SetMainCallback2(CB2_ReturnToField);
-        }
-        break;
-    }
-
-    RunTasks();
-    AnimateSprites();
-    BuildOamBuffer();
-    UpdatePaletteFade();
-}
-
-static void UNUSED TestBattleTransition(u8 transitionId)
-{
-    sTestingTransitionId = transitionId;
-    SetMainCallback2(CB2_TestBattleTransition);
-}
 
 void BattleTransition_StartOnField(u8 transitionId)
 {

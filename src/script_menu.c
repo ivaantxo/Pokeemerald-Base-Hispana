@@ -218,31 +218,6 @@ static void FreeListMenuItems(struct ListMenuItem *items, u32 count)
     Free(items);
 }
 
-static u16 UNUSED GetLengthWithExpandedPlayerName(const u8 *str)
-{
-    u16 length = 0;
-
-    while (*str != EOS)
-    {
-        if (*str == PLACEHOLDER_BEGIN)
-        {
-            str++;
-            if (*str == PLACEHOLDER_ID_PLAYER)
-            {
-                length += StringLength(gSaveBlock2Ptr->playerName);
-                str++;
-            }
-        }
-        else
-        {
-            str++;
-            length++;
-        }
-    }
-
-    return length;
-}
-
 void MultichoiceDynamic_InitStack(u32 capacity)
 {
     AGB_ASSERT(sDynamicMultiChoiceStack == NULL);

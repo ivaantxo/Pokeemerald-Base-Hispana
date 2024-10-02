@@ -1011,7 +1011,7 @@ static void PrintItemDescription(int itemIndex)
         str = gStringVar4;
     }
     FillWindowPixelBuffer(WIN_DESCRIPTION, PIXEL_FILL(0));
-    BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, str, 3, 1, 0, 0, 0, COLORID_NORMAL);
+    BagMenu_Print(WIN_DESCRIPTION, GetFontIdToFit(str, FONT_NORMAL, 0, WindowWidthPx(WIN_DESCRIPTION) - 9), str, 3, 1, 0, 0, 0, COLORID_NORMAL);
 }
 
 static void BagMenu_PrintCursor(u8 listTaskId, u8 colorIndex)
@@ -2498,11 +2498,6 @@ static void LoadBagMenuTextWindows(void)
 static void BagMenu_Print(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIndex)
 {
     AddTextPrinterParameterized4(windowId, fontId, left, top, letterSpacing, lineSpacing, sFontColorTable[colorIndex], speed, str);
-}
-
-static u8 UNUSED BagMenu_GetWindowId(u8 windowType)
-{
-    return gBagMenu->windowIds[windowType];
 }
 
 static u8 BagMenu_AddWindow(u8 windowType)

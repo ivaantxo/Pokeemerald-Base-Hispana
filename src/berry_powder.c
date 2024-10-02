@@ -55,9 +55,6 @@ static const struct BgTemplate UNUSED sBerryPowderBgTemplates[] =
     },
 };
 
-// ? Part of the BG templates?
-static const u32 UNUSED sUnknown[] = {0xFF, 0x00};
-
 static const struct WindowTemplate UNUSED sBerryPowderWindowTemplates[] =
 {
     {
@@ -173,16 +170,6 @@ bool8 GiveBerryPowder(u32 amountToAdd)
         SetBerryPowder(powder, amount);
         return TRUE;
     }
-}
-
-static bool8 UNUSED TakeBerryPowder_(u32 cost)
-{
-    u32 *powder = &gSaveBlock2Ptr->berryCrush.berryPowderAmount;
-    if (!HasEnoughBerryPowder_(cost))
-        return FALSE;
-
-    SetBerryPowder(powder, DecryptBerryPowder(powder) - cost);
-    return TRUE;
 }
 
 bool8 TakeBerryPowder(void)

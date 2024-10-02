@@ -852,14 +852,6 @@ void ApplyWeatherColorMapToPal(u8 paletteIndex)
     ApplyColorMap(paletteIndex, 1, gWeatherPtr->colorMapIndex);
 }
 
-static bool8 UNUSED IsFirstFrameOfWeatherFadeIn(void)
-{
-    if (gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_SCREEN_FADING_IN)
-        return gWeatherPtr->fadeInFirstFrame;
-    else
-        return FALSE;
-}
-
 void LoadCustomWeatherSpritePalette(const u16 *palette)
 {
     LoadPalette(palette, OBJ_PLTT_ID(gWeatherPtr->weatherPicSpritePalIndex), PLTT_SIZE_4BPP);
@@ -991,44 +983,6 @@ bool8 Weather_UpdateBlend(void)
         return TRUE;
 
     return FALSE;
-}
-
-// Uses the same numbering scheme as the coord events
-static void UNUSED SetFieldWeather(u8 weather)
-{
-    switch (weather)
-    {
-    case COORD_EVENT_WEATHER_SUNNY_CLOUDS:
-        SetWeather(WEATHER_SUNNY_CLOUDS);
-        break;
-    case COORD_EVENT_WEATHER_SUNNY:
-        SetWeather(WEATHER_SUNNY);
-        break;
-    case COORD_EVENT_WEATHER_RAIN:
-        SetWeather(WEATHER_RAIN);
-        break;
-    case COORD_EVENT_WEATHER_SNOW:
-        SetWeather(WEATHER_SNOW);
-        break;
-    case COORD_EVENT_WEATHER_RAIN_THUNDERSTORM:
-        SetWeather(WEATHER_RAIN_THUNDERSTORM);
-        break;
-    case COORD_EVENT_WEATHER_FOG_HORIZONTAL:
-        SetWeather(WEATHER_FOG_HORIZONTAL);
-        break;
-    case COORD_EVENT_WEATHER_FOG_DIAGONAL:
-        SetWeather(WEATHER_FOG_DIAGONAL);
-        break;
-    case COORD_EVENT_WEATHER_VOLCANIC_ASH:
-        SetWeather(WEATHER_VOLCANIC_ASH);
-        break;
-    case COORD_EVENT_WEATHER_SANDSTORM:
-        SetWeather(WEATHER_SANDSTORM);
-        break;
-    case COORD_EVENT_WEATHER_SHADE:
-        SetWeather(WEATHER_SHADE);
-        break;
-    }
 }
 
 u8 GetCurrentWeather(void)

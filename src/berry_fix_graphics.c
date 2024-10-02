@@ -33,17 +33,3 @@ static const struct {
         gBerryFixWindow_Pal
     }
 };
-
-// See berry_fix_program.c
-static void UNUSED LoadBerryFixGraphics(u32 idx)
-{
-    REG_DISPCNT = 0;
-    REG_BG0HOFS = 0;
-    REG_BG0VOFS = 0;
-    REG_BLDCNT = 0;
-    LZ77UnCompVram(sBerryFixGraphics[idx].gfx, (void *)BG_CHAR_ADDR(0));
-    LZ77UnCompVram(sBerryFixGraphics[idx].tilemap, (void *)BG_SCREEN_ADDR(31));
-    CpuCopy16(sBerryFixGraphics[idx].pltt, (void *)BG_PLTT, BG_PLTT_SIZE);
-    REG_BG0CNT = BGCNT_SCREENBASE(31);
-    REG_DISPCNT = DISPCNT_BG0_ON;
-}

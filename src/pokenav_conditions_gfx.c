@@ -548,14 +548,6 @@ static u32 LoopedTask_CloseMonMarkingsWindow(s32 state)
     return LT_FINISH;
 }
 
-static u8 UNUSED *UnusedPrintNumberString(u8 *dst, u16 num)
-{
-    u8 *txtPtr = ConvertIntToDecimalStringN(dst, num, STR_CONV_MODE_RIGHT_ALIGN, 4);
-    txtPtr = StringCopy(txtPtr, gText_Number2);
-
-    return txtPtr;
-}
-
 static bool32 UpdateConditionGraphMenuWindows(u8 mode, u16 bufferIndex, bool8 winMode)
 {
     u8 text[32];

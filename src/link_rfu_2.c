@@ -110,7 +110,6 @@ static s32 GetJoinGroupStatus(void);
 static void ClearSelectedLinkPlayerIds(u16);
 static void ValidateAndReceivePokemonSioInfo(void *);
 static void ParentResetChildRecvMetadata(s32);
-static void CB2_RfuIdle(void);
 static void RfuReqDisconnectSlot(u32);
 static void SendDisconnectCommand(u32, u32);
 static void Task_TryConnectToUnionRoomParent(u8);
@@ -285,11 +284,6 @@ static const char sASCII_ChildParentSearch[][8] = {
 };
 
 static void Debug_PrintString(const void *str, u8 x, u8 y)
-{
-
-}
-
-static void Debug_PrintNum(u16 num, u8 x, u8 y, u8 numDigits)
 {
 
 }
@@ -697,21 +691,6 @@ bool32 WaitRfuState(bool32 force)
 void StopUnionRoomLinkManager(void)
 {
     gRfu.state = RFUSTATE_UR_STOP_MANAGER;
-}
-
-static void UNUSED ReadySendDataForSlots(u8 slots)
-{
-    u8 i;
-
-    for (i = 0; i < RFU_CHILD_MAX; i++)
-    {
-        if (slots & 1)
-        {
-            rfu_UNI_readySendData(i);
-            break;
-        }
-        slots >>= 1;
-    }
 }
 
 static void ReadAllPlayerRecvCmds(void)
@@ -2145,11 +2124,6 @@ void RfuSetErrorParams(u32 errorInfo)
     }
 }
 
-static void UNUSED ResetErrorState(void)
-{
-    gRfu.errorState = RFU_ERROR_STATE_NONE;
-}
-
 void RfuSetIgnoreError(bool32 enable)
 {
     if (!enable)
@@ -2552,41 +2526,6 @@ void ClearRecvCommands(void)
     CpuFill32(0, gRecvCmds, sizeof(gRecvCmds));
 }
 
-static void VBlank_RfuIdle(void)
-{
-    LoadOam();
-    ProcessSpriteCopyRequests();
-    TransferPlttBuffer();
-}
-
-static void UNUSED Debug_RfuIdle(void)
-{
-    s32 i;
-
-    ResetSpriteData();
-    FreeAllSpritePalettes();
-    ResetTasks();
-    ResetPaletteFade();
-    SetVBlankCallback(VBlank_RfuIdle);
-    if (IsWirelessAdapterConnected())
-    {
-        gLinkType = LINKTYPE_TRADE;
-        SetWirelessCommType1();
-        OpenLink();
-        SeedRng(gMain.vblankCounter2);
-        for (i = 0; i < TRAINER_ID_LENGTH; i++)
-            gSaveBlock2Ptr->playerTrainerId[i] = Random() % 256;
-
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_1D_MAP);
-        RunTasks();
-        AnimateSprites();
-        BuildOamBuffer();
-        UpdatePaletteFade();
-        CreateTask_RfuIdle();
-        SetMainCallback2(CB2_RfuIdle);
-    }
-}
-
 bool32 IsUnionRoomListenTaskActive(void)
 {
     return FuncIsActiveTask(Task_UnionRoomListen);
@@ -2602,14 +2541,6 @@ void DestroyTask_RfuIdle(void)
 {
      if (FuncIsActiveTask(Task_Idle) == TRUE)
         DestroyTask(gRfu.idleTaskId);
-}
-
-static void CB2_RfuIdle(void)
-{
-    RunTasks();
-    AnimateSprites();
-    BuildOamBuffer();
-    UpdatePaletteFade();
 }
 
 void InitializeRfuLinkManager_LinkLeader(u32 groupMax)
@@ -2930,67 +2861,6 @@ static void Debug_PrintEmpty(void)
     s32 i;
     for (i = 0; i < 20; i++)
         Debug_PrintString(sASCII_30Spaces, 0, i);
-}
-
-static void UNUSED Debug_PrintStatus(void)
-{
-    s32 i, j;
-    Debug_PrintNum(GetBlockReceivedStatus(), 28, 19, 2);
-    Debug_PrintNum(gRfuLinkStatus->connSlotFlag, 20, 1, 1);
-    Debug_PrintNum(gRfuLinkStatus->linkLossSlotFlag, 23, 1, 1);
-    if (gRfu.parentChild == MODE_PARENT)
-    {
-        for (i = 0; i < RFU_CHILD_MAX; i++)
-        {
-            if ((gRfuLinkStatus->getNameFlag >> i) & 1)
-            {
-                Debug_PrintNum(gRfuLinkStatus->partner[i].serialNo, 1, i + 3, 4);
-                Debug_PrintString((void *)gRfuLinkStatus->partner[i].gname, 6, i + 3);
-                Debug_PrintString(gRfuLinkStatus->partner[i].uname, 22, i + 3);
-            }
-        }
-        for (i = 0; i < RFU_CHILD_MAX; i++)
-        {
-            for (j = 0; j < COMM_SLOT_LENGTH; j++)
-                Debug_PrintNum(gRfu.childRecvBuffer[i][j], j * 2, i + 11, 2);
-        }
-        Debug_PrintString(sASCII_NowSlot, 1, 15);
-    }
-    else if (gRfuLinkStatus->connSlotFlag != 0 && gRfuLinkStatus->getNameFlag != 0)
-    {
-        for (i = 0; i < RFU_CHILD_MAX; i++)
-        {
-            Debug_PrintNum(0, 1, i + 3, 4);
-            Debug_PrintString(sASCII_15Spaces, 6, i + 3);
-            Debug_PrintString(sASCII_8Spaces, 22, i + 3);
-        }
-        Debug_PrintNum(gRfuLinkStatus->partner[gRfu.childSlot].serialNo, 1, 3, 4);
-        Debug_PrintString((void *)gRfuLinkStatus->partner[gRfu.childSlot].gname, 6, 3);
-        Debug_PrintString(gRfuLinkStatus->partner[gRfu.childSlot].uname, 22, 3);
-    }
-    else
-    {
-        for (i = 0; i < gRfuLinkStatus->findParentCount; i++)
-        {
-            if (gRfuLinkStatus->partner[i].slot != 0xFF)
-            {
-                Debug_PrintNum(gRfuLinkStatus->partner[i].serialNo, 1, i + 3, 4);
-                Debug_PrintNum(gRfuLinkStatus->partner[i].id, 6, i + 3, 4);
-                Debug_PrintString(gRfuLinkStatus->partner[i].uname, 22, i + 3);
-            }
-        }
-        for (; i < RFU_CHILD_MAX; i++)
-        {
-            Debug_PrintNum(0, 1, i + 3, 4);
-            Debug_PrintString(sASCII_15Spaces, 6, i + 3);
-            Debug_PrintString(sASCII_8Spaces, 22, i + 3);
-        }
-    }
-}
-
-static u32 UNUSED GetRfuSendQueueLength(void)
-{
-    return gRfu.sendQueue.count;
 }
 
 u32 GetRfuRecvQueueLength(void)

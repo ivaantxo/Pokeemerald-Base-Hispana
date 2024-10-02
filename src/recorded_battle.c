@@ -182,7 +182,7 @@ u8 RecordedBattle_GetBattlerAction(u32 actionType, u8 battlerId)
     if (sBattlerRecordSizes[battlerId] >= BATTLER_RECORD_SIZE || sBattleRecords[battlerId][sBattlerRecordSizes[battlerId]] == 0xFF)
     {
         gSpecialVar_Result = gBattleOutcome = B_OUTCOME_PLAYER_TELEPORTED; // hah
-        ResetPaletteFadeControl();
+        ResetPaletteFade();
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         SetMainCallback2(CB2_QuitRecordedBattle);
         return 0xFF;
@@ -191,11 +191,6 @@ u8 RecordedBattle_GetBattlerAction(u32 actionType, u8 battlerId)
     {
         return sBattleRecords[battlerId][sBattlerRecordSizes[battlerId]++];
     }
-}
-
-static u8 UNUSED GetRecordedBattleMode(void)
-{
-    return sRecordMode;
 }
 
 u8 RecordedBattle_BufferNewBattlerData(u8 *dst)

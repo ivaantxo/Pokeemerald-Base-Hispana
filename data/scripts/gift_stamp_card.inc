@@ -15,7 +15,7 @@ MysteryGiftScript_StampCard::
 	end
 
 sText_MysteryGiftStampCard:
-	.string "Thank you for using the STAMP CARD\n"
-	.string "System.\p"
-	.string "You have {STR_VAR_1} more to collect to\n"
-	.string "fill your STAMP CARD.$"
+	.string "Gracias por usar el sistema\n"
+	.string "de SELLOS.\p"
+	.string "Para completar la TARJETA\n"
+	.string "de SELLOS, te faltan {STR_VAR_1}.$"

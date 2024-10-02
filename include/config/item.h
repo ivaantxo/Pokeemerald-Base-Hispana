@@ -1,45 +1,46 @@
 #ifndef GUARD_CONFIG_ITEM_H
 #define GUARD_CONFIG_ITEM_H
 
-// Item config
-#define I_EXPANDED_ITEM_NAMES           TRUE        // If set to FALSE, item names are decreased from 20 characters to 14 characters.
-#define I_SHINY_CHARM_ADDITIONAL_ROLLS  2           // Amount of additional shiny rolls if the player has the Shiny Charm. Set it to 0 to disable Shiny Charm's effects.
-#define I_KEY_FOSSILS                   GEN_LATEST  // In Gen4+, all Gen 3 fossils became regular items.
-#define I_KEY_ESCAPE_ROPE               GEN_LATEST  // In Gen8, Escape Rope became a Key Item. Keep in mind, this will make it free to buy in marts.
-#define I_HEALTH_RECOVERY               GEN_LATEST  // In Gen7+, certain healing items recover a different amount of HP than they used to.
-#define I_SITRUS_BERRY_HEAL             GEN_LATEST  // In Gen4+, Sitrus Berry was changed from healing 30 HP to healing 25% of Max HP.
-#define I_VITAMIN_EV_CAP                GEN_LATEST  // In Gen8+, the Vitamins no longer have a cap of 100 EV per stat.
-#define I_BERRY_EV_JUMP                 GEN_LATEST  // In Gen4 only, EV-lowering Berries lower a stat's EV to 100 if it is above 100.
-#define I_GRISEOUS_ORB_FORM_CHANGE      GEN_LATEST  // In Gen9+, the Griseous Orb no longer changes Giratina's form when held.
-#define I_GEM_BOOST_POWER               GEN_LATEST  // In Gen6+, the Gem boost power was reduced from 50% to 30%.
-#define I_USE_EVO_HELD_ITEMS_FROM_BAG   FALSE       // If TRUE, items such as Razor Claw or Electirizer will be usable from the bag to evolve a Pokémon just like in LA.
-#define I_TYPE_BOOST_POWER              GEN_LATEST  // In Gen4+, all regular type boosting held items had their power increased from 10% to 20%. eg. Charcoal
-#define I_SELL_VALUE_FRACTION           GEN_LATEST  // In Gen9+, items sell for 1/4 of their value instead of 1/2.
-#define I_PRICE                         GEN_LATEST  // Some items have varied in value across generations.
-#define I_BERRY_PRICE                   GEN_7       // Since Berries have become unplantable (Gen8+), their price has gone up.
-#define I_POWER_ITEM_BOOST              GEN_LATEST  // In Gen7+, Power Items grant 8 EVs instead of 4 EVs.
-#define I_PREMIER_BALL_BONUS            GEN_LATEST  // In LGPE onwards (Gen8+ here), you are given a Premier Ball for every 10 Poké Balls of any type and in the same purchase. Previously, it only applied to regular Poké Balls and only 1 could be obtained per purchase.
+// Configuración de Artículos
+#define I_EXPANDED_ITEM_NAMES           TRUE        // Si se establece en FALSE, los nombres de los ítems se reducen de 20 caracteres a 14 caracteres.
+#define I_SHINY_CHARM_ADDITIONAL_ROLLS  2           // Cantidad de posibilidades adicionales de shiny si el jugador tiene el Shiny Charm. Establecer en 0 para desactivar los efectos del Shiny Charm.
+#define I_KEY_FOSSILS                   GEN_LATEST  // En Gen4+, todos los fósiles de Gen 3 se convirtieron en objetos normales.
+#define I_KEY_ESCAPE_ROPE               GEN_LATEST  // En Gen8, Escape Rope se convirtió en un Objeto Clave. Ten en cuenta que esto hará que sea gratis en las tiendas.
+#define I_HEALTH_RECOVERY               GEN_LATEST  // En Gen7+, ciertos objetos de curación recuperan una cantidad diferente de HP que antes.
+#define I_SITRUS_BERRY_HEAL             GEN_LATEST  // En Gen4+, Sitrus Berry se cambió de curar 30 HP a curar el 25% del HP máximo.
+#define I_VITAMIN_EV_CAP                GEN_LATEST  // En Gen8+, las Vitaminas ya no tienen un límite de 100 EV por estadística.
+#define I_BERRY_EV_JUMP                 GEN_LATEST  // Solo en Gen4, las Berries que reducen EV bajan el EV de una estadística a 100 si está por encima de 100.
+#define I_GRISEOUS_ORB_FORM_CHANGE      GEN_LATEST  // En Gen9+, el Griseous Orb ya no cambia la forma de Giratina cuando se sostiene.
+#define I_GEM_BOOST_POWER               GEN_LATEST  // En Gen6+, el aumento de poder del Gem se redujo del 50% al 30%.
+#define I_USE_EVO_HELD_ITEMS_FROM_BAG   FALSE       // Si es TRUE, objetos como Razor Claw o Electirizer serán utilizables desde la bolsa para evolucionar un Pokémon al igual que en LA.
+#define I_TYPE_BOOST_POWER              GEN_LATEST  // En Gen4+, todos los objetos que aumentan el poder de un tipo regular aumentaron su potencia del 10% al 20%. Ej. Charcoal
+#define I_SELL_VALUE_FRACTION           GEN_LATEST  // En Gen9+, los objetos se venden por 1/4 de su valor en lugar de 1/2.
+#define I_PRICE                         GEN_LATEST  // Algunos objetos han variado en valor a lo largo de las generaciones.
+#define I_BERRY_PRICE                   GEN_7       // Desde que las Berries se volvieron inplantables (Gen8+), su precio ha aumentado.
+#define I_POWER_ITEM_BOOST              GEN_LATEST  // En Gen7+, los Power Items otorgan 8 EV en lugar de 4 EV.
+#define I_PREMIER_BALL_BONUS            GEN_LATEST  // En LGPE a partir de (Gen8+ aquí), se te da una Premier Ball por cada 10 Poké Balls de cualquier tipo y en la misma compra. Anteriormente, solo se aplicaba a Poké Balls regulares y solo se podía obtener 1 por compra.
 
-// TM config
-#define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
+// Configuración de TM
+#define I_REUSABLE_TMS          FALSE       // En Gen5-8, los TMs son reutilizables. Establecer esto en TRUE hará que todos los TMs de la versión estándar sean reutilizables, aunque también se pueden seleccionar individualmente estableciendo su importancia en 1.
 
-// Exp. Share config
-// To use this feature, replace the 0 with the flag ID you're assigning it to.
-// Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define I_EXP_SHARE_FLAG        0           // If this flag is set, every Pokémon in the party will gain experience, regardless if they participated in the battle or not.
-#define I_EXP_SHARE_ITEM        GEN_5       // In Gen6+, the Exp. Share was changed from a held item to a Key item that toggles the effect described above.
+// Configuración de Experiencia Compartida
+// Para usar esta función, reemplaza el 0 con el ID de la bandera que estás asignando.
+// Ej: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa bandera para activar la función.
+#define I_EXP_SHARE_FLAG        0           // Si esta bandera está establecida, todos los Pokémon en el equipo ganarán experiencia, independientemente de si participaron en la batalla o no.
+#define I_EXP_SHARE_ITEM        GEN_5       // En Gen6+, el Exp. Share se cambió de un objeto en mano a un Objeto Clave que activa el efecto descrito arriba.
 
-// Repel/Lure config
-// These two settings are both independent and complementary.
-#define VAR_LAST_REPEL_LURE_USED    0       // If this var has been assigned, last Repel/Lure used will be saved and the player will get prompted with the vanilla repel YES/NO option, unless I_REPEL_LURE_MENU is set to TRUE.
-#define I_REPEL_LURE_MENU           TRUE    // If TRUE, the player is able to choose which Repel/Lure to use once the previous one runs out. Cursor position is saved by VAR_LAST_REPEL_LURE_USED if not 0.
+// Configuración de Repelentes/Atrayentes
+// Estas dos configuraciones son independientes y complementarias.
+#define VAR_LAST_REPEL_LURE_USED    0       // Si esta variable ha sido asignada, el último Repelente/Atrayente usado se guardará y el jugador será advertido con la opción de repelente estándar SÍ/NO, a menos que I_REPEL_LURE_MENU esté establecido en TRUE.
+#define I_REPEL_LURE_MENU           TRUE    // Si es TRUE, el jugador podrá elegir qué Repelente/Atrayente usar una vez que el anterior se agote. La posición del cursor se guarda mediante VAR_LAST_REPEL_LURE_USED si no es 0.
 
-// Vs. Seeker
-#define I_VS_SEEKER_CHARGING        0     // If this flag is assigned, the Vs Seeker functionality will be enabled. When the player has the Vs. Seeker, Match Call rematch functions will stop working.
+// Buscapelea (VS seeker)
+#define I_VS_SEEKER_CHARGING        0     // Si esta bandera está asignada, la funcionalidad del Buscador VS se habilitará. Cuando el jugador tenga el Buscador VS, las funciones de rematch de Match Call dejarán de funcionar.
 
-//Fishing
-#define I_FISHING_CHAIN             FALSE // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
-#define I_FISHING_MINIGAME          GEN_3 // Each generation uses a variation of reeling in Pokémon once they have been hooked.
-#define I_FISHING_PROXIMITY         FALSE // Introduced in XY, fishing away from other people in enclosed areas will increase the chances of a Pokémon being hooked. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
+// Pesca
+#define I_FISHING_CHAIN             FALSE // Introducido en XY, enganchar al mismo Pokémon repetidamente aumenta las probabilidades de que ese Pokémon sea shiny. NOTA: Esta implementación es una aproximación de la característica real, ya que XY no ha sido exhaustivamente documentado ni datamineado.
+#define I_FISHING_MINIGAME          GEN_3 // Cada generación utiliza una variación de la mecánica de pesca una vez que el Pokémon ha sido enganchado.
+#define I_FISHING_PROXIMITY         FALSE // Introducido en XY, pescar lejos de otras personas en áreas cerradas aumenta las probabilidades de que un Pokémon sea enganchado. NOTA: Esta implementación es una aproximación de la característica real, ya que XY no ha sido exhaustivamente documentado ni datamineado.
+
 
 #endif // GUARD_CONFIG_ITEM_H

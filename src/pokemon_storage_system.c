@@ -394,7 +394,6 @@ struct ChooseBoxMenu
     struct Sprite *menuSideSprites[4];
     u32 unused1[3];
     struct Sprite *arrowSprites[2];
-    u8 unused2[0x214];
     bool32 loadedPalette;
     u16 tileTag;
     u16 paletteTag;
@@ -8001,11 +8000,6 @@ static void StartCursorAnim(u8 animNum)
     StartSpriteAnim(sStorage->cursorSprite, animNum);
 }
 
-static u8 UNUSED GetMovingMonOriginalBoxId(void)
-{
-    return sMovingMonOrigBoxId;
-}
-
 static void SetCursorPriorityTo1(void)
 {
     sStorage->cursorSprite->oam.priority = 1;
@@ -9501,19 +9495,6 @@ static void SpriteCB_ItemIcon_HideParty(struct Sprite *sprite)
 //  SECTION: General utility
 //------------------------------------------------------------------------------
 
-
-// Leftover from FRLG
-static void UNUSED BackupPokemonStorage(void/*struct PokemonStorage * dest*/)
-{
-    //*dest = *gPokemonStoragePtr;
-}
-
-// Leftover from FRLG
-static void UNUSED RestorePokemonStorage(void/*struct PokemonStorage * src*/)
-{
-    //*gPokemonStoragePtr = *src;
-}
-
 // Functions here are general utility functions.
 u8 StorageGetCurrentBox(void)
 {
@@ -9901,17 +9882,6 @@ static void TilemapUtil_Free(void)
     Free(sTilemapUtil);
 }
 
-static void UNUSED TilemapUtil_UpdateAll(void)
-{
-    s32 i;
-
-    for (i = 0; i < sNumTilemapUtilIds; i++)
-    {
-        if (sTilemapUtil[i].active == TRUE)
-            TilemapUtil_Update(i);
-    }
-}
-
 struct
 {
     u16 width;
@@ -9962,15 +9932,6 @@ static void TilemapUtil_SetMap(u8 id, u8 bg, const void *tilemap, u16 width, u16
     sTilemapUtil[id].cur.destX = 0;
     sTilemapUtil[id].cur.destY = 0;
     sTilemapUtil[id].prev = sTilemapUtil[id].cur;
-    sTilemapUtil[id].active = TRUE;
-}
-
-static void UNUSED TilemapUtil_SetSavedMap(u8 id, const void *tilemap)
-{
-    if (id >= sNumTilemapUtilIds)
-        return;
-
-    sTilemapUtil[id].savedTilemap = tilemap;
     sTilemapUtil[id].active = TRUE;
 }
 

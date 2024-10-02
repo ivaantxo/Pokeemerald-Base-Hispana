@@ -1237,21 +1237,6 @@ void AnimSkyAttackBird_Step(struct Sprite *sprite)
         DestroySpriteAndMatrix(sprite);
 }
 
-static void UNUSED AnimTask_SetAttackerVisibility(u8 taskId)
-{
-    if (gBattleAnimArgs[0] == 0)
-    {
-        u8 spriteId = GetAnimBattlerSpriteId(ANIM_ATTACKER);
-        gSprites[spriteId].invisible = TRUE;
-    }
-    else
-    {
-        u8 spriteId = GetAnimBattlerSpriteId(ANIM_ATTACKER);
-        gSprites[spriteId].invisible = FALSE;
-    }
-    DestroyAnimVisualTask(taskId);
-}
-
 void AnimTask_LoadWindstormBackground(u8 taskId)
 {
     int var0;

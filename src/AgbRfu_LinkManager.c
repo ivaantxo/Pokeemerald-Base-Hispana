@@ -229,29 +229,6 @@ u8 rfu_LMAN_CHILD_connectParent(u16 parentId, u16 connect_period)
     return 0;
 }
 
-static void UNUSED rfu_LMAN_PARENT_stopWaitLinkRecoveryAndDisconnect(u8 bm_targetSlot)
-{
-    u8 i;
-
-    if ((bm_targetSlot & lman.linkRecoveryTimer.active) == 0)
-        return;
-    lman.linkRecoveryTimer.active &= ~bm_targetSlot;
-    for (i = 0; i < RFU_CHILD_MAX; i++)
-    {
-        if ((bm_targetSlot >> i) & 1)
-        {
-            lman.linkRecoveryTimer.count[i] = 0;
-        }
-    }
-    i = gRfuLinkStatus->linkLossSlotFlag & bm_targetSlot;
-    if (i)
-    {
-        rfu_LMAN_disconnect(i);
-    }
-    lman.param[0] = i;
-    rfu_LMAN_occureCallback(LMAN_MSG_LINK_RECOVERY_FAILED_AND_DISCONNECTED, i);
-}
-
 void rfu_LMAN_stopManager(u8 forced_stop_and_RFU_reset_flag)
 {
     u8 msg = 0;
@@ -1295,11 +1272,6 @@ void rfu_LMAN_setMSCCallback(void (*MSC_callback_p)(u16))
     rfu_setMSCCallback(rfu_LMAN_MSC_callback);
 }
 
-static void UNUSED rfu_LMAN_setLMANCallback(void (*func)(u8, u8))
-{
-    lman.LMAN_callback = func;
-}
-
 u8 rfu_LMAN_setLinkRecovery(u8 enable_flag, u16 recovery_period)
 {
     u16 imeBak;
@@ -1312,37 +1284,6 @@ u8 rfu_LMAN_setLinkRecovery(u8 enable_flag, u16 recovery_period)
     lman.linkRecovery_enable = enable_flag;
     lman.linkRecoveryTimer.count_max = recovery_period;
     REG_IME = imeBak;
-    return 0;
-}
-
-static u8 UNUSED rfu_LMAN_setNIFailCounterLimit(u16 NI_failCounter_limit)
-{
-    if (gRfuLinkStatus->sendSlotNIFlag | gRfuLinkStatus->recvSlotNIFlag)
-    {
-        lman.param[0] = 6;
-        rfu_LMAN_occureCallback(LMAN_MSG_LMAN_API_ERROR_RETURN, 1);
-        return LMAN_ERROR_NOW_COMMUNICATION;
-    }
-    lman.NI_failCounter_limit = NI_failCounter_limit;
-    return 0;
-}
-
-static u8 UNUSED rfu_LMAN_setFastSearchParent(u8 enable_flag)
-{
-    if (lman.state == LMAN_STATE_START_SEARCH_PARENT || lman.state == LMAN_STATE_POLL_SEARCH_PARENT || lman.state == LMAN_STATE_END_SEARCH_PARENT)
-    {
-        lman.param[0] = 7;
-        rfu_LMAN_occureCallback(LMAN_MSG_LMAN_API_ERROR_RETURN, 1);
-        return LMAN_ERROR_NOW_SEARCH_PARENT;
-    }
-    if (enable_flag)
-    {
-        lman.fastSearchParent_flag = FSP_ON;
-    }
-    else
-    {
-        lman.fastSearchParent_flag = 0;
-    }
     return 0;
 }
 

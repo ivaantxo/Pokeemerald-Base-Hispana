@@ -1688,7 +1688,7 @@ void BattleMainCB2(void)
     {
         // Player pressed B during recorded battle playback, end battle
         gSpecialVar_Result = gBattleOutcome = B_OUTCOME_PLAYER_TELEPORTED;
-        ResetPaletteFadeControl();
+        ResetPaletteFade();
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         SetMainCallback2(CB2_QuitRecordedBattle);
     }
@@ -2667,11 +2667,6 @@ static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite)
             sprite->data[1] = 0;
         }
     }
-}
-
-static void UNUSED SetIdleSpriteCallback(struct Sprite *sprite)
-{
-    sprite->callback = SpriteCB_Idle;
 }
 
 static void SpriteCB_Idle(struct Sprite *sprite)

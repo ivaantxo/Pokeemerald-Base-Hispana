@@ -3240,7 +3240,7 @@ static void PrintMonAbilityName(void)
 static void PrintMonAbilityDescription(void)
 {
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 17, 0, 0);
+    PrintTextOnWindowToFit(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_ABILITY), gAbilitiesInfo[ability].description, 0, 17, 0, 0);
 }
 
 static void BufferMonTrainerMemo(void)
@@ -3824,7 +3824,7 @@ static void PrintMoveDetails(u16 move)
             PrintMovePowerAndAccuracy(move);
 
             if (moveEffect != EFFECT_PLACEHOLDER)
-                PrintTextOnWindow(windowId, gMovesInfo[move].description, 6, 1, 0, 0);
+                PrintTextOnWindowToFit(windowId, gMovesInfo[move].description, 6, 1, 0, 0);
             else
                 PrintTextOnWindow(windowId, gNotDoneYetDescription, 6, 1, 0, 0);
         }
@@ -4172,14 +4172,6 @@ static void SummaryScreen_DestroyAnimDelayTask(void)
         DestroyTask(sAnimDelayTaskId);
         sAnimDelayTaskId = TASK_NONE;
     }
-}
-
-static bool32 UNUSED IsMonAnimationFinished(void)
-{
-    if (gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].callback == SpriteCallbackDummy)
-        return FALSE;
-    else
-        return TRUE;
 }
 
 static void StopPokemonAnimations(void)  // A subtle effect, this function stops Pokémon animations when leaving the PSS

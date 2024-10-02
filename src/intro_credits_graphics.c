@@ -74,7 +74,6 @@ static const u32 sLatias_Gfx[]            = INCBIN_U32("graphics/intro/scene_2/l
 static void SpriteCB_MovingScenery(struct Sprite *sprite);
 static void SpriteCB_Player(struct Sprite *sprite);
 static void SpriteCB_Bicycle(struct Sprite *sprite);
-static void SpriteCB_FlygonLeftHalf(struct Sprite *sprite);
 
 static const struct SpriteTemplate sSpriteTemplate_MovingScenery =
 {
@@ -562,7 +561,7 @@ static const struct SpriteTemplate sSpriteTemplate_FlygonLatios =
     .anims = sAnims_Flygon,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_FlygonLeftHalf
+    .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate sSpriteTemplate_FlygonLatias =
@@ -573,7 +572,7 @@ static const struct SpriteTemplate sSpriteTemplate_FlygonLatias =
     .anims = sAnims_Flygon,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_FlygonLeftHalf
+    .callback = SpriteCallbackDummy
 };
 
 const struct CompressedSpriteSheet gSpriteSheet_IntroBrendan[] =
@@ -1133,10 +1132,6 @@ u8 CreateIntroMaySprite(s16 x, s16 y)
 
 #undef sPlayerSpriteId
 
-static void SpriteCB_FlygonLeftHalf(struct Sprite *sprite)
-{
-}
-
 #define sLeftSpriteId data[0]
 
 static void SpriteCB_FlygonRightHalf(struct Sprite *sprite)
@@ -1146,18 +1141,6 @@ static void SpriteCB_FlygonRightHalf(struct Sprite *sprite)
     sprite->x2 = gSprites[sprite->sLeftSpriteId].x2;
     sprite->y2 = gSprites[sprite->sLeftSpriteId].y2;
 }
-
-// In RS these were for Latios/Latias. In Emerald both are replaced with Flygon and now only 1 is used
-static u8 UNUSED CreateIntroFlygonSprite_Unused(s16 x, s16 y)
-{
-    u8 leftSpriteId = CreateSprite(&sSpriteTemplate_FlygonLatios, x - 32, y, 5);
-    u8 rightSpriteId = CreateSprite(&sSpriteTemplate_FlygonLatios, x + 32, y, 6);
-    gSprites[rightSpriteId].sLeftSpriteId = leftSpriteId;
-    StartSpriteAnim(&gSprites[rightSpriteId], 1);
-    gSprites[rightSpriteId].callback = &SpriteCB_FlygonRightHalf;
-    return leftSpriteId;
-}
-
 
 u8 CreateIntroFlygonSprite(s16 x, s16 y)
 {
