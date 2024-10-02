@@ -34,19 +34,22 @@
 #include "sprite.h"
 #include "window.h"
 #include "random.h"
+#include "main_menu.h"
 #include "menu.h"
 #include "item.h"
 #include "event_data.h"
+
 //==========FUNCIONES STATIC==========//
+
 static void Task_FadeIn(u8 taskId);
 static void Task_MainHandle(u8 taskId);
 static void Task_FadeOut(u8 taskId);
 
-static bool8 isCursorYPotionOnBorder(bool8 isUp);
-static bool8 isCursorXPotionOnBorder(bool8 isRight);
-
+static bool8 IsCursorYPotionOnBorder(bool8 isUp);
+static bool8 IsCursorXPotionOnBorder(bool8 isRight);
 
 static void SpriteCallbackCursor(struct Sprite *sprite);
+
 //==========VARIBLES EWRAM_DATA==========//
 
 #define WINDOW_MINING_WIDTH 23
@@ -62,14 +65,12 @@ struct MiningGame
     u8 cursorSpriteId;
     u8 grietasIds[MAX_NUM_GRIETAS_SPRITES];
     u8 toolsSpriteId[3];
-
-    u8 blockX, blockY; //posicion X e Y cursor
-    u8 tilesStones[WINDOW_MINING_HEIGHT/2][12]; //estado de las piedras a picas estan en bloques de 16px
-    u16 itemsIds[MAX_NUM_ITEMS_MINING];//id de los item 
-    u8 itemsSpritesIds[MAX_NUM_ITEMS_MINING];//ids de los sprites items q hay para desenterrar
-    bool8 itemsStatus[MAX_NUM_ITEMS_MINING];// indica si el item fue desenterrado no
-
-    u8 toolType;//eñ tipo de cursor selecionando pico, martillo....
+    u8 blockX, blockY; //Posición X e Y del cursor
+    u8 tilesStones[WINDOW_MINING_HEIGHT/2][12]; //Estado de las piedras a picas están en bloques de 16px
+    u16 itemsIds[MAX_NUM_ITEMS_MINING]; //Id de los item 
+    u8 itemsSpritesIds[MAX_NUM_ITEMS_MINING]; //Id de los sprites items que hay para desenterrar
+    bool8 itemsStatus[MAX_NUM_ITEMS_MINING]; //Indica si el item fue desenterrado no
+    u8 toolType; //Tipo de cursor seleccionado: pico, martillo...
 };
 
 static EWRAM_DATA struct MiningGame mining = {0};
@@ -78,6 +79,7 @@ const u8 sWallDestroy[] = _("¡El muro se ha derrumbado!");
 const u8 sMiningGetItems[] = _("Has obtenido {STR_VAR_1}.");
 
 //==========BG GRAPHICS==========//
+
 static const u32 MiningGameBG3_Tileset[] = INCBIN_U32("graphics/miningGame/bg_tileset.4bpp.lz");
 static const u32 MiningGameBG3_Tilemap[] = INCBIN_U32("graphics/miningGame/bg_tilemap.bin.lz");
 
@@ -87,6 +89,7 @@ static const u8 StoneTiles_Gfx[] = INCBIN_U8("graphics/miningGame/sprites/tilesS
 static const u16 GrietasStoneTiles_Palette[] = INCBIN_U16("graphics/miningGame/sprites/grietasTilesPal.gbapal");
 
 //==========SPRITES GRAPHICS==========//
+
 static const u8 Cursor_Sprite[] = INCBIN_U8("graphics/miningGame/sprites/cursorSprite.4bpp");
 static const u16 Cursor_Palette[] = INCBIN_U16("graphics/miningGame/sprites/cursorPal.gbapal");
 
@@ -96,20 +99,19 @@ static const u8 Tool_Sprite[] = INCBIN_U8("graphics/miningGame/sprites/tools.4bp
 static const u16 Tool_Palette[] = INCBIN_U16("graphics/miningGame/sprites/toolsPal.gbapal");
 
 //==========BG TEMPLATES==========//
+
 static const struct BgTemplate MiningGameBgTemplates[] =
 {
     {
         .bg = 0, 
         .charBaseIndex = 0,
         .mapBaseIndex = 15,
-        .paletteMode = 0,
         .priority = 0
     },
     {
         .bg = 3,
         .charBaseIndex = 3,
         .mapBaseIndex = 30,
-        .paletteMode = 0,
         .priority = 2
     }
 };
@@ -122,37 +124,28 @@ static const struct BgTemplate MiningGameBgTemplates[] =
 
 static const struct OamData gSpriteOamData32x32 =
 {
-    .y = 0,
-    .affineMode = 0,
-    .objMode = 0,
-    .mosaic = 0,
-    .bpp = 0,
     .shape = SPRITE_SHAPE(32x32),
-    .x = 0,
-    .matrixNum = 0,
     .size = SPRITE_SIZE(32x32),
-    .tileNum = 0,
     .priority = 0,
-    .paletteNum = 0,
-    .affineParam = 0,
 };
 
 //==========SPRITE CURSOR==========//
 
 static const struct SpriteSheet spriteSheetCursor =
 {
-            .data = Cursor_Sprite,
-            .size = 1536, 
-            .tag = TAG_SPRITE_CURSOR,
+    .data = Cursor_Sprite,
+    .size = 1536, 
+    .tag = TAG_SPRITE_CURSOR,
 };
 
 static const struct SpritePalette spritePaletteCursor =
 {
-        .data = Cursor_Palette,
-        .tag = TAG_SPRITE_CURSOR, 
+    .data = Cursor_Palette,
+    .tag = TAG_SPRITE_CURSOR, 
 };
 
-enum{
+enum CursoresMineria
+{
     CURSOR_NORMAL,
     CURSOR_PICK,
     CURSOR_HAMMER,
@@ -205,18 +198,19 @@ static const struct SpriteTemplate spriteTemplateCursor=
 
 static const struct SpriteSheet spriteSheetGrieta =
 {
-            .data = Grieta_Sprite,
-            .size = 3072, 
-            .tag = TAG_SPRITE_GRIETA,
+    .data = Grieta_Sprite,
+    .size = 3072, 
+    .tag = TAG_SPRITE_GRIETA,
 };
 
 static const struct SpritePalette spritePaletteGrieta =
 {
-        .data = GrietasStoneTiles_Palette,
-        .tag = TAG_SPRITE_GRIETA, 
+    .data = GrietasStoneTiles_Palette,
+    .tag = TAG_SPRITE_GRIETA, 
 };
 
-enum{
+enum EstadosGrieta
+{
     GRIETA_STATE_0,
     GRIETA_STATE_1,
     GRIETA_STATE_2,
@@ -261,7 +255,6 @@ static const union AnimCmd sAnim_GrietaState5[] =
     ANIMCMD_END,
 };
 
-
 static const union AnimCmd *const sAnims_GrietaSprite[] =
 {
     [GRIETA_STATE_0] = sAnim_GrietaState0,
@@ -287,18 +280,19 @@ static const struct SpriteTemplate spriteTemplateGrieta=
 
 static const struct SpriteSheet spriteSheetTool =
 {
-            .data = Tool_Sprite,
-            .size = 1536, 
-            .tag = TAG_SPRITE_TOOL,
+    .data = Tool_Sprite,
+    .size = 1536, 
+    .tag = TAG_SPRITE_TOOL,
 };
 
 static const struct SpritePalette spritePaletteTool =
 {
-        .data = Tool_Palette,
-        .tag = TAG_SPRITE_TOOL, 
+    .data = Tool_Palette,
+    .tag = TAG_SPRITE_TOOL,
 };
 
-enum{
+enum HerramientasMineria
+{
     TOOL_PICK,
     TOOL_HAMMER,
     TOOL_BOOM,
@@ -317,7 +311,6 @@ static const union AnimCmd sAnim_ToolHammer[] =
     ANIMCMD_END
 };
 
-
 static const union AnimCmd sAnim_ToolBoom[] =
 {
     ANIMCMD_FRAME(32, 0),
@@ -330,7 +323,6 @@ static const union AnimCmd *const sAnims_ToolSprite[] =
     [TOOL_HAMMER] = sAnim_ToolHammer,
     [TOOL_BOOM] = sAnim_ToolBoom
 };
-
 
 static const struct SpriteTemplate spriteTemplateTool=
 {
@@ -363,7 +355,7 @@ static const union AffineAnimCmd *const sAffineAnims_Items[] =
 
 //==========SPRITES FUNC==========//
 
-static void LoadSpritesResources()
+static void LoadSpritesResources(void)
 {
     LoadSpriteSheet(&spriteSheetCursor); 
     LoadSpritePalette(&spritePaletteCursor);
@@ -383,7 +375,7 @@ static u8 CreateCursorSprite(u8 x, u8 y)
     return id;
 }
 
-static void CreateGrietasSprite()
+static void CreateGrietasSprite(void)
 {
     u8 id, x = 16, y = 6;
 
@@ -397,7 +389,7 @@ static void CreateGrietasSprite()
     }
 }
 
-static void CreateToolsSprite()
+static void CreateToolsSprite(void)
 {
     u8 id, y = 51;
 
@@ -410,7 +402,7 @@ static void CreateToolsSprite()
     }
 }
 
-static void DestroySpritesGame()
+static void DestroySpritesGame(void)
 {
     u8 i;
     DestroySpriteAndFreeResources(&gSprites[mining.cursorSpriteId]);
@@ -539,8 +531,7 @@ static void SpriteCallbackItemIconSprite(struct Sprite *sprite)
     }
 }
 
-
-void UpdateGrietas()
+void UpdateGrietas(void)
 {
     u8 id, animNum;
     bool8 allInvisibles = TRUE;
@@ -588,7 +579,7 @@ void UpdateGrietas()
         gSprites[mining.grietasIds[MAX_NUM_GRIETAS_SPRITES-1]].invisible = FALSE;
 }
 
-bool8 checkStateGrietas()
+bool8 checkStateGrietas(void)
 {
     u8 id;
 
@@ -603,7 +594,7 @@ bool8 checkStateGrietas()
 }
 
 
-void UpdateSelectTool()
+void UpdateSelectTool(void)
 {
     u8 id; 
 
@@ -624,14 +615,14 @@ void UpdateSelectTool()
 
 //==========BG LOAD FUNC==========//
 
-static void LoadBGs_MiningGame()
+static void LoadBGs_MiningGame(void)
 {
     InitBgsFromTemplates(0, MiningGameBgTemplates, NELEMS(MiningGameBgTemplates));
 
-    LZ77UnCompVram(MiningGameBG3_Tileset, (void*) VRAM + 0x4000 * MiningGameBgTemplates[1].charBaseIndex);
+    LZ77UnCompVram(MiningGameBG3_Tileset, (void*) VRAM + 16384 * MiningGameBgTemplates[1].charBaseIndex);
     LZ77UnCompVram(MiningGameBG3_Tilemap, (u16*) BG_SCREEN_ADDR(MiningGameBgTemplates[1].mapBaseIndex));
 
-    LoadPalette(MiningGameBG_Palette, 0x00, 0x20);
+    LoadPalette(MiningGameBG_Palette, 0, 0x20);
 
     ResetAllBgsCoordinates(); 
 
@@ -643,13 +634,12 @@ static void LoadBGs_MiningGame()
 }
 
 
-enum{
-    WINDOW_TILES,
-};
+#define WINDOW_TILES    0
 
 static const struct WindowTemplate sWindowTemplatesMiningGame[] =
 {
-   [WINDOW_TILES]{
+    [WINDOW_TILES]
+    {
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 3,
@@ -662,7 +652,8 @@ static const struct WindowTemplate sWindowTemplatesMiningGame[] =
     DUMMY_WIN_TEMPLATE,
 };
 
-static const struct WindowTemplate sWindowTemplate_MsgBox = {
+static const struct WindowTemplate sWindowTemplate_MsgBox =
+{
     .bg = 0,
     .tilemapLeft = 2,
     .tilemapTop = 15,
@@ -672,7 +663,7 @@ static const struct WindowTemplate sWindowTemplate_MsgBox = {
     .baseBlock = 1
 };
 
-static void InitWindowMiningGame()
+static void InitWindowMiningGame(void)
 {
 	InitWindows(sWindowTemplatesMiningGame);
     DeactivateAllTextPrinters();
@@ -691,14 +682,14 @@ void RemoveWindowMiningGame(u8 windowId)
 }
 
 
-static void VBlank_CB_MiningGame()
+static void VBlank_CB_MiningGame(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
 }
 
-static void CB2_MiningGame()
+static void CB2_MiningGame(void)
 {
     RunTasks();
     AnimateSprites();
@@ -713,7 +704,7 @@ static void CB2_MiningGame()
 #define CALC_TILE_NUM(n) DEST_TILES_STONES + (n * 4)
 #define TILE_COUNT 8
 
-void generateItemsSprites()
+void generateItemsSprites(void)
 {
     u8 i, idItem;
     u16 xValues[6] = {16, 48, 80, 112, 144, 176};
@@ -756,20 +747,20 @@ void generateItemsSprites()
     }
 }
 
-void LoadRandomTilesStones()
+void LoadRandomTilesStones(void)
 {
     u8 i, j;
     u8 x = INITIAL_POS_X;
     u8 y = INITIAL_POS_Y;
 
-    for ( i = 0; i < WINDOW_MINING_HEIGHT; i+=2)
+    for (i = 0; i < WINDOW_MINING_HEIGHT; i += 2)
     {
-        for ( j = 0; j < WINDOW_MINING_WIDTH; j+=2)
+        for (j = 0; j < WINDOW_MINING_WIDTH; j += 2)
         {
             u8 statusStone;
             u16 tileNum;
 
-            statusStone = RandomMinMax(3, TILE_COUNT-1);
+            statusStone = RandomMinMax(3, TILE_COUNT - 1);
 
             tileNum = CALC_TILE_NUM(statusStone);
             
@@ -791,15 +782,15 @@ void LoadRandomTilesStones()
 
 u8 getStatusValueToTileUpdate(u8 i, u8 j)
 {
-    u8 pickStatusUpdate[3][3] = { {0,1,0}, {1,1,1}, {0,1,0} };
-    u8 hammerStatusUpdate[3][3] = { {1,2,1}, {2,2,2}, {1,2,1} };
+    u8 pickStatusUpdate[3][3] = {{0,1,0}, {1,1,1}, {0,1,0}};
+    u8 hammerStatusUpdate[3][3] = {{1,2,1}, {2,2,2}, {1,2,1}};
 
     u8 statusValueToUpdate = (mining.toolType == TOOL_PICK) ? pickStatusUpdate[i][j] : hammerStatusUpdate[i][j];
 
     return statusValueToUpdate;
 }
 
-void updateTileStone() 
+void updateTileStone(void) 
 {
     u8 posX, posY, statusValueUpdate;
     u16 tileNum = DEST_TILES_STONES;
@@ -855,7 +846,7 @@ void updateTileStone()
 
 #define INITIAL_CURSOR_POS_Y 32
 
-static bool8 isCursorXPotionOnBorder(bool8 isRight)
+static bool8 IsCursorXPotionOnBorder(bool8 isRight)
 {
     u8 x = gSprites[mining.cursorSpriteId].x;
 
@@ -866,7 +857,7 @@ static bool8 isCursorXPotionOnBorder(bool8 isRight)
     }
 }
 
-static bool8 isCursorYPotionOnBorder(bool8 isUp)
+static bool8 IsCursorYPotionOnBorder(bool8 isUp)
 {
     u8 y = gSprites[mining.cursorSpriteId].y;
 
@@ -908,25 +899,25 @@ static void Task_MainHandle(u8 taskId)
     //     gTasks[taskId].func = Task_FadeOut;
     // }
 
-    if(JOY_NEW(DPAD_UP) && isCursorYPotionOnBorder(TRUE))
+    if(JOY_NEW(DPAD_UP) && IsCursorYPotionOnBorder(TRUE))
     {
         gSprites[mining.cursorSpriteId].y -= 16;
         mining.blockY -= 1;
     }
 
-    if(JOY_NEW(DPAD_DOWN) && isCursorYPotionOnBorder(FALSE))
+    if(JOY_NEW(DPAD_DOWN) && IsCursorYPotionOnBorder(FALSE))
     {
         gSprites[mining.cursorSpriteId].y += 16;
         mining.blockY += 1;
     }
 
-    if(JOY_NEW(DPAD_LEFT) && isCursorXPotionOnBorder(FALSE))
+    if(JOY_NEW(DPAD_LEFT) && IsCursorXPotionOnBorder(FALSE))
     {
         gSprites[mining.cursorSpriteId].x -= 16;
         mining.blockX -= 1;
     }
 
-    if(JOY_NEW(DPAD_RIGHT) && isCursorXPotionOnBorder(TRUE))
+    if(JOY_NEW(DPAD_RIGHT) && IsCursorXPotionOnBorder(TRUE))
     {
         gSprites[mining.cursorSpriteId].x += 16;
         mining.blockX += 1;
@@ -934,7 +925,7 @@ static void Task_MainHandle(u8 taskId)
 
     if(JOY_NEW(R_BUTTON))
     {
-        if(mining.toolType < TOOLS_COUNT-1 )
+        if (mining.toolType < TOOLS_COUNT - 1)
         {
             PlaySE(SE_SELECT);
             mining.toolType += 1;
@@ -944,7 +935,7 @@ static void Task_MainHandle(u8 taskId)
 
     if(JOY_NEW(L_BUTTON))
     {
-        if(mining.toolType > 0 )
+        if (mining.toolType > 0)
         {
             PlaySE(SE_SELECT);
             mining.toolType -= 1;
@@ -998,10 +989,8 @@ static void Task_GetItems(u8 taskId)
             gTasks[taskId].func = Task_ReturnToField;
         }
     }
-    
 }
 
-#include "main_menu.h"
 static void Task_FadeOut(u8 taskId)
 {
     if(!gPaletteFade.active)
@@ -1012,9 +1001,8 @@ static void Task_FadeOut(u8 taskId)
 
         gTasks[taskId].tWindowId = AddWindow(&sWindowTemplate_MsgBox);
 
-
-        LoadUserWindowBorderGfxOnBg(0, 0xF3, 14);
-        LoadMessageBoxGfx(gTasks[taskId].tWindowId, 0xFC, BG_PLTT_ID(15));
+        LoadUserWindowBorderGfxOnBg(0, 243, 14);
+        LoadMessageBoxGfx(gTasks[taskId].tWindowId, 252, BG_PLTT_ID(15));
         NewGameBirchSpeech_ShowDialogueWindow(gTasks[taskId].tWindowId, 1);
         PutWindowTilemap(gTasks[taskId].tWindowId);
         CopyWindowToVram(gTasks[taskId].tWindowId, COPYWIN_GFX);
@@ -1027,9 +1015,9 @@ static void Task_FadeOut(u8 taskId)
     }
 }
 
-
 //==========GFX SETUP FUNC==========//
-void CB2_InitMiningGameSetUp()
+
+void CB2_InitMiningGameSetUp(void)
 {
     u8 i;
 
@@ -1041,7 +1029,7 @@ void CB2_InitMiningGameSetUp()
         ResetTasks();
         ResetSpriteData();
         ResetPaletteFade();
-        DmaClearLarge16(3, (void *) VRAM, VRAM_SIZE, 0x1000);
+        DmaClearLarge16(3, (void *) VRAM, VRAM_SIZE, 4096);
         FreeAllSpritePalettes();
         gMain.state++;
     case 1:
@@ -1069,8 +1057,7 @@ void CB2_InitMiningGameSetUp()
     }
 }
 
-
-bool8 isMiningPlaceActive()
+bool8 isMiningPlaceActive(void)
 {
     u32 miningPlaces;
     u32 mask;
@@ -1090,10 +1077,13 @@ void SetBitValueMiningPlace(u8 indexMining)
 
     mask = 1 << indexMining;
 
-    if (!isMiningPlaceActive(indexMining)) {
+    if (!isMiningPlaceActive())
+    {
         // Usamos OR para poner el bit en 1
         miningPlaces |= mask;
-    } else {
+    }
+    else
+    {
         // Usamos AND con el complemento de la máscara para poner el bit en 0
         miningPlaces &= ~mask;
     }
@@ -1102,13 +1092,14 @@ void SetBitValueMiningPlace(u8 indexMining)
 
 }
 
-void DesactiveMiningPlace()
+void DesactiveMiningPlace(void)
 {
     SetBitValueMiningPlace(VarGet(VAR_0x8001));
 }
 
 //==========CALLNATIVE FUNC==========//
-bool8 StartMiningGame_CB2() 
+
+bool8 StartMiningGame_CB2(void) 
 {
     if (!gPaletteFade.active)
     {
@@ -1116,11 +1107,10 @@ bool8 StartMiningGame_CB2()
         SetMainCallback2(CB2_InitMiningGameSetUp);
         return TRUE;
     }
-
     return FALSE;
 }
 
-void DoSpecialMiningGame()
+void DoSpecialMiningGame(void)
 {
     ScriptContext_Stop();
     StartMiningGame_CB2();
