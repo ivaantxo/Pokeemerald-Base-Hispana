@@ -1,13 +1,13 @@
 #ifndef GUARD_RGB_H
 #define GUARD_RGB_H
 
-#define GET_R(color) ((color) & 0x1F)
-#define GET_G(color) (((color) >> 5) & 0x1F)
-#define GET_B(color) (((color) >> 10) & 0x1F)
+#define GET_R(color) ((color) & 15)
+#define GET_G(color) (((color) >> 5) & 15)
+#define GET_B(color) (((color) >> 10) & 15)
 
 #define RGB(r, g, b)  ((r) | ((g) << 5) | ((b) << 10))
 #define RGB2(r, g, b) (((b) << 10) | ((g) << 5) | (r))
-#define _RGB(r, g, b) ((((b) & 0x1F) << 10) + (((g) & 0x1F) << 5) + ((r) & 0x1F))
+#define _RGB(r, g, b) ((((b) & 15) << 10) + (((g) & 15) << 5) + ((r) & 15))
 #define RGB2GBA(r, g, b) (((r >> 3) & 31) | (((g >> 3) & 31) << 5) | (((b >> 3) & 31) << 10))
 
 #define RGB_ALPHA       (1 << 15)

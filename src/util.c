@@ -278,90 +278,240 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u32 blendColor)
     }
 }
 
-#define CONSTANTE_DE_PALETAS_UNICAS 5  //Esta constante define la variación de colores máxima en valores de 0 a 31 (Valores de 0 o 1 es lo mismo que sin variación) que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
-//Si la personalidad del Pokémon es par, la variación hará más clara la paleta; si es negativa, más oscura.
+#define CONSTANTE_DE_PALETAS_UNICAS 80  //Esta constante define la variación de colores máxima que tendrán los Pokémon según su personalidad. Valores más bajos son variaciones muy tenues, valores más altos son más visibles.
+//Según si la personalidad del Pokémon es par o impar, tenderá a ir hacia un lado del espectro cromático u otro.
 
 void UniquePalette(u16 palOffset, u32 personality)
 {
     u32 i;
-    u32 value = (personality >> 8) & 0xFFFF;
-    s8 r, g, b;
-    s8 dr = ((value >> 8) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
-    s8 dg = ((value >> 4) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
-    s8 db = (value & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
+    u32 value = ((personality >> 8) & 65535) % CONSTANTE_DE_PALETAS_UNICAS;
 
     for (i = 0; i < 16; i++)
     {
         u32 index = i + palOffset;
         struct PlttData *data = (struct PlttData *)&gPlttBufferUnfaded[index];
+        s32 r = (data->r * 1000) / 31;
+        s32 g = (data->g * 1000) / 31;
+        s32 b = (data->b * 1000) / 31;
+        s32 maxv, minv, d, h, s, l, o, p, q;
+
+        if (r > g)
+            maxv = r;
+        else
+            maxv = g;
+        if (b > maxv)
+            maxv = b;
+        if (r < g)
+            minv = r;
+        else
+            minv = g;
+        if (b < minv)
+            minv = b;
+
+        d = maxv - minv;
+        h = 0;
+        s = 0;
+        l = (maxv + minv) / 2;
+
+        if  (maxv != minv)
+        {
+            if (l > 500)
+                s = 1000 * d / (2000 - maxv - minv);
+            else
+                s = 1000 * d / (maxv + minv);
+            if (maxv == r)
+            {
+                if (g < b)
+                    h = 1000 * (g - b) / d + 6000;
+                else
+                    h = 1000 * (g - b) / d;
+            }
+            else if (maxv == g)
+            {
+                h = 1000 * (b - r) / d + 2000;
+            }
+            else
+            {
+                h = 1000 * (r - g) / d + 4000;
+            }
+            h /= 6;
+        }
+
         if (personality % 2 == 0) //Personalidad es par
         {
-            r = data->r + dr;
-            g = data->g + dg;
-            b = data->b + db;
+            h = (h + value + 1000) % 1000;
         }
         else //Personalidad es impar
         {
-            r = data->r - dr;
-            g = data->g - dg;
-            b = data->b - db;
+            h = (h - value + 1000) % 1000;
         }
 
-        if (r > 31)
-            r = 31 - dr / 2;
-        if (g > 31)
-            g = 31 - dg / 2;
-        if (b > 31)
-            b = 31 - db / 2;
-        if (r < 0)
-            r = dr / 2;
-        if (g < 0)
-            g = dg / 2;
-        if (b < 0)
-            b = db / 2;
+        if (s != 0)
+        {
+            o = (h + 333) % 1000;
 
-        gPlttBufferFaded[index] = RGB(r, g, b);
+            if (l < 500)
+                p = l * (s + 1000) / 1000;
+            else
+                p = l + s - l * s / 1000;
+
+            q = l * 2 - p;
+
+            if (o < 167)
+                r = q + (p - q) * o * 6 / 1000;
+            else if (o < 500)
+                r = p;
+            else if (o < 667)
+                r = q + (p - q) * (667 - o) * 6 / 1000;
+            else
+                r = q;
+
+            o = h;
+
+            if (o < 167)
+                g = q + (p - q) * o * 6 / 1000;
+            else if (o < 500)
+                g = p;
+            else if (o < 667)
+                g = q + (p - q) * (667 - o) * 6 / 1000;
+            else
+                g = q;
+
+            o = (h + 1000 - 333) % 1000;
+
+            if (o < 167)
+                b = q + (p - q) * o * 6 / 1000;
+            else if (o < 500)
+                b = p;
+            else if (o < 667)
+                b = q + (p - q) * (667 - o) * 6 / 1000;
+            else
+                b = q;
+        }
+        else
+        {
+            r = l;
+            g = l;
+            b = l;
+        }
+
+        gPlttBufferFaded[index] = RGB((u8)(r * 31 / 1000), (u8)(g * 31 / 1000), (u8)(b * 31 / 1000));
     }
 }
 
 void UniquePaletteBuffered(u16 * buffer, u32 personality)
 {
     u32 i;
-    u32 value = (personality >> 8) & 0xFFFF;
-    s8 r, g, b;
-    s8 dr = ((value >> 8) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
-    s8 dg = ((value >> 4) & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
-    s8 db = (value & 0xF) % CONSTANTE_DE_PALETAS_UNICAS;
+    u32 value = ((personality >> 8) & 65535) % CONSTANTE_DE_PALETAS_UNICAS;
 
     for (i = 0; i < 16; i++)
     {
         struct PlttData *data = (struct PlttData *)&buffer[i];
+        s32 r = (data->r * 1000) / 31;
+        s32 g = (data->g * 1000) / 31;
+        s32 b = (data->b * 1000) / 31;
+        s32 maxv, minv, d, h, s, l, o, p, q;
+
+        if (r > g)
+            maxv = r;
+        else
+            maxv = g;
+        if (b > maxv)
+            maxv = b;
+        if (r < g)
+            minv = r;
+        else
+            minv = g;
+        if (b < minv)
+            minv = b;
+
+        d = maxv - minv;
+        h = 0;
+        s = 0;
+        l = (maxv + minv) / 2;
+
+        if  (maxv != minv)
+        {
+            if (l > 500)
+                s = 1000 * d / (2000 - maxv - minv);
+            else
+                s = 1000 * d / (maxv + minv);
+            if (maxv == r)
+            {
+                if (g < b)
+                    h = 1000 * (g - b) / d + 6000;
+                else
+                    h = 1000 * (g - b) / d;
+            }
+            else if (maxv == g)
+            {
+                h = 1000 * (b - r) / d + 2000;
+            }
+            else
+            {
+                h = 1000 * (r - g) / d + 4000;
+            }
+            h /= 6;
+        }
+
         if (personality % 2 == 0) //Personalidad es par
         {
-            r = data->r + dr;
-            g = data->g + dg;
-            b = data->b + db;
+            h = (h + value + 1000) % 1000;
         }
         else //Personalidad es impar
         {
-            r = data->r - dr;
-            g = data->g - dg;
-            b = data->b - db;
+            h = (h - value + 1000) % 1000;
         }
 
-        if (r > 31)
-            r = 31 - dr / 2;
-        if (g > 31)
-            g = 31 - dg / 2;
-        if (b > 31)
-            b = 31 - db / 2;
-        if (r < 0)
-            r = dr / 2;
-        if (g < 0)
-            g = dg / 2;
-        if (b < 0)
-            b = db / 2;
+        if (s != 0)
+        {
+            o = (h + 333) % 1000;
 
-        buffer[i] = RGB(r, g, b);
+            if (l < 500)
+                p = l * (s + 1000) / 1000;
+            else
+                p = l + s - l * s / 1000;
+
+            q = l * 2 - p;
+
+            if (o < 167)
+                r = q + (p - q) * o * 6 / 1000;
+            else if (o < 500)
+                r = p;
+            else if (o < 667)
+                r = q + (p - q) * (667 - o) * 6 / 1000;
+            else
+                r = q;
+
+            o = h;
+
+            if (o < 167)
+                g = q + (p - q) * o * 6 / 1000;
+            else if (o < 500)
+                g = p;
+            else if (o < 667)
+                g = q + (p - q) * (667 - o) * 6 / 1000;
+            else
+                g = q;
+
+            o = (h + 1000 - 333) % 1000;
+
+            if (o < 167)
+                b = q + (p - q) * o * 6 / 1000;
+            else if (o < 500)
+                b = p;
+            else if (o < 667)
+                b = q + (p - q) * (667 - o) * 6 / 1000;
+            else
+                b = q;
+        }
+        else
+        {
+            r = l;
+            g = l;
+            b = l;
+        }
+
+        buffer[i] = RGB((u8)(r * 31 / 1000), (u8)(g * 31 / 1000), (u8)(b * 31 / 1000));
     }
 }
