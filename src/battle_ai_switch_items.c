@@ -2244,6 +2244,10 @@ static bool32 ShouldUseItem(u32 battler)
             if (gBattleStruct->itemPartyIndex[battler] != PARTY_SIZE) // Revive if possible.
                 shouldUse = TRUE;
             break;
+        case EFFECT_ITEM_USE_POKE_FLUTE:
+            if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                shouldUse = TRUE;
+            break;
         default:
             return FALSE;
         }
