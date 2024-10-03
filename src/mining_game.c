@@ -66,10 +66,10 @@ struct MiningGame
     u8 grietasIds[MAX_NUM_GRIETAS_SPRITES];
     u8 toolsSpriteId[3];
     u8 blockX, blockY; //Posición X e Y del cursor
-    u8 tilesStones[WINDOW_MINING_HEIGHT/2][12]; //Estado de las piedras a picas están en bloques de 16px
-    u16 itemsIds[MAX_NUM_ITEMS_MINING]; //Id de los item 
-    u8 itemsSpritesIds[MAX_NUM_ITEMS_MINING]; //Id de los sprites items que hay para desenterrar
-    bool8 itemsStatus[MAX_NUM_ITEMS_MINING]; //Indica si el item fue desenterrado no
+    u8 tilesStones[WINDOW_MINING_HEIGHT / 2][12]; //Estado de las piedras a picar. Están en bloques de 16px
+    u16 itemsIds[MAX_NUM_ITEMS_MINING]; //Id de los item
+    u8 itemsSpritesIds[MAX_NUM_ITEMS_MINING]; //Id de los sprites de items que hay para desenterrar
+    bool8 itemsStatus[MAX_NUM_ITEMS_MINING]; //Indica si el item fue desenterrado o no
     u8 toolType; //Tipo de cursor seleccionado: pico, martillo...
 };
 
@@ -385,7 +385,7 @@ static void CreateGrietasSprite(void)
         StartSpriteAnim(&gSprites[id], GRIETA_STATE_0);
         gSprites[id].invisible = TRUE;
         mining.grietasIds[i] = id;
-        x+=32;
+        x += 32;
     }
 }
 
@@ -398,7 +398,7 @@ static void CreateToolsSprite(void)
         id = CreateSprite(&spriteTemplateTool, 218, y, 0);
         StartSpriteAnim(&gSprites[id], i);
         mining.toolsSpriteId[i] = id;
-        y+=44;
+        y += 44;
     }
 }
 
@@ -419,7 +419,7 @@ static void DestroySpritesGame(void)
 
     for (i = 0; i < MAX_NUM_ITEMS_MINING; i++)
     {
-        if(mining.itemsSpritesIds[i] != 0xFF)
+        if (mining.itemsSpritesIds[i] != 0xFF)
             DestroySpriteAndFreeResources(&gSprites[mining.itemsSpritesIds[i]]);
     }
 }
@@ -437,7 +437,7 @@ static void DestroySpritesGame(void)
 //     switch (sprite->sState)
 //     {
 //         case 0:
-//             if(++sprite->sTimer == 35)
+//             if (++sprite->sTimer == 35)
 //                 sprite->sState++;
 //             break;
 
@@ -445,7 +445,8 @@ static void DestroySpritesGame(void)
 //             sprite->sTimer++;
 //             if ((sprite->sTimer % 6) == 0)
 //             {
-//                 if(sprite->sGlow == 7){
+//                 if (sprite->sGlow == 7)
+//                 {
 //                     sprite->sTimer = 0;
 //                     sprite->sState++;
 //                 }
@@ -465,12 +466,11 @@ static void DestroySpritesGame(void)
 //             sprite->sTimer++;
 //             if ((sprite->sTimer % 6) == 0)
 //             {
-//                 if(sprite->sGlow == 0)
+//                 if (sprite->sGlow == 0)
 //                 {
 //                     sprite->sTimer = 0;
 //                     sprite->sState++;
-//                 }   
-
+//                 }
 //                 SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
 //                 SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, sprite->sGlow));
 //                 sprite->sGlow--;
@@ -486,22 +486,22 @@ static void DestroySpritesGame(void)
 
 static void SpriteCallbackCursor(struct Sprite *sprite)
 {
-    if(!JOY_NEW(A_BUTTON))
+    if (!JOY_NEW(A_BUTTON))
         return;
 
     switch (mining.toolType)
     {
-    case TOOL_HAMMER:
-        PlaySE(SE_M_DIG);
-        break;
+        case TOOL_HAMMER:
+            PlaySE(SE_M_DIG);
+            break;
 
-    case TOOL_BOOM:
-        PlaySE(SE_BANG);
-        break;
-    
-    default:
-        PlaySE(SE_M_DIG);
-        break;
+        case TOOL_BOOM:
+            PlaySE(SE_BANG);
+            break;
+        
+        default:
+            PlaySE(SE_M_DIG);
+            break;
     }
     
 }
@@ -509,22 +509,22 @@ static void SpriteCallbackCursor(struct Sprite *sprite)
 static void SpriteCallbackItemIconSprite(struct Sprite *sprite)
 {
 
-    if(!sprite->sIsHidden)
+    if (!sprite->sIsHidden)
     {
-        if(sprite->affineAnimEnded && sprite->oam.affineMode != 0)
+        if (sprite->affineAnimEnded && sprite->oam.affineMode != ST_OAM_AFFINE_OFF)
         {
-            sprite->oam.affineMode = 0;
+            sprite->oam.affineMode = ST_OAM_AFFINE_OFF;
             ResetAffineAnimData();
         }
         return;
     }
 
-    if(mining.tilesStones[sprite->sRow][sprite->sColumn] == 0 
-    && mining.tilesStones[sprite->sRow][sprite->sColumn+1] == 0
-    && mining.tilesStones[sprite->sRow+1][sprite->sColumn] == 0
-    && mining.tilesStones[sprite->sRow+1][sprite->sColumn+1] == 0)
+    if (mining.tilesStones[sprite->sRow][sprite->sColumn] == 0 
+    && mining.tilesStones[sprite->sRow][sprite->sColumn + 1] == 0
+    && mining.tilesStones[sprite->sRow + 1][sprite->sColumn] == 0
+    && mining.tilesStones[sprite->sRow + 1][sprite->sColumn + 1] == 0)
     {
-        sprite->oam.affineMode = 1;
+        sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
         InitSpriteAffineAnim(sprite);
         sprite->sIsHidden = FALSE;
         mining.itemsStatus[sprite->sIndex] = TRUE;
@@ -541,7 +541,7 @@ void UpdateGrietas(void)
         id = mining.grietasIds[i];
         animNum = gSprites[id].animNum;
 
-        if(gSprites[id].invisible || gSprites[id].animNum == GRIETA_STATE_5)
+        if (gSprites[id].invisible || gSprites[id].animNum == GRIETA_STATE_5)
         {
             continue;
         }
@@ -565,17 +565,17 @@ void UpdateGrietas(void)
 
         animNum = gSprites[id].animNum;
         
-        if(i > 0 && animNum == GRIETA_STATE_5)
+        if (i > 0 && animNum == GRIETA_STATE_5)
         {
             gSprites[mining.grietasIds[i-1]].invisible = FALSE;
-            if(mining.toolType == TOOL_BOOM)
+            if (mining.toolType == TOOL_BOOM)
                 StartSpriteAnim(&gSprites[mining.grietasIds[i-1]], GRIETA_STATE_4);
         }
 
         allInvisibles = FALSE;
     }
 
-    if(allInvisibles)
+    if (allInvisibles)
         gSprites[mining.grietasIds[MAX_NUM_GRIETAS_SPRITES-1]].invisible = FALSE;
 }
 
@@ -586,7 +586,7 @@ bool8 checkStateGrietas(void)
     for (u8 i = 0 ; i <  MAX_NUM_GRIETAS_SPRITES; i++)
     { 
         id = mining.grietasIds[i];
-        if(gSprites[id].animNum != GRIETA_STATE_5)
+        if (gSprites[id].animNum != GRIETA_STATE_5)
             return FALSE;
     }
 
@@ -602,12 +602,14 @@ void UpdateSelectTool(void)
     {
         id = mining.toolsSpriteId[i];
 
-        if(mining.toolType != i)
+        if (mining.toolType != i)
         {
             gSprites[id].oam.objMode = ST_OAM_OBJ_BLEND;
             SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 8));
-        }else{
+        }
+        else
+        {
             gSprites[id].oam.objMode = ST_OAM_OBJ_NORMAL;
         }
     }
@@ -711,7 +713,8 @@ void generateItemsSprites(void)
     u16 yValues[4] = {48, 80, 112, 144};
 
 
-    u16 items[13] = {
+    u16 items[13] =
+    {
         ITEM_FIRE_STONE, ITEM_WATER_STONE, ITEM_AERODACTYLITE, 
         ITEM_SKULL_FOSSIL, ITEM_CLAW_FOSSIL, ITEM_LEAF_STONE,
         ITEM_ICE_STONE, ITEM_MAX_REVIVE, ITEM_OLD_AMBER, ITEM_MASTER_BALL,
@@ -726,7 +729,7 @@ void generateItemsSprites(void)
 
     for (i = 0; i < numItems; i++)
     {
-        if(mining.itemsSpritesIds[i] != 0xFF || items[i] == ITEM_NONE)
+        if (mining.itemsSpritesIds[i] != 0xFF || items[i] == ITEM_NONE)
             continue;
 
         idItem = AddItemIconSprite(ITEM_TAG + i, ITEM_TAG + i,  items[i]);
@@ -783,8 +786,8 @@ void LoadRandomTilesStones(void)
 
 u8 getStatusValueToTileUpdate(u8 i, u8 j)
 {
-    u8 pickStatusUpdate[3][3] = {{0,1,0}, {1,1,1}, {0,1,0}};
-    u8 hammerStatusUpdate[3][3] = {{1,2,1}, {2,2,2}, {1,2,1}};
+    u8 pickStatusUpdate[3][3] = {{0, 1, 0}, {1, 1, 1}, {0, 1, 0}};
+    u8 hammerStatusUpdate[3][3] = {{1, 2, 1}, {2, 2, 2}, {1, 2, 1}};
 
     u8 statusValueToUpdate = (mining.toolType == TOOL_PICK) ? pickStatusUpdate[i][j] : hammerStatusUpdate[i][j];
 
@@ -815,13 +818,13 @@ void updateTileStone(void)
             posX = j * 2;
             posY = INITIAL_POS_Y + (i * 2);
 
-            if(mining.tilesStones[i][j] == 0)
+            if (mining.tilesStones[i][j] == 0)
             {
                 countColumn += 1;
                 continue;
             }
 
-            if(mining.toolType == TOOL_BOOM)
+            if (mining.toolType == TOOL_BOOM)
             {
                 tileNum =  DEST_TILES_STONES;
             }else{
@@ -851,27 +854,25 @@ static bool8 IsCursorXPotionOnBorder(bool8 isRight)
 {
     u8 x = gSprites[mining.cursorSpriteId].x;
 
-    if(isRight){
+    if (isRight)
         return ( x + 16 <=  WINDOW_MINING_WIDTH * 8) ? TRUE : FALSE;
-    }else{
+    else
         return ( x - 16 >= 0) ? TRUE : FALSE;
-    }
 }
 
 static bool8 IsCursorYPotionOnBorder(bool8 isUp)
 {
     u8 y = gSprites[mining.cursorSpriteId].y;
 
-    if(isUp){
-        return ( y - 16 >= INITIAL_CURSOR_POS_Y) ? TRUE : FALSE;
-    }else{
-        return ( y + 16 <=  ( (WINDOW_MINING_HEIGHT-1) * 8) + INITIAL_CURSOR_POS_Y) ? TRUE : FALSE;
-    }
+    if (isUp)
+        return (y - 16 >= INITIAL_CURSOR_POS_Y) ? TRUE : FALSE;
+    else
+        return (y + 16 <= ((WINDOW_MINING_HEIGHT - 1) * 8) + INITIAL_CURSOR_POS_Y) ? TRUE : FALSE;
 }
 
 static void Task_FadeIn(u8 taskId)
 {
-    if(!gPaletteFade.active) 
+    if (!gPaletteFade.active) 
     {
         mining.blockX = 0;
         mining.blockY = 0;
@@ -888,43 +889,43 @@ static void Task_FadeIn(u8 taskId)
 
 static void Task_MainHandle(u8 taskId)
 {
-    if(checkStateGrietas())
+    if (checkStateGrietas())
     {
         BeginNormalPaletteFade(PALETTES_ALL, 10, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_FadeOut;
     }
 
-    // if(JOY_NEW(B_BUTTON))
+    // if (JOY_NEW(B_BUTTON))
     // {
     //     BeginNormalPaletteFade(PALETTES_ALL, 10, 0, 16, RGB_BLACK);
     //     gTasks[taskId].func = Task_FadeOut;
     // }
 
-    if(JOY_NEW(DPAD_UP) && IsCursorYPotionOnBorder(TRUE))
+    if (JOY_NEW(DPAD_UP) && IsCursorYPotionOnBorder(TRUE))
     {
         gSprites[mining.cursorSpriteId].y -= 16;
         mining.blockY -= 1;
     }
 
-    if(JOY_NEW(DPAD_DOWN) && IsCursorYPotionOnBorder(FALSE))
+    if (JOY_NEW(DPAD_DOWN) && IsCursorYPotionOnBorder(FALSE))
     {
         gSprites[mining.cursorSpriteId].y += 16;
         mining.blockY += 1;
     }
 
-    if(JOY_NEW(DPAD_LEFT) && IsCursorXPotionOnBorder(FALSE))
+    if (JOY_NEW(DPAD_LEFT) && IsCursorXPotionOnBorder(FALSE))
     {
         gSprites[mining.cursorSpriteId].x -= 16;
         mining.blockX -= 1;
     }
 
-    if(JOY_NEW(DPAD_RIGHT) && IsCursorXPotionOnBorder(TRUE))
+    if (JOY_NEW(DPAD_RIGHT) && IsCursorXPotionOnBorder(TRUE))
     {
         gSprites[mining.cursorSpriteId].x += 16;
         mining.blockX += 1;
     }
 
-    if(JOY_NEW(R_BUTTON))
+    if (JOY_NEW(R_BUTTON))
     {
         if (mining.toolType < TOOLS_COUNT - 1)
         {
@@ -934,7 +935,7 @@ static void Task_MainHandle(u8 taskId)
         }
     }
 
-    if(JOY_NEW(L_BUTTON))
+    if (JOY_NEW(L_BUTTON))
     {
         if (mining.toolType > 0)
         {
@@ -944,7 +945,7 @@ static void Task_MainHandle(u8 taskId)
         }
     }
 
-    if(JOY_NEW(A_BUTTON))
+    if (JOY_NEW(A_BUTTON))
     {
         StartSpriteAnim(&gSprites[mining.cursorSpriteId], mining.toolType + 1);
         updateTileStone();
@@ -963,7 +964,7 @@ u8 GetIndexOfObtainedItems(u8 currentIndex)
 {
     for ( u8 i = currentIndex; i < MAX_NUM_ITEMS_MINING; i++)
     {
-        if(mining.itemsStatus[i] == TRUE 
+        if (mining.itemsStatus[i] == TRUE 
         && mining.itemsIds[i] != ITEM_NONE)
             return i;
     }
@@ -974,7 +975,7 @@ static void Task_GetItems(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
     {
-        if(gTasks[taskId].tIndexItem != MAX_NUM_ITEMS_MINING)
+        if (gTasks[taskId].tIndexItem != MAX_NUM_ITEMS_MINING)
         {
             PlayFanfare(MUS_OBTAIN_ITEM);
             AddBagItem(mining.itemsIds[gTasks[taskId].tIndexItem], 1);
@@ -996,7 +997,7 @@ static void Task_GetItems(u8 taskId)
 
 static void Task_FadeOut(u8 taskId)
 {
-    if(!gPaletteFade.active)
+    if (!gPaletteFade.active)
     {
         PlaySE(SE_M_EARTHQUAKE);
         DestroySpritesGame();
@@ -1090,9 +1091,7 @@ void SetBitValueMiningPlace(u8 indexMining)
         // Usamos AND con el complemento de la máscara para poner el bit en 0
         miningPlaces &= ~mask;
     }
-    
     gSaveBlock2Ptr->miningPlaces = miningPlaces;
-
 }
 
 void DesactiveMiningPlace(void)
