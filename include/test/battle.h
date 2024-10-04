@@ -3,10 +3,10 @@
  * To run all the tests use:
  *     make check -j
  * To run specific tests, e.g. Spikes ones, use:
- *     make check TESTS='Spikes'
+ *     make check TESTS="Spikes"
  * To build a ROM (pokemerald-test.elf) that can be opened in mgba to
  * view specific tests, e.g. Spikes ones, use:
- *     make pokeemerald-test.elf TESTS='Spikes'
+ *     make pokeemerald-test.elf TESTS="Spikes"
  *
  * Manually testing a battle mechanic often follows this pattern:
  * 1. Create a party which can activate the mechanic.
@@ -55,7 +55,7 @@
  * start with the same prefix, e.g. Stun Spore tests should start with
  * "Stun Spore", this allows just the Stun Spore-related tests to be run
  * with:
- *     make check TESTS='Stun Spore'
+ *     make check TESTS="Stun Spore"
  *
  * GIVEN initializes the parties, PLAYER and OPPONENT add a Pokémon to
  * their respective parties. They can both accept a block which further
@@ -328,7 +328,7 @@
  *
  * MOVE(battler, move | moveSlot:, [gimmick:], [hit:], [criticalHit:], [target:], [allowed:], [WITH_RNG(tag, value])
  * Used when the battler chooses Fight. Either the move ID or move slot
- * must be specified. gimmick: GIMMICK_MEGA causes the battler to Mega 
+ * must be specified. gimmick: GIMMICK_MEGA causes the battler to Mega
  * Evolve if able, hit: FALSE causes the move to miss, criticalHit: TRUE
  * causes the move to land a critical hit, target: is used in double
  * battles to choose the target (when necessary), and allowed: FALSE is
@@ -518,7 +518,6 @@ typedef void (*DoubleBattleTestFunction)(void *, const u32, struct BattlePokemon
 struct BattleTest
 {
     u8 type;
-    u16 sourceLine;
     union
     {
         SingleBattleTestFunction singles;
@@ -744,10 +743,10 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gBattleTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)&(const struct BattleTest) \
         { \
             .type = _type, \
-            .sourceLine = __LINE__, \
             .function = { .singles = (SingleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
         }, \
@@ -762,10 +761,10 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gBattleTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)&(const struct BattleTest) \
         { \
             .type = _type, \
-            .sourceLine = __LINE__, \
             .function = { .doubles = (DoubleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
         }, \
@@ -995,6 +994,8 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 // Static const is needed to make the modern compiler put the pattern variable in the .rodata section, instead of putting it on stack(which can break the game).
 #define MESSAGE(pattern) do {static const u8 msg[] = _(pattern); QueueMessage(__LINE__, msg);} while (0)
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
+#define FREEZE_OR_FROSTBURN_STATUS(battler, isFrostbite) \
+    (B_USE_FROSTBITE ? STATUS_ICON(battler, frostbite: isFrostbite) : STATUS_ICON(battler, freeze: isFrostbite))
 
 #define SWITCH_OUT_MESSAGE(name) ONE_OF {                                         \
                                      MESSAGE(name ", that's enough! Come back!"); \
@@ -1092,7 +1093,7 @@ void ValidateFinally(u32 sourceLine);
         s32 _am = Q_4_12_TO_INT(_a * _m); \
         s32 _t = max(Q_4_12_TO_INT(abs(_m) + Q_4_12_ROUND), 1); \
         if (abs(_am-_b) > _t) \
-            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECT_MUL_EQ(%d, %q, %d) failed: %d not in [%d..%d]", gTestRunnerState.test->filename, __LINE__, _a, _m, _b, _am, _b-_t, _b+_t); \
+            Test_ExitWithResult(TEST_RESULT_FAIL, __LINE__, ":L%s:%d: EXPECT_MUL_EQ(%d, %q, %d) failed: %d not in [%d..%d]", gTestRunnerState.test->filename, __LINE__, _a, _m, _b, _am, _b-_t, _b+_t); \
     } while (0)
 
 #endif

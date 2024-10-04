@@ -507,9 +507,9 @@
 	.byte \battler
 	.endm
 
-	.macro trainerslidein battler:req
+	.macro trainerslidein position:req
 	.byte 0x53
-	.byte \battler
+	.byte \position
 	.endm
 
 	.macro playse song:req
@@ -838,7 +838,7 @@
 	.byte 0x95
 	.endm
 
-	.macro weatherdamage
+	.macro unused_96
 	.byte 0x96
 	.endm
 
@@ -1351,7 +1351,6 @@
 	.4byte \func
 	.endm
 
-@ callnative macros
 	.macro savetarget
 	callnative BS_SaveTarget
 	.endm
@@ -1359,15 +1358,15 @@
 	.macro restoretarget
 	callnative BS_RestoreTarget
 	.endm
-	
+
 	.macro saveattacker
 	callnative BS_SaveAttacker
 	.endm
-	
+
 	.macro restoreattacker
 	callnative BS_RestoreAttacker
 	.endm
-	
+
 	.macro metalburstdamagecalculator failInstr:req
 	callnative BS_CalcMetalBurstDmg
 	.4byte \failInstr
@@ -1520,18 +1519,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifrodaffected battler:req, jumpInstr:req
-	callnative BS_JumpIfRod
-	.4byte \jumpInstr
-	.endm
-
-	.macro jumpifabsorbaffected battler:req, jumpInstr:req
-	callnative BS_JumpIfAbsorb
-	.4byte \jumpInstr
-	.endm
-
-	.macro jumpifmotoraffected battler:req, jumpInstr:req
-	callnative BS_JumpIfMotor
+	.macro jumpifelectricabilityaffected battler:req, ability:req, jumpInstr:req
+	callnative BS_JumpIfElectricAbilityAffected
+	.byte \battler
+	.2byte \ability
 	.4byte \jumpInstr
 	.endm
 
@@ -1566,10 +1557,6 @@
 	.macro setsteelsurge, failInstr:req
 	callnative BS_SetSteelsurge
 	.4byte \failInstr
-	.endm
-
-	.macro damagenontypes
-	callnative BS_DamageNonTypes
 	.endm
 
 	.macro trysetstatus1, ptr:req
@@ -1664,10 +1651,16 @@
 	.4byte \failInstr
 	.endm
 
+	.macro copyfoesstatincrease battler:req, failInstr:req
+	callnative BS_CopyFoesStatIncrease
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
 	.macro removeweather
 	callnative BS_RemoveWeather
 	.endm
-	
+
 	.macro applyterastallization
 	callnative BS_ApplyTerastallization
 	.endm
@@ -1676,14 +1669,79 @@
 	callnative BS_DamageToQuarterTargetHP
 	.endm
 
-@ various command changed to more readable macros
-	.macro cancelmultiturnmoves battler:req
-	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
+	.macro ficklebeamdamagecalculation
+	callnative BS_FickleBeamDamageCalculation
+	.endm
+
+	.macro trytarshot failInstr:req
+	callnative BS_TryTarShot
+	.4byte \failInstr
+	.endm
+
+	.macro jumpifteainvulnerable battler:req, jumpInstr:req
+	callnative BS_TeatimeInvul
+	.byte \battler
+	.4byte \jumpInstr
+	.endm
+
+	.macro jumpifteanoberry failInstr:req
+	callnative BS_TeatimeTargets
+	.4byte \failInstr
+	.endm
+
+	.macro trywindriderpower battler:req, failInstr:req
+	callnative BS_TryWindRiderPower
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
+	.macro activateweatherchangeabilities battler:req
+	callnative BS_ActivateWeatherChangeAbilities
+	.byte \battler
+	.endm
+
+	.macro activateterrainchangeabilities battler:req
+	callnative BS_ActivateTerrainChangeAbilities
+	.byte \battler
 	.endm
 
 	@ Stores Healing Wish effect.
 	.macro storehealingwish battler:req
-	various \battler, VARIOUS_STORE_HEALING_WISH
+	callnative BS_StoreHealingWish
+	.byte \battler
+	.endm
+
+	.macro hitswitchtargetfailed
+	callnative BS_HitSwitchTargetFailed
+	.endm
+
+	.macro tryrevivalblessing, failInstr:req
+	callnative BS_TryRevivalBlessing
+	.4byte \failInstr
+	.endm
+
+	.macro jumpifblockedbysoundproof battler:req, failInstr:req
+	callnative BS_JumpIfBlockedBySoundproof
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
+	.macro jumpifcommanderactive jumpInstr:req
+	callnative BS_JumpIfCommanderActive
+	.4byte \jumpInstr
+	.endm
+
+	.macro checkpokeflute
+	callnative BS_CheckPokeFlute
+	.endm
+
+	.macro waitfanfare
+	callnative BS_WaitFanfare
+	.endm
+
+@ various command changed to more readable macros
+	.macro cancelmultiturnmoves battler:req
+	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
 	.endm
 
 	.macro setmagiccoattarget battler:req
@@ -2212,11 +2270,6 @@
 	.4byte \failInstr
 	.endm
 
-	.macro trytarshot battler:req, failInstr:req
-	various \battler, VARIOUS_TRY_TAR_SHOT
-	.4byte \failInstr
-	.endm
-
 	.macro cantarshotwork battler:req, failInstr:req
 	various \battler, VARIOUS_CAN_TAR_SHOT_WORK
 	.4byte \failInstr
@@ -2230,16 +2283,6 @@
 	.macro cutonethirdhpraisestats failInstr:req
 	various BS_ATTACKER, VARIOUS_CUT_1_3_HP_RAISE_STATS
 	.4byte \failInstr
-	.endm
-
-	.macro jumpifteanoberry jumpInstr:req
-	various BS_ATTACKER, VARIOUS_TEATIME_TARGETS
-	.4byte \jumpInstr
-	.endm
-
-	.macro jumpifteainvulnerable battler:req, jumpInstr:req
-	various \battler, VARIOUS_TEATIME_INVUL
-	.4byte \jumpInstr
 	.endm
 
 	.macro curecertainstatuses battler:req
@@ -2284,19 +2327,6 @@
 	.macro swapstats stat:req
 	various BS_ATTACKER, VARIOUS_SWAP_STATS
 	.byte \stat
-	.endm
-
-	.macro trywindriderpower battler:req, failInstr:req
-	various \battler, VARIOUS_TRY_WIND_RIDER_POWER
-	.4byte \failInstr
-	.endm
-
-	.macro activateweatherchangeabilities battler:req
-	various \battler, VARIOUS_ACTIVATE_WEATHER_CHANGE_ABILITIES
-	.endm
-
-	.macro activateterrainchangeabilities battler:req
-	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
 	.endm
 
 @ helpful macros
@@ -2491,15 +2521,6 @@
 		.endif
 	.endif
 	waitmessage B_WAIT_TIME_LONG
-	.endm
-
-	.macro hitswitchtargetfailed
-	various 0, VARIOUS_HIT_SWITCH_TARGET_FAILED
-	.endm
-
-	.macro tryrevivalblessing, jumpInstr:req
-	various 0, VARIOUS_TRY_REVIVAL_BLESSING
-	.4byte \jumpInstr
 	.endm
 
 	@ Will jump to script pointer if the specified battler has or has not fainted.

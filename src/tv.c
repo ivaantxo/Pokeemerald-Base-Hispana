@@ -1262,7 +1262,7 @@ void PutBattleUpdateOnTheAir(u8 opponentLinkPlayerId, u16 move, u16 speciesPlaye
 
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
                 show->battleUpdate.battleType = 2;
-            else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            else if (IsDoubleBattle())
                 show->battleUpdate.battleType = 1;
             else
                 show->battleUpdate.battleType = 0;
@@ -2760,16 +2760,14 @@ void ConvertIntToDecimalString(u8 varIdx, int value)
 
 size_t CountDigits(int value)
 {
-    if (value / 10 == 0)        return 1;
-    if (value / 100 == 0)       return 2;
-    if (value / 1000 == 0)      return 3;
-    if (value / 10000 == 0)     return 4;
-    if (value / 100000 == 0)    return 5;
-    if (value / 1000000 == 0)   return 6;
-    if (value / 10000000 == 0)  return 7;
-    if (value / 100000000 == 0) return 8;
+    u32 count = 0;
 
-    return 1;
+    while (value > 0)
+    {
+        value /= 10;
+        count++;
+    }
+    return count;
 }
 
 static void SmartShopper_BufferPurchaseTotal(u8 varIdx, TVShow *show)

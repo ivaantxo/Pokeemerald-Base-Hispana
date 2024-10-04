@@ -79,3 +79,35 @@ SINGLE_BATTLE_TEST("Trace will copy an opponent's ability whenever it has the ch
         MESSAGE("Ralts TRACED Foe Torchic's Blaze!");
     }
 }
+
+
+SINGLE_BATTLE_TEST("Trace copies opponent's Intimidate and triggers it immediately")
+{
+    GIVEN {
+        PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
+        OPPONENT(SPECIES_MASQUERAIN) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_TRACE);
+        ABILITY_POPUP(player, ABILITY_INTIMIDATE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Trace respects the turn order")
+{
+    GIVEN {
+        PLAYER(SPECIES_DEOXYS_SPEED) { Speed(40); Ability(ABILITY_PRESSURE); }
+        PLAYER(SPECIES_GARDEVOIR) { Speed(20); Ability(ABILITY_TRACE); }
+        OPPONENT(SPECIES_HIPPOWDON) { Speed(10); Ability(ABILITY_SAND_STREAM); }
+        OPPONENT(SPECIES_DEOXYS_SPEED) { Speed(30); Ability(ABILITY_PRESSURE); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_PRESSURE);
+        ABILITY_POPUP(opponentRight, ABILITY_PRESSURE);
+        ABILITY_POPUP(playerRight, ABILITY_TRACE);
+        ABILITY_POPUP(opponentLeft, ABILITY_SAND_STREAM);
+    }
+}

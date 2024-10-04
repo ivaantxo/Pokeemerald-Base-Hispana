@@ -932,8 +932,9 @@ bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
-    if (subStruct->autoScrollDelay == 49)
+    if (subStruct->autoScrollDelay == NUM_FRAMES_AUTO_SCROLL_DELAY)
     {
+        subStruct->autoScrollDelay = 0;
         return TRUE;
     }
     else
@@ -943,21 +944,29 @@ bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
     }
 }
 
+void SetResultWithButtonPress(bool32 *result)
+{
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
+    {
+        *result = TRUE;
+        PlaySE(SE_SELECT);
+    }
+}
+
 bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
 {
     bool32 result = FALSE;
-    if (gTextFlags.autoScroll != 0)
+    if (gTextFlags.autoScroll != 0 || AUTO_SCROLL_TEXT)
     {
         result = TextPrinterWaitAutoMode(textPrinter);
+
+        if (AUTO_SCROLL_TEXT)
+            SetResultWithButtonPress(&result);
     }
     else
     {
         TextPrinterDrawDownArrow(textPrinter);
-        if (JOY_NEW(A_BUTTON | B_BUTTON))
-        {
-            result = TRUE;
-            PlaySE(SE_SELECT);
-        }
+        SetResultWithButtonPress(&result);
     }
     return result;
 }
@@ -965,17 +974,16 @@ bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
 bool32 TextPrinterWait(struct TextPrinter *textPrinter)
 {
     bool32 result = FALSE;
-    if (gTextFlags.autoScroll != 0)
+    if (gTextFlags.autoScroll != 0 || AUTO_SCROLL_TEXT)
     {
         result = TextPrinterWaitAutoMode(textPrinter);
+
+        if (AUTO_SCROLL_TEXT)
+            SetResultWithButtonPress(&result);
     }
     else
     {
-        if (JOY_NEW(A_BUTTON | B_BUTTON))
-        {
-            result = TRUE;
-            PlaySE(SE_SELECT);
-        }
+        SetResultWithButtonPress(&result);
     }
     return result;
 }
@@ -2155,21 +2163,17 @@ u32 GetFontIdToFit(const u8 *string, u32 fontId, u32 letterSpacing, u32 widthPx)
 
 u8 *PrependFontIdToFit(u8 *start, u8 *end, u32 fontId, u32 width)
 {
-
     u32 fitFontId = GetFontIdToFit(start, fontId, 0, width);
-    if (fitFontId != fontId)
-    {
-        memmove(&start[3], &start[0], end - start);
-        start[0] = EXT_CTRL_CODE_BEGIN;
-        start[1] = EXT_CTRL_CODE_FONT;
-        start[2] = fitFontId;
-        end[3] = EOS;
-        return end + 3;
-    }
-    else
-    {
+
+    if (fitFontId == fontId)
         return end;
-    }
+
+    memmove(&start[3], &start[0], end - start);
+    start[0] = EXT_CTRL_CODE_BEGIN;
+    start[1] = EXT_CTRL_CODE_FONT;
+    start[2] = fitFontId;
+    end[3] = EOS;
+    return end + 3;
 }
 
 u8 *WrapFontIdToFit(u8 *start, u8 *end, u32 fontId, u32 width)

@@ -30,11 +30,11 @@ void ActivateTera(u32 battler)
     if (B_FLAG_TERA_ORB_CHARGED != 0
         && (B_FLAG_TERA_ORB_NO_COST == 0 || !FlagGet(B_FLAG_TERA_ORB_NO_COST))
         && side == B_SIDE_PLAYER
-        && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !IsPartnerMonFromSameTrainer(battler)))
+        && !(IsDoubleBattle() && !IsPartnerMonFromSameTrainer(battler)))
     {
         FlagClear(B_FLAG_TERA_ORB_CHARGED);
     }
-    
+
     // Execute battle script.
     PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(battler));
     if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION))
@@ -63,16 +63,25 @@ bool32 CanTerastallize(u32 battler)
 {
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
-    // Check if Player has Tera Orb and has charge.
-    if (!TESTING && !CheckBagHasItem(ITEM_TERA_ORB, 1))
+    // Prevents Zigzagoon from terastalizing in vanilla.
+    if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE && GetBattlerSide(battler) == B_SIDE_OPPONENT)
         return FALSE;
 
-    if (!TESTING 
-     && !(B_FLAG_TERA_ORB_NO_COST != 0 && FlagGet(B_FLAG_TERA_ORB_NO_COST))
-     && (battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT)))
+    if (TESTING || GetBattlerSide(battler) == B_SIDE_OPPONENT)
     {
-        if (B_FLAG_TERA_ORB_CHARGED != 0 && !FlagGet(B_FLAG_TERA_ORB_CHARGED))
-            return FALSE;
+        // Skip all other checks in this block, go to HasTrainerUsedGimmick
+    }
+    else if (!CheckBagHasItem(ITEM_TERA_ORB, 1))
+    {
+        return FALSE;
+    }
+    else if (FlagGet(B_FLAG_TERA_ORB_NO_COST))
+    {
+        // Tera Orb is not depleted, go to HasTrainerUsedGimmick
+    }
+    else if (!FlagGet(B_FLAG_TERA_ORB_CHARGED))
+    {
+        return FALSE;
     }
 
     // Check if Trainer has already Terastallized.
@@ -104,15 +113,15 @@ u32 GetBattlerTeraType(u32 battler)
 // Uses up a type's Stellar boost.
 void ExpendTypeStellarBoost(u32 battler, u32 type)
 {
-    if (type < 32) // avoid OOB access
-        gBattleStruct->stellarBoostFlags[GetBattlerSide(battler)] |= gBitTable[type];
+    if (type < 32 && gBattleMons[battler].species != SPECIES_TERAPAGOS_STELLAR) // avoid OOB access
+        gBattleStruct->stellarBoostFlags[GetBattlerSide(battler)] |= 1u << type;
 }
 
 // Checks whether a type's Stellar boost has been expended.
 bool32 IsTypeStellarBoosted(u32 battler, u32 type)
 {
     if (type < 32) // avoid OOB access
-        return !(gBattleStruct->stellarBoostFlags[GetBattlerSide(battler)] & gBitTable[type]);
+        return !(gBattleStruct->stellarBoostFlags[GetBattlerSide(battler)] & (1u << type));
     else
         return FALSE;
 }
