@@ -1528,6 +1528,12 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             gOverworldPalette_Pyroar,
             gShinyOverworldPalette_Pyroar
         )
+        OVERWORLD_FEMALE(
+            sPicTable_PyroarF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sPyroarLevelUpLearnset,
         .teachableLearnset = sPyroarTeachableLearnset,
     },

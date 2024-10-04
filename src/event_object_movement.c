@@ -1852,16 +1852,23 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
 {
     struct SpriteTemplate *spriteTemplate;
     const struct SubspriteTable *subspriteTables;
-    const struct ObjectEventGraphicsInfo *graphicsInfo;
+    const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite;
     u8 spriteId;
     bool32 isShiny = graphicsId >= SPECIES_SHINY_TAG + OBJ_EVENT_GFX_MON_BASE;
 
+    spriteTemplate = Alloc(sizeof(struct SpriteTemplate));
+    CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, callback, spriteTemplate, &subspriteTables);
+
     if (isShiny)
         graphicsId -= SPECIES_SHINY_TAG;
 
-    spriteTemplate = Alloc(sizeof(struct SpriteTemplate));
-    CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, callback, spriteTemplate, &subspriteTables);
+    if (OW_GFX_COMPRESS)
+    {
+        // Checking only for compressed here so as not to mess with decorations
+        if (graphicsInfo->compressed)
+            spriteTemplate->tileTag = LoadSheetGraphicsInfo(graphicsInfo, graphicsId, NULL);
+    }
 
     if (spriteTemplate->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
     {
@@ -1873,13 +1880,6 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
         LoadObjectEventPalette(spriteTemplate->paletteTag);
     }
 
-    if (OW_GFX_COMPRESS)
-    {
-        graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
-        // Checking only for compressed here so as not to mess with decorations
-        if (graphicsInfo->compressed)
-            spriteTemplate->tileTag = LoadSheetGraphicsInfo(graphicsInfo, graphicsId, NULL);
-    }
     spriteId = CreateSprite(spriteTemplate, x, y, subpriority);
 
     Free(spriteTemplate);
@@ -1979,9 +1979,17 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
         graphicsInfo = &gSpeciesInfo[form ? SPECIES_UNOWN_B + form - 1 : species].overworldData;
         break;
     default:
-        graphicsInfo = &gSpeciesInfo[species].overworldData;
+        if (form == 1 && gSpeciesInfo[species].overworldDataFemale.paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
+        {
+            graphicsInfo = &gSpeciesInfo[species].overworldDataFemale;
+        }
+        else
+        {
+            graphicsInfo = &gSpeciesInfo[species].overworldData;
+        }
         break;
     }
+
     // Try to avoid OOB or undefined access
     if ((graphicsInfo->tileTag == 0 && species < NUM_SPECIES) || (graphicsInfo->tileTag != TAG_NONE && species >= NUM_SPECIES))
     {
@@ -1997,6 +2005,7 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
 static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
 {
     u32 paletteNum;
+    bool32 female = (form == 1);
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
 #if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     if ((shiny && gSpeciesInfo[species].overworldPalette)
@@ -2008,10 +2017,21 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
         if ((paletteNum = IndexOfSpritePaletteTag(palTag)) < 16)
             return paletteNum;
         spritePalette.tag = palTag;
-        if (shiny)
-            spritePalette.data = gSpeciesInfo[species].overworldShinyPalette;
+        if (female && gSpeciesInfo[species].overworldPaletteFemale != NULL)
+        {
+            if (shiny)
+                spritePalette.data = gSpeciesInfo[species].overworldShinyPaletteFemale;
+            else
+                spritePalette.data = gSpeciesInfo[species].overworldPaletteFemale;
+        }
         else
-            spritePalette.data = gSpeciesInfo[species].overworldPalette;
+        {
+            if (shiny)
+                spritePalette.data = gSpeciesInfo[species].overworldShinyPalette;
+            else
+                spritePalette.data = gSpeciesInfo[species].overworldPalette;
+        }
+
 
         // Check if pal data must be decompressed
         if (IsLZ77Data(spritePalette.data, PLTT_SIZE_4BPP, PLTT_SIZE_4BPP))
@@ -2027,7 +2047,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
     {
         // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
         // so that palette tags do not overlap
-        const u32 *palette = GetMonSpritePalFromSpecies(species, shiny, FALSE); //ETODO
+        const u32 *palette = GetMonSpritePalFromSpecies(species, shiny, female); //ETODO
         // palette already loaded
         if ((paletteNum = IndexOfSpritePaletteTag(species)) < 16)
             return paletteNum;
@@ -2139,6 +2159,7 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
         return FALSE;
     }
     *species = GetMonData(mon, MON_DATA_SPECIES);
+    *form = GetMonGender(mon) == MON_FEMALE;
     *shiny = IsMonShiny(mon);
     switch (*species)
     {
@@ -2645,18 +2666,25 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
     CopyObjectGraphicsInfoToSpriteTemplate_WithMovementType(objectEvent->graphicsId, objectEvent->movementType, &spriteTemplate, &subspriteTables);
     spriteFrameImage.size = graphicsInfo->size;
     spriteTemplate.images = &spriteFrameImage;
+
     if (OW_GFX_COMPRESS)
         spriteTemplate.tileTag = LoadSheetGraphicsInfo(graphicsInfo, objectEvent->graphicsId, NULL);
-    if (spriteTemplate.paletteTag != TAG_NONE && spriteTemplate.paletteTag != OBJ_EVENT_PAL_TAG_DYNAMIC)
+
+    if (spriteTemplate.paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
+    {
+        u32 paletteNum = LoadDynamicFollowerPalette(OW_SPECIES(objectEvent), OW_FORM(objectEvent), objectEvent->shiny);
+        spriteTemplate.paletteTag = GetSpritePaletteTagByPaletteNum(paletteNum);
+    }
+    else if (spriteTemplate.paletteTag != TAG_NONE)
+    {
         LoadObjectEventPalette(spriteTemplate.paletteTag);
+    }
 
     i = CreateSprite(&spriteTemplate, 0, 0, 0);
     if (i != MAX_SPRITES)
     {
         sprite = &gSprites[i];
         // Use palette from species palette table
-        if (spriteTemplate.paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
-            sprite->oam.paletteNum = LoadDynamicFollowerPalette(OW_SPECIES(objectEvent), OW_FORM(objectEvent), objectEvent->shiny);
         if (OW_GFX_COMPRESS && sprite->usingSheet)
             sprite->sheetSpan = GetSpanPerImage(sprite->oam.shape, sprite->oam.size);
         GetMapCoordsFromSpritePos(x + objectEvent->currentCoords.x, y + objectEvent->currentCoords.y, &sprite->x, &sprite->y);
