@@ -1146,10 +1146,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         {
             isShiny = TRUE;
         }
-        else if (gDexnavBattle)
-        {
-            isShiny = DexNavTryMakeShinyMon();
-        }
         else if (P_ONLY_OBTAINABLE_SHINIES && InBattlePyramid())
         {
             isShiny = FALSE;
@@ -1167,6 +1163,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                 totalRerolls += 1;
             if (I_FISHING_CHAIN && gIsFishingEncounter)
                 totalRerolls += CalculateChainFishingShinyRolls();
+            if (gDexnavBattle)
+                totalRerolls += CalculateDexnavShinyRolls();
 
             while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
             {

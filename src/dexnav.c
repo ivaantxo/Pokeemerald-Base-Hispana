@@ -617,6 +617,10 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
     u8 currMapType = GetCurrentMapType();
     u8 tileBehaviour;
     u8 tileBuffer = 2;
+    u8 *xPos = AllocZeroed((botX-topX)*(botY-topY)*sizeof(u8));
+    u8 *yPos = AllocZeroed((botX-topX)*(botY-topY)*sizeof(u8));
+    u32 iter = 0;
+    bool32 ret = FALSE;
     
     // loop through every tile in area and evaluate
     while (topY < botY)
@@ -693,9 +697,9 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
             
             if (weight > 0)
             {
-                sDexNavSearchDataPtr->tileX = topX;
-                sDexNavSearchDataPtr->tileY = topY;
-                return TRUE;
+                xPos[iter] = topX;
+                yPos[iter] = topY;
+                iter++;
             }
             
             topX++;
@@ -704,8 +708,19 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
         topY++;
         topX = gSaveBlock1Ptr->pos.x - SCANSTART_X + (smallScan * 5);
     }
+    
+    if (iter > 0)
+    {
+        i = Random() % iter;
+        sDexNavSearchDataPtr->tileX = xPos[i];
+        sDexNavSearchDataPtr->tileY = yPos[i];
+        ret = TRUE;
+    }
+    
+    Free(xPos);
+    Free(yPos);
 
-    return FALSE;
+    return ret;
 }
 
 
@@ -1133,20 +1148,12 @@ static void Task_DexNavSearch(u8 taskId)
         && sDexNavSearchDataPtr->proximity < GetMovementProximityBySearchLevel() && sDexNavSearchDataPtr->movementCount < 2
         && task->tRevealed)
     {
-        u32 attempts = 0;
         FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
-        while (1)
+        
+        if (!TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 10, 10, TRUE))
         {
-            if (++attempts > 20)
-            {
-                // failsafe if we can't find another tile
-                EndDexNavSearchSetupScript(EventScript_PokemonGotAway, taskId);
-                return;
-            }
-            else if (TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 10, 10, TRUE))
-            {
-                break;
-            }
+            EndDexNavSearchSetupScript(EventScript_PokemonGotAway, taskId);
+            return;
         }
         
         sDexNavSearchDataPtr->movementCount++;
@@ -2517,8 +2524,7 @@ static void Task_DexNavMain(u8 taskId)
 bool8 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(VAR_DEXNAV_STEP_COUNTER);
-    u32 attempts = 0;
-
+    
     if (!FlagGet(FLAG_SYS_DETECTOR_MODE) || FlagGet(FLAG_SYS_DEXNAV_SEARCH) || GetFlashLevel() > 0)
     {
         (*stepPtr) = 0;
@@ -2610,12 +2616,8 @@ bool8 TryFindHiddenPokemon(void)
         }
 
         // find tile for hidden mon and start effect if possible
-        while (1) {
-            if (TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 8, 8, TRUE))
-                break;
-            if (++attempts > 20)
-                return FALSE;   //cannot find suitable tile
-        }
+        if (!TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 8, 8, TRUE))
+            return FALSE;
 
         // exclamation mark over player
         gFieldEffectArguments[0] = gSaveBlock1Ptr->pos.x;
@@ -2680,42 +2682,14 @@ static void DexNavDrawHiddenIcons(void)
 /////////////////////////
 //// GENERAL UTILITY ////
 /////////////////////////
-bool8 DexNavTryMakeShinyMon(void)
+u32 CalculateDexnavShinyRolls(void)
 {
-    u32 i, shinyRolls, chainBonus, rndBonus;
-    u32 shinyRate = 0;
-    u32 charmBonus = 0;
-    u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
+    u32 chainBonus, rndBonus;
     u8 chain = gSaveBlock3Ptr->dexNavChain;
     
-    charmBonus = (CheckBagHasItem(ITEM_SHINY_CHARM, 1) > 0) ? 2 : 0;
-    chainBonus = (chain == 50) ? 5 : (chain == 100) ? 10 : 0;
-    rndBonus = (Random() % 100 < 4 ? 4 : 0);
-    shinyRolls = 1 + charmBonus + chainBonus + rndBonus;
-
-    if (searchLevel > 200)
-    {
-        shinyRate += searchLevel - 200;
-        searchLevel = 200;
-    }
-    if (searchLevel > 100)
-    {
-        shinyRate += (searchLevel * 2) - 200;
-        searchLevel = 100;
-    }
-    if (searchLevel > 0)
-    {
-        shinyRate += searchLevel * 6;
-    }
-    
-    shinyRate /= 100;
-    for (i = 0; i < shinyRolls; i++)
-    {
-        if (Random() % 10000 < shinyRate)
-            return TRUE;
-    }
-    
-    return FALSE;
+    chainBonus = (chain >= 100) ? 10 : (chain >= 50) ? 5 : 0;
+    rndBonus = (Random() % 100 < 4) ? 4 : 0;
+    return chainBonus + rndBonus;
 }
 
 void TryIncrementSpeciesSearchLevel(u16 dexNum)
