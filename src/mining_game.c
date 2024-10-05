@@ -51,6 +51,9 @@ static bool8 IsCursorXPotionOnBorder(bool8 isRight);
 
 static void SpriteCallbackCursor(struct Sprite *sprite);
 
+static void UpdateTileStone(u8 x, u8 y); 
+static void UpdateGrietas(void);
+
 //==========VARIBLES EWRAM_DATA==========//
 
 #define WINDOW_MINING_WIDTH 23
@@ -403,45 +406,39 @@ static const struct SpritePalette sSpritePalette_Bomba =
     .tag = TAG_BOMBA, 
 };
 
-enum EstadosBomba
-{
-    BOMBA_PEQUEÑA,
-    BOMBA_MEDIANA,
-    BOMBA_GRANDE,
-    BOMBA_EXPLOSION,
-};
 
-static const union AnimCmd sAnim_BombaPequeña[] =
+static const union AnimCmd sAnim_BombaStates[] =
 {
-    ANIMCMD_FRAME(0, 16),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_BombaMediana[] =
-{
+    ANIMCMD_FRAME(0, 32),
     ANIMCMD_FRAME(4, 16),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sAnim_BombaGrande[] =
-{
     ANIMCMD_FRAME(8, 16),
-    ANIMCMD_END
-};
-
-static const union AnimCmd sAnim_BombaExplosion[] =
-{
     ANIMCMD_FRAME(12, 16),
     ANIMCMD_END
 };
 
 static const union AnimCmd *const sAnims_Bomba[] =
 {
-    [BOMBA_PEQUEÑA] = sAnim_BombaPequeña,
-    [BOMBA_MEDIANA] = sAnim_BombaMediana,
-    [BOMBA_GRANDE] = sAnim_BombaGrande,
-    [BOMBA_EXPLOSION] = sAnim_BombaExplosion
+    sAnim_BombaStates
 };
+
+#define sRow data[2]
+#define sColumn data[3]
+#define sTimer data[7]
+static void  SpriteCallbackBomba(struct Sprite *sprite)
+{
+    if(sprite->animEnded)
+    {
+        UpdateTileStone(sprite->sColumn, sprite->sRow);
+        UpdateGrietas();
+        DestroySprite(sprite);
+        mining.bombaSpriteId = 0xFF;
+    }
+
+    if (+sprite->sTimer > 20)
+    {
+        StartSpriteAnim(&gSprites[mining.bombaSpriteId], 0);
+    }
+}
 
 static const struct SpriteTemplate sSpriteTemplate_Bomba =
 {
@@ -451,7 +448,7 @@ static const struct SpriteTemplate sSpriteTemplate_Bomba =
     .anims = sAnims_Bomba,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
+    .callback = SpriteCallbackBomba,
 };
 
 //==========SPRITES FUNC==========//
@@ -521,12 +518,9 @@ static void DestroySpritesGame(void)
 }
 
 #define sIsHidden data[1]
-#define sRow data[2]
-#define sColumn data[3]
 #define sState data[4]
-#define sGlow data[5]
 #define sIndex data[6]
-#define sTimer data[7]
+
 
 static void SpriteCallbackCursor(struct Sprite *sprite)
 {
@@ -572,7 +566,7 @@ static void SpriteCallbackItemIconSprite(struct Sprite *sprite)
     }
 }
 
-void UpdateGrietas(void)
+static void UpdateGrietas(void)
 {
     u8 id, animNum;
     bool8 allInvisibles = TRUE;
@@ -623,6 +617,10 @@ void TryCreateSpriteBomba(void)
     if (mining.toolType == BOMBA)
     {
         mining.bombaSpriteId = CreateSprite(&sSpriteTemplate_Bomba, gSprites[mining.cursorSpriteId].x, gSprites[mining.cursorSpriteId].y, 0);
+        gSprites[mining.bombaSpriteId].sTimer = 0;
+        gSprites[mining.bombaSpriteId].sColumn = mining.blockX;
+        gSprites[mining.bombaSpriteId].sRow = mining.blockY;
+
     }
 }
 
@@ -802,7 +800,6 @@ void GenerateItemsSprites(void)
         gSprites[idItem].sIndex = i;
         gSprites[idItem].sState = 0;
         gSprites[idItem].sTimer = 0;
-        gSprites[idItem].sGlow = 0;
         gSprites[idItem].sRow = yValues[i] / 16 - 3;
         gSprites[idItem].sColumn = (xValues[i] / 16 == 0) ? 0 : xValues[i] / 16 - 1; 
         gSprites[idItem].callback = SpriteCallbackItemIconSprite;
@@ -859,13 +856,13 @@ u8 GetStatusValueToTileUpdate(u8 i, u8 j)
     return statusValueToUpdate;
 }
 
-void UpdateTileStone(void) 
+static void UpdateTileStone(u8 x, u8 y) 
 {
     u8 posX, posY, statusValueUpdate;
     u16 tileNum = DEST_TILES_STONES;
 
-    u8 currentRow = mining.blockY;
-    u8 currentColumn = mining.blockX;
+    u8 currentRow = y;
+    u8 currentColumn = x;
 
     u8 rows = ARRAY_COUNT(mining.tilesStones);
     u8 columns = ARRAY_COUNT(mining.tilesStones[0]);
@@ -1038,15 +1035,15 @@ static void Task_MainHandle(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        StartSpriteAnim(&gSprites[mining.cursorSpriteId], mining.toolType + 1);
-        UpdateTileStone();
-        UpdateGrietas();
-        TryCreateSpriteBomba();
-        gSprites[mining.bombaSpriteId].sTimer = 0;
-        if (++gSprites[mining.bombaSpriteId].sTimer > 20)
-        {
-            StartSpriteAnim(&gSprites[mining.bombaSpriteId], BOMBA_MEDIANA);
+        if(mining.toolType == BOMBA){
+            TryCreateSpriteBomba();
+        }else{
+            StartSpriteAnim(&gSprites[mining.cursorSpriteId], mining.toolType + 1);
+            UpdateTileStone(mining.blockX, mining.blockY);
+            UpdateGrietas();
+            TryCreateSpriteBomba();
         }
+
     }
 }
 
@@ -1140,6 +1137,7 @@ void CB2_InitMiningGameSetUp(void)
         LoadRandomTilesStones();
         memset(mining.itemsSpritesIds, 0xFF, MAX_NUM_ITEMS_MINING);
         memset(mining.itemsStatus, FALSE, MAX_NUM_ITEMS_MINING);
+        mining.bombaSpriteId = 0xFF;
         for (i = 0; i < MAX_NUM_ITEMS_MINING; i++)
         {
             mining.itemsIds[i] = ITEM_NONE;
