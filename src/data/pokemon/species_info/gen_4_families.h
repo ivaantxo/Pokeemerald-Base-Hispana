@@ -686,8 +686,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 		.description = COMPOUND_STRING(
 			"Son conscientes de su debilidad, así que\n"
 			"siempre viven en grupo. Si se encuentran\n"
-			"solos, lloran a gritos.\n"
-			""),
+			"solos, lloran a gritos."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1591,9 +1590,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 34,
         .description = COMPOUND_STRING(
             "Teje una capa con arena, barro y seda que\n"
-        "escupa. Esta capa terrosa se estropea con el\n"
-        "viento y la lluvia, por lo que el Pokémon\n"
-        "se esconde en cuevas y lugares similares."),
+            "escupa. Esta capa terrosa se estropea con el\n"
+            "viento y la lluvia, por lo que el Pokémon\n"
+            "se esconde en cuevas y lugares similares."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -1657,9 +1656,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 34,
         .description = COMPOUND_STRING(
             "Cuando se enfrenta a la falta de otros\n"
-        "materiales, Burmy crea su capa usando\n"
-        "polvo y residuos. La capa parece ser\n"
-        "más cómoda de lo que se podría pensar."),
+            "materiales, Burmy crea su capa usando\n"
+            "polvo y residuos. La capa parece ser\n"
+            "más cómoda de lo que se podría pensar."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -1724,9 +1723,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 65,
         .description = COMPOUND_STRING(
             "Su apariencia cambia dependiendo\n"
-        "de dónde evolucionó Burmy. Los materiales\n"
-        "que tiene se convierten en parte de su\n"
-        "cuerpo. La capa nunca se desprende."),
+            "de dónde evolucionó Burmy. Los materiales\n"
+            "que tiene se convierten en parte de su\n"
+            "cuerpo. La capa nunca se desprende."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -1787,9 +1786,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 65,
         .description = COMPOUND_STRING(
             "Su piel es bastante dura; no tiene problemas\n"
-        "para repeler los picoteos de Starly.\n"
-        "Se dice que una Wormadam que evoluciona en\n"
-        " un día frío tendrá una capa más gruesa.\n"),
+            "para repeler los picoteos de Starly.\n"
+            "Se dice que una Wormadam que evoluciona en\n"
+            "un día frío tendrá una capa más gruesa.\n"),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -1851,9 +1850,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 65,
         .description = COMPOUND_STRING(
             "Su cuerpo, compuesto de desechos, se integra\n"
-        "tanto con el paisaje que pasa inadvertido.\n"
-        "Esta parece ser la manera perfecta para\n"
-        "evitar la detección de depredadores."),
+            "tanto con el paisaje que pasa inadvertido.\n"
+            "Esta parece ser la manera perfecta para\n"
+            "evitar la detección de depredadores."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -2362,9 +2361,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 93,
         .description = COMPOUND_STRING(
             "Está inmóvil, salvo por un raro temblor.\n"
-"Una rica variedad de Pokémon se reúne\n"
-"alrededor de él, atraída por el aroma que\n"
-"emana de sus pétalos plegados."),
+            "Una rica variedad de Pokémon se reúne\n"
+            "alrededor de él, atraída por el aroma que\n"
+            "emana de sus pétalos plegados."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -2425,9 +2424,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 93,
         .description = COMPOUND_STRING(
             "Toma esta forma en los días soleados.\n"
-"Su débil aroma atrae a los bichos hacia él.\n"
-"Inmediatamente cierra sus pétalos y se\n"
-"vuelve inmóvil cuando el sol se oculta."),
+            "Su débil aroma atrae a los bichos hacia él.\n"
+            "Inmediatamente cierra sus pétalos y se\n"
+            "vuelve inmóvil cuando el sol se oculta."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -2481,9 +2480,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 63,
         .description = COMPOUND_STRING(
             "Libera un líquido púrpura para ahuyentar\n"
-"a los enemigos. Aunque inofensivo, el\n"
-"líquido es muy pegajoso. Ahora hay más\n"
-"Shellos del Mar Oeste que en el pasado."),
+            "a los enemigos. Aunque inofensivo, el\n"
+            "líquido es muy pegajoso. Ahora hay más\n"
+            "Shellos del Mar Oeste que en el pasado."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -2544,9 +2543,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 63,
         .description = COMPOUND_STRING(
             "Es capaz de pasar un tiempo limitado\n"
-"en tierra hasta que su piel se seque.\n"
-"Una teoría sugiere que vivir en mares\n"
-"fríos causa que adopte esta forma."),
+            "en tierra hasta que su piel se seque.\n"
+            "Una teoría sugiere que vivir en mares\n"
+            "fríos causa que adopte esta forma."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -2607,9 +2606,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 299,
         .description = COMPOUND_STRING(
             "Aparece en playas poco profundas para\n"
-"comer arena en busca de alimento. Si\n"
-"se encuentra con otro de un color\n"
-"diferente, empezará una feroz batalla."),
+            "comer arena en busca de alimento. Si\n"
+            "se encuentra con otro de un color\n"
+            "diferente, empezará una feroz batalla."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -2668,9 +2667,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 299,
         .description = COMPOUND_STRING(
             "Es más visible en tierra que en mar.\n"
-"Usualmente viven en costas rocosas,\n"
-"pero cuando está nublado o llueve, se\n"
-"pueden encontrar  lejos del mar."),
+            "Usualmente viven en costas rocosas,\n"
+            "pero cuando está nublado o llueve, se\n"
+            "pueden encontrar  lejos del mar."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -4819,9 +4818,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 3,
         .description = COMPOUND_STRING(
             "Si el microondas de convección no está\n"
-        "funcionando correctamente, el Rotom que\n"
-        "lo habita se volverá letárgico. Luego\n"
-        "quemará tu ropa favorita en una travesura."),
+            "funcionando correctamente, el Rotom que\n"
+            "lo habita se volverá letárgico. Luego\n"
+            "quemará tu ropa favorita en una travesura."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -4884,9 +4883,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 3,
         .description = COMPOUND_STRING(
             "Disfruta de hacer travesuras basadas en agua.\n"
-        "El modelo de lavadora que Rotom puede inspirar\n"
-        "ha sido descontinuado, por lo que ahora se\n"
-        "comercian a altos precios."),
+            "El modelo de lavadora que Rotom puede inspirar\n"
+            "ha sido descontinuado, por lo que ahora se\n"
+            "comercian a altos precios."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -4948,9 +4947,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 3,
         .description = COMPOUND_STRING(
             "En esta forma, a Rotom le gusta hacer\n"
-        "travesuras congelantes. ¡Puedes encontrar\n"
-        "que ha convertido el baño en hielo\n"
-        "sólido! Lucha lanzando aire frío."),
+            "travesuras congelantes. ¡Puedes encontrar\n"
+            "que ha convertido el baño en hielo\n"
+            "sólido! Lucha lanzando aire frío."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5012,9 +5011,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 3,
         .description = COMPOUND_STRING(
             "El primer electrodoméstico que Rotom\n"
-        "pudo inspirar fue el ventilador eléctrico. Utiliza\n"
-        "su poder sobre el viento en sus travesuras, soplando\n"
-        "cualquier documento importante que encuentre."),
+            "pudo inspirar fue el ventilador eléctrico. Utiliza\n"
+            "su poder sobre el viento en sus travesuras, soplando\n"
+            "cualquier documento importante que encuentre."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5077,9 +5076,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 3,
         .description = COMPOUND_STRING(
             "El cortacésped es un electrodoméstico que\n"
-        "llevó al desarrollo del Rotom Dex. Cortará\n"
-        "césped y flores, y luego se pavoneará con\n"
-        "orgullo por sus logros."),
+            "llevó al desarrollo del Rotom Dex. Cortará\n"
+            "césped y flores, y luego se pavoneará con\n"
+            "orgullo por sus logros."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5835,9 +5834,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 6500,
         .description = COMPOUND_STRING(
             "Giratina pierde sus patas al cambiar a\n"
-        "esta forma. Se cree que proviene de un\n"
-        "mundo donde los cielos y la tierra\n"
-        "son uno solo."),
+            "esta forma. Se cree que proviene de un\n"
+            "mundo donde los cielos y la tierra\n"
+            "son uno solo."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 614,
@@ -6261,9 +6260,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .weight = 52,
         .description = COMPOUND_STRING(
             "Al tomar el aroma de una flor rara en\n"
-        "particular, Shaymin se envuelve en luz\n"
-        "y su pequeño cuerpo se transforma,\n"
-        "otorgándole el poder de volar."),
+            "particular, Shaymin se envuelve en luz\n"
+            "y su pequeño cuerpo se transforma,\n"
+            "otorgándole el poder de volar."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,

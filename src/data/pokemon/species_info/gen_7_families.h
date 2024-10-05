@@ -1386,9 +1386,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 34,
         .description = COMPOUND_STRING(
             "Gana los corazones de sus enemigos\n"
-        "con su apasionada danza y luego\n"
-        "utiliza la apertura que crea para\n"
-        "quemarlos con llamas ardientes."),
+            "con su apasionada danza y luego\n"
+            "utiliza la apertura que crea para\n"
+            "quemarlos con llamas ardientes."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1450,9 +1450,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 34,
         .description = COMPOUND_STRING(
             "Esta forma de Oricorio ha bebido\n"
-        "nectar amarillo. Usa pasos ágiles para\n"
-        "acercarse a los oponentes, y luego\n"
-        "los noquea con golpes eléctricos."),
+            "nectar amarillo. Usa pasos ágiles para\n"
+            "acercarse a los oponentes, y luego\n"
+            "los noquea con golpes eléctricos."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1514,9 +1514,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 34,
         .description = COMPOUND_STRING(
             "Esta forma de Oricorio ha bebido\n"
-        "nectar rosa. Eleva su mente con\n"
-        "los suaves pasos de su danza y luego\n"
-        "desata su energía psíquica."),
+            "nectar rosa. Eleva su mente con\n"
+            "los suaves pasos de su danza y luego\n"
+            "desata su energía psíquica."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1578,9 +1578,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 34,
         .description = COMPOUND_STRING(
             "Encanta a sus oponentes con su\n"
-        "danza refinada. Cuando bajan la\n"
-        "guardia, les lanza una maldición\n"
-        "que traerá su perdición."),
+            "danza refinada. Cuando bajan la\n"
+            "guardia, les lanza una maldición\n"
+            "que traerá su perdición."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -2196,9 +2196,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 786,
         .description = COMPOUND_STRING(
             "Cuando se enfrentan a oponentes difíciles, se\n"
-"colocan en formación. Pero si resultan\n"
-"heridos en combate, se dispersan\n"
-"y vuelven a volverse solitarios."),
+            "colocan en formación. Pero si resultan\n"
+            "heridos en combate, se dispersan\n"
+            "y vuelven a volverse solitarios."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -6183,9 +6183,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 4600,
         .description = COMPOUND_STRING(
             "Esta es su forma mientras devora la\n"
-        "luz de Solgaleo. Ataca a sus enemigos\n"
-        "y luego los desgarran con las garras en\n"
-        "sus cuatro extremidades y su espalda."),
+            "luz de Solgaleo. Ataca a sus enemigos\n"
+            "y luego los desgarran con las garras en\n"
+            "sus cuatro extremidades y su espalda."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6249,9 +6249,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 3500,
         .description = COMPOUND_STRING(
             "Esta es su forma mientras devora la\n"
-        "luz de Lunala. Agarra a sus enemigos\n"
-        "con sus enormes garras y los destruye\n"
-        "con fuerza bruta."),
+            "luz de Lunala. Agarra a sus enemigos\n"
+            "con sus enormes garras y los destruye\n"
+            "con fuerza bruta."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6319,9 +6319,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 2300,
         .description = COMPOUND_STRING(
             "La luz que emana de todo su cuerpo\n"
-        "afecta a los seres vivos y a la\n"
-        "naturaleza, impactándolos de diversas\n"
-        "maneras."),
+            "afecta a los seres vivos y a la\n"
+            "naturaleza, impactándolos de diversas\n"
+            "maneras."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6443,9 +6443,9 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .weight = 805,
         .description = COMPOUND_STRING(
             "Esta es su forma de hace casi 500\n"
-        "años. Su cuerpo no es más que un\n"
-        "contenedor; su corazón artificial\n"
-        "es el verdadero organismo."),
+            "años. Su cuerpo no es más que un\n"
+            "contenedor; su corazón artificial\n"
+            "es el verdadero organismo."),
         .pokemonScale = 305,
         .pokemonOffset = 7,
         .trainerScale = 257,

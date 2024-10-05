@@ -642,9 +642,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 582,
         .description = COMPOUND_STRING(
             "De corazón duro y hábil con la espada,\n"
-"esta rara forma de Samurott es un\n"
-"producto de la evolución del Pokémon\n"
-"en la región de Hisui."),
+            "esta rara forma de Samurott es un\n"
+            "producto de la evolución del Pokémon\n"
+            "en la región de Hisui."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -3684,9 +3684,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 192,
         .description = COMPOUND_STRING(
             "Sus piernas fortalecidas son el resultado\n"
-"de una vida pasada en montañas cubiertas\n"
-"de nieve profunda. El aroma que exuda de\n"
-"su corona alegra a quienes están cerca."),
+            "de una vida pasada en montañas cubiertas\n"
+            "de nieve profunda. El aroma que exuda de\n"
+            "su corona alegra a quienes están cerca."),
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -3750,9 +3750,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 180,
         .description = COMPOUND_STRING(
             "Solía ser fuente de alimento común. La\n"
-"carne del Basculin rojo es algo grasosa\n"
-"y es más popular entre los jóvenes.\n"
-"Su temperamento es vicioso y agresivo."),
+            "carne del Basculin rojo es algo grasosa\n"
+            "y es más popular entre los jóvenes.\n"
+            "Su temperamento es vicioso y agresivo."),
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -3814,9 +3814,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 180,
         .description = COMPOUND_STRING(
             "Forman escuelas con otros de su mismo\n"
-"color. El mayor enemigo de una escuela de\n"
-"Basculin azul es una escuela de Basculin\n"
-"rojo. Su sabor es ligero e inofensivo."),
+            "color. El mayor enemigo de una escuela de\n"
+            "Basculin azul es una escuela de Basculin\n"
+            "rojo. Su sabor es ligero e inofensivo."),
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -3879,9 +3879,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 180,
         .description = COMPOUND_STRING(
             "Aunque esta forma es antigua, comparte\n"
-"una gran variedad de cualidades, se\n"
-"diferencia en varios aspectos, por\n"
-"ejemplo su actitud, siendo más gentil."),
+            "una gran variedad de cualidades, se\n"
+            "diferencia en varios aspectos, por\n"
+            "ejemplo su actitud, siendo más gentil."),
         .pokemonScale = 316,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -3943,9 +3943,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 1100,
         .description = COMPOUND_STRING(
             "Se cubre con las almas de aliados que\n"
-"cayeron antes de cumplir su objetivo de\n"
-"asubir corriente arriba. Ninguna especie\n"
-"en los ríos de Hisui es igual a esta."),
+            "cayeron antes de cumplir su objetivo de\n"
+            "asubir corriente arriba. Ninguna especie\n"
+            "en los ríos de Hisui es igual a esta."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -4005,9 +4005,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 1100,
         .description = COMPOUND_STRING(
             "Las almas de sus aliados envuelven su\n"
-"cuerpo y lo impulsan sin esfuerzo a\n"
-"través de incluso las corrientes\n"
-"más furiosas."),
+            "cuerpo y lo impulsan sin esfuerzo a\n"
+            "través de incluso las corrientes\n"
+            "más furiosas."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -4386,9 +4386,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 929,
         .description = COMPOUND_STRING(
             "Cuando está herido, deja de moverse.\n"
-"Se queda tan inmóvil como una piedra\n"
-"para meditar, agudizando su\n"
-"mente y espíritu."),
+            "Se queda tan inmóvil como una piedra\n"
+            "para meditar, agudizando su\n"
+            "mente y espíritu."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -4568,9 +4568,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 1200,
         .description = COMPOUND_STRING(
             "Darmanitan toma esta forma cuando está\n"
-"enfadado. No dejará de lanzar llamas\n"
-"hasta que su ira se haya calmado, incluso\n"
-"si su cuerpo comienza a derretirse."),
+            "enfadado. No dejará de lanzar llamas\n"
+            "hasta que su ira se haya calmado, incluso\n"
+            "si su cuerpo comienza a derretirse."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -5812,9 +5812,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 125,
         .description = COMPOUND_STRING(
             "Deriva poder del resentimiento,\n"
-"que surge como energía en su cabeza y\n"
-"asume las formas de sus rivales. De esta\n"
-"forma, libera la mala voluntad que queda."),
+            "que surge como energía en su cabeza y\n"
+            "asume las formas de sus rivales. De esta\n"
+            "forma, libera la mala voluntad que queda."),
         .pokemonScale = 365,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -5875,9 +5875,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 730,
         .description = COMPOUND_STRING(
             "Sin preocuparse por su propia seguridad,\n"
-"ataca a sus rivales con una energía\n"
-"tan amarga que llega a lacerar el\n"
-"propio cuerpo de Zoroark."),
+            "ataca a sus rivales con una energía\n"
+            "tan amarga que llega a lacerar el\n"
+            "propio cuerpo de Zoroark."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -6763,9 +6763,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 195,
         .description = COMPOUND_STRING(
             "Los Deerling tienen diferentes aromas\n"
-        "en base a la estación. En la\n"
-        "primavera temprana, emiten un\n"
-        "aroma delicado, dulce y calmante."),
+            "en base a la estación. En la\n"
+            "primavera temprana, emiten un\n"
+            "aroma delicado, dulce y calmante."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6826,9 +6826,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 195,
         .description = COMPOUND_STRING(
             "Para evitar que Deerling entre,\n"
-        "muchos granjeros colocan varios\n"
-        "Lycanroc para que estén de guardia,\n"
-        "ya que son sus enemigos naturales."),
+            "muchos granjeros colocan varios\n"
+            "Lycanroc para que estén de guardia,\n"
+            "ya que son sus enemigos naturales."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6889,9 +6889,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 195,
         .description = COMPOUND_STRING(
             "Deerling tiene diferentes olores\n"
-        "dependiendo de la estación. En esta forma,\n"
-        "Deerling tiene un aroma suavemente dulce\n"
-        "que persiste en la nariz."),
+            "dependiendo de la estación. En esta forma,\n"
+            "Deerling tiene un aroma suavemente dulce\n"
+            "que persiste en la nariz."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6952,9 +6952,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 195,
         .description = COMPOUND_STRING(
             "El aroma de Deerling cambia con las\n"
-        "estaciones, pero cuando el Pokémon está\n"
-        "en su Forma de Invierno, casi no tiene\n"
-        "aroma en absoluto."),
+            "estaciones, pero cuando el Pokémon está\n"
+            "en su Forma de Invierno, casi no tiene\n"
+            "aroma en absoluto."),
         .pokemonScale = 422,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -7076,8 +7076,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 925,
         .description = COMPOUND_STRING(
             "Cuanto más gruesas y grandes son las\n"
-        "ramas y hojas en sus cuernos, más majestuoso\n"
-        "se considera que es Sawsbuck."),
+            "ramas y hojas en sus cuernos, más majestuoso\n"
+            "se considera que es Sawsbuck."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -7136,9 +7136,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 925,
         .description = COMPOUND_STRING(
             "Sawsbuck en su Forma Otoñal son\n"
-        "conocidos por tener un temperamento\n"
-        "muy corto. Los machos se pelean\n"
-        "incesantemente."),
+            "conocidos por tener un temperamento\n"
+            "muy corto. Los machos se pelean\n"
+            "incesantemente."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -7197,9 +7197,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 925,
         .description = COMPOUND_STRING(
             "Aunque hay muchos entusiastas de\n"
-        "Sawsbuck como especie, esta forma\n"
-        "estacional en particular no es\n"
-        "muy popular."),
+            "Sawsbuck como especie, esta forma\n"
+            "estacional en particular no es\n"
+            "muy popular."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -10025,8 +10025,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 434,
         .description = COMPOUND_STRING(
             "Con un grito de batalla escalofriante,\n"
-"este enorme y feroz Pokémon ave\n"
-"sale en busca de su presa."),
+            "este enorme y feroz Pokémon ave\n"
+            "sale en busca de su presa."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -10894,9 +10894,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 630,
         .description = COMPOUND_STRING(
            "Un ejemplo de lo que se conoce como un\n"
-"“cambio de forma”. Tornadus ha sido\n"
-"observado cruzando el océano en esta\n"
-"forma."),
+            "“cambio de forma”. Tornadus ha sido\n"
+            "observado cruzando el océano en esta\n"
+            "forma."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -11215,9 +11215,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 680,
         .description = COMPOUND_STRING(
             "La energía que brota de su cola incrementa\n"
-"la nutrición en el suelo, haciendo que los\n"
-"cultivos crezcan a gran tamaño. Ha sido\n"
-"llamado “El Guardián de los Campos.”"),
+            "la nutrición en el suelo, haciendo que los\n"
+            "cultivos crezcan a gran tamaño. Ha sido\n"
+            "llamado “El Guardián de los Campos.”"),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -11279,9 +11279,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 680,
         .description = COMPOUND_STRING(
             "Landorus vuela por el cielo en\n"
-"esta forma, otorgando cosechas abundantes\n"
-"a la tierra y ganándose la veneración\n"
-"de la gente."),
+            "esta forma, otorgando cosechas abundantes\n"
+            "a la tierra y ganándose la veneración\n"
+            "de la gente."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -11417,9 +11417,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 3250,
         .description = COMPOUND_STRING(
             "La similitud entre los genes de Reshiram y\n"
-"Kyurem permitió que Kyurem absorbiera a\n"
-"Reshiram. Ahora Kyurem puede usar el poder\n"
-"tanto del fuego como del hielo."),
+            "Kyurem permitió que Kyurem absorbiera a\n"
+            "Reshiram. Ahora Kyurem puede usar el poder\n"
+            "tanto del fuego como del hielo."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 356,
@@ -11488,9 +11488,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 3250,
         .description = COMPOUND_STRING(
             "La similitud entre los genes de Zekrom y\n"
-"Kyurem permitió que Kyurem absorbiera a\n"
-"Zekrom. Ahora Kyurem puede usar el poder\n"
-"tanto de la electricidad como del hielo."),
+            "Kyurem permitió que Kyurem absorbiera a\n"
+            "Zekrom. Ahora Kyurem puede usar el poder\n"
+            "tanto de la electricidad como del hielo."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 356,

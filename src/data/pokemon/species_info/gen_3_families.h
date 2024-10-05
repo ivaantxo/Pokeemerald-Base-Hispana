@@ -7796,9 +7796,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .weight = 8,
         .description = COMPOUND_STRING(
             "Cambia su forma dependiendo del\n"
-        "clima. Las variaciones en la temperatura\n"
-        "y la humedad parecen afectar su\n"
-        "estructura celular."),
+            "clima. Las variaciones en la temperatura\n"
+            "y la humedad parecen afectar su\n"
+            "estructura celular."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -7862,9 +7862,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .weight = 8,
         .description = COMPOUND_STRING(
             "Castform toma esta forma en días soleados.\n"
-        "En un experimento donde se le colocó\n"
-        "frente a un calefactor, no cambió a esta\n"
-        "forma. Su cuerpo está cálido y acogedor."),
+            "En un experimento donde se le colocó\n"
+            "frente a un calefactor, no cambió a esta\n"
+            "forma. Su cuerpo está cálido y acogedor."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -7928,9 +7928,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .weight = 8,
         .description = COMPOUND_STRING(
             "Esta es la forma de Castform mientras llueve.\n"
-        "En un experimento donde se le colocó en\n"
-        "una ducha, no cambió a esta forma. Su cuerpo\n"
-        "es suave, ligeramente hinchado con agua."),
+            "En un experimento donde se le colocó en\n"
+            "una ducha, no cambió a esta forma. Su cuerpo\n"
+            "es suave, ligeramente hinchado con agua."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -7994,9 +7994,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .weight = 8,
         .description = COMPOUND_STRING(
             "Esta es la forma de una tormenta\n"
-        "de granizo. En un experimento donde se le\n"
-        "colocó en un congelador, no cambió a esta\n"
-        "forma. Su piel fría es tan lisa como el hielo."),
+            "de granizo. En un experimento donde se le\n"
+            "colocó en un congelador, no cambió a esta\n"
+            "forma. Su piel fría es tan lisa como el hielo."),
         .pokemonScale = 435,
         .pokemonOffset = -5,
         .trainerScale = 256,
@@ -10710,9 +10710,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .weight = 4300,
         .description = COMPOUND_STRING(
             "Cuando Kyogre rugió, el agua brotó\n"
-"y los mares se expandieron.\n"
-"Nubes oscuras cubrieron el mundo,\n"
-"y el diluvio cayó sobre todos…"),
+            "y los mares se expandieron.\n"
+            "Nubes oscuras cubrieron el mundo,\n"
+            "y el diluvio cayó sobre todos…"),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 515,

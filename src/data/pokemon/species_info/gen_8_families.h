@@ -5085,9 +5085,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 890,
         .description = COMPOUND_STRING(
             "Arribó a través de la corriente oceánica\n"
-"desde un lugar gélido. Mantiene su\n"
-"cabeza constantemente helada para\n"
-"asegurarse de que se mantenga fresca."),
+            "desde un lugar gélido. Mantiene su\n"
+            "cabeza constantemente helada para\n"
+            "asegurarse de que se mantenga fresca."),
         .pokemonScale = 265,
         .pokemonOffset = 2,
         .trainerScale = 262,
@@ -5148,9 +5148,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 890,
         .description = COMPOUND_STRING(
             "El pelo en su cabeza está conectado a\n"
-"la superficie de su cerebro. Cuando\n"
-"está pensando en algo, su cabello\n"
-"enfría el aire a su alrededor."),
+            "la superficie de su cerebro. Cuando\n"
+            "está pensando en algo, su cabello\n"
+            "enfría el aire a su alrededor."),
         .pokemonScale = 265,
         .pokemonOffset = 2,
         .trainerScale = 262,
@@ -5205,9 +5205,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 280,
         .description = COMPOUND_STRING(
             "Utiliza sus cuernos para sentir las\n"
-"emociones de los demás. Los machos\n"
-"actúan como sirvientes para sus amos,\n"
-"cuidando de todas sus necesidades."),
+            "emociones de los demás. Los machos\n"
+            "actúan como sirvientes para sus amos,\n"
+            "cuidando de todas sus necesidades."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -5266,9 +5266,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 280,
         .description = COMPOUND_STRING(
             "Sirven diligentemente para poder\n"
-"recoger sentimientos de gratitud.\n"
-"Las hembras son particularmente\n"
-"buenas cuidando niños."),
+            "recoger sentimientos de gratitud.\n"
+            "Las hembras son particularmente\n"
+            "buenas cuidando niños."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -5330,9 +5330,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 30,
         .description = COMPOUND_STRING(
             "Al comer las semillas guardadas en sus\n"
-"sacos, este Pokémon no sólo está\n"
-"satisfaciendo su hambre constante.\n"
-"También está generando electricidad."),
+            "sacos, este Pokémon no sólo está\n"
+            "satisfaciendo su hambre constante.\n"
+            "También está generando electricidad."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5393,9 +5393,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 30,
         .description = COMPOUND_STRING(
             "El hambre intensa lo lleva a extremos de\n"
-"violencia, y la electricidad en sus\n"
-"mejillas se ha convertido en\n"
-"energía de tipo Siniestro."),
+            "violencia, y la electricidad en sus\n"
+            "mejillas se ha convertido en\n"
+            "energía de tipo Siniestro."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -6321,9 +6321,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 3550,
         .description = COMPOUND_STRING(
             "Capaz de cortar cualquier cosa con un\n"
-        "solo golpe, se hizo conocido como la\n"
-        "Espada del Rey Hada, y inspiró\n"
-        "asombro tanto en amigos como en enemigos."),
+            "solo golpe, se hizo conocido como la\n"
+            "Espada del Rey Hada, y inspiró\n"
+            "asombro tanto en amigos como en enemigos."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6387,9 +6387,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 2100,
         .description = COMPOUND_STRING(
             "En tiempos pasados, trabajó junto a un\n"
-        "rey del pueblo para salvar la región de\n"
-        "Galar. Absorbe metal que luego utiliza\n"
-        "en batalla."),
+            "rey del pueblo para salvar la región de\n"
+            "Galar. Absorbe metal que luego utiliza\n"
+            "en batalla."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6451,8 +6451,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 7850,
         .description = COMPOUND_STRING(
             "Su habilidad para desviar cualquier ataque\n"
-        "le valió el título de Escudo del Maestro de\n"
-        "Lucha. Era temido y respetado por todos."),
+            "le valió el título de Escudo del Maestro de\n"
+            "Lucha. Era temido y respetado por todos."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -6579,9 +6579,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 0,
         .description = COMPOUND_STRING(
             "Como resultado de la intromisión de Rose,\n"
-        "Eternatus absorbió toda la energía en\n"
-        "la región de Galar. Ahora está en un\n"
-        "estado de sobrecarga de energía."),
+            "Eternatus absorbió toda la energía en\n"
+            "la región de Galar. Ahora está en un\n"
+            "estado de sobrecarga de energía."),
         .pokemonScale = 230,
         .pokemonOffset = 0,
         .trainerScale = 4852,
@@ -6822,9 +6822,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .weight = 1050,
         .description = COMPOUND_STRING(
             "Esta forma de Urshifu es una fuerte\n"
-        "creyente en derrotar a sus enemigos\n"
-        "con un aluvión de golpes. Sus ataques\n"
-        "son ininterrumpidos, fluyendo el río."),
+            "creyente en derrotar a sus enemigos\n"
+            "con un aluvión de golpes. Sus ataques\n"
+            "son ininterrumpidos, fluyendo el río."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,

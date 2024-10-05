@@ -2901,9 +2901,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su aliado, lo\n"
-"cual es una prueba del fuerte vínculo que\n"
-"tienen, formaron durante aventuras\n"
-"a través de muchas regiones."),
+            "cual es una prueba del fuerte vínculo que\n"
+            "tienen, formaron durante aventuras\n"
+            "a través de muchas regiones."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -2955,9 +2955,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron durante aventuras\n"
-"juntos en la región Hoenn."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron durante aventuras\n"
+            "juntos en la región Hoenn."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3009,9 +3009,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron durante aventuras\n"
-"juntos en la región Sinnoh."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron durante aventuras\n"
+            "juntos en la región Sinnoh."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3063,9 +3063,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron durante aventuras\n"
-"juntos en la región Unova."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron durante aventuras\n"
+            "juntos en la región Unova."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3117,9 +3117,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
            "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron durante aventuras\n"
-"juntos en la región Kalos."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron durante aventuras\n"
+            "juntos en la región Kalos."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3171,9 +3171,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron durante aventuras\n"
-"juntos en la región Alola."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron durante aventuras\n"
+            "juntos en la región Alola."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3226,9 +3226,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron al superar\n"
-"muchas dificultades juntos."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron al superar\n"
+            "muchas dificultades juntos."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3280,9 +3280,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 60,
         .description = COMPOUND_STRING(
             "Este Pikachu lleva la gorra de su compañero, lo\n"
-"cual es una prueba del fuerte vínculo que Pikachu\n"
-"y su compañero formaron durante aventuras\n"
-"por todo el mundo juntos."),
+            "cual es una prueba del fuerte vínculo que Pikachu\n"
+            "y su compañero formaron durante aventuras\n"
+            "por todo el mundo juntos."),
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -3670,8 +3670,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 		.description = COMPOUND_STRING(
 			"Se enrosca para protegerse del enemigo\n"
 			"y de los golpes de calor que hay durante\n"
-			"el día, cuando aumenta la temperatura.\n"
-			""),
+			"el día, cuando aumenta la temperatura."),
         .pokemonScale = 341,
         .pokemonOffset = 11,
         .trainerScale = 256,
@@ -3866,9 +3865,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 70,
         .description = COMPOUND_STRING(
             "Se cree que sus espinas tóxicas se\n"
-"crearon como protección para esta\n"
-"especie de cuerpo pequeño. Al enfadarse\n"
-"libera una horrible toxina."),
+            "crearon como protección para esta\n"
+            "especie de cuerpo pequeño. Al enfadarse\n"
+            "libera una horrible toxina."),
         .pokemonScale = 488,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -6892,9 +6891,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 227,
         .description = COMPOUND_STRING(
            "Patrullan su territorio en parejas. Se\n"
-"cree que los restos de roca ígnea en el\n"
-"pelaje de esta especie son el resultado\n"
-"de la actividad volcánica en su hábitat."),
+            "cree que los restos de roca ígnea en el\n"
+            "pelaje de esta especie son el resultado\n"
+            "de la actividad volcánica en su hábitat."),
         .pokemonScale = 346,
         .pokemonOffset = 14,
         .trainerScale = 256,
@@ -6955,9 +6954,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 1680,
         .description = COMPOUND_STRING(
             "Ataca con sus colmillos ardientes.\n"
-"A pesar de su cuerpo, se mueve ágilmente,\n"
-"haciéndo creer a sus rivales que están\n"
-"siguiendolo en una falsa y alegre caza."),
+            "A pesar de su cuerpo, se mueve ágilmente,\n"
+            "haciéndo creer a sus rivales que están\n"
+            "siguiendolo en una falsa y alegre caza."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 312,
@@ -9216,9 +9215,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 795,
         .description = COMPOUND_STRING(
             "Una combinación de toxinas y el impacto de\n"
-"evolucionar ha incrementado la astucia\n"
-"de Shellder hasta el punto de\n"
-"controlar a Slowking."),
+            "evolucionar ha incrementado la astucia\n"
+            "de Shellder hasta el punto de\n"
+            "controlar a Slowking."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 309,
@@ -11321,9 +11320,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 130,
         .description = COMPOUND_STRING(
            "Recuerda el diseño de una Poké Ball\n"
-"antigua. Al emocionarse, descarga la\n"
-"corriente que almacena en su vientre, y\n"
-"luego emite una gran risa estruendosa."),
+            "antigua. Al emocionarse, descarga la\n"
+            "corriente que almacena en su vientre, y\n"
+            "luego emite una gran risa estruendosa."),
         .pokemonScale = 364,
         .pokemonOffset = -8,
         .trainerScale = 256,
@@ -11384,9 +11383,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 710,
         .description = COMPOUND_STRING(
             "El tejido en la superficie de su cuerpo\n"
-"es similar en composición a un Apricorn.\n"
-"Cuando se irrita, libera una corriente\n"
-"eléctrica equivalente a 20 rayos."),
+            "es similar en composición a un Apricorn.\n"
+            "Cuando se irrita, libera una corriente\n"
+            "eléctrica equivalente a 20 rayos."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -14886,9 +14885,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 1150,
         .description = COMPOUND_STRING(
             "Este Pokémon tiene un cuerpo musculoso\n"
-"y sobresale en el combate cuerpo a cuerpo.\n"
-"Utiliza sus cuernos cortos para golpear\n"
-"los puntos débiles del oponente."),
+            "y sobresale en el combate cuerpo a cuerpo.\n"
+            "Utiliza sus cuernos cortos para golpear\n"
+            "los puntos débiles del oponente."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -14949,9 +14948,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 850,
         .description = COMPOUND_STRING(
             "Cuando se calienta con energía de fuego, sus cuernos pueden\n"
-"alcanzar temperaturas superiores a 1,800 ºC.\n"
-"Quienes sean atravesados por ellos sufrirán\n"
-"tanto heridas como quemaduras."),
+            "alcanzar temperaturas superiores a 1,800 ºC.\n"
+            "Quienes sean atravesados por ellos sufrirán\n"
+            "tanto heridas como quemaduras."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -15012,8 +15011,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .weight = 1100,
         .description = COMPOUND_STRING(
             "Este Pokémon lanza agua desde los agujeros en\n"
-"las puntas de sus cuernos los chorros a alta presión\n"
-"atraviesan a los enemigos de Tauros."),
+            "las puntas de sus cuernos los chorros a alta presión\n"
+            "atraviesan a los enemigos de Tauros."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,

@@ -4381,9 +4381,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .weight = 39,
         .description = COMPOUND_STRING(
             "Una forma de Qwilfish del pasado.\n"
-"Los pescadores lo detestan\n"
-"porque rocía veneno desde sus\n"
-"espinas, manchando todo de él."),
+            "Los pescadores lo detestan\n"
+            "porque rocía veneno desde sus\n"
+            "espinas, manchando todo de él."),
         .pokemonScale = 430,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -4443,10 +4443,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .categoryName = _("Espinoso"),
         .height = 25,
         .weight = 605,
-        .description = COMPOUND_STRING("Sus espinas en forma de lanza y su\n"
-"temperamento sanguinario le han valido\n"
-"el apodo de “Demonio del Mar”.\n"
-"Absorbe veneno para nutrirse."),
+        .description = COMPOUND_STRING(
+            "Sus espinas en forma de lanza y su\n"
+            "temperamento sanguinario le han valido\n"
+            "el apodo de “Demonio del Mar”.\n"
+            "Absorbe veneno para nutrirse."),
         .pokemonScale = 257,
         .pokemonOffset = 10,
         .trainerScale = 423,
@@ -4843,9 +4844,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .weight = 270,
         .description = COMPOUND_STRING(
             "Sus garras curvas y robustas son\n"
-"ideales para recorrer acantilados. De\n"
-"sus puntas gotea un veneno que infiltra\n"
-"los nervios de cualquier presa atrapada."),
+            "ideales para recorrer acantilados. De\n"
+            "sus puntas gotea un veneno que infiltra\n"
+            "los nervios de cualquier presa atrapada."),
         .pokemonScale = 413,
         .pokemonOffset = -3,
         .trainerScale = 256,
@@ -4909,10 +4910,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .categoryName = _("Escalada"),
         .height = 13,
         .weight = 430,
-        .description = COMPOUND_STRING("Debido a su veneno mortal y su gran\n"
-"poder físico, ninguna otra especie\n"
-"podría esperar vencerlo en su terreno.\n"
-"Prefiere la soledad y no forma manadas."),
+        .description = COMPOUND_STRING(
+            "Debido a su veneno mortal y su gran\n"
+            "poder físico, ninguna otra especie\n"
+            "podría esperar vencerlo en su terreno.\n"
+            "Prefiere la soledad y no forma manadas."),
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,

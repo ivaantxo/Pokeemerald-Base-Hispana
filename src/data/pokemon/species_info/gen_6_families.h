@@ -2315,9 +2315,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 85,
         .description = COMPOUND_STRING(
             "Las hembras son un poco más egoístas\n"
-"y agresivas que los machos. Si no\n"
-"obtienen lo que quieren, te\n"
-"atormentarán con sus habilidades."),
+            "y agresivas que los machos. Si no\n"
+            "obtienen lo que quieren, te\n"
+            "atormentarán con sus habilidades."),
         .pokemonScale = 422,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -2506,9 +2506,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 530,
         .description = COMPOUND_STRING(
             "En esta postura defensiva, Aegislash\n"
-"usa su cuerpo de acero y un campo\n"
-"de fuerza espectral para reducir el\n"
-"daño de cualquier ataque."),
+            "usa su cuerpo de acero y un campo\n"
+            "de fuerza espectral para reducir el\n"
+            "daño de cualquier ataque."),
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 290,
@@ -2575,9 +2575,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 530,
         .description = COMPOUND_STRING(
             "Érase una vez un rey con un\n"
-"Aegislash que gobernaba la tierra. Su\n"
-"Pokémon eventualmente le drenó la\n"
-"vida, y su reino cayó con él."),
+            "Aegislash que gobernaba la tierra. Su\n"
+            "Pokémon eventualmente le drenó la\n"
+            "vida, y su reino cayó con él."),
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 290,
@@ -4131,9 +4131,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 685,
         .description = COMPOUND_STRING(
            "Una criatura propensa a la melancolía.\n"
-"Su concha metálica se desarrolló como\n"
-"resultado de la reacción del moco de su\n"
-"piel con el hierro en el agua de Hisui."),
+            "Su concha metálica se desarrolló como\n"
+            "resultado de la reacción del moco de su\n"
+            "piel con el hierro en el agua de Hisui."),
         .pokemonScale = 366,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -4195,9 +4195,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 3341,
         .description = COMPOUND_STRING(
             "Detesta la soledad y es demasiado\n"
-"pegajoso: se enfurece y hace\n"
-"desmanes si las personas queridas para\n"
-"él alguna vez se alejan de su lado."),
+            "pegajoso: se enfurece y hace\n"
+            "desmanes si las personas queridas para\n"
+            "él alguna vez se alejan de su lado."),
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -5086,9 +5086,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 2624,
         .description = COMPOUND_STRING(
             "La armadura de hielo que cubre su\n"
-"mandíbula inferior pone al acero en\n"
-"vergüenza y puede romper rocas\n"
-"con facilidad."),
+            "mandíbula inferior pone al acero en\n"
+            "vergüenza y puede romper rocas\n"
+            "con facilidad."),
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -5713,9 +5713,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 6100,
         .description = COMPOUND_STRING(
             "Esta es la forma perfeccionada de\n"
-"Zygarde. Desde el orificio en su pecho,\n"
-"irradia energía de alta potencia\n"
-"que elimina todo a su alrededor."),
+            "Zygarde. Desde el orificio en su pecho,\n"
+            "irradia energía de alta potencia\n"
+            "que elimina todo a su alrededor."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 721,
@@ -5906,9 +5906,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 90,
         .description = COMPOUND_STRING(
             "En su forma verdadera, posee mucho\n"
-"poder. Si sus poderes están sellados,\n"
-"se transforma en una forma más pequeña.\n"
-"Esconde cosas a un lugar secreto."),
+            "poder. Si sus poderes están sellados,\n"
+            "se transforma en una forma más pequeña.\n"
+            "Esconde cosas a un lugar secreto."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -5971,9 +5971,9 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .weight = 490,
         .description = COMPOUND_STRING(
             "Es su verdadera forma, que ha desatado\n"
-"su poder sellado. Sus anillos tienen\n"
-"el poder de doblar dimensiones y\n"
-"apoderarse de cualquier cosa del mundo."),
+            "su poder sellado. Sus anillos tienen\n"
+            "el poder de doblar dimensiones y\n"
+            "apoderarse de cualquier cosa del mundo."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
