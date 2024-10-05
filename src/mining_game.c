@@ -73,6 +73,7 @@ struct MiningGame
     u8 itemsSpritesIds[MAX_NUM_ITEMS_MINING]; //Id de los sprites de items que hay para desenterrar
     bool8 itemsStatus[MAX_NUM_ITEMS_MINING]; //Indica si el item fue desenterrado o no
     u8 toolType; //Tipo de cursor seleccionado: pico, martillo...
+    u8 bombaSpriteId;
 };
 
 static EWRAM_DATA struct MiningGame mining = {0};
@@ -181,9 +182,9 @@ static const struct SpritePalette sSpritePalette_Cursor =
 enum CursoresMineria
 {
     CURSOR_NORMAL,
-    CURSOR_PICK,
-    CURSOR_HAMMER,
-    CURSOR_BOOM,
+    CURSOR_PICO,
+    CURSOR_MARTILLO,
+    CURSOR_BOMBA,
 };
 
 static const union AnimCmd sAnim_CursorNormal[] =
@@ -192,7 +193,7 @@ static const union AnimCmd sAnim_CursorNormal[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_CursorPick[] =
+static const union AnimCmd sAnim_CursorPico[] =
 {
     ANIMCMD_FRAME(0, 4),
     ANIMCMD_FRAME(16, 8),
@@ -201,7 +202,7 @@ static const union AnimCmd sAnim_CursorPick[] =
 };
 
 
-static const union AnimCmd sAnim_CursorHammer[] =
+static const union AnimCmd sAnim_CursorMartillo[] =
 {
     ANIMCMD_FRAME(0, 4),
     ANIMCMD_FRAME(32, 8),
@@ -212,9 +213,9 @@ static const union AnimCmd sAnim_CursorHammer[] =
 static const union AnimCmd *const sAnims_CursorSprite[] =
 {
     [CURSOR_NORMAL] = sAnim_CursorNormal,
-    [CURSOR_PICK] = sAnim_CursorPick,
-    [CURSOR_HAMMER] = sAnim_CursorHammer,
-    [CURSOR_BOOM] = sAnim_CursorHammer
+    [CURSOR_PICO] = sAnim_CursorPico,
+    [CURSOR_MARTILLO] = sAnim_CursorMartillo,
+    [CURSOR_BOMBA] = sAnim_CursorMartillo
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Cursor =
@@ -402,12 +403,52 @@ static const struct SpritePalette sSpritePalette_Bomba =
     .tag = TAG_BOMBA, 
 };
 
+enum EstadosBomba
+{
+    BOMBA_PEQUEÑA,
+    BOMBA_MEDIANA,
+    BOMBA_GRANDE,
+    BOMBA_EXPLOSION,
+};
+
+static const union AnimCmd sAnim_BombaPequeña[] =
+{
+    ANIMCMD_FRAME(0, 16),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_BombaMediana[] =
+{
+    ANIMCMD_FRAME(4, 16),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sAnim_BombaGrande[] =
+{
+    ANIMCMD_FRAME(8, 16),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sAnim_BombaExplosion[] =
+{
+    ANIMCMD_FRAME(12, 16),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sAnims_Bomba[] =
+{
+    [BOMBA_PEQUEÑA] = sAnim_BombaPequeña,
+    [BOMBA_MEDIANA] = sAnim_BombaMediana,
+    [BOMBA_GRANDE] = sAnim_BombaGrande,
+    [BOMBA_EXPLOSION] = sAnim_BombaExplosion
+};
+
 static const struct SpriteTemplate sSpriteTemplate_Bomba =
 {
     .tileTag = TAG_BOMBA,
     .paletteTag = TAG_BOMBA,
     .oam = &gSpriteOamData16x16,
-    .anims = sAnims_CursorSprite,
+    .anims = sAnims_Bomba,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
@@ -430,15 +471,7 @@ static void LoadSpritesResources(void)
     LoadSpritePalette(&sSpritePalette_Bomba);
 }
 
-static u8 CreateCursorSprite(u8 x, u8 y)
-{
-    u8 id;
-
-    id = CreateSprite(&sSpriteTemplate_Cursor, x, y, 0);
-    return id;
-}
-
-static void CreateGrietasSprite(void)
+static void CreateSpriteGrietas(void)
 {
     u8 id, x = 16, y = 6;
 
@@ -452,7 +485,7 @@ static void CreateGrietasSprite(void)
     }
 }
 
-static void CreateToolsSprite(void)
+static void CreateSpriteHerramientas(void)
 {
     u8 id, y = 51;
 
@@ -505,16 +538,13 @@ static void SpriteCallbackCursor(struct Sprite *sprite)
         case MARTILLO:
             PlaySE(SE_M_DIG);
             break;
-
         case BOMBA:
             PlaySE(SE_BANG);
             break;
-        
         default:
             PlaySE(SE_M_DIG);
             break;
     }
-    
 }
 
 static void SpriteCallbackItemIconSprite(struct Sprite *sprite)
@@ -557,18 +587,16 @@ void UpdateGrietas(void)
             continue;
         }
 
-        switch(mining.toolType)
+        switch (mining.toolType)
         {
             default:
             case PICO:
                 StartSpriteAnim(&gSprites[id], gSprites[id].animNum + 1);
                 break;
-
             case MARTILLO:
                 animNum = (animNum + 2 > 5) ? 5 : animNum + 2;
                 StartSpriteAnim(&gSprites[id], animNum);
                 break;
-
             case BOMBA:
                 StartSpriteAnim(&gSprites[id], GRIETA_STATE_5);
                 break;
@@ -578,9 +606,9 @@ void UpdateGrietas(void)
         
         if (i > 0 && animNum == GRIETA_STATE_5)
         {
-            gSprites[mining.grietasIds[i-1]].invisible = FALSE;
+            gSprites[mining.grietasIds[i - 1]].invisible = FALSE;
             if (mining.toolType == BOMBA)
-                StartSpriteAnim(&gSprites[mining.grietasIds[i-1]], GRIETA_STATE_4);
+                StartSpriteAnim(&gSprites[mining.grietasIds[i - 1]], GRIETA_STATE_4);
         }
 
         allInvisibles = FALSE;
@@ -590,12 +618,20 @@ void UpdateGrietas(void)
         gSprites[mining.grietasIds[MAX_NUM_GRIETAS_SPRITES-1]].invisible = FALSE;
 }
 
+void TryCreateSpriteBomba(void)
+{
+    if (mining.toolType == BOMBA)
+    {
+        mining.bombaSpriteId = CreateSprite(&sSpriteTemplate_Bomba, gSprites[mining.cursorSpriteId].x, gSprites[mining.cursorSpriteId].y, 0);
+    }
+}
+
 bool8 CheckStateGrietas(void)
 {
     u8 id;
 
-    for (u8 i = 0 ; i <  MAX_NUM_GRIETAS_SPRITES; i++)
-    { 
+    for (u8 i = 0 ; i < MAX_NUM_GRIETAS_SPRITES; i++)
+{ 
         id = mining.grietasIds[i];
         if (gSprites[id].animNum != GRIETA_STATE_5)
             return FALSE;
@@ -767,8 +803,8 @@ void GenerateItemsSprites(void)
         gSprites[idItem].sState = 0;
         gSprites[idItem].sTimer = 0;
         gSprites[idItem].sGlow = 0;
-        gSprites[idItem].sRow = yValues[i]/16 - 3;
-        gSprites[idItem].sColumn = (xValues[i]/16 == 0) ? 0 : xValues[i]/16 - 1; 
+        gSprites[idItem].sRow = yValues[i] / 16 - 3;
+        gSprites[idItem].sColumn = (xValues[i] / 16 == 0) ? 0 : xValues[i] / 16 - 1; 
         gSprites[idItem].callback = SpriteCallbackItemIconSprite;
         gSprites[idItem].affineAnims = sAffineAnims_Items;
         gSprites[idItem].oam.priority = 2; 
@@ -915,8 +951,8 @@ static void Task_FadeIn(u8 taskId)
         mining.blockY = 0;
         mining.toolType = PICO;
         UpdateSelectTool();
-        CreateGrietasSprite();
-        mining.cursorSpriteId = CreateCursorSprite(8, INITIAL_CURSOR_POS_Y);
+        CreateSpriteGrietas();
+        mining.cursorSpriteId = CreateSprite(&sSpriteTemplate_Cursor, 8, INITIAL_CURSOR_POS_Y, 0);
         //PutWindowTilemap(WINDOW_DESCRIPCION);
         //DrawStdWindowFrame(WINDOW_DESCRIPCION, FALSE);
         //FillWindowPixelBuffer(WINDOW_DESCRIPCION, PIXEL_FILL(1));
@@ -929,7 +965,7 @@ static void Task_FadeIn(u8 taskId)
 
 //static void Task_RemoveWindow(u8 taskId)
 //{
-//    if(!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
+//    if (!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
 //    {
 //        ClearDialogWindowAndFrameToTransparent(WINDOW_DESCRIPCION, TRUE);
 //        ClearStdWindowAndFrameToTransparent(WINDOW_DESCRIPCION, FALSE);
@@ -1005,6 +1041,12 @@ static void Task_MainHandle(u8 taskId)
         StartSpriteAnim(&gSprites[mining.cursorSpriteId], mining.toolType + 1);
         UpdateTileStone();
         UpdateGrietas();
+        TryCreateSpriteBomba();
+        gSprites[mining.bombaSpriteId].sTimer = 0;
+        if (++gSprites[mining.bombaSpriteId].sTimer > 20)
+        {
+            StartSpriteAnim(&gSprites[mining.bombaSpriteId], BOMBA_MEDIANA);
+        }
     }
 }
 
@@ -1017,7 +1059,7 @@ static void Task_ReturnToField(u8 taskId)
 
 u8 GetIndexOfObtainedItems(u8 currentIndex)
 {
-    for ( u8 i = currentIndex; i < MAX_NUM_ITEMS_MINING; i++)
+    for (u8 i = currentIndex; i < MAX_NUM_ITEMS_MINING; i++)
     {
         if (mining.itemsStatus[i] == TRUE 
         && mining.itemsIds[i] != ITEM_NONE)
@@ -1098,12 +1140,12 @@ void CB2_InitMiningGameSetUp(void)
         LoadRandomTilesStones();
         memset(mining.itemsSpritesIds, 0xFF, MAX_NUM_ITEMS_MINING);
         memset(mining.itemsStatus, FALSE, MAX_NUM_ITEMS_MINING);
-        for ( i = 0; i < MAX_NUM_ITEMS_MINING; i++)
+        for (i = 0; i < MAX_NUM_ITEMS_MINING; i++)
         {
             mining.itemsIds[i] = ITEM_NONE;
         }
         GenerateItemsSprites();
-        CreateToolsSprite();
+        CreateSpriteHerramientas();
         FadeOutAndPlayNewMapMusic(MUS_RG_TEACHY_TV_SHOW, 4);
         gMain.state++;
         break;
