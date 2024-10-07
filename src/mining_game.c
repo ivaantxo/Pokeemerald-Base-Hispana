@@ -42,7 +42,6 @@
 //==========FUNCIONES STATIC==========//
 
 static void Task_FadeIn(u8 taskId);
-//static void Task_RemoveWindow(u8 taskId);
 static void Task_MainHandle(u8 taskId);
 static void Task_FadeOut(u8 taskId);
 
@@ -89,10 +88,10 @@ const u8 gText_DescMineria[] = _("¡Mira, una pared cubierta de rocas!\n"
 
 //==========BG GRAPHICS==========//
 
-static const u32 MiningGameBG3_Tileset[] = INCBIN_U32("graphics/mining_game/bg_tileset.4bpp.lz");
-static const u32 MiningGameBG3_Tilemap[] = INCBIN_U32("graphics/mining_game/bg_tilemap.bin.lz");
+static const u32 Bg_Gfx[] = INCBIN_U32("graphics/mining_game/bg.4bpp.lz");
+static const u32 Bg_Map[] = INCBIN_U32("graphics/mining_game/bg.bin.lz");
 
-static const u16 MiningGameBG_Palette[] = INCBIN_U16("graphics/mining_game/bgPal.gbapal");
+static const u16 Bg_Pal[] = INCBIN_U16("graphics/mining_game/bg.gbapal");
 
 static const u8 Rocas_Gfx[] = INCBIN_U8("graphics/mining_game/sprites/rocas.4bpp");
 static const u16 GrietasRocas_Pal[] = INCBIN_U16("graphics/mining_game/sprites/grietas_rocas.gbapal");
@@ -396,16 +395,15 @@ static const union AffineAnimCmd *const sAffineAnims_Items[] =
 static const struct SpriteSheet sSpriteSheet_Bomba =
 {
     .data = Bomba_Gfx,
-    .size = 16 * 64 / 2, 
+    .size = 16 * 64 / 2,
     .tag = TAG_BOMBA,
 };
 
 static const struct SpritePalette sSpritePalette_Bomba =
 {
     .data = Bomba_Pal,
-    .tag = TAG_BOMBA, 
+    .tag = TAG_BOMBA,
 };
-
 
 static const union AnimCmd sAnim_BombaStates[] =
 {
@@ -424,9 +422,10 @@ static const union AnimCmd *const sAnims_Bomba[] =
 #define sRow data[2]
 #define sColumn data[3]
 #define sTimer data[7]
+
 static void  SpriteCallbackBomba(struct Sprite *sprite)
 {
-    if(sprite->animEnded)
+    if (sprite->animEnded)
     {
         UpdateTileStone(sprite->sColumn, sprite->sRow);
         UpdateGrietas();
@@ -435,9 +434,7 @@ static void  SpriteCallbackBomba(struct Sprite *sprite)
     }
 
     if (+sprite->sTimer > 20)
-    {
         StartSpriteAnim(&gSprites[mining.bombaSpriteId], 0);
-    }
 }
 
 static const struct SpriteTemplate sSpriteTemplate_Bomba =
@@ -543,7 +540,6 @@ static void SpriteCallbackCursor(struct Sprite *sprite)
 
 static void SpriteCallbackItemIconSprite(struct Sprite *sprite)
 {
-
     if (!sprite->sIsHidden)
     {
         if (sprite->affineAnimEnded && sprite->oam.affineMode != ST_OAM_AFFINE_OFF)
@@ -577,9 +573,7 @@ static void UpdateGrietas(void)
         animNum = gSprites[id].animNum;
 
         if (gSprites[id].invisible || gSprites[id].animNum == GRIETA_STATE_5)
-        {
             continue;
-        }
 
         switch (mining.toolType)
         {
@@ -604,12 +598,11 @@ static void UpdateGrietas(void)
             if (mining.toolType == BOMBA)
                 StartSpriteAnim(&gSprites[mining.grietasIds[i - 1]], GRIETA_STATE_4);
         }
-
         allInvisibles = FALSE;
     }
 
     if (allInvisibles)
-        gSprites[mining.grietasIds[MAX_NUM_GRIETAS_SPRITES-1]].invisible = FALSE;
+        gSprites[mining.grietasIds[MAX_NUM_GRIETAS_SPRITES - 1]].invisible = FALSE;
 }
 
 void TryCreateSpriteBomba(void)
@@ -620,7 +613,6 @@ void TryCreateSpriteBomba(void)
         gSprites[mining.bombaSpriteId].sTimer = 0;
         gSprites[mining.bombaSpriteId].sColumn = mining.blockX;
         gSprites[mining.bombaSpriteId].sRow = mining.blockY;
-
     }
 }
 
@@ -629,7 +621,7 @@ bool8 CheckStateGrietas(void)
     u8 id;
 
     for (u8 i = 0 ; i < MAX_NUM_GRIETAS_SPRITES; i++)
-{ 
+    { 
         id = mining.grietasIds[i];
         if (gSprites[id].animNum != GRIETA_STATE_5)
             return FALSE;
@@ -653,9 +645,7 @@ void UpdateSelectTool(void)
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 8));
         }
         else
-        {
             gSprites[id].oam.objMode = ST_OAM_OBJ_NORMAL;
-        }
     }
 }
 
@@ -663,33 +653,26 @@ void UpdateSelectTool(void)
 
 static void LoadBGs_MiningGame(void)
 {
-    InitBgsFromTemplates(0, MiningGameBgTemplates, NELEMS(MiningGameBgTemplates));
+    InitBgsFromTemplates(0, MiningGameBgTemplates, ARRAY_COUNT(MiningGameBgTemplates));
 
-    LZ77UnCompVram(MiningGameBG3_Tileset, (void*) VRAM + 16384 * MiningGameBgTemplates[1].charBaseIndex);
-    LZ77UnCompVram(MiningGameBG3_Tilemap, (u16*) BG_SCREEN_ADDR(MiningGameBgTemplates[1].mapBaseIndex));
-    //LZ77UnCompVram(MiningGameBG3_Tileset, (void*) VRAM + 16384 * MiningGameBgTemplates[BG_FONDO].charBaseIndex);
-    //LZ77UnCompVram(MiningGameBG3_Tilemap, (u16*) BG_SCREEN_ADDR(MiningGameBgTemplates[BG_FONDO].mapBaseIndex));
+    LZ77UnCompVram(Bg_Gfx, (void*) BG_CHAR_ADDR(MiningGameBgTemplates[1].charBaseIndex));
+    LZ77UnCompVram(Bg_Map, (u16*) BG_SCREEN_ADDR(MiningGameBgTemplates[1].mapBaseIndex));
 
-    LoadPalette(MiningGameBG_Palette, 0, 0x20);
+    LoadPalette(Bg_Pal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
 
     ResetAllBgsCoordinates(); 
 
     LoadBgTiles(0, Rocas_Gfx, 1024, DEST_TILES_STONES);
     //LoadBgTiles(BG_ROCAS, Rocas_Gfx, 1024, DEST_TILES_STONES);
-    LoadPalette(GrietasRocas_Pal, 0x10, 0x20);
+    LoadPalette(GrietasRocas_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
 
-    //ShowBg(BG_TEXTO); 
     //ShowBg(BG_ROCAS);
     //ShowBg(BG_FONDO);
     ShowBg(0);
     ShowBg(3);
 }
 
-enum WindowsMineria
-{
-    WINDOW_TILES,
-    //WINDOW_DESCRIPCION
-};
+#define WINDOW_TILES    0
 
 static const struct WindowTemplate sWindowTemplatesMiningGame[] =
 {
@@ -703,16 +686,6 @@ static const struct WindowTemplate sWindowTemplatesMiningGame[] =
         .paletteNum = 1,
         .baseBlock = 1
     },
-    //[WINDOW_DESCRIPCION]
-    //{
-    //    .bg = 0,
-    //    .tilemapLeft = 1,
-    //    .tilemapTop = 6,
-    //    .width = 28,
-    //    .height = 5,
-    //    .paletteNum = 15,
-    //    .baseBlock = (WINDOW_MINING_WIDTH * WINDOW_MINING_HEIGHT) + 1
-    //},
     DUMMY_WIN_TEMPLATE,
 };
 
@@ -731,7 +704,7 @@ static void InitWindowMiningGame(void)
 {
 	InitWindows(sWindowTemplatesMiningGame);
     DeactivateAllTextPrinters();
-	LoadPalette(GetOverworldTextboxPalettePtr(), 0xf0, 0x20);
+	LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
     PutWindowTilemap(WINDOW_TILES);
 }
 
@@ -950,24 +923,6 @@ static void Task_FadeIn(u8 taskId)
         UpdateSelectTool();
         CreateSpriteGrietas();
         mining.cursorSpriteId = CreateSprite(&sSpriteTemplate_Cursor, 8, INITIAL_CURSOR_POS_Y, 0);
-        //PutWindowTilemap(WINDOW_DESCRIPCION);
-        //DrawStdWindowFrame(WINDOW_DESCRIPCION, FALSE);
-        //FillWindowPixelBuffer(WINDOW_DESCRIPCION, PIXEL_FILL(1));
-        //CopyWindowToVram(WINDOW_DESCRIPCION, COPYWIN_FULL);
-        //StringExpandPlaceholders(gStringVar4, gText_DescMineria);
-        //AddTextPrinterForMessage(TRUE);
-        //gTasks[taskId].func = Task_RemoveWindow;
-    //}
-//}
-
-//static void Task_RemoveWindow(u8 taskId)
-//{
-//    if (!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
-//    {
-//        ClearDialogWindowAndFrameToTransparent(WINDOW_DESCRIPCION, TRUE);
-//        ClearStdWindowAndFrameToTransparent(WINDOW_DESCRIPCION, FALSE);
-//        CopyWindowToVram(WINDOW_DESCRIPCION, COPYWIN_GFX);
-//        RemoveWindow(WINDOW_DESCRIPCION);
         gTasks[taskId].func = Task_MainHandle;
     }
 }
@@ -1099,9 +1054,8 @@ static void Task_FadeOut(u8 taskId)
 
         gTasks[taskId].tWindowId = AddWindow(&sWindowTemplate_MsgBox);
 
-        //LoadUserWindowBorderGfxOnBg(BG_TEXTO, 243, 14);
         LoadMessageBoxGfx(gTasks[taskId].tWindowId, 252, BG_PLTT_ID(15));
-        NewGameBirchSpeech_ShowDialogueWindow(gTasks[taskId].tWindowId, 1);
+        NewGameBirchSpeech_ShowDialogueWindow(gTasks[taskId].tWindowId, TRUE);
         PutWindowTilemap(gTasks[taskId].tWindowId);
         CopyWindowToVram(gTasks[taskId].tWindowId, COPYWIN_GFX);
         NewGameBirchSpeech_ClearWindow(gTasks[taskId].tWindowId);
@@ -1121,39 +1075,39 @@ void CB2_InitMiningGameSetUp(void)
 
     switch (gMain.state)
     {
-    case 0:
-        SetVBlankHBlankCallbacksToNull();
-        ScanlineEffect_Stop();
-        ResetTasks();
-        ResetSpriteData();
-        ResetPaletteFade();
-        DmaClearLarge16(3, (void *) VRAM, VRAM_SIZE, 4096);
-        FreeAllSpritePalettes();
-        gMain.state++;
-    case 1:
-        LoadBGs_MiningGame(); 
-        LoadSpritesResources();
-        InitWindowMiningGame();
-        LoadRandomTilesStones();
-        memset(mining.itemsSpritesIds, 0xFF, MAX_NUM_ITEMS_MINING);
-        memset(mining.itemsStatus, FALSE, MAX_NUM_ITEMS_MINING);
-        mining.bombaSpriteId = 0xFF;
-        for (i = 0; i < MAX_NUM_ITEMS_MINING; i++)
-        {
-            mining.itemsIds[i] = ITEM_NONE;
-        }
-        GenerateItemsSprites();
-        CreateSpriteHerramientas();
-        FadeOutAndPlayNewMapMusic(MUS_RG_TEACHY_TV_SHOW, 4);
-        gMain.state++;
-        break;
-    case 2:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-        gMain.state++;
-    default:
-        SetVBlankCallback(VBlank_CB_MiningGame);
-        SetMainCallback2(CB2_MiningGame);
-        CreateTask(Task_FadeIn, 0); 
+        case 0:
+            SetVBlankHBlankCallbacksToNull();
+            ScanlineEffect_Stop();
+            ResetTasks();
+            ResetSpriteData();
+            ResetPaletteFade();
+            DmaClearLarge16(3, (void *) VRAM, VRAM_SIZE, 4096);
+            FreeAllSpritePalettes();
+            gMain.state++;
+        case 1:
+            LoadBGs_MiningGame(); 
+            LoadSpritesResources();
+            InitWindowMiningGame();
+            LoadRandomTilesStones();
+            memset(mining.itemsSpritesIds, 0xFF, MAX_NUM_ITEMS_MINING);
+            memset(mining.itemsStatus, FALSE, MAX_NUM_ITEMS_MINING);
+            mining.bombaSpriteId = 0xFF;
+            for (i = 0; i < MAX_NUM_ITEMS_MINING; i++)
+            {
+                mining.itemsIds[i] = ITEM_NONE;
+            }
+            GenerateItemsSprites();
+            CreateSpriteHerramientas();
+            FadeOutAndPlayNewMapMusic(MUS_RG_TEACHY_TV_SHOW, 4);
+            gMain.state++;
+            break;
+        case 2:
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+            gMain.state++;
+        default:
+            SetVBlankCallback(VBlank_CB_MiningGame);
+            SetMainCallback2(CB2_MiningGame);
+            CreateTask(Task_FadeIn, 0); 
     }
 }
 
