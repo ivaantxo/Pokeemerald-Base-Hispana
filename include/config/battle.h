@@ -70,6 +70,7 @@
 #define B_RECOIL_IF_MISS_DMG        GEN_LATEST // En Gen5+, Jump Kick y High Jump Kick siempre harán la mitad del HP máximo del usuario al fallar.
 #define B_KLUTZ_FLING_INTERACTION   GEN_LATEST // En Gen5+, los Pokémon con la habilidad Klutz no pueden usar Fling.
 #define B_UPDATED_CONVERSION        GEN_LATEST // En Gen6+, Conversion cambia el tipo del usuario para coincidir con el primer movimiento del usuario. Antes, elegía un movimiento al azar.
+#define B_UPDATED_CONVERSION_2      GEN_LATEST // En Gen5+, Conversión 2 cambia el tipo del usuario a un tipo que resista el último ataque del objetivo. Antes, lo hacía al último ataque recibido. Además, Forcejeo se consideraba tipo Normal antes de 5ª gen.
 #define B_PP_REDUCED_BY_SPITE       GEN_LATEST // En Gen4+, Spite reduce el PP del último movimiento del oponente en 4, en lugar de 2 a 5.
 #define B_EXTRAPOLATED_MOVE_FLAGS   TRUE       // Agrega flags de movimiento a movimientos que no tienen oficialmente pero que probablemente tendrían si estuvieran en el juego de la serie principal más reciente.
 
