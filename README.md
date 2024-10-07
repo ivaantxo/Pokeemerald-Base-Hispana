@@ -1,206 +1,92 @@
-# pokeemerald-expansion
+## Pokeemerald Base Hispana o PBH
+Proyecto de decompilación de Pokémon Esmeralda, basado en el proyecto pokeemerald-expansion del equipo de RHH, con la diferencia clave de estar completamente en español. Y tener aportes de alto valor.
 
-### Important: DO NOT use GitHub's "Download Zip" option. Using this option will not download the commit history required to update your expansion version or merge other feature branches. Instead, please read [this guide](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub) to learn how to fork the repository and clone locally from there.
+## ¿Qué es Pokeemerald Base Hispana?
+Pokeemerald Base Hispana o PBH es un proyecto creado por un grupo de romhackers hispanohablantes, cuyo objetivo principal es proporcionar a la comunidad de rom hacking hispana una base sólida y accesible en su idioma nativo.
 
-## What is pokeemerald-expansion?
+Nos enfocamos en la traducción completa del contenido, incluyendo habilidades, movimientos, descripciones, interfaces y mucho más. Esto facilita que tanto pequeños como grandes proyectos puedan contar con una base completamente traducida desde la cual desarrollar sus ideas.
 
-pokeemerald-expansion is a decomp hack base project based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. It's recommended that any new projects that plan on using it, to clone this repository instead of pret's vanilla repository, as we regurlarly incorporate pret's documentation changes. This is ***NOT*** a standalone romhack, and as such, most features will be unavailable and/or unbalanced if played as is.
+Además, mantenemos un soporte activo, lo que significa que cada vez que se lancen actualizaciones del proyecto original de RHH, nosotros adaptaremos y actualizaremos nuestra versión.
 
-If you use pokeemerald-expansion in your hack, please add RHH (Rom Hacking Hideout) to your credits list. Optionally, you can list the version used, so it can help players know what features to expect.
-You can phrase it as the following:
-```
-Based off RHH's pokeemerald-expansion 1.9.2 https://github.com/rh-hideout/pokeemerald-expansion/
-```
+También contamos con un índice de aportes únicos que explicaremos a continuación.
 
-## What features are included?
-- ***IMPORTANT*❗❗ Read through these to learn what features you can toggle**:
-    - [Battle configurations](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/battle.h)
-    - [Pokémon configurations](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/pokemon.h)
-    - [Item configurations](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/item.h)
-    - [Overworld configurations](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/overworld.h)
-    - [Debug configurations](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/debug.h)
-- ***Upgraded battle engine.***
-    - Gen5+ damage calculation.
-    - 2v2 Wild battles support.
-    - 1v2/2v1 battles support.
-    - Fairy Type (configurable).
-    - Physical/Special/Status Category (configurable).
-    - New moves and abilities up to Scarlet and Violet.
-        - Custom Contest data up to SwSh, newer moves are WIP. ([source](https://pokemonurpg.com/info/contests/rse-move-list/))
-    - Battle gimmick support:
-        - Mega Evolution
-        - Primal Reversion
-        - Ultra Burst
-        - Z-Moves
-            - Gen 8+ damaging moves are given power extrapolated from Gen 7.
-            - Gen 8+ status moves have no additional effects, like Healing Wish.
-        - Dynamax and Gigantamax
-    - Initial battle parameters
-        - Queueing stat boosts (aka, Totem Boosts)
-        - Setting Terrains.
-    - Mid-turn speed recalculation.
-    - Quick Poké Ball selection in Wild Battles
-        - Hold `R` to change selection with the D-Pad.
-        - Press `R` to use last selected Poké Ball.
-    - Run option shortcut
-    - Faster battle intro - Message and animation/cry happens at the same time.
-    - Faster HP drain.
-    - Battle Debug menu.
-        - Accessed by pressing `Select` on the "Fight/Bag/Pokémon/Run" menu.
-    - Option to use AI flags in wild Pokémon battles.
-    - FRLG/Gen4+ whiteout money calculation.
-    - Configurable experience settings
-        - Experience on catch.
-        - Splitting experience.
-        - Trainer experience.
-        - Scaled experience.
-        - Unevolved experience boost.
-    - Frostbite.
-        - Doesn't replace freezing unless a config is enabled, so you can mix and match.
-    - Critical capture.
-    - Removed badge boosts (configurable).
-    - Recalculating stats at the end of every battle.
-    - Level 100 Pokémon can earn EVs.
-    - Inverse battle support.
-    - TONS of other features listed [here](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/battle.h).
-- ***Full Trainer customization***
-    - Nickname, EVs, IVs, moves, ability, ball, friendship, nature, gender, shininess.
-    - Custom tag battle support (teaming up an NPC in a double battle).
-    - Sliding trainer messages.
-    - Upgraded Trainer AI
-        - Considers newer move effects.
-        - New flag options to let you customize the intelligence of your trainers.
-        - Faster calculations.
-    - Specify Poké Balls by Trainer class.
-- ***Pokémon Species from Generations 1-9.***
-    - Simplified process to add new Pokémon.
-    - Option to disable unwanted families.
-    - Updated sprites to DS style.
-    - Updated stats, types, abilities and egg groups (configurable).
-    - Updated Hoenn's Regional Dex to match ORAS' (configurable).
-    - Updated National Dex incorporating the new species.
-    - Sprite and animation visualizer.
-        - Accesible by pressing `Select` on a Pokémon's Summary screen.
-    - Gen4+ evolution methods, with some changes:
-        - Mossy Rock, Icy Rock and Magnetic Field locations match ORAS'.
-            - Leaf, Ice and Thunder Stones may also be used.
-        - Inkay just needs level 30 to evolve.
-            - You can't physically have both the RTC and gyroscope, so we skip this requirement.
-        - Sylveon uses Gen8+'s evolution method (friendship + Fairy Move).
-        - Option to use hold evolution items directly like stones.
-    - Hidden Abilities.
-        - Available via Ability Patch.
-        - Compatible with Ghoul's DexNav branch.
-    - All gender differences.
-        - Custom female icons for female Hippopotas Hippowdon, Pikachu and Wobbufett
-    - 3 Perfect IVs on Legendaries, Mythicals and Ultra Beasts.
-- ***Customizable form change tables. Full list of methods [here](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/constants/form_change_types.h).***
-    - Item holding (eg. Giratina/Arceus)
-    - Item using (eg. Oricorio)
-        - Time of day option for Shaymin
-    - Fainting
-    - Battle begin and end (eg. Xerneas)
-        - Move change option for Zacian/Zamazenta
-    - Battle end in terrains (eg. Burmy)
-    - Switched in battle (eg. Palafin)
-    - HP Threshold (eg. Darmanitan)
-    - Weather (eg. Castform)
-    - End of turn (eg. Morpeko)
-    - Time of day (eg. Shaymin)
-    - Fusions (eg. Kyurem)
-- ***Breeding Improvements***
-    - Incense Baby Pokémon now happen automatically (configurable).
-    - Level 1 eggs (configurable).
-    - Poké Ball inheriting (configurable).
-    - Egg Move Transfer, including Mirror Herb (configurable).
-    - Nature inheriting 100% of the time with Everstone (configurable)
-    - Gen6+ Ability inheriting (configurable).
-- ***Items from newer Generations. Full list [here](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/constants/items.h).***
-    - ***Gen 6+ Exp. Share*** (configurable)
-    - Berserk Gene
-    - Most battle items from Gen 4+
-    - Existing item data but missing effects:
-        - Gimmighoul Coin
-        - Booster Energy
-        - Tera Shards
-        - Tera Orb
-- ***Feature branches incorporated (with permission):***
-    - [RHH intro credits](https://github.com/Xhyzi/pokeemerald/tree/rhh-intro-credits) by @Xhyzi.
-        - A small signature from all of us to show the collective effort in the project :)
-    - [Overworld debug](https://github.com/TheXaman/pokeemerald/tree/tx_debug_system) by @TheXaman
-        - May be disabled.
-        - Accesible by pressing `R + Start` in the overworld by default.
-        - **Additional features**:
-            - *Clear Boxes*: cleans every Pokémon from the Boxes.
-            - *Hatch an Egg*: lets you choose an Egg in your party and immediately hatch it.
-    - [HGSS Pokédex](https://github.com/TheXaman/pokeemerald/tree/tx_pokedexPlus_hgss) by @TheXaman
-        - May be disabled.
-        - **Additional features**:
-            - *Support for new evolution methods*.
-            - *Dark Mode*.
-    - [Nature Colors](https://github.com/DizzyEggg/pokeemerald/tree/nature_color) in summary screen by @DizzyEggg
-    - [Dynamic Multichoice](https://github.com/SBird1337/pokeemerald/tree/feature/dynmulti) by @SBird1337
-    - [Saveblock Cleansing](https://github.com/ghoulslash/pokeemerald/tree/saveblock) by @ghoulslash
-    - [Followers & Expanded IDs](https://github.com/aarant/pokeemerald/tree/followers-expanded-id) by @aarant
-        - May be disabled.
-        - Includes Pokémon followers like in HGSS, including interactions.
-        - ***Expands the amount of possible object event IDs beyond 255.***
-        - ***Includes an implementation of dynamic overworld palettes (DOWP).***
-        - **Additional features**:
-            - *Pokémon overworld sprites up to Generation 8.*
-            - *Integration with our Pokémon Sprite Visualizer, allowing users to browse through the follower sprites alongside battle sprites.*
-- ***Other features***
-    - Pressing B while holding a Pokémon drops them like in modern games (configurable).
-    - Running indoors (configurable).
-    - Configurable overworld poison damage.
-    - Configurable flags for disabling Wild encounters and Trainer battles.
-    - Configurable flags for forcing or disabling Shinies.
-    - Reusable TM (configurable).
-    - B2W2+ Repel system that also supports LGPE's Lures
-    - Gen6+'s EV cap.
-    - All bugfixes from pret included.
-    - Fixed overworld snow effect.
+## Características Adicionales
+Además de los contenidos proporcionados por el equipo de RHH, PBH incluye sus propias adiciones y mejoras, entre las cuales destacan:
 
-There are some mechanics, moves and abilities that are missing and being developed. Check [the project's milestones](https://github.com/rh-hideout/pokeemerald-expansion/milestones) to see which ones.
+- Tutoriales: Instrucciones detalladas que pueden ayudar en el desarrollo de diversos aspectos del juego, como la carga de imágenes en pantalla, cambiar iconos de tipos... con ejemplos explicativos como puede ser un minijuego básico para entender la carga de sprites y backgrounds. Los podemos encontrar para activar o descativar en include/config/pbh.h y también en include/config/tutoriales.h
+
+![tutorial_zubat](https://i.ibb.co/tLzDyyM/imagen-2024-09-30-201320662.png)
+![tuto1](https://i.ibb.co/CKVn7WY/imagen-2024-09-30-201410545.png)
+![tuto2](https://i.ibb.co/6DR8WLx/imagen-2024-09-30-201514267.png)
+
+- Rama de Iconos: Los iconos de los Pokémon se han reemplazado por sus sprites de overworld, aprovechando los Pokémon acompañantes, lo que ahorra espacio y mejora la apariencia visual. Cuentan con versiones de 32x32 para los iconos y en el caso de los overworlds más grandes tenemos 2 versiones: la de 32x32 y la grande de 64x64, donde la pequeña se usa en interfaces a modo de iconos y son configurables para mostarlas como acompañantes en version pequeña o grandes.
+
+![Iconos_huevos](https://i.ibb.co/dbZ9qsr/imagen-2024-09-30-201211859.png)
+![Iconos](https://i.ibb.co/jbM4KPD/imagen-2024-09-30-201132866.png)
+
+- Sprites de Overworld: Los sprites están completamente indexados y actualizados para su uso.
+
+- Paletas únicas para los sprites basadas en la personalidad del pokémon.
+
+![paleta1](https://i.ibb.co/d5XzKCd/imagen-2024-10-02-230856069.png)
+![paleta2](https://i.ibb.co/7JyNVJQ/imagen-2024-10-02-230944120.png)
+![paleta3](https://i.ibb.co/RjZ7Gfq/imagen-2024-10-02-231120268.png)
+
+- Nuevas configs:
+    - PBH_PALETAS_UNICAS -> Las paletas de los pokemon varían según su personalidad!
+    - PBH_ALMACENAMIENTO_RAPIDO -> Las cajas del PC cargan mucho más rápido!    
+    - PBH_HUEVOS_COLOR_TIPO -> Con esta config activada la paleta de los huevos corresponde con el tipo del pokémon!
+
+- Mejoras en el sistema del código:
+    - Limpieza de gráficos y funciones no utilizadas.
+    - Sistema para ajustar el ancho de cada carácter de las fuentes.
+    - Nuevo sistema de paletas para los árboles de bayas.
+
+- Sistema de Minería estilo DPPt por Caco:
+
+![mineria](https://i.ibb.co/1KBmL6G/mineria.gif)
 
 
-### [Documentation on features can be found here](https://github.com/rh-hideout/pokeemerald-expansion/wiki)
+## Planes a futuro
+A futuro, seguiremos añadiendo y actualizando los tutoriales para ofrecer una amplia variedad de recursos a disposición de la comunidad.
 
-## If I already have a project based on regular pokeemerald, can I use pokeemerald-expansion?
-Yes! Keep in mind that we keep up with pret's documentation of pokeemerald, which means that if your project a bit old, you might get merge conflicts that you need to solve manually.
-- If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
-- Once you have your remote set up, run the command `git pull RHH master`.
+- Tenemos planteado crear una rama nueva que será sin mapas para que podais empezara  mapear vuestra región custom sin necesidad de eliminar los anteriores.
 
-With this, you'll get the latest version of pokeemerald-expansion, plus a couple of bugfixes that haven't been released into the next patch version :)
+## Créditos
+El desarrollo de este proyecto no sería posible sin la base proporcionada por el equipo de RHH. Queremos dar un agradecimiento especial a todos los colaboradores originales:
 
-## **How do I update my version of pokeemerald-expansion?**
-- If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
-- Check your current version.
-    - You can check in the debug menu's `Utilities -> Expansion Version` option.
-    - If the option is not available, you possibly have version 1.6.2 or older. In that case, please check the [changelogs](CHANGELOG.md) to determine your version based on the features available on your repository.
-- Once you have your remote set up, run the command `git pull RHH expansion/X.Y.Z`, replacing X, Y and Z with the digits of the respective version you want to update to (eg, to update to 1.9.2, use `git pull RHH expansion/1.9.2`).
-    - ***Important:*** If you are several versions behind, we recommend updating one minor version at a time, skipping directly to the latest patch version (eg, 1.5.3 -> 1.6.2 -> 1.7.4 and so on)
-- Alternatively, you can update to unreleased versions of the expansion.
-    - ***master (stable):*** It contains unreleased **bugfixes** that will come in the next patch version. To merge, use `git pull RHH master`.
-    - ***upcoming (unstable, with potential bugs):*** It contains unreleased **features** that will come in the next minor version. To merge, use `git pull RHH upcoming`.
+- [Equipo de RHH](https://github.com/rh-hideout/pokeemerald-expansion)
 
-### Please consider crediting the entire [list of contributors](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) in your project, as they have all worked hard to develop this project :)
+Respecto a nuevas funciones encontramos:
 
-## There's a bug in the project. How do I let you guys know?
-Please submit any issues with the project [here](https://github.com/rh-hideout/pokeemerald-expansion/issues). Make sure that the issue wasn't reported by someone else by searching using the filters.
+- Por las traducciones:
+    - [Dizzyegg](https://github.com/DizzyEggg/pokeemerald/tree/spanish)
+    - [Team_Hoenn](https://github.com/Xhyzi/pokeemerald/tree/pokeemerald-expansion-es)
 
-## Can I contribute even if I'm not a member of ROM Hacking Hideout?
+- Por sistema de paletas únicas:
+    - [CitrusBolt](https://github.com/citrusbolt)
 
-Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Don't feel discouraged if we take a bit to review your PR, we'll get to it.
+- Por el sistema de iconos:
+    - [Merrp](https://github.com/aarant/pokeemerald)
 
-## Who maintains the project?
+- Por los iconos de tipos:
+    - ChefSrGio
 
-The project was originally started by DizzyEgg alongside other contributors.
+- Overworld sprites de pokemon acompañantes de 5 a 9 gen:
+    - LarryTurbo
 
-The project has now gotten larger and DizzyEgg is now maintaining the project as part of the ROM Hacking Hideout community. Some members of this community are taking on larger roles to help maintain the project.
+(Añadir más colaboradores si es necesario)
 
-## What is the ROM Hacking Hideout?
+## Autores de Pokeemerald Base Hispana
+- [Caco](https://whackahack.com/foro/members/caco5400.38304/)
 
-A Discord-based ROM hacking community that has many members who hack using the disassembly and decompilation projects for Pokémon. Quite a few contributors to the original feature branches by DizzyEgg were members of ROM Hacking Hideout. You can call it RHH for short!
+- [Ivantxo](https://whackahack.com/foro/members/ivaantxo.50482/)
 
-[Click here to join the RHH Discord Server!](https://discord.gg/6CzjAG6GZk)
+- [Erkey830](https://whackahack.com/foro/members/erkey830.48709/)
+
+## ¿Te gustaría contribuir?
+Si tienes ideas o quieres colaborar con nosotros, no dudes en ponerte en contacto a través de nuestras plataformas:
+
+Discord (¿Añadir enlace o nametag para contacto? ¿server de WAH?)
+
+Whack a Hack (link al post?)
