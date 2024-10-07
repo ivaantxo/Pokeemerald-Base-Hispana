@@ -339,35 +339,6 @@ static void InsertMonListItem(struct Pokenav_RibbonsMonList *list, struct Pokena
     list->monList->listCount++;
 }
 
-static bool32 UNUSED PlayerHasRibbonsMon(void)
-{
-    s32 i, j;
-
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        struct Pokemon *mon = &gPlayerParty[i];
-        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES))
-            continue;
-        if (GetMonData(mon, MON_DATA_SANITY_IS_EGG))
-            continue;
-        if (GetMonData(mon, MON_DATA_RIBBONS))
-            return TRUE;
-    }
-
-    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
-    {
-        for (j = 0; j < IN_BOX_COUNT; j++)
-        {
-            if (!CheckBoxMonSanityAt(i, j))
-                continue;
-            if (GetBoxMonDataAt(i, j, MON_DATA_RIBBONS))
-                return TRUE;
-        }
-    }
-
-    return FALSE;
-}
-
 bool32 OpenRibbonsMonList(void)
 {
     struct Pokenav_RibbonsMonMenu *menu = AllocSubstruct(POKENAV_SUBSTRUCT_RIBBONS_MON_MENU, sizeof(struct Pokenav_RibbonsMonMenu));

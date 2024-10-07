@@ -1820,8 +1820,7 @@ void UpdateFollowingPokemon(void)
     // 1. GetFollowerInfo returns FALSE
     // 2. Map is indoors and gfx is larger than 32x32
     // 3. flag is set
-    if (OW_FOLLOWERS_ENABLED == FALSE
-     || !GetFollowerInfo(&species, &form, &shiny)
+    if (!GetFollowerInfo(&species, &form, &shiny)
      || SpeciesToGraphicsInfo(species, form) == NULL
      || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, form)->oam->size > ST_OAM_SIZE_2)
      || FlagGet(FLAG_TEMP_HIDE_FOLLOWER))

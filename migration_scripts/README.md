@@ -266,7 +266,7 @@ Updates egg moves to the refactored format. Only necessary if new species have b
         .speciesName = _("Bulbasaur"),
         .cryId = CRY_BULBASAUR,
         .natDexNum = NATIONAL_DEX_BULBASAUR,
-        .categoryName = _("Seed"),
+        .categoryName = _("Semilla"),
         .height = 7,
         .weight = 69,
         .description = COMPOUND_STRING(

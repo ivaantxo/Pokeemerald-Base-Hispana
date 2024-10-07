@@ -1042,9 +1042,6 @@ static void Task_TryJoinLinkGroup(u8 taskId)
             id = ListMenu_ProcessInput(data->listTaskId);
             if (JOY_NEW(A_BUTTON) && id != LIST_NOTHING_CHOSEN)
             {
-                // Needed to match
-                u32 UNUSED activity = data->playerList->players[id].rfu.data.activity;
-
                 if (data->playerList->players[id].groupScheduledAnim == UNION_ROOM_SPAWN_IN && !data->playerList->players[id].rfu.data.startedActivity)
                 {
                     u32 readyStatus = IsTryingToTradeAcrossVersionTooSoon(data, id);
@@ -2148,9 +2145,6 @@ static void Task_CardOrNewsWithFriend(u8 taskId)
             id = ListMenu_ProcessInput(data->listTaskId);
             if (JOY_NEW(A_BUTTON) && id != LIST_NOTHING_CHOSEN)
             {
-                // Needed to match
-                u32 UNUSED activity = data->playerList->players[id].rfu.data.activity;
-
                 if (data->playerList->players[id].groupScheduledAnim == UNION_ROOM_SPAWN_IN && !data->playerList->players[id].rfu.data.startedActivity)
                 {
                     data->leaderId = id;
@@ -3654,7 +3648,7 @@ static u8 CreateTradeBoardWindow(const struct WindowTemplate * template)
     u8 windowId = AddWindow(template);
     DrawStdWindowFrame(windowId, FALSE);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(15));
-    PrintUnionRoomText(windowId, FONT_NORMAL, sText_NameWantedOfferLv, 8, 1, UR_COLOR_TRADE_BOARD_OTHER);
+    PrintUnionRoomText(windowId, FONT_SMALL, sText_NameWantedOfferLv, 8, 1, UR_COLOR_TRADE_BOARD_OTHER);
     CopyWindowToVram(windowId, COPYWIN_GFX);
     PutWindowTilemap(windowId);
     return windowId;

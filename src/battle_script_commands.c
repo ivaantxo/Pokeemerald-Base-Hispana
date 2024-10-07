@@ -5614,6 +5614,11 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_ITEM_EFFECTS_ATTACKER:
+            if (ItemBattleEffects(ITEMEFFECT_MOVE_END, gBattlerAttacker, FALSE))
+                effect = TRUE;
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_SYNCHRONIZE_TARGET: // target synchronize
             if (AbilityBattleEffects(ABILITYEFFECT_SYNCHRONIZE, gBattlerTarget, 0, 0, 0))
                 effect = TRUE;
@@ -5911,12 +5916,14 @@ static void Cmd_moveend(void)
                         gLastMoves[gBattlerAttacker] = gChosenMove;
                         RecordKnownMove(gBattlerAttacker, gChosenMove);
                         gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
+                        GET_MOVE_TYPE(gCurrentMove, gLastUsedMoveType[gBattlerAttacker]);
                     }
                 }
                 else
                 {
                     gLastMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
                     gLastResultingMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
+                    gLastUsedMoveType[gBattlerAttacker] = 0;
                 }
 
                 if (!(gHitMarker & HITMARKER_FAINTED(gBattlerTarget)))
@@ -8768,12 +8775,15 @@ u32 GetHighestStatId(u32 battler)
     for (i = STAT_DEF; i < NUM_STATS; i++)
     {
         u16 *statVal = &gBattleMons[battler].attack + (i - 1);
-        if (*statVal > highestStat)
+        if (*statVal > highestStat && i != STAT_SPEED)
         {
             highestStat = *statVal;
             highestId = i;
         }
     }
+    if (gBattleMons[battler].speed > highestStat)
+        highestId = STAT_SPEED;
+    
     return highestId;
 }
 
@@ -11566,7 +11576,7 @@ static void Cmd_stockpiletohpheal(void)
             if (gBattleMoveDamage == 0)
                 gBattleMoveDamage = 1;
             gBattleMoveDamage *= -1;
-            
+
             gBattlescriptCurrInstr = cmd->nextInstr;
             gBattlerTarget = gBattlerAttacker;
         }
@@ -11822,25 +11832,28 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 statValue = -2;
             gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
             index = 1;
-            if (statValue == -2)
-            {
-                gBattleTextBuff2[1] = B_BUFF_STRING;
-                gBattleTextBuff2[2] = STRINGID_STATHARSHLY;
-                gBattleTextBuff2[3] = STRINGID_STATHARSHLY >> 8;
-                index = 4;
-            }
-            else if (statValue <= -3)
-            {
-                gBattleTextBuff2[1] = B_BUFF_STRING;
-                gBattleTextBuff2[2] = STRINGID_SEVERELY & 0xFF;
-                gBattleTextBuff2[3] = STRINGID_SEVERELY >> 8;
-                index = 4;
-            }
+
             gBattleTextBuff2[index++] = B_BUFF_STRING;
             gBattleTextBuff2[index++] = STRINGID_STATFELL;
             gBattleTextBuff2[index++] = STRINGID_STATFELL >> 8;
-            gBattleTextBuff2[index] = B_BUFF_EOS;
 
+            if (statValue == -2)
+            {
+                gBattleTextBuff2[index++] = B_BUFF_STRING;
+                gBattleTextBuff2[index++] = STRINGID_STATSHARPLY;
+                gBattleTextBuff2[index++] = STRINGID_STATSHARPLY >> 8;
+            }
+            else if (statValue <= -3)
+            {
+                gBattleTextBuff2[index++] = B_BUFF_STRING;
+                gBattleTextBuff2[index++] = STRINGID_SEVERELY & 0xFF;
+                gBattleTextBuff2[index++] = STRINGID_SEVERELY >> 8;
+            }
+
+            gBattleTextBuff2[index++] = B_BUFF_STRING;
+            gBattleTextBuff2[index++] = STRINGID_DOT & 0xFF;
+            gBattleTextBuff2[index++] = STRINGID_DOT  >> 8;
+            gBattleTextBuff2[index] = B_BUFF_EOS;
             if (gBattleMons[battler].statStages[statId] == MIN_STAT_STAGE)
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAT_WONT_DECREASE;
@@ -11861,23 +11874,36 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             statValue = 2;
         gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
         index = 1;
+        
+        gBattleTextBuff2[index] = B_BUFF_STRING;
+        index +=1;
+        gBattleTextBuff2[index] = STRINGID_STATROSE;
+        index +=1;
+        gBattleTextBuff2[index] = STRINGID_STATROSE >> 8;
+        index +=1;
+
         if (statValue == 2)
         {
-            gBattleTextBuff2[1] = B_BUFF_STRING;
-            gBattleTextBuff2[2] = STRINGID_STATSHARPLY;
-            gBattleTextBuff2[3] = STRINGID_STATSHARPLY >> 8;
-            index = 4;
+            gBattleTextBuff2[index] = B_BUFF_STRING;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_STATSHARPLY;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_STATSHARPLY >> 8;
+            index +=1;
         }
         else if (statValue >= 3)
         {
-            gBattleTextBuff2[1] = B_BUFF_STRING;
-            gBattleTextBuff2[2] = STRINGID_DRASTICALLY & 0xFF;
-            gBattleTextBuff2[3] = STRINGID_DRASTICALLY >> 8;
-            index = 4;
+            gBattleTextBuff2[index] = B_BUFF_STRING;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_DRASTICALLY & 0xFF;
+            index +=1;
+            gBattleTextBuff2[index] = STRINGID_DRASTICALLY >> 8;
+            index +=1;
         }
+
         gBattleTextBuff2[index++] = B_BUFF_STRING;
-        gBattleTextBuff2[index++] = STRINGID_STATROSE;
-        gBattleTextBuff2[index++] = STRINGID_STATROSE >> 8;
+        gBattleTextBuff2[index++] = STRINGID_DOT & 0xFF;
+        gBattleTextBuff2[index++] = STRINGID_DOT  >> 8;
         gBattleTextBuff2[index] = B_BUFF_EOS;
 
         if (gBattleMons[battler].statStages[statId] == MAX_STAT_STAGE)
@@ -12941,60 +12967,122 @@ static void Cmd_settypetorandomresistance(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gLastLandedMoves[gBattlerAttacker] == MOVE_NONE
-     || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
+    // Before Gen 5 Conversion 2 only worked on a move the attacker was actually hit by.
+    // This changed later to the last move used by the selected target.
+    if (B_UPDATED_CONVERSION_2 < GEN_5)
     {
-        gBattlescriptCurrInstr = cmd->failInstr;
-    }
-    else if (gBattleMoveEffects[gMovesInfo[gLastLandedMoves[gBattlerAttacker]].effect].twoTurnEffect
-            && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
-    }
-    else if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA)
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
-    }
-    else if (gLastHitByType[gBattlerAttacker] == TYPE_STELLAR || gLastHitByType[gBattlerAttacker] == TYPE_MYSTERY)
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
+        if (gLastLandedMoves[gBattlerAttacker] == MOVE_NONE
+         || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (gBattleMoveEffects[gMovesInfo[gLastLandedMoves[gBattlerAttacker]].effect].twoTurnEffect
+              && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (gLastHitByType[gBattlerAttacker] == TYPE_STELLAR || gLastHitByType[gBattlerAttacker] == TYPE_MYSTERY)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else
+        {
+            u32 i, resistTypes = 0;
+            u32 hitByType = gLastHitByType[gBattlerAttacker];
+
+            for (i = 0; i < NUMBER_OF_MON_TYPES; i++) // Find all types that resist.
+            {
+                switch (GetTypeModifier(hitByType, i))
+                {
+                case UQ_4_12(0):
+                case UQ_4_12(0.5):
+                    resistTypes |= gBitTable[i];
+                    break;
+                }
+            }
+
+            while (resistTypes != 0)
+            {
+                i = Random() % NUMBER_OF_MON_TYPES;
+                if (resistTypes & gBitTable[i])
+                {
+                    if (IS_BATTLER_OF_TYPE(gBattlerAttacker, i))
+                    {
+                        resistTypes &= ~(gBitTable[i]); // Type resists, but the user is already of this type.
+                    }
+                    else
+                    {
+                        SET_BATTLER_TYPE(gBattlerAttacker, i);
+                        PREPARE_TYPE_BUFFER(gBattleTextBuff1, i);
+                        gBattlescriptCurrInstr = cmd->nextInstr;
+                        return;
+                    }
+                }
+            }
+
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
     }
     else
     {
-        u32 i, resistTypes = 0;
-        u32 hitByType = gLastHitByType[gBattlerAttacker];
-
-        for (i = 0; i < NUMBER_OF_MON_TYPES; i++) // Find all types that resist.
+        if (gLastResultingMoves[gBattlerTarget] == MOVE_NONE
+         || gLastResultingMoves[gBattlerTarget] == MOVE_UNAVAILABLE
+         || gLastResultingMoves[gBattlerTarget] == MOVE_STRUGGLE)
         {
-            switch (GetTypeModifier(hitByType, i))
-            {
-            case UQ_4_12(0):
-            case UQ_4_12(0.5):
-                resistTypes |= gBitTable[i];
-                break;
-            }
+            gBattlescriptCurrInstr = cmd->failInstr;
         }
-
-        while (resistTypes != 0)
+        else if (IsSemiInvulnerable(gBattlerTarget, gCurrentMove))
         {
-            i = Random() % NUMBER_OF_MON_TYPES;
-            if (resistTypes & gBitTable[i])
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (gLastUsedMoveType[gBattlerTarget] == TYPE_NONE || gLastUsedMoveType[gBattlerTarget] == TYPE_STELLAR || gLastUsedMoveType[gBattlerTarget] == TYPE_MYSTERY)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else
+        {
+            u32 i, resistTypes = 0;
+
+            for (i = 0; i < NUMBER_OF_MON_TYPES; i++) // Find all types that resist.
             {
-                if (IS_BATTLER_OF_TYPE(gBattlerAttacker, i))
+                switch (GetTypeModifier(gLastUsedMoveType[gBattlerTarget], i))
                 {
-                    resistTypes &= ~(gBitTable[i]); // Type resists, but the user is already of this type.
-                }
-                else
-                {
-                    SET_BATTLER_TYPE(gBattlerAttacker, i);
-                    PREPARE_TYPE_BUFFER(gBattleTextBuff1, i);
-                    gBattlescriptCurrInstr = cmd->nextInstr;
-                    return;
+                case UQ_4_12(0):
+                case UQ_4_12(0.5):
+                    resistTypes |= gBitTable[i];
+                    break;
                 }
             }
-        }
 
-        gBattlescriptCurrInstr = cmd->failInstr;
+            while (resistTypes != 0)
+            {
+                i = Random() % NUMBER_OF_MON_TYPES;
+                if (resistTypes & gBitTable[i])
+                {
+                    if (IS_BATTLER_OF_TYPE(gBattlerAttacker, i))
+                    {
+                        resistTypes &= ~(gBitTable[i]); // Type resists, but the user is already of this type.
+                    }
+                    else
+                    {
+                        SET_BATTLER_TYPE(gBattlerAttacker, i);
+                        PREPARE_TYPE_BUFFER(gBattleTextBuff1, i);
+                        gBattlescriptCurrInstr = cmd->nextInstr;
+                        return;
+                    }
+                }
+            }
+
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
     }
 }
 
@@ -15541,7 +15629,7 @@ void BattleCreateYesNoCursorAt(u8 cursorPosition)
     src[0] = 1;
     src[1] = 2;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + (2 * cursorPosition), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x18, 9 + (2 * cursorPosition), 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 
@@ -15551,7 +15639,7 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
     src[0] = 0x1016;
     src[1] = 0x1016;
 
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x19, 9 + (2 * cursorPosition), 1, 2, 0x11);
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, 0x18, 9 + (2 * cursorPosition), 1, 2, 0x11);
     CopyBgTilemapBufferToVram(0);
 }
 

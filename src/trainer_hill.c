@@ -603,11 +603,6 @@ static void IsTrainerHillChallengeActive(void)
         gSpecialVar_Result = TRUE;
 }
 
-static void UNUSED TrainerHillDummy_Unused(void)
-{
-
-}
-
 static void TrainerHillDummy(void)
 {
 
@@ -803,18 +798,6 @@ u8 GetCurrentTrainerHillMapId(void)
         mapId = 0;
 
     return mapId;
-}
-
-static bool32 UNUSED OnTrainerHillRoof(void)
-{
-    bool32 onRoof;
-
-    if (gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_ROOF)
-        onRoof = TRUE;
-    else
-        onRoof = FALSE;
-
-    return onRoof;
 }
 
 const struct WarpEvent* SetWarpDestinationTrainerHill4F(void)

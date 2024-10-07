@@ -1,61 +1,61 @@
 #ifndef GUARD_CONFIG_SPECIES_ENABLED_H
 #define GUARD_CONFIG_SPECIES_ENABLED_H
 
-// WARNING: For some reason, using 1/0 instead of TRUE/FALSE causes cry IDs to be shifted.
-// Please use TRUE/FALSE when using the family toggles.
+// ADVERTENCIA: Por alguna razón, usar 1/0 en lugar de TRUE/FALSE causa que los ID de gritos se desplacen.
+// Por favor, usa TRUE/FALSE cuando uses los toggles de familias.
 
-// Modifying the latest generation WILL change the saveblock due to Dex flags and will require a new save file.
-// Generations of Pokémon are defined by the first member introduced,
-// so Pikachu depends on the Gen 1 setting despite Pichu being the lowest member of the evolution tree.
-// Eg: If P_GEN_2_POKEMON is set to FALSE, all members of the Sneasel Family will be disabled
-// (Sneasel + Hisuian, Weavile and Sneasler).
-#define P_GEN_1_POKEMON                  TRUE // Generation 1 Pokémon (RGBY)
-#define P_GEN_2_POKEMON                  TRUE // Generation 2 Pokémon (GSC)
-#define P_GEN_3_POKEMON                  TRUE // Generation 3 Pokémon (RSE, FRLG)
-#define P_GEN_4_POKEMON                  TRUE // Generation 4 Pokémon (DPPt, HGSS)
-#define P_GEN_5_POKEMON                  TRUE // Generation 5 Pokémon (BW, B2W2)
-#define P_GEN_6_POKEMON                  TRUE // Generation 6 Pokémon (XY, ORAS)
-#define P_GEN_7_POKEMON                  TRUE // Generation 7 Pokémon (SM, USUM, LGPE)
-#define P_GEN_8_POKEMON                  TRUE // Generation 8 Pokémon (SwSh, BDSP, LA)
-#define P_GEN_9_POKEMON                  TRUE // Generation 9 Pokémon (SV)
+// Modificar la última generación CAMBIARÁ el saveblock debido a las banderas del Dex y requerirá un nuevo archivo guardado.
+// Las generaciones de Pokémon están definidas por el primer miembro introducido,
+// por lo que Pikachu depende de la configuración de la Gen 1 a pesar de que Pichu sea el miembro más bajo de la cadena evolutiva.
+// Ej: Si P_GEN_2_POKEMON está configurado como FALSE, todos los miembros de la Familia Sneasel serán desactivados
+// (Sneasel + Hisuian, Weavile y Sneasler).
+#define P_GEN_1_POKEMON                  TRUE // Pokémon de la Generación 1 (RGBY)
+#define P_GEN_2_POKEMON                  TRUE // Pokémon de la Generación 2 (GSC)
+#define P_GEN_3_POKEMON                  TRUE // Pokémon de la Generación 3 (RSE, FRLG)
+#define P_GEN_4_POKEMON                  TRUE // Pokémon de la Generación 4 (DPPt, HGSS)
+#define P_GEN_5_POKEMON                  TRUE // Pokémon de la Generación 5 (BW, B2W2)
+#define P_GEN_6_POKEMON                  TRUE // Pokémon de la Generación 6 (XY, ORAS)
+#define P_GEN_7_POKEMON                  TRUE // Pokémon de la Generación 7 (SM, USUM, LGPE)
+#define P_GEN_8_POKEMON                  TRUE // Pokémon de la Generación 8 (SwSh, BDSP, LA)
+#define P_GEN_9_POKEMON                  TRUE // Pokémon de la Generación 9 (SV)
 
-// Setting this to TRUE will add the new evolutions to the Regional Dex.
+// Configurar esto a TRUE añadirá las nuevas evoluciones al Dex Regional.
 #define P_NEW_EVOS_IN_REGIONAL_DEX       TRUE
 
-// Battle gimmick specific Forms.
+// Formas específicas de gimmicks de batalla.
 #define P_MEGA_EVOLUTIONS                TRUE
-#define P_PRIMAL_REVERSIONS              TRUE // Groudon and Kyogre only.
-#define P_ULTRA_BURST_FORMS              TRUE // Ultra Necrozma only.
+#define P_PRIMAL_REVERSIONS              TRUE // Solo Groudon y Kyogre.
+#define P_ULTRA_BURST_FORMS              TRUE // Solo Ultra Necrozma.
 #define P_GIGANTAMAX_FORMS               TRUE
 #define P_TERA_FORMS                     TRUE
 
-// Fusion forms
+// Formas de fusión
 #define P_FUSION_FORMS                   TRUE
 
-// Regional Forms. Includes Regional Form evolutions, like Sirfetch'd.
+// Formas Regionales. Incluye evoluciones de Formas Regionales, como Sirfetch'd.
 #define P_REGIONAL_FORMS                 TRUE
 #define P_ALOLAN_FORMS                   P_REGIONAL_FORMS
 #define P_GALARIAN_FORMS                 P_REGIONAL_FORMS
 #define P_HISUIAN_FORMS                  P_REGIONAL_FORMS
 #define P_PALDEAN_FORMS                  P_REGIONAL_FORMS
 
-// Big groups of forms that aren't always desired when choosing families.
+// Grandes grupos de formas que no siempre se desean al elegir familias.
 #define P_PIKACHU_EXTRA_FORMS            TRUE
 #define P_COSPLAY_PIKACHU_FORMS          P_PIKACHU_EXTRA_FORMS
 #define P_CAP_PIKACHU_FORMS              P_PIKACHU_EXTRA_FORMS
 
-// Cross-generation evolutions. Includes pre-evolutions.
+// Evoluciones de cruz-generación. Incluye pre-evoluciones.
 #define P_CROSS_GENERATION_EVOS          TRUE
 #define P_GEN_2_CROSS_EVOS               P_CROSS_GENERATION_EVOS
 #define P_GEN_3_CROSS_EVOS               P_CROSS_GENERATION_EVOS
 #define P_GEN_4_CROSS_EVOS               P_CROSS_GENERATION_EVOS
-//#define P_GEN_5_CROSS_EVOS             // Gen 5 didn't introduce any cross-gen evos.
-#define P_GEN_6_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Just Sylveon.
-//#define P_GEN_7_CROSS_EVOS             // Alolan evolutions handled by P_ALOLAN_FORMS.
-#define P_GEN_8_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Regional evolutions handled by P_GALARIAN_FORMS and P_HISUIAN_FORMS.
-#define P_GEN_9_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Clodsire handled by P_PALDEAN_FORMS.
+//#define P_GEN_5_CROSS_EVOS             // La Gen 5 no introdujo evoluciones cruzadas.
+#define P_GEN_6_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Solo Sylveon.
+//#define P_GEN_7_CROSS_EVOS             // Evoluciones Alolan manejadas por P_ALOLAN_FORMS.
+#define P_GEN_8_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Evoluciones Regionales manejadas por P_GALARIAN_FORMS y P_HISUIAN_FORMS.
+#define P_GEN_9_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Clodsire manejado por P_PALDEAN_FORMS.
 
-// To disable specific families, replace P_GEN_x_POKEMON with FALSE.
+// Para desactivar familias específicas, reemplaza P_GEN_x_POKEMON con FALSE.
 #define P_FAMILY_BULBASAUR               P_GEN_1_POKEMON
 #define P_FAMILY_CHARMANDER              P_GEN_1_POKEMON
 #define P_FAMILY_SQUIRTLE                P_GEN_1_POKEMON

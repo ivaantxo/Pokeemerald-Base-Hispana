@@ -38,12 +38,12 @@ static EWRAM_DATA struct MauvilleManStoryteller * sStorytellerPtr = NULL;
 static EWRAM_DATA u8 sStorytellerWindowId = 0;
 
 static const u16 sDefaultBardSongLyrics[BARD_SONG_LENGTH] = {
-    EC_WORD_SHAKE,
-    EC_WORD_IT,
-    EC_WORD_DO,
-    EC_WORD_THE,
-    EC_WORD_DIET,
-    EC_WORD_DANCE
+    EC_WORD_WINNER,
+    EC_WORD_HIYAH,
+    EC_WORD_WINNER,
+    EC_WORD_HIYAH,
+    EC_WORD_WINNER,
+    EC_WORD_HIYAH,
 };
 
 static const u8 *const sGiddyAdjectives[] = {
@@ -733,71 +733,6 @@ void SanitizeMauvilleOldManForRuby(union OldMan * oldMan)
         }
         break;
     }
-    }
-}
-
-static void UNUSED SetMauvilleOldManLanguage(union OldMan * oldMan, u32 language1, u32 language2, u32 language3)
-{
-    s32 i;
-
-    switch (oldMan->common.id)
-    {
-    case MAUVILLE_MAN_TRADER:
-    {
-        struct MauvilleOldManTrader * trader = &oldMan->trader;
-
-        for (i = 0; i < NUM_TRADER_ITEMS; i++)
-        {
-            if (IsStringJapanese(trader->playerNames[i]))
-                trader->language[i] = language1;
-            else
-                trader->language[i] = language2;
-        }
-    }
-    break;
-    case MAUVILLE_MAN_STORYTELLER:
-    {
-        struct MauvilleManStoryteller * storyteller = &oldMan->storyteller;
-
-        for (i = 0; i < NUM_STORYTELLER_TALES; i++)
-        {
-            if (IsStringJapanese(storyteller->trainerNames[i]))
-                storyteller->language[i] = language1;
-            else
-                storyteller->language[i] = language2;
-        }
-    }
-    break;
-    case MAUVILLE_MAN_BARD:
-    {
-        struct MauvilleManBard * bard = &oldMan->bard;
-
-        if (language3 == LANGUAGE_JAPANESE)
-            bard->language = language1;
-        else
-            bard->language = language2;
-    }
-    break;
-    case MAUVILLE_MAN_HIPSTER:
-    {
-        struct MauvilleManHipster * hipster = &oldMan->hipster;
-
-        if (language3 == LANGUAGE_JAPANESE)
-            hipster->language = language1;
-        else
-            hipster->language = language2;
-    }
-    break;
-    case MAUVILLE_MAN_GIDDY:
-    {
-        struct MauvilleManGiddy * giddy = &oldMan->giddy;
-
-        if (language3 == LANGUAGE_JAPANESE)
-            giddy->language = language1;
-        else
-            giddy->language = language2;
-    }
-    break;
     }
 }
 

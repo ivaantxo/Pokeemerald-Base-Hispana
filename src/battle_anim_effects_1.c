@@ -4125,12 +4125,9 @@ static void AnimConstrictBinding(struct Sprite *sprite)
 
 static void AnimConstrictBinding_Step1(struct Sprite *sprite)
 {
-    u8 UNUSED spriteId;
-
     if ((u16)gBattleAnimArgs[7] == 0xFFFF)
     {
         sprite->affineAnimPaused = 0;
-        spriteId = GetAnimBattlerSpriteId(ANIM_TARGET);
         sprite->data[0] = 0x100;
         sprite->callback = AnimConstrictBinding_Step2;
     }
@@ -4138,7 +4135,6 @@ static void AnimConstrictBinding_Step1(struct Sprite *sprite)
 
 static void AnimConstrictBinding_Step2(struct Sprite *sprite)
 {
-    u8 UNUSED spriteId = GetAnimBattlerSpriteId(ANIM_TARGET);
     if (!sprite->data[2])
         sprite->data[0] += 11;
     else
@@ -5254,39 +5250,6 @@ static void AnimSlice_Step(struct Sprite *sprite)
     }
 }
 
-static void UNUSED UnusedFlickerAnim(struct Sprite *sprite)
-{
-    if (sprite->data[2] > 1)
-    {
-        if (sprite->data[3] & 1)
-        {
-            sprite->invisible = FALSE;
-            gSprites[sprite->data[0]].invisible = FALSE;
-            gSprites[sprite->data[1]].invisible = FALSE;
-        }
-        else
-        {
-            sprite->invisible = TRUE;
-            gSprites[sprite->data[0]].invisible = TRUE;
-            gSprites[sprite->data[1]].invisible = TRUE;
-        }
-
-        sprite->data[2] = 0;
-        sprite->data[3]++;
-    }
-    else
-    {
-        sprite->data[2]++;
-    }
-
-    if (sprite->data[3] == 10)
-    {
-        DestroySprite(&gSprites[sprite->data[0]]);
-        DestroySprite(&gSprites[sprite->data[1]]);
-        DestroyAnimSprite(sprite);
-    }
-}
-
 static void AnimCirclingMusicNote(struct Sprite *sprite)
 {
     sprite->data[0] = gBattleAnimArgs[2];
@@ -6285,30 +6248,6 @@ void AnimTask_Conversion2AlphaBlend(u8 taskId)
         if (gTasks[taskId].data[1] == 16)
             DestroyAnimVisualTask(taskId);
     }
-}
-
-static void UNUSED AnimTask_HideBattlersHealthbox(u8 taskId)
-{
-    u8 i;
-    for (i = 0; i < gBattlersCount; i++)
-    {
-        if (gBattleAnimArgs[0] == TRUE && GetBattlerSide(i) == B_SIDE_PLAYER)
-            SetHealthboxSpriteInvisible(gHealthboxSpriteIds[i]);
-
-        if (gBattleAnimArgs[1] == TRUE && GetBattlerSide(i) == B_SIDE_OPPONENT)
-            SetHealthboxSpriteInvisible(gHealthboxSpriteIds[i]);
-    }
-
-    DestroyAnimVisualTask(taskId);
-}
-
-static void UNUSED AnimTask_ShowBattlersHealthbox(u8 taskId)
-{
-    u8 i;
-    for (i = 0; i < gBattlersCount; i++)
-        SetHealthboxSpriteVisible(gHealthboxSpriteIds[i]);
-
-    DestroyAnimVisualTask(taskId);
 }
 
 static void AnimMoon(struct Sprite *sprite)

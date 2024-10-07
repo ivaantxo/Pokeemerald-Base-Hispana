@@ -45,10 +45,10 @@ static const struct WindowTemplate sWindowTemplates_MailboxMenu[MAILBOXWIN_COUNT
         .bg = 0,
         .tilemapLeft = 1,
         .tilemapTop = 1,
-        .width = 8,
+        .width = 24,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 0x8
+        .baseBlock = 8
     },
     [MAILBOXWIN_LIST] = {
         .bg = 0,
@@ -57,7 +57,7 @@ static const struct WindowTemplate sWindowTemplates_MailboxMenu[MAILBOXWIN_COUNT
         .width = 8,
         .height = 18,
         .paletteNum = 15,
-        .baseBlock = 0x18
+        .baseBlock = 56
     },
     [MAILBOXWIN_OPTIONS] = {
         .bg = 0,
@@ -66,7 +66,7 @@ static const struct WindowTemplate sWindowTemplates_MailboxMenu[MAILBOXWIN_COUNT
         .width = 11,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 0x18
+        .baseBlock = 56
     }
 };
 
@@ -113,7 +113,7 @@ static const struct WindowTemplate sMoveRelearnerWindowTemplates[] =
         .width = 16,
         .height = 12,
         .paletteNum = 15,
-        .baseBlock = 0xA
+        .baseBlock = 10
     },
     [RELEARNERWIN_DESC_CONTEST] = {
         .bg = 1,
@@ -122,7 +122,7 @@ static const struct WindowTemplate sMoveRelearnerWindowTemplates[] =
         .width = 16,
         .height = 12,
         .paletteNum = 15,
-        .baseBlock = 0xCA
+        .baseBlock = 202
     },
     [RELEARNERWIN_MOVE_LIST] = {
         .bg = 1,
@@ -131,7 +131,7 @@ static const struct WindowTemplate sMoveRelearnerWindowTemplates[] =
         .width = 10,
         .height = 12,
         .paletteNum = 15,
-        .baseBlock = 0x18A
+        .baseBlock = 394
     },
     [RELEARNERWIN_MSG] = {
         .bg = 1,
@@ -140,9 +140,8 @@ static const struct WindowTemplate sMoveRelearnerWindowTemplates[] =
         .width = 22,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = 0x202
+        .baseBlock = 514
     },
-    // Unused. Identical to sMoveRelearnerYesNoMenuTemplate
     [RELEARNERWIN_YESNO] = {
         .bg = 0,
         .tilemapLeft = 22,
@@ -150,22 +149,10 @@ static const struct WindowTemplate sMoveRelearnerWindowTemplates[] =
         .width = 5,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = 0x25A
+        .baseBlock = 602
     },
     DUMMY_WIN_TEMPLATE
 };
-
-static const struct WindowTemplate sMoveRelearnerYesNoMenuTemplate =
-{
-    .bg = 0,
-    .tilemapLeft = 22,
-    .tilemapTop = 8,
-    .width = 5,
-    .height = 4,
-    .paletteNum = 15,
-    .baseBlock = 0x25A
-};
-
 
 static const struct ListMenuTemplate sMoveRelearnerMovesListTemplate =
 {
@@ -209,6 +196,7 @@ bool8 MailboxMenu_Alloc(u8 count)
     return TRUE;
 }
 
+// difference FR
 u8 MailboxMenu_AddWindow(u8 windowIdx)
 {
     if (sMailboxWindowIds[windowIdx] == WINDOW_NONE)
@@ -217,6 +205,13 @@ u8 MailboxMenu_AddWindow(u8 windowIdx)
         {
             struct WindowTemplate template = sWindowTemplates_MailboxMenu[windowIdx];
             template.width = GetMaxWidthInMenuTable(&gMailboxMailOptions[0], 4);
+            sMailboxWindowIds[windowIdx] = AddWindow(&template);
+        }
+        else if (windowIdx == MAILBOXWIN_TITLE)
+        {
+            struct WindowTemplate template = sWindowTemplates_MailboxMenu[windowIdx];
+            s32 width = GetStringWidth(FONT_NORMAL, gText_Mailbox, 0) + 9;
+            template.width = (width / 8) + 2;
             sMailboxWindowIds[windowIdx] = AddWindow(&template);
         }
         else // MAILBOXWIN_TITLE or MAILBOXWIN_LIST
@@ -234,11 +229,6 @@ void MailboxMenu_RemoveWindow(u8 windowIdx)
     ClearWindowTilemap(sMailboxWindowIds[windowIdx]);
     RemoveWindow(sMailboxWindowIds[windowIdx]);
     sMailboxWindowIds[windowIdx] = WINDOW_NONE;
-}
-
-static u8 UNUSED MailboxMenu_GetWindowId(u8 windowIdx)
-{
-    return sMailboxWindowIds[windowIdx];
 }
 
 static void MailboxMenu_ItemPrintFunc(u8 windowId, u32 itemId, u8 y)
@@ -298,7 +288,7 @@ static void MailboxMenu_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListM
 
 void MailboxMenu_AddScrollArrows(struct PlayerPCItemPageStruct *page)
 {
-    page->scrollIndicatorTaskId = AddScrollIndicatorArrowPairParameterized(2, 0xC8, 12, 0x94, page->count - page->pageItems + 1, 0x6E, 0x6E, &page->itemsAbove);
+    page->scrollIndicatorTaskId = AddScrollIndicatorArrowPairParameterized(2, 200, 12, 148, page->count - page->pageItems + 1, 110, 110, &page->itemsAbove);
 }
 
 void MailboxMenu_Free(void)
@@ -715,17 +705,17 @@ void InitMoveRelearnerWindows(bool8 useContestWindow)
     if (!useContestWindow)
     {
         PutWindowTilemap(RELEARNERWIN_DESC_BATTLE);
-        DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_DESC_BATTLE, FALSE, 0x1, 0xE);
+        DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_DESC_BATTLE, FALSE, 1, 14);
     }
     else
     {
         PutWindowTilemap(RELEARNERWIN_DESC_CONTEST);
-        DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_DESC_CONTEST, FALSE, 1, 0xE);
+        DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_DESC_CONTEST, FALSE, 1, 14);
     }
     PutWindowTilemap(RELEARNERWIN_MOVE_LIST);
     PutWindowTilemap(RELEARNERWIN_MSG);
-    DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_MOVE_LIST, FALSE, 1, 0xE);
-    DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_MSG, FALSE, 1, 0xE);
+    DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_MOVE_LIST, FALSE, 1, 14);
+    DrawStdFrameWithCustomTileAndPalette(RELEARNERWIN_MSG, FALSE, 1, 14);
     MoveRelearnerDummy();
     ScheduleBgCopyTilemapToVram(1);
 }
@@ -815,7 +805,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     else
         str = gNotDoneYetDescription;
 
-    AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NARROW, str, 0, 65, 0, NULL);
+    AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, GetFontIdToFit(str, FONT_NARROW, 0, WindowWidthPx(RELEARNERWIN_DESC_BATTLE)), str, 0, 65, 0, NULL);
 }
 
 static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
@@ -880,7 +870,7 @@ bool16 MoveRelearnerRunTextPrinters(void)
 
 void MoveRelearnerCreateYesNoMenu(void)
 {
-    CreateYesNoMenu(&sMoveRelearnerYesNoMenuTemplate, 1, 0xE, 0);
+    CreateYesNoMenu(&sMoveRelearnerWindowTemplates[RELEARNERWIN_YESNO], 1, 14, 0);
 }
 
 //----------------
@@ -1206,9 +1196,9 @@ void LoadConditionSelectionIcons(struct SpriteSheet *sheets, struct SpriteTempla
 
     struct SpriteSheet dataSheets[] =
     {
-        {sConditionPokeball_Gfx, 0x100, TAG_CONDITION_BALL},
-        {sConditionPokeballPlaceholder_Gfx, 0x20, TAG_CONDITION_BALL_PLACEHOLDER},
-        {gPokenavConditionCancel_Gfx, 0x100, TAG_CONDITION_CANCEL},
+        {sConditionPokeball_Gfx, 256, TAG_CONDITION_BALL},
+        {sConditionPokeballPlaceholder_Gfx, 32, TAG_CONDITION_BALL_PLACEHOLDER},
+        {gPokenavConditionCancel_Gfx, 256, TAG_CONDITION_CANCEL},
         {},
     };
 
@@ -1249,7 +1239,7 @@ void LoadConditionSelectionIcons(struct SpriteSheet *sheets, struct SpriteTempla
 
 void LoadConditionSparkle(struct SpriteSheet *sheet, struct SpritePalette *pal)
 {
-    struct SpriteSheet dataSheet = {sConditionSparkle_Pal, 0x380, TAG_CONDITION_SPARKLE};
+    struct SpriteSheet dataSheet = {sConditionSparkle_Pal, 896, TAG_CONDITION_SPARKLE};
     struct SpritePalette dataPal = {sConditionSparkle_Gfx, TAG_CONDITION_SPARKLE};
 
     *sheet = dataSheet;

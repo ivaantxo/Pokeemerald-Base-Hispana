@@ -2647,11 +2647,8 @@ static void SpriteCB_ShinyStars_Diagonal(struct Sprite *sprite)
 
 void AnimTask_LoadPokeblockGfx(u8 taskId)
 {
-    u8 UNUSED paletteIndex;
-
     LoadCompressedSpriteSheetUsingHeap(&gBattleAnimPicTable[ANIM_TAG_POKEBLOCK - ANIM_SPRITES_START]);
     LoadCompressedSpritePaletteUsingHeap(&gBattleAnimPaletteTable[ANIM_TAG_POKEBLOCK - ANIM_SPRITES_START]);
-    paletteIndex = IndexOfSpritePaletteTag(ANIM_TAG_POKEBLOCK);
     DestroyAnimVisualTask(taskId);
 }
 

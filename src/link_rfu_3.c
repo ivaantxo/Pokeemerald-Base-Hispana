@@ -32,8 +32,6 @@ struct RfuUnusedQueue
 
 EWRAM_DATA u8 gWirelessStatusIndicatorSpriteId = 0;
 
-static u8 sSequenceArrayValOffset;
-
 static const u16 sWirelessLinkIconPalette[] = INCBIN_U16("graphics/link/wireless_icon.gbapal");
 static const u32 sWirelessLinkIconPic[] = INCBIN_U32("graphics/link/wireless_icon.4bpp.lz");
 
@@ -342,22 +340,6 @@ void RfuSendQueue_Reset(struct RfuSendQueue *queue)
     queue->full = FALSE;
 }
 
-static void UNUSED RfuUnusedQueue_Reset(struct RfuUnusedQueue *queue)
-{
-    s32 i;
-    s32 j;
-
-    for (i = 0; i < UNUSED_QUEUE_NUM_SLOTS; i++)
-    {
-        for (j = 0; j < UNUSED_QUEUE_SLOT_LENGTH; j++)
-            queue->slots[i][j] = 0;
-    }
-    queue->sendSlot = 0;
-    queue->recvSlot = 0;
-    queue->count = 0;
-    queue->full = FALSE;
-}
-
 void RfuRecvQueue_Enqueue(struct RfuRecvQueue *queue, u8 *data)
 {
     s32 i;
@@ -512,116 +494,6 @@ bool8 RfuBackupQueue_Dequeue(struct RfuBackupQueue *queue, u8 *src)
     queue->sendSlot %= BACKUP_QUEUE_NUM_SLOTS;
     queue->count--;
     return TRUE;
-}
-
-static void UNUSED RfuUnusedQueue_Enqueue(struct RfuUnusedQueue *queue, u8 *data)
-{
-    s32 i;
-
-    if (queue->count < UNUSED_QUEUE_NUM_SLOTS)
-    {
-        for (i = 0; i < UNUSED_QUEUE_SLOT_LENGTH; i++)
-            queue->slots[queue->recvSlot][i] = data[i];
-
-        queue->recvSlot++;
-        queue->recvSlot %= UNUSED_QUEUE_NUM_SLOTS;
-        queue->count++;
-    }
-    else
-    {
-        queue->full = TRUE;
-    }
-}
-
-static bool8 UNUSED RfuUnusedQueue_Dequeue(struct RfuUnusedQueue *queue, u8 *dest)
-{
-    s32 i;
-
-    if (queue->recvSlot == queue->sendSlot || queue->full)
-        return FALSE;
-
-    for (i = 0; i < UNUSED_QUEUE_SLOT_LENGTH; i++)
-        dest[i] = queue->slots[queue->sendSlot][i];
-
-    queue->sendSlot++;
-    queue->sendSlot %= UNUSED_QUEUE_NUM_SLOTS;
-    queue->count--;
-    return TRUE;
-}
-
-// Populates an array with a sequence of numbers (which numbers depends on the mode)
-// and sets the final element to the total of the other elements
-#define SEQ_ARRAY_MAX_SIZE 200
-static void UNUSED PopulateArrayWithSequence(u8 *arr, u8 mode)
-{
-    s32 i;
-    u8 rval;
-    u16 total = 0;
-    switch (mode)
-    {
-    case 0:
-        // Populate with numbers 1-200
-        // Total will be 20100
-        for (i = 0; i < SEQ_ARRAY_MAX_SIZE; i++)
-        {
-            arr[i] = i + 1;
-            total += i + 1;
-        }
-        *((u16 *)(arr + i)) = total;
-        break;
-    case 1:
-        // Populate with numbers 1-100
-        // Total will be 5050
-        for (i = 0; i < 100; i++)
-        {
-            arr[i] = i + 1;
-            total += i + 1;
-        }
-        *((u16 *)(arr + SEQ_ARRAY_MAX_SIZE)) = total;
-        break;
-    case 2:
-        // Populate with random numbers 0-255
-        // Total will be a number 0-51000
-        for (i = 0; i < SEQ_ARRAY_MAX_SIZE; i++)
-        {
-            rval = Random();
-            arr[i] = rval;
-            total += rval;
-        }
-        *((u16 *)(arr + i)) = total;
-        break;
-    case 3:
-        // Populate with numbers 1-200 + sSequenceArrayValOffset
-        // Total will be a number 20100-51000
-        for (i = 0; i < SEQ_ARRAY_MAX_SIZE; i++)
-        {
-            arr[i] = i + 1 + sSequenceArrayValOffset;
-            total += (i + 1 + sSequenceArrayValOffset) & 0xFF;
-        }
-        *((u16 *)(arr + i)) = total;
-        sSequenceArrayValOffset++;
-        break;
-    }
-}
-
-// File boundary here maybe?
-
-static void UNUSED PkmnStrToASCII(u8 *asciiStr, const u8 *pkmnStr)
-{
-    s32 i;
-
-    for (i = 0; pkmnStr[i] != EOS; i++)
-        asciiStr[i] = gWireless_RSEtoASCIITable[pkmnStr[i]];
-    asciiStr[i] = 0;
-}
-
-static void UNUSED ASCIIToPkmnStr(u8 *pkmnStr, const u8 *asciiStr)
-{
-    s32 i;
-
-    for (i = 0; asciiStr[i] != 0; i++)
-        pkmnStr[i] = sWireless_ASCIItoRSETable[asciiStr[i]];
-    pkmnStr[i] = EOS;
 }
 
 static u8 GetConnectedChildStrength(u8 maxFlags)

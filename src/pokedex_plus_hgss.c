@@ -127,20 +127,20 @@ static const u8 sText_TenDashes[] = _("----------");
 ALIGNED(4) static const u8 sExpandedPlaceholder_PokedexDescription[] = _("");
 static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size_silhouette.gbapal");
 
-static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES");
-static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Toggle   {DPAD_UPDOWN}Moves");
-static const u8 sText_Stats_HP[] = _("HP");
-static const u8 sText_Stats_Attack[] = _("ATK");
+static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}ALTERNAR   {DPAD_UPDOWN}MOVS");
+static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Alternar   {DPAD_UPDOWN}Movs");
+static const u8 sText_Stats_HP[] = _("PS");
+static const u8 sText_Stats_Attack[] = _("ATA");
 static const u8 sText_Stats_Defense[] = _("DEF");
-static const u8 sText_Stats_Speed[] = _("SPE");
-static const u8 sText_Stats_SpAttack[] = _("SP.A");
-static const u8 sText_Stats_SpDefense[] = _("SP.D");
+static const u8 sText_Stats_Speed[] = _("VEL");
+static const u8 sText_Stats_SpAttack[] = _("A ESP");
+static const u8 sText_Stats_SpDefense[] = _("D ESP");
 static const u8 sText_Stats_EV_Plus1[] = _("{UP_ARROW}");
 static const u8 sText_Stats_EV_Plus2[] = _("{UP_ARROW}{UP_ARROW}");
 static const u8 sText_Stats_EV_Plus3[] = _("{UP_ARROW}{UP_ARROW}{UP_ARROW}");
 static const u8 sText_Stats_EvStr1Str2[] = _("{STR_VAR_1}{STR_VAR_2}");
 static const u8 sText_Stats_MoveSelectedMax[] = _("{STR_VAR_1} / {STR_VAR_2}");
-static const u8 sText_Stats_MoveLevel[] = _("LVL");
+static const u8 sText_Stats_MoveLevel[] = _("Nivel");
 static const u8 sText_Stats_Gender_0[] = _("♂");
 static const u8 sText_Stats_Gender_12_5[] = _("♀ 1/7 ♂"); //_("♀ 12.5 / 87.5 ♂");
 static const u8 sText_Stats_Gender_25[] = _("♀ 1/3 ♂");     //_("♀ 25 / 75 ♂");
@@ -148,116 +148,116 @@ static const u8 sText_Stats_Gender_50[] = _("♀ 1/1 ♂");     //_("♀ 50 / 50
 static const u8 sText_Stats_Gender_75[] = _("♀ 3/1 ♂");     //_("♀ 75 / 25 ♂");
 static const u8 sText_Stats_Gender_87_5[] = _("♀ 7/1 ♂");
 static const u8 sText_Stats_Gender_100[] = _("♀");
-static const u8 sText_Stats_CatchRate[] = _("CATCH{0x5B}: ");
-static const u8 sText_Stats_CatchRate_Legend[] = _("LEGENDARY");
-static const u8 sText_Stats_CatchRate_VeryHard[] = _("VERY HARD");
-static const u8 sText_Stats_CatchRate_Difficult[] = _("DIFFICULT");
-static const u8 sText_Stats_CatchRate_Medium[] = _("MEDIUM");
-static const u8 sText_Stats_CatchRate_Relaxed[] = _("RELAXED");
-static const u8 sText_Stats_CatchRate_Easy[] = _("EASY");
-static const u8 sText_Stats_ExpYield[] = _("EXP YIELD: ");
-static const u8 sText_Stats_EggCycles[] = _("HATCH STEPS:");
+static const u8 sText_Stats_CatchRate[] = _("%CAPT.");
+static const u8 sText_Stats_CatchRate_Legend[] = _("Legendario");
+static const u8 sText_Stats_CatchRate_VeryHard[] = _(" {UP_ARROW} Difícil");
+static const u8 sText_Stats_CatchRate_Difficult[] = _("   Difícil");
+static const u8 sText_Stats_CatchRate_Medium[] = _("       Medio");
+static const u8 sText_Stats_CatchRate_Relaxed[] = _("  Relajado");
+static const u8 sText_Stats_CatchRate_Easy[] = _("       Fácil");
+static const u8 sText_Stats_ExpYield[] = _("EXP. BASE");
+static const u8 sText_Stats_EggCycles[] = _("PASOS HUEVO");
 static const u8 sText_Stats_EggCycles_VeryFast[] = _("{EMOJI_BOLT}{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Fast[] = _("{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Normal[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
 static const u8 sText_Stats_EggCycles_Slow[] = _("{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}{EMOJI_DIZZYEGG}");
-static const u8 sText_Stats_Growthrate[] = _("GROW: ");
-static const u8 sText_Stats_Friendship[] = _("FRIENDSHIP:");
+static const u8 sText_Stats_Growthrate[] = _("CREC.");
+static const u8 sText_Stats_Friendship[] = _("AMISTAD");
 static const u8 sText_Stats_Friendship_BigAnger[] = _("{EMOJI_BIGANGER}");
 static const u8 sText_Stats_Friendship_Neutral[] = _("{EMOJI_NEUTRAL}");
 static const u8 sText_Stats_Friendship_Happy[] = _("{EMOJI_HAPPY}");
 static const u8 sText_Stats_Friendship_BigSmile[] = _("{EMOJI_BIGSMILE}");
-static const u8 sText_Stats_MEDIUM_FAST[] = _("MED. FAST");
-static const u8 sText_Stats_ERRATIC[] = _("ERRATIC");
-static const u8 sText_Stats_FLUCTUATING[] = _("FLUCTUATING");
-static const u8 sText_Stats_MEDIUM_SLOW[] = _("MED. SLOW");
-static const u8 sText_Stats_FAST[] = _("FAST");
-static const u8 sText_Stats_SLOW[] = _("SLOW");
+static const u8 sText_Stats_MEDIUM_FAST[] = _("Med. rápido");
+static const u8 sText_Stats_ERRATIC[] = _("Errático");
+static const u8 sText_Stats_FLUCTUATING[] = _("Fluctuante");
+static const u8 sText_Stats_MEDIUM_SLOW[] = _("Med. lento");
+static const u8 sText_Stats_FAST[] = _("Rápido");
+static const u8 sText_Stats_SLOW[] = _("Lento");
 static const u8 sText_Stats_ContestHeart[] = _("H");
 static const u8 sText_Stats_Minus[] = _("-");
-static const u8 sText_Stats_eggGroup[] = _("EGG G1:");
+static const u8 sText_Stats_eggGroup[] = _("Huevo G1:");
 static const u8 sText_Stats_eggGroup_Groups[] = _("{STR_VAR_1}/{STR_VAR_2}");
-static const u8 sText_Stats_eggGroup_MONSTER[] = _("MONSTER");
-static const u8 sText_Stats_eggGroup_WATER_1[] = _("WATER {CIRCLE_1}");
-static const u8 sText_Stats_eggGroup_BUG[] = _("BUG");
-static const u8 sText_Stats_eggGroup_FLYING[] = _("FLYING");
-static const u8 sText_Stats_eggGroup_FIELD[] = _("FIELD");
-static const u8 sText_Stats_eggGroup_FAIRY[] = _("FAIRY");
-static const u8 sText_Stats_eggGroup_GRASS[] = _("GRASS");
-static const u8 sText_Stats_eggGroup_HUMAN_LIKE[] = _("HUMANE");
-static const u8 sText_Stats_eggGroup_WATER_3[] = _("WATER {CIRCLE_3}");
-static const u8 sText_Stats_eggGroup_MINERAL[] = _("MINERAL");
-static const u8 sText_Stats_eggGroup_AMORPHOUS[] = _("AMORPHOUS");
-static const u8 sText_Stats_eggGroup_WATER_2[] = _("WATER {CIRCLE_2}");
-static const u8 sText_Stats_eggGroup_DITTO[] = _("DITTO");
-static const u8 sText_Stats_eggGroup_DRAGON[] = _("DRAGON");
+static const u8 sText_Stats_eggGroup_MONSTER[] = _("Monstruo");
+static const u8 sText_Stats_eggGroup_WATER_1[] = _("Agua {CIRCLE_1}");
+static const u8 sText_Stats_eggGroup_BUG[] = _("Bicho");
+static const u8 sText_Stats_eggGroup_FLYING[] = _("Volador");
+static const u8 sText_Stats_eggGroup_FIELD[] = _("Campo");
+static const u8 sText_Stats_eggGroup_FAIRY[] = _("Hada");
+static const u8 sText_Stats_eggGroup_GRASS[] = _("Planta");
+static const u8 sText_Stats_eggGroup_HUMAN_LIKE[] = _("Humano");
+static const u8 sText_Stats_eggGroup_WATER_3[] = _("Agua {CIRCLE_3}");
+static const u8 sText_Stats_eggGroup_MINERAL[] = _("Mineral");
+static const u8 sText_Stats_eggGroup_AMORPHOUS[] = _("Amorfo");
+static const u8 sText_Stats_eggGroup_WATER_2[] = _("Agua {CIRCLE_2}");
+static const u8 sText_Stats_eggGroup_DITTO[] = _("Ditto");
+static const u8 sText_Stats_eggGroup_DRAGON[] = _("Dragón");
 static const u8 sText_Stats_eggGroup_NO_EGGS_DISCOVERED[] = _("---");
 static const u8 sText_Stats_eggGroup_UNKNOWN[] = _("???");
-static const u8 sText_Dex_SEEN[] = _("SEEN");
-static const u8 sText_Dex_OWN[] = _("OWN");
+static const u8 sText_Dex_SEEN[] = _("Vistos");
+static const u8 sText_Dex_OWN[] = _("Capturados");
 
-static const u8 sText_EVO_Buttons[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}CHECK");
-static const u8 sText_EVO_Buttons_Decapped[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Check");
-static const u8 sText_EVO_Buttons_PE[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}CHECK  {START_BUTTON}FORMs");
-static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Check  {START_BUTTON}Forms");
+static const u8 sText_EVO_Buttons[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}MIRAR");
+static const u8 sText_EVO_Buttons_Decapped[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}MIRAR");
+static const u8 sText_EVO_Buttons_PE[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}MIRAR  {START_BUTTON}FORMAS");
+static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Mirar  {START_BUTTON}Formas");
 static const u8 sText_EVO_Name[] = _("{STR_VAR_3}:");
-static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evolves from {STR_VAR_2}");
-static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} Mega Evolves with {STR_VAR_2}");
-static const u8 sText_EVO_FRIENDSHIP[] = _("{LV}{UP_ARROW}, high friendship");
-static const u8 sText_EVO_FRIENDSHIP_DAY[] = _("{LV}{UP_ARROW}, high friendship, day");
-static const u8 sText_EVO_FRIENDSHIP_NIGHT[] = _("{LV}{UP_ARROW}, high friendship, night");
-static const u8 sText_EVO_FRIENDSHIP_MOVE_TYPE[] = _("{LV}{UP_ARROW}, high friendship, {STR_VAR_2} move");
-static const u8 sText_EVO_LEVEL[] = _("{LV}{UP_ARROW} to {STR_VAR_2}");
-static const u8 sText_EVO_TRADE[] = _("Trading");
-static const u8 sText_EVO_TRADE_ITEM[] = _("Trading, holding {STR_VAR_2}");
-static const u8 sText_EVO_ITEM[] = _("{STR_VAR_2} is used");
-static const u8 sText_EVO_LEVEL_ATK_GT_DEF[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Atk > Def");
-static const u8 sText_EVO_LEVEL_ATK_EQ_DEF[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Atk = Def");
-static const u8 sText_EVO_LEVEL_ATK_LT_DEF[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Atk < Def");
-static const u8 sText_EVO_LEVEL_SILCOON[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Silcoon persona");
-static const u8 sText_EVO_LEVEL_CASCOON[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Cascoon persona");
-static const u8 sText_EVO_LEVEL_NINJASK[] = _("{LV}{UP_ARROW} to {STR_VAR_2}");
-static const u8 sText_EVO_LEVEL_SHEDINJA[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, party<6, 1x POKéBALL");
-static const u8 sText_EVO_BEAUTY[] = _("{LV}{UP_ARROW}, high beauty");
-static const u8 sText_EVO_LEVEL_FEMALE[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, is female");
-static const u8 sText_EVO_LEVEL_MALE[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, is male");
-static const u8 sText_EVO_LEVEL_NIGHT[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, night");
-static const u8 sText_EVO_LEVEL_DAY[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, day");
-static const u8 sText_EVO_LEVEL_DUSK[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, dusk (5-6PM)");
-static const u8 sText_EVO_ITEM_HOLD_DAY[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, day");
-static const u8 sText_EVO_ITEM_HOLD_NIGHT[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, night");
-static const u8 sText_EVO_MOVE[] = _("{LV}{UP_ARROW}, knows {STR_VAR_2}");
-static const u8 sText_EVO_MAPSEC[] = _("{LV}{UP_ARROW} on {STR_VAR_2}");
-static const u8 sText_EVO_ITEM_MALE[] = _("{STR_VAR_2} used on male");
-static const u8 sText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} used on female");
-static const u8 sText_EVO_LEVEL_RAIN[] = _("{LV}{UP_ARROW} to {STR_VAR_2} while raining");
-static const u8 sText_EVO_SPECIFIC_MON_IN_PARTY[] = _("{LV}{UP_ARROW} with {STR_VAR_2} in party");
-static const u8 sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[] = _("{LV}{UP_ARROW} with dark type in party");
-static const u8 sText_EVO_TRADE_SPECIFIC_MON[] = _("Traded for {STR_VAR_2}");
-static const u8 sText_EVO_SPECIFIC_MAP[] = _("{LV}{UP_ARROW} on {STR_VAR_2}");
-static const u8 sText_EVO_LEVEL_NATURE_AMPED[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Amped natures");
-static const u8 sText_EVO_LEVEL_NATURE_LOW_KEY[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Low Key natures");
-static const u8 sText_EVO_CRITICAL_HITS[] = _("Land {STR_VAR_2} critical hits in\nsingle battle");
-static const u8 sText_EVO_SCRIPT_TRIGGER_DMG[] = _("Takes at least {STR_VAR_2} HP in damage");
-static const u8 sText_EVO_DARK_SCROLL[] = _("ScrllOfDrknss is used");
-static const u8 sText_EVO_WATER_SCROLL[] = _("ScrollOfWatrs is used");
-static const u8 sText_EVO_ITEM_NIGHT[] = _("{STR_VAR_2} is used, night");
-static const u8 sText_EVO_ITEM_DAY[] = _("{STR_VAR_2} is used, day");
-static const u8 sText_EVO_ITEM_HOLD[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}");
-static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{LV}{UP_ARROW} after 20x {STR_VAR_2}");
-static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, male");
-static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, female");
-static const u8 sText_EVO_ITEM_COUNT_999[] = _("{LV}{UP_ARROW} with 999 {STR_VAR_2} in bag");
-static const u8 sText_EVO_DEFEAT_THREE_WITH_ITEM[] = _("{LV}{UP_ARROW} defeating 3 {STR_VAR_3} holding {STR_VAR_2}");
-static const u8 sText_EVO_OVERWORLD_STEPS[] = _("{LV}{UP_ARROW} after {STR_VAR_2} steps");
-static const u8 sText_EVO_UNKNOWN[] = _("Method unknown");
-static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} has no evolution.");
+static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evoluciona de {STR_VAR_2}.");
+static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} megaevoluciona con {STR_VAR_2}.");
+static const u8 sText_EVO_FRIENDSHIP[] = _("{UP_ARROW}{LV}, amistad elevada.");
+static const u8 sText_EVO_FRIENDSHIP_DAY[] = _("{UP_ARROW}{LV}, amistad elevada, día.");
+static const u8 sText_EVO_FRIENDSHIP_NIGHT[] = _("{UP_ARROW}{LV}, amistad elevada, noche.");
+static const u8 sText_EVO_FRIENDSHIP_MOVE_TYPE[] = _("{UP_ARROW}{LV}, amistad elevada, mov. {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL[] = _("{UP_ARROW}{LV} a {STR_VAR_2}.");
+static const u8 sText_EVO_TRADE[] = _("Intercambio.");
+static const u8 sText_EVO_TRADE_ITEM[] = _("Intercambio con {STR_VAR_2}.");
+static const u8 sText_EVO_ITEM[] = _("Usando {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL_ATK_GT_DEF[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, Atq > Def.");
+static const u8 sText_EVO_LEVEL_ATK_EQ_DEF[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, Atq = Def.");
+static const u8 sText_EVO_LEVEL_ATK_LT_DEF[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, Atq < Def.");
+static const u8 sText_EVO_LEVEL_SILCOON[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, {0x5B}Silcoon.");
+static const u8 sText_EVO_LEVEL_CASCOON[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, {0x5B}Cascoon.");
+static const u8 sText_EVO_LEVEL_NINJASK[] = _("{UP_ARROW}{LV} a {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL_SHEDINJA[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, equipo<6, 1x POKéBALL.");
+static const u8 sText_EVO_BEAUTY[] = _("{UP_ARROW}{LV}, belleza alta.");
+static const u8 sText_EVO_LEVEL_FEMALE[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, si chica.");
+static const u8 sText_EVO_LEVEL_MALE[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, si chico.");
+static const u8 sText_EVO_LEVEL_NIGHT[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, noche.");
+static const u8 sText_EVO_LEVEL_DAY[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, día.");
+static const u8 sText_EVO_LEVEL_DUSK[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, tarde.");
+static const u8 sText_EVO_ITEM_HOLD_DAY[] = _("{UP_ARROW}{LV} con {STR_VAR_2}, día.");
+static const u8 sText_EVO_ITEM_HOLD_NIGHT[] = _("{UP_ARROW}{LV} con {STR_VAR_2}, noche.");
+static const u8 sText_EVO_MOVE[] = _("{UP_ARROW}{LV}, si sabe {STR_VAR_2}.");
+static const u8 sText_EVO_MAPSEC[] = _("{UP_ARROW}{LV} en {STR_VAR_2}.");
+static const u8 sText_EVO_ITEM_MALE[] = _("{STR_VAR_2} en chico.");
+static const u8 sText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} en chica.");
+static const u8 sText_EVO_LEVEL_RAIN[] = _("{UP_ARROW}{LV} a {STR_VAR_2} en lluvia.");
+static const u8 sText_EVO_SPECIFIC_MON_IN_PARTY[] = _("{UP_ARROW}{LV} con {STR_VAR_2} en equipo.");
+static const u8 sText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY[] = _("{UP_ARROW}{LV} con tipo sin. en equipo.");
+static const u8 sText_EVO_TRADE_SPECIFIC_MON[] = _("Cambiado por {STR_VAR_2}.");
+static const u8 sText_EVO_SPECIFIC_MAP[] = _("{UP_ARROW}{LV} en {STR_VAR_2}.");
+static const u8 sText_EVO_LEVEL_NATURE_AMPED[] = _("{UP_ARROW}{LV} a {STR_VAR_2}, naturaleza aguda.");
+static const u8 sText_EVO_LEVEL_NATURE_LOW_KEY[] = _("{UP_ARROW}{LV} A {STR_VAR_2}, naturaleza grave.");
+static const u8 sText_EVO_CRITICAL_HITS[] = _("Hace {STR_VAR_2} golpes críticos\nen una batalla.");
+static const u8 sText_EVO_SCRIPT_TRIGGER_DMG[] = _("Recibiendo {STR_VAR_2} PS de daño.");
+static const u8 sText_EVO_DARK_SCROLL[] = _("Usando p. oscuro.");
+static const u8 sText_EVO_WATER_SCROLL[] = _("Usando p. aguas.");
+static const u8 sText_EVO_ITEM_NIGHT[] = _("Usando {STR_VAR_2} de noche.");
+static const u8 sText_EVO_ITEM_DAY[] = _("Usando {STR_VAR_2} de día.");
+static const u8 sText_EVO_ITEM_HOLD[] = _("{UP_ARROW}{LV}, teniendo {STR_VAR_2}.");
+static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{UP_ARROW}{LV} después de 20x {STR_VAR_2}.");
+static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, ♂.");
+static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{UP_ARROW}{LV} con {STR_VAR_2} de daño de retroceso, ♀.");
+static const u8 sText_EVO_ITEM_COUNT_999[] = _("{UP_ARROW}{LV} con 999 {STR_VAR_2} en la mochila.");
+static const u8 sText_EVO_UNKNOWN[] = _("Método desconocido.");
+static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} no tiene evolución.");
+static const u8 sText_EVO_DEFEAT_THREE_WITH_ITEM[] = _("{UP_ARROW}{LV} derrotando 3 {STR_VAR_3} llevando {STR_VAR_2}.");
+static const u8 sText_EVO_OVERWORLD_STEPS[] = _("{UP_ARROW}{LV} después de {STR_VAR_2} pasos.");
 
-static const u8 sText_FORMS_Buttons_PE[] = _("{A_BUTTON}FORM MODE  {START_BUTTON}EVOs");
+static const u8 sText_FORMS_Buttons_PE[] = _("{A_BUTTON}MODO FORMAs  {START_BUTTON}EVOs");
 static const u8 sText_FORMS_Buttons_Decapped_PE[] = _("{START_BUTTON}Evos");
-static const u8 sText_FORMS_Buttons_Submenu_PE[] = _("{DPAD_NONE}FORMs {A_BUTTON}CHECK {START_BUTTON}EVOs");
+static const u8 sText_FORMS_Buttons_Submenu_PE[] = _("{DPAD_NONE}FORMAS {A_BUTTON}MIRAR {START_BUTTON}EVOs");
 static const u8 sText_FORMS_Buttons_Submenu_Decapped_PE[] = _("{START_BUTTON}Evos");
-static const u8 sText_FORMS_NONE[] = _("{STR_VAR_1} has no alternate forms.");
+static const u8 sText_FORMS_NONE[] = _("{STR_VAR_1} no tiene formas alternativas.");
 static const u8 sText_PlusSymbol[] = _("+");
 
 // static .rodata graphics
@@ -296,7 +296,7 @@ static const u32 sPokedexPlusHGSS_ScreenSearchHoenn_Tilemap[] = INCBIN_U32("grap
 static const u32 sPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/tilemap_search_screen_national.bin.lz");
 
 #define SCROLLING_MON_X 146
-#define HGSS_DECAPPED FALSE
+#define HGSS_DECAPPED TRUE
 #define HGSS_DARK_MODE FALSE
 #define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES FALSE
 
@@ -458,8 +458,6 @@ struct PokedexView
     u16 scrollMonIncrement;
     u16 maxScrollTimer;
     u16 scrollSpeed;
-    u16 unkArr1[4]; // Cleared, never read
-    u8 filler[8];
     u8 currentPage;
     u8 currentPageBackup;
     bool8 isSearchResults:1;
@@ -468,8 +466,6 @@ struct PokedexView
     u8 menuIsOpen;
     u16 menuCursorPos;
     s16 menuY;     //Menu Y position (inverted because we use REG_BG0VOFS for this)
-    u8 unkArr2[8]; // Cleared, never read
-    u8 unkArr3[8]; // Cleared, never read
 };
 
 static void ResetPokedexView(struct PokedexView *pokedexView);
@@ -535,14 +531,12 @@ static void Task_LoadSizeScreen(u8);
 static void Task_HandleSizeScreenInput(u8);
 static void Task_SwitchScreensFromSizeScreen(u8);
 static void LoadScreenSelectBarMain(u16);
-static void HighlightScreenSelectBarItem(u8, u16);
 static void Task_HandleCaughtMonPageInput(u8);
 static void Task_ExitCaughtMonPage(u8);
 static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite);
 static void PrintMonInfo(u32 num, u32, u32 owned, u32 newEntry);
 static void ResetOtherVideoRegisters(u16);
 static u8 PrintCryScreenSpeciesName(u8, u16, u8, u8);
-static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top);
 static u16 CreateMonSpriteFromNationalDexNumberHGSS(u16 nationalNum, s16 x, s16 y, u16 paletteSlot);
 static u16 CreateSizeScreenTrainerPic(u16, s16, s16, s8);
 static u16 GetNextPosition(u8, u16, u16, u16);
@@ -595,7 +589,6 @@ static void PrintStatsScreen_Left(u8 taskId);
 static void PrintStatsScreen_Abilities(u8 taskId);
 static void PrintInfoScreenTextWhite(const u8* str, u8 left, u8 top);
 static void PrintInfoScreenTextSmall(const u8* str, u8 left, u8 top);
-static void PrintInfoScreenTextSmallWhite(const u8* str, u8 left, u8 top);
 static void Task_LoadEvolutionScreen(u8 taskId);
 static void Task_HandleEvolutionScreenInput(u8 taskId);
 static void Task_SwitchScreensFromEvolutionScreen(u8 taskId);
@@ -1292,11 +1285,14 @@ static const struct BgTemplate sInfoScreen_BgTemplate[] =
     }
 };
 
-#define WIN_INFO 0
-#define WIN_FOOTPRINT 1
-#define WIN_CRY_WAVE 2
-#define WIN_VU_METER 3
-#define WIN_NAVIGATION_BUTTONS 4
+enum InfoScreenWindows
+{
+    WIN_INFO,
+    WIN_FOOTPRINT,
+    WIN_CRY_WAVE,
+    WIN_VU_METER,
+    WIN_NAVIGATION_BUTTONS,
+};
 
 static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
 {
@@ -1354,17 +1350,22 @@ static const struct WindowTemplate sInfoScreen_WindowTemplates[] =
     DUMMY_WIN_TEMPLATE
 };
 
-#define WIN_STATS_TOPBAR 0
-#define WIN_STATS_SIDEBAR 1
-#define WIN_STATS_NAME_GENDER 2
-#define WIN_STATS_LEFT 3
-#define WIN_STATS_NAVIGATION_BUTTONS 4
-#define WIN_STATS_MOVES_TOP 5
-#define WIN_STATS_MOVES_DESCRIPTION 7
-#define WIN_STATS_MOVES_BOTTOM 8
-#define WIN_STATS_ABILITIES 9
-#define WIN_STATS_LEFT_UNUSED 10
-#define WIN_STATS_END WIN_STATS_LEFT_UNUSED
+enum StatsScreenWindows
+{
+    WIN_STATS_TOPBAR,
+    WIN_STATS_SIDEBAR,
+    WIN_STATS_NAME_GENDER,
+    WIN_STATS_LEFT,
+    WIN_STATS_NAVIGATION_BUTTONS,
+    WIN_STATS_MOVES_TOP,
+    WIN_STATS_MOVES_DESCRIPTION,
+    WIN_STATS_MOVES_BOTTOM,
+    WIN_STATS_ABILITIES,
+    WIN_STATS_LEFT_UNUSED,
+
+    WIN_STATS_END
+};
+
 static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
 {
     [WIN_STATS_TOPBAR] =
@@ -2126,8 +2127,6 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->scrollMonIncrement = 0;
     pokedexView->maxScrollTimer = 0;
     pokedexView->scrollSpeed = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr1); i++)
-        pokedexView->unkArr1[i] = 0;
     pokedexView->currentPage = PAGE_MAIN;
     pokedexView->currentPageBackup = PAGE_MAIN;
     pokedexView->isSearchResults = FALSE;
@@ -2136,10 +2135,6 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->menuIsOpen = 0;
     pokedexView->menuCursorPos = 0;
     pokedexView->menuY = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr2); i++)
-        pokedexView->unkArr2[i] = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr3); i++)
-        pokedexView->unkArr3[i] = 0;
 }
 
 static void VBlankCB_Pokedex(void)
@@ -4035,33 +4030,6 @@ static void LoadScreenSelectBarMain(u16 unused)
     CopyBgTilemapBufferToVram(1);
 }
 
-static void UNUSED HighlightScreenSelectBarItem(u8 selectedScreen, u16 unused)
-{
-    u8 i;
-    u8 j;
-    u16 *ptr = GetBgTilemapBuffer(1);
-
-    for (i = 0; i < SCREEN_COUNT; i++)
-    {
-        u8 row = (i * 7) + 1;
-        u16 newPalette;
-
-        do
-        {
-            newPalette = 0x4000;
-            if (i == selectedScreen)
-                newPalette = 0x2000;
-        } while (0);
-
-        for (j = 0; j < 7; j++)
-        {
-            ptr[row + j] = (ptr[row + j] % 0x1000) | newPalette;
-            ptr[row + j + 0x20] = (ptr[row + j + 0x20] % 0x1000) | newPalette;
-        }
-    }
-    CopyBgTilemapBufferToVram(1);
-}
-
 //************************************
 //*                                  *
 //*        CAUGHT MON                *
@@ -4282,15 +4250,6 @@ static void PrintInfoScreenTextSmall(const u8* str, u8 left, u8 top)
 
     AddTextPrinterParameterized4(0, 0, left, top, 0, 0, color, 0, str);
 }
-static void UNUSED PrintInfoScreenTextSmallWhite(const u8* str, u8 left, u8 top)
-{
-    u8 color[3];
-    color[0] = TEXT_COLOR_TRANSPARENT;
-    color[1] = TEXT_COLOR_WHITE;
-    color[2] = TEXT_DYNAMIC_COLOR_6;
-
-    AddTextPrinterParameterized4(0, 0, left, top, 0, 0, color, 0, str);
-}
 //Stats screen
 static void PrintStatsScreenTextSmall(u8 windowId, const u8* str, u8 left, u8 top)
 {
@@ -4299,7 +4258,7 @@ static void PrintStatsScreenTextSmall(u8 windowId, const u8* str, u8 left, u8 to
     color[1] = TEXT_DYNAMIC_COLOR_6;
     color[2] = TEXT_COLOR_LIGHT_GRAY;
 
-    AddTextPrinterParameterized4(windowId, 0, left, top, 0, 0, color, 0, str);
+    AddTextPrinterParameterized4(windowId, GetFontIdToFit(str, FONT_SMALL, 0, WindowWidthPx(WIN_STATS_MOVES_DESCRIPTION - 1)), left, top, 0, 0, color, 0, str);
 }
 static void PrintStatsScreenTextSmallWhite(u8 windowId, const u8* str, u8 left, u8 top)
 {
@@ -4308,7 +4267,7 @@ static void PrintStatsScreenTextSmallWhite(u8 windowId, const u8* str, u8 left, 
     color[1] = TEXT_COLOR_WHITE;
     color[2] = TEXT_DYNAMIC_COLOR_6;
 
-    AddTextPrinterParameterized4(windowId, 0, left, top, 0, 0, color, 0, str);
+    AddTextPrinterParameterized4(windowId, GetFontIdToFit(str, FONT_SMALL, 0, WindowWidthPx(WIN_STATS_MOVES_DESCRIPTION - 1)), left, top, 0, 0, color, 0, str);
 }
 
 //Type Icon
@@ -4421,7 +4380,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         category = gText_5MarksPokemon;
     }
     PrintInfoScreenText(category, 123, 31);
-    PrintMonMeasurements(species,owned);
+    PrintMonMeasurements(species, owned);
     if (owned)
         description = GetSpeciesPokedexDescription(species);
     else
@@ -4431,44 +4390,6 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     //Type Icon(s)
     if (owned)
         PrintCurrentSpeciesTypeInfo(newEntry, species);
-}
-
-// Unused in the English version, used to print height/weight in versions which use metric system.
-static void UNUSED PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
-{
-    u8 str[6];
-    bool8 outputted = FALSE;
-    u8 result;
-
-    result = num / 1000;
-    if (result == 0)
-    {
-        str[0] = CHAR_SPACER;
-        outputted = FALSE;
-    }
-    else
-    {
-        str[0] = CHAR_0 + result;
-        outputted = TRUE;
-    }
-
-    result = (num % 1000) / 100;
-    if (result == 0 && !outputted)
-    {
-        str[1] = CHAR_SPACER;
-        outputted = FALSE;
-    }
-    else
-    {
-        str[1] = CHAR_0 + result;
-        outputted = TRUE;
-    }
-
-    str[2] = CHAR_0 + ((num % 1000) % 100) / 10;
-    str[3] = CHAR_DEC_SEPARATOR;
-    str[4] = CHAR_0 + ((num % 1000) % 100) % 10;
-    str[5] = EOS;
-    PrintInfoSubMenuText(windowId, str, left, top);
 }
 
 static void PrintInfoSubMenuText(u8 windowId, const u8 *str, u8 left, u8 top)
@@ -4722,7 +4643,7 @@ static void LoadTilesetTilemapHGSS(u8 page)
 static u8 ShowCategoryIcon(u32 category)
 {
     if (sPokedexView->categoryIconSpriteId == 0xFF)
-        sPokedexView->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 139, 90, 0);
+        sPokedexView->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 109, 90, 0);
 
     gSprites[sPokedexView->categoryIconSpriteId].invisible = FALSE;
     StartSpriteAnim(&gSprites[sPokedexView->categoryIconSpriteId], category);
@@ -4763,7 +4684,7 @@ static void ResetStatsWindows(void)
     FreeAllWindowBuffers();
     InitWindows(sStatsScreen_WindowTemplates);
 
-    for (i = 0; i < WIN_STATS_END + 1; i++)
+    for (i = 0; i < WIN_STATS_END; i++)
     {
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
         PutWindowTilemap(i);
@@ -4951,25 +4872,6 @@ static void Task_LoadStatsScreen(u8 taskId)
     }
 }
 
-static void UNUSED FreeStatsScreenWindowAndBgBuffers(void)
-{
-    void *tilemapBuffer;
-
-    FreeAllWindowBuffers();
-    tilemapBuffer = GetBgTilemapBuffer(0);
-    if (tilemapBuffer)
-        Free(tilemapBuffer);
-    tilemapBuffer = GetBgTilemapBuffer(1);
-    if (tilemapBuffer)
-        Free(tilemapBuffer);
-    tilemapBuffer = GetBgTilemapBuffer(2);
-    if (tilemapBuffer)
-        Free(tilemapBuffer);
-    tilemapBuffer = GetBgTilemapBuffer(3);
-    if (tilemapBuffer)
-        Free(tilemapBuffer);
-}
-
 static void Task_HandleStatsScreenInput(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
@@ -5013,7 +4915,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelBuffer(WIN_STATS_MOVES_DESCRIPTION, PIXEL_FILL(0));
         PrintStatsScreen_Moves_Description(taskId);
 
-        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 50, 0, 20, 16);
+        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 49, 0, 20, 16);
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
@@ -5028,7 +4930,7 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         FillWindowPixelBuffer(WIN_STATS_MOVES_DESCRIPTION, PIXEL_FILL(0));
         PrintStatsScreen_Moves_Description(taskId);
 
-        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 50, 0, 20, 16);
+        FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 49, 0, 20, 16);
         FillWindowPixelRect(WIN_STATS_MOVES_BOTTOM, PIXEL_FILL(0), 120, 0, 20, 16);
         PrintStatsScreen_Moves_Bottom(taskId);
     }
@@ -5259,7 +5161,7 @@ static void PrintStatsScreen_Moves_BottomText(u8 taskId)
     u8 moves_y = 3;
     if (gTasks[taskId].data[5] == 0)
     {
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Power,  moves_x, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Poder,  moves_x + 16, moves_y);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gText_Accuracy2,  moves_x + 66, moves_y);
     }
     else
@@ -5291,7 +5193,7 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
             ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 45, moves_y);
+        PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 46, moves_y);
         //Physical/Special/Status Category
         DestroyCategoryIcon();
         ShowCategoryIcon(GetBattleMoveCategory(move));
@@ -5343,7 +5245,7 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
         value = NationalToHoennOrder(num);
     else
         value = num;
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
+    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 4);
     PrintStatsScreenTextSmall(WIN_STATS_NAME_GENDER, str, base_x, base_y + 10);
 
     //Gender ratio //MON_GENDERLESS == 0xFF
@@ -5414,7 +5316,7 @@ static u8* PrintMonStatsToggle_EV_Arrows(u8 *dest, u8 value)
 static void PrintStatsScreen_Left(u8 taskId)
 {
     u8 base_x = 8;
-    u8 x_offset_column = 43;
+    u8 x_offset_column = 38;
     u8 column = 0;
     u8 base_x_offset = 70;
     u8 base_x_first_row = 23;

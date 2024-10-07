@@ -1,17 +1,18 @@
 #ifndef GUARD_CONFIG_DEBUG_H
 #define GUARD_CONFIG_DEBUG_H
 
-// Overworld Debug
-#define DEBUG_OVERWORLD_MENU            TRUE                // Enables an overworld debug menu to change flags, variables, giving pokemon and more, accessed by holding R and pressing START while in the overworld by default.
-#define DEBUG_OVERWORLD_HELD_KEYS       (R_BUTTON)          // The keys required to be held to open the debug menu.
-#define DEBUG_OVERWORLD_TRIGGER_EVENT   pressedStartButton  // The event that opens the menu when holding the key(s) defined in DEBUG_OVERWORLD_HELD_KEYS.
-#define DEBUG_OVERWORLD_IN_MENU         FALSE               // Replaces the overworld debug menu button combination with a start menu entry (above Pokédex).
+// Depuración en el Mundo Exterior
+#define DEBUG_OVERWORLD_MENU            TRUE                // Habilita un menú de depuración en el mundo exterior para cambiar banderas, variables, otorgar Pokémon y más, accesible manteniendo presionado R y presionando START mientras estás en el mundo exterior por defecto.
+#define DEBUG_OVERWORLD_HELD_KEYS       (R_BUTTON)          // Las teclas que deben mantenerse presionadas para abrir el menú de depuración.
+#define DEBUG_OVERWORLD_TRIGGER_EVENT   pressedStartButton  // El evento que abre el menú al mantener presionada(s) la(s) tecla(s) definidas en DEBUG_OVERWORLD_HELD_KEYS.
+#define DEBUG_OVERWORLD_IN_MENU         FALSE               // Reemplaza la combinación de botones del menú de depuración en el mundo exterior con una entrada en el menú de inicio (por encima del Pokédex).
 
-// Battle Debug Menu
-#define DEBUG_BATTLE_MENU               TRUE    // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
-#define DEBUG_AI_DELAY_TIMER            FALSE   // If set to TRUE, displays the number of frames it takes for the AI to choose a move. Replaces the "What will PKMN do" text. Useful for devs or anyone who modifies the AI code and wants to see if it doesn't take too long to run.
+// Menú de Depuración de Batalla
+#define DEBUG_BATTLE_MENU               TRUE    // Si se establece en TRUE, habilita un menú de depuración para usar en batallas al presionar el botón Select.
+#define DEBUG_AI_DELAY_TIMER            FALSE   // Si se establece en TRUE, muestra el número de frames que tarda la IA en elegir un movimiento. Reemplaza el texto "Qué hará PKMN". Útil para desarrolladores o cualquier persona que modifique el código de la IA y quiera ver si no tarda demasiado en ejecutarse.
 
-// Pokémon Debug
-#define DEBUG_POKEMON_SPRITE_VISUALIZER TRUE    // Enables a debug menu for Pokémon sprites and icons, accessed by pressing Select in the summary screen.
+// Depuración de Pokémon
+#define DEBUG_POKEMON_MENU              TRUE    // Habilita un menú de depuración para los sprites e íconos de los Pokémon, accesible al presionar SELECT en la pantalla de resumen.
+
 
 #endif // GUARD_CONFIG_DEBUG_H

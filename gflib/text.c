@@ -18,9 +18,6 @@ static u32 RenderFont(struct TextPrinter *);
 static u16 FontFunc_Small(struct TextPrinter *);
 static u16 FontFunc_Normal(struct TextPrinter *);
 static u16 FontFunc_Short(struct TextPrinter *);
-static u16 FontFunc_ShortCopy1(struct TextPrinter *);
-static u16 FontFunc_ShortCopy2(struct TextPrinter *);
-static u16 FontFunc_ShortCopy3(struct TextPrinter *);
 static u16 FontFunc_Narrow(struct TextPrinter *);
 static u16 FontFunc_SmallNarrow(struct TextPrinter *);
 static u16 FontFunc_Narrower(struct TextPrinter *);
@@ -79,8 +76,6 @@ static const u8 sFontHalfRowOffsets[] =
 
 static const u8 sDownArrowTiles[] = INCBIN_U8("graphics/fonts/down_arrow.4bpp");
 static const u8 sDarkDownArrowTiles[] = INCBIN_U8("graphics/fonts/down_arrow_alt.4bpp");
-static const u8 sUnusedFRLGBlankedDownArrow[] = INCBIN_U8("graphics/fonts/unused_frlg_blanked_down_arrow.4bpp");
-static const u8 sUnusedFRLGDownArrow[] = INCBIN_U8("graphics/fonts/unused_frlg_down_arrow.4bpp");
 static const u8 sDownArrowYCoords[] = { 0, 1, 2, 1 };
 static const u8 sWindowVerticalScrollSpeeds[] = {
     [OPTIONS_TEXT_SPEED_SLOW] = 1,
@@ -93,9 +88,6 @@ static const struct GlyphWidthFunc sGlyphWidthFuncs[] =
     { FONT_SMALL,          GetGlyphWidth_Small },
     { FONT_NORMAL,         GetGlyphWidth_Normal },
     { FONT_SHORT,          GetGlyphWidth_Short },
-    { FONT_SHORT_COPY_1,   GetGlyphWidth_Short },
-    { FONT_SHORT_COPY_2,   GetGlyphWidth_Short },
-    { FONT_SHORT_COPY_3,   GetGlyphWidth_Short },
     { FONT_BRAILLE,        GetGlyphWidth_Braille },
     { FONT_NARROW,         GetGlyphWidth_Narrow },
     { FONT_SMALL_NARROW,   GetGlyphWidth_SmallNarrow },
@@ -154,36 +146,6 @@ static const struct FontInfo sFontInfos[] =
         .fontFunction = FontFunc_Short,
         .maxLetterWidth = 6,
         .maxLetterHeight = 14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 2,
-        .bgColor = 1,
-        .shadowColor = 3,
-    },
-    [FONT_SHORT_COPY_1] = {
-        .fontFunction = FontFunc_ShortCopy1,
-        .maxLetterWidth = 6,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 2,
-        .bgColor = 1,
-        .shadowColor = 3,
-    },
-    [FONT_SHORT_COPY_2] = {
-        .fontFunction = FontFunc_ShortCopy2,
-        .maxLetterWidth = 6,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 2,
-        .bgColor = 1,
-        .shadowColor = 3,
-    },
-    [FONT_SHORT_COPY_3] = {
-        .fontFunction = FontFunc_ShortCopy3,
-        .maxLetterWidth = 6,
-        .maxLetterHeight =  14,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .fgColor = 2,
@@ -267,9 +229,6 @@ static const u8 sMenuCursorDimensions[][2] =
     [FONT_SMALL]          = { 8,  12 },
     [FONT_NORMAL]         = { 8,  15 },
     [FONT_SHORT]          = { 8,  14 },
-    [FONT_SHORT_COPY_1]   = { 8,  14 },
-    [FONT_SHORT_COPY_2]   = { 8,  14 },
-    [FONT_SHORT_COPY_3]   = { 8,  14 },
     [FONT_BRAILLE]        = { 8,  16 },
     [FONT_NARROW]         = { 8,  15 },
     [FONT_SMALL_NARROW]   = { 8,   8 },
@@ -599,21 +558,6 @@ void DecompressGlyphTile(const void *src_, void *dest_)
     *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
 }
 
-static u8 UNUSED GetLastTextColor(u8 colorType)
-{
-    switch (colorType)
-    {
-    case 0:
-        return sLastTextFgColor;
-    case 2:
-        return sLastTextBgColor;
-    case 1:
-        return sLastTextShadowColor;
-    default:
-        return 0;
-    }
-}
-
 inline static void GLYPH_COPY(u8 *windowTiles, u32 widthOffset, u32 j, u32 i, u32 *glyphPixels, s32 width, s32 height)
 {
     u32 xAdd, yAdd, pixelData, bits, toOrr, dummyX;
@@ -749,42 +693,6 @@ static u16 FontFunc_Short(struct TextPrinter *textPrinter)
     if (subStruct->hasFontIdBeenSet == FALSE)
     {
         subStruct->fontId = FONT_SHORT;
-        subStruct->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
-}
-
-static u16 FontFunc_ShortCopy1(struct TextPrinter *textPrinter)
-{
-    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
-
-    if (subStruct->hasFontIdBeenSet == FALSE)
-    {
-        subStruct->fontId = FONT_SHORT_COPY_1;
-        subStruct->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
-}
-
-static u16 FontFunc_ShortCopy2(struct TextPrinter *textPrinter)
-{
-    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
-
-    if (subStruct->hasFontIdBeenSet == FALSE)
-    {
-        subStruct->fontId = FONT_SHORT_COPY_2;
-        subStruct->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
-}
-
-static u16 FontFunc_ShortCopy3(struct TextPrinter *textPrinter)
-{
-    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
-
-    if (subStruct->hasFontIdBeenSet == FALSE)
-    {
-        subStruct->fontId = FONT_SHORT_COPY_3;
         subStruct->hasFontIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1210,9 +1118,6 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             DecompressGlyph_Normal(currChar, textPrinter->japanese);
             break;
         case FONT_SHORT:
-        case FONT_SHORT_COPY_1:
-        case FONT_SHORT_COPY_2:
-        case FONT_SHORT_COPY_3:
             DecompressGlyph_Short(currChar, textPrinter->japanese);
             break;
         case FONT_NARROW:
@@ -1311,95 +1216,6 @@ static u16 RenderText(struct TextPrinter *textPrinter)
     }
 
     return RENDER_FINISH;
-}
-
-static u32 UNUSED GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 letterSpacing)
-{
-    int i;
-    u8 width;
-    int temp;
-    int temp2;
-    u8 line;
-    int strPos;
-    u8 lineWidths[8];
-    const u8 *strLocal;
-
-    for (i = 0; i < (int)ARRAY_COUNT(lineWidths); i++)
-        lineWidths[i] = 0;
-
-    width = 0;
-    line = 0;
-    strLocal = str;
-    strPos = 0;
-
-    do
-    {
-        temp = strLocal[strPos++];
-        switch (temp)
-        {
-        case CHAR_NEWLINE:
-        case EOS:
-            lineWidths[line] = width;
-            width = 0;
-            line++;
-            break;
-        case EXT_CTRL_CODE_BEGIN:
-            temp2 = strLocal[strPos++];
-            switch (temp2)
-            {
-            case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
-                ++strPos;
-            case EXT_CTRL_CODE_PLAY_BGM:
-            case EXT_CTRL_CODE_PLAY_SE:
-                ++strPos;
-            case EXT_CTRL_CODE_COLOR:
-            case EXT_CTRL_CODE_HIGHLIGHT:
-            case EXT_CTRL_CODE_SHADOW:
-            case EXT_CTRL_CODE_PALETTE:
-            case EXT_CTRL_CODE_FONT:
-            case EXT_CTRL_CODE_PAUSE:
-            case EXT_CTRL_CODE_ESCAPE:
-            case EXT_CTRL_CODE_SHIFT_RIGHT:
-            case EXT_CTRL_CODE_SHIFT_DOWN:
-            case EXT_CTRL_CODE_CLEAR:
-            case EXT_CTRL_CODE_SKIP:
-            case EXT_CTRL_CODE_CLEAR_TO:
-            case EXT_CTRL_CODE_MIN_LETTER_SPACING:
-                ++strPos;
-                break;
-            case EXT_CTRL_CODE_RESET_FONT:
-            case EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
-            case EXT_CTRL_CODE_WAIT_SE:
-            case EXT_CTRL_CODE_FILL_WINDOW:
-            case EXT_CTRL_CODE_JPN:
-            case EXT_CTRL_CODE_ENG:
-            default:
-                break;
-            }
-            break;
-        case CHAR_DYNAMIC:
-        case PLACEHOLDER_BEGIN:
-            ++strPos;
-            break;
-        case CHAR_PROMPT_SCROLL:
-        case CHAR_PROMPT_CLEAR:
-            break;
-        case CHAR_KEYPAD_ICON:
-        case CHAR_EXTRA_SYMBOL:
-            ++strPos;
-        default:
-            ++width;
-            break;
-        }
-    } while (temp != EOS);
-
-    for (width = 0, strPos = 0; strPos < 8; ++strPos)
-    {
-        if (width < lineWidths[strPos])
-            width = lineWidths[strPos];
-    }
-
-    return (u8)(GetFontAttribute(fontId, FONTATTR_MAX_LETTER_WIDTH) + letterSpacing) * width;
 }
 
 static u32 (*GetFontWidthFunc(u8 fontId))(u16, bool32)
@@ -2126,9 +1942,6 @@ static const s8 sNarrowerFontIds[] =
     [FONT_SMALL] = FONT_SMALL_NARROW,
     [FONT_NORMAL] = FONT_NARROW,
     [FONT_SHORT] = FONT_SHORT_NARROW,
-    [FONT_SHORT_COPY_1] = FONT_SHORT_NARROW,
-    [FONT_SHORT_COPY_2] = FONT_SHORT_NARROW,
-    [FONT_SHORT_COPY_3] = FONT_SHORT_NARROW,
     [FONT_BRAILLE] = -1,
     [FONT_NARROW] = FONT_NARROWER,
     [FONT_SMALL_NARROW] = FONT_SMALL_NARROWER,

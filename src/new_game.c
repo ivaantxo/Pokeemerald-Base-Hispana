@@ -203,6 +203,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    gSaveBlock2Ptr->miningPlaces = 0xFFFFFFFF;
 }
 
 static void ResetMiniGamesRecords(void)

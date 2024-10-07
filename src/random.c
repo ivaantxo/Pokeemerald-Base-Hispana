@@ -258,3 +258,21 @@ u8 RandomWeightedIndex(u8 *weights, u8 length)
     }
     return 0;
 }
+
+u8 RandomMinMax(u8 min, u8 max) 
+{
+    return Random() % (max - min + 1) + min;
+}
+
+void ShuffleList(u16 *list, u8 count)
+{
+    u8 i;
+
+    for (i = (count - 1); i > 0; i--)
+    {
+        u8 j = Random() % (i + 1);
+        u16 arr = list[j];
+        list[j] = list[i];
+        list[i] = arr;
+    }
+}

@@ -2220,6 +2220,7 @@ void ShowFrontierManiacMessage(void)
 }
 
 // gSpecialVar_0x8005 and 0x8006 here are used by MoveElevator
+// difference fr
 void BufferBattleTowerElevatorFloors(void)
 {
     static const u16 sBattleTowerStreakThresholds[] = {
@@ -2229,6 +2230,13 @@ void BufferBattleTowerElevatorFloors(void)
     u8 i;
     u16 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
     u8 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
+
+    if (battleMode == FRONTIER_MODE_LINK_MULTIS) // This check is absent in the English version.
+    {
+        gSpecialVar_0x8005 = 4;
+        gSpecialVar_0x8006 = 5;
+        return;
+    }
 
     if (battleMode == FRONTIER_MODE_MULTIS && !FlagGet(FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER))
     {
@@ -2888,9 +2896,12 @@ void FrontierGamblerSetWonOrLost(bool8 won)
 
 void UpdateBattlePointsWindow(void)
 {
-    u8 string[32];
+    u8 string[32], *strPtr;
     u32 x;
-    StringCopy(ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->frontier.battlePoints, STR_CONV_MODE_RIGHT_ALIGN, 4), gText_BP);
+
+    strPtr = ConvertIntToDecimalStringN(string, gSaveBlock2Ptr->frontier.battlePoints, STR_CONV_MODE_RIGHT_ALIGN, 4);
+    *strPtr++ = CHAR_SPACE;
+    StringCopy(strPtr, gText_BP);
     x = GetStringRightAlignXOffset(FONT_NORMAL, string, 48);
     AddTextPrinterParameterized(sBattlePointsWindowId, FONT_NORMAL, string, x, 1, 0, NULL);
 }
@@ -3497,11 +3508,6 @@ bool8 AbnormalWeatherHasExpired(void)
         VarSet(VAR_ABNORMAL_WEATHER_STEP_COUNTER, steps);
         return FALSE;
     }
-}
-
-void Unused_SetWeatherSunny(void)
-{
-    SetCurrentAndNextWeather(WEATHER_SUNNY);
 }
 
 // All mart employees have a local id of 1, so function always returns 1

@@ -969,6 +969,7 @@ extern const u8 gText_ExpPoints[];
 extern const u8 gText_NextLv[];
 extern const u8 gText_Status[];
 extern const u8 gText_Power[];
+extern const u8 gText_Poder[];
 extern const u8 gText_Accuracy2[];
 extern const u8 gText_Appeal[];
 extern const u8 gText_Jam[];

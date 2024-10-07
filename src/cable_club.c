@@ -195,16 +195,6 @@ static bool32 CheckSioErrored(u8 taskId)
     return FALSE;
 }
 
-static void UNUSED Task_DelayedBlockRequest(u8 taskId)
-{
-    gTasks[taskId].data[0]++;
-    if (gTasks[taskId].data[0] == 10)
-    {
-        SendBlockRequest(BLOCK_REQ_SIZE_100);
-        DestroyTask(taskId);
-    }
-}
-
 static void Task_LinkupStart(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -1165,18 +1155,6 @@ void PlayerEnteredTradeSeat(void)
         CreateTask_EnterCableClubSeat(Task_StartWiredTrade);
 }
 
-static void UNUSED CreateTask_StartWiredTrade(void)
-{
-    CreateTask(Task_StartWiredTrade, 80);
-}
-
-// Implemented in Ruby/Sapphire
-void UNUSED Script_StartWiredTrade(void)
-{
-    // CreateTask_StartWiredTrade();
-    // ScriptContext_Stop();
-}
-
 void ColosseumPlayerSpotTriggered(void)
 {
     gLinkType = LINKTYPE_BATTLE;
@@ -1185,12 +1163,6 @@ void ColosseumPlayerSpotTriggered(void)
         CreateTask_EnterCableClubSeat(Task_StartWirelessCableClubBattle);
     else
         CreateTask_EnterCableClubSeat(Task_StartWiredCableClubBattle);
-}
-
-static UNUSED void CreateTask_EnterCableClubSeatNoFollowup(void)
-{
-    u8 UNUSED taskId = CreateTask(Task_EnterCableClubSeat, 80);
-    ScriptContext_Stop();
 }
 
 void Script_ShowLinkTrainerCard(void)
@@ -1222,7 +1194,7 @@ void Task_WaitForLinkPlayerConnection(u8 taskId)
     struct Task *task = &gTasks[taskId];
 
     task->tTimer++;
-    if (task->tTimer > 300)
+    if (task->tTimer > 480)
     {
         CloseLink();
         SetMainCallback2(CB2_LinkError);
@@ -1249,21 +1221,6 @@ void Task_WaitForLinkPlayerConnection(u8 taskId)
 }
 
 #undef tTimer
-
-static void Task_WaitExitToScript(u8 taskId)
-{
-    if (!gReceivedRemoteLinkPlayers)
-    {
-        ScriptContext_Enable();
-        DestroyTask(taskId);
-    }
-}
-
-static void UNUSED ExitLinkToScript(u8 taskId)
-{
-    SetCloseLinkCallback();
-    gTasks[taskId].func = Task_WaitExitToScript;
-}
 
 #define tTimer data[1]
 
