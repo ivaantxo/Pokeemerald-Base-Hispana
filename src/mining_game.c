@@ -111,31 +111,24 @@ static const u16 Bomba_Pal[] = INCBIN_U16("graphics/mining_game/sprites/bomba.gb
 
 //==========BG TEMPLATES==========//
 
-//enum BgsMineria
-//{
-//    BG_ROCAS,
-//    BG_FONDO
-//};
+enum BgMineria
+{
+    BG_ROCAS,
+    BG_FONDO
+};
 
 static const struct BgTemplate MiningGameBgTemplates[] =
 {
-    //[BG_TEXTO] =
-    //{
-    //    .bg = 0, 
-    //    .charBaseIndex = 0,
-    //    .mapBaseIndex = 15,
-    //    .priority = 0
-    //},
-//    [BG_ROCAS] =
+    [BG_ROCAS] =
     {
         .bg = 0, 
         .charBaseIndex = 0,
         .mapBaseIndex = 15,
         .priority = 0
     },
-//    [BG_FONDO] =
+    [BG_FONDO] =
     {
-        .bg = 3,
+        .bg = 1,
         .charBaseIndex = 3,
         .mapBaseIndex = 30,
         .priority = 2
@@ -655,21 +648,18 @@ static void LoadBGs_MiningGame(void)
 {
     InitBgsFromTemplates(0, MiningGameBgTemplates, ARRAY_COUNT(MiningGameBgTemplates));
 
-    LZ77UnCompVram(Bg_Gfx, (void*) BG_CHAR_ADDR(MiningGameBgTemplates[1].charBaseIndex));
-    LZ77UnCompVram(Bg_Map, (u16*) BG_SCREEN_ADDR(MiningGameBgTemplates[1].mapBaseIndex));
+    LZ77UnCompVram(Bg_Gfx, (void*) BG_CHAR_ADDR(MiningGameBgTemplates[BG_FONDO].charBaseIndex));
+    LZ77UnCompVram(Bg_Map, (u16*) BG_SCREEN_ADDR(MiningGameBgTemplates[BG_FONDO].mapBaseIndex));
 
     LoadPalette(Bg_Pal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
 
     ResetAllBgsCoordinates(); 
 
-    LoadBgTiles(0, Rocas_Gfx, 1024, DEST_TILES_STONES);
-    //LoadBgTiles(BG_ROCAS, Rocas_Gfx, 1024, DEST_TILES_STONES);
+    LoadBgTiles(BG_ROCAS, Rocas_Gfx, 1024, DEST_TILES_STONES);
     LoadPalette(GrietasRocas_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
 
-    //ShowBg(BG_ROCAS);
-    //ShowBg(BG_FONDO);
-    ShowBg(0);
-    ShowBg(3);
+    ShowBg(BG_ROCAS);
+    ShowBg(BG_FONDO);
 }
 
 #define WINDOW_TILES    0
@@ -798,14 +788,10 @@ void LoadRandomTilesStones(void)
 
             tileNum = CALC_TILE_NUM(statusStone);
 
-            FillBgTilemapBufferRect(0, tileNum, x, y, 1, 1, 1);
-            FillBgTilemapBufferRect(0, tileNum + 1, x + 1, y, 1, 1, 1);
-            FillBgTilemapBufferRect(0, tileNum + 2, x, y + 1, 1, 1, 1);
-            FillBgTilemapBufferRect(0, tileNum + 3, x + 1, y + 1, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum, x, y, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum + 1, x + 1, y, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum + 2, x, y + 1, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum + 3, x + 1, y + 1, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum, x, y, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum + 1, x + 1, y, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum + 2, x, y + 1, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum + 3, x + 1, y + 1, 1, 1, 1);
             
             x += 2;
             mining.tilesStones[i / 2][j / 2] = statusStone;
@@ -871,23 +857,17 @@ static void UpdateTileStone(u8 x, u8 y)
 
             mining.tilesStones[i][j] = (tileNum == DEST_TILES_STONES) ? 0 : statusValueUpdate;
 
-            FillBgTilemapBufferRect(0, tileNum, posX, posY, 1, 1, 1);
-            FillBgTilemapBufferRect(0, tileNum + 1, posX + 1, posY, 1, 1, 1);
-            FillBgTilemapBufferRect(0, tileNum + 2, posX, posY + 1, 1, 1, 1);
-            FillBgTilemapBufferRect(0, tileNum + 3, posX + 1, posY + 1, 1, 1, 1);
-
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum, posX, posY, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum + 1, posX + 1, posY, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum + 2, posX, posY + 1, 1, 1, 1);
-            //FillBgTilemapBufferRect(BG_ROCAS, tileNum + 3, posX + 1, posY + 1, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum, posX, posY, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum + 1, posX + 1, posY, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum + 2, posX, posY + 1, 1, 1, 1);
+            FillBgTilemapBufferRect(BG_ROCAS, tileNum + 3, posX + 1, posY + 1, 1, 1, 1);
 
             countColumn += 1;
         }
         countRow += 1;
         countColumn = (currentColumn > 0) ? 0 : 1;
     }
-    ScheduleBgCopyTilemapToVram(0);
-    //ScheduleBgCopyTilemapToVram(BG_ROCAS);
+    ScheduleBgCopyTilemapToVram(BG_ROCAS);
     CopyWindowToVram(WINDOW_TILES, COPYWIN_FULL); 
 }
 
