@@ -288,7 +288,7 @@ void SpriteCallbackKoffing(struct Sprite *sprite)
             DestroySprite(sprite);
         }
 
-        if(++sprite->sTimer % 2 == 0)
+        if (++sprite->sTimer % 2 == 0)
         {
             sprite->x -= 2;
         }
@@ -366,7 +366,7 @@ static void DestroySpritesGame(void)
   
     for (i = 0; i < MAX_NUM_KOFFING_SPRITES; i++)
     {
-        if(tutorialObj.koffingSpritesId[i] == 0xFF)
+        if (tutorialObj.koffingSpritesId[i] == 0xFF)
             continue;
         DestroySprite(&gSprites[tutorialObj.koffingSpritesId[i]]);
         tutorialObj.koffingSpritesId[i] = 0xFF;
@@ -374,7 +374,7 @@ static void DestroySpritesGame(void)
 
     for (i = 0; i < MAX_NUM_BEAM_SPRITES; i++)
     {
-        if(tutorialObj.beamSpritesId[i] == 0xFF)
+        if (tutorialObj.beamSpritesId[i] == 0xFF)
             continue;
         DestroySprite(&gSprites[tutorialObj.beamSpritesId[i]]);
         tutorialObj.beamSpritesId[i] = 0xFF;
@@ -616,7 +616,7 @@ static void HandleMovementZubat(void)
 
     if (JOY_NEW(A_BUTTON))
     {
-        if(tutorialObj.countBeam < MAX_NUM_BEAM_SPRITES)
+        if (tutorialObj.countBeam < MAX_NUM_BEAM_SPRITES)
         {
             tutorialObj.beamSpritesId[tutorialObj.countBeam] = CreateBeamSprite();
             gSprites[tutorialObj.beamSpritesId[tutorialObj.countBeam]].sBeamIndex = tutorialObj.countBeam;
@@ -659,7 +659,7 @@ static void Task_MainWaitFadeIn(u8 taskId)
 
 static void Task_RemoveWindow(u8 taskId)
 {
-    if(!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
+    if (!RunTextPrintersAndIsPrinter0Active() && JOY_NEW(A_BUTTON))
     {
         ClearDialogWindowAndFrameToTransparent(WINDOW_MSG, TRUE);
         ClearStdWindowAndFrameToTransparent(WINDOW_MSG, FALSE);
@@ -687,24 +687,24 @@ static void Task_StartGame(u8 taskId)
 
 static void Task_MovementBgs(u8 taskId)
 {
-    if(!HasLivesToContinue())
+    if (!HasLivesToContinue())
     {
         gTasks[taskId].tTimer = 0;
         gTasks[taskId].func = Task_ZubatFall;
         PlaySE(SE_RG_CARD_FLIP);
     }
 
-    if(gTasks[taskId].tTimer % 4 == 0) 
+    if (gTasks[taskId].tTimer % 4 == 0) 
     {
         SetGpuReg(REG_OFFSET_BG1HOFS, ++gTasks[taskId].tBG1HOFS);
     }
 
-    if(gTasks[taskId].tTimer % 8 == 0) 
+    if (gTasks[taskId].tTimer % 8 == 0) 
     {
         SetGpuReg(REG_OFFSET_BG2HOFS, ++gTasks[taskId].tBG2HOFS);
     }
 
-    if(gTasks[taskId].tTimer % 30 == 0)
+    if (gTasks[taskId].tTimer % 30 == 0)
     {
         tutorialObj.distance += 1;
         PrintDistance();
