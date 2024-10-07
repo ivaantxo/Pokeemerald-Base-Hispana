@@ -19,7 +19,7 @@ Además de los contenidos proporcionados por el equipo de RHH, PBH incluye sus p
 ![tuto1](https://i.ibb.co/CKVn7WY/imagen-2024-09-30-201410545.png)
 ![tuto2](https://i.ibb.co/6DR8WLx/imagen-2024-09-30-201514267.png)
 
-- Rama de iconos: Los iconos de los Pokémon han sido sustituidos por sus sprites para el OW. Esto tiene muchas ventajas: Se reduce el número de paletas que hay que editar de un Pokémon, los iconos adoptan la paleta shiny automáticamente, se tiene que editar menos gráficos de cualquier Pokémon... Además, contamos con versiones de 64x64 para followers grandes para el OW. Estos son configurables con OW_LARGE_OW_SUPPORT, aunque en cualquier caso, todos los sprites para el OW de los Pokémon serán 32x32.
+- Rama de iconos: Los iconos de los Pokémon han sido sustituidos por sus sprites para el OW. Esto tiene muchas ventajas: Se reduce el número de paletas que hay que editar de un Pokémon, los iconos adoptan la paleta shiny automáticamente, se tiene que editar menos gráficos de cualquier Pokémon... Además, contamos con versiones de 64x64 para followers grandes para el OW. Estos son configurables con OW_LARGE_OW_SUPPORT, aunque en cualquier caso, todos los sprites para el OW de los Pokémon serán 32x32. Como contrapartida, esta rama ocupa más ROM, así que es algo que tienes que tener en cuenta.
 
 ![Iconos_huevos](https://i.ibb.co/dbZ9qsr/imagen-2024-09-30-201211859.png)
 ![Iconos](https://i.ibb.co/jbM4KPD/imagen-2024-09-30-201132866.png)
