@@ -104,9 +104,7 @@
       "flag": "FLAG_HIDE_ROUTE_101_BOY"
     }
   ],
-  "warp_events": [
-
-  ],
+  "warp_events": [],
   "coord_events": [
     {
       "type": "trigger",
@@ -198,102 +196,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route101_EventScript_RouteSign"
-    },
-    {
-      "type": "sign",
-      "x": 4,
-      "y": 6,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria12"
-    },
-    {
-      "type": "sign",
-      "x": 2,
-      "y": 6,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria11"
-    },
-    {
-      "type": "sign",
-      "x": 10,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria10"
-    },
-    {
-      "type": "sign",
-      "x": 8,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria9"
-    },
-    {
-      "type": "sign",
-      "x": 6,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria8"
-    },
-    {
-      "type": "sign",
-      "x": 4,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria7"
-    },
-    {
-      "type": "sign",
-      "x": 2,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria6"
-    },
-    {
-      "type": "sign",
-      "x": 10,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria5"
-    },
-    {
-      "type": "sign",
-      "x": 8,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria4"
-    },
-    {
-      "type": "sign",
-      "x": 6,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria3"
-    },
-    {
-      "type": "sign",
-      "x": 4,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria2"
-    },
-    {
-      "type": "sign",
-      "x": 2,
-      "y": 2,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_Mineria1"
     }
   ]
 }
