@@ -164,10 +164,9 @@ static void RunTimeBasedEvents(s16 *data)
             tState--;
         break;
     }
-    if ((RtcGetCurrentHour() == 0) && (RtcGetCurrentMinute() == 0))
-    {
+    RtcCalcLocalTime();
+    if (gLocalTime.minutes == 0)
         gSaveBlock2Ptr->miningPlaces = 0xFFFFFFFF;
-    }
 }
 
 static void Task_RunTimeBasedEvents(u8 taskId)

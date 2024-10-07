@@ -39,6 +39,10 @@
 #include "item.h"
 #include "event_data.h"
 
+//Los sitios donde has minado tienen un periodo de tiempo en el que no se puede minar. Por defecto, cada hora en punto se reinician. Jugando con FakeRTC no hay problema,
+//pero si juegas con RTC (el tiempo normal), para que se reinicien la consola debe estar encendida a cualquier hora en punto. Podría darse el caso de que alguien jugara
+// de 8:01 a 8:59 minutos, y no se le actualizaría. Esto se puede configurar en la función static void RunTimeBasedEvents(s16 *data), que es la que reinicia los puntos de minería.
+
 //==========FUNCIONES STATIC==========//
 
 static void Task_FadeIn(u8 taskId);
