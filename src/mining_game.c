@@ -82,9 +82,6 @@ static EWRAM_DATA struct MiningGame mining = {0};
 
 const u8 sWallDestroy[] = _("¡El muro se ha derrumbado!");
 const u8 sMiningGetItems[] = _("Has obtenido {STR_VAR_1}.");
-const u8 gText_DescMineria[] = _("¡Mira, una pared cubierta de rocas!\n"
-                                 "Parece que hay objetos debajo…\p"
-                                 "Cambia de herramientas con {L_BUTTON} y {R_BUTTON}.");
 
 //==========BG GRAPHICS==========//
 
@@ -970,15 +967,15 @@ static void Task_MainHandle(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        if(mining.toolType == BOMBA){
+        if (mining.toolType == BOMBA)
             TryCreateSpriteBomba();
-        }else{
+        else
+        {
             StartSpriteAnim(&gSprites[mining.cursorSpriteId], mining.toolType + 1);
             UpdateTileStone(mining.blockX, mining.blockY);
             UpdateGrietas();
             TryCreateSpriteBomba();
         }
-
     }
 }
 
