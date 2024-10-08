@@ -328,6 +328,7 @@ bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
 
 u8 GetTimeOfDay(void)
 {
+    UpdateTimeOfDay();
     return gTimeOfDay;
 }
 
