@@ -1035,10 +1035,10 @@ static void Task_FadeOut(u8 taskId)
         gTasks[taskId].tWindowId = AddWindow(&sWindowTemplate_MsgBox);
 
         LoadMessageBoxGfx(gTasks[taskId].tWindowId, 252, BG_PLTT_ID(15));
-        NewGameBirchSpeech_ShowDialogueWindow(gTasks[taskId].tWindowId, TRUE);
+        //NewGameBirchSpeech_ShowDialogueWindow(gTasks[taskId].tWindowId, TRUE);
         PutWindowTilemap(gTasks[taskId].tWindowId);
         CopyWindowToVram(gTasks[taskId].tWindowId, COPYWIN_GFX);
-        NewGameBirchSpeech_ClearWindow(gTasks[taskId].tWindowId);
+        //NewGameBirchSpeech_ClearWindow(gTasks[taskId].tWindowId);
         StringExpandPlaceholders(gStringVar4, sWallDestroy);
         AddTextPrinterForMessage(TRUE);
 
