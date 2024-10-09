@@ -934,6 +934,44 @@ gBattleAnimMove_ToxicSpikes::
 	end
 
 gBattleAnimMove_HeartSwap::
+	loadspritegfx ANIM_TAG_RED_HEART
+	loadspritegfx ANIM_TAG_PINKVIO_ORB
+	loadspritegfx ANIM_TAG_SPARKLE_2
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 3, 0, 8, RGB(31, 24, 26)
+	createvisualtask AnimTask_HeartSwap, 3, ANIM_TARGET
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB_WHITE, 12, 3, 1
+	loopsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER, 10, 8
+	delay 16
+	createvisualtask AnimTask_HeartSwap, 3, ANIM_ATTACKER
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_ATTACKER, RGB_WHITE, 12, 3, 1
+	waitforvisualfinish
+	createsprite gGrantingStarsSpriteTemplate, ANIM_ATTACKER, 2, -15, 0, 0, 0, 32, 60
+	createsprite gGrantingStarsSpriteTemplate, ANIM_TARGET, 2, -15, 0, 0, 0, 32, 60
+	delay 8
+	createsprite gGrantingStarsSpriteTemplate, ANIM_ATTACKER, 2, 12, -5, 0, 0, 32, 60
+	createsprite gGrantingStarsSpriteTemplate, ANIM_TARGET, 2, 12, -5, 0, 0, 32, 60
+	delay 4
+	playsewithpan SE_SHINY, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_ATTACKER, RGB(31, 25, 27), 12, 3, 1
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -3, -3, 16, ANIM_ATTACKER, 0
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(31, 25, 27), 12, 3, 1
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -3, -3, 16, ANIM_TARGET, 0
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 160, -32
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -256, -40
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 128, -16
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 3, 8, 0, RGB(31, 24, 26)
+	createsprite gRedHeartCharmSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
+	playsewithpan SE_M_MORNING_SUN, SOUND_PAN_ATTACKER
+	delay 15
+	createsprite gRedHeartCharmSpriteTemplate, ANIM_ATTACKER, 3, -20, 20
+	playsewithpan SE_M_CHARM, SOUND_PAN_ATTACKER
+	delay 15
+	createsprite gRedHeartCharmSpriteTemplate, ANIM_ATTACKER, 3, 20, 20
+	playsewithpan SE_M_CHARM, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	clearmonbg ANIM_ATTACKER
+	clearmonbg ANIM_TARGET
+	blendoff
 	end
 
 gBattleAnimMove_AquaRing::
