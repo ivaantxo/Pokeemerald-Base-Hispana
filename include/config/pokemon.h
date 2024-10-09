@@ -40,11 +40,11 @@
 
 // Otras configuraciones
 #define P_CUSTOM_GENDER_DIFF_ICONS       TRUE        // Si es TRUE, dará a más Pokémon íconos personalizados para sus formas femeninas, es decir, Hippopotas y Hippowdon
-#define P_FOOTPRINTS                     TRUE        // Si es TRUE, los Pokémon tendrán huellas (como era el caso hasta Gen 5 y en BDSP). Deshabilitar esto ahorra algo de espacio en la ROM.
-#define P_CRIES_ENABLED                  TRUE        // Si es TRUE, los Pokémon tendrán llantos. Deshabilitar esto ahorra alrededor de MUCHO espacio en la ROM (¡más del 25%!), pero en su lugar recomendamos deshabilitar familias de Pokémon individuales no utilizadas en include/config/species_enabled.h.
+#define P_FOOTPRINTS                     FALSE        // Si es TRUE, los Pokémon tendrán huellas (como era el caso hasta Gen 5 y en BDSP). Deshabilitar esto ahorra algo de espacio en la ROM.
+#define P_CRIES_ENABLED                  FALSE        // Si es TRUE, los Pokémon tendrán llantos. Deshabilitar esto ahorra alrededor de MUCHO espacio en la ROM (¡más del 25%!), pero en su lugar recomendamos deshabilitar familias de Pokémon individuales no utilizadas en include/config/species_enabled.h.
 #define P_LEGENDARY_PERFECT_IVS          GEN_LATEST  // Desde Gen 6, los Legendarios, Mitológicos y Bestias Ultra encontradas en la naturaleza o recibidas como regalos tienen al menos 3 IVs perfectos.
 #define P_EV_CAP                         GEN_LATEST  // Desde Gen 6, el máximo de EVs por estadística es 252 en lugar de 255.
-#define P_SHOW_TERA_TYPE                 GEN_8       // Desde Gen 9, el Tipo Tera se muestra en la pantalla de resumen.
+#define P_SHOW_TERA_TYPE                 GEN_9       // Desde Gen 9, el Tipo Tera se muestra en la pantalla de resumen.
 #define P_TM_LITERACY                    GEN_LATEST  // Desde Gen 6, Pokémon que no pueden aprender MTs pueden aprender MTs que enseñan movimientos que están en sus aprendizajes por nivel.
 #define P_CAN_FORGET_HIDDEN_MOVE         FALSE       // Si es TRUE, los Pokémon pueden olvidar cualquier movimiento, incluso si es un Movimiento Oculto.
 #define P_EGG_CYCLE_LENGTH               GEN_LATEST  // Desde Gen 8, los ciclos de huevo toman la mitad de pasos que antes.
