@@ -1320,8 +1320,6 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
 void CB2_NewGameBirchSpeech_FromNewMainMenu(void) // Combination of the Above function and another to properly load the new game birch code from a seperate menu
 {
     u8 taskId;
-    u8 spriteId;
-    u16 savedIme;
 
     ResetBgsAndClearDma3BusyFlags(0);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
