@@ -7710,6 +7710,17 @@ gBattleAnimMove_NobleRoar::
 	end
 
 gBattleAnimMove_IonDeluge::
+	loadspritegfx ANIM_TAG_IONS
+	loopsewithpan SE_M_THUNDERBOLT2, SOUND_PAN_ATTACKER, 10, 12
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, (F_PAL_BG | F_PAL_BATTLERS_2), 2, 0, 4, RGB_YELLOW
+	waitforvisualfinish
+	createvisualtask AnimTask_CreateIons, 2, 0, 3, 120
+	createvisualtask AnimTask_CreateIons, 2, 0, 3, 120
+	delay 120
+	delay 30
+	waitforvisualfinish
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, (F_PAL_BG | F_PAL_BATTLERS_2), 2, 4, 0, RGB_YELLOW
+	waitforvisualfinish
 	end
 
 gBattleAnimMove_ParabolicCharge::
