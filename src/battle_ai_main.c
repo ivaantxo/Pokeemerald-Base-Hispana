@@ -3634,12 +3634,12 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         {
             switch (ShouldPivot(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, movesetIndex))
             {
-            case 0: // no
+            case DONT_PIVOT:
                 ADJUST_SCORE(-10);    // technically should go in CheckBadMove, but this is easier/less computationally demanding
                 break;
-            case 1: // maybe
+            case CAN_TRY_PIVOT:
                 break;
-            case 2: // yes
+            case SHOULD_PIVOT:
                 ADJUST_SCORE(BEST_EFFECT);
                 break;
             }
