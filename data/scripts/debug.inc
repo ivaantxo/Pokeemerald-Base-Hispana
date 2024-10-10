@@ -138,10 +138,19 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
+	setflag B_FLAG_TERA_ORB_NO_COST
+	giveitem ITEM_TERA_ORB
 	release
 	end
 
 Debug_EventScript_Script_2::
+	setflag B_FLAG_DYNAMAX_BATTLE
+	giveitem ITEM_DYNAMAX_BAND
+	giveitem ITEM_DYNAMAX_CANDY
+	giveitem ITEM_DYNAMAX_CANDY
+	giveitem ITEM_DYNAMAX_CANDY
+	giveitem ITEM_DYNAMAX_CANDY
+	giveitem ITEM_DYNAMAX_CANDY
 	release
 	end
 

@@ -190,9 +190,9 @@
 #define B_FLAG_NO_BAG_USE           0     // Si esta flag está activada, la capacidad de usar la bolsa en batalla está desactivada.
 #define B_FLAG_NO_CATCHING          0     // Si esta flag está activada, la capacidad de capturar Pokémon salvajes está desactivada.
 #define B_FLAG_AI_VS_AI_BATTLE      0     // Si esta flag está activada, los Pokémon del jugador serán controlados por la IA en las siguientes batallas.
-#define B_FLAG_DYNAMAX_BATTLE       0     // Si esta flag está activada, la habilidad de Dynamax en batalla está habilitada para todos los entrenadores.
-#define B_FLAG_TERA_ORB_CHARGED     0     // Si esta flag está activada, el Tera Orb está cargado. Se activa automáticamente al curar y se borra al Terastalizar una vez configurado.
-#define B_FLAG_TERA_ORB_NO_COST     0     // Si esta flag está activada, el Tera Orb no usa su carga al Terastalizar. En S/V, esto ocurre después de un evento con Terapagos.
+#define B_FLAG_DYNAMAX_BATTLE       0x21     // Si esta flag está activada, la habilidad de Dynamax en batalla está habilitada para todos los entrenadores.
+#define B_FLAG_TERA_ORB_CHARGED     0    // Si esta flag está activada, el Tera Orb está cargado. Se activa automáticamente al curar y se borra al Terastalizar una vez configurado.
+#define B_FLAG_TERA_ORB_NO_COST     0x20     // Si esta flag está activada, el Tera Orb no usa su carga al Terastalizar. En S/V, esto ocurre después de un evento con Terapagos.
 
 // Configuración de variables
 // Para usar las siguientes características en scripting, reemplaza los 0s con el ID de la variable que le asignas.
