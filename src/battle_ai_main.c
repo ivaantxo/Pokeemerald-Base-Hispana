@@ -477,6 +477,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     // get/assume all battler data and simulate AI damage
     battlersCount = gBattlersCount;
 
+    AI_DATA->aiCalcInProgress = TRUE;
     for (battlerAtk = 0; battlerAtk < battlersCount; battlerAtk++)
     {
         if (!IsBattlerAlive(battlerAtk))
@@ -492,6 +493,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
 
         SetBattlerAiMovesData(aiData, battlerAtk, battlersCount);
     }
+    AI_DATA->aiCalcInProgress = FALSE;
 }
 
 static bool32 AI_SwitchMonIfSuitable(u32 battler, bool32 doubleBattle)
@@ -1017,19 +1019,19 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             RETURN_SCORE_MINUS(10);
 
         // terrain & effect checks
-        if (AI_IsTerrainAffected(battlerDef, STATUS_FIELD_ELECTRIC_TERRAIN))
+        if (IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_ELECTRIC_TERRAIN))
         {
             if (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN)
                 RETURN_SCORE_MINUS(20);
         }
 
-        if (AI_IsTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN))
+        if (IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN))
         {
             if (IsNonVolatileStatusMoveEffect(moveEffect) || IsConfusionMoveEffect(moveEffect))
                 RETURN_SCORE_MINUS(20);
         }
 
-        if (AI_IsTerrainAffected(battlerAtk, STATUS_FIELD_PSYCHIC_TERRAIN) && atkPriority > 0)
+        if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_PSYCHIC_TERRAIN) && atkPriority > 0)
         {
             RETURN_SCORE_MINUS(20);
         }
@@ -1250,10 +1252,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (isDoubleBattle)
             {
                 if (!(IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GRASS)
-                  && AI_IsBattlerGrounded(battlerAtk)
+                  && IsBattlerGrounded(battlerAtk)
                   && (BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_ATK) || BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_SPATK)))
                   && !(IS_BATTLER_OF_TYPE(BATTLE_PARTNER(battlerAtk), TYPE_GRASS)
-                  && AI_IsBattlerGrounded(BATTLE_PARTNER(battlerAtk))
+                  && IsBattlerGrounded(BATTLE_PARTNER(battlerAtk))
                   && aiData->abilities[BATTLE_PARTNER(battlerAtk)] != ABILITY_CONTRARY
                   && (BattlerStatCanRise(BATTLE_PARTNER(battlerAtk), aiData->abilities[BATTLE_PARTNER(battlerAtk)], STAT_ATK)
                    || BattlerStatCanRise(BATTLE_PARTNER(battlerAtk), aiData->abilities[BATTLE_PARTNER(battlerAtk)], STAT_SPATK))))
@@ -1262,7 +1264,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 }
             }
             else if (!(IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GRASS)
-              && AI_IsBattlerGrounded(battlerAtk)
+              && IsBattlerGrounded(battlerAtk)
               && (BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_ATK) || BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_SPATK))))
             {
                 ADJUST_SCORE(-10);
@@ -3947,7 +3949,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_SAFEGUARD:
-        if (!AI_IsTerrainAffected(battlerAtk, STATUS_FIELD_MISTY_TERRAIN) || !IsBattlerGrounded(battlerAtk))
+        if (!IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_MISTY_TERRAIN) || !IsBattlerGrounded(battlerAtk))
             ADJUST_SCORE(DECENT_EFFECT); // TODO: check if opp has status move?
         //if (CountUsablePartyMons(battlerDef) != 0)
             //ADJUST_SCORE(8);
