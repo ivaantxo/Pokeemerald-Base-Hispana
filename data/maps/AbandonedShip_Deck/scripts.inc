@@ -4,5 +4,6 @@ AbandonedShip_Deck_MapScripts::
 
 AbandonedShip_Deck_OnTransition:
 	setflag FLAG_LANDMARK_ABANDONED_SHIP
+	setflag FLAG_VISITED_ROUTE108
 	end
 

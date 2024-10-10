@@ -114,6 +114,8 @@ bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
 void BlendRegionMap(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
+void RegionMap_GetSectionCoordsFromCurrFieldPos(u16* mapSectionId, u16* cursorPosX, u16* cursorPosY, bool8* playerIsInCave);
+u8 GetMapsecType(u16 mapSecId);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 

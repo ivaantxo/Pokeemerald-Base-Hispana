@@ -16,6 +16,8 @@ DewfordTown_MapScripts::
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
+	setflag FLAG_VISITED_ROUTE106
+	setflag FLAG_VISITED_ROUTE107
 	end
 
 DewfordTown_EventScript_Briney::

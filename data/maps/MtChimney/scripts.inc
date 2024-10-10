@@ -12,6 +12,7 @@ MtChimney_MapScripts::
 
 MtChimney_OnTransition:
 	setvar VAR_JAGGED_PASS_ASH_WEATHER, 1
+	setflag FLAG_VISITED_MT_CHIMNEY
 	end
 
 MtChimney_OnResume:

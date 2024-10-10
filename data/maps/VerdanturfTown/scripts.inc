@@ -6,6 +6,7 @@ VerdanturfTown_MapScripts::
 
 VerdanturfTown_OnTransition:
 	setflag FLAG_VISITED_VERDANTURF_TOWN
+	setflag FLAG_VISITED_ROUTE117
 	setvar VAR_CONTEST_HALL_STATE, 0
 	end
 

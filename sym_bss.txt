@@ -52,6 +52,7 @@
 	.include "src/berry_fix_program.o"
 	.include "src/pokenav_conditions_gfx.o"
 	.include "src/pokenav_ribbons_summary.o"
+	.include "src/soar.o"
 	.include "src/ereader_helpers.o"
 	.include "src/faraway_island.o"
 	.include "src/m4a_1.o"
