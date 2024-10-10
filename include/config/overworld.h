@@ -79,7 +79,7 @@
 #define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    FALSE    // Si se establece en TRUE, los Pokémon de la pirámide de batalla se generarán aleatoriamente en función del desafío de la ronda en lugar de estar codificados en src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (o open_level_wild_mons.h)
 
 // Configuración de ventanas emergentes del mapa
-#define OW_POPUP_GENERATION        GEN_3    // Diferentes generaciones muestran los nombres de ubicación en las ventanas emergentes del mundo exterior de manera diferente.
+#define OW_POPUP_GENERATION        GEN_5    // Diferentes generaciones muestran los nombres de ubicación en las ventanas emergentes del mundo exterior de manera diferente.
                                             // Solo las opciones actuales son GEN_3 y GEN_5, todas las demás se ajustarán a las ventanas emergentes de Gen3.
 
 // Configuración de ventanas emergentes del mapa Gen5
@@ -93,8 +93,8 @@
 
 // Configuración
 #define OW_POPUP_BW_COLOR          OW_POPUP_BW_COLOR_BLACK  // B2W2 usan diferentes colores para sus ventanas emergentes del mapa.
-#define OW_POPUP_BW_TIME_MODE      OW_POPUP_BW_TIME_NONE    // Determina qué tipo de hora se muestra.
-#define OW_POPUP_BW_ALPHA_BLEND    FALSE                    // Habilita el mezclado alfa/transparencia para las ventanas emergentes. Principalmente destinado a usarse con la opción de color negro.
+#define OW_POPUP_BW_TIME_MODE      OW_POPUP_BW_TIME_24_HR    // Determina qué tipo de hora se muestra.
+#define OW_POPUP_BW_ALPHA_BLEND    TRUE                    // Habilita el mezclado alfa/transparencia para las ventanas emergentes. Principalmente destinado a usarse con la opción de color negro.
 
 // Centro Pokémon
 #define OW_IGNORE_EGGS_ON_HEAL     GEN_LATEST               // En Gen 4+, la enfermera en el Centro Pokémon no cura los Huevos en la máquina de curación.
