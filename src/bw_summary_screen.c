@@ -370,7 +370,7 @@ static const u8 sMemoMiscTextColor[]                        = _("{COLOR WHITE}{S
 static const u8 sStatsHPLayout[]                            = _("{DYNAMIC 0}/{DYNAMIC 1}");
 static const u8 sStatsHPIVEVLayout[]                        = _("{DYNAMIC 0}");
 static const u8 sStatsNonHPLayout[]                         = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}\n{DYNAMIC 3}\n{DYNAMIC 4}");
-static const u8 sMovesPPLayout[]                            = _("{PP}{CLEAR_TO 31}{DYNAMIC 0}/{DYNAMIC 1}");
+static const u8 sMovesPPLayout[]                            = _("PP{CLEAR_TO 31}{DYNAMIC 0}/{DYNAMIC 1}");
 
 #if BW_SUMMARY_DECAP == TRUE
 static const u8 sText_Cancel[]                              = _("Cancel");

@@ -6245,7 +6245,7 @@ static bool8 ShouldSkipFriendshipChange(void)
 #define ALLOC_FAIL_BUFFER (1 << 0)
 #define ALLOC_FAIL_STRUCT (1 << 1)
 
-struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void)
+struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode)
 {
     u32 i, j;
     u8 failureFlags;
@@ -6318,7 +6318,7 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void)
     return sMonSpritesGfxManager;
 }
 
-void DestroyMonSpritesGfxManager(void)
+void DestroyMonSpritesGfxManager(u8 managerId)
 {
     struct MonSpritesGfxManager *gfx;
 
@@ -6341,7 +6341,7 @@ void DestroyMonSpritesGfxManager(void)
     }
 }
 
-u8 *MonSpritesGfxManager_GetSpritePtr(void)
+u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum)
 {
     struct MonSpritesGfxManager *gfx = sMonSpritesGfxManager;
     if (gfx->active == FALSE)
