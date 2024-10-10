@@ -1344,42 +1344,6 @@ u32 AI_DecideHoldEffectForTurn(u32 battlerId)
     return holdEffect;
 }
 
-bool32 AI_IsTerrainAffected(u32 battlerId, u32 flags)
-{
-    if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
-        return FALSE;
-    else if (!(gFieldStatuses & flags))
-        return FALSE;
-    return AI_IsBattlerGrounded(battlerId);
-}
-
-// different from IsBattlerGrounded in that we don't always know battler's hold effect or ability
-bool32 AI_IsBattlerGrounded(u32 battlerId)
-{
-    u32 holdEffect = AI_DATA->holdEffects[battlerId];
-
-    if (holdEffect == HOLD_EFFECT_IRON_BALL)
-        return TRUE;
-    else if (gFieldStatuses & STATUS_FIELD_GRAVITY)
-        return TRUE;
-    else if (gStatuses3[battlerId] & STATUS3_ROOTED)
-        return TRUE;
-    else if (gStatuses3[battlerId] & STATUS3_SMACKED_DOWN)
-        return TRUE;
-    else if (gStatuses3[battlerId] & STATUS3_TELEKINESIS)
-        return FALSE;
-    else if (gStatuses3[battlerId] & STATUS3_MAGNET_RISE)
-        return FALSE;
-    else if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
-        return FALSE;
-    else if (AI_DATA->abilities[battlerId] == ABILITY_LEVITATE)
-        return FALSE;
-    else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
-        return FALSE;
-    else
-        return TRUE;
-}
-
 bool32 DoesBattlerIgnoreAbilityChecks(u32 atkAbility, u32 move)
 {
     if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
