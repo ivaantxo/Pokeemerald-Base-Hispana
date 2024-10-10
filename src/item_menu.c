@@ -255,9 +255,9 @@ static const struct ListMenuTemplate sItemListMenu =
     .item_X = 8,
     .cursor_X = 0,
     .upText_Y = 1,
-    .cursorPal = 13,
+    .cursorPal = 10,
     .fillValue = 0,
-    .cursorShadowPal = 3,
+    .cursorShadowPal = 8,
     .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
@@ -380,16 +380,18 @@ enum {
     COLORID_NORMAL,
     COLORID_POCKET_NAME,
     COLORID_GRAY_CURSOR,
+    COLORID_ITEM_LIST,
     COLORID_UNUSED,
     COLORID_TMHM_INFO,
     COLORID_NONE = 0xFF
 };
 static const u8 sFontColorTable[][3] = {
                             // bgColor, textColor, shadowColor
-    [COLORID_NORMAL]      = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_6,      TEXT_COLOR_LIGHT_GRAY},
-    [COLORID_POCKET_NAME] = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_6,      TEXT_COLOR_RED},
-    [COLORID_GRAY_CURSOR] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_GRAY, TEXT_DYNAMIC_COLOR_6},
-    [COLORID_UNUSED]      = {TEXT_COLOR_TRANSPARENT,   TEXT_COLOR_WHITE,      TEXT_COLOR_TRANSPARENT},
+    [COLORID_NORMAL]      = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_LIGHT_GRAY},
+    [COLORID_POCKET_NAME] = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1,      TEXT_COLOR_LIGHT_GRAY},
+    [COLORID_GRAY_CURSOR] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_DARK_GRAY},
+    [COLORID_ITEM_LIST]   = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1,      TEXT_COLOR_LIGHT_GRAY},
+    [COLORID_UNUSED]      = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1,      TEXT_COLOR_BLUE},
     [COLORID_TMHM_INFO]   = {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_5,  TEXT_DYNAMIC_COLOR_1}
 };
 
@@ -401,7 +403,7 @@ static const struct WindowTemplate sDefaultBagWindows[] =
         .tilemapTop = 2,
         .width = 15,
         .height = 11,
-        .paletteNum = 1,
+        .paletteNum = 14,
         .baseBlock = 0x27,//39
     },
     [WIN_DESCRIPTION] = {
@@ -410,7 +412,7 @@ static const struct WindowTemplate sDefaultBagWindows[] =
         .tilemapTop = 13,
         .width = 26,
         .height = 6,
-        .paletteNum = 1,
+        .paletteNum = 0,
         .baseBlock = 204,//279
     },
     [WIN_POCKET_NAME] = {
@@ -419,7 +421,7 @@ static const struct WindowTemplate sDefaultBagWindows[] =
         .tilemapTop = 1,
         .width = 8,
         .height = 2,
-        .paletteNum = 1,
+        .paletteNum = 0,
         .baseBlock = 378//0x1A1,
     },
     [WIN_TMHM_INFO_ICONS] = {
@@ -988,7 +990,7 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
             ConvertIntToDecimalStringN(gStringVar1, itemQuantity, STR_CONV_MODE_RIGHT_ALIGN, MAX_ITEM_DIGITS);
             StringExpandPlaceholders(gStringVar4, gText_xVar1);
             offset = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 119);
-            BagMenu_Print(windowId, FONT_NARROW, gStringVar4, offset, y, 0, 0, TEXT_SKIP_DRAW, COLORID_NORMAL);
+            BagMenu_Print(windowId, FONT_NARROW, gStringVar4, offset, y, 0, 0, TEXT_SKIP_DRAW, COLORID_UNUSED);
         }
         else
         {
@@ -1024,7 +1026,7 @@ static void BagMenu_PrintCursor(u8 listTaskId, u8 colorIndex)
 
 static void BagMenu_PrintCursorAtPos(u8 y, u8 colorIndex)
 {
-    if (colorIndex == COLORID_NONE)
+    if (colorIndex == COLORID_NORMAL)
         FillWindowPixelRect(WIN_ITEM_LIST, PIXEL_FILL(0), 0, y, GetMenuCursorDimensionByFont(FONT_NORMAL, 0), GetMenuCursorDimensionByFont(FONT_NORMAL, 1));
     else
         BagMenu_Print(WIN_ITEM_LIST, FONT_NORMAL, gText_SelectorArrow2, 0, y, 0, 0, 0, colorIndex);
