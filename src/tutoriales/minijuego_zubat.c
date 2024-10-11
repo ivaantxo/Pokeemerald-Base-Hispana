@@ -187,16 +187,12 @@ void SpriteCallbackZubat(struct Sprite *sprite)
     }
 
     if (sprite->sColision && --sprite->sTimer % 10 == 0)
-    {
         sprite->invisible = !sprite->invisible;
-        //PlayCry_Normal(CRY_KOFFING, 0);
-    }
 
     if (sprite->sTimer == 0)
     {
         sprite->sColision = FALSE;
         sprite->invisible = FALSE;
-        //PlayCry_Normal(CRY_KOFFING, 0);
     }
 }
 
@@ -227,10 +223,8 @@ void SpriteCallbackBeam(struct Sprite *sprite)
 {
     u8 idKoffing;
 
-    if (sprite->x  >= DISPLAY_WIDTH)
-    {
+    if (sprite->x >= DISPLAY_WIDTH)
         DestroySpriteBeam(sprite);
-    }
 
     idKoffing = IsBeamColisionKoffing(sprite);
     if (idKoffing != 0xFF)
@@ -240,10 +234,8 @@ void SpriteCallbackBeam(struct Sprite *sprite)
         PlaySE(SE_WALL_HIT); // Sonido que hace cuando Koffing se vuelve visible.
     }
 
-    if (++ sprite->sTimer % 2 == 0)
-    {
+    if (++sprite->sTimer % 2 == 0)
         sprite->x += 4;
-    }
 }
 
 static const struct SpriteTemplate sSpriteTemplateBeam =
@@ -283,9 +275,7 @@ static const union AnimCmd *const sAnims_KoffingSprite[] =
 void SpriteCallbackKoffing(struct Sprite *sprite)
 {
     if (!HasLivesToContinue())
-    {
         sprite->invisible = FALSE;
-    }
     else
     {
         if (sprite->x == 0)
@@ -295,9 +285,7 @@ void SpriteCallbackKoffing(struct Sprite *sprite)
         }
 
         if (++sprite->sTimer % 2 == 0)
-        {
             sprite->x -= 2;
-        }
     }
 }
 
@@ -429,7 +417,7 @@ static const struct BgTemplate TutorialBgTemplates[] =
     }
 };
 
-//========== SECCIÓN: BG LOAD FUNC ==========//
+//========== SECCIÓN: FUNCIONES DE CARGA DE BGS ==========//
 
 static void LoadBgs(void) // Esta función es la que carga los tiles y los tilemaps de los bgs, carga la paleta, y los muestra en pantalla. 
 {
@@ -475,7 +463,7 @@ static void CB2_Tutorial(void)
     UpdatePaletteFade();
 }
 
-//========== SECCIÓN: WINDOW LOAD FUNC ==========//
+//========== SECCIÓN: FUNCIONES DE CARGA DE WINDOWS ==========//
 
 // Aquí definimos las ventanas, en este caso 3. Como se ve en el tutorial, pueden usarse ventanas para muchas cosas: texto con vidas, texto con borde,
 // una zona más oscura o diferente de la pantalla, etc.
@@ -564,13 +552,9 @@ u8 GetZubatPositionY(u8 cord)
     u8 bottomEdge = gSprites[tutorialObj.zubatSpriteId].y + 16;
 
     if (cord == CORD_TOP)
-    {
         return (topEdge <= 0) ? 0 : gSprites[tutorialObj.zubatSpriteId].y;
-    }
     else //(cord == CORD_BOTTOM)
-    {
         return (bottomEdge >= DISPLAY_HEIGHT) ? DISPLAY_HEIGHT : gSprites[tutorialObj.zubatSpriteId].y;
-    }
 }
 
 u8 IsBeamColisionKoffing(struct Sprite *spriteBeam)
