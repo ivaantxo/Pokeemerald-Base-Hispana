@@ -2095,64 +2095,57 @@ const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
 const u8 gText_BattleSwitchWhich5[] = _("-");
 
-// Unused
-static const u8 *const sStatNamesTable2[] =
+const u8 gText_SafariBalls[] = _("{HIGHLIGHT DARK_GRAY}Safari Balls");
+const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT DARK_GRAY}Tienes: $" "{HIGHLIGHT DARK_GRAY}");
+const u8 gText_Sleep[] = _("sueño");
+const u8 gText_Poison[] = _("envenenamiento");
+const u8 gText_Burn[] = _("quemaduras");
+const u8 gText_Paralysis[] = _("parálisis");
+const u8 gText_Ice[] = _("congelación");
+const u8 gText_Confusion[] = _("confusión");
+const u8 gText_Love[] = _("enamoramiento");
+const u8 gText_SpaceAndSpace[] = _(" y ");
+const u8 gText_CommaSpace[] = _(", ");
+const u8 gText_Space2[] = _(" ");
+const u8 gText_LineBreak[] = _("\l");
+const u8 gText_NewLine[] = _("\n");
+const u8 gText_Are[] = _("no pueden");
+const u8 gText_Are2[] = _("no pueden");
+const u8 gText_BadEgg[] = _("Huevo malo");
+const u8 gText_BattleWallyName[] = _("Blasco");
+const u8 gText_Win[] = _("{HIGHLIGHT TRANSPARENT}Victoria");
+const u8 gText_Loss[] = _("{HIGHLIGHT TRANSPARENT}Derrota");
+const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Empate");
+static const u8 sText_SpaceIs[] = _(" es");
+static const u8 sText_ApostropheS[] = _("de");
+
+static const u8 sATypeMove_Table[NUMBER_OF_MON_TYPES][18] =
 {
-    gText_HP3, gText_SpAtk, gText_Attack,
-    gText_SpDef, gText_Defense, gText_Speed
+    [TYPE_NORMAL]   = _("un mov. Normal"),
+    [TYPE_FIGHTING] = _("un mov. Lucha"),
+    [TYPE_FLYING]   = _("un mov. Volador"),
+    [TYPE_POISON]   = _("un mov. Veneno"),
+    [TYPE_GROUND]   = _("un mov. Tierra"),
+    [TYPE_ROCK]     = _("un mov. Roca"),
+    [TYPE_BUG]      = _("un mov. Bicho"),
+    [TYPE_GHOST]    = _("un mov. Fantasma"),
+    [TYPE_STEEL]    = _("un mov. Acero"),
+    [TYPE_MYSTERY]  = _("un mov. (?)"),
+    [TYPE_FIRE]     = _("un mov. Fuego"),
+    [TYPE_WATER]    = _("un mov. Agua"),
+    [TYPE_GRASS]    = _("un mov. Planta"),
+    [TYPE_ELECTRIC] = _("un mov. Eléctrico"),
+    [TYPE_PSYCHIC]  = _("un mov. Psíquico"),
+    [TYPE_ICE]      = _("un mov. Hielo"),
+    [TYPE_DRAGON]   = _("un mov. Dragón"),
+    [TYPE_DARK]     = _("un mov. Siniestro"),
+    [TYPE_FAIRY]    = _("un mov. Hada"),
 };
-
-    const u8 gText_SafariBalls[] = _("{HIGHLIGHT DARK_GRAY}Safari Balls");
-    const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT DARK_GRAY}Tienes: $" "{HIGHLIGHT DARK_GRAY}");
-    const u8 gText_Sleep[] = _("sueño");
-    const u8 gText_Poison[] = _("envenenamiento");
-    const u8 gText_Burn[] = _("quemaduras");
-    const u8 gText_Paralysis[] = _("parálisis");
-    const u8 gText_Ice[] = _("congelación");
-    const u8 gText_Confusion[] = _("confusión");
-    const u8 gText_Love[] = _("enamoramiento");
-    const u8 gText_SpaceAndSpace[] = _(" y ");
-    const u8 gText_CommaSpace[] = _(", ");
-    const u8 gText_Space2[] = _(" ");
-    const u8 gText_LineBreak[] = _("\l");
-    const u8 gText_NewLine[] = _("\n");
-    const u8 gText_Are[] = _("no pueden");
-    const u8 gText_Are2[] = _("no pueden");
-    const u8 gText_BadEgg[] = _("Huevo malo");
-    const u8 gText_BattleWallyName[] = _("Blasco");
-    const u8 gText_Win[] = _("{HIGHLIGHT TRANSPARENT}Victoria");
-    const u8 gText_Loss[] = _("{HIGHLIGHT TRANSPARENT}Derrota");
-    const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Empate");
-    static const u8 sText_SpaceIs[] = _(" es");
-    static const u8 sText_ApostropheS[] = _("de");
-
-    static const u8 sATypeMove_Table[NUMBER_OF_MON_TYPES][18] =
-    {
-        [TYPE_NORMAL]   = _("un mov. Normal"),
-        [TYPE_FIGHTING] = _("un mov. Lucha"),
-        [TYPE_FLYING]   = _("un mov. Volador"),
-        [TYPE_POISON]   = _("un mov. Veneno"),
-        [TYPE_GROUND]   = _("un mov. Tierra"),
-        [TYPE_ROCK]     = _("un mov. Roca"),
-        [TYPE_BUG]      = _("un mov. Bicho"),
-        [TYPE_GHOST]    = _("un mov. Fantasma"),
-        [TYPE_STEEL]    = _("un mov. Acero"),
-        [TYPE_MYSTERY]  = _("un mov. (?)"),
-        [TYPE_FIRE]     = _("un mov. Fuego"),
-        [TYPE_WATER]    = _("un mov. Agua"),
-        [TYPE_GRASS]    = _("un mov. Planta"),
-        [TYPE_ELECTRIC] = _("un mov. Eléctrico"),
-        [TYPE_PSYCHIC]  = _("un mov. Psíquico"),
-        [TYPE_ICE]      = _("un mov. Hielo"),
-        [TYPE_DRAGON]   = _("un mov. Dragón"),
-        [TYPE_DARK]     = _("un mov. Siniestro"),
-        [TYPE_FAIRY]    = _("un mov. Hada"),
-    };
-    const u8 gText_BattleTourney[] = _("Torneo de Combates");
-    static const u8 sText_Round1[] = _("1ª. Ronda");
-    static const u8 sText_Round2[] = _("2ª. Ronda");
-    static const u8 sText_Semifinal[] = _("Semifinal");
-    static const u8 sText_Final[] = _("Final");
+const u8 gText_BattleTourney[] = _("Torneo de Combates");
+static const u8 sText_Round1[] = _("1ª. Ronda");
+static const u8 sText_Round2[] = _("2ª. Ronda");
+static const u8 sText_Semifinal[] = _("Semifinal");
+static const u8 sText_Final[] = _("Final");
 
 const u8 *const gRoundsStringTable[DOME_ROUNDS_COUNT] =
 {
@@ -3977,7 +3970,7 @@ void SetPpNumbersPaletteInMoveSelection(u32 battler)
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 12] = palPtr[(var * 2) + 0];
     gPlttBufferUnfaded[BG_PLTT_ID(5) + 11] = palPtr[(var * 2) + 1];
 
-    CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5) + 12], &gPlttBufferFaded[BG_PLTT_ID(5) + 12], PLTT_SIZEOF(1));
+    CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5) + 12], &gPlttBufferFaded[ + 12], PLTT_SIZEOF(1));
     CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(5) + 11], &gPlttBufferFaded[BG_PLTT_ID(5) + 11], PLTT_SIZEOF(1));
 }
 
