@@ -51,7 +51,7 @@ static void Task_EndGame(u8 taskId);
 static void PrintLives(void);
 static void PrintDistance(void);
 
-//==========VARS==========//
+//========== SECCIÓN: VARIABLES ==========//
 
 #define tTimeToWait data[3]
 #define tTimer data[7]
@@ -77,16 +77,17 @@ struct Tutorial
     u8 numLives;
 };
 
-//Los EWRAM_DATA son variables globales que vamos a utilizar a lo largo de muchas funciones (se pueden usar en todo el repo). Por eso, se definen ya en la memoria EWRAM para tenerlas siempre a mano.
+// Los EWRAM_DATA son variables globales que podemos utilizar dentro de cualquier función (se pueden usar en todo el repo).
+// Por eso se definen ya en la memoria EWRAM, para tenerlas siempre disponible en cualquier lugar.
 static EWRAM_DATA struct Tutorial tutorialObj = {0};
 
 const u8 sTextoNormal[]= {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
-const u8 sTextoLila[]= {0, 6, 12}; //Usa la paleta asignada a Zubat (BG_PLTT_ID(1)), el color 6 es violeta, y el 12 es violeta oscuro.
+const u8 sTextoLila[]= {0, 6, 12}; // Usa la paleta asignada a Zubat (`BG_PLTT_ID(1)`), el color 6 es violeta, y el 12 es violeta oscuro.
 
 const u8 gText_HowToPlay[] = _("Zubat no ve nada. Ayúdalo a volar por la\n"
                                "cueva sin chocarse con los {PKMN} salvajes.\p"
                                "Pulsa {DPAD_UPDOWN} para moverte.\n"
-                               "Pulsa {A_BUTTON} localizar los obstaculos.");
+                               "Pulsa {A_BUTTON} para localizar los obstaculos.");
 const u8 gText_Distance[] = _("Distancia: {STR_VAR_1}m");
 const u8 gText_Lives[] = _(" x {STR_VAR_1}");
 
@@ -96,11 +97,13 @@ enum ZubatStates
     ZUBAT_DIE,
 };
 
-//==========SECCIÓN DE CARGA DE SPRITES==========//
+//========== SECCIÓN: CARGA DE SPRITES ==========//
 
-//Todo lo que necesitamos para cargar cualquier sprite es un OamData, una paleta (normalmente, un SpritePalette), un SpriteSheet y un SpriteTemplate. Una vez tengamos esto, basta con cargarlos mediante LoadSpriteSheet y LoadSpritePalette, y luego crear el sprite mediante CreateSprite.
+// Todo lo que necesitamos para cargar cualquier sprite es un OamData, una paleta (normalmente, un SpritePalette), un SpriteSheet y un SpriteTemplate.
+// Una vez tengamos esto, basta con cargarlos mediante LoadSpriteSheet y LoadSpritePalette, y luego crear el sprite mediante CreateSprite.
 
-//Un tag es una manera de marcar que un sprite o una paleta ya están cargados. De esa forma, no es necesario cargar las paletas en un slot u otro, ya que se asigna dinámicamente. Cada sprite o paleta debe de tener su propia tag, aunque un tag puede servir para varios sprites o paletas.
+// Un tag es una manera de marcar que un sprite o una paleta ya están cargados. De esa forma, no es necesario cargar las paletas en un slot u otro, ya
+// que se asigna dinámicamente. Cada sprite o paleta debe de tener su propia tag, aunque un tag puede servir para varios sprites o paletas.
 enum TagSpritesTutorialZubat
 {
     TAG_SPRITE_ZUBAT = 5400,
@@ -109,31 +112,34 @@ enum TagSpritesTutorialZubat
     TAG_PALETTE_ZUBAT_KOFFING,
 };
 
-//Los OamData son los datos de un sprite: características como su tamaño, su forma o su prioridad. Es posible asignarle más datos, como si es transparente, o si tiene animaciones afines, pero estos 3 parámetros son los que nunca pueden faltar.
+// Los OamData son los datos de un sprite, define características como su tamaño, su forma o su prioridad. Es posible asignarle más datos, como si es 
+// transparente, o si tiene animaciones afines, pero estos 3 parámetros son los que nunca pueden faltar.
 static const struct OamData gSpriteOamDataSpritesTutorialZubat =
 {
-    .shape = SPRITE_SHAPE(32x32), //La forma del sprite, que debe de variar en función del tamaño (16x16, 32x32)
-    .size = SPRITE_SIZE(32x32), //El tamaño del sprite.
-    .priority = 0, //La prioridad es qué sprite se dibuja delante de otros. Va del 0 al 3, y cuanto menos valor, más prioridad (Un sprite de prioridad 1 se ve delante de uno de prioridad 3).
+    .shape = SPRITE_SHAPE(32x32), // La forma del sprite, que debe de variar en función del tamaño (16x16, 32x32)
+    .size = SPRITE_SIZE(32x32), // El tamaño del sprite.
+    .priority = 0, // La prioridad es qué sprite se dibuja delante de otros. Va del 0 al 3, y cuanto menos valor, más prioridad.
+		   // Un sprite de prioridad 1 se va a dibujar siempre delante de uno de prioridad 3.
 };
 
-//Aquí definimos la paleta de nuestro sprite y le asignamos un tag, que será lo que luego "enlacemos" con el sprite, de modo que el juego sepa que x paleta va con x sprite.
+// Aquí definimos la paleta de nuestro sprite y le asignamos un tag, que será lo que luego "enlacemos" con el sprite, de modo que el juego sepa que X 
+// paleta va con X sprite.
 static const struct SpritePalette sSpritePaletteZubatKoffing =
 {
-    .data = ZubatKoffing_Palette, //La paleta como tal.
-    .tag = TAG_PALETTE_ZUBAT_KOFFING, //El tag, funciona igual que para los sprites.
+    .data = ZubatKoffing_Palette, // La paleta como tal.
+    .tag = TAG_PALETTE_ZUBAT_KOFFING, // El tag, funciona igual que para los sprites.
 };
 
-//==========ZUBAT SPRITE==========//
+//========== SECCIÍON: ZUBAT SPRITE ==========//
 
 #define sTimer data[7]
 
-//Lo que son los "gráficos" del sprite.
+// Lo que son los "gráficos" del sprite.
 static const struct SpriteSheet sSpriteSheetZubat =
 {
-    .data = ZubatSprite, //Los gráficos del Sprite (en el caso de un SpriteSheet, sus tiles).
-    .size = 32 * 128 / 2, //Ancho * Alto / 2
-    .tag = TAG_SPRITE_ZUBAT, //El tag del sprite.
+    .data = ZubatSprite, // Los gráficos del Sprite (en el caso de un SpriteSheet, sus tiles).
+    .size = 32 * 128 / 2, // Ancho * Alto / 2
+    .tag = TAG_SPRITE_ZUBAT, // El tag del sprite.
 };
 
 static const union AnimCmd sAnim_ZubatMovement[] =
@@ -194,7 +200,7 @@ void SpriteCallbackZubat(struct Sprite *sprite)
     }
 }
 
-//El SpriteTemplate es donde se unen las imágenes del sprite, su callback, su paletteTag...
+// El SpriteTemplate es donde se unen las imágenes del sprite, su callback, su paletteTag...
 static const struct SpriteTemplate sSpriteTemplateZubat =
 {
     .tileTag = TAG_SPRITE_ZUBAT,
@@ -206,14 +212,14 @@ static const struct SpriteTemplate sSpriteTemplateZubat =
     .callback = SpriteCallbackZubat,
 };
 
-//==========BEAM SPRITE==========//
+//========== SECCIÓN: BEAM SPRITE ==========//
 
 #define sBeamIndex data[1]
 
 static const struct SpriteSheet sSpriteSheetBeam =
 {
     .data = BeamSprite,
-    .size = 32 * 32 / 2, //Ancho * Alto / 2
+    .size = 32 * 32 / 2, // Ancho * Alto / 2
     .tag = TAG_SPRITE_BEAM,
 };
 
@@ -231,7 +237,7 @@ void SpriteCallbackBeam(struct Sprite *sprite)
     {
         DestroySpriteBeam(sprite);
         gSprites[idKoffing].invisible = FALSE;
-        PlaySE(SE_WALL_HIT); //Sonido que hace cuando Koffing se vuelve visible.
+        PlaySE(SE_WALL_HIT); // Sonido que hace cuando Koffing se vuelve visible.
     }
 
     if (++ sprite->sTimer % 2 == 0)
@@ -251,7 +257,7 @@ static const struct SpriteTemplate sSpriteTemplateBeam =
     .callback = SpriteCallbackBeam,
 };
 
-//==========KOFFING SPRITE==========//
+//========== SECCIÓN: KOFFING SPRITE ==========//
 
 #define sKoffingIndex data[2]
 
@@ -308,7 +314,8 @@ static const struct SpriteTemplate sSpriteTemplateKoffing =
     .callback = SpriteCallbackKoffing,
 };
 
-//Esta función es ejemplo de lo que siempre hay que hacer para poder mostrar sprites en pantalla: cargar el SpriteSheet y cargar el SpritePalette. Una vez estén cargados, ya podemos crear el sprite con CreateSprite(SpriteTemplate, x, y, subpriority).
+// Esta función es un ejemplo de lo que siempre hay que hacer para poder mostrar sprites en pantalla: Cargar el SpriteSheet y cargar el SpritePalette.
+// Una vez estén cargados, ya podemos crear el sprite con `CreateSprite(SpriteTemplate, x, y, subpriority)`.
 void LoadSpritesResources(void)
 {
     LoadSpriteSheet(&sSpriteSheetZubat);
@@ -381,10 +388,12 @@ static void DestroySpritesGame(void)
     }
 }
 
-//==========SECCIÓN DE CREACIÓN DE BGS==========//
+//========== SECCIÓN: CREACIÓN DE BGS ==========//
 
-//Para cargar un background o backgrounds, solo necesitamos un BgTemplate que defina sus características, InitBgsFromTemplates, cargar su tileset, cargar su tilemap y ShowBg(MI_BG). Con eso, si hemos limpiado la memoria previamente, se verán sin problemas.
-//Aquí hacemos un enum para poder usar constantes en vez de números: ShowBg(BG_VIDAS_Y_TEXTO) en vez de ShowBg(0). Esto no es necesario, pero facilita un poco el trabajo.
+// Para cargar un background o varios, solo necesitamos un BgTemplate que defina sus características, InitBgsFromTemplates, cargar su tileset,
+// cargar su tilemap y `ShowBg(MI_BG)`. Con eso, si hemos limpiado la memoria previamente, se verán sin problemas.
+// Aquí hacemos un enum para poder usar constantes en vez de números: `ShowBg(BG_VIDAS_Y_TEXTO)` en vez de `ShowBg(0)`.
+// NOTA: Esto no es necesario, pero facilita un poco el trabajo al darle nombres a valores constantes.
 enum BgsMinijuegoZubat
 {
     BG_VIDAS_Y_TEXTO,
@@ -392,16 +401,17 @@ enum BgsMinijuegoZubat
     BG_CUEVA_LEJOS
 };
 
-//En el BgTemplate definimos las características que van a tener nuestros backgrounds.
-//La GBA tiene 4 backgrounds (capas de video) que se numeran del 0 al 3.
+// En el BgTemplate definimos las características que van a tener nuestros backgrounds.
+// La GBA tiene 4 backgrounds (capas de video) que se numeran del 0 al 3.
 static const struct BgTemplate TutorialBgTemplates[] =
 {
     [BG_VIDAS_Y_TEXTO] =
     {
-        .bg = 0, //El background en el que se va a cargar.
-        .charBaseIndex = 0, //Posición en la que se cargan los tiles en la VRAM. Si quieres verlo en mGBA, ve a Herramientas > Game State Views > Ver mosaicos.
-        .mapBaseIndex = 28, //Posición en la que se carga el tilemap en la VRAM. Si quieres verlo en mGBA, ve a Herramientas > Game State Views > Ver mosaicos.
-        .priority = 0 //Prioridad: qué background se muestra encima de otros. Va de 0 a 3, y cuanto más bajo, más prioridad (Un bg con prioridad 1 se ve delante de uno con prioridad 2).
+        .bg = 0, // El background en el que se va a cargar.
+        .charBaseIndex = 0, // Posición en la que se cargan los tiles en la VRAM. Si quieres verlo en mGBA, ve a Herramientas > Game State Views > Ver mosaicos.
+        .mapBaseIndex = 28, // Posición en la que se carga el tilemap en la VRAM. Si quieres verlo en mGBA, ve a Herramientas > Game State Views > Ver mosaicos.
+        .priority = 0 // Prioridad indica qué background se muestra encima de otros. Va de 0 a 3, y cuanto más bajo, más prioridad.
+		      // NOTA: Un bg con prioridad 1 se va a dibujar encima de uno con prioridad 2.
     },
     [BG_CUEVA_CERCA] =
     {
@@ -419,29 +429,35 @@ static const struct BgTemplate TutorialBgTemplates[] =
     }
 };
 
-//==========BG LOAD FUNC==========//
+//========== SECCIÓN: BG LOAD FUNC ==========//
 
-static void LoadBgs(void) //Esta función es la que carga los tiles y los tilemaps de los bgs, carga la paleta, y los muestra en pantalla. 
+static void LoadBgs(void) // Esta función es la que carga los tiles y los tilemaps de los bgs, carga la paleta, y los muestra en pantalla. 
 {
     InitBgsFromTemplates(0, TutorialBgTemplates, ARRAY_COUNT(TutorialBgTemplates));
 
-    LZ77UnCompVram(TutorialBG2_Tileset, (void*) BG_CHAR_ADDR(TutorialBgTemplates[BG_CUEVA_LEJOS].charBaseIndex)); //Descomprimimos el tileset del bg 2 en la VRAM según el charBaseIndex que le hemos asignado previamente.
-    LZ77UnCompVram(TutorialBG2_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[BG_CUEVA_LEJOS].mapBaseIndex)); //Descomprimos el tilemap del bg 2 en la VRAM según el mapBaseIndex que le hemos asignado previamente.
+    // Descomprimimos el tileset del bg 2 en la VRAM según el charBaseIndex que le hemos asignado previamente.
+    LZ77UnCompVram(TutorialBG2_Tileset, (void*) BG_CHAR_ADDR(TutorialBgTemplates[BG_CUEVA_LEJOS].charBaseIndex));
+    // Descomprimos el tilemap del bg 2 en la VRAM según el mapBaseIndex que le hemos asignado previamente.
+    LZ77UnCompVram(TutorialBG2_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[BG_CUEVA_LEJOS].mapBaseIndex));
 
-    LZ77UnCompVram(TutorialBG1_Tileset, (void*) BG_CHAR_ADDR(TutorialBgTemplates[BG_CUEVA_CERCA].charBaseIndex)); //Igual que arriba pero para el tileset del bg 1.
-    LZ77UnCompVram(TutorialBG1_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[BG_CUEVA_CERCA].mapBaseIndex)); //Igual que arriba pero para el tilemap del bg 1.
+    // Igual que arriba pero para el tileset del bg 1.
+    LZ77UnCompVram(TutorialBG1_Tileset, (void*) BG_CHAR_ADDR(TutorialBgTemplates[BG_CUEVA_CERCA].charBaseIndex));
+    // Igual que arriba pero para el tilemap del bg 1.
+    LZ77UnCompVram(TutorialBG1_Tilemap, (u16*) BG_SCREEN_ADDR(TutorialBgTemplates[BG_CUEVA_CERCA].mapBaseIndex)); 
 
-    LoadPalette(TutorialBG_Palette, BG_PLTT_ID(0), PLTT_SIZE_4BPP); //Cargamos la paleta o paletas de nuestros bgs en el índice que le hayamos asignado en el tilemap (en TilemapStudio)
+    // Cargamos la paleta o paletas de nuestros bgs en el índice que le hayamos asignado en el tilemap (en TilemapStudio).
+    LoadPalette(TutorialBG_Palette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
 
-    ResetAllBgsCoordinates(); //Ponemos a 0 las coordenadas de los bgs, porque los vamos a mover (efecto de scroll).
+    ResetAllBgsCoordinates(); // Ponemos a 0 las coordenadas de los bgs, porque los vamos a mover (efecto de scroll).
 
-    //Estas funciones son las que, una vez tenemos cargados los tiles y tilemaps de los bgs, los muestran. Si quisiéramos que alguno no se viera, simplemente bastaría con HideBg(MI_BG).
+    // Estas funciones son las que, una vez tengamos cargados los tiles y tilemaps de los bgs, los muestran. 
+    // Si quisiéramos que alguno no se viera, simplemente bastaría con `HideBg(MI_BG)`.
     ShowBg(BG_VIDAS_Y_TEXTO);
     ShowBg(BG_CUEVA_CERCA);
     ShowBg(BG_CUEVA_LEJOS);
 }
 
-//Estas funciones preparan la Oam para que funcione con los nuevos sprites al cambiar de pantalla.
+// Estas funciones preparan la Oam para que funcione con los nuevos sprites al cambiar de pantalla.
 static void VBlank_CB_Tutorial(void)
 {
     LoadOam();
@@ -449,7 +465,8 @@ static void VBlank_CB_Tutorial(void)
     TransferPlttBuffer();
 }
 
-//Esta función empieza los Tasks, que son las funciones ejecutadas en orden de nuestro minijuego; anima los sprites, arranca el buffer del Oam, y actualiza el fade de paletas.
+// Esta función empieza los Tasks, que son las funciones ejecutadas en orden de nuestro minijuego; anima los sprites, arranca el buffer del Oam,
+// y actualiza el fade de paletas.
 static void CB2_Tutorial(void)
 {
     RunTasks();
@@ -458,9 +475,10 @@ static void CB2_Tutorial(void)
     UpdatePaletteFade();
 }
 
-//==========WINDOW LOAD FUNC==========//
+//========== SECCIÓN: WINDOW LOAD FUNC ==========//
 
-//Aquí definimos las ventanas, en este caso 3. Como se ve en el tutorial, pueden usarse ventanas para muchas cosas: texto con vidas, texto con borde, una zona más oscura o diferente de la pantalla...
+// Aquí definimos las ventanas, en este caso 3. Como se ve en el tutorial, pueden usarse ventanas para muchas cosas: texto con vidas, texto con borde,
+// una zona más oscura o diferente de la pantalla, etc.
 enum
 {
     WINDOW_MSG,
@@ -472,13 +490,13 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
 {
     [WINDOW_MSG]
     {
-        .bg = 0, //Bg donde va estar la window
-        .tilemapLeft = 1, //Cuantos bloques de 8x8 va a tener a la izquierda el inicio de la window
-        .tilemapTop = 6, //Cuantos bloques de 8x8 va a tener arriba el inicio de la window
-        .width = 28, //Ancho de la window, en bloques de 8x8
-        .height = 5, //Alto de la window, en bloques de 8x8
-        .paletteNum = 15, //Paleta que va a usar la window, siempre de las correspondientes a los backgrounds.
-        .baseBlock = 1 //Posicionamiento de la window en la VRAM, a la primera simpre se le da el valor 1
+        .bg = 0, // Bg donde va estar la window
+        .tilemapLeft = 1, // Cuantos bloques de 8x8 va a tener a la izquierda el inicio de la window
+        .tilemapTop = 6, // Cuantos bloques de 8x8 va a tener arriba el inicio de la window
+        .width = 28, // Ancho de la window, en bloques de 8x8
+        .height = 5, // Alto de la window, en bloques de 8x8
+        .paletteNum = 15, // Paleta que va a usar la window, siempre de las correspondientes a los backgrounds.
+        .baseBlock = 1 // Posicionamiento de la window en la VRAM, a la primera simpre se le da el valor 1
     },
     [WINDOW_DISTANCE]
     {
@@ -488,7 +506,8 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
         .width = 10,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 28 * 5 + 1 //Para calcular el valor del baseblock, multiplicamos el ancho por el alto de la window previa, más el baseblock de la previa. Podemos escribir explícitamente el valor, o dejar que nos lo calcule.
+        .baseBlock = 28 * 5 + 1 // Para calcular el valor del baseblock, multiplicamos el ancho por el alto de la window previa, más el baseblock de la previa.
+				// Podemos escribir explícitamente el valor, o dejar que nos lo calcule (cualquiera de los dos no afecta el rendimiento).
     },
     [WINDOW_LIVES]
     {
@@ -505,18 +524,26 @@ static const struct WindowTemplate sWindowTemplatesTutorial[] =
 
 static void InitWindowTutorial(void)
 {
-	InitWindows(sWindowTemplatesTutorial); //Esta función es la que inicializa las windows que vamos a usar.
-    DeactivateAllTextPrinters();
-	LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP); //Cargamos la paleta de la ventana de texto del OW para poder utilizarla.
+	InitWindows(sWindowTemplatesTutorial); // Esta función es la que inicializa las windows que vamos a usar.
+    	DeactivateAllTextPrinters();
+	LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP); // Cargamos la paleta de la ventana de texto del OW para poder utilizarla.
 }
 
 static void PrintDistance(void)
 {
-    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0)); //Funcion que rellena con color la window, en este caso coloca el color 0 (el transparete) del paleteNum indicada en WINDOW_DISTANCE
-    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3); //Convierte el valor tutorialObj.distance en un string, y lo almacena en gStringVar1 para ser utilizada como controlador de texto (STR_VAR_1) en gText_Distance.
+	// Funcion que rellena con color la window, en este caso coloca el color 0 (el transparete) del paleteNum indicada en WINDOW_DISTANCE
+    FillWindowPixelBuffer(WINDOW_DISTANCE, PIXEL_FILL(0));
+	
+	// Convierte el valor tutorialObj.distance en un string, y lo almacena en gStringVar1 para ser utilizada como controlador de texto (STR_VAR_1) 
+	// en gText_Distance.
+    ConvertIntToDecimalStringN(gStringVar1, tutorialObj.distance, STR_CONV_MODE_LEFT_ALIGN, 3); 
     StringExpandPlaceholders(gStringVar2, gText_Distance);
-    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextoNormal, 0, gStringVar2); //Funcion para printear los textos.
-    CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX); //Funcion para que cargue el texto en la VRAM. Lo que hace es "actualizar" los cambios que hemos hecho en la window y la vuelve a copiar a la RAM de video.
+	
+	// Funcion para printear los textos.
+    AddTextPrinterParameterized3(WINDOW_DISTANCE, FONT_SMALL, 0, 0, sTextoNormal, 0, gStringVar2); 
+
+	//Funcion para que cargue el texto en la VRAM. Lo que hace es "actualizar" los cambios que hemos hecho en la window y la vuelve a copiar a la RAM de video.
+	CopyWindowToVram(WINDOW_DISTANCE, COPYWIN_GFX); 
 }
 
 static void PrintLives(void)
@@ -529,7 +556,7 @@ static void PrintLives(void)
     CopyWindowToVram(WINDOW_LIVES, COPYWIN_GFX);
 }
 
-//==========Otras funciones==========//
+//========== SECCIÓN: FUNCIONES ÚTILES ==========//
 
 u8 GetZubatPositionY(u8 cord)
 {
@@ -621,7 +648,7 @@ static void HandleMovementZubat(void)
             tutorialObj.beamSpritesId[tutorialObj.countBeam] = CreateBeamSprite();
             gSprites[tutorialObj.beamSpritesId[tutorialObj.countBeam]].sBeamIndex = tutorialObj.countBeam;
             tutorialObj.countBeam += 1;
-            PlaySE(SE_M_SUPERSONIC); //Cada vez que lanza un supersónico, se emite el efecto de sonido.
+            PlaySE(SE_M_SUPERSONIC); // Cada vez que lanza un supersónico, se emite el efecto de sonido.
         }
     }
 }
@@ -633,7 +660,7 @@ static bool8 HasLivesToContinue(void)
     return TRUE;
 }
 
-//==========Tasks==========//
+//========== SECCIÓN: TASKS ==========//
 
 static void Task_StartGame(u8 taskId);
 static void Task_WaitToCreateKoffings(u8 taskId);
@@ -811,7 +838,7 @@ static void Task_EndGame(u8 taskId)
     }
 }
 
-//==========GFX SETUP FUNC==========//
+//========== SECCIÓN: GFX SETUP FUNC ==========//
 
 void CB2_InitTutorialSetUp(void)
 {
@@ -836,13 +863,17 @@ void CB2_InitTutorialSetUp(void)
         InitWindowTutorial();
         LoadSpritesResources();
         LoadMessageBoxAndBorderGfx();
-        LoadPalette(ZubatKoffing_Palette, BG_PLTT_ID(1), PLTT_SIZE_4BPP); //"Reutilizamos" la paleta de los iconos en el bg para cargar el icono de Zubat. Si os dais cuenta, se ha cargado como parte del background, y, por tanto, se le ha asignado previamente (en TilemapStudio) el índice de paleta que usará.
-        FadeOutAndPlayNewMapMusic(MUS_WEATHER_GROUDON, 4); //Aquí es donde se hace la transición entre la música del OW y la música de nuestro menú. El 4 es el tiempo de transición: cuanto más alto, más lenta la transición.
+	// "Reutilizamos" la paleta de los iconos en el bg para cargar el icono de Zubat. Si os dais cuenta, se ha cargado como parte del background,
+	// y, por tanto, se le ha asignado previamente (en TilemapStudio) el índice de paleta que usará.
+        LoadPalette(ZubatKoffing_Palette, BG_PLTT_ID(1), PLTT_SIZE_4BPP); 
+	// Aquí es donde se hace la transición entre la música del OW y la música de nuestro menú. 
+	// El 4 es el tiempo de transición, cuanto más alto, más lenta la transición.
+        FadeOutAndPlayNewMapMusic(MUS_WEATHER_GROUDON, 4); 
         gMain.state++;
         break;
     case 3:
         CreateTask(Task_MainWaitFadeIn, 0);
-        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK); //Fundido a negro.
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK); // Fundido a negro.
         gMain.state++;
         break;
     case 4:
@@ -854,9 +885,9 @@ void CB2_InitTutorialSetUp(void)
     }
 }
 
-#endif //TUTORIAL_MINIJUEGO_ZUBAT
+#endif // TUTORIAL_MINIJUEGO_ZUBAT
 
-//==========CALLNATIVE FUNC==========//
+//========== SECCIÓN: CALLNATIVE FUNC ==========//
 
 bool8 StartTutorialMinijuegoZubat_CB2(void)
 {
@@ -872,6 +903,6 @@ bool8 StartTutorialMinijuegoZubat_CB2(void)
             return TRUE;
         }
     }
-    #endif //TUTORIAL_MINIJUEGO_ZUBAT
+    #endif // TUTORIAL_MINIJUEGO_ZUBAT
     return FALSE;
 }
