@@ -1744,7 +1744,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
                 BlitMenuInfoIcon(B_WIN_MOVE_TYPE, MENU_INFO_ICON_MUY_EFECTIVO, 52, 3);
                 break;
         }
-        CopyWindowToVram(B_WIN_MOVE_TYPE, 3);
+        CopyWindowToVram(B_WIN_MOVE_TYPE, COPYWIN_FULL);
         PutWindowTilemap(B_WIN_MOVE_TYPE);
     }
     else
