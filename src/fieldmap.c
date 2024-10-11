@@ -843,9 +843,9 @@ static void CopyTilesetToVram(struct Tileset const *tileset, u16 numTiles, u16 o
     if (tileset)
     {
         if (!tileset->isCompressed)
-            LoadBgTiles(2, tileset->tiles, numTiles * 32, offset);
+            LoadBgTiles(2, tileset->tiles, numTiles * TILE_SIZE_4BPP, offset);
         else
-            DecompressAndCopyTileDataToVram(2, tileset->tiles, numTiles * 32, offset, 0);
+            DecompressAndCopyTileDataToVram(2, tileset->tiles, numTiles * TILE_SIZE_4BPP, offset, 0);
     }
 }
 
@@ -854,9 +854,9 @@ static void CopyTilesetToVramUsingHeap(struct Tileset const *tileset, u16 numTil
     if (tileset)
     {
         if (!tileset->isCompressed)
-            LoadBgTiles(2, tileset->tiles, numTiles * 32, offset);
+            LoadBgTiles(2, tileset->tiles, numTiles * TILE_SIZE_4BPP, offset);
         else
-            DecompressAndLoadBgGfxUsingHeap(2, tileset->tiles, numTiles * 32, offset, 0);
+            DecompressAndLoadBgGfxUsingHeap(2, tileset->tiles, numTiles * TILE_SIZE_4BPP, offset, 0);
     }
 }
 

@@ -145,6 +145,8 @@ Debug_EventScript_Script_1::
 	end
 
 Debug_EventScript_Script_2::
+	setwildbattle SPECIES_DITTO, 100, ITEM_NONE
+	dowildbattle
 	release
 	end
 
