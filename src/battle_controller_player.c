@@ -44,6 +44,7 @@
 #include "level_caps.h"
 #include "menu.h"
 #include "pokemon_summary_screen.h"
+#include "config/pbh.h"
 
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
@@ -1662,6 +1663,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u8 type;
     u32 speciesId;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+    u8 category = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category;
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
 
@@ -1694,9 +1696,21 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             type = TYPE_STELLAR;
     }
 
-    end = StringCopy(txtPtr, gTypesInfo[type].name);
-    PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+    if (PBH_ICONOS_TIPOS_BATALLA)
+    {
+        ListMenuLoadStdPalAt(BG_PLTT_ID(6), 1);
+        FillWindowPixelBuffer(B_WIN_MOVE_TYPE, PIXEL_FILL(15));
+        BlitMenuInfoIcon(B_WIN_MOVE_TYPE, type, 0, 2);
+        BlitMenuInfoIcon(B_WIN_MOVE_TYPE, MENU_INFO_ICON_FISICO + category, 34, 2);
+        CopyWindowToVram(B_WIN_MOVE_TYPE, COPYWIN_GFX);
+        PutWindowTilemap(B_WIN_MOVE_TYPE);
+    }
+    else
+    {
+        end = StringCopy(txtPtr, gTypesInfo[type].name);
+        PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+    }
 }
 
 static void MoveSelectionDisplayMoveDescription(u32 battler)

@@ -12135,7 +12135,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKY_DROP] =
     {
-        .name = COMPOUND_STRING("Caída Libre"),
+        .name = COMPOUND_STRING("Caída libre"),
         .description = COMPOUND_STRING(
             "Se lleva al enemigo en el\n"
             "aire hasta el próximo turno."),

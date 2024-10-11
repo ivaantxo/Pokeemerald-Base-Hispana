@@ -112,37 +112,38 @@ static const struct WindowTemplate sYesNo_WindowTemplates =
 static const u16 sHofPC_TopBar_Pal[] = INCBIN_U16("graphics/interface/hof_pc_topbar.gbapal");
 static const u8 sTextColors[] = { TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY };
 
-// Table of move info icon offsets in graphics/interface/menu_info.png
+// Tabla para los iconos de menu_info.png, para ser usada con Blit (se tiene que cargar en una window, y usa paleta de bgs)
 static const struct MenuInfoIcon sMenuInfoIcons[] =
-{   // { width, height, offset }
-    { 12, 12, 0x00 },  // Unused
-    [TYPE_NONE + 1]     = { 32, 12, 0xA4 }, // Copy of TYPE_MYSTERY's
-    [TYPE_NORMAL + 1]   = { 32, 12, 0x20 },
-    [TYPE_FIGHTING + 1] = { 32, 12, 0x64 },
-    [TYPE_FLYING + 1]   = { 32, 12, 0x60 },
-    [TYPE_POISON + 1]   = { 32, 12, 0x80 },
-    [TYPE_GROUND + 1]   = { 32, 12, 0x48 },
-    [TYPE_ROCK + 1]     = { 32, 12, 0x44 },
-    [TYPE_BUG + 1]      = { 32, 12, 0x6C },
-    [TYPE_GHOST + 1]    = { 32, 12, 0x68 },
-    [TYPE_STEEL + 1]    = { 32, 12, 0x88 },
-    [TYPE_MYSTERY + 1]  = { 32, 12, 0xA4 },
-    [TYPE_FIRE + 1]     = { 32, 12, 0x24 },
-    [TYPE_WATER + 1]    = { 32, 12, 0x28 },
-    [TYPE_GRASS + 1]    = { 32, 12, 0x2C },
-    [TYPE_ELECTRIC + 1] = { 32, 12, 0x40 },
-    [TYPE_PSYCHIC + 1]  = { 32, 12, 0x84 },
-    [TYPE_ICE + 1]      = { 32, 12, 0x4C },
-    [TYPE_DRAGON + 1]   = { 32, 12, 0xA0 },
-    [TYPE_DARK + 1]     = { 32, 12, 0x8C },
-    [TYPE_FAIRY + 1]    = { 32, 12, 0x4  },
-    [MENU_INFO_ICON_TYPE]      = { 42, 12, 0xA8 },
-    [MENU_INFO_ICON_POWER]     = { 42, 12, 0xC0 },
-    [MENU_INFO_ICON_ACCURACY]  = { 42, 12, 0xC8 },
-    [MENU_INFO_ICON_PP]        = { 42, 12, 0xE0 },
-    [MENU_INFO_ICON_EFFECT]    = { 42, 12, 0xE8 }, // Unused
-    [MENU_INFO_ICON_BALL_RED]  = {  8,  8, 0xAE }, // For placed decorations in Secret Base
-    [MENU_INFO_ICON_BALL_BLUE] = {  8,  8, 0xAF }, // For placed decorations in player's room
+{                                       // {ancho, alto, offset (en qué tile de 8x8 empieza en menu_info.png)}
+    [TYPE_NONE]                         = {32, 12, 164}, // Copia de tipo Misterio
+    [TYPE_NORMAL]                       = {32, 12, 32},
+    [TYPE_FIGHTING]                     = {32, 12, 100},
+    [TYPE_FLYING]                       = {32, 12, 96},
+    [TYPE_POISON]                       = {32, 12, 128},
+    [TYPE_GROUND]                       = {32, 12, 72},
+    [TYPE_ROCK]                         = {32, 12, 68},
+    [TYPE_BUG]                          = {32, 12, 108},
+    [TYPE_GHOST]                        = {32, 12, 104},
+    [TYPE_STEEL]                        = {32, 12, 136},
+    [TYPE_MYSTERY]                      = {32, 12, 164},
+    [TYPE_FIRE]                         = {32, 12, 36},
+    [TYPE_WATER]                        = {32, 12, 40},
+    [TYPE_GRASS]                        = {32, 12, 44},
+    [TYPE_ELECTRIC]                     = {32, 12, 64},
+    [TYPE_PSYCHIC]                      = {32, 12, 132},
+    [TYPE_ICE]                          = {32, 12, 76},
+    [TYPE_DRAGON]                       = {32, 12, 160},
+    [TYPE_DARK]                         = {32, 12, 140},
+    [TYPE_FAIRY]                        = {32, 12, 4},
+    [MENU_INFO_ICON_TYPE]               = {42, 12, 168},
+    [MENU_INFO_ICON_POWER]              = {42, 12, 192},
+    [MENU_INFO_ICON_ACCURACY]           = {42, 12, 200},
+    [MENU_INFO_ICON_PP]                 = {42, 12, 224},
+    [MENU_INFO_ICON_BALL_RED]           = {8,  8,  174}, //Para decoraciones en la base secreta
+    [MENU_INFO_ICON_BALL_BLUE]          = {8,  8,  175}, //Para decoraciones de la habitación del jugador
+    [MENU_INFO_ICON_FISICO]             = {16, 16, 8},
+    [MENU_INFO_ICON_ESPECIAL]           = {16, 16, 10},
+    [MENU_INFO_ICON_ESTADO]             = {16, 16, 12},
 };
 
 void InitStandardTextBoxWindows(void)
