@@ -144,6 +144,9 @@ static const struct MenuInfoIcon sMenuInfoIcons[] =
     [MENU_INFO_ICON_FISICO]             = {16, 16, 8},
     [MENU_INFO_ICON_ESPECIAL]           = {16, 16, 10},
     [MENU_INFO_ICON_ESTADO]             = {16, 16, 12},
+    [MENU_INFO_ICON_MUY_EFECTIVO]       = {16, 16, 229},
+    [MENU_INFO_ICON_POCO_EFECTIVO]      = {16, 16, 231},
+    [MENU_INFO_ICON_NO_EFECTIVO]        = {16, 16, 233},
 };
 
 void InitStandardTextBoxWindows(void)

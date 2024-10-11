@@ -25,6 +25,9 @@ enum MenuInfoIconos
     MENU_INFO_ICON_FISICO,
     MENU_INFO_ICON_ESPECIAL, //Usado implícitamente con PBH_ICONOS_TIPOS_BATALLA en MoveSelectionDisplayMoveType
     MENU_INFO_ICON_ESTADO, //Usado implícitamente con PBH_ICONOS_TIPOS_BATALLA en MoveSelectionDisplayMoveType
+    MENU_INFO_ICON_MUY_EFECTIVO,
+    MENU_INFO_ICON_POCO_EFECTIVO,
+    MENU_INFO_ICON_NO_EFECTIVO
 };
 
 enum
