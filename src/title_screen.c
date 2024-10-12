@@ -58,14 +58,10 @@ static void SpriteCB_PressStartCopyrightBanner(struct Sprite *sprite);
 static void SpriteCB_PokemonLogoShine(struct Sprite *sprite);
 
 // const rom data
-static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unused.gbapal");
-
 static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
 static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
 static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
-
-
 
 // Used to blend "Emerald Version" as it passes over over the Pokémon banner.
 // Also used by the intro to blend the Game Freak name/logo in and out as they appear and disappear
@@ -560,7 +556,8 @@ static void StartPokemonLogoShine(u8 mode)
 
 static void VBlankCB(void)
 {
-    ScanlineEffect_InitHBlankDmaTransfer();
+    ScanlineEffect_InitHBlankDmaTransfer(); // Aquí empieza el efecto del scanline. Se comienza una transferencia a la memoria (DMA) para cada H-blank (la GBA "pinta" la pantalla en líneas horizontales, y, tras cada línea, hay un tiempo donde deja de pintar, que es el H-blank).
+                                            // Es en ese tiempo donde se puede aprovechar para hacer operaciones de memoria, como cambiar la posición de un bg para cada línea, que es el scanline.
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
@@ -605,7 +602,7 @@ void CB2_InitTitleScreen(void)
         // bg1
         LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(3)));
         LZ77UnCompVram(gTitleScreenCloudsTilemap, (void *)(BG_SCREEN_ADDR(27)));
-        ScanlineEffect_Stop();
+        ScanlineEffect_Stop(); // Aquí se para el efecto de scanline
         ResetTasks();
         ResetSpriteData();
         FreeAllSpritePalettes();
@@ -665,7 +662,9 @@ void CB2_InitTitleScreen(void)
         if (!UpdatePaletteFade())
         {
             StartPokemonLogoShine(SHINE_MODE_SINGLE_NO_BG_COLOR);
-            ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
+            ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE); // Aquí es donde realmente se hace el efecto de scanline en forma de ola: las nubes van oscilando en movimientos diagonales.
+                                                                                                      // Los parámetros con los que podemos jugar son la amplitud, la frecuencia, o la línea (de arriba a abajo) en la que comienza.
+                                                                                                      // Recomiendo jugar con los números, o probar a comentar la función para ver lo que hace in-game.
             SetMainCallback2(MainCB2);
         }
         break;
