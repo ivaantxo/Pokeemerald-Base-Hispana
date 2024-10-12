@@ -532,9 +532,6 @@ gTilesetTiles_CableClub::
 	.incbin "data/tilesets/secondary/cable_club/tiles.4bpp"
 
 	.align 2
-	.incbin "data/tilesets/secondary/cable_club/unknown_tiles.4bpp"
-
-	.align 2
 gTilesetPalettes_CableClub::
 	.incbin "data/tilesets/secondary/cable_club/palettes/00.gbapal"
 	.incbin "data/tilesets/secondary/cable_club/palettes/01.gbapal"
@@ -1293,9 +1290,6 @@ gTilesetPalettes_InsideShip::
 	.align 2
 gTilesetTiles_SecretBase::
 	.incbin "data/tilesets/primary/secret_base/tiles.4bpp"
-
-	.align 2
-	.incbin "data/tilesets/primary/secret_base/unknown_tiles.4bpp"
 
 	.align 2
 gTilesetPalettes_SecretBase::
