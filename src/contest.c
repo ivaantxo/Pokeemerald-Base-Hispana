@@ -4188,7 +4188,7 @@ static u8 CreateContestantBoxBlinkSprites(u8 contestant)
     CpuFill32(0, gContestResources->boxBlinkTiles2 + 0x500, 0x300);
 
     RequestDma3Copy(gContestResources->boxBlinkTiles1,
-                    (u8 *)(OBJ_VRAM0 + gSprites[spriteId1].oam.tileNum * 32),
+                    (u8 *)(OBJ_VRAM0 + gSprites[spriteId1].oam.tileNum * TILE_SIZE_4BPP),
                     0x800,
                     1);
 
