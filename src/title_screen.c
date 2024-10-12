@@ -663,8 +663,8 @@ void CB2_InitTitleScreen(void)
         {
             StartPokemonLogoShine(SHINE_MODE_SINGLE_NO_BG_COLOR);
             ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE); // Aquí es donde realmente se hace el efecto de scanline en forma de ola: las nubes van oscilando en movimientos diagonales.
-                                                                                                      // Los parámetros con los que podemos jugar son la amplitud, la frecuencia, o la línea (de arriba a abajo) en la que comienza.
-                                                                                                      // Recomiendo jugar con los números, o probar a comentar la función para ver lo que hace in-game.
+                                                                                                    // Los parámetros con los que podemos jugar son la amplitud, la frecuencia, o la línea (de arriba a abajo) en la que comienza.
+                                                                                                    // Recomiendo jugar con los números, o probar a comentar la función para ver lo que hace in-game.
             SetMainCallback2(MainCB2);
         }
         break;
