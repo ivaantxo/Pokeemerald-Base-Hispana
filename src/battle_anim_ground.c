@@ -508,7 +508,6 @@ static void SetDigScanlineEffect(u8 useBG1, s16 y, s16 endY)
 
     scanlineParams.dmaControl = SCANLINE_EFFECT_DMACNT_16BIT;
     scanlineParams.initState = 1;
-    scanlineParams.unused9 = 0;
     ScanlineEffect_SetParams(scanlineParams);
 }
 

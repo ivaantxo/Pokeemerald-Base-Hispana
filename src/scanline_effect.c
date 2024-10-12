@@ -13,7 +13,7 @@ static void CopyValue32Bit(void);
 // Per-scanline register values.
 // This is double buffered so that it can be safely written to at any time
 // without overwriting the buffer that the DMA is currently reading
-EWRAM_DATA u16 ALIGNED(4) gScanlineEffectRegBuffers[2][0x3C0] = {0};
+EWRAM_DATA u16 ALIGNED(4) gScanlineEffectRegBuffers[2][960] = {0};
 
 EWRAM_DATA struct ScanlineEffect gScanlineEffect = {0};
 EWRAM_DATA static bool8 sShouldStopWaveTask = FALSE;
@@ -38,8 +38,6 @@ void ScanlineEffect_Clear(void)
     gScanlineEffect.dmaControl = 0;
     gScanlineEffect.srcBuffer = 0;
     gScanlineEffect.state = 0;
-    gScanlineEffect.unused16 = 0;
-    gScanlineEffect.unused17 = 0;
     gScanlineEffect.waveTaskId = TASK_NONE;
 }
 
@@ -65,8 +63,6 @@ void ScanlineEffect_SetParams(struct ScanlineEffectParams params)
     gScanlineEffect.dmaControl = params.dmaControl;
     gScanlineEffect.dmaDest    = params.dmaDest;
     gScanlineEffect.state      = params.initState;
-    gScanlineEffect.unused16   = params.unused9;
-    gScanlineEffect.unused17   = params.unused9;
 }
 
 void ScanlineEffect_InitHBlankDmaTransfer(void)
@@ -223,7 +219,6 @@ u8 ScanlineEffect_InitWave(u8 startLine, u8 endLine, u8 frequency, u8 amplitude,
     params.dmaDest = (void *)(REG_ADDR_BG0HOFS + regOffset);
     params.dmaControl = SCANLINE_EFFECT_DMACNT_16BIT;
     params.initState = 1;
-    params.unused9 = 0;
     ScanlineEffect_SetParams(params);
 
     taskId = CreateTask(TaskFunc_UpdateWavePerFrame, 0);

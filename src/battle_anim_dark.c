@@ -527,7 +527,6 @@ void AnimTask_MoveAttackerMementoShadow(u8 taskId)
 
     scanlineParams.dmaControl = SCANLINE_EFFECT_DMACNT_16BIT;
     scanlineParams.initState = 1;
-    scanlineParams.unused9 = 0;
     task->data[11] = 0;
     task->data[12] = 16;
     task->data[0] = 0;
@@ -692,7 +691,6 @@ void AnimTask_MoveTargetMementoShadow(u8 taskId)
 
         scanlineParams.dmaControl = SCANLINE_EFFECT_DMACNT_16BIT;
         scanlineParams.initState = 1;
-        scanlineParams.unused9 = 0;
         ScanlineEffect_SetParams(scanlineParams);
         task->data[0]++;
         break;
