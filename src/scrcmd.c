@@ -2496,7 +2496,7 @@ bool8 ScrCmd_getobjectxy(struct ScriptContext *ctx)
     u32 useTemplate = VarGet(ScriptReadHalfword(ctx));
     u16 *pX = GetVarPointer(ScriptReadHalfword(ctx));
     u16 *pY = GetVarPointer(ScriptReadHalfword(ctx));
-    GetObjectPosition(pX,pY,localId,useTemplate);
+    GetObjectPosition(pX, pY, localId, useTemplate);
 
     return FALSE;
 }
@@ -2507,7 +2507,7 @@ bool8 ScrCmd_checkobjectat(struct ScriptContext *ctx)
     u32 y = VarGet(ScriptReadHalfword(ctx)) + 7;
     u16 *varPointer = GetVarPointer(ScriptReadHalfword(ctx));
 
-    *varPointer = CheckObjectAtXY(x,y);
+    *varPointer = CheckObjectAtXY(x, y);
 
     return FALSE;
 }
@@ -2516,10 +2516,10 @@ bool8 Scrcmd_getsetpokedexflag(struct ScriptContext *ctx)
 {
     u32 speciesId = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
     bool32 desiredFlag = VarGet(ScriptReadHalfword(ctx));
-    gSpecialVar_Result = GetSetPokedexFlag(speciesId,desiredFlag);
+    gSpecialVar_Result = GetSetPokedexFlag(speciesId, desiredFlag);
 
     if (desiredFlag == FLAG_SET_CAUGHT)
-        GetSetPokedexFlag(speciesId,FLAG_SET_SEEN);
+        GetSetPokedexFlag(speciesId, FLAG_SET_SEEN);
 
     return FALSE;
 }
@@ -2527,7 +2527,7 @@ bool8 Scrcmd_getsetpokedexflag(struct ScriptContext *ctx)
 bool8 Scrcmd_checkspecies(struct ScriptContext *ctx)
 {
     u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
-    gSpecialVar_Result = CheckPartyHasSpecie(givenSpecies);
+    gSpecialVar_Result = CheckPartyHasSpecies(givenSpecies);
 
     return FALSE;
 }

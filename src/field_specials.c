@@ -4316,7 +4316,7 @@ bool32 CheckObjectAtXY(u32 x, u32 y)
     return FALSE;
 }
 
-bool32 CheckPartyHasSpecie(u32 givenSpecies)
+bool32 CheckPartyHasSpecies(u32 givenSpecies)
 {
     u32 partyIndex;
 
