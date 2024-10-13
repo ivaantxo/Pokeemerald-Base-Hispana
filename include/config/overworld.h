@@ -45,7 +45,7 @@
 #define OW_MON_WANDER_WALK             TRUE       // Si TRUE, los OW de Pokémon con MOVEMENT_TYPE_WANDER andarán en el sitio entre pasos.
 
 // Pokémon seguidores
-#define OW_FOLLOWERS_ENABLED           FALSE      // Habilita Pokémon seguidores, al estilo de HGSS. Requiere OW_POKEMON_OBJECT_EVENTS. ¡Nota que puede ser necesaria una programación adicional para que se soporten completamente!
+#define OW_FOLLOWERS_ENABLED           TRUE       // Habilita Pokémon seguidores, al estilo de HGSS. Requiere OW_POKEMON_OBJECT_EVENTS. ¡Nota que puede ser necesaria una programación adicional para que se soporten completamente!
 #define OW_FOLLOWERS_BOBBING           TRUE       // Si es verdadero, los Pokémon seguidores se moverán hacia arriba y hacia abajo durante sus animaciones de inactividad y caminata.
 #define OW_FOLLOWERS_POKEBALLS         TRUE       // Los seguidores emergerán de la Pokébola en la que están almacenados, en lugar de una Pokébola normal
 
