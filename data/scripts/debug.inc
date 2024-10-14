@@ -149,7 +149,11 @@ Debug_EventScript_Script_2::
 	release
 	end
 
+sText_JiJiJi:
+	.string "Ji ji ji$"
+
 Debug_EventScript_Script_3::
+	trainerbattle_no_intro TRAINER_MAY_PLACEHOLDER, sText_JiJiJi
 	release
 	end
 

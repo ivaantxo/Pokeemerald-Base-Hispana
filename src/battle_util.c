@@ -8585,6 +8585,36 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         return FALSE;
 }
 
+// Solo para mostrar la efectividad en combate
+static bool32 IsBattlerGroundedEffectiveness(u32 battler, u32 defItem)
+{
+    u32 holdEffect = ItemId_GetHoldEffectParam(defItem);
+
+    if (gStatuses3[battler] & STATUS3_EMBARGO || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || BATTLE_HISTORY->abilities[battler] == ABILITY_KLUTZ)
+        holdEffect = HOLD_EFFECT_NONE;
+
+    if (holdEffect == HOLD_EFFECT_IRON_BALL)
+        return TRUE;
+    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+        return TRUE;
+    if (B_ROOTED_GROUNDING >= GEN_4 && gStatuses3[battler] & STATUS3_ROOTED)
+        return TRUE;
+    if (gStatuses3[battler] & STATUS3_SMACKED_DOWN)
+        return TRUE;
+    if (gStatuses3[battler] & STATUS3_TELEKINESIS)
+        return FALSE;
+    if (gStatuses3[battler] & STATUS3_MAGNET_RISE)
+        return FALSE;
+    if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
+        return FALSE;
+    if (BATTLE_HISTORY->abilities[battler] == ABILITY_LEVITATE)
+        return FALSE;
+    if (IS_BATTLER_OF_TYPE(battler, TYPE_FLYING) && (!FlagGet(B_FLAG_INVERSE_BATTLE)))
+        return FALSE;
+
+    return TRUE;
+}
+
 // Only called directly when calculating damage type effectiveness
 static bool32 IsBattlerGrounded2(u32 battler, bool32 considerInverse)
 {
@@ -10467,6 +10497,30 @@ uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk,
     return modifier;
 }
 
+uq4_12_t SimplifiedCalcTypeEffectiveness(u32 move, u32 moveType, u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 defItem)
+{
+    uq4_12_t modifier = UQ_4_12(1.0);
+
+    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS && move != MOVE_THUNDER_WAVE)
+    {
+        modifier = UQ_4_12(1.0);
+        if (B_GLARE_GHOST < GEN_4 && move == MOVE_GLARE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
+            modifier = UQ_4_12(0.0);
+    }
+    else if (moveType == TYPE_GROUND && !IsBattlerGroundedEffectiveness(battlerDef, defItem) && !(gMovesInfo[move].ignoreTypeIfFlyingAndUngrounded))
+        modifier = UQ_4_12(0.0);
+
+    else if (B_SHEER_COLD_IMMUNITY >= GEN_7 && move == MOVE_SHEER_COLD && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
+        modifier = UQ_4_12(0.0);
+
+    MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 0, FALSE), battlerAtk, FALSE);
+
+    if (GetBattlerType(battlerDef, 1, FALSE) != GetBattlerType(battlerDef, 0, FALSE))
+        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 1, FALSE), battlerAtk, FALSE);
+
+    return modifier;
+}
+
 uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
@@ -11001,7 +11055,7 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battler)
     s32 i, id;
     u8 side, partyCount;
 
-    gBattleStruct->illusion[battler].set = 1;
+    gBattleStruct->illusion[battler].set = TRUE;
     if (GetMonAbility(mon) != ABILITY_ILLUSION)
         return FALSE;
 

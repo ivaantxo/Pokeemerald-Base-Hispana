@@ -1658,25 +1658,19 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP_REMAINING);
 }
 
-u32 GetMoveEffectiveness(u32 battler)
+u32 GetMoveEffectivenessSingles(u32 battler)
 {
-    uq4_12_t effectiveness1, effectiveness2;
+    uq4_12_t effectiveness;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     u32 move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    u32 moveType = gMovesInfo[move].type;
+    u32 battlerDef = B_POSITION_OPPONENT_LEFT;
+    u32 defAbility = BATTLE_HISTORY->abilities[battlerDef];
+    u32 defItem = BATTLE_HISTORY->heldItems[battlerDef];
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        effectiveness1 = AI_GetTypeEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_LEFT));
-        effectiveness2 = AI_GetTypeEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_RIGHT));
-        if (effectiveness1 == effectiveness2)
-            return effectiveness1;
-        else
-            return UQ_4_12(1.0);
-    }
-    else
-        effectiveness1 = AI_GetTypeEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_LEFT));
+    effectiveness = SimplifiedCalcTypeEffectiveness(move, moveType, battler, battlerDef, defAbility, defItem);
 
-    return effectiveness1;
+    return effectiveness;
 }
 
 static void MoveSelectionDisplayMoveType(u32 battler)
@@ -1685,19 +1679,20 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u8 type;
     u32 speciesId;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-    u8 category = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category;
-    uq4_12_t effectiveness = GetMoveEffectiveness(battler);
+    u32 move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    u8 category = gMovesInfo[move].category;
+    uq4_12_t effectiveness = GetMoveEffectivenessSingles(battler);
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
 
-    type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+    type = gMovesInfo[move].type;
 
-    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_BLAST)
+    if (move == MOVE_TERA_BLAST)
     {
         if (IsGimmickSelected(battler, GIMMICK_TERA) || GetActiveGimmick(battler) == GIMMICK_TERA)
             type = GetBattlerTeraType(battler);
     }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
+    else if (move == MOVE_IVY_CUDGEL)
     {
         speciesId = gBattleMons[battler].species;
 
@@ -1707,12 +1702,12 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             type = gBattleMons[battler].types[1];
     }
     // Max Guard is a Normal-type move
-    else if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category == DAMAGE_CATEGORY_STATUS
+    else if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS
              && (GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX)))
     {
         type = TYPE_NORMAL;
     }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_STARSTORM)
+    else if (move == MOVE_TERA_STARSTORM)
     {
         if (gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR
         || (IsGimmickSelected(battler, GIMMICK_TERA) && gBattleMons[battler].species == SPECIES_TERAPAGOS_TERASTAL))
