@@ -10501,6 +10501,11 @@ uq4_12_t SimplifiedCalcTypeEffectiveness(u32 move, u32 moveType, u32 battlerAtk,
 {
     uq4_12_t modifier = UQ_4_12(1.0);
 
+    MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 0, FALSE), battlerAtk, FALSE);
+
+    if (GetBattlerType(battlerDef, 1, FALSE) != GetBattlerType(battlerDef, 0, FALSE))
+        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 1, FALSE), battlerAtk, FALSE);
+
     if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS && move != MOVE_THUNDER_WAVE)
     {
         modifier = UQ_4_12(1.0);
@@ -10512,11 +10517,6 @@ uq4_12_t SimplifiedCalcTypeEffectiveness(u32 move, u32 moveType, u32 battlerAtk,
 
     else if (B_SHEER_COLD_IMMUNITY >= GEN_7 && move == MOVE_SHEER_COLD && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
         modifier = UQ_4_12(0.0);
-
-    MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 0, FALSE), battlerAtk, FALSE);
-
-    if (GetBattlerType(battlerDef, 1, FALSE) != GetBattlerType(battlerDef, 0, FALSE))
-        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, GetBattlerType(battlerDef, 1, FALSE), battlerAtk, FALSE);
 
     return modifier;
 }
