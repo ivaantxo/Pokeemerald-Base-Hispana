@@ -81,7 +81,10 @@ Respecto a nuevas funciones encontramos:
     - DarkusShadow
     - Phyromatical
 
-(Añadir más colaboradores si es necesario)
+- Sprite de Paldean Wooper (base, colores de Pokémon HOME):
+    - RetroNC (primer frame), 
+    - Star Gazaar (segundo frame y back),
+    - DarkusShadow (OW).
 
 ## Autores de Pokeemerald Base Hispana
 - [Caco](https://whackahack.com/foro/members/caco5400.38304/)

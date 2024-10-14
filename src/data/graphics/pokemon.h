@@ -3082,7 +3082,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_U32("graphics/pokemon/question_m
     const u32 gMonBackPic_QuagsireF[] = INCBIN_U32("graphics/pokemon/quagsire/backf.4bpp.lz");
 
 #if P_PALDEAN_FORMS
-    const u32 gMonFrontPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/paldean/front.4bpp.lz");
+    const u32 gMonFrontPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/paldean/anim_front.4bpp.lz");
     const u32 gMonPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/paldean/normal.gbapal.lz");
     const u32 gMonBackPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/paldean/back.4bpp.lz");
     const u32 gMonShinyPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/paldean/shiny.gbapal.lz");  

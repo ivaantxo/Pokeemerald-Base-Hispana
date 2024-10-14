@@ -2924,7 +2924,17 @@ static const union AnimCmd sAnim_Quagsire_1[] =
 };
 
 #if P_PALDEAN_FORMS
-PLACEHOLDER_ANIM_SINGLE_FRAME(WooperPaldean);
+static const union AnimCmd sAnim_WooperPaldean_1[] =
+{
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_END,
+};
+
 PLACEHOLDER_ANIM_SINGLE_FRAME(Clodsire);
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_WOOPER
