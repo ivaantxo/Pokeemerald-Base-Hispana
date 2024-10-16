@@ -8023,9 +8023,12 @@ BattleScript_SupremeOverlordActivates::
 
 BattleScript_CostarActivates::
 	pause B_WAIT_TIME_SHORT
+	savetarget
+	copybyte gBattlerTarget, sBATTLER
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNCOPIEDSTATCHANGES
 	waitmessage B_WAIT_TIME_LONG
+	restoretarget
 	end3
 
 BattleScript_ZeroToHeroActivates::
