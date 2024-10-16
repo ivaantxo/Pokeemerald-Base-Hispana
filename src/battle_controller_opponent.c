@@ -661,7 +661,7 @@ static void OpponentHandleChoosePokemon(u32 battler)
         chosenMonId = gSelectedMonPartyId = GetFirstFaintedPartyIndex(battler);
     }
     // Switching out
-    else if (*(gBattleStruct->AI_monToSwitchIntoId + battler) == PARTY_SIZE)
+    else if (gBattleStruct->AI_monToSwitchIntoId[battler] == PARTY_SIZE)
     {
         chosenMonId = GetMostSuitableMonToSwitchInto(battler, TRUE);
         if (chosenMonId == PARTY_SIZE)
@@ -680,27 +680,27 @@ static void OpponentHandleChoosePokemon(u32 battler)
             }
 
             GetAIPartyIndexes(battler, &firstId, &lastId);
-
             for (chosenMonId = (lastId-1); chosenMonId >= firstId; chosenMonId--)
             {
-                if (IsValidForBattle(&gEnemyParty[chosenMonId])
-                    && chosenMonId != gBattlerPartyIndexes[battler1]
-                    && chosenMonId != gBattlerPartyIndexes[battler2]
-                    && (!(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_ACE_POKEMON)
-                        || chosenMonId != CalculateEnemyPartyCount() - 1
-                        || CountAIAliveNonEggMonsExcept(PARTY_SIZE) == pokemonInBattle))
-                {
-                    break;
-                }
+                if (!IsValidForBattle(&gEnemyParty[chosenMonId]))
+                    continue;
+                if (chosenMonId == gBattlerPartyIndexes[battler1]
+                 || chosenMonId == gBattlerPartyIndexes[battler2])
+                    continue;
+                if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_ACE_POKEMON)
+                 && ((chosenMonId != CalculateEnemyPartyCount() - 1) || CountAIAliveNonEggMonsExcept(PARTY_SIZE) == pokemonInBattle))
+                    continue;
+                // mon is valid
+                break;
             }
         }
-        *(gBattleStruct->monToSwitchIntoId + battler) = chosenMonId;
+        gBattleStruct->monToSwitchIntoId[battler] = chosenMonId;
     }
     else
     {
-        chosenMonId = *(gBattleStruct->AI_monToSwitchIntoId + battler);
-        *(gBattleStruct->AI_monToSwitchIntoId + battler) = PARTY_SIZE;
-        *(gBattleStruct->monToSwitchIntoId + battler) = chosenMonId;
+        chosenMonId = gBattleStruct->AI_monToSwitchIntoId[battler];
+        gBattleStruct->AI_monToSwitchIntoId[battler] = PARTY_SIZE;
+        gBattleStruct->monToSwitchIntoId[battler] = chosenMonId;
     }
     #if TESTING
     TestRunner_Battle_CheckSwitch(battler, chosenMonId);
