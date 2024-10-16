@@ -916,6 +916,11 @@ u8 ItemId_GetImportance(u16 itemId)
     return gItemsInfo[SanitizeItemId(itemId)].importance;
 }
 
+u8 ItemId_GetConsumability(u16 itemId)
+{
+    return !gItemsInfo[SanitizeItemId(itemId)].notConsumed;
+}
+
 u8 ItemId_GetPocket(u16 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].pocket;
