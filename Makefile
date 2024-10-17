@@ -19,6 +19,8 @@ TEST         ?= 0
 ANALYZE      ?= 0
 # Count unused warnings as errors. Used by RH-Hideout's repo
 UNUSED_ERROR ?= 0
+# Adds -Og and -g flags, which optimize the build for debugging and include debug info respectively
+DEBUG        ?= 0
 
 ifeq (agbcc,$(MAKECMDGOALS))
   MODERN := 0
@@ -28,6 +30,9 @@ ifeq (compare,$(MAKECMDGOALS))
 endif
 ifeq (check,$(MAKECMDGOALS))
   TEST := 1
+endif
+ifeq (debug,$(MAKECMDGOALS))
+  DEBUG := 1
 endif
 
 # Default make rule
@@ -81,6 +86,7 @@ OBJ_DIR_NAME_TEST := $(BUILD_DIR)/test
 MODERN_ROM_NAME := $(FILE_NAME).gba
 MODERN_OBJ_DIR_NAME := $(BUILD_DIR)/modern
 MODERN_OBJ_DIR_NAME_TEST := $(BUILD_DIR)/modern-test
+MODERN_OBJ_DIR_NAME_DEBUG := $(BUILD_DIR)/modern-debug
 
 ELF_NAME := $(ROM_NAME:.gba=.elf)
 MAP_NAME := $(ROM_NAME:.gba=.map)
@@ -104,6 +110,9 @@ else
   else
     OBJ_DIR := $(MODERN_OBJ_DIR_NAME_TEST)
   endif
+endif
+ifeq ($(DEBUG),1)
+  OBJ_DIR := $(MODERN_OBJ_DIR_NAME_DEBUG)
 endif
 ifeq ($(TESTELF),$(MAKECMDGOALS))
   TEST := 1
@@ -137,7 +146,11 @@ INCLUDE_DIRS := include
 INCLUDE_CPP_ARGS := $(INCLUDE_DIRS:%=-iquote %)
 INCLUDE_SCANINC_ARGS := $(INCLUDE_DIRS:%=-I %)
 
+ifeq ($(DEBUG),1)
+O_LEVEL ?= g
+else
 O_LEVEL ?= 2
+endif
 CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=$(MODERN) -DTESTING=$(TEST)
 ifeq ($(MODERN),0)
   CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
@@ -166,6 +179,15 @@ endif
 # Enable debug info if set
 ifeq ($(DINFO),1)
   override CFLAGS += -g
+else
+  ifeq ($(DEBUG),1)
+    override CFLAGS += -g
+  endif
+endif
+
+ifeq ($(NOOPT),1)
+override CFLAGS := $(filter-out -O1 -Og -O2,$(CFLAGS))
+override CFLAGS += -O0
 endif
 
 # Variable filled out in other make files
@@ -199,7 +221,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidynonmodern tidycheck generated clean-generated $(TESTELF)
-.PHONY: all rom agbcc modern compare check
+.PHONY: all rom agbcc modern compare check debug
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -269,6 +291,7 @@ $(shell mkdir -p $(SUBDIRS))
 # Pretend rules that are actually flags defer to `make all`
 modern: all
 compare: all
+debug: all
 # Uncomment the next line, and then comment the 4 lines after it to reenable agbcc.
 #agbcc: all
 agbcc:
@@ -317,7 +340,7 @@ clean-assets:
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.rl' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 	find $(DATA_ASM_SUBDIR)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
 
-tidy: tidynonmodern tidymodern tidycheck
+tidy: tidynonmodern tidymodern tidycheck tidydebug
 
 tidynonmodern:
 	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME)
@@ -331,6 +354,9 @@ tidycheck:
 	rm -f $(TESTELF) $(HEADLESSELF)
 	rm -rf $(MODERN_OBJ_DIR_NAME_TEST)
 	rm -rf $(OBJ_DIR_NAME_TEST)
+
+tidydebug:
+	rm -rf $(DEBUG_OBJ_DIR_NAME)
 
 # Other rules
 include graphics_file_rules.mk
@@ -470,7 +496,7 @@ endif
 # Final rules
 
 libagbsyscall:
-	@$(MAKE) -C libagbsyscall TOOLCHAIN=$(TOOLCHAIN) MODERN=$(MODERN)
+	@$(MAKE) -C libagbsyscall TOOLCHAIN=$(TOOLCHAIN) MODERN=1
 
 # Elf from object files
 $(ELF): $(LD_SCRIPT) $(LD_SCRIPT_DEPS) $(OBJS) libagbsyscall
