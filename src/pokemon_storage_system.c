@@ -127,12 +127,9 @@ enum {
 // IDs for how to resolve variables in the above messages
 enum {
     MSG_VAR_NONE,
-    MSG_VAR_MON_NAME_1,
-    MSG_VAR_MON_NAME_2, // Unused
-    MSG_VAR_MON_NAME_3, // Unused
-    MSG_VAR_RELEASE_MON_1,
-    MSG_VAR_RELEASE_MON_2, // Unused
-    MSG_VAR_RELEASE_MON_3,
+    MSG_VAR_MON_NAME,
+    MSG_VAR_PKMN_WAS_RELEASED,
+    MSG_VAR_BYE_BYE_PKMN,
     MSG_VAR_ITEM_NAME,
 };
 
@@ -186,8 +183,6 @@ enum {
 enum {
     INPUT_NONE,
     INPUT_MOVE_CURSOR,
-    INPUT_2, // Unused
-    INPUT_3, // Unused
     INPUT_CLOSE_BOX,
     INPUT_SHOW_PARTY,
     INPUT_HIDE_PARTY,
@@ -276,12 +271,8 @@ enum {
     GFXTAG_ITEM_ICON_2, // Used implicitly in CreateItemIconSprites
     GFXTAG_CHOOSE_BOX_MENU,
     GFXTAG_CHOOSE_BOX_MENU_SIDES, // Used implicitly in LoadChooseBoxMenuGfx
-    GFXTAG_12, // Unused
     GFXTAG_MARKING_MENU,
-    GFXTAG_14, // Unused
-    GFXTAG_15, // Unused
     GFXTAG_MARKING_COMBO,
-    GFXTAG_17, // Unused
     GFXTAG_MON_ICON,
 };
 
@@ -312,8 +303,6 @@ enum {
     ITEM_CB_TO_MON,
     ITEM_CB_SWAP_TO_HAND,
     ITEM_CB_SWAP_TO_MON,
-    ITEM_CB_UNUSED_1,
-    ITEM_CB_UNUSED_2,
     ITEM_CB_HIDE_PARTY,
 };
 
@@ -392,13 +381,11 @@ struct ChooseBoxMenu
 {
     struct Sprite *menuSprite;
     struct Sprite *menuSideSprites[4];
-    u32 unused1[3];
     struct Sprite *arrowSprites[2];
     bool32 loadedPalette;
     u16 tileTag;
     u16 paletteTag;
     u8 curBox;
-    u8 unused3;
     u8 subpriority;
 };
 
@@ -861,7 +848,6 @@ static void TilemapUtil_SetPos(u8, u16, u16);
 static void TilemapUtil_Init(u8);
 static void TilemapUtil_Free(void);
 static void TilemapUtil_Update(u8);
-static void TilemapUtil_DrawPrev(u8);
 static void TilemapUtil_Draw(u8);
 
 // Form changing
@@ -1046,14 +1032,14 @@ static const struct StorageMessage sMessages[] =
     [MSG_WHAT_YOU_DO]          = {gText_WhatDoYouWantToDo,       MSG_VAR_NONE},
     [MSG_PICK_A_THEME]         = {gText_PleasePickATheme,        MSG_VAR_NONE},
     [MSG_PICK_A_WALLPAPER]     = {gText_PickTheWallpaper,        MSG_VAR_NONE},
-    [MSG_IS_SELECTED]          = {gText_PkmnIsSelected,          MSG_VAR_MON_NAME_1},
+    [MSG_IS_SELECTED]          = {gText_PkmnIsSelected,          MSG_VAR_MON_NAME},
     [MSG_JUMP_TO_WHICH_BOX]    = {gText_JumpToWhichBox,          MSG_VAR_NONE},
     [MSG_DEPOSIT_IN_WHICH_BOX] = {gText_DepositInWhichBox,       MSG_VAR_NONE},
-    [MSG_WAS_DEPOSITED]        = {gText_PkmnWasDeposited,        MSG_VAR_MON_NAME_1},
+    [MSG_WAS_DEPOSITED]        = {gText_PkmnWasDeposited,        MSG_VAR_MON_NAME},
     [MSG_BOX_IS_FULL]          = {gText_BoxIsFull2,              MSG_VAR_NONE},
     [MSG_RELEASE_POKE]         = {gText_ReleaseThisPokemon,      MSG_VAR_NONE},
-    [MSG_WAS_RELEASED]         = {gText_PkmnWasReleased,         MSG_VAR_RELEASE_MON_1},
-    [MSG_BYE_BYE]              = {gText_ByeByePkmn,              MSG_VAR_RELEASE_MON_3},
+    [MSG_WAS_RELEASED]         = {gText_PkmnWasReleased,         MSG_VAR_PKMN_WAS_RELEASED},
+    [MSG_BYE_BYE]              = {gText_ByeByePkmn,              MSG_VAR_BYE_BYE_PKMN},
     [MSG_MARK_POKE]            = {gText_MarkYourPkmn,            MSG_VAR_NONE},
     [MSG_LAST_POKE]            = {gText_ThatsYourLastPkmn,       MSG_VAR_NONE},
     [MSG_PARTY_FULL]           = {gText_YourPartysFull,          MSG_VAR_NONE},
@@ -1061,7 +1047,7 @@ static const struct StorageMessage sMessages[] =
     [MSG_WHICH_ONE_WILL_TAKE]  = {gText_WhichOneWillYouTake,     MSG_VAR_NONE},
     [MSG_CANT_RELEASE_EGG]     = {gText_YouCantReleaseAnEgg,     MSG_VAR_NONE},
     [MSG_CONTINUE_BOX]         = {gText_ContinueBoxOperations,   MSG_VAR_NONE},
-    [MSG_CAME_BACK]            = {gText_PkmnCameBack,            MSG_VAR_MON_NAME_1},
+    [MSG_CAME_BACK]            = {gText_PkmnCameBack,            MSG_VAR_MON_NAME},
     [MSG_WORRIED]              = {gText_WasItWorriedAboutYou,    MSG_VAR_NONE},
     [MSG_SURPRISE]             = {gText_FourEllipsesExclamation, MSG_VAR_NONE},
     [MSG_PLEASE_REMOVE_MAIL]   = {gText_PleaseRemoveTheMail,     MSG_VAR_NONE},
@@ -4208,14 +4194,11 @@ static void PrintMessage(u8 id)
     {
     case MSG_VAR_NONE:
         break;
-    case MSG_VAR_MON_NAME_1:
-    case MSG_VAR_MON_NAME_2:
-    case MSG_VAR_MON_NAME_3:
+    case MSG_VAR_MON_NAME:
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sStorage->displayMonName);
         break;
-    case MSG_VAR_RELEASE_MON_1:
-    case MSG_VAR_RELEASE_MON_2:
-    case MSG_VAR_RELEASE_MON_3:
+    case MSG_VAR_PKMN_WAS_RELEASED:
+    case MSG_VAR_BYE_BYE_PKMN:
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sStorage->releaseMonName);
         break;
     case MSG_VAR_ITEM_NAME:
@@ -9847,15 +9830,10 @@ struct TilemapUtil_RectData
 
 struct TilemapUtil
 {
-    struct TilemapUtil_RectData prev; // Only read in unused function
     struct TilemapUtil_RectData cur;
-    const void *savedTilemap; // Only written in unused function
     const void *tilemap;
     u16 altWidth;
-    u16 altHeight; // Never read
     u16 width;
-    u16 height; // Never read
-    u16 rowSize; // Never read
     u8 tileSize;
     u8 bg;
     bool8 active;
@@ -9872,7 +9850,6 @@ static void TilemapUtil_Init(u8 count)
     sNumTilemapUtilIds = (sTilemapUtil == NULL) ? 0 : count;
     for (i = 0; i < sNumTilemapUtilIds; i++)
     {
-        sTilemapUtil[i].savedTilemap = NULL;
         sTilemapUtil[i].active = FALSE;
     }
 }
@@ -9909,29 +9886,24 @@ static void TilemapUtil_SetMap(u8 id, u8 bg, const void *tilemap, u16 width, u16
     if (id >= sNumTilemapUtilIds)
         return;
 
-    sTilemapUtil[id].savedTilemap = NULL;
     sTilemapUtil[id].tilemap = tilemap;
     sTilemapUtil[id].bg = bg;
     sTilemapUtil[id].width = width;
-    sTilemapUtil[id].height = height;
 
     bgScreenSize = GetBgAttribute(bg, BG_ATTR_SCREENSIZE);
     bgType = GetBgAttribute(bg, BG_ATTR_TYPE);
     sTilemapUtil[id].altWidth = sTilemapDimensions[bgType][bgScreenSize].width;
-    sTilemapUtil[id].altHeight = sTilemapDimensions[bgType][bgScreenSize].height;
     if (bgType != BG_TYPE_NORMAL)
         sTilemapUtil[id].tileSize = 1;
     else
         sTilemapUtil[id].tileSize = 2;
 
-    sTilemapUtil[id].rowSize = sTilemapUtil[id].tileSize * width;
     sTilemapUtil[id].cur.width = width;
     sTilemapUtil[id].cur.height = height;
     sTilemapUtil[id].cur.x = 0;
     sTilemapUtil[id].cur.y = 0;
     sTilemapUtil[id].cur.destX = 0;
     sTilemapUtil[id].cur.destY = 0;
-    sTilemapUtil[id].prev = sTilemapUtil[id].cur;
     sTilemapUtil[id].active = TRUE;
 }
 
@@ -9996,30 +9968,7 @@ static void TilemapUtil_Update(u8 id)
     if (id >= sNumTilemapUtilIds)
         return;
 
-    if (sTilemapUtil[id].savedTilemap != NULL)
-        TilemapUtil_DrawPrev(id); // Never called, above always FALSE
-
     TilemapUtil_Draw(id);
-    sTilemapUtil[id].prev = sTilemapUtil[id].cur;
-}
-
-static void TilemapUtil_DrawPrev(u8 id)
-{
-    s32 i;
-    u32 adder = sTilemapUtil[id].tileSize * sTilemapUtil[id].altWidth;
-    const void *tiles = (sTilemapUtil[id].savedTilemap + (adder * sTilemapUtil[id].prev.destY))
-                      + (sTilemapUtil[id].tileSize * sTilemapUtil[id].prev.destX);
-
-    for (i = 0; i < sTilemapUtil[id].prev.height; i++)
-    {
-        CopyToBgTilemapBufferRect(sTilemapUtil[id].bg,
-                                  tiles,
-                                  sTilemapUtil[id].prev.destX,
-                                  sTilemapUtil[id].prev.destY + i,
-                                  sTilemapUtil[id].prev.width,
-                                  1);
-        tiles += adder;
-    }
 }
 
 static void TilemapUtil_Draw(u8 id)

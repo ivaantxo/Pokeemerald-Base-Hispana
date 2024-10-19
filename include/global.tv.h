@@ -60,7 +60,6 @@ typedef union // size = 0x24
         /*0x05*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x0D*/ u8 language;
         /*0x0E*/ u8 pokemonNameLanguage;
-        /*0x0F*/ u8 filler_0F[1];
         /*0x10*/ u8 nickname[PLAYER_NAME_LENGTH + 1];
         /*0x18*/ u16 words18[2];
         /*0x1C*/ u16 words[2];
@@ -72,7 +71,6 @@ typedef union // size = 0x24
         /*0x01*/ bool8 active;
         /*0x02*/ u16 words[2];
         /*0x06*/ u16 species;
-        /*0x08*/ u8 filler_08[3];
         /*0x0B*/ u8 name[12];
         /*0x17*/ u8 language;
     } dummy;
@@ -84,7 +82,6 @@ typedef union // size = 0x24
         /*0x02*/ u16 species;
         /*0x04*/ u8 pokemonName[VANILLA_POKEMON_NAME_LENGTH + 1];
         /*0x0F*/ u8 trainerName[PLAYER_NAME_LENGTH + 1];
-        /*0x17*/ u8 unused[3];
         /*0x1A*/ u8 random;
         /*0x1B*/ u8 random2;
         /*0x1C*/ u16 randomSpecies;
@@ -223,7 +220,6 @@ typedef union // size = 0x24
         /*0x01*/ bool8 active;
         /*0x02*/ u8 priceReduced;
         /*0x03*/ u8 language;
-        /*0x04*/ u8 filler_04[2];
         /*0x06*/ u16 itemIds[SMARTSHOPPER_NUM_ITEMS];
         /*0x0C*/ u16 itemAmounts[SMARTSHOPPER_NUM_ITEMS];
         /*0x12*/ u8 shopLocation;
@@ -236,7 +232,6 @@ typedef union // size = 0x24
         /*0x00*/ u8 kind;
         /*0x01*/ bool8 active;
         /*0x02*/ u8 language;
-        /*0x03*/ u8 filler_03[9];
         /*0x0C*/ u16 species;
         /*0x0E*/ u16 species2;
         /*0x10*/ u8 nBallsUsed;
@@ -254,7 +249,6 @@ typedef union // size = 0x24
         /*0x03*/ u8 nFails;
         /*0x04*/ u16 species;
         /*0x06*/ u8 language;
-        /*0x07*/ u8 filler_07[12];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } pokemonAngler;
@@ -269,7 +263,6 @@ typedef union // size = 0x24
         /*0x08*/ u16 species;
         /*0x0A*/ u8 location;
         /*0x0B*/ u8 language;
-        /*0x0C*/ u8 filler_0C[7];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding2;
     } worldOfMasters;
@@ -286,7 +279,6 @@ typedef union // size = 0x24
         /*0x08*/ u16 battlePoints;
         /*0x0A*/ u16 mapLayoutId;
         /*0x0C*/ u8 language;
-        /*0x0D*/ u8 filler_0D[6];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding2;
     } rivalTrainer;
@@ -295,11 +287,9 @@ typedef union // size = 0x24
     struct {
         /*0x00*/ u8 kind;
         /*0x01*/ bool8 active;
-        /*0x02*/ u8 filler_02[2];
         /*0x04*/ u16 words[2];
         /*0x08*/ u8 gender;
         /*0x09*/ u8 language;
-        /*0x0A*/ u8 filler_0a[9];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } trendWatcher;
@@ -312,7 +302,6 @@ typedef union // size = 0x24
         /*0x04*/ u8 location;
         /*0x05*/ u8 language;
         /*0x06*/ u16 mapLayoutId;
-        /*0x08*/ u8 filler_08[11];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } treasureInvestigators;
@@ -324,9 +313,7 @@ typedef union // size = 0x24
         /*0x02*/ u8 won;
         /*0x03*/ u8 whichGame;
         /*0x04*/ u16 nCoins;
-        /*0x06*/ u8 filler_06[2];
         /*0x08*/ u8 language;
-        /*0x09*/ u8 filler_09[10];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } findThatGamer;
@@ -343,7 +330,6 @@ typedef union // size = 0x24
         /*0x0A*/ u16 poke1Species;
         /*0x0C*/ u16 lastUsedMove;
         /*0x0E*/ u8 language;
-        /*0x0F*/ u8 filler_0f[4];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } breakingNews;
@@ -358,7 +344,6 @@ typedef union // size = 0x24
         /*0x08*/ u16 species;
         /*0x0A*/ u16 move;
         /*0x0C*/ u8 language;
-        /*0x0D*/ u8 filler_0d[6];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } secretBaseVisit;
@@ -370,7 +355,6 @@ typedef union // size = 0x24
         /*0x02*/ u16 item;
         /*0x04*/ u8 whichPrize;
         /*0x05*/ u8 language;
-        /*0x06*/ u8 filler_06[13];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } lottoWinner;
@@ -386,7 +370,6 @@ typedef union // size = 0x24
         /*0x0E*/ u16 betterMove;
         /*0x10*/ u8 nOtherMoves;
         /*0x11*/ u8 language;
-        /*0x12*/ u8 filler_12[1];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } battleSeminar;
@@ -395,10 +378,8 @@ typedef union // size = 0x24
     struct {
         /*0x00*/ u8 kind;
         /*0x01*/ bool8 active;
-        /*0x02*/ u8 filler_02[2];
         /*0x04*/ u16 words[2];
         /*0x08*/ u8 language;
-        /*0x09*/ u8 filler_09[10];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } trainerFanClub;
@@ -412,7 +393,6 @@ typedef union // size = 0x24
         /*0x04*/ u8 nickname[VANILLA_POKEMON_NAME_LENGTH + 1];
         /*0x0F*/ u8 language;
         /*0x10*/ u8 pokemonNameLanguage;
-        /*0x11*/ u8 filler_12[2];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     } cuties;
 
@@ -427,7 +407,6 @@ typedef union // size = 0x24
         /*0x0A*/ u16 species4;
         /*0x0C*/ u8 language;
         /*0x0D*/ u8 facilityAndMode;
-        /*0x0E*/ u8 filler_0e[5];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } frontier;
@@ -439,7 +418,6 @@ typedef union // size = 0x24
         /*0x02*/ u16 count;
         /*0x04*/ u8 actionIdx;
         /*0x05*/ u8 language;
-        /*0x06*/ u8 filler_06[13];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
         /*0x1B*/ //u8 padding;
     } numberOne;
@@ -466,7 +444,6 @@ typedef union // size = 0x24
         /*0x02*/ u8 monsCaught;
         /*0x03*/ u8 pokeblocksUsed;
         /*0x04*/ u8 language;
-        /*0x05*/ u8 filler_05[14];
         /*0x13*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     } safariFanClub;
 
@@ -475,17 +452,12 @@ typedef union // size = 0x24
     struct {
         /*0x00*/ u8 kind;
         /*0x01*/ bool8 active;
-        /*0x02*/ u8 unused1;
-        /*0x03*/ u8 unused3;
         /*0x04*/ u16 moves[MAX_MON_MOVES];
         /*0x0C*/ u16 species;
-        /*0x0E*/ u16 unused2;
         /*0x10*/ u8 locationMapNum;
         /*0x11*/ u8 locationMapGroup;
-        /*0x12*/ u8 unused4;
         /*0x13*/ u8 probability;
         /*0x14*/ u8 level;
-        /*0x15*/ u8 unused5;
         /*0x16*/ u16 daysLeft;
         /*0x18*/ u8 language;
         /*0x19*/ //u8 padding;

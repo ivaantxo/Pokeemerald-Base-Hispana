@@ -2427,7 +2427,6 @@ void RunUnionRoom(void)
 
     uroom->state = UR_STATE_INIT;
     uroom->textState = 0;
-    uroom->unknown = 0;
     uroom->unreadPlayerId = 0;
 
     gSpecialVar_Result = 0;
@@ -3295,7 +3294,6 @@ void InitUnionRoom(void)
     sURoom = sWirelessLinkMain.uRoom;
     data->state = 0;
     data->textState = 0;
-    data->unknown = 0;
     data->unreadPlayerId = 0;
     sUnionRoomPlayerName[0] = EOS;
 }

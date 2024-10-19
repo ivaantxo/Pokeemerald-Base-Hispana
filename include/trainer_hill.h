@@ -35,7 +35,6 @@ struct TrainerHillFloor
 struct TrainerHillChallenge
 {
     u8 numTrainers;
-    u8 unused1;
     u8 numFloors;
     u32 checksum; // A byte array sum of the floor data
     struct TrainerHillFloor floors[0]; // Floor data is assumed to follow, so this will be intentionally read out of bounds

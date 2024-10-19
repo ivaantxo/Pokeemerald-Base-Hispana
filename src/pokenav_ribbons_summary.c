@@ -42,7 +42,6 @@ enum
 
 struct Pokenav_RibbonsSummaryList
 {
-    u8 unused1[8];
     struct PokenavMonList *monList;
     u16 selectedPos;
     u16 normalRibbonLastRowStart;

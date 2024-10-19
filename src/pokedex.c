@@ -121,8 +121,6 @@ static EWRAM_DATA u16 sLastSelectedPokemon = 0;
 static EWRAM_DATA u8 sPokeBallRotation = 0;
 static EWRAM_DATA struct PokedexListItem *sPokedexListItem = NULL;
 
-// This is written to, but never read.
-u8 gUnusedPokedexU8;
 void (*gPokedexVBlankCB)(void);
 
 struct SearchOptionText
@@ -1518,14 +1516,11 @@ void ResetPokedex(void)
 
     sLastSelectedPokemon = 0;
     sPokeBallRotation = POKEBALL_ROTATION_TOP;
-    gUnusedPokedexU8 = 0;
     gSaveBlock2Ptr->pokedex.mode = DEX_MODE_HOENN;
     gSaveBlock2Ptr->pokedex.order = 0;
-    gSaveBlock2Ptr->pokedex.nationalMagic = 0;
-    gSaveBlock2Ptr->pokedex.unknown2 = 0;
+    gSaveBlock2Ptr->pokedex.nationalModeEnabled = FALSE;
     gSaveBlock2Ptr->pokedex.unownPersonality = 0;
     gSaveBlock2Ptr->pokedex.spindaPersonality = 0;
-    gSaveBlock2Ptr->pokedex.unknown3 = 0;
     DisableNationalPokedex();
     for (i = 0; i < NUM_DEX_FLAG_BYTES; i++)
     {

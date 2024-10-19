@@ -42,24 +42,19 @@ struct CableCar
     u16 timer;
     u8 bg0HorizontalOffset;
     u8 bg0VerticalOffset;
-    u8 unused0[2];
     u8 bg1HorizontalOffset;
     u8 bg1VerticalOffset;
-    u8 unused1[6];
     u8 bg3HorizontalOffset;
     u8 bg3VerticalOffset;
-    u8 unused2[2];
     u8 groundTileIdx;
     u8 groundSegmentXStart;
     u8 groundSegmentYStart;
     u8 groundTilemapOffset;
-    u8 groundTimer; // Incremented, but does nothing
     u8 groundXOffset;
     u8 groundYOffset;
     u8 groundXBase;
     u8 groundYBase;
     u16 groundTileBuffer[9][12];
-    u8 unused3[2];
     u16 bgTilemapBuffers[4][BG_SCREEN_SIZE];
     u16 *groundTilemap;
     u16 *treesTilemap;
@@ -943,7 +938,6 @@ static void BufferNextGroundSegment(void)
 
 static void AnimateGroundGoingUp(void)
 {
-    sCableCar->groundTimer = (sCableCar->groundTimer + 1) % 96;
     sCableCar->bg0HorizontalOffset = sCableCar->groundXBase - sCableCar->groundXOffset;
     sCableCar->bg0VerticalOffset = sCableCar->groundYBase - sCableCar->groundYOffset;
     sCableCar->groundXOffset++;
@@ -956,7 +950,6 @@ static void AnimateGroundGoingUp(void)
 
 static void AnimateGroundGoingDown(void)
 {
-    sCableCar->groundTimer = (sCableCar->groundTimer + 1) % 96;
     sCableCar->bg0HorizontalOffset = sCableCar->groundXBase + sCableCar->groundXOffset;
     sCableCar->bg0VerticalOffset = sCableCar->groundYBase + sCableCar->groundYOffset;
     sCableCar->groundXOffset++;
@@ -1055,6 +1048,4 @@ static void InitGroundTilemapData(bool8 goingDown)
             DrawNextGroundSegmentGoingDown();
             break;
     }
-
-    sCableCar->groundTimer = 0;
 }

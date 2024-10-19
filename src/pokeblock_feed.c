@@ -48,19 +48,15 @@ struct PokeblockFeed
     struct Sprite *monSpritePtr;
     struct Sprite savedMonSprite;
     u8 tilemapBuffer[BG_SCREEN_SIZE];
-    u8 unused1[8];
     s16 monAnimX[0x200];
     s16 monAnimY[0x200];
     u8 animRunState;
     u8 animId;
-    u8 unused2;
     bool8 noMonFlip;
     u16 species;
     u16 monAnimLength;
     u16 timer;
     u8 nature;
-    u8 monSpriteId_; // Duplicated unnecessarily
-    u8 unused3;
     u8 monSpriteId;
     u8 pokeblockCaseSpriteId;
     u8 pokeblockSpriteId;
@@ -71,7 +67,6 @@ struct PokeblockFeed
     s16 monX;
     s16 monY;
     s16 loadGfxState;
-    u8 unused4;
 };
 
 static void HandleInitBackgrounds(void);
@@ -830,7 +825,6 @@ static u8 CreateMonSpritePokeblock(struct Pokemon *mon)
     u8 spriteId = CreateSprite(&gMultiuseSpriteTemplate, MON_X, MON_Y, 2);
 
     sPokeblockFeed->species = species;
-    sPokeblockFeed->monSpriteId_ = spriteId;
     sPokeblockFeed->nature = GetNature(mon);
     gSprites[spriteId].sSpecies = species;
     gSprites[spriteId].callback = SpriteCallbackDummy;
@@ -936,7 +930,6 @@ static void UpdateMonAnim(void)
     {
     case 0:
         pokeblockFeed->animId = gNaturesInfo[pokeblockFeed->nature].pokeBlockAnim[0];
-        pokeblockFeed->monSpritePtr = &gSprites[pokeblockFeed->monSpriteId_];
         pokeblockFeed->savedMonSprite = *pokeblockFeed->monSpritePtr;
         pokeblockFeed->animRunState = 10;
         break;

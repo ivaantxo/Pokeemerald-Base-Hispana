@@ -55,11 +55,9 @@ struct UsePokeblockSession
     struct Pokemon *mon;
     u8 stringBuffer[64];
     u8 mainState;
-    u8 unused1;
     u8 timer;
     u8 condition;
     u8 numEnhancements;
-    u8 unused2;
     bool8 monInTopHalf;
     u8 conditionsBeforeBlock[CONDITION_COUNT];
     u8 conditionsAfterBlock[CONDITION_COUNT];
@@ -69,7 +67,6 @@ struct UsePokeblockSession
     u8 curSelection;
     bool8 (*loadNewSelection)(void);
     u8 helperState;
-    u8 unused3;
     u8 natureText[34];
 };
 
@@ -86,10 +83,8 @@ struct UsePokeblockMenuPokemon
 
 struct UsePokeblockMenu
 {
-    u32 unused;
     u16 partyPalettes[PARTY_SIZE][0x40];
     u8 partySheets[NUM_SELECTIONS_LOADED][MON_PIC_SIZE * MAX_MON_PIC_FRAMES];
-    u8 unusedBuffer[0x1000];
     u8 tilemapBuffer[BG_SCREEN_SIZE + 2];
     u8 selectionIconSpriteIds[PARTY_SIZE + 1];
     s16 curMonXOffset;
@@ -596,9 +591,7 @@ static void ShowUsePokeblockMenu(void)
 enum {
     STATE_HANDLE_INPUT,
     STATE_UPDATE_SELECTION,
-    STATE_2, // unused state
     STATE_CLOSE,
-    STATE_4, // unused state
     STATE_CONFIRM_SELECTION,
     STATE_HANDLE_CONFIRMATION,
     STATE_WAIT_MSG,
@@ -646,12 +639,8 @@ static void UsePokeblockMenu(void)
         if (!loading)
             sInfo->mainState = STATE_HANDLE_INPUT;
         break;
-    case STATE_2:
-        break;
     case STATE_CLOSE:
         SetUsePokeblockCallback(CloseUsePokeblockMenu);
-        break;
-    case STATE_4:
         break;
     case STATE_CONFIRM_SELECTION:
         AskUsePokeblock();
@@ -1629,7 +1618,6 @@ static void CreateConditionSprite(void)
         {
             gSprites[spriteId].sSpeed = speed;
             gSprites[spriteId].sTargetX = (i * xDiff) | 0x20;
-            gSprites[spriteId].data[2] = i; // Unused
             StartSpriteAnim(&gSprites[spriteId], i);
             sprites[i] = &gSprites[spriteId];
         }
