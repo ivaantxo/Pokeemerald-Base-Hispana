@@ -1,9 +1,17 @@
 #ifndef GUARD_CONFIG_DEXNAV_H
 #define GUARD_CONFIG_DEXNAV_H
 
+#define DEXNAV_ENABLED                FALSE  // Whether or not dexnav is enabled. If TRUE, flags/vars below must all be non-zero
 #define USE_DEXNAV_SEARCH_LEVELS      FALSE  /* WARNING: POSSIBLY EXCEEDS SAVEBLOCK SPACE! REQUIRES 1 BYTE PER SPECIES */
 
-// search parameters
+// Flag/var defines
+#define FLAG_SYS_DEXNAV_SEARCH          0 // Searching for mon. MUST BE DEFINED FOR DEXNAV TO WORK
+#define FLAG_SYS_DEXNAV_GET             0 // Dexnav shows in start menu
+#define FLAG_SYS_DETECTOR_MODE          0 // Allow player to find hidden mons
+#define VAR_DEXNAV_SPECIES              0 // Registered dexnav species
+#define VAR_DEXNAV_STEP_COUNTER         0 // Steps for finding hidden pokemon
+
+// Search parameters
 #define DEXNAV_TIMEOUT                  15  // 15 seconds is the time out. Max of 1092 seconds allowed
 #define SNEAKING_PROXIMITY              4   // Tile amount
 #define CREEPING_PROXIMITY              2

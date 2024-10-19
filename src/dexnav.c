@@ -59,6 +59,14 @@
 #include "constants/region_map_sections.h"
 #include "gba/m4a_internal.h"
 
+#if DEXNAV_ENABLED
+STATIC_ASSERT(FLAG_SYS_DEXNAV_SEARCH != 0);
+STATIC_ASSERT(FLAG_SYS_DEXNAV_GET != 0);
+STATIC_ASSERT(FLAG_SYS_DETECTOR_MODE != 0);
+STATIC_ASSERT(VAR_DEXNAV_SPECIES != 0);
+STATIC_ASSERT(VAR_DEXNAV_STEP_COUNTER != 0);
+#endif
+
 // Defines
 enum WindowIds
 {
@@ -1264,7 +1272,6 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
         SetMonMoveSlot(mon, moves[i], i);
 
     CalculateMonStats(mon);
-    FlagClear(FLAG_SHINY_CREATION);
 }
 
 // gets a random level of the species based on map data.
@@ -2360,7 +2367,11 @@ static void DexNavGuiInit(MainCallback callback)
 
 void Task_OpenDexNavFromStartMenu(u8 taskId)
 {
-    if (!gPaletteFade.active)
+    if (DEXNAV_ENABLED == FALSE)
+    {   // must have it enabled to enter
+        DestroyTask(taskId);
+    }
+    else if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
         DexNavGuiInit(CB2_ReturnToFieldWithOpenMenu);
@@ -2525,7 +2536,10 @@ bool8 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(VAR_DEXNAV_STEP_COUNTER);
     
-    if (!FlagGet(FLAG_SYS_DETECTOR_MODE) || FlagGet(FLAG_SYS_DEXNAV_SEARCH) || GetFlashLevel() > 0)
+    if (DEXNAV_ENABLED == 0
+            || !FlagGet(FLAG_SYS_DETECTOR_MODE)
+            || FlagGet(FLAG_SYS_DEXNAV_SEARCH)
+            || GetFlashLevel() > 0)
     {
         (*stepPtr) = 0;
         return FALSE;
