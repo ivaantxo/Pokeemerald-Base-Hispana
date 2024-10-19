@@ -40,8 +40,6 @@ struct Pokenav_MatchCallGfx
     u16 infoBoxWindowId;
     u16 msgBoxWindowId;
     s16 pageDelta;
-    u8 unused18;
-    u8 unused19;
     u16 trainerPicPalOffset;
     struct Sprite *optionsCursorSprite;
     struct Sprite *trainerPicSprite;
@@ -284,7 +282,6 @@ bool32 OpenMatchCall(void)
     if (!gfx)
         return FALSE;
 
-    gfx->unused19 = 0;
     gfx->loopTaskId = CreateLoopedTask(LoopedTask_OpenMatchCall, 1);
     gfx->isTaskActiveCB = GetCurrentLoopedTaskActive;
     return TRUE;

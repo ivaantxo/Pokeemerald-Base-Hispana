@@ -33,7 +33,6 @@ struct RfuPlayer
     u8 groupScheduledAnim:2;
     bool8 useRedText:1; // Never set
     u8 newPlayerCountdown;
-    u8 unused;
 };
 
 struct RfuPlayerList
@@ -66,7 +65,6 @@ struct WirelessLink_Leader
     u8 listTaskId;
     u8 playerCount;
     u16 yesNoWindowId;
-    u8 unused;
     u8 listenTaskId;
     u8 activity;
     u8 joinRequestAnswer;
@@ -79,13 +77,11 @@ struct WirelessLink_Group
     struct RfuIncomingPlayerList *incomingPlayerList;
     u8 state;
     u8 textState;
-    u8 delayTimerAfterOk; // Unused
     u8 listWindowId;
     u8 bButtonCancelWindowId;
     u8 playerNameAndIdWindowId;
     u8 listTaskId;
     u8 leaderId;
-    u8 unused;
     u8 listenTaskId;
     bool8 isWonderNews;
     bool8 showListMenu; // Never set
@@ -107,20 +103,16 @@ struct WirelessLink_URoom
     struct RfuIncomingPlayerList *incomingChildList;
     struct RfuPlayerList *spawnPlayer;
     struct RfuIncomingPlayerList *incomingParentList;
-    u16 unknown; // Never read
     u16 unreadPlayerId;
     u8 state;
     u8 stateAfterPrint;
     u8 textState;
-    u8 filler[4];
     u8 topListMenuWindowId;
     u8 topListMenuId;
     u8 tradeBoardMainWindowId;
     u8 tradeBoardHeaderWindowId;
-    u8 unused1;
     u8 searchTaskId;
     u8 spriteIds[NUM_UNION_ROOM_SPRITES];
-    u8 unused2;
     u8 tradeBoardListMenuId;
     u16 playerSendBuffer[6];
     u8 activityRequestStrbufs[4][16];

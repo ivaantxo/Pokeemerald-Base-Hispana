@@ -37,14 +37,13 @@ struct PyramidBagMenu
     bool8 isAltIcon; // Two item icons loaded at a time. Tracks which to show next
     u8 scrollIndicatorsTaskId;
     const u8 *menuActionIds;
-    u8 unused1[4];
+
     u8 menuActionsCount;
     u8 listMenuCount;
     u8 listMenuMaxShown;
     struct ListMenuItem bagListItems[PYRAMID_BAG_ITEMS_COUNT + 1];
     u8 itemStrings[PYRAMID_BAG_ITEMS_COUNT + 1][ITEM_NAME_LENGTH + 10];
     s16 state;
-    u8 unused2[4];
 };
 
 struct PyramidBagMenuState

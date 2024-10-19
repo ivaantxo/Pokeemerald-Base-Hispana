@@ -144,15 +144,12 @@ struct BerryBlender
 {
     u8 mainState;
     u8 loadGfxState;
-    u8 unused0[66];
-    u16 unk0; // never read
     u8 scoreIconIds[NUM_SCORE_TYPES];
     u16 arrowPos;
     s16 speed;
     u16 maxRPM;
     u8 playerArrowSpriteIds[BLENDER_MAX_PLAYERS];
     u8 playerArrowSpriteIds2[BLENDER_MAX_PLAYERS];
-    u8 unused1[11];
     u8 gameEndState;
     u16 playerContinueResponses[BLENDER_MAX_PLAYERS];
     u16 canceledPlayerCmd;
@@ -168,8 +165,6 @@ struct BerryBlender
     u8 stringVar[100];
     u32 gameFrameTime;
     s32 framesToWait;
-    u32 unk1; // never read
-    u8 unused3[4];
     u8 playerToThrowBerry;
     u16 progressBarValue;
     u16 maxProgressBarValue;
@@ -246,21 +241,11 @@ static s16 sPokeblockPresentFlavors[FLAVOR_COUNT + 1];
 static s16 sDebug_MaxRPMStage;
 static s16 sDebug_GameTimeStage;
 
-u8 gInGameOpponentsNo;
+COMMON_DATA u8 gInGameOpponentsNo = 0;
 
 static const u16 sBlenderCenter_Pal[] = INCBIN_U16("graphics/berry_blender/center.gbapal");
 static const u8 sBlenderCenter_Tilemap[] = INCBIN_U8("graphics/berry_blender/center_map.bin");
 static const u16 sBlenderOuter_Pal[] = INCBIN_U16("graphics/berry_blender/outer.gbapal");
-
-static const u16 sUnused_Pal[] = INCBIN_U16("graphics/berry_blender/unused.gbapal");
-static const u16 sEmpty_Pal[16 * 14] = {0};
-
-// unused text
-static const u8 sUnusedText_YesNo[] = _("YES\nNO");
-static const u8 sUnusedText_2[] = _("▶");
-static const u8 sUnusedText_Space[] = _(" ");
-static const u8 sUnusedText_Terminating[] = _("Terminating.");
-static const u8 sUnusedText_LinkPartnerNotFound[] = _("Link partner(s) not found.\nPlease try again.\p");
 
 static const u8 sText_BerryBlenderStart[] = _("Starting up the BERRY BLENDER.\pPlease select a BERRY from your BAG\nto put in the BERRY BLENDER.\p");
 static const u8 sText_NewParagraph[] = _("\p");
@@ -1277,7 +1262,6 @@ static void StartBlender(void)
         sBerryBlender = AllocZeroed(sizeof(*sBerryBlender));
 
     sBerryBlender->mainState = 0;
-    sBerryBlender->unk1 = 0;
 
     for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         sBerryBlender->chosenItemId[i] = ITEM_NONE;
@@ -1514,7 +1498,6 @@ static void InitBlenderBgs(void)
     LoadMessageBoxGfx(0, 0x14, BG_PLTT_ID(15));
     InitBerryBlenderWindows();
 
-    sBerryBlender->unk0 = 0;
     sBerryBlender->speed = 0;
     sBerryBlender->arrowPos = 0;
     sBerryBlender->maxRPM = 0;

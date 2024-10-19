@@ -129,22 +129,6 @@ OldaleTown_Movement_EmployeeNorth:
 	walk_in_place_faster_down
 	step_end
 
-OldaleTown_Movement_Unknown1:
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	delay_8
-	walk_in_place_faster_down
-	step_end
-
 OldaleTown_Movement_PlayerEast:
 	walk_right
 	walk_up
@@ -171,20 +155,6 @@ OldaleTown_Movement_PlayerNorth:
 	walk_up
 	walk_up
 	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-OldaleTown_Movement_Unknown2:
-	walk_left
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
 	walk_up
 	walk_up
 	walk_up

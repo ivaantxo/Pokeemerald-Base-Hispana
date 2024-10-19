@@ -1210,6 +1210,7 @@ static void Cmd_attackcanceler(void)
         gCurrentActionFuncId = B_ACTION_FINISHED;
         return;
     }
+
     if (!IsBattlerAlive(gBattlerAttacker) && gMovesInfo[gCurrentMove].effect != EFFECT_EXPLOSION && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
     {
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -10988,7 +10989,10 @@ static void Cmd_various(void)
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
                 gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
             {
-                gBattleScripting.battler = BATTLE_PARTNER(gBattlerAttacker);
+                i = BATTLE_PARTNER(gBattlerAttacker);
+                gAbsentBattlerFlags &= ~(1u << i);
+                gBattleStruct->monToSwitchIntoId[i] = gSelectedMonPartyId;
+                gBattleScripting.battler = i;
                 gBattleCommunication[MULTIUSE_STATE] = TRUE;
             }
 

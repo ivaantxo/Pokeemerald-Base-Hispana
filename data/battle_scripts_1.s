@@ -466,6 +466,9 @@ BattleScript_EffectRevivalBlessing::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectRevivalBlessingSendOut:
+	getswitchedmondata BS_SCRIPTING
+	switchindataupdate BS_SCRIPTING
+	hpthresholds BS_SCRIPTING
 	switchinanim BS_SCRIPTING, FALSE
 	waitstate
 	switchineffects BS_SCRIPTING
@@ -8016,9 +8019,12 @@ BattleScript_SupremeOverlordActivates::
 
 BattleScript_CostarActivates::
 	pause B_WAIT_TIME_SHORT
+	savetarget
+	copybyte gBattlerTarget, sBATTLER
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNCOPIEDSTATCHANGES
 	waitmessage B_WAIT_TIME_LONG
+	restoretarget
 	end3
 
 BattleScript_ZeroToHeroActivates::

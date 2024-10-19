@@ -42,7 +42,6 @@ enum
 
 struct Pokenav_RibbonsSummaryList
 {
-    u8 unused1[8];
     struct PokenavMonList *monList;
     u16 selectedPos;
     u16 normalRibbonLastRowStart;
@@ -1077,7 +1076,7 @@ enum {
     RIBBONGFX_GIFT_3,
 };
 
-#define TO_PAL_OFFSET(palNum)((palNum) - PALTAG_RIBBON_ICONS_1)
+#define TO_PAL_OFFSET(palNum) ((palNum) - PALTAG_RIBBON_ICONS_1)
 
 struct
 {

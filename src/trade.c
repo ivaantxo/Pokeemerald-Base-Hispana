@@ -104,8 +104,6 @@ enum {
     QUEUE_STANDBY,
     QUEUE_ONLY_MON1,
     QUEUE_ONLY_MON2,
-    QUEUE_UNUSED1, // Presumably intended for MSG_WAITING_FOR_FRIEND
-    QUEUE_UNUSED2, // Presumably intended for MSG_FRIEND_WANTS_TO_TRADE
     QUEUE_MON_CANT_BE_TRADED,
     QUEUE_EGG_CANT_BE_TRADED,
     QUEUE_FRIENDS_MON_CANT_BE_TRADED,
@@ -2182,8 +2180,6 @@ static void DoQueuedActions(void)
                     PrintTradeMessage(MSG_ONLY_MON1);
                     break;
                 case QUEUE_ONLY_MON2:
-                case QUEUE_UNUSED1:
-                case QUEUE_UNUSED2:
                     PrintTradeMessage(MSG_ONLY_MON2);
                     break;
                 case QUEUE_MON_CANT_BE_TRADED:

@@ -160,11 +160,6 @@ SeafloorCavern_Room9_Movement_ArchieApproachPlayer:
 	walk_right
 	step_end
 
-SeafloorCavern_Room9_Movement_Unused1:
-	walk_left
-	walk_left
-	step_end
-
 SeafloorCavern_Room9_Movement_ArchieListenMessage:
 	walk_left
 	delay_16

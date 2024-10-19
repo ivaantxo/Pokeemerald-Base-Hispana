@@ -285,6 +285,6 @@ const u8 gOgerponHearthflameMaskPokedexText[] = _(
 
 const u8 gOgerponCornerstoneMaskPokedexText[] = _(
     "En el momento en que evolucionó,\n"
-"adquirió un sabor mixto. Esto se debe\n"
-"a la forma en que sus células cambiaron\n"
-"espontáneamente durante la evolución.");
+    "adquirió un sabor mixto. Esto se debe\n"
+    "a la forma en que sus células cambiaron\n"
+    "espontáneamente durante la evolución.");

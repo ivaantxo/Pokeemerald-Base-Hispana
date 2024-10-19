@@ -128,8 +128,8 @@ enum {
 enum {
     MSG_VAR_NONE,
     MSG_VAR_MON_NAME,
-    MSG_VAR_RELEASE_MON_1,
-    MSG_VAR_RELEASE_MON_2,
+    MSG_VAR_PKMN_WAS_RELEASED,
+    MSG_VAR_BYE_BYE_PKMN,
     MSG_VAR_ITEM_NAME,
 };
 
@@ -1053,8 +1053,8 @@ static const struct StorageMessage sMessages[] =
     [MSG_WAS_DEPOSITED]        = {gText_PkmnWasDeposited,        MSG_VAR_MON_NAME},
     [MSG_BOX_IS_FULL]          = {gText_BoxIsFull2,              MSG_VAR_NONE},
     [MSG_RELEASE_POKE]         = {gText_ReleaseThisPokemon,      MSG_VAR_NONE},
-    [MSG_WAS_RELEASED]         = {gText_PkmnWasReleased,         MSG_VAR_RELEASE_MON_1},
-    [MSG_BYE_BYE]              = {gText_ByeByePkmn,              MSG_VAR_RELEASE_MON_2},
+    [MSG_WAS_RELEASED]         = {gText_PkmnWasReleased,         MSG_VAR_PKMN_WAS_RELEASED},
+    [MSG_BYE_BYE]              = {gText_ByeByePkmn,              MSG_VAR_BYE_BYE_PKMN},
     [MSG_MARK_POKE]            = {gText_MarkYourPkmn,            MSG_VAR_NONE},
     [MSG_LAST_POKE]            = {gText_ThatsYourLastPkmn,       MSG_VAR_NONE},
     [MSG_PARTY_FULL]           = {gText_YourPartysFull,          MSG_VAR_NONE},
@@ -4335,8 +4335,8 @@ static void PrintMessage(u8 id)
     case MSG_VAR_MON_NAME:
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sStorage->displayMonName);
         break;
-    case MSG_VAR_RELEASE_MON_1:
-    case MSG_VAR_RELEASE_MON_2:
+    case MSG_VAR_PKMN_WAS_RELEASED:
+    case MSG_VAR_BYE_BYE_PKMN:
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sStorage->releaseMonName);
         break;
     case MSG_VAR_ITEM_NAME:

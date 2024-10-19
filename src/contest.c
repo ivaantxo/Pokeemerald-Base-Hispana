@@ -358,7 +358,7 @@ EWRAM_DATA bool8 gCurContestWinnerIsForArtist = 0;
 EWRAM_DATA u8 gCurContestWinnerSaveIdx = 0;
 
 // IWRAM common vars.
-rng_value_t gContestRngValue;
+COMMON_DATA rng_value_t gContestRngValue = {0};
 
 extern const u8 gText_LinkStandby4[];
 extern const u8 gText_BDot[];
@@ -1193,10 +1193,6 @@ static void InitContestResources(void)
     eContest = (struct Contest){};
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
-        eContest.unk[i] = 0xFF;
-    }
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-    {
         eContestantStatus[i] = (struct ContestantStatus){};
     }
     for (i = 0; i < CONTESTANT_COUNT; i++)
@@ -1810,7 +1806,6 @@ static void Task_AppealSetup(u8 taskId)
     if (++gTasks[taskId].data[0] > 19)
     {
         eContest.turnNumber = 0;
-        eContest.unusedRng = 0;
         if ((gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK) && IsPlayerLinkLeader())
         {
             s32 i;
@@ -3557,7 +3552,6 @@ static void SetContestantStatusesForNextRound(void)
         eContestantStatus[i].effectStringId = CONTEST_STRING_NONE;
         eContestantStatus[i].effectStringId2 = CONTEST_STRING_NONE;
         eContestantStatus[i].conditionMod = CONDITION_NO_CHANGE;
-        eContestantStatus[i].repeatedPrevMove = eContestantStatus[i].repeatedMove;
         eContestantStatus[i].repeatedMove = FALSE;
         eContestantStatus[i].turnOrderModAction = 0;
         eContestantStatus[i].appealTripleCondition = 0;

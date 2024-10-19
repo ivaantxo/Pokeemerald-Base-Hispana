@@ -1514,7 +1514,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SLUSH_RUSH] =
     {
         .name = _("Quitanieves"),
-        .description = COMPOUND_STRING("Sube velocidad en Granizo."),
+        .description = COMPOUND_STRING("Sube velocidad en Granizo/Nieve."),
         .aiRating = 5,
     },
 

@@ -182,14 +182,14 @@ static u16 (*sPlayerKeyInterceptCallback)(u32);
 static bool8 sReceivingFromLink;
 static u8 sRfuKeepAliveTimer;
 
-u16 *gOverworldTilemapBuffer_Bg2;
-u16 *gOverworldTilemapBuffer_Bg1;
-u16 *gOverworldTilemapBuffer_Bg3;
-u16 gHeldKeyCodeToSend;
-void (*gFieldCallback)(void);
-bool8 (*gFieldCallback2)(void);
-u8 gLocalLinkPlayerId; // This is our player id in a multiplayer mode.
-u8 gFieldLinkPlayerCount;
+COMMON_DATA u16 *gOverworldTilemapBuffer_Bg2 = NULL;
+COMMON_DATA u16 *gOverworldTilemapBuffer_Bg1 = NULL;
+COMMON_DATA u16 *gOverworldTilemapBuffer_Bg3 = NULL;
+COMMON_DATA u16 gHeldKeyCodeToSend = 0;
+COMMON_DATA void (*gFieldCallback)(void) = NULL;
+COMMON_DATA bool8 (*gFieldCallback2)(void) = NULL;
+COMMON_DATA u8 gLocalLinkPlayerId = 0; // This is our player id in a multiplayer mode.
+COMMON_DATA u8 gFieldLinkPlayerCount = 0;
 
 EWRAM_DATA static u8 sObjectEventLoadFlag = 0;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
@@ -304,8 +304,7 @@ static const struct ScanlineEffectParams sFlashEffectParams =
 {
     &REG_WIN0H,
     ((DMA_ENABLE | DMA_START_HBLANK | DMA_REPEAT | DMA_DEST_RELOAD) << 16) | 1,
-    1,
-    0,
+    1
 };
 
 static u8 MovementEventModeCB_Normal(struct LinkPlayerObjectEvent *, struct ObjectEvent *, u8);

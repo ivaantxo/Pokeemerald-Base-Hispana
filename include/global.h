@@ -76,7 +76,7 @@
 // There are cases where GF does a&(n-1) where we would really like to have a%n, because
 // if n is changed to a value that isn't a power of 2 then a&(n-1) is unlikely to work as
 // intended, and a%n for powers of 2 isn't always optimized to use &.
-#define MOD(a, n)(((n) & ((n)-1)) ? ((a) % (n)) : ((a) & ((n)-1)))
+#define MOD(a, n) (((n) & ((n)-1)) ? ((a) % (n)) : ((a) & ((n)-1)))
 
 // Extracts the upper 16 bits of a 32-bit number
 #define HIHALF(n) (((n) & 0xFFFF0000) >> 16)
@@ -117,7 +117,7 @@
     f;                       \
 })
 
-#define DIV_ROUND_UP(val, roundBy)(((val) / (roundBy)) + (((val) % (roundBy)) ? 1 : 0))
+#define DIV_ROUND_UP(val, roundBy) (((val) / (roundBy)) + (((val) % (roundBy)) ? 1 : 0))
 
 #define ROUND_BITS_TO_BYTES(numBits) DIV_ROUND_UP(numBits, 8)
 
@@ -189,23 +189,19 @@ struct Pokedex
 {
     /*0x00*/ u8 order;
     /*0x01*/ u8 mode;
-    /*0x02*/ u8 nationalMagic; // must equal 0xDA in order to have National mode
-    /*0x03*/ u8 unknown2;
-    /*0x04*/ u32 unownPersonality; // set when you first see Unown
-    /*0x08*/ u32 spindaPersonality; // set when you first see Spinda
-    /*0x0C*/ u32 unknown3;
+    /*0x02*/ bool8 nationalModeEnabled; // Si la Pokédex Nacional está activada
+    /*0x04*/ u32 unownPersonality; // Activado la primera vez que ves un Unown
+    /*0x08*/ u32 spindaPersonality; // Activado la primera vez que ves un Spinda
 #if FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK2 == FALSE
-    /*0x10*/ u8 filler[0x68]; // Previously Dex Flags, feel free to remove.
+    /*0x10*/ u8 filler[0x68]; // Antes eran las flags de la Pokédex, ahora puedes quitarlas si quieres
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK2
 };
 
 struct PokemonJumpRecords
 {
     u16 jumpsInRow;
-    u16 unused1; // Set to 0, never read
     u16 excellentsInRow;
     u16 gamesWithMaxPlayers;
-    u32 unused2; // Set to 0, never read
     u32 bestJumpScore;
 };
 
@@ -394,7 +390,6 @@ struct BattleFrontier
     /*0xD08*/ u8 domeAttemptedDoublesOpen:1;
     /*0xD08*/ u8 domeHasWonDoubles50:1;
     /*0xD08*/ u8 domeHasWonDoublesOpen:1;
-    /*0xD09*/ u8 domeUnused;
     /*0xD0A*/ u8 domeLvlMode;
     /*0xD0B*/ u8 domeBattleMode;
     /*0xD0C*/ u16 domeWinStreaks[2][FRONTIER_LVL_MODE_COUNT];
@@ -402,7 +397,6 @@ struct BattleFrontier
     /*0xD1C*/ u16 domeTotalChampionships[2][FRONTIER_LVL_MODE_COUNT];
     /*0xD24*/ struct BattleDomeTrainer domeTrainers[DOME_TOURNAMENT_TRAINERS_COUNT];
     /*0xD64*/ u16 domeMonIds[DOME_TOURNAMENT_TRAINERS_COUNT][FRONTIER_PARTY_SIZE];
-    /*0xDC4*/ u16 unused_DC4;
     /*0xDC6*/ u16 palacePrize;
     /*0xDC8*/ u16 palaceWinStreaks[2][FRONTIER_LVL_MODE_COUNT];
     /*0xDD0*/ u16 palaceRecordWinStreaks[2][FRONTIER_LVL_MODE_COUNT];
@@ -442,10 +436,7 @@ struct BattleFrontier
     /*0xEE0*/ u8 trainerFlags;
     /*0xEE1*/ u8 opponentNames[FRONTIER_LVL_MODE_COUNT][PLAYER_NAME_LENGTH + 1];
     /*0xEF1*/ u8 opponentTrainerIds[FRONTIER_LVL_MODE_COUNT][TRAINER_ID_LENGTH];
-    /*0xEF9*/ u8 unk_EF9:7; // Never read
     /*0xEF9*/ u8 savedGame:1;
-    /*0xEFA*/ u8 unused_EFA;
-    /*0xEFB*/ u8 unused_EFB;
     /*0xEFC*/ struct DomeMonData domePlayerPartyData[FRONTIER_PARTY_SIZE];
 };
 
@@ -468,7 +459,6 @@ struct PlayersApprentice
     /*0xB2*/ u8 party:3;
              u8 saveId:2;
              //u8 padding1:3;
-    /*0xB3*/ u8 unused;
     /*0xB4*/ u8 speciesIds[MULTI_PARTY_SIZE];
     /*0xB7*/ //u8 padding2;
     /*0xB8*/ struct ApprenticeQuestion questions[APPRENTICE_MAX_QUESTIONS];
@@ -559,7 +549,6 @@ struct SecretBase
     /*0x1AA9*/ u8 language;
     /*0x1AAA*/ u16 numSecretBasesReceived;
     /*0x1AAC*/ u8 numTimesEntered;
-    /*0x1AAD*/ u8 unused;
     /*0x1AAE*/ u8 decorations[DECOR_MAX_SECRET_BASE];
     /*0x1ABE*/ u8 decorationPositions[DECOR_MAX_SECRET_BASE];
     /*0x1ACE*/ //u8 padding[2];
@@ -864,7 +853,6 @@ struct TrainerHillSave
     /*0x3D64*/ u32 timer;
     /*0x3D68*/ u32 bestTime;
     /*0x3D6C*/ u8 unk_3D6C;
-    /*0x3D6D*/ u8 unused;
     /*0x3D6E*/ u16 receivedPrize:1;
                u16 checkedFinalTime:1;
                u16 spokeToOwner:1;
@@ -1010,7 +998,6 @@ struct SaveBlock1
     /*0x988*/ u8 filler1[0x34]; // Previously Dex Flags, feel free to remove.
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1
     /*0x9BC*/ u16 berryBlenderRecords[3];
-    /*0x9C2*/ u8 unused_9C2[6];
 #if FREE_MATCH_CALL == FALSE
     /*0x9C8*/ u16 trainerRematchStepCounter;
     /*0x9CA*/ u8 trainerRematches[MAX_REMATCH_ENTRIES];
@@ -1040,10 +1027,7 @@ struct SaveBlock1
     /*0x2B92*/ u8 outbreakLocationMapNum;
     /*0x2B93*/ u8 outbreakLocationMapGroup;
     /*0x2B94*/ u8 outbreakPokemonLevel;
-    /*0x2B95*/ u8 outbreakUnused1;
-    /*0x2B96*/ u16 outbreakUnused2;
     /*0x2B98*/ u16 outbreakPokemonMoves[MAX_MON_MOVES];
-    /*0x2BA0*/ u8 outbreakUnused3;
     /*0x2BA1*/ u8 outbreakPokemonProbability;
     /*0x2BA2*/ u16 outbreakDaysLeft;
     /*0x2BA4*/ struct GabbyAndTyData gabbyAndTyData;

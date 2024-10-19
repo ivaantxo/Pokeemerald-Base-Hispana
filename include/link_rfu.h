@@ -82,12 +82,10 @@ struct RfuGameCompatibilityData
     u16 language:4;
     u16 hasNews:1;
     u16 hasCard:1;
-    u16 unknown:1; // Never read
     u16 canLinkNationally:1;
     u16 hasNationalDex:1;
     u16 gameClear:1;
     u16 version:4;
-    u16 unused:2;
     u8 playerTrainerId[2];
 };
 
@@ -109,7 +107,6 @@ struct __attribute__((packed, aligned(2))) RfuGameData
     u8 playerGender:1;
     u8 tradeLevel:7;
     u8 tradeType:6;
-    u8 filler:2;
 };
 
 // Constants for getting/setting information in 'partnerInfo' of RfuGameData.
@@ -166,12 +163,10 @@ struct RfuManager
 {
     /* 0x000 */ void (*callback)(void);
     /* 0x004 */ u16 state;
-    /* 0x006 */ u8 unused1[4];
     /* 0x00a */ u16 errorInfo;
     /* 0x00c */ u8 parentChild;
     /* 0x00d */ u8 playerCount;
     /* 0x00e */ bool8 runParentMain2;
-    /* 0x00f */ u8 unused2;
     /* 0x010 */ u16 errorParam0;
     /* 0x012 */ u16 errorParam1;
     /* 0x014 */ u8 childRecvBuffer[RFU_CHILD_MAX][COMM_SLOT_LENGTH];
@@ -182,7 +177,6 @@ struct RfuManager
     /* 0x061 */ bool8 numBlocksReceived[MAX_RFU_PLAYERS];
     /* 0x066 */ u8 idleTaskId;
     /* 0x067 */ u8 searchTaskId;
-    /* 0x068 */ u8 unused3[4];
     /* 0x06c */ struct RfuBlockSend sendBlock;
     /* 0x080 */ struct RfuBlockSend recvBlock[MAX_RFU_PLAYERS];
     /* 0x0e4 */ bool8 readyCloseLink[MAX_RFU_PLAYERS];
@@ -195,9 +189,7 @@ struct RfuManager
     /* 0x0fe */ u16 resendExitStandbyTimer;
     /* 0x100 */ u16 allReadyNum;
     /* 0x102 */ u8 childSendCmdId;
-    /* 0x103 */ u8 unused4[7];
     /* 0x10A */ struct RfuGameData parent;
-    u8 filler_;
     u8 parentName[RFU_USER_NAME_LENGTH];
     /* 0x124 */ struct RfuRecvQueue recvQueue;
     /* 0x9e8 */ struct RfuSendQueue sendQueue;
@@ -219,7 +211,6 @@ struct RfuManager
     /* 0xcda */ u8 parentSendSlot;
     /* 0xcdb */ vbool8 parentFinished;
     /* 0xcdc */ vbool8 parentMain2Failed;
-    /* 0xcdd */ u8 unused5;
     /* 0xcde */ u8 linkPlayerIdx[RFU_CHILD_MAX];
     /* 0xce2 */ u8 parentSlots;
     /* 0xce2 */ u8 disconnectSlots;

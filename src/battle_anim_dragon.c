@@ -529,7 +529,6 @@ void AnimTask_DragonDanceWaver(u8 taskId)
 
     scanlineParams.dmaControl = SCANLINE_EFFECT_DMACNT_16BIT;
     scanlineParams.initState = 1;
-    scanlineParams.unused9 = 0;
     y = GetBattlerYCoordWithElevation(gBattleAnimAttacker);
     task->data[3] = y - 32;
     task->data[4] = y + 32;
