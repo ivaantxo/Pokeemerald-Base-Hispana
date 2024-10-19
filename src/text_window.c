@@ -211,4 +211,3 @@ void LoadDexNavWindowGfx(u8 windowId, u16 destOffset, u8 palOffset)
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sDexnavWindowFrame.tiles, 0x120, destOffset);
     LoadPalette(sDexnavWindowFrame.pal, palOffset, 32);
 }
-

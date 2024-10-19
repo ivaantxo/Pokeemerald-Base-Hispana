@@ -22,7 +22,7 @@
 
 #define ENCOUNTER_TYPE_LAND     0
 #define ENCOUNTER_TYPE_WATER    1
-#define ENCOUNTER_TYPE_HIDDEN   2   //get from species
+#define ENCOUNTER_TYPE_HIDDEN   2   // Get from species
 
 #define COL_WATER_COUNT         5
 #define COL_LAND_COUNT          6
@@ -44,27 +44,25 @@
 #define HA_INFO_Y               (SEARCH_LEVEL_Y + 24)
 #define CHAIN_BONUS_Y           (HA_INFO_Y + 24)
 
-#define MON_LEVEL_NONEXISTENT   255 //if mon not in area GetEncounterLevel returns this to exit the search
+#define MON_LEVEL_NONEXISTENT   255 // If mon not in area GetEncounterLevel returns this to exit the search
 
-// gui tags
+// GUI tags
 #define ICON_PAL_TAG            56000
 #define ICON_GFX_TAG            55130
 #define SELECTION_CURSOR_TAG    0x4005
 #define CAPTURED_ALL_TAG        0x4002
 
-//search tags
+// Search tags
 #define OWNED_ICON_TAG          0x4003
 #define HIDDEN_SEARCH_TAG       SELECTION_CURSOR_TAG
 #define HIDDEN_MON_ICON_TAG     0x4006
 #define LIT_STAR_TILE_TAG       0x4010
-//#define SIGHT_TAG               0x5424
 #define HELD_ITEM_TAG           0xd750
 
-// dexnav search variable
-#define DEXNAV_MASK_SPECIES         0x3FFF  //first 14 bits
-#define DEXNAV_MASK_ENVIRONMENT     0xC000  //last two bit
+// Dexnav search variable
+#define DEXNAV_MASK_SPECIES         0x3FFF  // First 14 bits
+#define DEXNAV_MASK_ENVIRONMENT     0xC000  // Last two bit
 
-//funcs
 void EndDexNavSearch(u8 taskId);
 void Task_OpenDexNavFromStartMenu(u8 taskId);
 bool8 TryStartDexnavSearch(void);
@@ -74,7 +72,6 @@ bool8 TryFindHiddenPokemon(void);
 u32 CalculateDexnavShinyRolls(void);
 void IncrementDexNavChain(void);
 
-//ewram
 extern bool8 gDexnavBattle;
 
-#endif //GUARD_DEXNAV_H
+#endif // GUARD_DEXNAV_H

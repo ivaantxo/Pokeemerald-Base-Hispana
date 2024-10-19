@@ -51,5 +51,4 @@ void StartEscapeRopeFieldEffect(void);
 void FieldEffectFreeGraphicsResources(struct Sprite *sprite);
 void FieldEff_CaveDust(void);
 
-
 #endif // GUARD_FIELD_EFFECTS_H

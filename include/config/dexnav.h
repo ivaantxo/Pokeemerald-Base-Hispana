@@ -5,7 +5,7 @@
 #define USE_DEXNAV_SEARCH_LEVELS      FALSE  /* WARNING: POSSIBLY EXCEEDS SAVEBLOCK SPACE! REQUIRES 1 BYTE PER SPECIES */
 
 // Flag/var defines
-#define FLAG_SYS_DEXNAV_SEARCH          0 // Searching for mon. MUST BE DEFINED FOR DEXNAV TO WORK
+#define FLAG_SYS_DEXNAV_SEARCH          0 // Searching for mon
 #define FLAG_SYS_DEXNAV_GET             0 // Dexnav shows in start menu
 #define FLAG_SYS_DETECTOR_MODE          0 // Allow player to find hidden mons
 #define VAR_DEXNAV_SPECIES              0 // Registered dexnav species

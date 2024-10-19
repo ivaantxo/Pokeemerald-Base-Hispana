@@ -61,7 +61,6 @@
 
 #if DEXNAV_ENABLED
 STATIC_ASSERT(FLAG_SYS_DEXNAV_SEARCH != 0);
-STATIC_ASSERT(FLAG_SYS_DEXNAV_GET != 0);
 STATIC_ASSERT(FLAG_SYS_DETECTOR_MODE != 0);
 STATIC_ASSERT(VAR_DEXNAV_SPECIES != 0);
 STATIC_ASSERT(VAR_DEXNAV_STEP_COUNTER != 0);
@@ -389,17 +388,6 @@ static const struct SpriteTemplate sPotentialStarTemplate =
     .callback = SpriteCallbackDummy,
 };
 
-/*static const struct SpriteTemplate sSightTemplate =
-{
-    .tileTag = SIGHT_TAG,
-    .paletteTag = 0xFFFF,   //held item pal
-    .oam = &sSightOam,
-    .anims = sAnimCmdTable_Sight,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
-};*/
-
 static const struct SpriteTemplate sSearchIconSpriteTemplate =
 {
     .tileTag = HIDDEN_SEARCH_TAG,
@@ -438,7 +426,6 @@ static const struct CompressedSpriteSheet sNoDataIconSpriteSheet = {sNoDataGfx, 
 static const struct CompressedSpriteSheet sCapturedAllPokemonSpriteSheet = {sCapturedAllMonsTiles, (8 * 8) / 2, CAPTURED_ALL_TAG};
 // search sprite sheets
 static const struct CompressedSpriteSheet sPotentialStarSpriteSheet = {sPotentialStarGfx, (8 * 8) / 2, LIT_STAR_TILE_TAG};
-//static const struct CompressedSpriteSheet sSightSpriteSheet = {sEyeGfx, (16 * 8 * 3) / 2, SIGHT_TAG};
 static const struct CompressedSpriteSheet sOwnedIconSpriteSheet = {sOwnedIconGfx, (8 * 8) / 2, OWNED_ICON_TAG};
 static const struct CompressedSpriteSheet sHiddenMonIconSpriteSheet = {sHiddenMonIconGfx, (8 * 8) / 2, HIDDEN_MON_ICON_TAG};
 
@@ -935,14 +922,6 @@ static void DexNavDrawPotentialStars(u8 potential, u8* dst)
             gSprites[spriteId].invisible = TRUE;
     }
 }
-
-/*static void DexNavDrawSight(u8 sightLevel, u8* dst)
-{
-    //LoadSpritePalette(&sHeldItemSpritePalette);
-    *dst = CreateSprite(&sSightTemplate, 176 + (16 / 2), GetSearchWindowY() + 18, 0);
-    if (*dst != MAX_SPRITES)
-        DexNavSightUpdate(sightLevel);
-};*/
 
 static void DexNavUpdateDirectionArrow(void)
 {
@@ -2352,6 +2331,7 @@ static void DexNav_RunSetup(void)
     while (!DexNav_DoGfxSetup()) {}
 }
 
+// Entry point for the dexnav GUI
 static void DexNavGuiInit(MainCallback callback)
 {
     if ((sDexNavUiDataPtr = AllocZeroed(sizeof(struct DexNavGUI))) == NULL)
