@@ -1,5 +1,5 @@
 #include "global.h"
-#include "characters.h"
+#include "constants/characters.h"
 
 ALIGNED(4) const u16 gFontSmallNarrowLatinGlyphs[] = INCBIN_U16("graphics/fonts/small_narrow.latfont");
 ALIGNED(4) const u8 gFontSmallNarrowLatinGlyphWidths[] = {
