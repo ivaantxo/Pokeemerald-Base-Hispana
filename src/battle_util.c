@@ -279,18 +279,9 @@ void HandleAction_UseMove(void)
                 gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
             }
 
-            if (!IsBattlerAlive(gBattlerTarget))
+            if (!IsBattlerAlive(gBattlerTarget) && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
             {
-                if (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
-                {
-                    gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
-                }
-                else
-                {
-                    gBattlerTarget = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(gBattlerAttacker)));
-                    if (!IsBattlerAlive(gBattlerTarget))
-                        gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
-                }
+                gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
             }
         }
         else
@@ -307,8 +298,7 @@ void HandleAction_UseMove(void)
             gBattlerTarget = battler;
         }
     }
-    else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-          && moveTarget & MOVE_TARGET_RANDOM)
+    else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && moveTarget & MOVE_TARGET_RANDOM)
     {
         if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
         {
@@ -352,18 +342,11 @@ void HandleAction_UseMove(void)
     else
     {
         gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
-        if (!IsBattlerAlive(gBattlerTarget) && moveTarget != MOVE_TARGET_OPPONENTS_FIELD)
+        if (!IsBattlerAlive(gBattlerTarget)
+         && moveTarget != MOVE_TARGET_OPPONENTS_FIELD
+         && (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)))
         {
-            if (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
-            {
-                gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
-            }
-            else
-            {
-                gBattlerTarget = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(gBattlerAttacker)));
-                if (!IsBattlerAlive(gBattlerTarget))
-                    gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
-            }
+            gBattlerTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
         }
     }
 
@@ -387,8 +370,9 @@ void HandleAction_UseMove(void)
             gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
         }
     }
-    // Edge case: moves targeting the ally fail after a successful Ally Switch.
-    else if (moveTarget == MOVE_TARGET_ALLY && gProtectStructs[BATTLE_PARTNER(gBattlerAttacker)].usedAllySwitch)
+
+    if ((GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
+     && (!IsBattlerAlive(gBattlerTarget) || gProtectStructs[BATTLE_PARTNER(gBattlerAttacker)].usedAllySwitch))
     {
         gBattlescriptCurrInstr = BattleScript_FailedFromAtkCanceler;
     }
@@ -4873,10 +4857,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && CountBattlerStatIncreases(BATTLE_PARTNER(battler), FALSE))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattlerAttacker = battler;
+                gBattlerAttacker = gBattlerAbility = battler;
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
                     gBattleMons[battler].statStages[i] = gBattleMons[BATTLE_PARTNER(battler)].statStages[i];
-                gBattlerTarget = BATTLE_PARTNER(battler);
+                gBattleScripting.battler = BATTLE_PARTNER(battler);
                 BattleScriptPushCursorAndCallback(BattleScript_CostarActivates);
                 effect++;
             }
@@ -6312,7 +6296,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_PROTOSYNTHESIS:
-            if (!gDisableStructs[battler].weatherAbilityDone 
+            if (!gDisableStructs[battler].weatherAbilityDone
              && (gBattleWeather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
              && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))

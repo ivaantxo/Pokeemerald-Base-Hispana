@@ -555,8 +555,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 		.description = COMPOUND_STRING(
 			"Los tres cuernos de su pico son muestra\n"
 			"de su fuerza. El líder es el que tiene\n"
-			"los cuernos más grandes.\n"
-			""),
+			"los cuernos más grandes.\n"),
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 290,

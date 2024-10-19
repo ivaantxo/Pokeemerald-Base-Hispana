@@ -31,7 +31,7 @@ EWRAM_DATA struct MapHeader gMapHeader = {0};
 EWRAM_DATA struct Camera gCamera = {0};
 EWRAM_DATA static struct ConnectionFlags sMapConnectionFlags = {0};
 
-struct BackupMapLayout gBackupMapLayout;
+COMMON_DATA struct BackupMapLayout gBackupMapLayout = {0};
 
 static const struct ConnectionFlags sDummyConnectionFlags = {0};
 
