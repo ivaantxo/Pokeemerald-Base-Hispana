@@ -2369,6 +2369,7 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
 {
     if (DEXNAV_ENABLED == FALSE)
     {   // must have it enabled to enter
+        DebugPrintfLevel(MGBA_LOG_ERROR, "Dexnav was opened when DEXNAV_ENABLED config was disabled! Check include/config/dexnav.h");
         DestroyTask(taskId);
     }
     else if (!gPaletteFade.active)
