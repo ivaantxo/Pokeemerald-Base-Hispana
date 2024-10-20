@@ -154,7 +154,6 @@ static u8 DexNavPickTile(u8 environment, u8 xSize, u8 ySize, bool8 smallScan);
 static void DexNavProximityUpdate(void);
 static void DexNavDrawIcons(void);
 static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel);
-//static void DexNavSightUpdate(u8 index);
 static void Task_DexNavSearch(u8 taskId);
 static void EndDexNavSearchSetupScript(const u8 *script, u8 taskId);
 // HIDDEN MONS
@@ -175,7 +174,6 @@ static const u32 sNoDataGfx[] = INCBIN_U32("graphics/dexnav/no_data.4bpp.lz");
 
 // searching image data
 static const u32 sPotentialStarGfx[] = INCBIN_U32("graphics/dexnav/star.4bpp.lz");
-//static const u32 sEyeGfx[] = INCBIN_U32("graphics/dexnav/vision.4bpp.lz");
 static const u32 sHiddenSearchIconGfx[] = INCBIN_U32("graphics/dexnav/hidden_search.4bpp.lz");
 static const u32 sOwnedIconGfx[] = INCBIN_U32("graphics/dexnav/owned_icon.4bpp.lz");
 static const u32 sHiddenMonIconGfx[] = INCBIN_U32("graphics/dexnav/hidden.4bpp.lz");
@@ -477,10 +475,11 @@ static void AddSearchWindow(u8 width)
 #define WINDOW_MOVE_NAME_X  (WINDOW_COL_1 + (GetFontAttribute(sDexNavSearchDataPtr->windowId, FONTATTR_MAX_LETTER_WIDTH) * 6))
 #define SEARCH_ARROW_X      (WINDOW_MOVE_NAME_X + 90)
 #define SEARCH_ARROW_Y      0
+
 static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8 hidden)
 {
     u8 windowId = sDexNavSearchDataPtr->windowId;
-    
+
     //species name - always present
     if (hidden)
     {
@@ -493,12 +492,12 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
         StringCopy(gStringVar1, GetSpeciesName(species));
         AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, 0, WINDOW_COL_0, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
     }
-    
+
     //level - always present
     ConvertIntToDecimalStringN(gStringVar1, sDexNavSearchDataPtr->monLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, sText_MonLevel);
     AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, 0, WINDOW_COL_1, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
-    
+
     if (proximity <= SNEAKING_PROXIMITY)
     {
         PlaySE(SE_POKENAV_ON);
@@ -525,25 +524,29 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
             }
         }
     }
-    
+
     //chain level - always present
     ConvertIntToDecimalStringN(gStringVar1, gSaveBlock3Ptr->dexNavChain, STR_CONV_MODE_LEFT_ALIGN, 3);
     if (gSaveBlock3Ptr->dexNavChain > 99)
         StringExpandPlaceholders(gStringVar4, sText_DexNavChainLong);
     else
         StringExpandPlaceholders(gStringVar4, sText_DexNavChain);
-    AddTextPrinterParameterized3(windowId, 0, SEARCH_ARROW_X - 16, 12, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);    
-    
+    AddTextPrinterParameterized3(windowId, 0, SEARCH_ARROW_X - 16, 12, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
+
     CopyWindowToVram(sDexNavSearchDataPtr->windowId, 2);
 }
+
+#define SEARCH_WINDOW_WIDTH     28
 
 static void DrawSearchWindow(u16 species, u8 potential, bool8 hidden)
 {
     u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
     
-    AddSearchWindow(28);
+    AddSearchWindow(SEARCH_WINDOW_WIDTH);
     AddSearchWindowText(species, sDexNavSearchDataPtr->proximity, searchLevel, hidden);
 }
+
+#undef SEARCH_WINDOW_WIDTH
 
 static void RemoveDexNavWindowAndGfx(void)
 {
@@ -612,8 +615,8 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
     u8 currMapType = GetCurrentMapType();
     u8 tileBehaviour;
     u8 tileBuffer = 2;
-    u8 *xPos = AllocZeroed((botX-topX)*(botY-topY)*sizeof(u8));
-    u8 *yPos = AllocZeroed((botX-topX)*(botY-topY)*sizeof(u8));
+    u8 *xPos = AllocZeroed((botX - topX) * (botY - topY) * sizeof(u8));
+    u8 *yPos = AllocZeroed((botX - topX) * (botY - topY) * sizeof(u8));
     u32 iter = 0;
     bool32 ret = FALSE;
     
@@ -623,9 +626,6 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
         while (topX < botX)
         {
             tileBehaviour = MapGridGetMetatileBehaviorAt(topX, topY);
-            
-            //gSpecialVar_0x8005 = tileBehaviour;
-            
             //Check for objects
             nextIter = FALSE;
             if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE))
@@ -662,7 +662,8 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                 if (MetatileBehavior_IsLandWildEncounter(tileBehaviour))
                 {
                     if (currMapType == MAP_TYPE_UNDERGROUND)
-                    { // inside (cave)
+                    {
+                        // inside (cave)
                         if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
                             break; //occurs at same z coord
                         
@@ -670,7 +671,8 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                         weight = ((Random() % scale) < 1) && !MapGridGetCollisionAt(topX, topY);
                     }
                     else
-                    { // outdoors: grass
+                    {
+                        // outdoors: grass
                         scale = 100 - (GetPlayerDistance(topX, topY) * 2);
                         weight = (Random() % scale <= 5) && !MapGridGetCollisionAt(topX, topY);
                     }
@@ -819,6 +821,7 @@ static u8 GetSearchLevel(u16 dexNum)
 #define tSpecies            data[2]
 #define tEnvironment        data[3]
 #define tRevealed           data[4]
+
 static void Task_SetUpDexNavSearch(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
@@ -1107,8 +1110,8 @@ static void Task_DexNavSearch(u8 taskId)
     {
         gDexnavBattle = TRUE;
         CreateDexNavWildMon(sDexNavSearchDataPtr->species, sDexNavSearchDataPtr->potential, sDexNavSearchDataPtr->monLevel, 
-          sDexNavSearchDataPtr->abilityNum, sDexNavSearchDataPtr->heldItem, sDexNavSearchDataPtr->moves);
-        
+                            sDexNavSearchDataPtr->abilityNum, sDexNavSearchDataPtr->heldItem, sDexNavSearchDataPtr->moves);
+
         FlagClear(FLAG_SYS_DEXNAV_SEARCH);
         ScriptContext_SetupScript(EventScript_StartDexNavBattle);
         Free(sDexNavSearchDataPtr);
@@ -1158,14 +1161,6 @@ static void Task_DexNavSearch(u8 taskId)
     
     task->tFrameCount++;
 }
-
-/*static void DexNavSightUpdate(u8 index)
-{
-    u8 spriteId = sDexNavSearchDataPtr->eyeSpriteId;
-    
-    if (spriteId != MAX_SPRITES)
-        StartSpriteAnim(&gSprites[spriteId], index);
-}*/
 
 static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel)
 {
