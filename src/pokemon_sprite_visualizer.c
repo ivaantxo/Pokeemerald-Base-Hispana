@@ -1174,7 +1174,6 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             PrintBattleBgName(taskId);
 
             //Footprint
-            DrawFootprint(WIN_FOOTPRINT, species);
             CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 
             gMain.state++;
@@ -1730,7 +1729,6 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     SetArrowInvisibility(data);
 
     //Footprint
-    DrawFootprint(WIN_FOOTPRINT, species);
     CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 }
 

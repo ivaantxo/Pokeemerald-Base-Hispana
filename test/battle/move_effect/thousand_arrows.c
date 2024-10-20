@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Thousand Arrows does not ground mons behind substitutes")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SKARMORY);
+        OPPONENT(SPECIES_MEW);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_THOUSAND_ARROWS); }
     } SCENE {
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Thousand Arrows does not ground mons behind substitutes")
 SINGLE_BATTLE_TEST("Thousand Arrows does neutral damage to non-grounded Flying types regardless of other typings")
 {
     u32 pokemon;
-    PARAMETRIZE { pokemon = SPECIES_SKARMORY; }
+    PARAMETRIZE { pokemon = SPECIES_MEW; }
     PARAMETRIZE { pokemon = SPECIES_SCYTHER; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Thousand Arrows does neutral damage to non-grounded Flying t
         TURN { MOVE(player, MOVE_THOUSAND_ARROWS); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THOUSAND_ARROWS, player);
-        if (pokemon == SPECIES_SKARMORY) {
+        if (pokemon == SPECIES_MEW) {
             MESSAGE("Foe Skarmory fell straight down!");
             MESSAGE("Foe Skarmory used Celebrate!");
         } else {
@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("Thousand Arrows does neutral damage to non-grounded Flying t
         MESSAGE("Congratulations, 1!");
         MESSAGE("Wobbuffet used Thousand Arrows!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THOUSAND_ARROWS, player);
-        if (pokemon == SPECIES_SKARMORY)
+        if (pokemon == SPECIES_MEW)
         {
             MESSAGE("It's super effective!");
         }

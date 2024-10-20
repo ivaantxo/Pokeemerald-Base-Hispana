@@ -10,14 +10,6 @@
 #define P_UPDATED_EVS               GEN_LATEST  // Algunos Pokémon han recibido actualizaciones de EV después de su introducción.
 #define P_UPDATED_EXP_YIELDS        GEN_LATEST  // Desde Gen 5, algunos Pokémon han recibido cambios en la Experiencia base.
 
-// Aprendizajes
-#define P_LVL_UP_LEARNSETS          GEN_LATEST  // Elige qué conjunto de Aprendizajes por Nivel usar.
-                                                // Para generaciones que no habían introducido una especie aún, usamos su primera aparición (por ejemplo, los datos de Gen2 de Chikorita si la configuración está en GEN_1).
-                                                // Para generaciones que no incluyen una especie previamente introducida, usamos su última aparición (por ejemplo, los datos de Gen7 de Snivy si la configuración está en GEN_8).
-                                                // GEN_1/2/3/4/5/6/7: Yellow, Crystal, RSE, HGSS, B2W2, ORAS, USUM aprendizajes respectivamente.
-                                                // GEN_8: Usa la siguiente prioridad: BDSP para Pokémon de Gen1-4, luego LA para especies introducidas en ese juego, luego SwSh para especies presentes en esos juegos. De lo contrario, usa GEN_7.
-                                                // GEN_9: SV para especies presentes en esos juegos. De lo contrario, usa GEN_8.
-
 // Configuración de evolución
 #define P_FRIENDSHIP_EVO_THRESHOLD   GEN_LATEST  // Desde Gen 8, los Pokémon que evolucionan por amistad evolucionan en o arriba de 160 de amistad en lugar de 220.
 
@@ -38,8 +30,6 @@
 #define P_SHUCKLE_BERRY_JUICE       GEN_LATEST  // In Gen 2, Shuckle had a 1/16 chance of converting Berry that it's holding into Berry Juice. Enabling this will allow Shuckle to do this with an Oran Berry, which is the spiritual succesor of the Berry item.
 
 // Other settings
-#define P_FOOTPRINTS                     TRUE        // If TRUE, Pokémon will have footprints (as was the case up to Gen 5 and in BDSP). Disabling this saves some ROM space.
-#define P_CRIES_ENABLED                  TRUE        // If TRUE, Pokémon will have cries. Disabling this saves around a LOT of ROM space (over 25%!), but instead we recommend disabling individual unused Pokémon families in include/config/species_enabled.h.
 #define P_LEGENDARY_PERFECT_IVS          GEN_LATEST  // Since Gen 6, Legendaries, Mythicals and Ultra Beasts found in the wild or given through gifts have at least 3 perfect IVs.
 #define P_EV_CAP                         GEN_LATEST  // Since Gen 6, the max EVs per stat is 252 instead of 255.
 #define P_SHOW_TERA_TYPE                 GEN_8       // Since Gen 9, the Tera Type is shown on the summary screen.
@@ -51,15 +41,12 @@
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // If TRUE, Pokémon encountered when the player is out of Poké Balls won't be shiny
 
 // Configuración de ayudantes de aprendizajes
-#define P_LEARNSET_HELPER_TEACHABLE TRUE        // Si es TRUE, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.
+#define P_LEARNSET_HELPER_TEACHABLE FALSE        // Si es TRUE, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.
 
 // Configuración de flags
 // Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la flag que le estás asignando.
 // Ejemplo: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa flag para activar la característica.
 #define P_FLAG_FORCE_SHINY      0     // Si esta flag está activada, todos los Pokémon salvajes y regalos serán obligatoriamente Shiny.
 #define P_FLAG_FORCE_NO_SHINY   0     // Si esta flag está activada, todos los Pokémon salvajes y regalos serán obligatoriamente NO Shiny.
-
-// Ve aquí si deseas deshabilitar familias específicas de Pokémon.
-#include "config/species_enabled.h"
 
 #endif // GUARD_CONFIG_POKEMON_H

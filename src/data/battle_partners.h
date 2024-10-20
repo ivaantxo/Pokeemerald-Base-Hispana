@@ -61,7 +61,7 @@
             },
             {
 #line 25
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 29
             .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 6, 252),

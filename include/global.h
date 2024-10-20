@@ -121,7 +121,7 @@
 
 #define ROUND_BITS_TO_BYTES(numBits) DIV_ROUND_UP(numBits, 8)
 
-#define NUM_DEX_FLAG_BYTES ROUND_BITS_TO_BYTES(POKEMON_SLOTS_NUMBER)
+#define NUM_DEX_FLAG_BYTES ROUND_BITS_TO_BYTES(DEX_COUNT)
 #define NUM_FLAG_BYTES ROUND_BITS_TO_BYTES(FLAGS_COUNT)
 #define NUM_TRENDY_SAYING_BYTES ROUND_BITS_TO_BYTES(NUM_TRENDY_SAYINGS)
 
@@ -189,9 +189,6 @@ struct Pokedex
 {
     /*0x00*/ u8 order;
     /*0x01*/ u8 mode;
-    /*0x02*/ bool8 nationalModeEnabled; // Si la Pokédex Nacional está activada
-    /*0x04*/ u32 unownPersonality; // Activado la primera vez que ves un Unown
-    /*0x08*/ u32 spindaPersonality; // Activado la primera vez que ves un Spinda
 #if FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK2 == FALSE
     /*0x10*/ u8 filler[0x68]; // Antes eran las flags de la Pokédex, ahora puedes quitarlas si quieres
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK2

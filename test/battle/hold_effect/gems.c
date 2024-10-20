@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("Gem modifier is used for all hits of Multi Hit Moves")
 SINGLE_BATTLE_TEST("Gem is consumed if the move type is changed")
 {
     GIVEN {
-        PLAYER(SPECIES_DELCATTY) { Ability(ABILITY_NORMALIZE); Item(ITEM_NORMAL_GEM); };
+        PLAYER(SPECIES_MEW) { Ability(ABILITY_NORMALIZE); Item(ITEM_NORMAL_GEM); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {

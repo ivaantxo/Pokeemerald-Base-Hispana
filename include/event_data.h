@@ -4,9 +4,6 @@
 void InitEventData(void);
 void ClearTempFieldEventData(void);
 void ClearDailyFlags(void);
-void DisableNationalPokedex(void);
-void EnableNationalPokedex(void);
-bool32 IsNationalPokedexEnabled(void);
 void DisableMysteryEvent(void);
 void EnableMysteryEvent(void);
 bool32 IsMysteryEventEnabled(void);

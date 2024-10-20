@@ -679,31 +679,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
 
-#if P_LVL_UP_LEARNSETS >= GEN_9
-#include "data/pokemon/level_up_learnsets/gen_9.h" // Scarlet/Violet
-#elif P_LVL_UP_LEARNSETS >= GEN_8
-#include "data/pokemon/level_up_learnsets/gen_8.h" // Sword/Shield
-#elif P_LVL_UP_LEARNSETS >= GEN_7
-#include "data/pokemon/level_up_learnsets/gen_7.h" // Ultra Sun/Ultra Moon
-#elif P_LVL_UP_LEARNSETS >= GEN_6
-#include "data/pokemon/level_up_learnsets/gen_6.h" // Omega Ruby/Alpha Sapphire
-#elif P_LVL_UP_LEARNSETS >= GEN_5
-#include "data/pokemon/level_up_learnsets/gen_5.h" // Black 2/White 2
-#elif P_LVL_UP_LEARNSETS >= GEN_4
-#include "data/pokemon/level_up_learnsets/gen_4.h" // HeartGold/SoulSilver
-#elif P_LVL_UP_LEARNSETS >= GEN_3
-#include "data/pokemon/level_up_learnsets/gen_3.h" // Ruby/Sapphire/Emerald
-#elif P_LVL_UP_LEARNSETS >= GEN_2
-#include "data/pokemon/level_up_learnsets/gen_2.h" // Crystal
-#elif P_LVL_UP_LEARNSETS >= GEN_1
-#include "data/pokemon/level_up_learnsets/gen_1.h" // Yellow
-#endif
-
+#include "data/pokemon/level_up_learnsets/.h"
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/egg_moves.h"
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"
-#include "data/pokemon/form_change_table_pointers.h"
 #include "data/object_events/object_event_pic_tables_followers.h"
 
 #include "data/pokemon/species_info.h"
@@ -5665,17 +5645,7 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 
 u16 SpeciesToPokedexNum(u16 species)
 {
-    if (IsNationalPokedexEnabled())
-    {
-        return SpeciesToNationalPokedexNum(species);
-    }
-    else
-    {
-        species = SpeciesToHoennPokedexNum(species);
-        if (species <= HOENN_DEX_COUNT)
-            return species;
-        return 0xFFFF;
-    }
+    return SpeciesToNationalPokedexNum(species);
 }
 
 bool32 IsSpeciesInHoennDex(u16 species)
@@ -6218,16 +6188,12 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
     if (!GetSetPokedexFlag(nationalNum, getFlagCaseId)) // don't set if it's already set
     {
         GetSetPokedexFlag(nationalNum, caseId);
-        if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_UNOWN)
-            gSaveBlock2Ptr->pokedex.unownPersonality = personality;
-        if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_SPINDA)
-            gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
     }
 }
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return P_TWO_FRAME_FRONT_SPRITES && species != SPECIES_UNOWN;
+    return P_TWO_FRAME_FRONT_SPRITES
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
@@ -6773,7 +6739,7 @@ void HealBoxPokemon(struct BoxPokemon *boxMon)
 u16 GetCryIdBySpecies(u16 species)
 {
     species = SanitizeSpeciesId(species);
-    if (P_CRIES_ENABLED == FALSE || gSpeciesInfo[species].cryId >= CRY_COUNT)
+    if (gSpeciesInfo[species].cryId >= CRY_COUNT)
         return CRY_NONE;
     return gSpeciesInfo[species].cryId;
 }

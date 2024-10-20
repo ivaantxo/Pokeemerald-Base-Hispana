@@ -244,7 +244,6 @@
 #define B_DOUBLE_WILD_REQUIRE_2_MONS    FALSE      // Si se establece en TRUE, las Batallas Dobles Salvajes se convertirán en Batallas Simples cuando el jugador solo tenga 1 Pokémon utilizable, ignorando B_DOUBLE_WILD_CHANCE y B_FLAG_FORCE_DOUBLE_WILD.
 #define B_MULTI_BATTLE_WHITEOUT         GEN_LATEST // En Gen4+, las batallas múltiples terminan cuando el Jugador y también su Compañero no tienen más Pokémon para luchar.
 #define B_EVOLUTION_AFTER_WHITEOUT      GEN_LATEST // En Gen6+, los Pokémon que califican para la evolución después de la batalla evolucionarán incluso si el jugador pierde.
-#define B_WILD_NATURAL_ENEMIES          TRUE       // Si se establece en TRUE, ciertas especies salvajes atacarán a otras especies cuando estén emparejadas en batallas dobles salvajes (por ejemplo, Zangoose vs Seviper).
 #define B_AFFECTION_MECHANICS           TRUE       // En Gen6+, hay una estadística llamada afecto que puede desencadenar diferentes efectos en batalla. A partir de LGPE, esos efectos usan amistad en su lugar.
 #define B_TRAINER_CLASS_POKE_BALLS      GEN_LATEST // En Gen7+, los entrenadores usarán ciertos tipos de Poké Balls según su clase de entrenador.
 #define B_TRAINER_MON_RANDOM_ABILITY    FALSE      // Si se establece en TRUE, se generará una habilidad legal aleatoria para un Pokémon de entrenador.

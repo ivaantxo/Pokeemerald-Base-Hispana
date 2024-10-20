@@ -2884,7 +2884,7 @@ static void PrintNotEggInfo(void)
 
     if (dexNum != 0xFFFF)
     {
-        u8 digitCount = (NATIONAL_DEX_COUNT > 999 && IsNationalPokedexEnabled()) ? 4 : 3;
+        u8 digitCount = (NATIONAL_DEX_COUNT > 999) ? 4 : 3;
         StringCopy(gStringVar1, &gText_NumberClear01[0]);
         ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, digitCount);
         StringAppend(gStringVar1, gStringVar2);

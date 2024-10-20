@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Smack Down does not ground mons behind substitutes")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SKARMORY);
+        OPPONENT(SPECIES_MEW);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_SMACK_DOWN); }
     } SCENE {

@@ -224,7 +224,7 @@ static const struct TrainerHillTrainer sTrainerHillTrainerTemplates_JP[] = {
             [1] = DUMMY_HILL_MON,
             [2] = DUMMY_HILL_MON,
             [3] = {
-                .species = SPECIES_DELCATTY,
+                .species = SPECIES_MEW,
                 .heldItem = ITEM_LUM_BERRY,
                 .moves = { MOVE_SING, MOVE_BODY_SLAM, MOVE_SHADOW_BALL, MOVE_IRON_TAIL },
                 .hpEV = 0,
@@ -348,7 +348,7 @@ static const struct TrainerHillTrainer sTrainerHillTrainerTemplates_JP[] = {
                 .friendship = MAX_FRIENDSHIP
             },
             [5] = {
-                .species = SPECIES_BANETTE,
+                .species = SPECIES_MEW,
                 .heldItem = ITEM_LUM_BERRY,
                 .moves = { MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_WILL_O_WISP },
                 .hpEV = 255,

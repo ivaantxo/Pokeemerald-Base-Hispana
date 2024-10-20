@@ -139,7 +139,7 @@ Converts trainer data (for `convert_trainer_parties.py`) and partner data (for `
 -        .moves = {MOVE_LIGHT_SCREEN, MOVE_PSYCHIC, MOVE_REFLECT, MOVE_METAL_CLAW},
 -    },
 -    {
--        .species = SPECIES_SKARMORY,
+-        .species = SPECIES_MEW,
 -        .lvl = 43,
 -        .nature = NATURE_IMPISH,
 -        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),

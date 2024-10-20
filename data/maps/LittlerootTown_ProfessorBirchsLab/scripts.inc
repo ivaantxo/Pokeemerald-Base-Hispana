@@ -201,7 +201,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex::
 	waitmessage
 	waitfanfare
 	setflag FLAG_SYS_NATIONAL_DEX
-	special EnableNationalPokedex
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCH

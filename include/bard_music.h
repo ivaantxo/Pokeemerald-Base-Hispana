@@ -31,7 +31,6 @@ struct BardSong
     /*0x30*/ const struct BardSound *sound;
 };
 
-extern const u16 gNumBardWords_Species;
 extern const u16 gNumBardWords_Moves;
 const struct BardSound *GetWordSounds(u16 word);
 void GetWordPhonemes(struct BardSong *song, u16 word);

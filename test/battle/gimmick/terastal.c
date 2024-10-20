@@ -477,7 +477,7 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type does not change the user's defensive pro
 SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Stellar-type Pokemon's base type")
 {
     GIVEN {
-        PLAYER(SPECIES_BANETTE) { TeraType(TYPE_STELLAR); }
+        PLAYER(SPECIES_MEW) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }

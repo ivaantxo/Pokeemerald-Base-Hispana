@@ -390,9 +390,6 @@ struct SpeciesInfo /*0xC4*/
  /* 0x64 */ const u32 *shinyPaletteFemale;
  /* 0x68 */ const u32 *iconSprite;
  /* 0x6C */ const u32 *iconSpriteFemale;
-#if P_FOOTPRINTS
- /* 0x70 */ const u8 *footprint;
-#endif
             // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
  /* 0x74 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
  /* 0x74 */ u8 frontPicSizeFemale; // The dimensions of this drawn pixel area.

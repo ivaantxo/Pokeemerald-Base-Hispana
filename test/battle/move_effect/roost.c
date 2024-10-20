@@ -85,9 +85,9 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP")
 SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then restores it at the end of the turn")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[0] == TYPE_STEEL);
-        ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_SKARMORY) { HP(50); MaxHP(100); Ability(ABILITY_STURDY); }
+        ASSUME(gSpeciesInfo[SPECIES_MEW].types[0] == TYPE_STEEL);
+        ASSUME(gSpeciesInfo[SPECIES_MEW].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_MEW) { HP(50); MaxHP(100); Ability(ABILITY_STURDY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }

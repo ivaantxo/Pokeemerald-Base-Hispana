@@ -1626,7 +1626,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                                         },
                                     [3] =
                                         {
-                                            .species = SPECIES_ILLUMISE,
+                                            .species = SPECIES_MEW,
                                             .heldItem = ITEM_BRIGHT_POWDER,
                                             .moves = {MOVE_ENCORE, MOVE_ATTRACT, MOVE_NONE, MOVE_NONE},
                                             .hpEV = 252,
@@ -2087,7 +2087,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                                         },
                                     [5] =
                                         {
-                                            .species = SPECIES_VOLBEAT,
+                                            .species = SPECIES_MEW,
                                             .heldItem = ITEM_SITRUS_BERRY,
                                             .moves = {MOVE_HELPING_HAND, MOVE_SIGNAL_BEAM, MOVE_SOLAR_BEAM, MOVE_MOONLIGHT},
                                             .speedEV = 255,
@@ -2157,7 +2157,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
                                         },
                                     [2] =
                                         {
-                                            .species = SPECIES_ILLUMISE,
+                                            .species = SPECIES_MEW,
                                             .heldItem = ITEM_SITRUS_BERRY,
                                             .moves = {MOVE_HELPING_HAND, MOVE_WISH, MOVE_THUNDERBOLT, MOVE_MOONLIGHT},
                                             .speedEV = 255,
@@ -3476,7 +3476,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                                         },
                                     [5] =
                                         {
-                                            .species = SPECIES_ZANGOOSE,
+                                            .species = SPECIES_MEW,
                                             .heldItem = ITEM_SCOPE_LENS,
                                             .moves = {MOVE_CRUSH_CLAW, MOVE_SHADOW_BALL, MOVE_BRICK_BREAK, MOVE_ROAR},
                                             .hpEV = 6,
@@ -3887,7 +3887,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                                         },
                                     [5] =
                                         {
-                                            .species = SPECIES_BANETTE,
+                                            .species = SPECIES_MEW,
                                             .heldItem = ITEM_FOCUS_BAND,
                                             .moves = {MOVE_SHADOW_BALL, MOVE_FEINT_ATTACK, MOVE_ATTRACT, MOVE_WILL_O_WISP},
                                             .hpEV = 252,
@@ -4310,7 +4310,7 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
                                         },
                                     [5] =
                                         {
-                                            .species = SPECIES_BANETTE,
+                                            .species = SPECIES_MEW,
                                             .heldItem = ITEM_BRIGHT_POWDER,
                                             .moves = {MOVE_IMPRISON, MOVE_PROTECT, MOVE_THUNDERBOLT, MOVE_THUNDER},
                                             .hpEV = 255,

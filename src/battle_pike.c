@@ -93,7 +93,7 @@ static bool8 StatusInflictionFadeIn(struct Task *task);
 static const struct PikeWildMon sLvl50_Mons1[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_BODY_SLAM, MOVE_SLUDGE_BOMB}
     },
@@ -112,7 +112,7 @@ static const struct PikeWildMon sLvl50_Mons1[] =
 static const struct PikeWildMon sLvl50_Mons2[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_BODY_SLAM, MOVE_SLUDGE_BOMB}
     },
@@ -131,7 +131,7 @@ static const struct PikeWildMon sLvl50_Mons2[] =
 static const struct PikeWildMon sLvl50_Mons3[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_BODY_SLAM, MOVE_SLUDGE_BOMB}
     },
@@ -150,7 +150,7 @@ static const struct PikeWildMon sLvl50_Mons3[] =
 static const struct PikeWildMon sLvl50_Mons4[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_BODY_SLAM, MOVE_SLUDGE_BOMB}
     },
@@ -177,7 +177,7 @@ static const struct PikeWildMon *const sLvl50Mons[] =
 static const struct PikeWildMon sLvlOpen_Mons1[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_POISON_FANG, MOVE_SLUDGE_BOMB}
     },
@@ -196,7 +196,7 @@ static const struct PikeWildMon sLvlOpen_Mons1[] =
 static const struct PikeWildMon sLvlOpen_Mons2[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_POISON_FANG, MOVE_SLUDGE_BOMB}
     },
@@ -215,7 +215,7 @@ static const struct PikeWildMon sLvlOpen_Mons2[] =
 static const struct PikeWildMon sLvlOpen_Mons3[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_POISON_FANG, MOVE_SLUDGE_BOMB}
     },
@@ -234,7 +234,7 @@ static const struct PikeWildMon sLvlOpen_Mons3[] =
 static const struct PikeWildMon sLvlOpen_Mons4[] =
 {
     {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .levelDelta = 4,
         .moves = {MOVE_TOXIC, MOVE_GLARE, MOVE_POISON_FANG, MOVE_SLUDGE_BOMB}
     },
@@ -1633,7 +1633,7 @@ static u8 SpeciesToPikeMonId(u16 species)
 {
     u8 ret;
 
-    if (species == SPECIES_SEVIPER)
+    if (species == SPECIES_MEW)
         ret = 0;
     else if (species == SPECIES_MILOTIC)
         ret = 1;

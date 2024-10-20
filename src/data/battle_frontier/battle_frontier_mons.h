@@ -1135,7 +1135,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_RELAXED
     },
     [FRONTIER_MON_DELCATTY_1] = {
-        .species = SPECIES_DELCATTY,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SECRET_POWER, MOVE_FEINT_ATTACK, MOVE_DOUBLE_TEAM, MOVE_HEAL_BELL},
         .heldItem = ITEM_SITRUS_BERRY,
         .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
@@ -1205,14 +1205,14 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_DOCILE
     },
     [FRONTIER_MON_VOLBEAT_1] = {
-        .species = SPECIES_VOLBEAT,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SILVER_WIND, MOVE_CONFUSE_RAY, MOVE_QUICK_ATTACK, MOVE_HELPING_HAND},
         .heldItem = ITEM_LIECHI_BERRY,
         .ev = TRAINER_PARTY_EVS(0, 252, 0, 252, 0, 0),
         .nature = NATURE_QUIRKY
     },
     [FRONTIER_MON_ILLUMISE_1] = {
-        .species = SPECIES_ILLUMISE,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SILVER_WIND, MOVE_WISH, MOVE_QUICK_ATTACK, MOVE_HELPING_HAND},
         .heldItem = ITEM_LIECHI_BERRY,
         .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
@@ -1660,7 +1660,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_HARDY
     },
     [FRONTIER_MON_BANETTE_1] = {
-        .species = SPECIES_BANETTE,
+        .species = SPECIES_MEW,
         .moves = {MOVE_NIGHT_SHADE, MOVE_WILL_O_WISP, MOVE_SPITE, MOVE_KNOCK_OFF},
         .heldItem = ITEM_RAWST_BERRY,
         .ev = TRAINER_PARTY_EVS(170, 0, 170, 0, 0, 170),
@@ -1674,14 +1674,14 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_MILD
     },
     [FRONTIER_MON_SEVIPER_1] = {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .moves = {MOVE_POISON_TAIL, MOVE_BITE, MOVE_GLARE, MOVE_SCREECH},
         .heldItem = ITEM_SCOPE_LENS,
         .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
         .nature = NATURE_HARDY
     },
     [FRONTIER_MON_ZANGOOSE_1] = {
-        .species = SPECIES_ZANGOOSE,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SLASH, MOVE_DOUBLE_KICK, MOVE_ROAR, MOVE_QUICK_ATTACK},
         .heldItem = ITEM_PERSIM_BERRY,
         .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
@@ -1870,7 +1870,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_SASSY
     },
     [FRONTIER_MON_DELCATTY_2] = {
-        .species = SPECIES_DELCATTY,
+        .species = SPECIES_MEW,
         .moves = {MOVE_FAKE_TEARS, MOVE_SING, MOVE_THUNDERBOLT, MOVE_ICE_BEAM},
         .heldItem = ITEM_QUICK_CLAW,
         .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
@@ -1940,14 +1940,14 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_DOCILE
     },
     [FRONTIER_MON_VOLBEAT_2] = {
-        .species = SPECIES_VOLBEAT,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SIGNAL_BEAM, MOVE_THUNDERBOLT, MOVE_ICE_PUNCH, MOVE_TAIL_GLOW},
         .heldItem = ITEM_PETAYA_BERRY,
         .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
         .nature = NATURE_QUIRKY
     },
     [FRONTIER_MON_ILLUMISE_2] = {
-        .species = SPECIES_ILLUMISE,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SILVER_WIND, MOVE_THUNDERBOLT, MOVE_ICE_PUNCH, MOVE_GIGA_DRAIN},
         .heldItem = ITEM_PETAYA_BERRY,
         .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
@@ -2395,7 +2395,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_ADAMANT
     },
     [FRONTIER_MON_BANETTE_2] = {
-        .species = SPECIES_BANETTE,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SHADOW_BALL, MOVE_FRUSTRATION, MOVE_SCREECH, MOVE_WILL_O_WISP},
         .heldItem = ITEM_LAX_INCENSE,
         .ev = TRAINER_PARTY_EVS(0, 0, 252, 0, 0, 252),
@@ -2409,14 +2409,14 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_QUIRKY
     },
     [FRONTIER_MON_SEVIPER_2] = {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SLUDGE_BOMB, MOVE_EARTHQUAKE, MOVE_CRUNCH, MOVE_GIGA_DRAIN},
         .heldItem = ITEM_QUICK_CLAW,
         .ev = TRAINER_PARTY_EVS(170, 0, 170, 0, 0, 170),
         .nature = NATURE_QUIRKY
     },
     [FRONTIER_MON_ZANGOOSE_2] = {
-        .species = SPECIES_ZANGOOSE,
+        .species = SPECIES_MEW,
         .moves = {MOVE_CRUSH_CLAW, MOVE_SHADOW_BALL, MOVE_BRICK_BREAK, MOVE_AERIAL_ACE},
         .heldItem = ITEM_SCOPE_LENS,
         .ev = TRAINER_PARTY_EVS(0, 252, 0, 252, 0, 0),
@@ -2703,7 +2703,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_HARDY
     },
     [FRONTIER_MON_SKARMORY_1] = {
-        .species = SPECIES_SKARMORY,
+        .species = SPECIES_MEW,
         .moves = {MOVE_STEEL_WING, MOVE_AIR_CUTTER, MOVE_COUNTER, MOVE_AGILITY},
         .heldItem = ITEM_SCOPE_LENS,
         .ev = TRAINER_PARTY_EVS(170, 170, 0, 0, 0, 170),
@@ -3375,7 +3375,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_ADAMANT
     },
     [FRONTIER_MON_SKARMORY_2] = {
-        .species = SPECIES_SKARMORY,
+        .species = SPECIES_MEW,
         .moves = {MOVE_SPIKES, MOVE_ROAR, MOVE_DRILL_PECK, MOVE_TOXIC},
         .heldItem = ITEM_BRIGHT_POWDER,
         .ev = TRAINER_PARTY_EVS(170, 170, 0, 0, 0, 170),
@@ -4047,7 +4047,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_JOLLY
     },
     [FRONTIER_MON_SKARMORY_3] = {
-        .species = SPECIES_SKARMORY,
+        .species = SPECIES_MEW,
         .moves = {MOVE_TOXIC, MOVE_CURSE, MOVE_REST, MOVE_FLY},
         .heldItem = ITEM_CHESTO_BERRY,
         .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
@@ -4719,7 +4719,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
         .nature = NATURE_DOCILE
     },
     [FRONTIER_MON_SKARMORY_4] = {
-        .species = SPECIES_SKARMORY,
+        .species = SPECIES_MEW,
         .moves = {MOVE_DRILL_PECK, MOVE_STEEL_WING, MOVE_COUNTER, MOVE_ROCK_SLIDE},
         .heldItem = ITEM_QUICK_CLAW,
         .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),

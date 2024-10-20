@@ -522,7 +522,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 282
-            .species = SPECIES_ZANGOOSE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 284
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -533,7 +533,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 286
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 288
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -3967,7 +3967,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 1662
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 1664
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -4050,7 +4050,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 1695
-            .species = SPECIES_ZANGOOSE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 1697
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -4441,7 +4441,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 1849
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 1851
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
@@ -4776,7 +4776,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 1976
-            .species = SPECIES_BANETTE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 1978
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -5725,7 +5725,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 2337
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 2339
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -5973,7 +5973,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 2437
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 2439
             .iv = TRAINER_PARTY_IVS(1, 1, 1, 1, 1, 1),
@@ -6032,7 +6032,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 2462
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 2464
             .iv = TRAINER_PARTY_IVS(2, 2, 2, 2, 2, 2),
@@ -6091,7 +6091,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 2487
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 2489
             .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
@@ -6150,7 +6150,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 2512
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 2514
             .iv = TRAINER_PARTY_IVS(4, 4, 4, 4, 4, 4),
@@ -11146,7 +11146,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 4488
-            .species = SPECIES_ZANGOOSE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 4490
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -11541,7 +11541,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 4657
-            .species = SPECIES_BANETTE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 4659
             .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
@@ -11577,7 +11577,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 4673
-            .species = SPECIES_BANETTE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 4675
             .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
@@ -12385,7 +12385,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 5019
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 5021
             .iv = TRAINER_PARTY_IVS(26, 26, 26, 26, 26, 26),
@@ -12916,7 +12916,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 5238
-            .species = SPECIES_BANETTE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 5240
             .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
@@ -13736,7 +13736,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 5568
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 5568
             .heldItem = ITEM_ORAN_BERRY,
@@ -13845,7 +13845,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 5611
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 5611
             .heldItem = ITEM_ORAN_BERRY,
@@ -13879,7 +13879,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 5624
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 5624
             .heldItem = ITEM_SITRUS_BERRY,
@@ -18289,7 +18289,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 7356
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 7358
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
@@ -18332,7 +18332,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 7373
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 7375
             .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
@@ -23364,7 +23364,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 9357
-            .species = SPECIES_ZANGOOSE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 9359
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -23375,7 +23375,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 9361
-            .species = SPECIES_SEVIPER,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 9363
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -23653,7 +23653,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 9472
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 9474
             .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
@@ -25431,7 +25431,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 10159
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 10161
             .iv = TRAINER_PARTY_IVS(2, 2, 2, 2, 2, 2),
@@ -25520,7 +25520,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 10192
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 10194
             .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
@@ -25609,7 +25609,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 10225
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 10227
             .iv = TRAINER_PARTY_IVS(4, 4, 4, 4, 4, 4),
@@ -28455,7 +28455,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11336
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11338
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -28466,7 +28466,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 11340
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11342
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -29483,7 +29483,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11739
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11741
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -29569,7 +29569,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11773
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11775
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -29580,7 +29580,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 11777
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11779
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -29612,7 +29612,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11790
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11792
             .iv = TRAINER_PARTY_IVS(1, 1, 1, 1, 1, 1),
@@ -29623,7 +29623,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 11794
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11796
             .iv = TRAINER_PARTY_IVS(1, 1, 1, 1, 1, 1),
@@ -29655,7 +29655,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11807
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11809
             .iv = TRAINER_PARTY_IVS(2, 2, 2, 2, 2, 2),
@@ -29666,7 +29666,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 11811
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11813
             .iv = TRAINER_PARTY_IVS(2, 2, 2, 2, 2, 2),
@@ -29698,7 +29698,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11824
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11826
             .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
@@ -29709,7 +29709,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 11828
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11830
             .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
@@ -29741,7 +29741,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 11841
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11843
             .iv = TRAINER_PARTY_IVS(4, 4, 4, 4, 4, 4),
@@ -29752,7 +29752,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 11845
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 11847
             .iv = TRAINER_PARTY_IVS(4, 4, 4, 4, 4, 4),
@@ -30281,7 +30281,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 12066
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 12068
             .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
@@ -30394,7 +30394,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 12116
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 12118
             .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
@@ -30507,7 +30507,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 12166
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 12168
             .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
@@ -30620,7 +30620,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 12216
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 12218
             .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
@@ -31449,7 +31449,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 12540
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 12542
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -32991,7 +32991,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 13164
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 13166
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -34287,7 +34287,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 13675
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 13677
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -34298,7 +34298,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 13679
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 13681
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
@@ -37981,7 +37981,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 15190
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15192
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -38118,7 +38118,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 15248
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15250
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -38255,7 +38255,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 15306
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15308
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -38392,7 +38392,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 15364
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15366
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -39485,7 +39485,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 15829
-            .species = SPECIES_ILLUMISE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15831
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
@@ -39502,7 +39502,7 @@ F_TRAINER_FEMALE |
             },
             {
 #line 15836
-            .species = SPECIES_VOLBEAT,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15838
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
@@ -39574,7 +39574,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 15866
-            .species = SPECIES_SKARMORY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 15868
             .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
@@ -41588,7 +41588,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 16652
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 16654
             .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
@@ -41677,7 +41677,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 16685
-            .species = SPECIES_DELCATTY,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 16687
             .iv = TRAINER_PARTY_IVS(4, 4, 4, 4, 4, 4),
@@ -42007,7 +42007,7 @@ F_TRAINER_FEMALE |
         {
             {
 #line 16809
-            .species = SPECIES_BANETTE,
+            .species = SPECIES_MEW,
             .gender = TRAINER_MON_RANDOM_GENDER,
 #line 16811
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),

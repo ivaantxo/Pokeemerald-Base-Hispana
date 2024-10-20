@@ -504,7 +504,6 @@ gSpecials::
 	def_special SetUnlockedPokedexFlags
 	def_special IsTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
-	def_special EnableNationalPokedex
 	def_special ScriptMenu_CreateLilycoveSSTidalMultichoice
 	def_special GetLilycoveSSTidalSelection
 	def_special TurnOnTVScreen

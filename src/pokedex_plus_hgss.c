@@ -3787,7 +3787,6 @@ static void Task_LoadInfoScreen(u8 taskId)
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
-        DrawFootprint(WIN_FOOTPRINT, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum));
         CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
         gMain.state++;
         break;
@@ -4086,7 +4085,6 @@ void Task_DisplayCaughtMonDexPageHGSS(u8 taskId)
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
-        DrawFootprint(WIN_FOOTPRINT, species);
         CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
         ResetPaletteFade();
         LoadPokedexBgPalette(FALSE);
@@ -4427,27 +4425,10 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
 
 #define MALE_PERSONALITY 0xFE
 
-// Unown and Spinda use the personality of the first seen individual of that species
-// All others use personality 0
-static u32 GetPokedexMonPersonality(u16 species)
-{
-    if (species == SPECIES_UNOWN || species == SPECIES_SPINDA)
-    {
-        if (species == SPECIES_UNOWN)
-            return gSaveBlock2Ptr->pokedex.unownPersonality;
-        else
-            return gSaveBlock2Ptr->pokedex.spindaPersonality;
-    }
-    else
-    {
-        return MALE_PERSONALITY;
-    }
-}
-
 static u16 CreateMonSpriteFromNationalDexNumberHGSS(u16 nationalNum, s16 x, s16 y, u16 paletteSlot)
 {
     nationalNum = NationalPokedexNumToSpeciesHGSS(nationalNum);
-    return CreateMonPicSprite(nationalNum, FALSE, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
+    return CreateMonPicSprite(nationalNum, FALSE, MALE_PERSONALITY, TRUE, x, y, paletteSlot, TAG_NONE);
 }
 
 static u16 GetPokemonScaleFromNationalDexNumber(u16 nationalNum)
@@ -6842,10 +6823,9 @@ static void PrintForms(u8 taskId, u16 species)
             continue;
         else
         {
-            u32 personality = GetPokedexMonPersonality(speciesForm);
             sPokedexView->sFormScreenData.formIds[j++] = i;
             times += 1;
-            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(speciesForm, 0, personality), OBJ_PLTT_ID(5 + times), PLTT_SIZE_4BPP);
+            LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(speciesForm, 0, MALE_PERSONALITY), OBJ_PLTT_ID(5 + times), PLTT_SIZE_4BPP);
             if (times < 7)
                 gTasks[taskId].data[5 + times] = CreateMonIconNoPersonality(speciesForm, SpriteCB_MonIcon, 52 + 34 * (times  -1), 31, 4); //Create pokemon sprite
             else if (times < 14)

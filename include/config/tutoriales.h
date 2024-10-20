@@ -59,7 +59,7 @@ Cuando ya tenemos esto, basta cargar el SpriteSheet mediante LoadCompressedSprit
 y ya tendríamos nuestros nuevos sprites cargados en la pantalla de la GBA, y solo faltaría escribir el código para ver qué hacemos con ellos.
 */
 
-#define TUTORIAL_MINIJUEGO_ZUBAT    TRUE
+#define TUTORIAL_MINIJUEGO_ZUBAT    FALSE
 /* Tutorial-Minijuego de Caco
 Si el config es TRUE, activa una opción en el Start Menu que carga tres opciones: un background, un background más sprites, y un minijuego.
 El tutorial viene en src/tutoriales/minijuego_zubat.c, y está pensado para seguir el orden en ese archivo, desde la carga de bgs y sprites, hasta el mismo minijuego.

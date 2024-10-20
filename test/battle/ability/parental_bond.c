@@ -246,7 +246,7 @@ SINGLE_BATTLE_TEST("Parental Bond Smack Down effect triggers after 2nd hit")
         ASSUME(gMovesInfo[MOVE_SMACK_DOWN].strikeCount < 2);
         ASSUME(MoveHasAdditionalEffect(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN));
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
-        OPPONENT(SPECIES_SKARMORY);
+        OPPONENT(SPECIES_MEW);
     } WHEN {
         TURN { MOVE(player, MOVE_SMACK_DOWN, gimmick: GIMMICK_MEGA); }
     } SCENE {

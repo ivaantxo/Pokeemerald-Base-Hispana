@@ -1,0 +1,794 @@
+{
+  "GASTLY": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "HAUNTER": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "GENGAR": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "KANGASKHAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "MAREEP": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "FLAAFFY": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AMPHAROS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "BONSLY": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SUDOWOODO": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AIPOM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AMBIPOM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SUNKERN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SUNFLORA": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SNEASLER": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CORSOLA": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DELIBIRD": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "HO_OH": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CELEBI": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "WHISMUR": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_BABY_DOLL_EYES"
+    ]
+  },
+  "NOSEPASS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "PROBOPASS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SABLEYE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "MAWILE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "BUDEW": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ROSELIA": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ROSERADE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SPOINK": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "GRUMPIG": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SWABLU": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ALTARIA": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "LUNATONE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SOLROCK": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "MILOTIC": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CASTFORM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DUSKULL": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DUSCLOPS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DUSKNOIR": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CHINGLING": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ABSOL": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SNORUNT": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "GLALIE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SPHEAL": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SEALEO": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "WALREIN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CLAMPERL": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "HUNTAIL": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "GOREBYSS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SHINX": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "LUXIO": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "LUXRAY": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "COMBEE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "VESPIQUEN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CHERUBI": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CHERRIM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DRIFLOON": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DRIFBLIM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SNOVER": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ABOMASNOW": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ROTOM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "YAMASK": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "COFAGRIGUS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ZORUA": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ZOROARK": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ZORUA_HISUIAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "ZOROARK_HISUIAN": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "FOONGUS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AMOONGUSS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "LITWICK": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "LAMPENT": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "CHANDELURE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "GOLETT": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "GOLURK": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "BUNNELBY": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DIGGERSBY": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "FLETCHLING": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "FLETCHINDER": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "TALONFLAME": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "HONEDGE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "DOUBLADE": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AEGISLASH": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AMAURA": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "AURORUS": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "PHANTUMP": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "TREVENANT": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SANDYGAST": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "PALOSSAND": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "SNOM": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  },
+  "FROSMOTH": {
+    "LevelMoves": [],
+    "PreEvoMoves": [],
+    "TMMoves": [],
+    "EggMoves": [],
+    "TutorMoves": [
+      "MOVE_CHARM"
+    ]
+  }
+}

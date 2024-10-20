@@ -1518,9 +1518,6 @@ void ResetPokedex(void)
     sPokeBallRotation = POKEBALL_ROTATION_TOP;
     gSaveBlock2Ptr->pokedex.mode = DEX_MODE_HOENN;
     gSaveBlock2Ptr->pokedex.order = 0;
-    gSaveBlock2Ptr->pokedex.nationalModeEnabled = FALSE;
-    gSaveBlock2Ptr->pokedex.unownPersonality = 0;
-    gSaveBlock2Ptr->pokedex.spindaPersonality = 0;
     DisableNationalPokedex();
     for (i = 0; i < NUM_DEX_FLAG_BYTES; i++)
     {
@@ -3298,7 +3295,6 @@ static void Task_LoadInfoScreen(u8 taskId)
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
-        DrawFootprint(WIN_FOOTPRINT, NationalPokedexNumToSpecies(sPokedexListItem->dexNum));
         CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
         gMain.state++;
         break;
@@ -4028,7 +4024,6 @@ static void Task_DisplayCaughtMonDexPage(u8 taskId)
         FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
         PutWindowTilemap(WIN_INFO);
         PutWindowTilemap(WIN_FOOTPRINT);
-        DrawFootprint(WIN_FOOTPRINT, species);
         CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
         ResetPaletteFade();
         LoadPokedexBgPalette(FALSE);
@@ -4680,52 +4675,6 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
     return i;
 }
 
-// The footprints are drawn on WIN_FOOTPRINT, which uses BG palette 15 (loaded with graphics/text_window/message_box.gbapal)
-// The footprint pixels are stored as 1BPP, and set to the below color index in this palette when converted to 4BPP.
-#define FOOTPRINT_COLOR_IDX  2
-
-#define NUM_FOOTPRINT_TILES  4
-
-void DrawFootprint(u8 windowId, u16 species)
-{
-    u8 ALIGNED(4) footprint4bpp[TILE_SIZE_4BPP * NUM_FOOTPRINT_TILES];
-    const u8 *footprintGfx = NULL;
-    u32 i, j, tileIdx = 0;
-
-#if P_FOOTPRINTS
-    footprintGfx = gSpeciesInfo[SanitizeSpeciesId(species)].footprint;
-#else
-    return;
-#endif
-
-    if (footprintGfx != NULL)
-    {
-        for (i = 0; i < TILE_SIZE_1BPP * NUM_FOOTPRINT_TILES; i++)
-        {
-            u8 footprint1bpp = footprintGfx[i];
-
-            // Convert the 8 pixels in the above 1BPP byte to 4BPP.
-            // Each iteration creates one 4BPP byte (2 pixels),
-            // so we need 4 iterations to do all 8 pixels.
-            for (j = 0; j < 4; j++)
-            {
-                u8 tile = 0;
-                if (footprint1bpp & (1 << (2 * j)))
-                    tile |= FOOTPRINT_COLOR_IDX; // Set pixel
-                if (footprint1bpp & (2 << (2 * j)))
-                    tile |= FOOTPRINT_COLOR_IDX << 4; // Set pixel
-                footprint4bpp[tileIdx] = tile;
-                tileIdx++;
-            }
-        }
-    }
-    else
-    {
-        CpuFastFill(0, footprint4bpp, sizeof(footprint4bpp));
-    }
-    CopyToWindowPixelBuffer(windowId, footprint4bpp, sizeof(footprint4bpp), 0);
-}
-
 static u16 GetNextPosition(u8 direction, u16 position, u16 min, u16 max)
 {
     switch (direction)
@@ -4754,27 +4703,10 @@ static u16 GetNextPosition(u8 direction, u16 position, u16 min, u16 max)
     return position;
 }
 
-// Unown and Spinda use the personality of the first seen individual of that species
-// All others use personality 0
-static u32 GetPokedexMonPersonality(u16 species)
-{
-    if (species == SPECIES_UNOWN || species == SPECIES_SPINDA)
-    {
-        if (species == SPECIES_UNOWN)
-            return gSaveBlock2Ptr->pokedex.unownPersonality;
-        else
-            return gSaveBlock2Ptr->pokedex.spindaPersonality;
-    }
-    else
-    {
-        return 0xFF; //Changed from 0 to make it so the Pokédex shows the default mon pics instead of the female versions.
-    }
-}
-
 u16 CreateMonSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot)
 {
     nationalNum = NationalPokedexNumToSpecies(nationalNum);
-    return CreateMonPicSprite(nationalNum, FALSE, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
+    return CreateMonPicSprite(nationalNum, FALSE, MALE_PERSONALITY, TRUE, x, y, paletteSlot, TAG_NONE);
 }
 
 static u16 GetPokemonScaleFromNationalDexNumber(u16 nationalNum)
@@ -4984,10 +4916,7 @@ static void Task_LoadSearchMenu(u8 taskId)
             PutWindowTilemap(0);
             DecompressAndLoadBgGfxUsingHeap(3, gPokedexSearchMenu_Gfx, 0x2000, 0, 0);
 
-            if (!IsNationalPokedexEnabled())
-                CopyToBgTilemapBuffer(3, gPokedexSearchMenuHoenn_Tilemap, 0, 0);
-            else
-                CopyToBgTilemapBuffer(3, gPokedexSearchMenuNational_Tilemap, 0, 0);
+            CopyToBgTilemapBuffer(3, gPokedexSearchMenuNational_Tilemap, 0, 0);
             LoadPalette(gPokedexSearchMenu_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
             gMain.state = 1;
         }

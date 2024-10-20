@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("Covert Cloak does not block primary effects")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_PAY_DAY, MOVE_EFFECT_PAYDAY, 0) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN, 0) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SKARMORY) { Item(ITEM_COVERT_CLOAK); }
+        OPPONENT(SPECIES_MEW) { Item(ITEM_COVERT_CLOAK); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {

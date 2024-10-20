@@ -9,7 +9,7 @@ ASSUMPTIONS
 DOUBLE_BATTLE_TEST("Quash-affected target will move last in the priority bracket")
 {
     GIVEN {
-        PLAYER(SPECIES_VOLBEAT) { Speed(10); Ability(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_MEW) { Speed(10); Ability(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(30); }
         OPPONENT(SPECIES_TORCHIC) { Speed(20); }
         OPPONENT(SPECIES_TREECKO) { Speed(40); }
@@ -28,7 +28,7 @@ DOUBLE_BATTLE_TEST("Quash is not affected by dynamic speed")
     GIVEN {
         ASSUME(B_RECALC_TURN_AFTER_ACTIONS >= GEN_8);
         ASSUME(gMovesInfo[MOVE_TAILWIND].effect == EFFECT_TAILWIND);
-        PLAYER(SPECIES_VOLBEAT) { Speed(10); Ability(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_MEW) { Speed(10); Ability(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(30); }
         OPPONENT(SPECIES_TORCHIC) { Speed(50); }
         OPPONENT(SPECIES_TREECKO) { Speed(40); }
@@ -83,7 +83,7 @@ DOUBLE_BATTLE_TEST("Quash-affected targets move from fastest to slowest (Gen 8+)
     PARAMETRIZE { speedLeft = 60; speedRight = 50; }
     PARAMETRIZE { speedLeft = 50; speedRight = 60; }
     GIVEN {
-        PLAYER(SPECIES_VOLBEAT) { Speed(10); Ability(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_MEW) { Speed(10); Ability(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(70); }
         OPPONENT(SPECIES_TORCHIC) { Speed(speedLeft); }
         OPPONENT(SPECIES_TREECKO) { Speed(speedRight); }
@@ -115,7 +115,7 @@ DOUBLE_BATTLE_TEST("Quash-affected mon that acted early via After You is not aff
         ASSUME(B_RECALC_TURN_AFTER_ACTIONS >= GEN_8);
         ASSUME(gMovesInfo[MOVE_TAILWIND].effect == EFFECT_TAILWIND);
         ASSUME(gMovesInfo[MOVE_AFTER_YOU].effect == EFFECT_AFTER_YOU);
-        PLAYER(SPECIES_VOLBEAT) { Speed(20); Ability(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_MEW) { Speed(20); Ability(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(30); }
         OPPONENT(SPECIES_TORCHIC) { Speed(10); }
         OPPONENT(SPECIES_TREECKO) { Speed(40); }
