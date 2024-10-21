@@ -16170,11 +16170,11 @@ SandsearStormFireSpin:
 
 @Credits to Skeli
 gBattleAnimMove_LunarBlessing::
+	loadspritegfx ANIM_TAG_BLUE_STAR
 	loadspritegfx ANIM_TAG_MOON
 	loadspritegfx ANIM_TAG_SPARKLE_2
 	loadspritegfx ANIM_TAG_GUARD_RING
 	loadspritegfx ANIM_TAG_SMALL_EMBER @Yellow colour for ring
-	loadspritegfx ANIM_TAG_BLUE_STAR
 	monbg ANIM_ATK_PARTNER
 	setalpha 16, 0
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BG, 0x1, 0x0, 0x10, 0x0
@@ -18074,10 +18074,12 @@ PopulationBombContinue:
 	waitforvisualfinish
 	end
 
+gBattleAnimMove_RevivalBlessing::
+	goto gBattleAnimMove_LunarBlessing
+
 gBattleAnimMove_TeraBlast::
 gBattleAnimMove_OrderUp::
 gBattleAnimMove_GlaiveRush::
-gBattleAnimMove_RevivalBlessing::
 gBattleAnimMove_SaltCure::
 gBattleAnimMove_TripleDive::
 gBattleAnimMove_Doodle::
