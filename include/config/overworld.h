@@ -39,6 +39,7 @@
 #define OW_MON_WANDER_WALK             TRUE       // Si TRUE, los OW de Pokémon con MOVEMENT_TYPE_WANDER andarán en el sitio entre pasos.
 #define OW_FOLLOWERS_BOBBING           TRUE       // Si TRUE, los followers Pokémon brincotearán mientras permanecen parados.
 #define OW_FOLLOWERS_POKEBALLS         TRUE       // Los seguidores emergerán de la Pokébola en la que están almacenados, en lugar de una Pokébola normal
+                                                  // IMPORTANT: Gfx are loaded into VRAM to avoid continous decompression. If you require more VRAM or want to use a lot of overworld Pokémon at once, you should disable this config.
 
 // Efectos de Habilidad fuera de batalla
 #define OW_SYNCHRONIZE_NATURE       GEN_LATEST // En Gen8+, si un Pokémon con Sincronía lidera el equipo, los Pokémon salvajes siempre tendrán la misma Naturaleza en lugar del 50% de probabilidad en juegos anteriores. Pokémon regalo excluidos.
