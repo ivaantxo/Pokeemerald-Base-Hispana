@@ -136,6 +136,9 @@ Affects when the AI chooses to switch. AI will make smarter decisions about when
 ## `AI_FLAG_ACE_POKEMON`
 Marks the last Pokemon in the party as the Ace Pokemon. It will not be used unless it is the last one remaining, or is forced to be switched in (Roar, U-Turn with 1 mon remaining, etc.)
 
+## `AI_FLAG_DOUBLE_ACE_POKEMON`
+Marks the last two Pokémon in the party as Ace Pokémon, with the same behaviour as `AI_FLAG_ACE_POKEMON`. Intented for double battles where you battle one trainer id that represents two trainers, ie Twins, Couples.
+
 ## `AI_FLAG_OMNISCIENT`
 AI has full knowledge of player moves, abilities, and hold items, and can use this knowledge when making decisions.
 
