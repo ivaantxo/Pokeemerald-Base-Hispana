@@ -2509,12 +2509,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             else
                 ADJUST_SCORE(-10);
             break;
-        case EFFECT_POWER_BASED_ON_USER_HP:
-            if (effectiveness <= AI_EFFECTIVENESS_x0_5)
-                ADJUST_SCORE(-1);
-            if (aiData->hpPercents[battlerDef] < 50)
-                ADJUST_SCORE(-1);
-            break;
         case EFFECT_FLAIL:
             if (AI_IsSlower(battlerAtk, battlerDef, move) // Opponent should go first
              || aiData->hpPercents[battlerAtk] > 50)
