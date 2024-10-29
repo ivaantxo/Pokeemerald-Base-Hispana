@@ -30,9 +30,13 @@
 #define OVERWORLD_PAL(...)                                  \
     .overworldPalette = DEFAULT(NULL, __VA_ARGS__),         \
     .overworldShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
+#if P_GENDER_DIFFERENCES
 #define OVERWORLD_PAL_FEMALE(...)                                 \
     .overworldPaletteFemale = DEFAULT(NULL, __VA_ARGS__),         \
     .overworldShinyPaletteFemale = DEFAULT_2(NULL, __VA_ARGS__),
+#else
+#define OVERWORLD_PAL_FEMALE(...)
+#endif //P_GENDER_DIFFERENCES
 #else
 #define OVERWORLD_PAL(...)
 #define OVERWORLD_PAL_FEMALE(...)
@@ -80,6 +84,7 @@
 },                                                                                          \
     OVERWORLD_PAL(__VA_ARGS__)
 
+#if P_GENDER_DIFFERENCES
 #define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)                             \
 .overworldDataFemale = {                                                                    \
     .tileTag = TAG_NONE,                                                                    \
@@ -100,6 +105,9 @@
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
     OVERWORLD_PAL_FEMALE(__VA_ARGS__)
+#else
+#define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)
+#endif //P_GENDER_DIFFERENCES
 
 #else
 #define OVERWORLD(picTable, _size, shadow, _tracks, ...)
@@ -238,25 +246,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_CircledQuestionMark,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.frontPicFemale = gMonFrontPic_CircledQuestionMark,
-        //.frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_None,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_CircledQuestionMark,
         .backPicSize = MON_COORDS_SIZE(64, 64),
-        //.backPicFemale = gMonBackPic_CircledQuestionMarkF,
-        //.backPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 7,
+#if P_GENDER_DIFFERENCES
+        .frontPicFemale = gMonFrontPic_CircledQuestionMark,
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
+        .backPicFemale = gMonBackPic_CircledQuestionMarkF,
+        .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
+        .paletteFemale = gMonPalette_CircledQuestionMarkF,
+        .shinyPaletteFemale = gMonShinyPalette_CircledQuestionMarkF,
+        .iconSpriteFemale = gMonIcon_QuestionMarkF,
+        .iconPalIndexFemale = 1,
+#endif //P_GENDER_DIFFERENCES
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_CircledQuestionMark,
         .shinyPalette = gMonShinyPalette_CircledQuestionMark,
-        //.paletteFemale = gMonPalette_CircledQuestionMarkF,
-        .shinyPaletteFemale = gMonShinyPalette_CircledQuestionMarkF,
         .iconSprite = gMonIcon_QuestionMark,
         .iconPalIndex = 0,
-        //.iconSpriteFemale = gMonIcon_QuestionMarkF,
-        //.iconPalIndexFemale = 1,
         FOOTPRINT(QuestionMark)
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
