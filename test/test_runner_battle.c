@@ -330,8 +330,10 @@ static void BattleTest_Run(void *data)
 
     if (DATA.hasExplicitSpeeds)
     {
+        // TODO: If a battler is taking the default action maybe it
+        // should not require an explicit speed?
         if (DATA.explicitSpeeds[B_SIDE_PLAYER] != (1 << DATA.playerPartySize) - 1
-         && DATA.explicitSpeeds[B_SIDE_OPPONENT] != (1 << DATA.opponentPartySize) - 1)
+         || DATA.explicitSpeeds[B_SIDE_OPPONENT] != (1 << DATA.opponentPartySize) - 1)
         {
             Test_ExitWithResult(TEST_RESULT_INVALID, SourceLine(0), ":LSpeed required for all PLAYERs and OPPONENTs");
         }
