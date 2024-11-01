@@ -3097,7 +3097,7 @@ u32 BattleStringExpandPlaceholdersToDisplayedString(const u8 *src)
     u32 dstID = BattleStringExpandPlaceholders(src, gDisplayedStringBattle, sizeof(gDisplayedStringBattle));
     for (j = 1;; j++)
     {
-        strWidth = GetStringLineWidth(0, gDisplayedStringBattle, 0, j, sizeof(gDisplayedStringBattle), TRUE);
+        strWidth = GetStringLineWidth(0, gDisplayedStringBattle, 0, j, sizeof(gDisplayedStringBattle));
         if (strWidth == 0)
             break;
     }
@@ -3164,7 +3164,7 @@ static void GetBattlerNick(u32 battler, u8 *dst)
     }                                                                   \
     GetBattlerNick(battler, text);                                      \
     toCpy = text;                                                       \
-    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize, FALSE);
+    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
 
 #define HANDLE_NICKNAME_STRING_LOWERCASE(battler)                       \
     if (GetBattlerSide(battler) != B_SIDE_PLAYER)                       \
@@ -3182,7 +3182,7 @@ static void GetBattlerNick(u32 battler, u8 *dst)
     }                                                                   \
     GetBattlerNick(battler, text);                                      \
     toCpy = text;                                                       \
-    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize, FALSE);
+    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
 
 static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text, u8 multiplayerId, u8 battler)
 {
@@ -3357,7 +3357,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     while (*src != EOS)
     {
         toCpy = NULL;
-        dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize, FALSE);
+        dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
 
         if (*src == PLACEHOLDER_BEGIN)
         {
@@ -3749,12 +3749,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 
             if (toCpy != NULL)
             {
-                toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, 1, dstSize, FALSE);
+                toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, 1, dstSize);
 
                 if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
                 {
                     dst[lastValidSkip] = lineNum == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
-                    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize, FALSE);
+                    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
                     lineNum++;
                 }
                 while (*toCpy != EOS)
@@ -3776,7 +3776,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         }
         else
         {
-            toCpyWidth = GetGlyphWidth(dst[dstID + 1], FALSE, fontId);
+            toCpyWidth = GetGlyphWidth(*src, FALSE, fontId);
             dst[dstID] = *src;
             if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
             {
