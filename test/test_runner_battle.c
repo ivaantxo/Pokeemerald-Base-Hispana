@@ -379,7 +379,7 @@ u32 RandomUniform(enum RandomTag tag, u32 lo, u32 hi)
         }
         else if (STATE->trials != n)
         {
-            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomUniform called with inconsistent trials %d and %d", STATE->trials, n);
+            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomUniform called from %p with tag %d and inconsistent trials %d and %d", __builtin_extract_return_addr(__builtin_return_address(0)), tag, STATE->trials, n);
         }
         STATE->trialRatio = Q_4_12(1) / STATE->trials;
         return STATE->runTrial + lo;
@@ -421,7 +421,7 @@ u32 RandomUniformExcept(enum RandomTag tag, u32 lo, u32 hi, bool32 (*reject)(u32
         while (reject(STATE->runTrial + lo + STATE->rngTrialOffset))
         {
             if (STATE->runTrial + lo + STATE->rngTrialOffset > hi)
-                Test_ExitWithResult(TEST_RESULT_INVALID, SourceLine(0), ":LRandomUniformExcept called with inconsistent reject");
+                Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomUniformExcept called from %p with tag %d and inconsistent reject", __builtin_extract_return_addr(__builtin_return_address(0)), tag);
             STATE->rngTrialOffset++;
         }
 
@@ -432,7 +432,7 @@ u32 RandomUniformExcept(enum RandomTag tag, u32 lo, u32 hi, bool32 (*reject)(u32
     while (reject(default_))
     {
         if (default_ == lo)
-            Test_ExitWithResult(TEST_RESULT_INVALID, SourceLine(0), ":LRandomUniformExcept rejected all values");
+            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomUniformExcept called from %p with tag %d rejected all values", __builtin_extract_return_addr(__builtin_return_address(0)), tag);
         default_--;
     }
     return default_;
@@ -462,7 +462,7 @@ u32 RandomWeightedArray(enum RandomTag tag, u32 sum, u32 n, const u8 *weights)
         }
         else if (STATE->trials != n)
         {
-            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomWeighted called with inconsistent trials %d and %d", STATE->trials, n);
+            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomWeighted called from %p with tag %d and inconsistent trials %d and %d", __builtin_extract_return_addr(__builtin_return_address(0)), tag, STATE->trials, n);
         }
         // TODO: Detect inconsistent sum.
         STATE->trialRatio = Q_4_12(weights[STATE->runTrial]) / sum;
@@ -496,7 +496,7 @@ u32 RandomWeightedArray(enum RandomTag tag, u32 sum, u32 n, const u8 *weights)
         while (weights[n-1] == 0)
         {
             if (n == 1)
-                Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomWeightedArray called with all zero weights");
+                Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomWeightedArray called from %p with tag %d and all zero weights", __builtin_extract_return_addr(__builtin_return_address(0)), tag);
             n--;
         }
         return n-1;
@@ -535,7 +535,7 @@ const void *RandomElementArray(enum RandomTag tag, const void *array, size_t siz
         }
         else if (STATE->trials != count)
         {
-            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomElement called with inconsistent trials %d and %d", STATE->trials, count);
+            Test_ExitWithResult(TEST_RESULT_ERROR, SourceLine(0), ":LRandomElement called from %p with tag %d and inconsistent trials %d and %d", __builtin_extract_return_addr(__builtin_return_address(0)), tag, STATE->trials, count);
         }
         STATE->trialRatio = Q_4_12(1) / count;
         return (const u8 *)array + size * STATE->runTrial;
