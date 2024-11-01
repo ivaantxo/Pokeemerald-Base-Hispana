@@ -1863,6 +1863,7 @@ static void PushBattlerAction(u32 sourceLine, s32 battlerId, u32 actionType, u32
     if (recordIndex >= BATTLER_RECORD_SIZE)
         Test_ExitWithResult(TEST_RESULT_INVALID, SourceLine(0), ":LToo many actions");
     DATA.battleRecordTypes[battlerId][recordIndex] = actionType;
+    DATA.battleRecordTurnNumbers[battlerId][recordIndex] = DATA.turns;
     DATA.battleRecordSourceLineOffsets[battlerId][recordIndex] = SourceLineOffset(sourceLine);
     DATA.recordedBattle.battleRecord[battlerId][recordIndex] = byte;
 }
@@ -1911,6 +1912,17 @@ void TestRunner_Battle_CheckBattleRecordActionType(u32 battlerId, u32 recordInde
 
             if (actualMacro)
             {
+                if (gBattleResults.battleTurnCounter != DATA.battleRecordTurnNumbers[battlerId][recordIndex])
+                {
+                    switch (DATA.battleRecordTypes[battlerId][recordIndex])
+                    {
+                    case RECORDED_PARTY_INDEX:
+                        Test_ExitWithResult(TEST_RESULT_INVALID, line, ":L%s:%d: %s not required (is the send out random?)", filename, line, actualMacro);
+                    default:
+                        Test_ExitWithResult(TEST_RESULT_INVALID, line, ":L%s:%d: %s not required", filename, line, actualMacro);
+                    }
+                }
+
                 switch (actionType)
                 {
                 case RECORDED_ACTION_TYPE:
