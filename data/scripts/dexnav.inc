@@ -8,7 +8,6 @@ EventScript_StartDexNavBattle::
 	release
 	end
 
-
 EventScript_NotFoundNearby::
 	msgbox sText_NotFoundNearby, MSGBOX_SIGN
 	end
