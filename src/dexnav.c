@@ -1277,45 +1277,33 @@ static void DexNavGenerateMoveset(u16 species, u8 searchLevel, u8 encounterLevel
     // see if first move slot should be an egg move
     if (searchLevel < 5)
     {
-        #if (SEARCHLEVEL0_MOVECHANCE != 0)
-        if (randVal < SEARCHLEVEL0_MOVECHANCE)
+        if (SEARCHLEVEL0_MOVECHANCE != 0 && randVal < SEARCHLEVEL0_MOVECHANCE)
             genMove = TRUE;
-        #endif
     }
     else if (searchLevel < 10)
     {
-        #if (SEARCHLEVEL5_MOVECHANCE != 0)
-        if (randVal < SEARCHLEVEL5_MOVECHANCE)
+        if (SEARCHLEVEL5_MOVECHANCE != 0 && randVal < SEARCHLEVEL5_MOVECHANCE)
             genMove = TRUE;
-        #endif
     }
     else if (searchLevel < 25)
     {
-        #if (SEARCHLEVEL10_MOVECHANCE != 0)
-        if (randVal < SEARCHLEVEL10_MOVECHANCE)
+        if (SEARCHLEVEL10_MOVECHANCE != 0 && randVal < SEARCHLEVEL10_MOVECHANCE)
             genMove = TRUE;
-        #endif
     }
     else if (searchLevel < 50)
     {
-        #if (SEARCHLEVEL25_MOVECHANCE != 0)
-        if (randVal < SEARCHLEVEL25_MOVECHANCE)
+        if (SEARCHLEVEL25_MOVECHANCE != 0 && randVal < SEARCHLEVEL25_MOVECHANCE)
             genMove = TRUE;
-        #endif
     }
     else if (searchLevel < 100)
     {
-        #if (SEARCHLEVEL50_MOVECHANCE != 0)
-        if (randVal < SEARCHLEVEL50_MOVECHANCE)
+        if (SEARCHLEVEL50_MOVECHANCE != 0 && randVal < SEARCHLEVEL50_MOVECHANCE)
             genMove = TRUE;
-        #endif
     }
     else
     {
-        #if (SEARCHLEVEL100_MOVECHANCE != 0)
-        if (randVal < SEARCHLEVEL100_MOVECHANCE)
+        if (SEARCHLEVEL100_MOVECHANCE != 0 && randVal < SEARCHLEVEL100_MOVECHANCE)
             genMove = TRUE;
-        #endif
     }
 
     // Generate a wild mon just to get the initial moveset (later overwritten by CreateDexNavWildMon)
@@ -1411,11 +1399,9 @@ static u8 DexNavGetAbilityNum(u16 species, u8 searchLevel)
         #endif
     }
     
-    #ifdef BATTLE_ENGINE    // if using RHH, the base stats abilities field is expanded
-    if (genAbility && gSpeciesInfo[species].abilities[2] != ABILITY_NONE && GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-    #else
-    if (genAbility && gSpeciesInfo[species].abilityHidden != ABILITY_NONE && GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-    #endif
+    if (genAbility
+            && gSpeciesInfo[species].abilities[2] != ABILITY_NONE
+            && GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
     {
         //Only give hidden ability if Pokemon has been caught before
         abilityNum = 2;
@@ -2099,9 +2085,7 @@ static const u8 sMoveTypeToOamPaletteNum[NUMBER_OF_MON_TYPES] =
     [TYPE_ICE] = TYPE_ICON_PAL_NUM_1,
     [TYPE_DRAGON] = TYPE_ICON_PAL_NUM_2,
     [TYPE_DARK] = TYPE_ICON_PAL_NUM_0,
-    #ifdef TYPE_FAIRY
-    [TYPE_FAIRY] = TYPE_ICON_PAL_NUM_1, //based on battle_engine
-    #endif
+    [TYPE_FAIRY] = TYPE_ICON_PAL_NUM_1,
 };
 static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 {
@@ -2168,13 +2152,8 @@ static void PrintCurrentSpeciesInfo(void)
     }
     else if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
     {
-        #ifdef BATTLE_ENGINE
         if (gSpeciesInfo[species].abilities[2] != ABILITY_NONE)
             AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[gSpeciesInfo[species].abilities[2]].name);
-        #else
-        if (gSpeciesInfo[species].abilityHidden != ABILITY_NONE)           
-            AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[gSpeciesInfo[species].abilityHidden].name);
-        #endif
         else
             AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gText_None);
     }
@@ -2195,7 +2174,8 @@ static void PrintMapName(void)
 {
     GetMapName(gStringVar3, GetCurrentRegionMapSectionId(), 0);
     AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 108 +
-      GetStringRightAlignXOffset(1, gStringVar3, MAP_NAME_LENGTH * GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH)), 0, sFontColor_White, 0, gStringVar3);
+                                 GetStringRightAlignXOffset(1, gStringVar3, MAP_NAME_LENGTH * GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH)),
+                                 0, sFontColor_White, 0, gStringVar3);
     CopyWindowToVram(WINDOW_REGISTERED, 3);
 }
 
@@ -2534,16 +2514,16 @@ bool8 TryFindHiddenPokemon(void)
         const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
         bool8 isHiddenMon = FALSE;
         
-        //while you can still technically find hidden pokemon if there are not hidden-only pokemon on a map,
+        // while you can still technically find hidden pokemon if there are not hidden-only pokemon on a map,
         // this prevents any potential lagging on maps you dont want hidden pokemon to appear on
         if (hiddenMonsInfo == NULL)
             return FALSE;
         
-        //encounter rate signifies surfing (1) or land mons (0)!
+        // encounter rate signifies surfing (1) or land mons (0)!
         // again, for simplicity
         switch (hiddenMonsInfo->encounterRate)
         {
-        case 0: //land
+        case 0: // land
             // there are surely better ways to do this, but this allows greatest flexibility
             if (Random() % 100 < HIDDEN_MON_PROBABILTY)
             {
@@ -2560,7 +2540,7 @@ bool8 TryFindHiddenPokemon(void)
                 environment = ENCOUNTER_TYPE_LAND;
             }
             break;
-        case 1: //water
+        case 1: // water
             if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
             {
                 if (Random() % 100 < HIDDEN_MON_PROBABILTY)
@@ -2581,7 +2561,8 @@ bool8 TryFindHiddenPokemon(void)
             }
             else
             {
-                return FALSE;   //not surfing -> cant find hidden water mons
+                // not surfing -> cant find hidden water mons
+                return FALSE;
             }
             break;
         default:
@@ -2597,7 +2578,7 @@ bool8 TryFindHiddenPokemon(void)
         sDexNavSearchDataPtr->isHiddenMon = isHiddenMon;
         sDexNavSearchDataPtr->species = species;
         sDexNavSearchDataPtr->hiddenSearch = TRUE;
-        sDexNavSearchDataPtr->environment = environment;  //updated in DexNavTryGenerateMonLevel if hidden mon
+        sDexNavSearchDataPtr->environment = environment;    // updated in DexNavTryGenerateMonLevel if hidden mon
         sDexNavSearchDataPtr->monLevel = DexNavTryGenerateMonLevel(species, environment);
         if (sDexNavSearchDataPtr->monLevel == MON_LEVEL_NONEXISTENT)
         {
@@ -2624,7 +2605,7 @@ bool8 TryFindHiddenPokemon(void)
         gTasks[taskId].tRevealed = FALSE;
         HideMapNamePopUpWindow();
         ChangeBgY_ScreenOff(0, 0, 0);
-        return FALSE;   //we dont actually want to enable the script context or the game will freeze
+        return FALSE;   // we dont actually want to enable the script context or the game will freeze
     }
     
     return FALSE;
@@ -2642,8 +2623,8 @@ static void DrawSearchIcon(void)
 }
 
 // the initial hidden icon window ONLY shows search icon, ??? instead of name, and the search level (and pokeball icon if owned)
-//  if the player presses R or moves close enough, the full search window will be created
-//  this way, if the player is not interested in hidden pokemon it will not be too intrusive
+// if the player presses R or moves close enough, the full search window will be created
+// this way, if the player is not interested in hidden pokemon it will not be too intrusive
 static void DrawHiddenSearchWindow(u8 width)
 {
     AddSearchWindow(width);
