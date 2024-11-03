@@ -361,7 +361,7 @@ struct AiLogicData
     u16 items[MAX_BATTLERS_COUNT];
     u16 holdEffects[MAX_BATTLERS_COUNT];
     u8 holdEffectParams[MAX_BATTLERS_COUNT];
-    u16 predictedMoves[MAX_BATTLERS_COUNT];
+    u16 lastUsedMove[MAX_BATTLERS_COUNT];
     u8 hpPercents[MAX_BATTLERS_COUNT];
     u16 partnerMove;
     u16 speedStats[MAX_BATTLERS_COUNT]; // Speed stats for all battles, calculated only once, same way as damages
@@ -374,7 +374,7 @@ struct AiLogicData
     struct SwitchinCandidate switchinCandidate; // Struct used for deciding which mon to switch to in battle_ai_switch_items.c
     u8 weatherHasEffect:1; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
     u8 ejectButtonSwitch:1; // Tracks whether current switch out was from Eject Button
-    u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack 
+    u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack
     u8 padding:5;
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
     u8 aiCalcInProgress:1;
@@ -716,11 +716,15 @@ struct BattleStruct
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
-    u8 overworldWeatherDone:1;
+    u8 startingStatus:6; // status to apply at battle start. defined in constants/battle.h
     u8 startingStatusDone:1;
-    u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
     u8 terrainDone:1;
-    u8 startingStatus; // status to apply at battle start. defined in constants/battle.h
+    u8 overworldWeatherDone:1;
+    u8 obedienceResult:3;
+    u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
+    u8 friskedAbility:1; // If identifies two mons, show the ability pop-up only once.
+    u8 fickleBeamBoosted:1;
+    u8 poisonPuppeteerConfusion:1;
     u8 startingStatusTimer;
     u8 atkCancellerTracker;
     struct BattleTvMovePoints tvMovePoints;
@@ -743,12 +747,10 @@ struct BattleStruct
     bool8 ateBoost[MAX_BATTLERS_COUNT];
     u8 activeAbilityPopUps; // as bits for each battler
     u8 abilityPopUpSpriteIds[MAX_BATTLERS_COUNT][2];    // two per battler
-    bool8 throwingPokeBall;
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
     struct BattleGimmickData gimmick;
     const u8 *trainerSlideMsg;
-    bool8 trainerSlideLowHpMsgDone;
     enum BattleIntroStates introState:8;
     u8 ateBerry[2]; // array id determined by side, each party pokemon as bit
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
@@ -756,14 +758,12 @@ struct BattleStruct
     u8 lastMoveTarget[MAX_BATTLERS_COUNT]; // The last target on which each mon used a move, for the sake of Instruct
     u16 tracedAbility[MAX_BATTLERS_COUNT];
     u16 hpBefore[MAX_BATTLERS_COUNT]; // Hp of battlers before using a move. For Berserk and Anger Shell.
-    bool8 spriteIgnore0Hp;
     struct Illusion illusion[MAX_BATTLERS_COUNT];
     s32 aiFinalScore[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // AI, target, moves to make debugging easier
     u8 aiMoveOrAction[MAX_BATTLERS_COUNT];
     u8 aiChosenTarget[MAX_BATTLERS_COUNT];
     u8 soulheartBattlerId;
     u8 friskedBattler; // Frisk needs to identify 2 battlers in double battles.
-    bool8 friskedAbility; // If identifies two mons, show the ability pop-up only once.
     u8 sameMoveTurns[MAX_BATTLERS_COUNT]; // For Metronome, number of times the same moves has been SUCCESFULLY used.
     u16 moveEffect2; // For Knock Off
     u16 changedSpecies[NUM_BATTLE_SIDES][PARTY_SIZE]; // For forms when multiple mons can change into the same pokemon.
@@ -778,14 +778,16 @@ struct BattleStruct
     u8 descriptionSubmenu:1; // For Move Description window in move selection screen
     u8 ackBallUseBtn:1; // Used for the last used ball feature
     u8 ballSwapped:1; // Used for the last used ball feature
+    u8 throwingPokeBall:1;
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
     // When using a move which hits multiple opponents which is then bounced by a target, we need to make sure, the move hits both opponents, the one with bounce, and the one without.
     u8 attackerBeforeBounce:2;
     u8 beatUpSlot:3;
-    bool8 hitSwitchTargetFailed:1;
-    bool8 effectsBeforeUsingMoveDone:1; // Mega Evo and Focus Punch/Shell Trap effects.
+    u8 hitSwitchTargetFailed:1;
+    u8 effectsBeforeUsingMoveDone:1; // Mega Evo and Focus Punch/Shell Trap effects.
+    u8 spriteIgnore0Hp:1;
     u8 targetsDone[MAX_BATTLERS_COUNT]; // Each battler as a bit.
     u16 overwrittenAbilities[MAX_BATTLERS_COUNT];    // abilities overwritten during battle (keep separate from battle history in case of switching)
     u8 battleBondTransformed[NUM_BATTLE_SIDES]; // Bitfield for each party.
@@ -803,9 +805,9 @@ struct BattleStruct
     u8 trainerSlideZMoveMsgDone:1;
     u8 trainerSlideBeforeFirstTurnMsgDone:1;
     u8 trainerSlideDynamaxMsgDone:1;
+    u8 trainerSlideLowHpMsgDone:1;
     u8 pledgeMove:1;
     u8 isSkyBattle:1;
-    u8 poisonPuppeteerConfusion:1;
     u32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
     u32 aiDelayFrames; // Number of frames it took to choose an action.
     u8 timesGotHit[NUM_BATTLE_SIDES][PARTY_SIZE];
@@ -826,9 +828,6 @@ struct BattleStruct
     u8 commandingDondozo;
     u16 commanderActive[NUM_BATTLE_SIDES];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
-    u8 fickleBeamBoosted:1;
-    u8 obedienceResult:3;
-    u8 padding:4;
     u8 usedEjectItem;
     u8 usedMicleBerry;
 };

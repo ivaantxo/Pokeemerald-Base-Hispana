@@ -1250,7 +1250,15 @@ static void TrySetBattleSeminarShow(void)
         powerOverride = 0;
         if (ShouldCalculateDamage(gCurrentMove, &dmgByMove[i], &powerOverride))
         {
-            gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, gMovesInfo[gCurrentMove].type, powerOverride, FALSE, FALSE, FALSE);
+            struct DamageCalculationData damageCalcData;
+            damageCalcData.battlerAtk = gBattlerAttacker;
+            damageCalcData.battlerDef = gBattlerTarget;
+            damageCalcData.move = gCurrentMove;
+            damageCalcData.moveType = gMovesInfo[gCurrentMove].type;
+            damageCalcData.isCrit = FALSE;
+            damageCalcData.randomFactor = FALSE;
+            damageCalcData.updateFlags = FALSE;
+            gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, powerOverride);
             dmgByMove[i] = gBattleMoveDamage;
             if (dmgByMove[i] == 0 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
                 dmgByMove[i] = 1;
@@ -1353,11 +1361,7 @@ u8 GetBattlerMoveSlotId(u8 battlerId, u16 moveId)
 {
     s32 i;
     struct Pokemon *party;
-
-    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
-        party = gPlayerParty;
-    else
-        party = gEnemyParty;
+    party = GetBattlerParty(battlerId);
 
     i = 0;
     while (1)
