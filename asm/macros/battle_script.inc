@@ -1726,6 +1726,11 @@
 	.4byte \failInstr
 	.endm
 
+	.macro tryhitswitchtarget failInstr:req
+	callnative BS_TryHitSwitchTarget
+	.4byte \failInstr
+	.endm
+
 	.macro jumpifcommanderactive jumpInstr:req
 	callnative BS_JumpIfCommanderActive
 	.4byte \jumpInstr
@@ -1963,11 +1968,6 @@
 
 	.macro setargtobattledamage
 	various BS_ATTACKER, VARIOUS_SET_ARG_TO_BATTLE_DAMAGE
-	.endm
-
-	.macro tryhitswitchtarget failInstr:req
-	various BS_ATTACKER, VARIOUS_TRY_HIT_SWITCH_TARGET
-	.4byte \failInstr
 	.endm
 
 	.macro tryautotomize battler:req, failInstr:req
