@@ -8787,7 +8787,7 @@ u32 GetHighestStatId(u32 battler)
     }
     if (gBattleMons[battler].speed > highestStat)
         highestId = STAT_SPEED;
-    
+
     return highestId;
 }
 
@@ -9945,24 +9945,6 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gBattleMoveDamage = gMovesInfo[gCurrentMove].argument;
         break;
-    }
-    case VARIOUS_TRY_HIT_SWITCH_TARGET:
-    {
-        VARIOUS_ARGS(const u8 *failInstr);
-        if (IsBattlerAlive(gBattlerAttacker)
-         && IsBattlerAlive(gBattlerTarget)
-         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-         && TARGET_TURN_DAMAGED
-         && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
-        {
-            gBattleScripting.switchCase = B_SWITCH_HIT;
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        }
-        else
-        {
-            gBattlescriptCurrInstr = cmd->failInstr;
-        }
-        return;
     }
     case VARIOUS_TRY_AUTOTOMIZE:
     {
@@ -17346,5 +17328,25 @@ void BS_JumpIfBlockedBySoundproof(void)
     else
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+}
+
+void BS_TryHitSwitchTarget(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (IsBattlerAlive(gBattlerAttacker)
+     && IsBattlerAlive(gBattlerTarget)
+     && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+     && TARGET_TURN_DAMAGED
+     && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT
+     && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
+    {
+        gBattleScripting.switchCase = B_SWITCH_HIT;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
     }
 }
