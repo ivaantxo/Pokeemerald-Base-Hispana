@@ -6884,25 +6884,34 @@ BattleScript_GrudgeTakesPp::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
-BattleScript_MagicCoatBounce::
+BattleScript_MagicBounce::
 	attackstring
 	ppreduce
 	pause B_WAIT_TIME_SHORT
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0, BattleScript_MagicCoatBounce_Print
 	call BattleScript_AbilityPopUp
-BattleScript_MagicCoatBounce_Print:
-	printfromtable gMagicCoatBounceStringIds
+	printstring STRINGID_PKMNMOVEBOUNCEDABILITY
+	waitmessage B_WAIT_TIME_LONG
+	setmagiccoattarget
+	orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED | HITMARKER_NO_PPDEDUCT | HITMARKER_ALLOW_NO_PP
+	bicword gHitMarker, HITMARKER_NO_ATTACKSTRING
+	return
+
+BattleScript_MagicCoat::
+	attackstring
+	ppreduce
+	pause B_WAIT_TIME_SHORT
+	setmagiccoattarget
+	printstring STRINGID_PKMNMOVEBOUNCED
 	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED | HITMARKER_NO_PPDEDUCT | HITMARKER_ALLOW_NO_PP
 	bicword gHitMarker, HITMARKER_NO_ATTACKSTRING
-	setmagiccoattarget BS_ATTACKER
 	return
 
-BattleScript_MagicCoatBouncePrankster::
+BattleScript_MagicCoatPrankster::
 	attackstring
 	ppreduce
 	pause B_WAIT_TIME_SHORT
-	printfromtable gMagicCoatBounceStringIds
+	printstring STRINGID_PKMNMOVEBOUNCED
 	waitmessage B_WAIT_TIME_LONG
 	printstring STRINGID_ITDOESNTAFFECT
 	waitmessage B_WAIT_TIME_LONG
