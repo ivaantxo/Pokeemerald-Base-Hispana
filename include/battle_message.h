@@ -78,6 +78,10 @@
 #define B_TXT_DEF_NAME_WITH_PREFIX2 0x3F //lowercase
 #define B_TXT_EFF_NAME_WITH_PREFIX2 0x40 //lowercase
 #define B_TXT_SCR_ACTIVE_NAME_WITH_PREFIX2 0x41 //lowercase
+#define B_TXT_TRAINER1_NAME_WITH_CLASS 0x42
+#define B_TXT_TRAINER2_NAME_WITH_CLASS 0x43
+#define B_TXT_PARTNER_NAME_WITH_CLASS 0x44
+#define B_TXT_ATK_TRAINER_NAME_WITH_CLASS 0x45
 
 #define B_BUFF_STRING                       0
 #define B_BUFF_NUMBER                       1
