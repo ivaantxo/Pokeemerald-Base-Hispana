@@ -656,6 +656,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                 continue;
             }
             
+            weight = 0; // initiliaze weight
             switch (environment)
             {
             case ENCOUNTER_TYPE_LAND:
