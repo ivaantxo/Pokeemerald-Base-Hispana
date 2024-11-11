@@ -545,7 +545,7 @@ static void Cmd_trymemento(void);
 static void Cmd_setforcedtarget(void);
 static void Cmd_setcharge(void);
 static void Cmd_callterrainattack(void);
-static void Cmd_cureifburnedparalysedorpoisoned(void);
+static void Cmd_curestatuswithmove(void);
 static void Cmd_settorment(void);
 static void Cmd_jumpifnodamage(void);
 static void Cmd_settaunt(void);
@@ -804,7 +804,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_setforcedtarget,                         //0xCA
     Cmd_setcharge,                               //0xCB
     Cmd_callterrainattack,                       //0xCC
-    Cmd_cureifburnedparalysedorpoisoned,         //0xCD
+    Cmd_curestatuswithmove,                      //0xCD
     Cmd_settorment,                              //0xCE
     Cmd_jumpifnodamage,                          //0xCF
     Cmd_settaunt,                                //0xD0
@@ -14135,12 +14135,17 @@ u32 GetNaturePowerMove(u32 battler)
     return move;
 }
 
-// Refresh
-static void Cmd_cureifburnedparalysedorpoisoned(void)
+static void Cmd_curestatuswithmove(void)
 {
     CMD_ARGS(const u8 *failInstr);
+    u32 shouldHeal;
 
-    if (gBattleMons[gBattlerAttacker].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE))
+    if (gMovesInfo[gCurrentMove].effect == EFFECT_REFRESH)
+        shouldHeal = gBattleMons[gBattlerAttacker].status1 & STATUS1_REFRESH;
+    else // Take Heart
+        shouldHeal = gBattleMons[gBattlerAttacker].status1 & STATUS1_ANY;
+
+    if (shouldHeal)
     {
         gBattleMons[gBattlerAttacker].status1 = 0;
         gBattlescriptCurrInstr = cmd->nextInstr;
