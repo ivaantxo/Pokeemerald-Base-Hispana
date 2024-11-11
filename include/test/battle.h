@@ -716,6 +716,7 @@ struct BattleTestRunnerState
     u16 observedRatio;
     u16 trialRatio;
     bool8 runRandomly:1;
+    bool8 didRunRandomly:1;
     bool8 runGiven:1;
     bool8 runWhen:1;
     bool8 runScene:1;
