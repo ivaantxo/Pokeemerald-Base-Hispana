@@ -443,7 +443,7 @@ BattleScript_EffectTakeHeart::
 	attackcanceler
 	attackstring
 	ppreduce
-	cureifburnedparalysedorpoisoned BattleScript_CalmMindTryToRaiseStats
+	curestatuswithmove BattleScript_CalmMindTryToRaiseStats
 	attackanimation
 	waitanimation
 	updatestatusicon BS_ATTACKER
@@ -5230,7 +5230,7 @@ BattleScript_EffectRefresh::
 	attackcanceler
 	attackstring
 	ppreduce
-	cureifburnedparalysedorpoisoned BattleScript_ButItFailed
+	curestatuswithmove BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNSTATUSNORMAL
@@ -6988,26 +6988,17 @@ BattleScript_WishMegaEvolution::
 	goto BattleScript_MegaEvolutionAfterString
 
 BattleScript_PrimalReversion::
-	call BattleScript_PrimalReversionRet
-	end3
-
-BattleScript_PrimalReversionRestoreAttacker::
-	call BattleScript_PrimalReversionRet
-	copybyte gBattlerAttacker, sSAVED_BATTLER
-	end3
-
-BattleScript_PrimalReversionRet::
 	flushtextbox
 	setbyte gIsCriticalHit, 0
-	handleprimalreversion BS_ATTACKER, 0
-	handleprimalreversion BS_ATTACKER, 1
-	playanimation BS_ATTACKER, B_ANIM_PRIMAL_REVERSION
+	handleprimalreversion BS_SCRIPTING, 0
+	handleprimalreversion BS_SCRIPTING, 1
+	playanimation BS_SCRIPTING, B_ANIM_PRIMAL_REVERSION
 	waitanimation
-	handleprimalreversion BS_ATTACKER, 2
+	handleprimalreversion BS_SCRIPTING, 2
 	printstring STRINGID_PKMNREVERTEDTOPRIMAL
 	waitmessage B_WAIT_TIME_LONG
-	switchinabilities BS_ATTACKER
-	return
+	switchinabilities BS_SCRIPTING
+	end3
 
 BattleScript_UltraBurst::
 	flushtextbox
@@ -9679,6 +9670,13 @@ BattleScript_EjectPackActivate_End2::
 BattleScript_EjectPackActivates::
 	jumpifcantswitch BS_SCRIPTING, BattleScript_EjectButtonEnd
 	goto BattleScript_EjectPackActivate_Ret
+
+BattleScript_EjectPackMissesTiming::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
+	printstring STRINGID_EJECTBUTTONACTIVATE
+	waitmessage B_WAIT_TIME_LONG
+	removeitem BS_SCRIPTING
+	return
 
 BattleScript_DarkTypePreventsPrankster::
 	attackstring
