@@ -290,73 +290,65 @@ void UniquePalette(u16 palOffset, u32 personality)
     {
         u32 index = i + palOffset;
         struct PlttData *data = (struct PlttData *)&gPlttBufferUnfaded[index];
+        
+        // Convertir los valores RGB de 0-31 a un rango más adecuado para los cálculos
         s32 r = (data->r * 1000) / 31;
         s32 g = (data->g * 1000) / 31;
         s32 b = (data->b * 1000) / 31;
         s32 maxv, minv, d, h, s, l, o, p, q;
 
-        if (r > g)
-            maxv = r;
-        else
-            maxv = g;
-        if (b > maxv)
-            maxv = b;
-        if (r < g)
-            minv = r;
-        else
-            minv = g;
-        if (b < minv)
-            minv = b;
+        // Encontrar el valor máximo y mínimo de los tres colores
+        maxv = r;
+        if (g > maxv) maxv = g;
+        if (b > maxv) maxv = b;
 
+        minv = r;
+        if (g < minv) minv = g;
+        if (b < minv) minv = b;
+
+        // Calcular la diferencia
         d = maxv - minv;
-        h = 0;
-        s = 0;
         l = (maxv + minv) / 2;
+        s = (maxv == minv) ? 0 : ((l > 500) ? (1000 * d / (2000 - maxv - minv)) : (1000 * d / (maxv + minv)));
 
-        if  (maxv != minv)
+        // Determinar el tono (hue)
+        if (maxv != minv)
         {
-            if (l > 500)
-                s = 1000 * d / (2000 - maxv - minv);
-            else
-                s = 1000 * d / (maxv + minv);
             if (maxv == r)
-            {
-                if (g < b)
-                    h = 1000 * (g - b) / d + 6000;
-                else
-                    h = 1000 * (g - b) / d;
-            }
+                h = (g < b) ? (1000 * (g - b) / d + 6000) : (1000 * (g - b) / d);
             else if (maxv == g)
-            {
                 h = 1000 * (b - r) / d + 2000;
-            }
             else
-            {
                 h = 1000 * (r - g) / d + 4000;
-            }
-            h /= 6;
+
+            h /= 6;  // Convertir a un rango de 0 a 1000
+        }
+        else
+        {
+            h = 0;
         }
 
-        if (personality % 2 == 0) //Personalidad es par
+        // Modificar el tono según la personalidad
+        if (personality % 2 == 0)  // Personalidad par
         {
             h = (h + value + 1000) % 1000;
         }
-        else //Personalidad es impar
+        else  // Personalidad impar
         {
             h = (h - value + 1000) % 1000;
         }
 
+        // Si la saturación es 0 (colores apagados o grises), mantenemos el color tal cual
         if (s != 0)
         {
-            o = (h + 333) % 1000;
+            // Rotación del tono, ajustando sin modificar saturación ni luminosidad
+            o = (h + 333) % 1000;  // Rotar el tono (modificando solo el hue)
 
-            if (l < 500)
-                p = l * (s + 1000) / 1000;
-            else
-                p = l + s - l * s / 1000;
-
+            // La saturación y luminosidad permanecen constantes
+            p = (l < 500) ? (l * (s + 1000) / 1000) : (l + s - l * s / 1000);
             q = l * 2 - p;
 
+            // Calcular los componentes de color (r, g, b) después de modificar el tono
             if (o < 167)
                 r = q + (p - q) * o * 6 / 1000;
             else if (o < 500)
@@ -390,11 +382,13 @@ void UniquePalette(u16 palOffset, u32 personality)
         }
         else
         {
+            // Si la saturación es 0 (grises), dejamos los colores tal cual
             r = l;
             g = l;
             b = l;
         }
 
+        // Guardamos el nuevo color en la tabla de paletas
         gPlttBufferFaded[index] = RGB((u8)(r * 31 / 1000), (u8)(g * 31 / 1000), (u8)(b * 31 / 1000));
     }
 }
@@ -407,58 +401,44 @@ void UniquePaletteBuffered(u16 * buffer, u32 personality)
     for (i = 0; i < 16; i++)
     {
         struct PlttData *data = (struct PlttData *)&buffer[i];
+
         s32 r = (data->r * 1000) / 31;
         s32 g = (data->g * 1000) / 31;
         s32 b = (data->b * 1000) / 31;
         s32 maxv, minv, d, h, s, l, o, p, q;
 
-        if (r > g)
-            maxv = r;
-        else
-            maxv = g;
-        if (b > maxv)
-            maxv = b;
-        if (r < g)
-            minv = r;
-        else
-            minv = g;
-        if (b < minv)
-            minv = b;
+        maxv = r;
+        if (g > maxv) maxv = g;
+        if (b > maxv) maxv = b;
+
+        minv = r;
+        if (g < minv) minv = g;
+        if (b < minv) minv = b;
 
         d = maxv - minv;
-        h = 0;
-        s = 0;
         l = (maxv + minv) / 2;
+        s = (maxv == minv) ? 0 : ((l > 500) ? (1000 * d / (2000 - maxv - minv)) : (1000 * d / (maxv + minv)));
 
-        if  (maxv != minv)
+        if (maxv != minv)
         {
-            if (l > 500)
-                s = 1000 * d / (2000 - maxv - minv);
-            else
-                s = 1000 * d / (maxv + minv);
             if (maxv == r)
-            {
-                if (g < b)
-                    h = 1000 * (g - b) / d + 6000;
-                else
-                    h = 1000 * (g - b) / d;
-            }
+                h = (g < b) ? (1000 * (g - b) / d + 6000) : (1000 * (g - b) / d);
             else if (maxv == g)
-            {
                 h = 1000 * (b - r) / d + 2000;
-            }
             else
-            {
                 h = 1000 * (r - g) / d + 4000;
-            }
             h /= 6;
         }
+        else
+        {
+            h = 0;
+        }
 
-        if (personality % 2 == 0) //Personalidad es par
+        if (personality % 2 == 0)  // Personalidad par
         {
             h = (h + value + 1000) % 1000;
         }
-        else //Personalidad es impar
+        else  // Personalidad impar
         {
             h = (h - value + 1000) % 1000;
         }
@@ -467,11 +447,7 @@ void UniquePaletteBuffered(u16 * buffer, u32 personality)
         {
             o = (h + 333) % 1000;
 
-            if (l < 500)
-                p = l * (s + 1000) / 1000;
-            else
-                p = l + s - l * s / 1000;
-
+            p = (l < 500) ? (l * (s + 1000) / 1000) : (l + s - l * s / 1000);
             q = l * 2 - p;
 
             if (o < 167)
