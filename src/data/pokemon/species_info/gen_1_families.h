@@ -4638,7 +4638,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_VulpixAlolan,
         .shinyPalette = gMonShinyPalette_VulpixAlolan,
         .iconSprite = gMonIcon_VulpixAlolan,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         FOOTPRINT(Vulpix)
         OVERWORLD(
             sPicTable_VulpixAlolan,
@@ -4704,7 +4704,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_NinetalesAlolan,
         .shinyPalette = gMonShinyPalette_NinetalesAlolan,
         .iconSprite = gMonIcon_NinetalesAlolan,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         FOOTPRINT(Ninetales)
         OVERWORLD(
             sPicTable_NinetalesAlolan,
@@ -8467,7 +8467,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_GravelerAlolan,
         .shinyPalette = gMonShinyPalette_GravelerAlolan,
         .iconSprite = gMonIcon_GravelerAlolan,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         FOOTPRINT(Graveler)
         OVERWORLD(
             sPicTable_GravelerAlolan,
