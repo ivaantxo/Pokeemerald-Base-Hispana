@@ -7,7 +7,7 @@ This document is a guide for contributors and Senate to decide if a feature is w
 * **Showdown Supported (SS)**: A core series game who's metagame can be played on Showdown.
   * Notably, this is every [core series game](https://bulbapedia.bulbagarden.net/wiki/Core_series#List_of_core_series_games) except Pokémon Legends: Arceus and Pokémon Legends: Z-A.  
 * **Base Expansion Version**: A .gba file built from an unmodified `master` branch of `pokeemerald-expansion`.  
-* **Vanilla Emerald Version**: A .gba file built from an unmodified `master` branch of `pokeemerald`.
+* **Vanilla Emerald Version**: A .gba file built from an unmodified `master` branch of pret's `pokeemerald`.
 
 # Guidelines
 
