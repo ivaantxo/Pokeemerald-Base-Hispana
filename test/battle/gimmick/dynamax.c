@@ -519,7 +519,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon cannot use Max Guard while holdi
     }
 }
 
-// Almost anything that calculates gBattleMoveDamage based on HP has been changed to non-Dynamax HP.
+// Almost anything that calculates damage based on HP has been changed to non-Dynamax HP.
 // This includes Leftovers, Life Orb, Heal Pulse, Rocky Helmet, Sandstorm, etc. etc.
 // There are some redundant cases (i.e Substitute) that can never be used by a Dynamaxed pokemon.
 // Anything that is conditional based off max HP still uses gBattleMons[battler].maxHP.

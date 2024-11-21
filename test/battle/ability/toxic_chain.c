@@ -62,11 +62,11 @@ DOUBLE_BATTLE_TEST("Toxic Chain can inflict bad poison on both foes")
         TURN { MOVE(playerLeft, MOVE_RAZOR_LEAF, WITH_RNG(RNG_TOXIC_CHAIN, TRUE)); }
     } SCENE {
         HP_BAR(opponentLeft);
+        HP_BAR(opponentRight);
         ABILITY_POPUP(playerLeft, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponentLeft);
         MESSAGE("The opposing Wobbuffet was badly poisoned!");
         STATUS_ICON(opponentLeft, badPoison: TRUE);
-        HP_BAR(opponentRight);
         ABILITY_POPUP(playerLeft, ABILITY_TOXIC_CHAIN);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponentRight);
         MESSAGE("The opposing Wynaut was badly poisoned!");

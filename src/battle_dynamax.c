@@ -528,7 +528,7 @@ void BS_SetMaxMoveEffect(void)
     u8 maxEffect = gMovesInfo[gCurrentMove].argument;
 
     // Don't continue if the move didn't land.
-    if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+    if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
@@ -978,10 +978,10 @@ void BS_TrySetStatus2(void)
 void BS_HealOneSixth(void)
 {
     NATIVE_ARGS(const u8* failInstr);
-    gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 6;
-    if (gBattleMoveDamage == 0)
-        gBattleMoveDamage = 1;
-    gBattleMoveDamage *= -1;
+    gBattleStruct->calculatedDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
+    if (gBattleStruct->calculatedDamage[gBattlerTarget] == 0)
+        gBattleStruct->calculatedDamage[gBattlerTarget] = 1;
+    gBattleStruct->calculatedDamage[gBattlerTarget] *= -1;
 
     if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
         gBattlescriptCurrInstr = cmd->failInstr;    // fail

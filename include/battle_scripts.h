@@ -358,7 +358,6 @@ extern const u8 BattleScript_SelectingNotAllowedMoveThroatChopInPalace[];
 extern const u8 BattleScript_ThroatChopEndTurn[];
 extern const u8 BattleScript_GemActivates[];
 extern const u8 BattleScript_BerryReduceDmg[];
-extern const u8 BattleScript_PrintBerryReduceString[];
 extern const u8 BattleScript_WeaknessPolicy[];
 extern const u8 BattleScript_TargetItemStatRaise[];
 extern const u8 BattleScript_RockyHelmetActivates[];

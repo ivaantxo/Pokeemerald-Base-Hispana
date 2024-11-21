@@ -7,6 +7,17 @@ ASSUMPTIONS
     ASSUME(gSpeciesInfo[SPECIES_CLEFAIRY].types[0] == TYPE_FAIRY || gSpeciesInfo[SPECIES_CLEFAIRY].types[1] == TYPE_FAIRY);
 }
 
+SINGLE_BATTLE_TEST("Dragon Darts test")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_CLEFAIRY);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAGON_DARTS); }
+    } SCENE {
+    }
+}
+
 SINGLE_BATTLE_TEST("Dragon Darts strikes twice")
 {
     GIVEN {
