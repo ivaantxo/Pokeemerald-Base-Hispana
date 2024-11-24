@@ -20605,6 +20605,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = TRUE,
         .battleAnimScript = Move_SUPERCELL_SLAM,
     },
 
