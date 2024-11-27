@@ -332,3 +332,19 @@ DOUBLE_BATTLE_TEST("Primal reversion and other switch-in effects trigger for all
         EXPECT_EQ(opponentRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE - 1);
     }
 }
+
+SINGLE_BATTLE_TEST("111")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
+        PLAYER(SPECIES_GROUDON) { HP(1); Item(ITEM_RED_ORB); }
+        PLAYER(SPECIES_WOBBUFFET)
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("Groudon fainted!");
+    }
+}
