@@ -10848,6 +10848,10 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
                     if (GetBattlerTeraType(battler) == formChanges[i].param1)
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
+                case FORM_CHANGE_BATTLE_ATTACK:
+                case FORM_CHANGE_BATTLE_KINGS_SHIELD:
+                    targetSpecies = formChanges[i].targetSpecies;
+                    break;
                 }
             }
         }
