@@ -22,6 +22,7 @@
 #include "text.h"
 #include "trainer_hill.h"
 #include "window.h"
+#include "line_break.h"
 #include "constants/abilities.h"
 #include "constants/battle_dome.h"
 #include "constants/battle_string_ids.h"
@@ -164,6 +165,11 @@ static const u8 sText_TwoInGameTrainersDefeated[] = _("You defeated {B_TRAINER1_
 const u8 gText_drastically[] = _("drastically ");
 const u8 gText_severely[] = _("severely ");
 static const u8 sText_TerrainReturnedToNormal[] = _("The terrain returned to normal!"); // Unused
+
+//  Remove these when done testing
+static const u8 sTest_TempTestText1[] = _("This is a text for testing stuff.");
+static const u8 sTest_TempTestText2[] = _("This is a text for testing stuff that should be two lines.");
+static const u8 sTest_TempTestText3[] = _("This is a text for testing stuff that should be three lines so it has to have some extra text.");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1402,8 +1408,8 @@ const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");
 const u8 gText_CongratsPkmnEvolved[] = _("Congratulations! Your {STR_VAR_1}\nevolved into {STR_VAR_2}!{WAIT_SE}\p");
 const u8 gText_PkmnStoppedEvolving[] = _("Huh? {STR_VAR_1}\nstopped evolving!\p");
 const u8 gText_EllipsisQuestionMark[] = _("……?\p");
-const u8 gText_WhatWillPkmnDo[] = _("What will\n{B_BUFF1} do?");
-const u8 gText_WhatWillPkmnDo2[] = _("What will\n{B_PLAYER_NAME} do?");
+const u8 gText_WhatWillPkmnDo[] = _("What will {B_BUFF1} do?");
+const u8 gText_WhatWillPkmnDo2[] = _("What will {B_PLAYER_NAME} do?");
 const u8 gText_WhatWillWallyDo[] = _("What will\nWALLY do?");
 const u8 gText_LinkStandby[] = _("{PAUSE 16}Link standby…");
 const u8 gText_BattleMenu[] = _("Battle{CLEAR_TO 56}Bag\nPokémon{CLEAR_TO 56}Run");
@@ -2421,8 +2427,7 @@ static void GetBattlerNick(u32 battler, u8 *dst)
         }                                                               \
     }                                                                   \
     GetBattlerNick(battler, text);                                      \
-    toCpy = text;                                                       \
-    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
+    toCpy = text;
 
 #define HANDLE_NICKNAME_STRING_LOWERCASE(battler)                       \
     if (GetBattlerSide(battler) != B_SIDE_PLAYER)                       \
@@ -2439,8 +2444,7 @@ static void GetBattlerNick(u32 battler, u8 *dst)
         }                                                               \
     }                                                                   \
     GetBattlerNick(battler, text);                                      \
-    toCpy = text;                                                       \
-    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
+    toCpy = text;
 
 static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text, u8 multiplayerId, u8 battler)
 {
@@ -2589,17 +2593,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 {
     u32 dstID = 0; // if they used dstID, why not use srcID as well?
     const u8 *toCpy = NULL;
-    u32 lastValidSkip = 0;
-    u32 toCpyWidth = 0;
-    u32 dstWidth = 0;
-    // This buffer may hold either the name of a trainer, Pokémon, or item.
     u8 text[max(max(max(32, TRAINER_NAME_LENGTH + 1), POKEMON_NAME_LENGTH + 1), ITEM_NAME_LENGTH)];
     u8 *textStart = &text[0];
     u8 multiplayerId;
     u8 fontId = FONT_NORMAL;
-    s16 letterSpacing = 0;
-    u32 lineNum = 1;
-    u32 displayedLineNums = 1;
 
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
         multiplayerId = gRecordedBattleMultiplayerId;
@@ -2617,7 +2614,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     while (*src != EOS)
     {
         toCpy = NULL;
-        dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
 
         if (*src == PLACEHOLDER_BEGIN)
         {
@@ -3122,18 +3118,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 
             if (toCpy != NULL)
             {
-                toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, 1, dstSize);
-
-                if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
-                {
-                    dst[lastValidSkip] = displayedLineNums == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
-                    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize);
-                    if (displayedLineNums == 1)
-                        displayedLineNums++;
-                    else
-                        displayedLineNums = 1;
-                    lineNum++;
-                }
                 while (*toCpy != EOS)
                 {
                     dst[dstID] = *toCpy;
@@ -3153,31 +3137,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         }
         else
         {
-            toCpyWidth = GetGlyphWidth(*src, FALSE, fontId);
             dst[dstID] = *src;
-            if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
-            {
-                dst[lastValidSkip] = displayedLineNums == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
-                if (displayedLineNums == 1)
-                    displayedLineNums++;
-                else
-                    displayedLineNums = 1;
-                lineNum++;
-                dstWidth = 0;
-            }
-            switch (*src)
-            {
-            case CHAR_PROMPT_CLEAR:
-            case CHAR_PROMPT_SCROLL:
-                displayedLineNums = 1;
-            case CHAR_NEWLINE:
-                lineNum++;
-                dstWidth = 0;
-                //fallthrough
-            case CHAR_SPACE:
-                lastValidSkip = dstID;
-                break;
-            }
             dstID++;
         }
         src++;
@@ -3185,6 +3145,8 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 
     dst[dstID] = *src;
     dstID++;
+
+    BreakStringAutomatic(dst, BATTLE_MSG_MAX_WIDTH, BATTLE_MSG_MAX_WIDTH, fontId);
 
     return dstID;
 }
