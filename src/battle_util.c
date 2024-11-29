@@ -6889,7 +6889,7 @@ static u8 TrySetEnigmaBerry(u32 battler)
 {
     if (IsBattlerAlive(battler)
      && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-     && ((TARGET_TURN_DAMAGED && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) || gBattleScripting.overrideBerryRequirements)
+     && ((BATTLER_TURN_DAMAGED(battler) && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) || gBattleScripting.overrideBerryRequirements)
      && !(gBattleScripting.overrideBerryRequirements && gBattleMons[battler].hp == gBattleMons[battler].maxHP)
      && (B_HEAL_BLOCKING < GEN_5 || !(gStatuses3[battler] & STATUS3_HEAL_BLOCK)))
     {
@@ -6913,7 +6913,7 @@ static u8 DamagedStatBoostBerryEffect(u32 battler, u8 statId, u8 category)
          || (!DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
              && GetBattleMoveCategory(gCurrentMove) == category
              && battler != gBattlerAttacker
-             && TARGET_TURN_DAMAGED))
+             && BATTLER_TURN_DAMAGED(battler)))
         )
     {
         BufferStatChange(battler, statId, STRINGID_STATROSE);
@@ -10935,6 +10935,10 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
                 case FORM_CHANGE_BATTLE_TERASTALLIZATION:
                     if (GetBattlerTeraType(battler) == formChanges[i].param1)
                         targetSpecies = formChanges[i].targetSpecies;
+                    break;
+                case FORM_CHANGE_BATTLE_ATTACK:
+                case FORM_CHANGE_BATTLE_KINGS_SHIELD:
+                    targetSpecies = formChanges[i].targetSpecies;
                     break;
                 }
             }
