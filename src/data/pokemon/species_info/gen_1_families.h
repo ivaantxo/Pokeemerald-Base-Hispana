@@ -11389,11 +11389,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_MarowakAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
         .backPic = gMonBackPic_MarowakAlolan,
         .backPicSize = MON_COORDS_SIZE(56, 56),
-        .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_MarowakAlolan,
         .shinyPalette = gMonShinyPalette_MarowakAlolan,
         .iconSprite = gObjectEventPic_MarowakAlolan, 
@@ -11401,7 +11401,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         OVERWORLD(
             sPicTable_MarowakAlolan,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym
         )
         .isAlolanForm = TRUE,
         .levelUpLearnset = sMarowakAlolanLevelUpLearnset,
@@ -11444,11 +11445,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_MarowakAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
         .backPic = gMonBackPic_MarowakAlolan,
         .backPicSize = MON_COORDS_SIZE(56, 56),
-        .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
         .palette = gMonPalette_MarowakAlolan,
         .shinyPalette = gMonShinyPalette_MarowakAlolan,
         .iconSprite = gObjectEventPic_MarowakAlolan, 
@@ -11456,7 +11457,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         OVERWORLD(
             sPicTable_MarowakAlolan,
             SIZE_32x32,
-            TRACKS_FOOT,  
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym
         )
         .isTotem = TRUE,
         .isAlolanForm = TRUE,

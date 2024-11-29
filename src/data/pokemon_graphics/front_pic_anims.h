@@ -1589,7 +1589,16 @@ static const union AnimCmd sAnim_Marowak_1[] =
 };
 
 #if P_ALOLAN_FORMS
-PLACEHOLDER_ANIM_SINGLE_FRAME(MarowakAlolan);
+static const union AnimCmd sAnim_MarowakAlolan_1[] =
+{
+    ANIMCMD_FRAME(1, 14),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(1, 14),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(1, 14),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_END,
+};
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_CUBONE
 
