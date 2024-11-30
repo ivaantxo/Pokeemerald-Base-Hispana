@@ -3507,6 +3507,7 @@ u32 AI_WhoStrikesFirstPartyMon(u32 battlerAtk, u32 battlerDef, struct BattlePoke
     SetBattlerAiData(battlerAtk, AI_DATA);
     u32 aiMonFaster = AI_IsFaster(battlerAtk, battlerDef, moveConsidered);
     FreeRestoreBattleMons(savedBattleMons);
+    SetBattlerAiData(battlerAtk, AI_DATA);
 
     return aiMonFaster;
 }
