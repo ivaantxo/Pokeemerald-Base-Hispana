@@ -2784,7 +2784,7 @@ u8 DoBattlerEndTurnEffects(void)
                  && !IsLeafGuardProtected(battler))
                 {
                     CancelMultiTurnMoves(battler);
-                    gEffectBattler = battler;
+                    gEffectBattler = gBattlerTarget = battler;
                     if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINPREVENTS_ELECTRIC;
