@@ -3314,7 +3314,14 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     break;
                 case DISOBEYS_HITS_SELF:
                     gBattlerTarget = gBattlerAttacker;
-                    gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, 40, FALSE, FALSE, TRUE);
+                    struct DamageCalculationData damageCalcData;
+                    damageCalcData.battlerAtk = damageCalcData.battlerDef = gBattlerAttacker;
+                    damageCalcData.move = MOVE_NONE;
+                    damageCalcData.moveType = TYPE_MYSTERY;
+                    damageCalcData.isCrit = FALSE;
+                    damageCalcData.randomFactor = FALSE;
+                    damageCalcData.updateFlags = TRUE;
+                    gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, 40);
                     gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
                     gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     gHitMarker |= HITMARKER_OBEYS;
