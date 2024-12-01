@@ -147,8 +147,6 @@ void HandleAction_UseMove(void)
     gBattleScripting.savedMoveEffect = 0;
     gCurrMovePos = gChosenMovePos = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
 
-    gBattleStruct->obedienceResult = GetAttackerObedienceForAction();
-
     // choose move
     if (gProtectStructs[gBattlerAttacker].noValidMoves)
     {
@@ -3214,7 +3212,8 @@ void SetAtkCancellerForCalledMove(void)
 
 u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
-    u8 effect = 0;
+    u32 effect = 0;
+    u32 obedienceResult;
     do
     {
         switch (gBattleStruct->atkCancellerTracker)
@@ -3295,6 +3294,60 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DEFROSTED;
                 }
                 effect = 2;
+            }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_OBEDIENCE:
+            obedienceResult = GetAttackerObedienceForAction();
+            if (obedienceResult != OBEYS
+             && !(gHitMarker & HITMARKER_NO_PPDEDUCT) // Don't check obedience after first hit of multi target move or multi hit moves
+             && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
+            {
+                switch (obedienceResult)
+                {
+                case DISOBEYS_LOAFS:
+                    // Randomly select, then print a disobedient string
+                    // B_MSG_LOAFING, B_MSG_WONT_OBEY, B_MSG_TURNED_AWAY, or B_MSG_PRETEND_NOT_NOTICE
+                    gBattleCommunication[MULTISTRING_CHOOSER] = MOD(Random(), NUM_LOAF_STRINGS);
+                    gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
+                    gMoveResultFlags |= MOVE_RESULT_MISSED;
+                    break;
+                case DISOBEYS_HITS_SELF:
+                    gBattlerTarget = gBattlerAttacker;
+                    struct DamageCalculationData damageCalcData;
+                    damageCalcData.battlerAtk = damageCalcData.battlerDef = gBattlerAttacker;
+                    damageCalcData.move = MOVE_NONE;
+                    damageCalcData.moveType = TYPE_MYSTERY;
+                    damageCalcData.isCrit = FALSE;
+                    damageCalcData.randomFactor = FALSE;
+                    damageCalcData.updateFlags = TRUE;
+                    gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, 40);
+                    gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
+                    gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                    gHitMarker |= HITMARKER_OBEYS;
+                    break;
+                case DISOBEYS_FALL_ASLEEP:
+                    gBattlescriptCurrInstr = BattleScript_IgnoresAndFallsAsleep;
+                    gMoveResultFlags |= MOVE_RESULT_MISSED;
+                    break;
+                case DISOBEYS_WHILE_ASLEEP:
+                    gBattlescriptCurrInstr = BattleScript_IgnoresWhileAsleep;
+                    gMoveResultFlags |= MOVE_RESULT_MISSED;
+                    break;
+                case DISOBEYS_RANDOM_MOVE:
+                    gCalledMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+                    SetAtkCancellerForCalledMove();
+                    gBattlescriptCurrInstr = BattleScript_IgnoresAndUsesRandomMove;
+                    gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
+                    gHitMarker |= HITMARKER_DISOBEDIENT_MOVE;
+                    gHitMarker |= HITMARKER_OBEYS;
+                    break;
+                }
+                effect = 1;
+            }
+            else
+            {
+                gHitMarker |= HITMARKER_OBEYS;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
@@ -3553,7 +3606,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
 
                     if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE
-                     || gBattleStruct->obedienceResult != OBEYS
                      || HasTrainerUsedGimmick(gBattlerAttacker, GIMMICK_Z_MOVE))
                         gBattlescriptCurrInstr = BattleScript_MoveUsedPowder;
                     gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -3574,8 +3626,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_Z_MOVES:
-            if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE
-             && gBattleStruct->obedienceResult == OBEYS)
+            if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE)
             {
                 // For Z-Mirror Move, so it doesn't play the animation twice.
                 bool32 alreadyUsed = HasTrainerUsedGimmick(gBattlerAttacker, GIMMICK_Z_MOVE);
@@ -10716,6 +10767,7 @@ bool32 DoesSpeciesUseHoldItemToChangeForm(u16 species, u16 heldItemId)
             case FORM_CHANGE_BATTLE_PRIMAL_REVERSION:
             case FORM_CHANGE_BATTLE_ULTRA_BURST:
             case FORM_CHANGE_ITEM_HOLD:
+            case FORM_CHANGE_BEGIN_BATTLE:
                 if (formChanges[i].param1 == heldItemId)
                     return TRUE;
                 break;

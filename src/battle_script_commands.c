@@ -1287,53 +1287,6 @@ static void Cmd_attackcanceler(void)
 
     gHitMarker &= ~HITMARKER_ALLOW_NO_PP;
 
-    if (!(gHitMarker & HITMARKER_OBEYS) && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
-    {
-        switch (gBattleStruct->obedienceResult)
-        {
-        case OBEYS:
-            break;
-        case DISOBEYS_LOAFS:
-            // Randomly select, then print a disobedient string
-            // B_MSG_LOAFING, B_MSG_WONT_OBEY, B_MSG_TURNED_AWAY, or B_MSG_PRETEND_NOT_NOTICE
-            gBattleCommunication[MULTISTRING_CHOOSER] = MOD(Random(), NUM_LOAF_STRINGS);
-            gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
-            gMoveResultFlags |= MOVE_RESULT_MISSED;
-            return;
-        case DISOBEYS_HITS_SELF:
-            gBattlerTarget = gBattlerAttacker;
-            struct DamageCalculationData damageCalcData;
-            damageCalcData.battlerAtk = damageCalcData.battlerDef = gBattlerAttacker;
-            damageCalcData.move = MOVE_NONE;
-            damageCalcData.moveType = TYPE_MYSTERY;
-            damageCalcData.isCrit = FALSE;
-            damageCalcData.randomFactor = FALSE;
-            damageCalcData.updateFlags = TRUE;
-            gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, 40);
-            gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
-            gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-            gHitMarker |= HITMARKER_OBEYS;
-            return;
-        case DISOBEYS_FALL_ASLEEP:
-            gBattlescriptCurrInstr = BattleScript_IgnoresAndFallsAsleep;
-            gMoveResultFlags |= MOVE_RESULT_MISSED;
-            return;
-        case DISOBEYS_WHILE_ASLEEP:
-            gBattlescriptCurrInstr = BattleScript_IgnoresWhileAsleep;
-            gMoveResultFlags |= MOVE_RESULT_MISSED;
-            return;
-        case DISOBEYS_RANDOM_MOVE:
-            gCalledMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
-            SetAtkCancellerForCalledMove();
-            gBattlescriptCurrInstr = BattleScript_IgnoresAndUsesRandomMove;
-            gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
-            gHitMarker |= HITMARKER_DISOBEDIENT_MOVE;
-            gHitMarker |= HITMARKER_OBEYS;
-            return;
-        }
-    }
-
-    gHitMarker |= HITMARKER_OBEYS;
     // Check if no available target present on the field or if Sky Battles ban the move
     if ((NoTargetPresent(gBattlerAttacker, gCurrentMove)
         && (!gBattleMoveEffects[gMovesInfo[gCurrentMove].effect].twoTurnEffect || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
