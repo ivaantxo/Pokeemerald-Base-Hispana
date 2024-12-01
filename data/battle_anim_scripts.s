@@ -34742,7 +34742,7 @@ gBattleAnimMove_GMaxTerror::
 gBattleAnimMove_MaxPhantasm::
 	createvisualtask AnimTask_DynamaxGrowth, 0x5, 0x1, 0x1
 	waitforvisualfinish
-	goto gBattleAnimMove_PhantomForce
+	goto gBattleAnimMove_ShadowBall
 	end
 
 gBattleAnimMove_GMaxGravitas::
