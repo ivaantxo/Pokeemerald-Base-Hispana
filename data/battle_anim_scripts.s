@@ -34257,7 +34257,7 @@ Move_G_MAX_TERROR::
 Move_MAX_PHANTASM::
 	createvisualtask AnimTask_DynamaxGrowth, 0x5, 0x1, 0x1
 	waitforvisualfinish
-	goto Move_PHANTOM_FORCE
+	goto Move_SHADOW_BALL
 	end
 
 Move_G_MAX_GRAVITAS::
