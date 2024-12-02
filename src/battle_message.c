@@ -166,11 +166,6 @@ const u8 gText_drastically[] = _("drastically ");
 const u8 gText_severely[] = _("severely ");
 static const u8 sText_TerrainReturnedToNormal[] = _("The terrain returned to normal!"); // Unused
 
-//  Remove these when done testing
-static const u8 sTest_TempTestText1[] = _("This is a text for testing stuff.");
-static const u8 sTest_TempTestText2[] = _("This is a text for testing stuff that should be two lines.");
-static const u8 sTest_TempTestText3[] = _("This is a text for testing stuff that should be three lines so it has to have some extra text.");
-
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
     [STRINGID_TRAINER1LOSETEXT]                     = COMPOUND_STRING("{B_TRAINER1_LOSE_TEXT}"),
