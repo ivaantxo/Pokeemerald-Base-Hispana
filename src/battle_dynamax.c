@@ -887,8 +887,8 @@ void BS_TrySetStatus1(void)
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
                 else
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
-                
-                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);    
+
+                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
                 effect++;
             }
@@ -977,10 +977,10 @@ void BS_TrySetStatus2(void)
 void BS_HealOneSixth(void)
 {
     NATIVE_ARGS(const u8* failInstr);
-    gBattleStruct->calculatedDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
-    if (gBattleStruct->calculatedDamage[gBattlerTarget] == 0)
-        gBattleStruct->calculatedDamage[gBattlerTarget] = 1;
-    gBattleStruct->calculatedDamage[gBattlerTarget] *= -1;
+    gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
+    if (gBattleStruct->moveDamage[gBattlerTarget] == 0)
+        gBattleStruct->moveDamage[gBattlerTarget] = 1;
+    gBattleStruct->moveDamage[gBattlerTarget] *= -1;
 
     if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
         gBattlescriptCurrInstr = cmd->failInstr;    // fail

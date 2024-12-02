@@ -1242,7 +1242,7 @@ static void TrySetBattleSeminarShow(void)
     if (sVariableDmgMoves[i] != TABLE_END)
         return;
 
-    dmgByMove[gMoveSelectionCursor[gBattlerAttacker]] = gBattleStruct->calculatedDamage[gBattlerTarget]; // TODO: Not sure
+    dmgByMove[gMoveSelectionCursor[gBattlerAttacker]] = gBattleStruct->moveDamage[gBattlerTarget]; // TODO: Not sure
     currMoveSaved = gCurrentMove;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -1258,8 +1258,8 @@ static void TrySetBattleSeminarShow(void)
             damageCalcData.isCrit = FALSE;
             damageCalcData.randomFactor = FALSE;
             damageCalcData.updateFlags = FALSE;
-            gBattleStruct->calculatedDamage[gBattlerTarget] = CalculateMoveDamage(&damageCalcData, powerOverride);
-            dmgByMove[i] = gBattleStruct->calculatedDamage[gBattlerTarget];
+            gBattleStruct->moveDamage[gBattlerTarget] = CalculateMoveDamage(&damageCalcData, powerOverride);
+            dmgByMove[i] = gBattleStruct->moveDamage[gBattlerTarget];
             if (dmgByMove[i] == 0 && MoveResultHasEffect(gBattlerTarget))
                 dmgByMove[i] = 1;
         }
@@ -1290,7 +1290,7 @@ static void TrySetBattleSeminarShow(void)
         }
     }
 
-    gBattleStruct->calculatedDamage[gBattlerTarget] = dmgByMove[gMoveSelectionCursor[gBattlerAttacker]];
+    gBattleStruct->moveDamage[gBattlerTarget] = dmgByMove[gMoveSelectionCursor[gBattlerAttacker]];
     gCurrentMove = currMoveSaved;
 }
 

@@ -839,8 +839,8 @@ struct BattleStruct
     s32 battlerExpReward;
 
     // Simultaneous hp reduction for spread moves
-    s32 calculatedDamage[MAX_BATTLERS_COUNT];
-    s32 calculatedCritChance[MAX_BATTLERS_COUNT];
+    s32 moveDamage[MAX_BATTLERS_COUNT];
+    s32 critChance[MAX_BATTLERS_COUNT];
     u16 moveResultFlags[MAX_BATTLERS_COUNT];
     u8 missStringId[MAX_BATTLERS_COUNT];
     u8 noResultString[MAX_BATTLERS_COUNT];
