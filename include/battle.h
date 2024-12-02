@@ -840,7 +840,7 @@ struct BattleStruct
     s32 calculatedCritChance[MAX_BATTLERS_COUNT];
     u16 moveResultFlags[MAX_BATTLERS_COUNT];
     u8 missStringId[MAX_BATTLERS_COUNT];
-	u8 noResultString[MAX_BATTLERS_COUNT];
+    u8 noResultString[MAX_BATTLERS_COUNT];
     u8 doneDoublesSpreadHit:1;
     u8 calculatedDamageDone:1;
     u8 calculatedSpreadMoveAccuracy:1;
@@ -1204,6 +1204,13 @@ static inline bool32 IsDoubleBattle(void)
 static inline bool32 IsSpreadMove(u32 moveTarget)
 {
     return IsDoubleBattle() && (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY);
+}
+
+static inline bool32 IsDoubleSpreadMove(void)
+{
+	return gBattleStruct->numSpreadTargets > 1
+        && !(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_UNABLE_TO_USE_MOVE))
+        && IsSpreadMove(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove));
 }
 
 static inline bool32 IsBattlerInvalidForSpreadMove(u32 battlerAtk, u32 battlerDef, u32 moveTarget)

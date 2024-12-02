@@ -3013,12 +3013,10 @@ BattleScript_CantMakeAsleep::
 
 BattleScript_EffectAbsorbLiquidOoze::
 	call BattleScript_AbilityPopUpTarget
-	goto BattleScript_EffectAbsorbFromHealthBarUpdate
+	goto BattleScript_EffectAbsorb
 
 BattleScript_EffectAbsorb::
-	playanimation BS_ATTACKER, B_ANIM_SIMPLE_HEAL
-BattleScript_EffectAbsorbFromHealthBarUpdate:
-	healthbarupdate_nonmovedamage BS_ATTACKER
+	absorb BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printfromtable gAbsorbDrainStringIds
 	waitmessage B_WAIT_TIME_LONG

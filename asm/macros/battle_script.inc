@@ -356,7 +356,7 @@
 	.byte 0x3a
 	.endm
 
-	.macro healthbarupdate_nonmovedamage battler:req
+	.macro absorb battler:req
 	.byte 0x3b
 	.byte \battler
 	.endm
@@ -1232,11 +1232,11 @@
 	.byte 0xe5
 	.endm
 
-	.macro setbattlemovedamage
+	.macro unused_0xE6
 	.byte 0xe6
 	.endm
 
-	.macro copybattlemovedamage
+	.macro unused_0xE7
 	.byte 0xe7
 	.endm
 

@@ -397,7 +397,7 @@ static void Cmd_bichalfword(void);
 static void Cmd_bicword(void);
 static void Cmd_pause(void);
 static void Cmd_waitstate(void);
-static void Cmd_healthbarupdate_nonmovedamage(void);
+static void Cmd_absorb(void);
 static void Cmd_return(void);
 static void Cmd_end(void);
 static void Cmd_end2(void);
@@ -568,8 +568,8 @@ static void Cmd_switchoutabilities(void);
 static void Cmd_jumpifhasnohp(void);
 static void Cmd_jumpifnotcurrentmoveargtype(void);
 static void Cmd_pickup(void);
-static void Cmd_setbattlemovedamage(void);
-static void Cmd_copybattlemovedamage(void);
+static void Cmd_unused_0xE6(void);
+static void Cmd_unused_0xE7(void);
 static void Cmd_settypebasedhalvers(void);
 static void Cmd_jumpifsubstituteblocks(void);
 static void Cmd_tryrecycleitem(void);
@@ -656,7 +656,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_bicword,                                 //0x38
     Cmd_pause,                                   //0x39
     Cmd_waitstate,                               //0x3A
-    Cmd_healthbarupdate_nonmovedamage,                        //0x3B
+    Cmd_absorb,                                  //0x3B
     Cmd_return,                                  //0x3C
     Cmd_end,                                     //0x3D
     Cmd_end2,                                    //0x3E
@@ -827,8 +827,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_jumpifhasnohp,                           //0xE3
     Cmd_jumpifnotcurrentmoveargtype,             //0xE4
     Cmd_pickup,                                  //0xE5
-    Cmd_setbattlemovedamage,                     //0xE6
-    Cmd_copybattlemovedamage,                    //0xE7
+    Cmd_unused_0xE6,                     //0xE6
+    Cmd_unused_0xE7,                    //0xE7
     Cmd_settypebasedhalvers,                     //0xE8
     Cmd_jumpifsubstituteblocks,                  //0xE9
     Cmd_tryrecycleitem,                          //0xEA
@@ -1515,7 +1515,6 @@ static bool32 JumpIfMoveAffectedByProtect(u32 move, u32 battler, u32 shouldJump)
     return affected;
 }
 
-// TODO: the record ability check is wrong
 static bool32 AccuracyCalcHelper(u32 move, u32 battler)
 {
     u32 effect = FALSE;
@@ -2901,16 +2900,16 @@ static void Cmd_effectivenesssound(void)
 static inline bool32 ShouldPrintTwoFoesMessage(u32 moveResult)
 {
 	return gBattlerTarget == BATTLE_OPPOSITE(gBattlerAttacker)
-		&& gBattleStruct->moveResultFlags[BATTLE_PARTNER(gBattlerTarget)] & moveResult
-		&& !gBattleStruct->noResultString[BATTLE_PARTNER(gBattlerTarget)];
+        && gBattleStruct->moveResultFlags[BATTLE_PARTNER(gBattlerTarget)] & moveResult
+        && !gBattleStruct->noResultString[BATTLE_PARTNER(gBattlerTarget)];
 }
 
 static inline bool32 ShouldRelyOnTwoFoesMessage(u32 moveResult)
 {
 	return gBattlerTarget == BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker))
-		&& gBattleStruct->moveResultFlags[BATTLE_OPPOSITE(gBattlerAttacker)] & moveResult
-		&& !(gBattleStruct->moveResultFlags[BATTLE_OPPOSITE(gBattlerAttacker)] & MOVE_RESULT_MISSED && gBattleStruct->missStringId[BATTLE_OPPOSITE(gBattlerAttacker)] > B_MSG_AVOIDED_ATK)
-		&& !gBattleStruct->noResultString[BATTLE_OPPOSITE(gBattlerAttacker)];
+        && gBattleStruct->moveResultFlags[BATTLE_OPPOSITE(gBattlerAttacker)] & moveResult
+        && !(gBattleStruct->moveResultFlags[BATTLE_OPPOSITE(gBattlerAttacker)] & MOVE_RESULT_MISSED && gBattleStruct->missStringId[BATTLE_OPPOSITE(gBattlerAttacker)] > B_MSG_AVOIDED_ATK)
+        && !gBattleStruct->noResultString[BATTLE_OPPOSITE(gBattlerAttacker)];
 }
 
 static void Cmd_resultmessage(void)
@@ -2951,10 +2950,10 @@ static void Cmd_resultmessage(void)
         case MOVE_RESULT_SUPER_EFFECTIVE:
             if (IsDoubleSpreadMove())
             {
-				if (ShouldPrintTwoFoesMessage(MOVE_RESULT_SUPER_EFFECTIVE))
+                if (ShouldPrintTwoFoesMessage(MOVE_RESULT_SUPER_EFFECTIVE))
                     stringId = STRINGID_SUPEREFFECTIVETWOFOES;
-				else if (ShouldRelyOnTwoFoesMessage(MOVE_RESULT_SUPER_EFFECTIVE))
-					stringId = 0; // Was handled or will be handled as a double string
+                else if (ShouldRelyOnTwoFoesMessage(MOVE_RESULT_SUPER_EFFECTIVE))
+                    stringId = 0; // Was handled or will be handled as a double string
                 else
                     stringId = STRINGID_SUPEREFFECTIVE;
             }
@@ -2969,15 +2968,15 @@ static void Cmd_resultmessage(void)
             }
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
-			if (IsDoubleSpreadMove())
-			{
-				if (ShouldPrintTwoFoesMessage(MOVE_RESULT_NOT_VERY_EFFECTIVE))
-					stringId = STRINGID_NOTVERYEFFECTIVETWOFOES;
-				else if (ShouldRelyOnTwoFoesMessage(MOVE_RESULT_NOT_VERY_EFFECTIVE))
-					stringId = 0; // Was handled or will be handled as a double string
-				else
-					stringId = STRINGID_NOTVERYEFFECTIVE; // Needs a string
-			}
+            if (IsDoubleSpreadMove())
+            {
+                if (ShouldPrintTwoFoesMessage(MOVE_RESULT_NOT_VERY_EFFECTIVE))
+                    stringId = STRINGID_NOTVERYEFFECTIVETWOFOES;
+                else if (ShouldRelyOnTwoFoesMessage(MOVE_RESULT_NOT_VERY_EFFECTIVE))
+                    stringId = 0; // Was handled or will be handled as a double string
+                else
+                    stringId = STRINGID_NOTVERYEFFECTIVE; // Needs a string
+            }
             else if (!gMultiHitCounter)
             {
                 stringId = STRINGID_NOTVERYEFFECTIVE;
@@ -5502,7 +5501,7 @@ static void Cmd_waitstate(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_healthbarupdate_nonmovedamage(void)
+static void Cmd_absorb(void)
 {
     CMD_ARGS(u8 battler);
 
@@ -15213,11 +15212,11 @@ static void Cmd_pickup(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_setbattlemovedamage(void)
+static void Cmd_unused_0xE6(void)
 {
 }
 
-static void Cmd_copybattlemovedamage(void)
+static void Cmd_unused_0xE7(void)
 {
 }
 

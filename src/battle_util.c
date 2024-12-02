@@ -11967,13 +11967,6 @@ u32 GetMoveType(u32 move)
     return gMovesInfo[move].type;
 }
 
-bool32 IsDoubleSpreadMove(void)
-{
-	return gBattleStruct->numSpreadTargets > 1
-		&& !(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_UNABLE_TO_USE_MOVE))
-        && IsSpreadMove(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove));
-}
-
 void ClearDamageCalcResults(void)
 {
     for (u32 battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
