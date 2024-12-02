@@ -3868,26 +3868,39 @@ BattleScript_EffectDoNothing::
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpifmove MOVE_HOLD_HANDS, BattleScript_EffectHoldHands
 	attackanimation
 	waitanimation
-	jumpifmove MOVE_CELEBRATE, BattleScript_EffectCelebrate
-	jumpifmove MOVE_HAPPY_HOUR, BattleScript_EffectHappyHour
 	incrementgamestat GAME_STAT_USED_SPLASH
 	printstring STRINGID_BUTNOTHINGHAPPENED
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
-BattleScript_EffectHoldHands:
+
+BattleScript_EffectHoldHands::
+	attackcanceler
+	attackstring
+	ppreduce
 	jumpifsideaffecting BS_TARGET, SIDE_STATUS_CRAFTY_SHIELD, BattleScript_ButItFailed
 	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	goto BattleScript_MoveEnd
-BattleScript_EffectCelebrate:
+
+BattleScript_EffectCelebrate::
+	attackcanceler
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
 	printstring STRINGID_CELEBRATEMESSAGE
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
-BattleScript_EffectHappyHour:
+
+BattleScript_EffectHappyHour::
+	attackcanceler
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
 	seteffectprimary MOVE_EFFECT_HAPPY_HOUR
 	goto BattleScript_MoveEnd
 

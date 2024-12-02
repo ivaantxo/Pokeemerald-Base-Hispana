@@ -15010,7 +15010,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Doubles the amount of\n"
             "Prize Money received."),
-        .effect = EFFECT_DO_NOTHING,
+        .effect = EFFECT_HAPPY_HOUR,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -15080,7 +15080,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Congratulates you on your\n"
             "special day."),
-        .effect = EFFECT_DO_NOTHING,
+        .effect = EFFECT_CELEBRATE,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -15110,7 +15110,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "The user and ally hold hands\n"
             "making them happy."),
-        .effect = EFFECT_DO_NOTHING,
+        .effect = EFFECT_HOLD_HANDS,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
