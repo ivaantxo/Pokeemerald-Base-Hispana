@@ -11,7 +11,7 @@ This document is a guide for contributors and Senate to decide if a feature is w
 
 # Guidelines
 
-A pull request meets the scope crtieria if:
+A pull request meets the scope criteria if:
 * The feature does not belong to a category considered “not in scope” AND
 * The feature belongs to a category considered “in scope”
 
