@@ -1309,6 +1309,7 @@ static void Cmd_attackcanceler(void)
         gBattleStruct->bouncedMoveIsUsed = TRUE;
         // Edge case for bouncing a powder move against a grass type pokemon.
 
+        ClearDamageCalcResults();
         SetAtkCancellerForCalledMove();
         if (BlocksPrankster(gCurrentMove, gBattlerTarget, gBattlerAttacker, TRUE))
         {
@@ -1755,7 +1756,10 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
 
         if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
             gBattleStruct->moveResultFlags[gBattlerTarget] = MOVE_RESULT_MISSED;
-        gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
+
+        if (calcSpreadMove)
+            gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
+
         JumpIfMoveFailed(7, move);
     }
 }
