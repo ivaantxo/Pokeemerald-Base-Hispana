@@ -832,6 +832,8 @@ struct BattleStruct
     u8 padding:7;
     u8 usedEjectItem;
     u8 usedMicleBerry;
+    u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
+    u8 sleepClauseEffectExempt:4; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
