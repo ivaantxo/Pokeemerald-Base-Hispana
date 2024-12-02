@@ -280,7 +280,10 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
 // Returns the appropriate Max Move or G-Max Move for a battler to use.
 u16 GetMaxMove(u32 battler, u32 baseMove)
 {
-    u32 move = baseMove;
+    u32 moveType;
+    SetTypeBeforeUsingMove(baseMove, battler);
+    moveType = GetMoveType(baseMove);
+
     if (baseMove == MOVE_NONE) // for move display
     {
         return MOVE_NONE;
@@ -291,18 +294,12 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
     }
     else if (gMovesInfo[baseMove].category == DAMAGE_CATEGORY_STATUS)
     {
-        move = MOVE_MAX_GUARD;
-    }
-    else if (gBattleStruct->dynamicMoveType)
-    {
-        move = GetTypeBasedMaxMove(battler, gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK);
+        return MOVE_MAX_GUARD;
     }
     else
     {
-        move = GetTypeBasedMaxMove(battler, gMovesInfo[baseMove].type);
+        return GetTypeBasedMaxMove(battler, moveType);
     }
-
-    return move;
 }
 
 // First value is for Fighting, Poison and Multi-Attack. The second is for everything else.
@@ -762,7 +759,7 @@ void BS_SetMaxMoveEffect(void)
         {
             static const u8 sSnoozeEffects[] = {TRUE, FALSE};
             if (!(gStatuses3[gBattlerTarget] & STATUS3_YAWN)
-                && CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget))
+                && CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), TRUE)
                 && RandomElement(RNG_G_MAX_SNOOZE, sSnoozeEffects)) // 50% chance of success
             {
                 gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(2);
@@ -884,12 +881,14 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_SLEEP:
-            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), TRUE))
             {
                 if (B_SLEEP_TURNS >= GEN_5)
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
                 else
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
+                
+                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);    
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
                 effect++;
             }

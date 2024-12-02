@@ -381,6 +381,11 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     else if (gMovesInfo[predictedMove].type == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GROUND))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EARTH_EATER;
+        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LEVITATE;
+    }
+    else if (gMovesInfo[predictedMove].soundMove || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].soundMove))
+    {
+        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SOUNDPROOF;
     }
     else
     {
@@ -497,7 +502,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     {
         //Yawn
         if (gStatuses3[battler] & STATUS3_YAWN
-            && CanBeSlept(battler, monAbility)
+            && CanBeSlept(battler, monAbility, TRUE)
             && gBattleMons[battler].hp > gBattleMons[battler].maxHP / 3)
         {
             switchMon = TRUE;
