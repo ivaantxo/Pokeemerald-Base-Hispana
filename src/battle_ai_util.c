@@ -3420,7 +3420,7 @@ bool32 PartnerMoveIsSameNoTarget(u32 battlerAtkPartner, u32 move, u32 partnerMov
 
 bool32 PartnerMoveActivatesSleepClause(u32 partnerMove)
 {
-    if (!IsDoubleBattle() || !FlagGet(B_FLAG_SLEEP_CLAUSE))
+    if (!IsDoubleBattle() || !IsSleepClauseEnabled())
         return FALSE;
     return IsMoveSleepClauseTrigger(partnerMove);
 }
