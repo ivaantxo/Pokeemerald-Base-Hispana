@@ -19,7 +19,7 @@
   - [How to use the Testing System](tutorials/how_to_testing_system.md)
 - [Changelog](./CHANGELOG.md)
     - [1.10.x]()
-        - [Version 1.10.0](changelogs/1.9.x/1.9.4.md)
+        - [Version 1.10.0](changelogs/1.10.x/1.10.0.md)
     - [1.9.x]()
         - [Version 1.9.4](changelogs/1.9.x/1.9.4.md)
         - [Version 1.9.3](changelogs/1.9.x/1.9.3.md)
@@ -67,3 +67,4 @@
         - [Version 0.9.0](changelogs/0.9.x/0.9.0.md)
 - [Team Procedures]()
     - [How to make an Expansion version](team_procedures/expansion_versions.md)
+    - [Scope Guidelines](scope.md)
