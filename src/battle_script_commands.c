@@ -1125,7 +1125,6 @@ static bool32 NoTargetPresent(u8 battler, u32 move)
     return FALSE;
 }
 
-// TODO: Convert this to a proper FORM_CHANGE type.
 static bool32 TryAegiFormChange(void)
 {
     // Only Aegislash with Stance Change can transform, transformed mons cannot.
@@ -1140,12 +1139,12 @@ static bool32 TryAegiFormChange(void)
     case SPECIES_AEGISLASH_SHIELD: // Shield -> Blade
         if (IS_MOVE_STATUS(gCurrentMove))
             return FALSE;
-        gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE;
+        TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_ATTACK);
         break;
     case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
         if (gCurrentMove != MOVE_KINGS_SHIELD)
             return FALSE;
-        gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_SHIELD;
+        TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_KINGS_SHIELD);
         break;
     }
 
@@ -2323,9 +2322,9 @@ static void Cmd_adjustdamage(void)
         gBattleStruct->calculatedDamageDone = TRUE;
     gBattlescriptCurrInstr = cmd->nextInstr;
 
-    // TODO: might be a bug
     if (gSpecialStatuses[gBattlerAttacker].gemBoost
         && MoveResultHasEffect(gBattlerTarget)
+        && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
         && gBattleMons[gBattlerAttacker].item
         && gMovesInfo[gCurrentMove].effect != EFFECT_PLEDGE
         && gCurrentMove != MOVE_STRUGGLE)
@@ -2919,6 +2918,7 @@ static void Cmd_resultmessage(void)
     CMD_ARGS();
 
     u32 stringId = 0;
+    u16 *moveResultFlags = &gBattleStruct->moveResultFlags[gBattlerTarget];
 
     if (gBattleControllerExecFlags)
         return;
@@ -2935,8 +2935,8 @@ static void Cmd_resultmessage(void)
         return;
     }
 
-    if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_MISSED
-     && (!(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_DOESNT_AFFECT_FOE) || gBattleStruct->missStringId[gBattlerTarget] > 2))
+    if (*moveResultFlags & MOVE_RESULT_MISSED
+     && (!(*moveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) || gBattleStruct->missStringId[gBattlerTarget] > 2))
     {
         if (gBattleStruct->missStringId[gBattlerTarget] > B_MSG_AVOIDED_ATK) // Wonder Guard or Levitate - show the ability pop-up
             CreateAbilityPopUp(gBattlerTarget, gBattleMons[gBattlerTarget].ability, (IsDoubleBattle()) != 0);
@@ -2946,7 +2946,7 @@ static void Cmd_resultmessage(void)
     else
     {
         gBattleCommunication[MSG_DISPLAY] = 1;
-        switch (gBattleStruct->moveResultFlags[gBattlerTarget] & ~MOVE_RESULT_MISSED)
+        switch (*moveResultFlags & ~MOVE_RESULT_MISSED)
         {
         case MOVE_RESULT_SUPER_EFFECTIVE:
             if (IsDoubleSpreadMove())
@@ -3014,52 +3014,52 @@ static void Cmd_resultmessage(void)
         case MOVE_RESULT_FOE_HUNG_ON:
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
             gPotentialItemEffectBattler = gBattlerTarget;
-            gBattleStruct->moveResultFlags[gBattlerTarget] &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
+            *moveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_HangedOnMsg;
             return;
         default:
-            if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_ONE_HIT_KO)
+            if (*moveResultFlags & MOVE_RESULT_ONE_HIT_KO)
             {
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~MOVE_RESULT_ONE_HIT_KO;
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~MOVE_RESULT_SUPER_EFFECTIVE;
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
+                *moveResultFlags &= ~MOVE_RESULT_ONE_HIT_KO;
+                *moveResultFlags &= ~MOVE_RESULT_SUPER_EFFECTIVE;
+                *moveResultFlags &= ~MOVE_RESULT_NOT_VERY_EFFECTIVE;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_OneHitKOMsg;
                 return;
             }
-            else if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_STURDIED)
+            else if (*moveResultFlags & MOVE_RESULT_STURDIED)
             {
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~(MOVE_RESULT_STURDIED | MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
+                *moveResultFlags &= ~(MOVE_RESULT_STURDIED | MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 gSpecialStatuses[gBattlerTarget].sturdied = FALSE;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_SturdiedMsg;
                 return;
             }
-            else if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_FOE_ENDURED)
+            else if (*moveResultFlags & MOVE_RESULT_FOE_ENDURED)
             {
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
+                *moveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_EnduredMsg;
                 return;
             }
-            else if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_FOE_HUNG_ON)
+            else if (*moveResultFlags & MOVE_RESULT_FOE_HUNG_ON)
             {
                 gLastUsedItem = gBattleMons[gBattlerTarget].item;
                 gPotentialItemEffectBattler = gBattlerTarget;
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
+                *moveResultFlags &= ~(MOVE_RESULT_FOE_ENDURED | MOVE_RESULT_FOE_HUNG_ON);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_HangedOnMsg;
                 return;
             }
-            else if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_FAILED)
+            else if (*moveResultFlags & MOVE_RESULT_FAILED)
             {
                 stringId = STRINGID_BUTITFAILED;
             }
-            else if (B_AFFECTION_MECHANICS == TRUE && (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_FOE_ENDURED_AFFECTION))
+            else if (B_AFFECTION_MECHANICS == TRUE && (*moveResultFlags & MOVE_RESULT_FOE_ENDURED_AFFECTION))
             {
                 gSpecialStatuses[gBattlerTarget].affectionEndured = FALSE;
-                gBattleStruct->moveResultFlags[gBattlerTarget] &= ~MOVE_RESULT_FOE_ENDURED_AFFECTION;
+                *moveResultFlags &= ~MOVE_RESULT_FOE_ENDURED_AFFECTION;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AffectionBasedEndurance;
                 return;
@@ -4436,6 +4436,15 @@ static void Cmd_tryfaintmon(void)
     }
     else
     {
+        if (gBattleMons[battler].ability == ABILITY_NEUTRALIZING_GAS
+         && !(gAbsentBattlerFlags & (1u << battler))
+         && !IsBattlerAlive(battler))
+        {
+            gBattleMons[battler].ability = ABILITY_NONE;
+            BattleScriptPush(gBattlescriptCurrInstr);
+            gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
+            return;
+        }
         if (cmd->battler == BS_ATTACKER)
         {
             destinyBondBattler = gBattlerTarget;

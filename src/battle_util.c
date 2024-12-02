@@ -6933,7 +6933,7 @@ static u8 TrySetEnigmaBerry(u32 battler)
 {
     if (IsBattlerAlive(battler)
      && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-     && ((TARGET_TURN_DAMAGED && gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_SUPER_EFFECTIVE) || gBattleScripting.overrideBerryRequirements)
+     && ((BATTLER_TURN_DAMAGED(battler) && gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_SUPER_EFFECTIVE) || gBattleScripting.overrideBerryRequirements)
      && !(gBattleScripting.overrideBerryRequirements && gBattleMons[battler].hp == gBattleMons[battler].maxHP)
      && (B_HEAL_BLOCKING < GEN_5 || !(gStatuses3[battler] & STATUS3_HEAL_BLOCK)))
     {
@@ -6957,7 +6957,7 @@ static u8 DamagedStatBoostBerryEffect(u32 battler, u8 statId, u8 category)
          || (!DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
              && GetBattleMoveCategory(gCurrentMove) == category
              && battler != gBattlerAttacker
-             && TARGET_TURN_DAMAGED))
+             && BATTLER_TURN_DAMAGED(battler)))
         )
     {
         BufferStatChange(battler, statId, STRINGID_STATROSE);
@@ -10505,6 +10505,7 @@ static void UpdateMoveResultFlags(uq4_12_t modifier, u32 battler)
     {
         gBattleStruct->moveResultFlags[battler] |= MOVE_RESULT_DOESNT_AFFECT_FOE;
         gBattleStruct->moveResultFlags[battler] &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_SUPER_EFFECTIVE);
+        gBattleStruct->blunderPolicy = FALSE; // Don't activate if missed
     }
     else if (modifier == UQ_4_12(1.0))
     {
@@ -10980,6 +10981,10 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
                 case FORM_CHANGE_BATTLE_TERASTALLIZATION:
                     if (GetBattlerTeraType(battler) == formChanges[i].param1)
                         targetSpecies = formChanges[i].targetSpecies;
+                    break;
+                case FORM_CHANGE_BATTLE_ATTACK:
+                case FORM_CHANGE_BATTLE_KINGS_SHIELD:
+                    targetSpecies = formChanges[i].targetSpecies;
                     break;
                 }
             }

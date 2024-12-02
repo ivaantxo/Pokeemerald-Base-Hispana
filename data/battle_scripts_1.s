@@ -2401,7 +2401,6 @@ BattleScript_EffectHealingWish::
 	storehealingwish BS_ATTACKER
 .if B_HEALING_WISH_SWITCH <= GEN_4
 	openpartyscreen BS_ATTACKER, BattleScript_EffectHealingWishEnd
-	switchoutabilities BS_ATTACKER
 	waitstate
 	switchhandleorder BS_ATTACKER, 2
 	returnatktoball
@@ -5754,7 +5753,6 @@ BattleScript_PrintFullBox::
 
 BattleScript_ActionSwitch::
 	hpthresholds2 BS_ATTACKER
-	saveattacker
 	printstring STRINGID_RETURNMON
 	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_PursuitSwitchDmgSetMultihit
 	setmultihit 1
@@ -5772,7 +5770,6 @@ BattleScript_DoSwitchOut::
 	switchoutabilities BS_ATTACKER
 	updatedynamax
 	waitstate
-	restoreattacker
 	returnatktoball
 	waitstate
 	drawpartystatussummary BS_ATTACKER
@@ -9621,7 +9618,9 @@ BattleScript_EjectButtonActivates::
 	removeitem BS_SCRIPTING
 	makeinvisible BS_SCRIPTING
 	openpartyscreen BS_SCRIPTING, BattleScript_EjectButtonEnd
+	copybyte sSAVED_BATTLER, sBATTLER
 	switchoutabilities BS_SCRIPTING
+	copybyte sBATTLER, sSAVED_BATTLER
 	waitstate
 	switchhandleorder BS_SCRIPTING 0x2
 	returntoball BS_SCRIPTING, FALSE
@@ -9718,6 +9717,7 @@ BattleScript_PastelVeilEnd:
 	end3
 
 BattleScript_NeutralizingGasExits::
+	saveattacker
 	savetarget
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_NEUTRALIZINGGASOVER
@@ -9727,6 +9727,7 @@ BattleScript_NeutralizingGasExitsLoop:
 	switchinabilities BS_TARGET
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_NeutralizingGasExitsLoop
+	restoreattacker
 	restoretarget
 	return
 

@@ -10,6 +10,7 @@
                                 max(POKEMON_NAME_LENGTH + 1, \
                                     ABILITY_NAME_LENGTH + 1)))
 #define BATTLE_MSG_MAX_WIDTH    208
+#define BATTLE_MSG_MAX_LINES    2
 
 // for 0xFD
 #define B_TXT_BUFF1 0x0
