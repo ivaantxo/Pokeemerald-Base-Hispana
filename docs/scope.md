@@ -41,8 +41,7 @@ A pull request meets the scope criteria if:
 5. **Non-SS Gimmicks**: Adds Gimmicks that have NOT appeared in a Showdown-supported title  
 6. **Non-SS Battle Types**: Adds Special Battle Types that have NOT appeared in a Showdown-supported title  
 7. **Duplicate Feature UI**: Adds functionality that duplicates the core functionality of an existing vanilla feature
-8. **Vanilla Link Compatibility**: Link compatibility with vanilla  
-9. **External Program**: External programs
+8. **Vanilla Link Compatibility**: Link compatibility with vanilla
 
 ## Discussion Required Categories
 
@@ -51,3 +50,5 @@ Pull Requests that fall into this category should be brought up to maintainers, 
 1. **Developer Ease of Use:** Lowers barrier of entry for developers to use existing behavior  
 2. **Fangame Features:** Adds a popular feature from other fangames  
 3. **Popular Non-SS Features:** Exceptions can be made for uniquely popular or requested features (Drowsy, PLA Legend Plate, etc.)
+4. **External Program**: External programs like poryscript, porymoves, etc.
+
