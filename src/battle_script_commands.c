@@ -15067,6 +15067,7 @@ static void Cmd_switchoutabilities(void)
             MarkBattlerForControllerExec(battler);
             break;
         case ABILITY_REGENERATOR:
+        {
             u32 regenerate = GetNonDynamaxMaxHP(gBattlerAttacker) / 3;
             regenerate += gBattleMons[battler].hp;
             if (gBattleStruct->moveDamage[gBattlerAttacker] > gBattleMons[battler].maxHP)
@@ -15077,6 +15078,7 @@ static void Cmd_switchoutabilities(void)
                                          &regenerate);
             MarkBattlerForControllerExec(battler);
             break;
+        }
         }
 
         gBattlescriptCurrInstr = cmd->nextInstr;
