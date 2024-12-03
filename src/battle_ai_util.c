@@ -102,6 +102,15 @@ bool32 IsAiBattlerAware(u32 battlerId)
     return BattlerHasAi(battlerId);
 }
 
+bool32 IsAiBattlerPredictingAbility(u32 battlerId)
+{
+    if (AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_WEIGH_ABILITY_PREDICTION
+     || AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_WEIGH_ABILITY_PREDICTION)
+        return TRUE;
+
+    return BattlerHasAi(battlerId);
+}
+
 void ClearBattlerMoveHistory(u32 battlerId)
 {
     memset(BATTLE_HISTORY->usedMoves[battlerId], 0, sizeof(BATTLE_HISTORY->usedMoves[battlerId]));
@@ -1333,6 +1342,8 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
     u32 validAbilities[NUM_ABILITY_SLOTS];
     u8 i, numValidAbilities = 0;
     u32 knownAbility = AI_GetBattlerAbility(battlerId);
+    u32 indexAbility;
+    u32 abilityAiRatings[NUM_ABILITY_SLOTS] = {0};
 
     // We've had ability overwritten by e.g. Worry Seed. It is not part of AI_PARTY in case of switching
     if (gBattleStruct->overwrittenAbilities[battlerId])
@@ -1355,9 +1366,16 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
 
     for (i = 0; i < NUM_ABILITY_SLOTS; i++)
     {
-        if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
-            validAbilities[numValidAbilities++] = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
+        indexAbility = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
+        if (indexAbility != ABILITY_NONE)
+        {
+            abilityAiRatings[numValidAbilities] = gAbilitiesInfo[indexAbility].aiRating;
+            validAbilities[numValidAbilities++] = indexAbility;
+        }
     }
+
+    if (numValidAbilities > 0 && IsAiBattlerPredictingAbility(battlerId))
+        return validAbilities[RandomWeighted(RNG_AI_PREDICT_ABILITY, abilityAiRatings[0], abilityAiRatings[1], abilityAiRatings[2])];
 
     if (numValidAbilities > 0)
         return validAbilities[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)];
