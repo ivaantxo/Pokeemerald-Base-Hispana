@@ -177,12 +177,7 @@ extern const u8 gMenuText_Toss[];
 extern const u8 gMenuText_Give[];
 extern const u8 gMenuText_Give2[];
 extern const u8 gMenuText_Register[];
-extern const u8 gMenuText_Check[];
-extern const u8 gMenuText_Walk[];
-extern const u8 gMenuText_Deselect[];
-extern const u8 gMenuText_CheckTag[];
 extern const u8 gMenuText_Confirm[];
-extern const u8 gMenuText_Show[];
 extern const u8 gMenuText_Give2[];
 
 extern const u8 gText_EggNickname[];
@@ -318,15 +313,10 @@ extern const u8 gText_ThrewAwayVar2Var1s[];
 extern const u8 gText_CantWriteMail[];
 extern const u8 gText_NoPokemon[];
 extern const u8 gText_Var1CantBeHeld[];
-extern const u8 gText_Var1CantBeHeldHere[];
 extern const u8 gText_CantBuyKeyItem[];
 extern const u8 gText_HowManyToSell[];
 extern const u8 gText_ICanPayVar1[];
 extern const u8 gText_TurnedOverVar1ForVar2[];
-extern const u8 gText_DepositHowManyVar1[];
-extern const u8 gText_CantStoreImportantItems[];
-extern const u8 gText_DepositedVar2Var1s[];
-extern const u8 gText_NoRoomForItems[];
 extern const u8 gText_ThreeDashes[];
 extern const u8 *const gPocketNamesStringsTable[];
 
@@ -450,28 +440,12 @@ extern const u8 gBirchDexRatingText_LessThan190[];
 extern const u8 gBirchDexRatingText_LessThan200[];
 extern const u8 gBirchDexRatingText_DexCompleted[];
 
-// player pc text
+// player PC text
 extern const u8 gText_WhatWouldYouLike[];
 extern const u8 gText_NoMailHere[];
-
-extern const u8 gText_TakeOutItemsFromPC[];
-extern const u8 gText_StoreItemsInPC[];
-extern const u8 gText_ThrowAwayItemsInPC[];
 extern const u8 gText_GoBackPrevMenu[];
-
-extern const u8 gText_ItemStorage[];
-extern const u8 gText_Mailbox[];
-extern const u8 gText_Decoration[];
-extern const u8 gText_TurnOff[];
-
-extern const u8 gText_WithdrawItem[];
-extern const u8 gText_DepositItem[];
-extern const u8 gText_TossItem[];
 extern const u8 gText_Cancel[];
 
-extern const u8 gText_Read[];
-extern const u8 gText_MoveToBag[];
-extern const u8 gText_Give2[];
 extern const u8 gText_Cancel2[];
 
 extern const u8 gText_NoItems[];
@@ -481,12 +455,8 @@ extern const u8 gText_BagIsFull[];
 
 extern const u8 gText_MailToBagMessageErased[];
 extern const u8 gText_GoBackPrevMenu[];
-extern const u8 gText_WithdrawHowManyItems[];
-extern const u8 gText_WithdrawXItems[];
 extern const u8 gText_TossHowManyVar1s[];
 extern const u8 gText_ThrewAwayVar2Var1s[];
-extern const u8 gText_NoRoomInBag[];
-extern const u8 gText_TooImportantToToss[];
 extern const u8 gText_ConfirmTossItems[];
 extern const u8 gText_MoveVar1Where[];
 
@@ -717,26 +687,12 @@ extern const u8 gText_Gabby[];
 extern const u8 gText_Anna[];
 
 extern const u8 gText_DadsAdvice[];
-extern const u8 gText_CantDismountBike[];
-extern const u8 gText_ItemFinderNothing[];
-extern const u8 gText_ItemFinderNearby[];
-extern const u8 gText_ItemFinderOnTop[];
-extern const u8 gText_CoinCase[];
-extern const u8 gText_PowderQty[];
-extern const u8 gText_BootedUpHM[];
-extern const u8 gText_BootedUpTM[];
-extern const u8 gText_TMHMContainedVar1[];
 extern const u8 gText_PlayerUsedVar2[];
 extern const u8 gText_RepelEffectsLingered[];
 extern const u8 gText_LureEffectsLingered[];
-extern const u8 gText_UsedVar2WildLured[];
-extern const u8 gText_UsedVar2WildRepelled[];
 extern const u8 gText_BoxFull[];
 extern const u8 gText_WontHaveEffect[];
 extern const u8 gText_NextFusionMon[];
-extern const u8 gText_PlayedPokeFluteCatchy[];
-extern const u8 gText_PlayedPokeFlute[];
-extern const u8 gText_PokeFluteAwakenedMon[];
 
 extern const u8 gText_LevelSymbol[];
 extern const u8 gText_PkmnInfo[];
@@ -939,19 +895,6 @@ extern const u8 CableClub_Text_YouMayTradeHere[];
 extern const u8 CableClub_Text_YouMayBattleHere[];
 extern const u8 CableClub_Text_CanMixRecords[];
 extern const u8 CableClub_Text_CanMakeBerryPowder[];
-
-// Rotom Catalog text
-extern const u8 gText_LightBulb[];
-extern const u8 gText_MicrowaveOven[];
-extern const u8 gText_WashingMachine[];
-extern const u8 gText_Refrigerator[];
-extern const u8 gText_ElectricFan[];
-extern const u8 gText_LawnMower[];
-extern const u8 gText_Exit[];
-
-// Zygarde Cube text
-extern const u8 gText_ChangeForm[];
-extern const u8 gText_ChangeAbility[];
 
 // Frontier records.
 extern const u8 gText_WinStreak[];
@@ -1677,21 +1620,8 @@ extern const u8 gText_NotAble2[];
 extern const u8 gText_Learned[];
 extern const u8 gText_Have[];
 extern const u8 gText_DontHave[];
-extern const u8 gText_Take[];
-extern const u8 gText_Mail[];
-extern const u8 gText_Take2[];
-extern const u8 gText_Read2[];
 extern const u8 gText_Cancel2[];
-extern const u8 gText_Shift[];
-extern const u8 gText_SendOut[];
-extern const u8 gText_Enter[];
-extern const u8 gText_NoEntry[];
-extern const u8 gText_Store[];
 extern const u8 gText_Register[];
-extern const u8 gText_Trade4[];
-extern const u8 gText_Summary5[];
-extern const u8 gText_Switch2[];
-extern const u8 gText_Item[];
 extern const u8 gText_NotPkmnOtherTrainerWants[];
 extern const u8 gText_ThatIsntAnEgg[];
 extern const u8 gText_OtherTrainersPkmnCantBeTraded[];
