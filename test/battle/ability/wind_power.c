@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
         HP_BAR(opponent);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(opponent, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Foe Wattrel with power!");
+            MESSAGE("Being hit by Air Cutter charged the opposing Wattrel with power!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, opponent);
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
         HP_BAR(opponent);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(opponent, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Foe Wattrel with power!");
+            MESSAGE("Being hit by Air Cutter charged the opposing Wattrel with power!");
         }
     }
     THEN {
@@ -165,17 +165,17 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PETAL_BLIZZARD, opponentLeft);
 
         HP_BAR(playerLeft);
+        HP_BAR(playerRight);
+        HP_BAR(opponentRight);
+        NOT HP_BAR(opponentLeft);
         if (abilityLeft == ABILITY_WIND_POWER) {
             ABILITY_POPUP(playerLeft, ABILITY_WIND_POWER);
             MESSAGE("Being hit by Petal Blizzard charged Wattrel with power!");
         }
-        HP_BAR(playerRight);
         if (abilityRight == ABILITY_WIND_POWER) {
             ABILITY_POPUP(playerRight, ABILITY_WIND_POWER);
             MESSAGE("Being hit by Petal Blizzard charged Wattrel with power!");
         }
-        HP_BAR(opponentRight);
-        NOT HP_BAR(opponentLeft);
     }
     THEN {
         EXPECT_NE(playerLeft->hp, playerLeft->maxHP);
@@ -205,10 +205,10 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, opponentLeft);
 
             ABILITY_POPUP(opponentLeft, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Tailwind charged Foe Wattrel with power!");
+            MESSAGE("Being hit by Tailwind charged the opposing Wattrel with power!");
 
             ABILITY_POPUP(opponentRight, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Tailwind charged Foe Wattrel with power!");
+            MESSAGE("Being hit by Tailwind charged the opposing Wattrel with power!");
         }
         else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, playerLeft);

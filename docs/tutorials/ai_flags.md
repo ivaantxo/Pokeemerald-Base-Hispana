@@ -134,7 +134,10 @@ Affects when the AI chooses to switch. AI will make smarter decisions about when
 * The current mon loses the 1v1 quickly and has at least ½ HP, or ¼ and Regenerator
 
 ## `AI_FLAG_ACE_POKEMON`
-Marks the last Pokemon in the party as the Ace Pokemon. It will not be used unless it is the last one remaining, or is forced to be switched in (Roar, U-Turn with 1 mon remaining, etc.)
+Marks the last Pokemon in the party as the Ace Pokemon. It will not be used unless it is the last one remaining, or is forced to be switched in (Roar, U-Turn with 1 mon remaining, etc.). If you are challenged by two different trainers at the same time, only the ones with this flag will have Ace Pokémon. For example vs one trainer with `AI_FLAG_ACE_POKEMON`and the other without, there will be a total of 1 Ace Pokémon.
+
+## `AI_FLAG_DOUBLE_ACE_POKEMON`
+Marks the last two Pokémon in the party as Ace Pokémon, with the same behaviour as `AI_FLAG_ACE_POKEMON`. Intented for double battles where you battle one trainer id that represents two trainers, ie Twins, Couples. If you apply this flag to trainers outside of double battles or in cases where two trainers can challenge you at the same time, it has the same behaviour. For example vs two trainers with `AI_FLAG_DOUBLE_ACE_POKEMON` there will be a total of 4 Ace Pokémon.
 
 ## `AI_FLAG_OMNISCIENT`
 AI has full knowledge of player moves, abilities, and hold items, and can use this knowledge when making decisions.
@@ -162,3 +165,6 @@ AI always assumes it will roll the lowest possible result when comparing damage 
 
 ## `AI_FLAG_SEQUENCE_SWITCHING`
 AI will always switch out after a KO in exactly party order as defined in the trainer data (ie. slot 1, then 2, then 3, etc.). The AI will never switch out mid-battle unless forced to (Roar etc.). If the AI uses a move that requires a switch where it makes a decision about what to send in (U-Turn etc.), it will always switch out into the lowest available party index.
+
+## `AI_FLAG_WEIGH_ABILITY_PREDICTION`
+AI will predict the player's ability based to its aiRating. Without this flag the AI randomly assumes an ability with an even distribution between all possible abilities until one is confirmed. With this flag, it instead guesses proportionally to each ability's aiRating, making it far more likely to guess an ability like Water Absorb than Damp if both are options.

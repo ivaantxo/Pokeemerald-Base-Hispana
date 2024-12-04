@@ -31,6 +31,7 @@
 #include "text.h"
 #include "util.h"
 #include "window.h"
+#include "line_break.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_partner.h"
@@ -384,8 +385,8 @@ static void HandleInputChooseAction(u32 battler)
          && !(gAbsentBattlerFlags & (1u << GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
          && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         {
-            // Return item to bag if partner had selected one (except flutes).
-            if (gBattleResources->bufferA[battler][1] == B_ACTION_USE_ITEM && !IsItemFlute(itemId))
+            // Return item to bag if partner had selected one (if consumable).
+            if (gBattleResources->bufferA[battler][1] == B_ACTION_USE_ITEM && ItemId_GetConsumability(itemId))
             {
                 AddBagItem(itemId, 1);
             }
@@ -2044,6 +2045,7 @@ static void PlayerHandleChooseAction(u32 battler)
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
     PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
+    BreakStringAutomatic(gDisplayedStringBattle, WindowWidthPx(B_WIN_ACTION_PROMPT), 2, FONT_NORMAL);
 
     if (B_SHOW_PARTNER_TARGET && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(B_POSITION_PLAYER_RIGHT))
     {

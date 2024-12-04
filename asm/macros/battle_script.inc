@@ -356,7 +356,7 @@
 	.byte 0x3a
 	.endm
 
-	.macro healthbar_update battler:req
+	.macro absorbhealthbarupdate battler:req
 	.byte 0x3b
 	.byte \battler
 	.endm
@@ -798,9 +798,7 @@
 	2:
 	.endm
 
-	.macro setmultihitcounter value:req
-	.byte 0x8d
-	.byte \value
+	.macro unused_0x8d
 	.endm
 
 	.macro initmultihitstring
@@ -834,7 +832,7 @@
 	.byte 0x94
 	.endm
 
-	.macro unused_95
+	.macro copybidedmg
 	.byte 0x95
 	.endm
 
@@ -1104,7 +1102,7 @@
 	.byte 0xcc
 	.endm
 
-	.macro cureifburnedparalysedorpoisoned failInstr:req
+	.macro curestatuswithmove failInstr:req
 	.byte 0xcd
 	.4byte \failInstr
 	.endm
@@ -1232,11 +1230,11 @@
 	.byte 0xe5
 	.endm
 
-	.macro unused3
+	.macro unused_0xE6
 	.byte 0xe6
 	.endm
 
-	.macro unused4
+	.macro unused_0xE7
 	.byte 0xe7
 	.endm
 
@@ -1669,6 +1667,11 @@
 	callnative BS_DamageToQuarterTargetHP
 	.endm
 
+	.macro jumpifsleepclause jumpInstr:req
+	callnative BS_JumpIfSleepClause
+	.4byte \jumpInstr
+	.endm
+
 	.macro ficklebeamdamagecalculation
 	callnative BS_FickleBeamDamageCalculation
 	.endm
@@ -1726,6 +1729,15 @@
 	.4byte \failInstr
 	.endm
 
+	.macro tryhitswitchtarget failInstr:req
+	callnative BS_TryHitSwitchTarget
+	.4byte \failInstr
+	.endm
+
+	.macro setmagiccoattarget
+	callnative BS_SetMagicCoatTarget
+	.endm
+
 	.macro jumpifcommanderactive jumpInstr:req
 	callnative BS_JumpIfCommanderActive
 	.4byte \jumpInstr
@@ -1739,13 +1751,43 @@
 	callnative BS_WaitFanfare
 	.endm
 
+	.macro setbeakblast
+	callnative BS_SetBeakBlast
+	.endm
+
+	.macro cantarshotwork failInstr:req
+	callnative BS_CanTarShotWork
+	.4byte \failInstr
+	.endm
+
+	.macro removeterrain
+	callnative BS_RemoveTerrain
+	.endm
+
+	.macro setmoveresultflags flags:req
+	callnative BS_SetMoveResultFlags
+	.2byte \flags
+	.endm
+
+	.macro clearmoveresultflags flags:req
+	callnative BS_ClearMoveResultFlags
+	.2byte \flags
+	.endm
+
+	.macro jumpifmoveresultflags flags:req failInstr:req
+	callnative BS_JumpIfMoveResultFlags
+	.2byte \flags
+	.4byte \failInstr
+	.endm
+
+	.macro jumpifcriticalhit failInstr:req
+	callnative BS_JumpIfCriticalHit
+	.4byte \failInstr
+	.endm
+
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
-	.endm
-
-	.macro setmagiccoattarget battler:req
-	various \battler, VARIOUS_SET_MAGIC_COAT_TARGET
 	.endm
 
 	.macro getifcantrunfrombattle battler:req
@@ -1965,11 +2007,6 @@
 	various BS_ATTACKER, VARIOUS_SET_ARG_TO_BATTLE_DAMAGE
 	.endm
 
-	.macro tryhitswitchtarget failInstr:req
-	various BS_ATTACKER, VARIOUS_TRY_HIT_SWITCH_TARGET
-	.4byte \failInstr
-	.endm
-
 	.macro tryautotomize battler:req, failInstr:req
 	various \battler, VARIOUS_TRY_AUTOTOMIZE
 	.4byte \failInstr
@@ -1993,9 +2030,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro trypsychoshift failInstr:req
+	.macro trypsychoshift failInstr:req sleepClauseFailInstr:req
 	various BS_ATTACKER, VARIOUS_PSYCHO_SHIFT
 	.4byte \failInstr
+	.4byte \sleepClauseFailInstr
 	.endm
 
 	.macro curestatus battler:req
@@ -2218,10 +2256,6 @@
 	.4byte \failInstr
 	.endm
 
-	.macro removeterrain
-	various BS_ATTACKER, VARIOUS_REMOVE_TERRAIN
-	.endm
-
 	.macro trytoclearprimalweather
 	various BS_ATTACKER, VARIOUS_TRY_TO_CLEAR_PRIMAL_WEATHER
 	.endm
@@ -2270,11 +2304,6 @@
 	.4byte \failInstr
 	.endm
 
-	.macro cantarshotwork battler:req, failInstr:req
-	various \battler, VARIOUS_CAN_TAR_SHOT_WORK
-	.4byte \failInstr
-	.endm
-
 	.macro checkpoltergeist battler:req, failInstr:req
 	various \battler, VARIOUS_CHECK_POLTERGEIST
 	.4byte \failInstr
@@ -2314,10 +2343,6 @@
 
 	.macro battleritemtolastuseditem battler:req
 	various \battler, VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM
-	.endm
-
-	.macro setbeakblast battler:req
-	various \battler, VARIOUS_SET_BEAK_BLAST
 	.endm
 
 	.macro swapsidestatuses
@@ -2400,7 +2425,7 @@
 	.endm
 
 	.macro jumpifmovehadnoeffect jumpInstr:req
-	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpInstr
+	jumpifmoveresultflags MOVE_RESULT_NO_EFFECT, \jumpInstr
 	.endm
 
 	.macro jumpifside battler:req, side:req, equalJumpInstr:req

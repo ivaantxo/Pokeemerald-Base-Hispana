@@ -13,7 +13,7 @@ static u8 sProbeResult;
 static u16 sSavedIme;
 
 // iwram common
-struct Time gLocalTime;
+COMMON_DATA struct Time gLocalTime = {0};
 
 // const rom
 

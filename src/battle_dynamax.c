@@ -280,7 +280,10 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
 // Returns the appropriate Max Move or G-Max Move for a battler to use.
 u16 GetMaxMove(u32 battler, u32 baseMove)
 {
-    u32 move = baseMove;
+    u32 moveType;
+    SetTypeBeforeUsingMove(baseMove, battler);
+    moveType = GetMoveType(baseMove);
+
     if (baseMove == MOVE_NONE) // for move display
     {
         return MOVE_NONE;
@@ -291,18 +294,12 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
     }
     else if (gMovesInfo[baseMove].category == DAMAGE_CATEGORY_STATUS)
     {
-        move = MOVE_MAX_GUARD;
-    }
-    else if (gBattleStruct->dynamicMoveType)
-    {
-        move = GetTypeBasedMaxMove(battler, gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK);
+        return MOVE_MAX_GUARD;
     }
     else
     {
-        move = GetTypeBasedMaxMove(battler, gMovesInfo[baseMove].type);
+        return GetTypeBasedMaxMove(battler, moveType);
     }
-
-    return move;
 }
 
 // First value is for Fighting, Poison and Multi-Attack. The second is for everything else.
@@ -415,7 +412,7 @@ static u8 GetMaxPowerTier(u32 move)
         case EFFECT_GYRO_BALL:
             return MAX_POWER_TIER_5;
         case EFFECT_MAGNITUDE:
-        case EFFECT_VARY_POWER_BASED_ON_HP:
+        case EFFECT_POWER_BASED_ON_TARGET_HP:
             return MAX_POWER_TIER_6;
         case EFFECT_FLAIL:
         case EFFECT_LOW_KICK:
@@ -528,7 +525,7 @@ void BS_SetMaxMoveEffect(void)
     u8 maxEffect = gMovesInfo[gCurrentMove].argument;
 
     // Don't continue if the move didn't land.
-    if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+    if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
@@ -762,7 +759,7 @@ void BS_SetMaxMoveEffect(void)
         {
             static const u8 sSnoozeEffects[] = {TRUE, FALSE};
             if (!(gStatuses3[gBattlerTarget] & STATUS3_YAWN)
-                && CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget))
+                && CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE)
                 && RandomElement(RNG_G_MAX_SNOOZE, sSnoozeEffects)) // 50% chance of success
             {
                 gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(2);
@@ -884,12 +881,14 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_SLEEP:
-            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
+            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget), BLOCKED_BY_SLEEP_CLAUSE))
             {
                 if (B_SLEEP_TURNS >= GEN_5)
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
                 else
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
+
+                TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
                 effect++;
             }
@@ -978,10 +977,10 @@ void BS_TrySetStatus2(void)
 void BS_HealOneSixth(void)
 {
     NATIVE_ARGS(const u8* failInstr);
-    gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 6;
-    if (gBattleMoveDamage == 0)
-        gBattleMoveDamage = 1;
-    gBattleMoveDamage *= -1;
+    gBattleStruct->moveDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
+    if (gBattleStruct->moveDamage[gBattlerTarget] == 0)
+        gBattleStruct->moveDamage[gBattlerTarget] = 1;
+    gBattleStruct->moveDamage[gBattlerTarget] *= -1;
 
     if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
         gBattlescriptCurrInstr = cmd->failInstr;    // fail
