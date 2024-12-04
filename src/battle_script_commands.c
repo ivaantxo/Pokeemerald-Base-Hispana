@@ -1125,28 +1125,13 @@ static bool32 NoTargetPresent(u8 battler, u32 move)
     return FALSE;
 }
 
-static bool32 TryAegiFormChange(void)
+static bool32 TryFormChangeBeforeMove(void)
 {
-    // Only Aegislash with Stance Change can transform, transformed mons cannot.
-    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_STANCE_CHANGE
-        || gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
+    bool32 result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE);
+    if (!result)
+        result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY);
+    if (!result)
         return FALSE;
-
-    switch (gBattleMons[gBattlerAttacker].species)
-    {
-    default:
-        return FALSE;
-    case SPECIES_AEGISLASH_SHIELD: // Shield -> Blade
-        if (IS_MOVE_STATUS(gCurrentMove))
-            return FALSE;
-        TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_ATTACK);
-        break;
-    case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
-        if (gCurrentMove != MOVE_KINGS_SHIELD)
-            return FALSE;
-        TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_KINGS_SHIELD);
-        break;
-    }
 
     BattleScriptPushCursor();
     gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
@@ -1221,7 +1206,7 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL < GEN_7 && TryAegiFormChange())
+    if (B_STANCE_CHANGE_FAIL < GEN_7 && TryFormChangeBeforeMove())
         return;
     if (AtkCanceller_UnableToUseMove(moveType))
         return;
@@ -1282,7 +1267,7 @@ static void Cmd_attackcanceler(void)
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryAegiFormChange())
+    if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryFormChangeBeforeMove())
         return;
 
     gHitMarker &= ~HITMARKER_ALLOW_NO_PP;
@@ -2373,13 +2358,13 @@ static u32 UpdateEffectivenessResultFlagsForDoubleSpreadMoves(u32 resultFlags)
     return resultFlags;
 }
 
-static inline bool32 TryStrongWindsWeakenAttack(u32 battlerDef)
+static inline bool32 TryStrongWindsWeakenAttack(u32 battlerDef, u32 moveType)
 {
     if (gBattleWeather & B_WEATHER_STRONG_WINDS && WEATHER_HAS_EFFECT)
     {
         if (gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
-         && gTypeEffectivenessTable[GetMoveType(gCurrentMove)][TYPE_FLYING] >= UQ_4_12(2.0)
+         && gTypeEffectivenessTable[moveType][TYPE_FLYING] >= UQ_4_12(2.0)
          && !gBattleStruct->printedStrongWindsWeakenedAttack)
         {
             gBattleStruct->printedStrongWindsWeakenedAttack = TRUE;
@@ -2425,6 +2410,7 @@ static inline bool32 TryActivateWeakenessBerry(u32 battlerDef)
 
 static bool32 ProcessPreAttackAnimationFuncs(void)
 {
+    u32 moveType = GetMoveType(gCurrentMove);
     if (IsDoubleSpreadMove())
     {
         u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -2437,7 +2423,7 @@ static bool32 ProcessPreAttackAnimationFuncs(void)
                  || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                     continue;
 
-                if (TryStrongWindsWeakenAttack(battlerDef))
+                if (TryStrongWindsWeakenAttack(battlerDef, moveType))
                     return TRUE;
             }
         }
@@ -2457,7 +2443,7 @@ static bool32 ProcessPreAttackAnimationFuncs(void)
     }
     else
     {
-        if (TryStrongWindsWeakenAttack(gBattlerTarget))
+        if (TryStrongWindsWeakenAttack(gBattlerTarget, moveType))
             return TRUE;
         if (TryTeraShellDistortTypeMatchups(gBattlerTarget))
             return TRUE;
@@ -9013,7 +8999,7 @@ static bool32 HasAttackerFaintedTarget(void)
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
     return GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION
-        || (!IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL) && !IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON));
+        || !IS_BATTLER_ANY_TYPE(battlerTarget, TYPE_POISON, TYPE_STEEL);
 }
 
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
@@ -10328,9 +10314,10 @@ static void Cmd_various(void)
     case VARIOUS_TRY_SOAK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if ((GetBattlerType(gBattlerTarget, 0, FALSE) == gMovesInfo[gCurrentMove].type
-            && GetBattlerType(gBattlerTarget, 1, FALSE) == gMovesInfo[gCurrentMove].type)
-            || GetActiveGimmick(gBattlerTarget) == GIMMICK_TERA)
+        u32 types[3];
+        GetBattlerTypes(gBattlerTarget, FALSE, types);
+        if ((types[0] == gMovesInfo[gCurrentMove].type && types[1] == gMovesInfo[gCurrentMove].type)
+         || GetActiveGimmick(gBattlerTarget) == GIMMICK_TERA)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -15505,7 +15492,7 @@ static void Cmd_handleballthrow(void)
                     ballMultiplier = 150;
                 break;
             case BALL_NET:
-                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_WATER) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_BUG))
+                if (IS_BATTLER_ANY_TYPE(gBattlerTarget, TYPE_WATER, TYPE_BUG))
                     ballMultiplier = B_NET_BALL_MODIFIER >= GEN_7 ? 350 : 300;
                 break;
             case BALL_DIVE:
@@ -16952,9 +16939,8 @@ void BS_TryReflectType(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
     u16 targetBaseSpecies = GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species);
-    u8 targetType1 = GetBattlerType(gBattlerTarget, 0, FALSE);
-    u8 targetType2 = GetBattlerType(gBattlerTarget, 1, FALSE);
-    u8 targetType3 = GetBattlerType(gBattlerTarget, 2, FALSE);
+    u32 targetTypes[3];
+    GetBattlerTypes(gBattlerTarget, FALSE, targetTypes);
 
     if (targetBaseSpecies == SPECIES_ARCEUS || targetBaseSpecies == SPECIES_SILVALLY)
     {
@@ -16968,32 +16954,32 @@ void BS_TryReflectType(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
-    else if (targetType1 == TYPE_MYSTERY && targetType2 == TYPE_MYSTERY && targetType3 != TYPE_MYSTERY)
+    else if (targetTypes[0] == TYPE_MYSTERY && targetTypes[1] == TYPE_MYSTERY && targetTypes[2] != TYPE_MYSTERY)
     {
         gBattleMons[gBattlerAttacker].types[0] = TYPE_NORMAL;
         gBattleMons[gBattlerAttacker].types[1] = TYPE_NORMAL;
-        gBattleMons[gBattlerAttacker].types[2] = targetType3;
+        gBattleMons[gBattlerAttacker].types[2] = targetTypes[2];
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else if (targetType1 == TYPE_MYSTERY && targetType2 != TYPE_MYSTERY)
+    else if (targetTypes[0] == TYPE_MYSTERY && targetTypes[1] != TYPE_MYSTERY)
     {
-        gBattleMons[gBattlerAttacker].types[0] = targetType2;
-        gBattleMons[gBattlerAttacker].types[1] = targetType2;
-        gBattleMons[gBattlerAttacker].types[2] = targetType3;
+        gBattleMons[gBattlerAttacker].types[0] = targetTypes[1];
+        gBattleMons[gBattlerAttacker].types[1] = targetTypes[1];
+        gBattleMons[gBattlerAttacker].types[2] = targetTypes[2];
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else if (targetType1 != TYPE_MYSTERY && targetType2 == TYPE_MYSTERY)
+    else if (targetTypes[0] != TYPE_MYSTERY && targetTypes[1] == TYPE_MYSTERY)
     {
-        gBattleMons[gBattlerAttacker].types[0] = targetType1;
-        gBattleMons[gBattlerAttacker].types[1] = targetType1;
-        gBattleMons[gBattlerAttacker].types[2] = targetType3;
+        gBattleMons[gBattlerAttacker].types[0] = targetTypes[0];
+        gBattleMons[gBattlerAttacker].types[1] = targetTypes[0];
+        gBattleMons[gBattlerAttacker].types[2] = targetTypes[2];
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
     {
-        gBattleMons[gBattlerAttacker].types[0] = targetType1;
-        gBattleMons[gBattlerAttacker].types[1] = targetType2;
-        gBattleMons[gBattlerAttacker].types[2] = targetType3;
+        gBattleMons[gBattlerAttacker].types[0] = targetTypes[0];
+        gBattleMons[gBattlerAttacker].types[1] = targetTypes[1];
+        gBattleMons[gBattlerAttacker].types[2] = targetTypes[2];
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -17585,7 +17571,7 @@ void BS_JumpIfSleepClause(void)
     NATIVE_ARGS(const u8 *jumpInstr);
 
     // Can freely sleep own partner
-    if (IsDoubleBattle() && B_FLAG_SLEEP_CLAUSE && GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
+    if (IsDoubleBattle() && IsSleepClauseEnabled() && GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
     {
         gBattleStruct->sleepClauseEffectExempt |= (1u << gBattlerTarget);
         gBattlescriptCurrInstr = cmd->nextInstr;
