@@ -323,8 +323,8 @@ DOUBLE_BATTLE_TEST("Commander Attacker is kept (Dondozo Left Slot)")
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
         HP_BAR(playerLeft);
-        // MESSAGE("The opposing Wobbuffet's attack missed!"); TODO: Message issue, otherwise fine
         HP_BAR(opponentRight);
+        MESSAGE("The opposing Wobbuffet's attack missed!");
     }
 }
 
@@ -344,7 +344,7 @@ DOUBLE_BATTLE_TEST("Commander Attacker is kept (Dondozo Right Slot)")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
         ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
-        // MESSAGE("The opposing Wobbuffet's attack missed!"); TODO: Message issue, otherwise fine
+        MESSAGE("The opposing Wobbuffet's attack missed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
         HP_BAR(playerRight);
         HP_BAR(opponentRight);

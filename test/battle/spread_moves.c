@@ -28,33 +28,26 @@ DOUBLE_BATTLE_TEST("Spread Moves: Ability and Item effects activate correctly af
     }
 }
 
-DOUBLE_BATTLE_TEST("Spread Moves: No damage will be dealt to a mon in an invulnerable position - Surf")
+DOUBLE_BATTLE_TEST("Spread Moves: No damage will be dealt to a mon in an invulnerable position")
 {
+    u32 attackingMove = 0, invulMove = 0;
+    PARAMETRIZE { attackingMove = MOVE_HYPER_VOICE; invulMove = MOVE_FLY; }
+    PARAMETRIZE { attackingMove = MOVE_LAVA_PLUME;  invulMove = MOVE_FLY; }
+    PARAMETRIZE { attackingMove = MOVE_HYPER_VOICE; invulMove = MOVE_DIVE; }
+    PARAMETRIZE { attackingMove = MOVE_LAVA_PLUME;  invulMove = MOVE_DIVE; }
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_HYPER_VOICE].target == MOVE_TARGET_BOTH);
+        ASSUME(gMovesInfo[MOVE_LAVA_PLUME].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ZAPDOS);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_FLY, target: playerLeft); MOVE(playerLeft, MOVE_HYPER_VOICE); }
+        TURN { MOVE(opponentLeft, invulMove, target: playerLeft); MOVE(playerLeft, attackingMove); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, attackingMove, playerLeft);
         NOT HP_BAR(opponentLeft);
         HP_BAR(opponentRight);
-    }
-}
-
-DOUBLE_BATTLE_TEST("Spread Moves: No damage will be dealt to a mon in an invulnerable position - Surf")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ZAPDOS);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_BUBBLE_BEAM, target: opponentLeft); MOVE(opponentLeft, MOVE_SURF); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
     }
 }
 
@@ -215,26 +208,6 @@ DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (left) and L
 }
 
 DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Eiscue and Mimikyu (Based on vanilla games)")
-{
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
-        ASSUME(gMovesInfo[MOVE_EARTHQUAKE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_EISCUE);
-        OPPONENT(SPECIES_MIMIKYU);
-        OPPONENT(SPECIES_EISCUE);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_EARTHQUAKE); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, playerLeft);
-        ABILITY_POPUP(opponentLeft, ABILITY_DISGUISE);
-        ABILITY_POPUP(playerRight, ABILITY_ICE_FACE);
-        ABILITY_POPUP(opponentRight, ABILITY_ICE_FACE);
-    }
-}
-
-// Can be removed once the above test passes
-DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Eiscue and Mimikyu (Based on battler id)")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);

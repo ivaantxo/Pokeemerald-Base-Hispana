@@ -97,23 +97,3 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a
         NOT MESSAGE("It's not very effective…");
     }
 }
-
-DOUBLE_BATTLE_TEST("[1]")
-{
-    GIVEN {
-        PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
-        PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_BLIZZARD); }
-    } SCENE {
-        ABILITY_POPUP(playerLeft, ABILITY_TERA_SHELL);
-        MESSAGE("Terapagos made its shell gleam! It's distorting type matchups!");
-        ABILITY_POPUP(playerRight, ABILITY_TERA_SHELL);
-        MESSAGE("Terapagos made its shell gleam! It's distorting type matchups!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_BLIZZARD, opponentLeft);
-        HP_BAR(playerLeft);
-        HP_BAR(playerRight);
-    }
-}

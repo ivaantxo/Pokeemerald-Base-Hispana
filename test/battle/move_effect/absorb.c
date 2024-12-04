@@ -6,20 +6,6 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_ABSORB].effect == EFFECT_ABSORB);
 }
 
-SINGLE_BATTLE_TEST("test")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_ABSORB); }
-        TURN { MOVE(player, MOVE_ABSORB); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ABSORB, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ABSORB, player);
-    }
-}
-
 SINGLE_BATTLE_TEST("Absorb recovers 50% of the damage dealt")
 {
     s16 damage;

@@ -222,14 +222,14 @@
 #define VARIOUS_SWAP_STATS                           130
 
 // Cmd_manipulatedamage
-#define DMG_CHANGE_SIGN 1
-#define DMG_RECOIL_FROM_MISS 2
-#define DMG_DOUBLED 3
-#define DMG_1_8_TARGET_HP 4
-#define DMG_FULL_ATTACKER_HP 5
-#define DMG_CURR_ATTACKER_HP 6
-#define DMG_BIG_ROOT 7
-#define DMG_RECOIL_FROM_IMMUNE 8  // Used to calculate recoil for the Gen 4 version of Jump Kick
+#define DMG_CHANGE_SIGN         1
+#define DMG_RECOIL_FROM_MISS    2
+#define DMG_DOUBLED             3
+#define DMG_1_8_TARGET_HP       4
+#define DMG_FULL_ATTACKER_HP    5
+#define DMG_CURR_ATTACKER_HP    6
+#define DMG_BIG_ROOT            7
+#define DMG_RECOIL_FROM_IMMUNE  8  // Used to calculate recoil for the Gen 4 version of Jump Kick
 
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   (1 << 7)

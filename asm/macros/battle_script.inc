@@ -356,7 +356,7 @@
 	.byte 0x3a
 	.endm
 
-	.macro absorb battler:req
+	.macro absorbhealthbarupdate battler:req
 	.byte 0x3b
 	.byte \battler
 	.endm
@@ -832,7 +832,7 @@
 	.byte 0x94
 	.endm
 
-	.macro unused_95
+	.macro copybidedmg
 	.byte 0x95
 	.endm
 

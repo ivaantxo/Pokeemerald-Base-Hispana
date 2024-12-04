@@ -3017,7 +3017,7 @@ BattleScript_EffectAbsorbLiquidOoze::
 	goto BattleScript_EffectAbsorb
 
 BattleScript_EffectAbsorb::
-	absorb BS_ATTACKER
+	absorbhealthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printfromtable gAbsorbDrainStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -6081,7 +6081,7 @@ BattleScript_BideAttack::
 	accuracycheck BattleScript_MoveMissed, ACC_CURR_MOVE
 	typecalc
 	clearmoveresultflags MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	unused_95
+	copybidedmg
 	adjustdamage
 	setbyte sB_ANIM_TURN, 1
 	attackanimation
