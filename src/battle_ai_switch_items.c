@@ -502,7 +502,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     {
         //Yawn
         if (gStatuses3[battler] & STATUS3_YAWN
-            && CanBeSlept(battler, monAbility, TRUE)
+            && CanBeSlept(battler, monAbility, BLOCKED_BY_SLEEP_CLAUSE)
             && gBattleMons[battler].hp > gBattleMons[battler].maxHP / 3)
         {
             switchMon = TRUE;

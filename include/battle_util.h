@@ -148,6 +148,12 @@ struct DamageCalculationData
     u32 padding:2;
 };
 
+enum SleepClauseBlock
+{
+    NOT_BLOCKED_BY_SLEEP_CLAUSE,
+    BLOCKED_BY_SLEEP_CLAUSE,
+};
+
 void HandleAction_ThrowBall(void);
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move);
 void HandleAction_UseMove(void);
@@ -292,7 +298,7 @@ bool32 MoveHasChargeTurnAdditionalEffect(u32 move);
 bool32 CanTargetPartner(u32 battlerAtk, u32 battlerDef);
 bool32 TargetFullyImmuneToCurrMove(u32 battlerAtk, u32 battlerDef);
 
-bool32 CanBeSlept(u32 battler, u32 ability, u32 isBlockedBySleepClause);
+bool32 CanBeSlept(u32 battler, u32 ability, enum SleepClauseBlock isBlockedBySleepClause);
 bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef, u32 defAbility);
 bool32 CanBeBurned(u32 battler, u32 ability);
 bool32 CanBeParalyzed(u32 battler, u32 ability);
