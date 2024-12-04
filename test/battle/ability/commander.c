@@ -187,9 +187,9 @@ DOUBLE_BATTLE_TEST("Commander Tatsugiri is not damaged by a double target move i
         ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         HP_BAR(playerLeft);
-        MESSAGE("Dondozo fainted!");
-        NOT HP_BAR(playerRight);
         HP_BAR(opponentRight);
+        NOT HP_BAR(playerRight);
+        MESSAGE("Dondozo fainted!");
     }
 }
 
@@ -323,8 +323,8 @@ DOUBLE_BATTLE_TEST("Commander Attacker is kept (Dondozo Left Slot)")
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
         HP_BAR(playerLeft);
-        MESSAGE("The opposing Wobbuffet's attack missed!");
         HP_BAR(opponentRight);
+        MESSAGE("The opposing Wobbuffet's attack missed!");
     }
 }
 

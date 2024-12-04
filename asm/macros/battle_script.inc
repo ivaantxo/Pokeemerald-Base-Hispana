@@ -356,7 +356,7 @@
 	.byte 0x3a
 	.endm
 
-	.macro healthbar_update battler:req
+	.macro absorbhealthbarupdate battler:req
 	.byte 0x3b
 	.byte \battler
 	.endm
@@ -832,7 +832,7 @@
 	.byte 0x94
 	.endm
 
-	.macro unused_95
+	.macro copybidedmg
 	.byte 0x95
 	.endm
 
@@ -1230,11 +1230,11 @@
 	.byte 0xe5
 	.endm
 
-	.macro unused3
+	.macro unused_0xE6
 	.byte 0xe6
 	.endm
 
-	.macro unused4
+	.macro unused_0xE7
 	.byte 0xe7
 	.endm
 
@@ -1762,6 +1762,27 @@
 
 	.macro removeterrain
 	callnative BS_RemoveTerrain
+	.endm
+
+	.macro setmoveresultflags flags:req
+	callnative BS_SetMoveResultFlags
+	.2byte \flags
+	.endm
+
+	.macro clearmoveresultflags flags:req
+	callnative BS_ClearMoveResultFlags
+	.2byte \flags
+	.endm
+
+	.macro jumpifmoveresultflags flags:req failInstr:req
+	callnative BS_JumpIfMoveResultFlags
+	.2byte \flags
+	.4byte \failInstr
+	.endm
+
+	.macro jumpifcriticalhit failInstr:req
+	callnative BS_JumpIfCriticalHit
+	.4byte \failInstr
 	.endm
 
 @ various command changed to more readable macros
@@ -2404,7 +2425,7 @@
 	.endm
 
 	.macro jumpifmovehadnoeffect jumpInstr:req
-	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpInstr
+	jumpifmoveresultflags MOVE_RESULT_NO_EFFECT, \jumpInstr
 	.endm
 
 	.macro jumpifside battler:req, side:req, equalJumpInstr:req

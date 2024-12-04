@@ -742,7 +742,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
         monAbility = GetMonAbility(&party[i]);
         CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[battler], species, monAbility);
-        if (gMoveResultFlags & flags)
+        if (gBattleStruct->moveResultFlags[BATTLE_OPPOSITE(battler)] & flags)
         {
             battlerIn1 = gLastHitBy[battler];
 
@@ -1233,7 +1233,6 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
 
     u32 aiMove;
 
-    gMoveResultFlags = 0;
     // If we couldn't find the best mon in terms of typing, find the one that deals most damage.
     for (i = firstId; i < lastId; i++)
     {

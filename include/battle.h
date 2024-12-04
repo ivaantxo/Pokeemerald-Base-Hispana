@@ -251,6 +251,8 @@ struct SpecialStatus
     u8 afterYou:1;
     u8 preventLifeOrbDamage:1; // So that Life Orb doesn't activate various effects.
     u8 distortedTypeMatchups:1;
+    u8 teraShellAbilityDone:1;
+    u8 criticalHit:1;
 };
 
 struct SideTimer
@@ -829,11 +831,25 @@ struct BattleStruct
     u16 commanderActive[MAX_BATTLERS_COUNT];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
     u8 redCardActivates:1;
-    u8 padding:7;
+    u8 padding1:7;
     u8 usedEjectItem;
-    u8 usedMicleBerry;
     u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
     u8 sleepClauseEffectExempt:4; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
+    u8 usedMicleBerry:4;
+    s32 battlerExpReward;
+
+    // Simultaneous hp reduction for spread moves
+    s32 moveDamage[MAX_BATTLERS_COUNT];
+    s32 critChance[MAX_BATTLERS_COUNT];
+    u16 moveResultFlags[MAX_BATTLERS_COUNT];
+    u8 missStringId[MAX_BATTLERS_COUNT];
+    u8 noResultString[MAX_BATTLERS_COUNT];
+    u8 doneDoublesSpreadHit:1;
+    u8 calculatedDamageDone:1;
+    u8 calculatedSpreadMoveAccuracy:1;
+    u8 printedStrongWindsWeakenedAttack:1;
+    u8 numSpreadTargets:2;
+    u8 padding2:2;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
@@ -848,7 +864,6 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL)
 #define IS_MOVE_STATUS(move)(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
-
 #define IS_MOVE_RECOIL(move)(gMovesInfo[move].recoil > 0 || gMovesInfo[move].effect == EFFECT_RECOIL_IF_MISS)
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
@@ -914,6 +929,8 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 
 #define SET_STATCHANGER(statId, stage, goesDown) (gBattleScripting.statChanger = (statId) + ((stage) << 3) + (goesDown << 7))
 #define SET_STATCHANGER2(dst, statId, stage, goesDown)(dst = (statId) + ((stage) << 3) + (goesDown << 7))
+
+#define DO_ACCURACY_CHECK 2 // Don't skip the accuracy check before the move might be absorbed
 
 // NOTE: The members of this struct have hard-coded offsets
 //       in include/constants/battle_script_commands.h
@@ -1095,7 +1112,6 @@ extern u8 gChosenMovePos;
 extern u16 gCurrentMove;
 extern u16 gChosenMove;
 extern u16 gCalledMove;
-extern s32 gBattleMoveDamage;
 extern s32 gHpDealt;
 extern s32 gBideDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
@@ -1106,7 +1122,6 @@ extern u8 gBattlerFainted;
 extern u8 gEffectBattler;
 extern u8 gPotentialItemEffectBattler;
 extern u8 gAbsentBattlerFlags;
-extern u8 gIsCriticalHit;
 extern u8 gMultiHitCounter;
 extern const u8 *gBattlescriptCurrInstr;
 extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
@@ -1122,7 +1137,6 @@ extern u16 gLockedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedMove;
 extern u8 gLastHitBy[MAX_BATTLERS_COUNT];
 extern u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT];
-extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
 extern u8 gBideTarget[MAX_BATTLERS_COUNT];
 extern u32 gSideStatuses[NUM_BATTLE_SIDES];
@@ -1208,6 +1222,30 @@ static inline struct Pokemon *GetBattlerParty(u32 battler)
 static inline bool32 IsDoubleBattle(void)
 {
     return gBattleTypeFlags & BATTLE_TYPE_DOUBLE;
+}
+
+static inline bool32 IsSpreadMove(u32 moveTarget)
+{
+    return IsDoubleBattle() && (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY);
+}
+
+static inline bool32 IsDoubleSpreadMove(void)
+{
+    return gBattleStruct->numSpreadTargets > 1
+        && !(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_UNABLE_TO_USE_MOVE))
+        && IsSpreadMove(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove));
+}
+
+static inline bool32 IsBattlerInvalidForSpreadMove(u32 battlerAtk, u32 battlerDef, u32 moveTarget)
+{
+    return battlerDef == battlerAtk
+        || !IsBattlerAlive(battlerDef)
+        || (battlerDef == BATTLE_PARTNER(battlerAtk) && (moveTarget == MOVE_TARGET_BOTH));
+}
+
+static inline bool32 MoveResultHasEffect(u32 battler)
+{
+    return !(gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_NO_EFFECT);
 }
 
 #endif // GUARD_BATTLE_H
