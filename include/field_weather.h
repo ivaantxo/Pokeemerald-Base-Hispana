@@ -152,7 +152,6 @@ void ApplyWeatherColorMapIfIdle_Gradual(u8 colorMapIndex, u8 targetColorMapIndex
 void FadeScreen(u8 mode, s8 delay);
 bool8 IsWeatherNotFadingIn(void);
 void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog);
-void ApplyWeatherColorMapToPal(u8 paletteIndex);
 void ApplyWeatherColorMapToPals(u8 startPalIndex, u8 numPalettes);
 void LoadCustomWeatherSpritePalette(const u16 *palette);
 void ResetDroughtWeatherPaletteLoading(void);

@@ -360,17 +360,23 @@ const struct FollowerMsgInfoExtended gFollowerConditionalMessages[COND_MSG_COUNT
     },
     [COND_MSG_DAY] =
     {
-    .text = (u8*)sDayTexts,
-    .textSpread = 1,
-    .emotion = FOLLOWER_EMOTION_MUSIC,
-    .conditions = {MATCH_TIME_OF_DAY(TIME_DAY)},
+        .text = (u8*)sDayTexts,
+        .textSpread = 1,
+        .emotion = FOLLOWER_EMOTION_MUSIC,
+        .conditions =
+        {
+            MATCH_TIME_OF_DAY(TIME_DAY),
+        },
     },
     [COND_MSG_NIGHT] =
     {
-    .text = (u8*)sNightTexts,
-    .textSpread = 1,
-    .emotion = FOLLOWER_EMOTION_MUSIC,
-    .conditions = {MATCH_TIME_OF_DAY(TIME_NIGHT)},
+        .text = (u8*)sNightTexts,
+        .textSpread = 1,
+        .emotion = FOLLOWER_EMOTION_MUSIC,
+        .conditions =
+        {
+            MATCH_TIME_OF_DAY(TIME_NIGHT),
+        },
     },
 };
 

@@ -1366,13 +1366,13 @@ u8 UpdateShadowColor(u16 color)
     u16 blendedColor;
     if (paletteNum < 16)
     {
-        u16 index = OBJ_PLTT_ID(paletteNum)+SHADOW_COLOR_INDEX;
+        u16 index = OBJ_PLTT_ID(paletteNum) + SHADOW_COLOR_INDEX;
         gPlttBufferUnfaded[index] = gPlttBufferFaded[index] = color;
         // Copy to temporary buffer, blend, and keep just the shadow color index
-        CpuFastCopy(&gPlttBufferFaded[index-SHADOW_COLOR_INDEX], tempBuffer, PLTT_SIZE_4BPP);
+        CpuFastCopy(&gPlttBufferFaded[index - SHADOW_COLOR_INDEX], tempBuffer, PLTT_SIZE_4BPP);
         UpdateSpritePaletteWithTime(paletteNum);
         blendedColor = gPlttBufferFaded[index];
-        CpuFastCopy(tempBuffer, &gPlttBufferFaded[index-SHADOW_COLOR_INDEX], PLTT_SIZE_4BPP);
+        CpuFastCopy(tempBuffer, &gPlttBufferFaded[index - SHADOW_COLOR_INDEX], PLTT_SIZE_4BPP);
         gPlttBufferFaded[index] = blendedColor;
     }
     return paletteNum;
@@ -1416,7 +1416,7 @@ void FogHorizontal_Main(void)
         if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
         {
           Weather_SetTargetBlendCoeffs(12, 8, 3);
-          UpdateShadowColor(0x3DEF); // Gray
+          UpdateShadowColor(RGB(15, 15, 15)); // Gray
         }
         else
         {
@@ -1549,8 +1549,7 @@ void Ash_InitVars(void)
     gWeatherPtr->ashUnused = 20; // Never read
     if (!gWeatherPtr->ashSpritesCreated)
     {
-        Weather_SetBlendCoeffs(0, 12);
-        // SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(64, 63)); // These aren't valid blend coefficients!
+        Weather_SetBlendCoeffs(0, BASE_SHADOW_INTENSITY);
     }
     gWeatherPtr->noShadows = FALSE;
 }
@@ -2009,7 +2008,7 @@ void Sandstorm_Main(void)
         break;
     case 1:
         Weather_SetTargetBlendCoeffs(16, 2, 0);
-        UpdateShadowColor(0x3DEF);
+        UpdateShadowColor(RGB(15, 15, 15));
         gWeatherPtr->initStep++;
         break;
     case 2:

@@ -1539,9 +1539,9 @@ void CB1_Overworld(void)
 
 const struct BlendSettings gTimeOfDayBlend[] =
 {
-    [TIME_MORNING] = {.coeff = 4,  .blendColor = 0xA8B0E0,   .isTint = TRUE}, // Originally TIME_OF_DAY_TWILIGHT
+    [TIME_MORNING] = {.coeff = 4,  .blendColor = 0xA8B0E0,   .isTint = TRUE},
     [TIME_DAY]     = {.coeff = 0,  .blendColor = 0,          .isTint = FALSE},
-    [TIME_EVENING] = {.coeff = 4,  .blendColor = 0xA8B0E0,   .isTint = TRUE}, // Originally TIME_OF_DAY_TWILIGHT
+    [TIME_EVENING] = {.coeff = 4,  .blendColor = 0xA8B0E0,   .isTint = TRUE},
     [TIME_NIGHT]   = {.coeff = 10, .blendColor = TINT_NIGHT, .isTint = TRUE},
 };
 
@@ -1707,8 +1707,8 @@ static void OverworldBasic(void)
         UpdateTimeOfDay();
         FormChangeTimeUpdate();
         if (cachedBlend.time0 != currentTimeBlend.time0
-            || cachedBlend.time1 != currentTimeBlend.time1
-            || cachedBlend.weight != currentTimeBlend.weight)
+         || cachedBlend.time1 != currentTimeBlend.time1
+         || cachedBlend.weight != currentTimeBlend.weight)
         {
            UpdateAltBgPalettes(PALETTES_BG);
            UpdatePalettesWithTime(PALETTES_ALL);

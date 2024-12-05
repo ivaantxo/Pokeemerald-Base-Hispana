@@ -2632,7 +2632,7 @@ void UpdateLightSprite(struct Sprite *sprite)
         DestroySprite(sprite);
         FieldEffectFreeTilesIfUnused(sheetTileStart);
         FieldEffectFreePaletteIfUnused(paletteNum);
-        Weather_SetBlendCoeffs(7, 12); // TODO: Restore original blend coeffs at dawn
+        Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY); // TODO: Restore original blend coeffs at dawn
         return;
     }
 
@@ -2647,25 +2647,25 @@ void UpdateLightSprite(struct Sprite *sprite)
     case 0:
         if (gPaletteFade.active) // if palette fade is active, don't flicker since the timer won't be updated
         {
-            Weather_SetBlendCoeffs(7, 12);
+            Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY);
             sprite->invisible = FALSE;
         }
         else if (gPlayerAvatar.tileTransitionState)
         {
-            Weather_SetBlendCoeffs(7, 12); // As long as the second coefficient stays 12, shadows will not change
+            Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY); // As long as the second coefficient stays 12, shadows will not change
             sprite->invisible = FALSE;
             if (GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) == OBJ_EVENT_PAL_TAG_LIGHT_2)
                 LoadSpritePaletteInSlot(&sObjectEventSpritePalettes[FindObjectEventPaletteIndexByTag(OBJ_EVENT_PAL_TAG_LIGHT)], sprite->oam.paletteNum);
         }
         else if ((sprite->invisible = gTimeUpdateCounter & 1))
         {
-            Weather_SetBlendCoeffs(12, 12);
+            Weather_SetBlendCoeffs(12, BASE_SHADOW_INTENSITY);
             if (GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) == OBJ_EVENT_PAL_TAG_LIGHT)
                 LoadSpritePaletteInSlot(&sObjectEventSpritePalettes[FindObjectEventPaletteIndexByTag(OBJ_EVENT_PAL_TAG_LIGHT_2)], sprite->oam.paletteNum);
         }
         break;
     case 1 ... 2:
-        Weather_SetBlendCoeffs(12, 12);
+        Weather_SetBlendCoeffs(12, BASE_SHADOW_INTENSITY);
         sprite->invisible = FALSE;
         break;
     }

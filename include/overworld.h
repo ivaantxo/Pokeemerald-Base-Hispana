@@ -40,15 +40,15 @@ struct LinkPlayerObjectEvent
     u8 movementMode;
 };
 
-struct __attribute__((packed)) TimeBlendSettings {
-  u16 weight:9;
-  u16 time1:3;
-  u16 time0:3;
-  u16 unused:1;
-  u16 altWeight;
+struct __attribute__((packed)) TimeBlendSettings
+{
+    u16 weight:9;
+    u16 time1:3;
+    u16 time0:3;
+    u16 unused:1;
+    u16 altWeight;
 };
 
-// Exported RAM declarations
 extern struct WarpData gLastUsedWarp;
 extern struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4];
 

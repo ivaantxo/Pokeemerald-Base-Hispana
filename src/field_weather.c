@@ -446,16 +446,16 @@ static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex)
         u32 palettes = PALETTES_ALL;
         numPalettes += startPalIndex;
         palettes = (palettes >> startPalIndex) << startPalIndex;
-        palettes = (palettes << (32-numPalettes)) >> (32-numPalettes);
+        palettes = (palettes << (32 - numPalettes)) >> (32 - numPalettes);
         numPalettes -= startPalIndex;
         colorMapIndex--;
         palOffset = PLTT_ID(startPalIndex);
         UpdateAltBgPalettes(palettes & PALETTES_BG);
         // Thunder gamma-shift looks bad on night-blended palettes, so ignore time blending in some situations
-        if (!(colorMapIndex > 3) && MapHasNaturalLight(gMapHeader.mapType))
-          UpdatePalettesWithTime(palettes);
+        if (colorMapIndex <= 3 && MapHasNaturalLight(gMapHeader.mapType))
+            UpdatePalettesWithTime(palettes);
         else
-          CpuFastCopy(gPlttBufferUnfaded + palOffset, gPlttBufferFaded + palOffset, PLTT_SIZE_4BPP * numPalettes);
+            CpuFastCopy(gPlttBufferUnfaded + palOffset, gPlttBufferFaded + palOffset, PLTT_SIZE_4BPP * numPalettes);
         numPalettes += startPalIndex;
         curPalIndex = startPalIndex;
 
@@ -808,6 +808,7 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog)
 {
     u16 paletteIndex = 16 + spritePaletteIndex;
     u16 i;
+
     switch (gWeatherPtr->palProcessingState)
     {
     case WEATHER_PAL_STATE_SCREEN_FADING_IN:
@@ -862,14 +863,9 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog)
     if (gPaletteFade.y == 16)
         CpuFastCopy(
             gPlttBufferUnfaded + OBJ_PLTT_ID(spritePaletteIndex),
-            gDecompressionBuffer + 2*OBJ_PLTT_ID(spritePaletteIndex),
+            gDecompressionBuffer + 2 * OBJ_PLTT_ID(spritePaletteIndex),
             PLTT_SIZE_4BPP
         );
-}
-
-void ApplyWeatherColorMapToPal(u8 paletteIndex) // now unused / obselete
-{
-    ApplyColorMap(paletteIndex, 1, gWeatherPtr->colorMapIndex);
 }
 
 void ApplyWeatherColorMapToPals(u8 startPalIndex, u8 numPalettes)

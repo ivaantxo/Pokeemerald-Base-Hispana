@@ -1355,7 +1355,7 @@ static void InitPatternWeaveTransition(struct Task *task)
     sTransitionData->WIN0V = DISPLAY_HEIGHT;
     sTransitionData->BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL;
     sTransitionData->BLDALPHA = BLDALPHA_BLEND(task->tBlendTarget2, task->tBlendTarget1);
-    UpdateShadowColor(0x3DEF); // force shadows to gray
+    UpdateShadowColor(RGB(15, 15, 15)); // force shadows to gray
 
     for (i = 0; i < DISPLAY_HEIGHT; i++)
         gScanlineEffectRegBuffers[1][i] = DISPLAY_WIDTH;
@@ -3916,10 +3916,9 @@ void Task_BattleTransition_Intro(u8 taskId)
 static bool8 TransitionIntro_FadeToGray(struct Task *task)
 {
     u8 paletteNum = IndexOfSpritePaletteTag(TAG_WEATHER_START);
-    u16 index = (paletteNum+16)*16+9; // SHADOW_COLOR_INDEX
+    u16 index = OBJ_PLTT_ID(paletteNum) + 9; // SHADOW_COLOR_INDEX
     if (task->tDelayTimer == 0 || --task->tDelayTimer == 0)
     {
-
         task->tDelayTimer = task->tFadeToGrayDelay;
         task->tBlend += task->tFadeToGrayIncrement;
         if (task->tBlend > 16)
@@ -3958,7 +3957,7 @@ static bool8 TransitionIntro_FadeFromGray(struct Task *task)
         SetGpuReg(REG_OFFSET_BLDCNT, task->tBldCntSaved);
         if (paletteNum < 16)
         {
-            u16 index = ((paletteNum + 16) * 16) + 9; // SHADOW_COLOR_INDEX
+            u16 index = OBJ_PLTT_ID(paletteNum) + 9; // SHADOW_COLOR_INDEX
             gPlttBufferFaded[index] = task->tShadowColor;
         }
     }
@@ -4253,7 +4252,7 @@ static bool8 FrontierLogoWave_Init(struct Task *task)
     LZ77UnCompVram(sFrontierLogo_Tileset, tileset);
     LoadPalette(sFrontierLogo_Palette, BG_PLTT_ID(15), sizeof(sFrontierLogo_Palette));
     sTransitionData->cameraY = 0;
-    UpdateShadowColor(0x3DEF); // force shadows to gray
+    UpdateShadowColor(RGB(15, 15, 15)); // force shadows to gray
 
     task->tState++;
     return FALSE;

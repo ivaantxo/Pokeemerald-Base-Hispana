@@ -26,8 +26,7 @@
 #define OBJ_PLTT_ID(n) (OBJ_PLTT_OFFSET + PLTT_ID(n))
 #define OBJ_PLTT_ID2(n) (PLTT_ID((n) + 16))
 
-// Used to determine whether a sprite palette tag
-// should be excluded from time (and weather) blending
+// Used to determine whether a sprite palette tag should be excluded from time (and weather) blending
 #define BLEND_IMMUNE_FLAG (1 << 15)
 #define IS_BLEND_IMMUNE_TAG(tag) ((tag) & BLEND_IMMUNE_FLAG)
 
@@ -39,10 +38,12 @@ enum
     FAST_FADE_OUT_TO_BLACK,
 };
 
-struct BlendSettings {
-  u32 blendColor:24;
-  u32 isTint:1;
-  u32 coeff:5;
+struct BlendSettings
+{
+    u32 blendColor:24;
+    u32 isTint:1;
+    u32 coeff:5;
+    u32 unused:2;
 };
 
 struct PaletteFadeControl
@@ -84,7 +85,7 @@ void TransferPlttBuffer(void);
 u32 UpdatePaletteFade(void);
 void ResetPaletteFade(void);
 bool32 BeginNormalPaletteFade(u32 selectedPalettes, s8 delay, u8 startY, u8 targetY, u32 blendColor);
-bool32 BeginTimeOfDayPaletteFade(u32, s8, u8, u8, struct BlendSettings *, struct BlendSettings *, u32, u32);
+bool32 BeginTimeOfDayPaletteFade(u32 selectedPalettes, s8 delay, u8 startY, u8 targetY, struct BlendSettings *bld0, struct BlendSettings *bld1, u32 weight, u32 color);
 void PaletteStruct_ResetById(u32 id);
 void ResetPaletteFadeControl(void);
 void InvertPlttBuffer(u32 selectedPalettes);
