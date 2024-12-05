@@ -32,7 +32,6 @@ const u8 gText_MysteryGiftCantUse[] = _("El Regalo Mist. no es compatible\ncon e
 const u8 gText_MysteryEventsCantUse[] = _("Con el conector inalámbrico no puede\naccederse a Eventos Misteriosos.");
 const u8 gText_SaveFileCorrupted[] = _("Partida dañada. Se cargará \nla partida guardada anterior.");
 const u8 gText_SaveFileErased[] = _("Partida eliminada…");
-const u8 gJPText_No1MSubCircuit[] = _("1Mサブきばんが ささっていません！");
 const u8 gText_BatteryRunDry[] = _("La pila interna está agotada,\npero se puede jugar.\pSin embargo, no se producirá  \nningún evento temporal.");
 const u8 gText_Time[] = _("Tiempo de juego");
 ALIGNED(4) const u8 gText_PickNextCancel[] = _("{DPAD_UPDOWN}Sel. {A_BUTTON}Sig. {B_BUTTON}Atrás");
@@ -174,7 +173,6 @@ const u8 gText_Store[] = _("Guardar");
 const u8 gMenuText_Check[] = _("Ver");
 const u8 gText_None[] = _("No tiene");
 const u8 gMenuText_Deselect[] = _("Anular");
-const u8 gText_ThreeMarks[] = _("???");
 const u8 gText_FiveMarks[] = _("?????");
 const u8 gText_Slash[] = _("/");
 const u8 gText_OneDash[] = _("-");
@@ -227,6 +225,9 @@ const u8 gText_TheBattle[] = _("al combate");
 const u8 gText_ThePokemonList[] = _("a la lista Pokémon");
 const u8 gText_TheShop[] = _("a la tienda");
 const u8 gText_ThePC[] = _("al PC");
+const u8 gText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
+const u8 gText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
+const u8 gText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
 
 const u8 *const gBagMenu_ReturnToStrings[] =
 {
@@ -262,11 +263,11 @@ const u8 gText_KeyItemsPocket[] = _("Obj. Clave");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
-    [ITEMS_POCKET] = gText_ItemsPocket,
-    [BALLS_POCKET] = gText_PokeBallsPocket,
-    [TMHM_POCKET]  = gText_TMHMPocket,
-    [BERRIES_POCKET] = gText_BerriesPocket,
-    [KEYITEMS_POCKET] = gText_KeyItemsPocket
+    [ITEMS_POCKET] =    COMPOUND_STRING("ITEMS"),
+    [BALLS_POCKET] =    COMPOUND_STRING("POKé BALLS"),
+    [TMHM_POCKET]  =    COMPOUND_STRING("TMs & HMs"),
+    [BERRIES_POCKET] =  COMPOUND_STRING("BERRIES"),
+    [KEYITEMS_POCKET] = COMPOUND_STRING("KEY ITEMS")
 };
 
 const u8 gText_NumberItem_TMBerry[] = _("Nº{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");
@@ -274,8 +275,6 @@ const u8 gText_NumberItem_HM[] = _("{CLEAR_TO 0x11}{STR_VAR_1}{CLEAR 0x05}{STR_V
 const u8 gText_SizeSlash[] = _("Tam. /");
 const u8 gText_FirmSlash[] = _("Dur. /");
 const u8 gText_Var1DotVar2[] = _("{STR_VAR_1},{STR_VAR_2} cm");
-
-// Berry firmness strings
 const u8 gBerryFirmnessString_VerySoft[] = _("Muy blanda");
 const u8 gBerryFirmnessString_Soft[] = _("Blanda");
 const u8 gBerryFirmnessString_Hard[] = _("Dura");
@@ -304,7 +303,6 @@ const u8 gText_Sweet[] = _("Dulce");
 const u8 gText_Bitter[] = _("Amargo");
 const u8 gText_Sour[] = _("Ácido");
 const u8 gText_StowCase[] = _("Guardar tubo");
-const u8 gText_LvVar1[] = _("{LV}{STR_VAR_1}");
 const u8 gText_ThrowAwayVar1[] = _("¿Tirar el {STR_VAR_1}?");
 const u8 gText_Var1ThrownAway[] = _("Tiraste el\n{STR_VAR_1}.");
 const u8 gText_Var1AteTheVar2[] = _("{STR_VAR_1} se comió un\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
@@ -956,7 +954,6 @@ const u8 gText_CantCallOpponentHere[] = _("No puedes llamar al rival aquí.");
 const u8 gText_PokenavMatchCall_Strategy[] = _("Estrategia");
 const u8 gText_PokenavMatchCall_TrainerPokemon[] = _("Pokémon");
 const u8 gText_PokenavMatchCall_SelfIntroduction[] = _("Presentación");
-const u8 gText_Pokenav_ClearButtonList[] = _("{CLEAR 0x80}");
 const u8 gText_PokenavMap_ZoomedOutButtons[] = _("{A_BUTTON}Parc {B_BUTTON}Salir");
 const u8 gText_PokenavMap_ZoomedInButtons[] = _("{A_BUTTON}Comp {B_BUTTON}Salir");
 const u8 gText_PokenavCondition_MonListButtons[] = _("{A_BUTTON}Perfil {B_BUTTON}Salir");
@@ -1258,6 +1255,8 @@ const u8 gText_Sorry[] = _("Lo Siento");
 const u8 gText_YaySmileEmoji[] = _("Cuidado{EMOJI_BIGSMILE}");
 const u8 gText_ThankYou[] = _("¡Gracias!");
 const u8 gText_ByeBye[] = _("¡Adiós!");
+const u8 gText_PlayerScurriedToCenter[] = _("{PLAYER} scurried to a POKéMON CENTER,\nprotecting the exhausted and fainted\nPOKéMON from further harm…\p");
+const u8 gText_PlayerScurriedBackHome[] = _("{PLAYER} scurried back home, protecting\nthe exhausted and fainted POKéMON from\nfurther harm…\p");
 const u8 gText_MatchCallSteven_Strategy[] = _("¡Dar en los puntos débiles!");
 const u8 gText_MatchCallSteven_Pokemon[] = _("Los mejores de tipo acero.");
 const u8 gText_MatchCallSteven_Intro1_BeforeMeteorFallsBattle[] = _("Puedo remontar cascadas");
@@ -1804,6 +1803,8 @@ const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
+const u8 gText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
+const u8 gText_Rename[] = _("RENAME");
 const u8 gText_MaleSymbolPokeNav[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_RED}{WHITE}{GREEN}♂{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
 const u8 gText_FemaleSymbolPokeNav[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_GREEN}{WHITE}{BLUE}♀{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
 const u8 gText_NoGenderSymbolPokeNav[] = _(" ");

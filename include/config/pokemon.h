@@ -31,12 +31,22 @@
 #define P_NATURE_INHERITANCE            GEN_LATEST  // En Gen 3, Everstone otorga a Ditto y a las madres un 50% de probabilidad de transmitir la Naturaleza. Desde Gen 4, cualquiera puede transmitir la naturaleza. Desde Gen 5, la probabilidad es del 100%.
 #define P_ABILITY_INHERITANCE           GEN_LATEST  // En B2W2, un Pokémon hembra tiene un 80% de probabilidad de transmitir su habilidad si se cría con un macho. Desde Gen 6, la probabilidad es del 80% para habilidad normal y 60% para Habilidad Oculta, y cualquiera puede transmitir sus habilidades si se cría con Ditto. NOTA: Efecto de BW: Se ha omitido la probabilidad del 60% de transmitir HA y aleatorio para habilidad normal.
 #define P_EGG_MOVE_TRANSFER             GEN_LATEST  // A partir de Gen 8, si dos Pokémon de la misma especie están juntos en el Centro de Crianza, uno conoce un Movimiento de Huevo y el otro tiene un espacio vacío, el otro Pokémon recibirá el Movimiento de Huevo en el espacio vacío. En Gen 9, si un Pokémon sostiene una Hierba Espejo, recibirá Movimientos de Huevo del otro independientemente de la especie.
+#define P_SCATTERBUG_LINE_FORM_BREED   SPECIES_SCATTERBUG_FANCY  // Choose the Scatterbug form all Vivillon/Spewpa/Scatterbug will breed into, basically aligning with the "location" of the player's game.
 
 // Configuración específica de especies
 #define P_SHEDINJA_BALL             GEN_LATEST  // Desde Gen 4, Shedinja requiere una Pokébola para su evolución. En Gen 3, Shedinja hereda la Pokébola de Nincada.
 #define P_KADABRA_EVERSTONE         GEN_LATEST  // Desde Gen 4, Kadabra puede evolucionar incluso cuando sostiene un Everstone.
 #define P_SHUCKLE_BERRY_JUICE       GEN_LATEST  // En Gen 2, Shuckle tenía una probabilidad de 1/16 de convertir la Baya que sostiene en Jugo de Baya. Habilitar esto permitirá que Shuckle haga esto con una Baya Oran, que es el sucesor espiritual del artículo Baya.
-#define P_ARCEUS_UNIQUE_FORM_ICONS  GEN_LATEST  // Desde Gen 9, Arceus además cambia su ícono para reflejar su forma actual.
+
+// Species graphic settings
+#define P_GENDER_DIFFERENCES            TRUE        // If TRUE, Pokémon will have graphical-only differences when they're female. Female *forms* such as Meowstic are not affected by this.
+#define P_CUSTOM_GENDER_DIFF_ICONS      TRUE        // If TRUE, will give more Pokémon custom icons for their female differences, i.e. Hippopotas and Hippowdon
+#define P_ARCEUS_UNIQUE_FORM_ICONS      GEN_LATEST  // Since Gen 9, Arceus additionally changes its icon to reflect its current form.
+#define P_FOOTPRINTS                    TRUE        // If TRUE, Pokémon will have footprints (as was the case up to Gen 5 and in BDSP). Disabling this saves some ROM space.
+#define P_TWO_FRAME_FRONT_SPRITES       TRUE        // In Pokémon Emerald, Pokémon front sprites always consist of two frames. This config can revert it to only use the first frame, as is the case in the other Gen 3 games.
+#define P_GBA_STYLE_SPECIES_GFX         FALSE       // By default, Pokémon sprites use Gen 4/5's style. This config can revert them back to GBA-style. NOTE: B_ENEMY_MON_SHADOW_STYLE is disabled when using these sprites for now.
+#define P_GBA_STYLE_SPECIES_ICONS       FALSE       // By default, Pokémon have their updated icons. This config can revert them back to GBA-style.
+#define P_GBA_STYLE_SPECIES_FOOTPRINTS  FALSE       // By default, Pokémon have their updated footprints. This config can revert them back to GBA-style.
 
 // Otras configuraciones
 #define P_CUSTOM_GENDER_DIFF_ICONS       TRUE        // Si es TRUE, dará a más Pokémon íconos personalizados para sus formas femeninas, es decir, Hippopotas y Hippowdon
@@ -51,6 +61,10 @@
 #define P_TWO_FRAME_FRONT_SPRITES        TRUE        // En Pokémon Esmeralda, los sprites frontales de Pokémon siempre consisten en dos cuadros. Esta configuración puede revertirlo para usar solo el primer cuadro, como en los otros juegos de Gen 3.
 #define P_ONLY_OBTAINABLE_SHINIES        FALSE       // Si es TRUE, los Pokémon encontrados en la Pirámide de Batalla no serán shiny.
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // Si es TRUE, los Pokémon encontrados cuando el jugador se queda sin Poké Balls no serán shiny.
+#define P_SHOW_DYNAMIC_TYPES             FALSE       // If TRUE, all moves with dynamic type changes will be reflected as their current type in battle/summary screens instead of just select ones like in vanilla.
+#define P_SUMMARY_SCREEN_MOVE_RELEARNER  TRUE        // If TRUE, shows an option for Pokémon to relearn moves on the summary screen moves page.
+#define P_SUMMARY_MOVE_RELEARNER_FULL_PP TRUE        // If TRUE, the move relearner in the summary screen restores relearned moves' PP to full.
+#define P_SUMMARY_SCREEN_RENAME          TRUE        // If TRUE, an option to change Pokémon nicknames replaces the cancel prompt on the summary screen info page.
 
 // Configuración de ayudantes de aprendizajes
 #define P_LEARNSET_HELPER_TEACHABLE TRUE        // Si es TRUE, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.

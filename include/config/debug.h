@@ -12,7 +12,6 @@
 #define DEBUG_AI_DELAY_TIMER            FALSE   // Si se establece en TRUE, muestra el número de frames que tarda la IA en elegir un movimiento. Reemplaza el texto "Qué hará PKMN". Útil para desarrolladores o cualquier persona que modifique el código de la IA y quiera ver si no tarda demasiado en ejecutarse.
 
 // Depuración de Pokémon
-#define DEBUG_POKEMON_MENU              TRUE    // Habilita un menú de depuración para los sprites e íconos de los Pokémon, accesible al presionar SELECT en la pantalla de resumen.
-
+#define DEBUG_POKEMON_SPRITE_VISUALIZER              TRUE    // Habilita un menú de depuración para los sprites e íconos de los Pokémon, accesible al presionar SELECT en la pantalla de resumen.
 
 #endif // GUARD_CONFIG_DEBUG_H

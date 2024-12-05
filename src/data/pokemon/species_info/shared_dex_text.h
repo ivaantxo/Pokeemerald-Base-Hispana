@@ -5,7 +5,7 @@ const u8 gFallbackPokedexText[] = _(
     "en este momento.");
 
 // Gen 1 families
-const u8 gRaticateAlolanPokedexText[] = _(
+const u8 gRaticateAlolaPokedexText[] = _(
     "Forma un grupo de Rattata, del cual\n"
     "asume el mando. Cada grupo tiene\n"
     "su propio territorio, y las disputas\n"
@@ -23,7 +23,7 @@ const u8 gPikachuPokedexText[] = _(
     "en una explosión, la potencia\n"
     "eléctrica es equivalente a un rayo.");
 
-const u8 gMarowakAlolanPokedexText[] = _(
+const u8 gMarowakAlolaPokedexText[] = _(
     "Se dice que las llamas malditas que\n"
     "iluminan el hueso que lleva causan\n"
     "dolor tanto mental como físico que nunca\n"

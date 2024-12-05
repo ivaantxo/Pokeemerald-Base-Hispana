@@ -111,7 +111,7 @@
 #define B_BURN_HIT_THAW             GEN_LATEST // En Gen6+, los movimientos dañinos con una posibilidad de quemadura descongelarán al objetivo, independientemente de si son movimientos de tipo Fuego o no.
 #define B_HEALING_WISH_SWITCH       GEN_LATEST // En Gen5+, el Pokémon que recibe Healing Wish entra al final del turno.
                                                // Además, en gen8+ el efecto de Healing Wish se almacenará hasta que el usuario cambie a un Pokémon afectado por estado o herido.
-#define B_DEFOG_CLEARS_TERRAIN      GEN_LATEST // En Gen8+, Defog también limpia el Terreno activo.
+#define B_DEFOG_EFFECT_CLEARING     GEN_LATEST // En Gen8+, Defog también limpia el Terreno activo.
 #define B_STOCKPILE_RAISES_DEFS     GEN_LATEST // En Gen4+, Stockpile también aumenta las estadísticas de Defensa y Defensa Especial. Una vez que se usa Spit Up / Swallow, estos cambios de estadísticas se pierden.
 #define B_TRANSFORM_SHINY           GEN_LATEST // En Gen4+, Transform copiará el estado shiny del oponente en lugar de mantener su propio estado shiny.
 #define B_TRANSFORM_FORM_CHANGES    GEN_LATEST // En Gen5+, los Pokémon transformados no pueden cambiar de forma.
@@ -190,6 +190,7 @@
 #define B_FLAG_NO_BAG_USE           0     // Si esta flag está activada, la capacidad de usar la bolsa en batalla está desactivada.
 #define B_FLAG_NO_CATCHING          0     // Si esta flag está activada, la capacidad de capturar Pokémon salvajes está desactivada.
 #define B_FLAG_AI_VS_AI_BATTLE      0     // Si esta flag está activada, los Pokémon del jugador serán controlados por la IA en las siguientes batallas.
+#define B_FLAG_NO_RUNNING           0     // If this flag is set, the ability to escape from wild battles is disabled. Also makes Roar/Whirlwind and Teleport (under Gen8) fail.
 #define B_FLAG_DYNAMAX_BATTLE       0     // Si esta flag está activada, la habilidad de Dynamax en batalla está habilitada para todos los entrenadores.
 #define B_FLAG_TERA_ORB_CHARGED     0     // Si esta flag está activada, el Tera Orb está cargado. Se activa automáticamente al curar y se borra al Terastalizar una vez configurado.
 #define B_FLAG_TERA_ORB_NO_COST     0     // Si esta flag está activada, el Tera Orb no usa su carga al Terastalizar. En S/V, esto ocurre después de un evento con Terapagos.
@@ -209,14 +210,17 @@
 // Configuración de flags y Variables
 #define B_RESET_FLAGS_VARS_AFTER_WHITEOUT TRUE // Si es TRUE, Overworld_ResetBattleFlagsAndVars reiniciará las flags y variables relacionadas con la batalla cuando el jugador se desmaye.
 
-// Configuración de Terrenos
-#define B_TERRAIN_BG_CHANGE         TRUE       // Si se establece en TRUE, los movimientos de terreno cambian permanentemente el fondo de batalla predeterminado hasta que el efecto se desvanezca.
-#define B_THUNDERSTORM_TERRAIN      TRUE       // Si es TRUE, las tormentas eléctricas en el mundo exterior generan Lluvia y Terreno Eléctrico como en Gen 8.
-#define B_TERRAIN_TYPE_BOOST        GEN_LATEST // En Gen8, el daño se aumenta en un 30% en lugar de un 50%.
-#define B_SECRET_POWER_EFFECT       GEN_LATEST // Los efectos de Secret Power cambian según el terreno y la generación. Consulta el caso de MOVE_EFFECT_SECRET_POWER en `SetMoveEffect`.
-#define B_SECRET_POWER_ANIMATION    GEN_LATEST // Las animaciones de Secret Power cambian según el terreno y la generación.
-#define B_NATURE_POWER_MOVES        GEN_LATEST // Nature Power llama a diferentes movimientos según el terreno y la generación. Consulta sNaturePowerMoves.
-#define B_CAMOUFLAGE_TYPES          GEN_LATEST // Camouflage cambia al usuario a diferentes tipos según el terreno y la generación. Consulta sTerrainToType.
+// Ingame partner flag
+#define B_SHOW_PARTNER_TARGET             FALSE // Shows the battler partner will target.
+
+// Terrain settings
+#define B_TERRAIN_BG_CHANGE         TRUE       // If set to TRUE, terrain moves permanently change the default battle background until the effect fades.
+#define B_THUNDERSTORM_TERRAIN      TRUE       // If TRUE, overworld Thunderstorm generates Rain and Electric Terrain as in Gen 8.
+#define B_TERRAIN_TYPE_BOOST        GEN_LATEST // In Gen8, damage is boosted by 30% instead of 50%.
+#define B_SECRET_POWER_EFFECT       GEN_LATEST // Secret Power's effects change depending on terrain and generation. See MOVE_EFFECT_SECRET_POWER's case in `SetMoveEffect`.
+#define B_SECRET_POWER_ANIMATION    GEN_LATEST // Secret Power's animations change depending on terrain and generation.
+#define B_NATURE_POWER_MOVES        GEN_LATEST // Nature Power calls different moves depending on terrain and generation. See sNaturePowerMoves.
+#define B_CAMOUFLAGE_TYPES          GEN_LATEST // Camouflage changes the user to different types depending on terrain and generation. See sTerrainToType.
 
 // Configuración de Interfaz
 #define B_ABILITY_POP_UP            TRUE  // En Gen5+, las habilidades de los Pokémon se muestran en una ventana emergente cuando se activan en batalla.
@@ -277,5 +281,14 @@
 #define B_ENEMY_THROW_BALLS          GEN_LATEST  // En GEN_6+, los entrenadores enemigos lanzan Poké Balls en la batalla en lugar de aparecer solo en el suelo y abrirse.
 #define B_ENEMY_THROW_BALLS_SOUND    GEN_LATEST  // En GEN_5+, las Poké Balls de los entrenadores enemigos hacen un sonido al ser lanzadas para sacar un Pokémon. Esto solo se puede usar cuando B_ENEMY_THROW_BALLS está configurado en GEN_6 o posterior.
 #define B_PLAYER_THROW_BALLS_SOUND   GEN_LATEST  // En GEN_5+, las Poké Balls del jugador hacen un sonido al ser lanzadas para sacar un Pokémon.
+
+#define SHOW_TYPES_NEVER    0
+#define SHOW_TYPES_ALWAYS   1
+#define SHOW_TYPES_CAUGHT   2
+#define B_SHOW_TYPES        SHOW_TYPES_NEVER // When defined as SHOW_TYPES_ALWAYS, after selecting "Fight" in battle, the types of all Pokemon are revealed. Whe defined as SHOW_TYPES_OWN, types are only revealed if the player owns the mon in question.
+
+// Pokémon battle sprite settings
+#define B_ENEMY_MON_SHADOW_STYLE        GEN_3 // In Gen4+, all enemy Pokemon will have a shadow drawn beneath them.
+                                              // Currently Gen4+ shadows don't properly work with Trainerslides
 
 #endif // GUARD_CONFIG_BATTLE_H

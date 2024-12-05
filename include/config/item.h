@@ -19,6 +19,8 @@
 #define I_BERRY_PRICE                   GEN_7       // Desde que las Berries se volvieron inplantables (Gen8+), su precio ha aumentado.
 #define I_POWER_ITEM_BOOST              GEN_LATEST  // En Gen7+, los Power Items otorgan 8 EV en lugar de 4 EV.
 #define I_PREMIER_BALL_BONUS            GEN_LATEST  // En LGPE a partir de (Gen8+ aquí), se te da una Premier Ball por cada 10 Poké Balls de cualquier tipo y en la misma compra. Anteriormente, solo se aplicaba a Poké Balls regulares y solo se podía obtener 1 por compra.
+#define I_ROTOM_CATALOG_THUNDER_SHOCK   GEN_LATEST  // In Gen9+, reverting Rotom to its base form will teach it Thunder Shock even if it knows another move.
+#define I_REPEL_INCLUDE_FAINTED         GEN_LATEST  // In Gen1 and Gen6+, Repels always use the level of the first member of the party to check which wild Pokémon to prevent encounters with, even if that member is fainted. In Gen2-5, it only uses the level of the first non-fainted Pokémon.
 
 // Configuración de TM
 #define I_REUSABLE_TMS          FALSE       // En Gen5-8, los TMs son reutilizables. Establecer esto en TRUE hará que todos los TMs de la versión estándar sean reutilizables, aunque también se pueden seleccionar individualmente estableciendo su importancia en 1.
@@ -37,10 +39,12 @@
 // Buscapelea (VS seeker)
 #define I_VS_SEEKER_CHARGING        0     // Si esta bandera está asignada, la funcionalidad del Buscador VS se habilitará. Cuando el jugador tenga el Buscador VS, las funciones de rematch de Match Call dejarán de funcionar.
 
-// Pesca
-#define I_FISHING_CHAIN             FALSE // Introducido en XY, enganchar al mismo Pokémon repetidamente aumenta las probabilidades de que ese Pokémon sea shiny. NOTA: Esta implementación es una aproximación de la característica real, ya que XY no ha sido exhaustivamente documentado ni datamineado.
-#define I_FISHING_MINIGAME          GEN_3 // Cada generación utiliza una variación de la mecánica de pesca una vez que el Pokémon ha sido enganchado.
-#define I_FISHING_PROXIMITY         FALSE // Introducido en XY, pescar lejos de otras personas en áreas cerradas aumenta las probabilidades de que un Pokémon sea enganchado. NOTA: Esta implementación es una aproximación de la característica real, ya que XY no ha sido exhaustivamente documentado ni datamineado.
-
+// Fishing
+#define I_FISHING_BITE_ODDS        GEN_LATEST // In Gen 1 and Gen 2, the Old Rod has a 100% chance for a bite, Good Rod has a 66% chance for a bite, and Super Rod has a 50% chance for a bite. In Gen 3, all rods have a base 50% chance for a bite. In Gen 4 onwards, the Old Rod has a base 25% chance for a bite, Good Rod has a 50% chance for a bite, and Super Rod has a 75% chance for a bite.
+#define I_FISHING_MINIGAME         GEN_3      // Each generation uses a variation of reeling in Pokémon once they have been hooked. NOTE: Only the Gen 1/2 and Gen 3 minigames are implemented right now!
+#define I_FISHING_STICKY_BOOST     GEN_LATEST // In Gen 3, a Pokemon with Suction Cups or Sticky Hold in the first slot of the party causes the chance for a bite to increase by about 35%. In Gen 4 onwards, it doubles the base bite chance.
+#define I_FISHING_FOLLOWER_BOOST   FALSE      // In HGSS, fishing bite odds are increased depending on the friendship of the current following Pokémon.
+#define I_FISHING_CHAIN            FALSE      // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
+#define I_FISHING_PROXIMITY        FALSE      // Introduced in XY, fishing away from other people in enclosed areas will increase the chances of a Pokémon being hooked. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 
 #endif // GUARD_CONFIG_ITEM_H

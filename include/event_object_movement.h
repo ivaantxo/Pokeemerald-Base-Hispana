@@ -7,6 +7,28 @@
 #error "OW_POKEMON_OBJECT_EVENTS needs to be TRUE in order for OW_FOLLOWERS_ENABLED to work."
 #endif
 
+// Palette slots for overworld NPCs.
+// The same standard set of palettes for overworld objects are normally always loaded at the same
+// time while walking around the overworld. The only exceptions are the palettes for the player and
+// the "special" NPC, which can be swapped out. This also means that e.g. two "special" NPCs
+// with competing palettes cannot be properly loaded at the same time.
+enum {
+    PALSLOT_PLAYER,
+    PALSLOT_PLAYER_REFLECTION,
+    PALSLOT_NPC_1,
+    PALSLOT_NPC_2,
+    PALSLOT_NPC_3,
+    PALSLOT_NPC_4,
+    PALSLOT_NPC_1_REFLECTION,
+    PALSLOT_NPC_2_REFLECTION,
+    PALSLOT_NPC_3_REFLECTION,
+    PALSLOT_NPC_4_REFLECTION,
+    PALSLOT_NPC_SPECIAL,
+    PALSLOT_NPC_SPECIAL_REFLECTION,
+    OBJ_PALSLOT_COUNT
+    // the remaining sprite palette slots (12-15) are used by field effects, the interface, etc.
+};
+
 enum SpinnerRunnerFollowPatterns
 {
     RUNFOLLOW_ANY,
@@ -85,6 +107,13 @@ struct LockedAnimObjectEvents
     u8 count;
 };
 
+struct FollowerSpriteVisualizerData
+{
+    u16 currentmonId;
+    bool8 isShiny;
+    bool8 isFemale;
+};
+
 extern const struct OamData gObjectEventBaseOam_32x8;
 extern const struct OamData gObjectEventBaseOam_32x32;
 extern const struct OamData gObjectEventBaseOam_64x64;
@@ -104,6 +133,7 @@ bool8 TryGetObjectEventIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId, u
 u8 GetObjectEventIdByXY(s16 x, s16 y);
 void SetObjectEventDirection(struct ObjectEvent *objectEvent, u8 direction);
 u8 GetFirstInactiveObjectEventId(void);
+u8 GetObjectEventIdByLocalId(u8);
 void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
 void TryMoveObjectEventToMapCoords(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s16 y);
 void SpawnObjectEventsOnReturnToField(s16 x, s16 y);
@@ -120,6 +150,7 @@ void RemoveFollowingPokemon(void);
 struct ObjectEvent *GetFollowerObject(void);
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY);
 u8 CreateObjectGraphicsSprite(u16, void (*)(struct Sprite *), s16 x, s16 y, u8 subpriority);
+u8 CreateObjectGraphicsFollowerSpriteForVisualizer(u16, void (*)(struct Sprite *), s16 x, s16 y, u8 subpriority, struct FollowerSpriteVisualizerData *data);
 u8 TrySpawnObjectEvent(u8 localId, u8 mapNum, u8 mapGroup);
 u8 SpawnSpecialObjectEventParameterized(u16 graphicsId, u8 movementBehavior, u8 localId, s16 x, s16 y, u8 elevation);
 u8 SpawnSpecialObjectEvent(struct ObjectEventTemplate *);
@@ -184,6 +215,7 @@ void ObjectEventForceSetHeldMovement(struct ObjectEvent *objectEvent, u8 movemen
 bool8 ObjectEventIsMovementOverridden(struct ObjectEvent *objectEvent);
 u8 ObjectEventCheckHeldMovementStatus(struct ObjectEvent *objectEvent);
 u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent);
+const struct ObjectEventTemplate *FindObjectEventTemplateByLocalId(u8, const struct ObjectEventTemplate *, u8);
 void TryOverrideTemplateCoordsForObjectEvent(const struct ObjectEvent *objectEvent, u8 movementType);
 void OverrideTemplateCoordsForObjectEvent(const struct ObjectEvent *objectEvent);
 void ShiftStillObjectEventCoords(struct ObjectEvent *objEvent);
@@ -455,6 +487,15 @@ void SetVirtualObjectInvisibility(u8 virtualObjId, bool32 invisible);
 bool32 IsVirtualObjectInvisible(u8 virtualObjId);
 void SetVirtualObjectSpriteAnim(u8 virtualObjId, u8 animNum);
 bool32 IsVirtualObjectAnimating(u8 virtualObjId);
+u8 GetObjectEventIdByLocalId(u8 localId);
+bool32 IsFollowerVisible(void);
+
+// run slow
+u8 GetPlayerRunSlowMovementAction(u32);
+//sideways stairs
+u8 GetSidewaysStairsToRightDirection(s16, s16, u8);
+u8 GetSidewaysStairsToLeftDirection(s16, s16, u8);
+u8 GetSidewaysStairsCollision(struct ObjectEvent *objectEvent, u8 dir, u8 currentBehavior, u8 nextBehavior, u8 collision);
 
 bool8 MovementAction_EmoteX_Step0(struct ObjectEvent *, struct Sprite *);
 bool8 MovementAction_EmoteDoubleExclamationMark_Step0(struct ObjectEvent *, struct Sprite *);
