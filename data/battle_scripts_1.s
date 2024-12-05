@@ -10079,6 +10079,10 @@ BattleScript_BerserkGeneRet_End:
 	end3
 
 BattleScript_BoosterEnergyEnd2::
+	call BattleScript_BoosterEnergyRet
+	end2
+
+BattleScript_BoosterEnergyRet::
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, sB_ANIM_ARG1
 	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_BOOSTERENERGYACTIVATES
@@ -10086,7 +10090,7 @@ BattleScript_BoosterEnergyEnd2::
 	printstring STRINGID_STATWASHEIGHTENED
 	waitmessage B_WAIT_TIME_MED
 	removeitem BS_SCRIPTING
-	end2
+	return
 
 BattleScript_EffectSnow::
 	attackcanceler

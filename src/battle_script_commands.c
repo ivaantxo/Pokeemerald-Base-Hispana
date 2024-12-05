@@ -1125,28 +1125,13 @@ static bool32 NoTargetPresent(u8 battler, u32 move)
     return FALSE;
 }
 
-static bool32 TryAegiFormChange(void)
+static bool32 TryFormChangeBeforeMove(void)
 {
-    // Only Aegislash with Stance Change can transform, transformed mons cannot.
-    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_STANCE_CHANGE
-        || gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
+    bool32 result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE);
+    if (!result)
+        result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY);
+    if (!result)
         return FALSE;
-
-    switch (gBattleMons[gBattlerAttacker].species)
-    {
-    default:
-        return FALSE;
-    case SPECIES_AEGISLASH_SHIELD: // Shield -> Blade
-        if (IS_MOVE_STATUS(gCurrentMove))
-            return FALSE;
-        TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_ATTACK);
-        break;
-    case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
-        if (gCurrentMove != MOVE_KINGS_SHIELD)
-            return FALSE;
-        TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_KINGS_SHIELD);
-        break;
-    }
 
     BattleScriptPushCursor();
     gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
@@ -1221,7 +1206,7 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL < GEN_7 && TryAegiFormChange())
+    if (B_STANCE_CHANGE_FAIL < GEN_7 && TryFormChangeBeforeMove())
         return;
     if (AtkCanceller_UnableToUseMove(moveType))
         return;
@@ -1282,7 +1267,7 @@ static void Cmd_attackcanceler(void)
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryAegiFormChange())
+    if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryFormChangeBeforeMove())
         return;
 
     gHitMarker &= ~HITMARKER_ALLOW_NO_PP;
@@ -10424,16 +10409,16 @@ static void Cmd_various(void)
             switch (GetBattlerHoldEffectParam(battler))
             {
             case HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_ELECTRIC_TERRAIN, STAT_DEF, item, FALSE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_ELECTRIC_TERRAIN, STAT_DEF, item, ITEMEFFECT_NONE);
                 break;
             case HOLD_EFFECT_PARAM_GRASSY_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_GRASSY_TERRAIN, STAT_DEF, item, FALSE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_GRASSY_TERRAIN, STAT_DEF, item, ITEMEFFECT_NONE);
                 break;
             case HOLD_EFFECT_PARAM_MISTY_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_MISTY_TERRAIN, STAT_SPDEF, item, FALSE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_MISTY_TERRAIN, STAT_SPDEF, item, ITEMEFFECT_NONE);
                 break;
             case HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_PSYCHIC_TERRAIN, STAT_SPDEF, item, FALSE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_PSYCHIC_TERRAIN, STAT_SPDEF, item, ITEMEFFECT_NONE);
                 break;
             }
 

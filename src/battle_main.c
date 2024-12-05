@@ -387,15 +387,23 @@ static void (* const sEndTurnFuncsTable[])(void) =
     [B_OUTCOME_MON_TELEPORTED]    = HandleEndTurn_FinishBattle,
 };
 
-const u8 *const gStatusConditionStringsTable[7] =
+const u8 gStatusConditionString_PoisonJpn[] = _("どく$$$$$");
+const u8 gStatusConditionString_SleepJpn[] = _("ねむり$$$$");
+const u8 gStatusConditionString_ParalysisJpn[] = _("まひ$$$$$");
+const u8 gStatusConditionString_BurnJpn[] = _("やけど$$$$");
+const u8 gStatusConditionString_IceJpn[] = _("こおり$$$$");
+const u8 gStatusConditionString_ConfusionJpn[] = _("こんらん$$$");
+const u8 gStatusConditionString_LoveJpn[] = _("メロメロ$$$");
+
+const u8 *const gStatusConditionStringsTable[][2] =
 {
-    gText_Poison,
-    gText_Sleep,
-    gText_Paralysis,
-    gText_Burn,
-    gText_Ice,
-    gText_Confusion,
-    gText_Love
+    {gStatusConditionString_PoisonJpn, gText_Poison},
+    {gStatusConditionString_SleepJpn, gText_Sleep},
+    {gStatusConditionString_ParalysisJpn, gText_Paralysis},
+    {gStatusConditionString_BurnJpn, gText_Burn},
+    {gStatusConditionString_IceJpn, gText_Ice},
+    {gStatusConditionString_ConfusionJpn, gText_Confusion},
+    {gStatusConditionString_LoveJpn, gText_Love}
 };
 
 void CB2_InitBattle(void)
@@ -3766,7 +3774,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     case FIRST_TURN_EVENTS_ITEM_EFFECTS:
         while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
         {
-            if (ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++], FALSE))
+            if (ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN, gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++], FALSE))
                 return;
         }
         gBattleStruct->switchInBattlerCounter = 0;

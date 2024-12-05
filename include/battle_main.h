@@ -90,11 +90,19 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 
 extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 
+extern const u8 gStatusConditionString_PoisonJpn[8];
+extern const u8 gStatusConditionString_SleepJpn[8];
+extern const u8 gStatusConditionString_ParalysisJpn[8];
+extern const u8 gStatusConditionString_BurnJpn[8];
+extern const u8 gStatusConditionString_IceJpn[8];
+extern const u8 gStatusConditionString_ConfusionJpn[8];
+extern const u8 gStatusConditionString_LoveJpn[8];
+
+extern const u8 *const gStatusConditionStringsTable[7][2];
+
 extern const struct OamData gOamData_BattleSpriteOpponentSide;
 extern const struct OamData gOamData_BattleSpritePlayerSide;
 extern const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES];
 extern const uq4_12_t gTypeEffectivenessTable[NUMBER_OF_MON_TYPES][NUMBER_OF_MON_TYPES];
-
-extern const u8 *const gStatusConditionStringsTable[7];
 
 #endif // GUARD_BATTLE_MAIN_H
