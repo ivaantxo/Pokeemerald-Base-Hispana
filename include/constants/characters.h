@@ -53,6 +53,8 @@
 #define CHAR_EQUALS            53
 #define CHAR_SEMICOLON         54
 #define CHAR_BARD_WORD_DELIMIT 55 // Empty space to separate words in Bard's song
+#define CHAR_V_D_ARROW         56
+#define CHAR_NBSP              57
 #define CHAR_INV_QUESTION_MARK 81
 #define CHAR_INV_EXCL_MARK     82
 #define CHAR_PK                83
