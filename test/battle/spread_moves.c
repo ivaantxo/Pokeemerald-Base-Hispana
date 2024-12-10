@@ -411,3 +411,25 @@ DOUBLE_BATTLE_TEST("Spread Moves: Doesn't affect message on both opposing mons")
         MESSAGE("It doesn't affect the opposing Pidgey and Hoothoot…");
     }
 }
+
+DOUBLE_BATTLE_TEST("Spread Moves: Unless move hits every target user will not include partner in the target count")
+{
+    GIVEN {
+        PLAYER(SPECIES_SANDSLASH);
+        PLAYER(SPECIES_WYNAUT) { HP(1); }
+        PLAYER(SPECIES_RALTS);
+        OPPONENT(SPECIES_TORKOAL);
+        OPPONENT(SPECIES_TORKOAL);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_ICY_WIND); MOVE(playerLeft, MOVE_ROCK_SLIDE); SEND_OUT(playerRight, 2); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICY_WIND, opponentRight);
+        HP_BAR(playerLeft);
+        HP_BAR(playerRight);
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_SLIDE, playerLeft);
+        HP_BAR(opponentLeft);
+        HP_BAR(opponentRight);
+        MESSAGE("It's super effective on the opposing Torkoal and Torkoal!");
+    }
+}
