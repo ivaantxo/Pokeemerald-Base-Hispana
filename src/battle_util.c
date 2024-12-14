@@ -8607,7 +8607,7 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
           && IsMoveMakingContact(move, gBattlerAttacker)
           && GetBattlerAbility(gBattlerAttacker) == ABILITY_UNSEEN_FIST)
         isProtected = FALSE;
-    else if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_CRAFTY_SHIELD && IS_MOVE_STATUS(move))
+    else if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_CRAFTY_SHIELD && IS_MOVE_STATUS(move) && gMovesInfo[move].effect != EFFECT_COACHING)
         isProtected = TRUE;
     else if (gMovesInfo[move].ignoresProtect)
         isProtected = FALSE;
