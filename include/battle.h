@@ -869,10 +869,6 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_STATUS(move)(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
 #define IS_MOVE_RECOIL(move)(gMovesInfo[move].recoil > 0 || gMovesInfo[move].effect == EFFECT_RECOIL_IF_MISS)
 
-#define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
-#define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0) || (gBattleStruct->enduredDamage & (1u << gBattlerTarget)))
-#define BATTLER_TURN_DAMAGED(battlerId) ((gSpecialStatuses[battlerId].physicalDmg != 0 || gSpecialStatuses[battlerId].specialDmg != 0) || (gBattleStruct->enduredDamage & (1u << battler)))
-
 /* Checks if 'battlerId' is any of the types.
  * Passing multiple types is more efficient than calling this multiple
  * times with one type because it shares the 'GetBattlerTypes' result. */
@@ -1195,6 +1191,18 @@ extern u16 gBallToDisplay;
 extern bool8 gLastUsedBallMenuPresent;
 extern u8 gPartyCriticalHits[PARTY_SIZE];
 extern u8 gCategoryIconSpriteId;
+
+static inline bool32 IsBattlerTurnDamaged(u32 battler)
+{
+    return gSpecialStatuses[battler].physicalDmg != 0
+        || gSpecialStatuses[battler].specialDmg != 0
+        || gBattleStruct->enduredDamage & (1u << battler);
+}
+
+static inline bool32 IsBattlerAtMaxHp(u32 battler)
+{
+    return gBattleMons[battler].hp == gBattleMons[battler].maxHP;
+}
 
 static inline u32 GetBattlerPosition(u32 battler)
 {

@@ -2208,12 +2208,12 @@ static void Cmd_adjustdamage(void)
             RecordItemEffectBattle(battlerDef, holdEffect);
             gSpecialStatuses[battlerDef].focusBanded = TRUE;
         }
-        else if (B_STURDY >= GEN_5 && GetBattlerAbility(battlerDef) == ABILITY_STURDY && BATTLER_MAX_HP(battlerDef))
+        else if (B_STURDY >= GEN_5 && GetBattlerAbility(battlerDef) == ABILITY_STURDY && IsBattlerAtMaxHp(battlerDef))
         {
             RecordAbilityBattle(battlerDef, ABILITY_STURDY);
             gSpecialStatuses[battlerDef].sturdied = TRUE;
         }
-        else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && BATTLER_MAX_HP(battlerDef))
+        else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && IsBattlerAtMaxHp(battlerDef))
         {
             RecordItemEffectBattle(battlerDef, holdEffect);
             gSpecialStatuses[battlerDef].focusSashed = TRUE;
@@ -5997,7 +5997,7 @@ static void Cmd_moveend(void)
                 && gBattlerAttacker != gBattlerTarget
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
                 && MoveResultHasEffect(gBattlerTarget)
-                && TARGET_TURN_DAMAGED
+                && IsBattlerTurnDamaged(gBattlerTarget)
                 && gMovesInfo[gCurrentMove].power != 0
                 && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
@@ -6282,7 +6282,7 @@ static void Cmd_moveend(void)
             if (gBattlerAttacker != gBattlerTarget
                 && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
                 && MoveResultHasEffect(gBattlerTarget)
-                && TARGET_TURN_DAMAGED)
+                && IsBattlerTurnDamaged(gBattlerTarget))
             {
                 gBattleStruct->timesGotHit[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]]++;
             }
@@ -6563,7 +6563,7 @@ static void Cmd_moveend(void)
               && gBattleMons[gBattlerAttacker].item == ITEM_NONE
               && gBattleMons[gBattlerTarget].item != ITEM_NONE
               && IsBattlerAlive(gBattlerAttacker)
-              && TARGET_TURN_DAMAGED
+              && IsBattlerTurnDamaged(gBattlerTarget)
               && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
               && !gSpecialStatuses[gBattlerAttacker].gemBoost   // In base game, gems are consumed after magician would activate.
               && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerTarget)] & (1u << gBattlerPartyIndexes[gBattlerTarget]))
@@ -6609,7 +6609,7 @@ static void Cmd_moveend(void)
                                 continue;
                             // Since we check if battler was damaged, we don't need to check move result.
                             // In fact, doing so actually prevents multi-target moves from activating eject button properly
-                            if (!BATTLER_TURN_DAMAGED(battler))
+                            if (!IsBattlerTurnDamaged(battler))
                                 continue;
                         }
                         else if (ejectPackBattlers & (1u << battler))
@@ -6704,7 +6704,7 @@ static void Cmd_moveend(void)
                         if (redCardBattlers & (1u << battler)
                           && IsBattlerAlive(battler)
                           && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-                          && BATTLER_TURN_DAMAGED(battler)
+                          && IsBattlerTurnDamaged(battler)
                           && CanBattlerSwitch(gBattlerAttacker))
                         {
                             gLastUsedItem = gBattleMons[battler].item;
@@ -6753,7 +6753,7 @@ static void Cmd_moveend(void)
                     // Attacker is mon who made contact, battler is mon with pickpocket
                     if (battler != gBattlerAttacker                                                     // Cannot pickpocket yourself
                       && GetBattlerAbility(battler) == ABILITY_PICKPOCKET                               // Target must have pickpocket ability
-                      && BATTLER_TURN_DAMAGED(battler)                                                  // Target needs to have been damaged
+                      && IsBattlerTurnDamaged(battler)                                                  // Target needs to have been damaged
                       && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)              // Subsitute unaffected
                       && IsBattlerAlive(battler)                                                        // Battler must be alive to pickpocket
                       && gBattleMons[battler].item == ITEM_NONE                                         // Pickpocketer can't have an item already
@@ -8514,7 +8514,7 @@ static bool32 TryCheekPouch(u32 battler, u32 itemId)
         && GetBattlerAbility(battler) == ABILITY_CHEEK_POUCH
         && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK)
         && gBattleStruct->ateBerry[GetBattlerSide(battler)] & (1u << gBattlerPartyIndexes[battler])
-        && !BATTLER_MAX_HP(battler))
+        && !IsBattlerAtMaxHp(battler))
     {
         gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 3;
         if (gBattleStruct->moveDamage[battler] == 0)
@@ -9585,7 +9585,7 @@ static void Cmd_various(void)
     case VARIOUS_JUMP_IF_FULL_HP:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        if (BATTLER_MAX_HP(battler))
+        if (IsBattlerAtMaxHp(battler))
             gBattlescriptCurrInstr = cmd->jumpInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -9687,7 +9687,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *failInstr);
         if ((gStatuses3[battler] & (STATUS3_SEMI_INVULNERABLE | STATUS3_HEAL_BLOCK))
-            || BATTLER_MAX_HP(battler)
+            || IsBattlerAtMaxHp(battler)
             || !gBattleMons[battler].hp
             || !(IsBattlerGrounded(battler)))
         {
@@ -12696,7 +12696,7 @@ static void Cmd_tryKO(void)
         gSpecialStatuses[gBattlerTarget].focusBanded = TRUE;
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
     }
-    else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && BATTLER_MAX_HP(gBattlerTarget))
+    else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && IsBattlerAtMaxHp(gBattlerTarget))
     {
         gSpecialStatuses[gBattlerTarget].focusSashed = TRUE;
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
@@ -17238,7 +17238,7 @@ void BS_TryHealPulse(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
 
-    if (BATTLER_MAX_HP(gBattlerTarget))
+    if (IsBattlerAtMaxHp(gBattlerTarget))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -17495,7 +17495,7 @@ void BS_TryActivateGulpMissile(void)
 
     if (MoveResultHasEffect(gBattlerTarget)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-        && TARGET_TURN_DAMAGED
+        && IsBattlerTurnDamaged(gBattlerTarget)
         && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT
         && GetBattlerAbility(gBattlerTarget) == ABILITY_GULP_MISSILE)
     {
@@ -17696,7 +17696,7 @@ void BS_TryHitSwitchTarget(void)
     if (IsBattlerAlive(gBattlerAttacker)
      && IsBattlerAlive(gBattlerTarget)
      && MoveResultHasEffect(gBattlerTarget)
-     && TARGET_TURN_DAMAGED
+     && IsBattlerTurnDamaged(gBattlerTarget)
      && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT
      && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
     {

@@ -290,7 +290,7 @@ u32 GetHealthPercentage(u32 battlerId)
     return (u32)((100 * gBattleMons[battlerId].hp) / gBattleMons[battlerId].maxHP);
 }
 
-bool32 AtMaxHp(u32 battlerId)
+bool32 AI_BattlerAtMaxHp(u32 battlerId)
 {
     if (AI_DATA->hpPercents[battlerId] == 100)
         return TRUE;
@@ -1142,7 +1142,7 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
 
 static bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
 {
-    if (!BATTLER_MAX_HP(battlerTarget) || gMovesInfo[move].effect == EFFECT_MULTI_HIT)
+    if (!AI_BattlerAtMaxHp(battlerTarget) || gMovesInfo[move].effect == EFFECT_MULTI_HIT)
         return FALSE;
     if (gMovesInfo[move].strikeCount > 1 && !(gMovesInfo[move].effect == EFFECT_DRAGON_DARTS && IsValidDoubleBattle(battlerTarget)))
         return FALSE;
@@ -1564,7 +1564,7 @@ bool32 ShouldTryOHKO(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbil
     gPotentialItemEffectBattler = battlerDef;
     if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < AI_DATA->holdEffectParams[battlerDef])
         return FALSE;   //probabilistically speaking, focus band should activate so dont OHKO
-    else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && AtMaxHp(battlerDef))
+    else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && AI_BattlerAtMaxHp(battlerDef))
         return FALSE;
 
     if (!DoesBattlerIgnoreAbilityChecks(atkAbility, move) && defAbility == ABILITY_STURDY)
@@ -2761,7 +2761,7 @@ enum AIPivot ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 mov
                         return SHOULD_PIVOT;   // Won't get the two turns, pivot
 
                     if (!IS_MOVE_STATUS(move) && ((AI_DATA->shouldSwitch & (1u << battlerAtk))
-                        || (AtMaxHp(battlerDef) && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH
+                        || (AI_BattlerAtMaxHp(battlerDef) && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH
                         || (B_STURDY >= GEN_5 && defAbility == ABILITY_STURDY)
                         || defAbility == ABILITY_MULTISCALE
                         || defAbility == ABILITY_SHADOW_SHIELD))))
@@ -2769,7 +2769,7 @@ enum AIPivot ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 mov
                 }
                 else if (!hasStatBoost)
                 {
-                    if (!IS_MOVE_STATUS(move) && (AtMaxHp(battlerDef) && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH
+                    if (!IS_MOVE_STATUS(move) && (AI_BattlerAtMaxHp(battlerDef) && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH
                         || (B_STURDY >= GEN_5 && defAbility == ABILITY_STURDY)
                         || defAbility == ABILITY_MULTISCALE
                         || defAbility == ABILITY_SHADOW_SHIELD)))
@@ -2848,7 +2848,7 @@ enum AIPivot ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 mov
                     // can knock out foe in 2 hits
                     if (IS_MOVE_STATUS(move) && ((AI_DATA->shouldSwitch & (1u << battlerAtk)) //Damaging move
                       //&& (switchScore >= SWITCHING_INCREASE_RESIST_ALL_MOVES + SWITCHING_INCREASE_KO_FOE //remove hazards
-                     || (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH && AtMaxHp(battlerDef))))
+                     || (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_FOCUS_SASH && AI_BattlerAtMaxHp(battlerDef))))
                         return DONT_PIVOT; // Pivot to break the sash
                     else
                         return CAN_TRY_PIVOT;
