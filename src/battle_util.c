@@ -3886,9 +3886,9 @@ bool32 HasNoMonsToSwitch(u32 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2
 
 static const u16 sWeatherFlagsInfo[][2] =
 {
-    [BATTLE_WEATHER_RAIN]         = {B_WEATHER_RAIN, HOLD_EFFECT_DAMP_ROCK},
+    [BATTLE_WEATHER_RAIN]         = {B_WEATHER_RAIN_NORMAL, HOLD_EFFECT_DAMP_ROCK},
     [BATTLE_WEATHER_RAIN_PRIMAL]  = {B_WEATHER_RAIN_PRIMAL, HOLD_EFFECT_DAMP_ROCK},
-    [BATTLE_WEATHER_SUN]          = {B_WEATHER_SUN, HOLD_EFFECT_HEAT_ROCK},
+    [BATTLE_WEATHER_SUN]          = {B_WEATHER_SUN_NORMAL, HOLD_EFFECT_HEAT_ROCK},
     [BATTLE_WEATHER_SUN_PRIMAL]   = {B_WEATHER_SUN_PRIMAL, HOLD_EFFECT_HEAT_ROCK},
     [BATTLE_WEATHER_SANDSTORM]    = {B_WEATHER_SANDSTORM, HOLD_EFFECT_SMOOTH_ROCK},
     [BATTLE_WEATHER_HAIL]         = {B_WEATHER_HAIL, HOLD_EFFECT_ICY_ROCK},
@@ -4398,7 +4398,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             case WEATHER_DOWNPOUR:
                 if (!(gBattleWeather & B_WEATHER_RAIN))
                 {
-                    gBattleWeather = B_WEATHER_RAIN;
+                    gBattleWeather = B_WEATHER_RAIN_NORMAL;
                     gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
                     effect++;
                 }
@@ -4414,7 +4414,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             case WEATHER_DROUGHT:
                 if (!(gBattleWeather & B_WEATHER_SUN))
                 {
-                    gBattleWeather = B_WEATHER_SUN;
+                    gBattleWeather = B_WEATHER_SUN_NORMAL;
                     gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
                     effect++;
                 }

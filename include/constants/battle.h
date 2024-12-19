@@ -286,12 +286,14 @@
 
 // Battle Weather flags
 #define B_WEATHER_NONE          0
-#define B_WEATHER_RAIN          (1 << 0)
+#define B_WEATHER_RAIN_NORMAL   (1 << 0)
 #define B_WEATHER_RAIN_PRIMAL   (1 << 1)
 #define B_WEATHER_RAIN_DOWNPOUR (1 << 2)  // unused
+#define B_WEATHER_RAIN          (B_WEATHER_RAIN_NORMAL | B_WEATHER_RAIN_PRIMAL | B_WEATHER_RAIN_DOWNPOUR)
 #define B_WEATHER_SANDSTORM     (1 << 3)
-#define B_WEATHER_SUN           (1 << 4)
+#define B_WEATHER_SUN_NORMAL    (1 << 4)
 #define B_WEATHER_SUN_PRIMAL    (1 << 5)
+#define B_WEATHER_SUN           (B_WEATHER_SUN_NORMAL | B_WEATHER_SUN_PRIMAL)
 #define B_WEATHER_HAIL          (1 << 6)
 #define B_WEATHER_SNOW          (1 << 7)
 #define B_WEATHER_FOG           (1 << 8)
