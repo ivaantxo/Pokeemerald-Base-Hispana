@@ -569,7 +569,8 @@ void HandleAction_ThrowBall(void)
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
     gLastUsedItem = gBallToDisplay;
-    RemoveBagItem(gLastUsedItem, 1);
+    if (!ItemId_GetImportance(gLastUsedItem))
+    	RemoveBagItem(gLastUsedItem, 1);
     gBattlescriptCurrInstr = BattleScript_BallThrow;
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
