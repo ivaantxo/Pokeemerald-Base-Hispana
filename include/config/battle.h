@@ -156,6 +156,7 @@
 #define B_ABILITY_TRIGGER_CHANCE    GEN_LATEST // En Gen3, Shed Skin, Cute Charm, Flame Body, Static y Poison Point tienen un 1/3 de probabilidad de activarse. En Gen 4+ es 30%.
                                                // En Gen3, Effect Spore tiene un 10% de probabilidad de dormir, envenenar o paralizar, con una probabilidad igual.
                                                // En Gen4, es 30%. En Gen5+ tiene un 11% de probabilidad de dormir, 9% de envenenar y 10% de paralizar.
+#define B_PICKUP_WILD               GEN_LATEST // In Gen9+, Pickup allows its user to pickup its own used item at the end of the turn in wild battles.
 
 // Configuración de ítems
 #define B_HP_BERRIES                GEN_LATEST // En Gen4+, las bayas que restauran HP se activan inmediatamente después de que HP cae a la mitad. En Gen3, el efecto ocurre al final del turno.
@@ -165,6 +166,7 @@
 #define B_MENTAL_HERB               GEN_LATEST // En Gen5+, Mental Herb cura Taunt, Encore, Torment, Heal Block y Disable además de Infatuation.
 #define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE       // Si es TRUE, los entrenadores pueden robar/intercambiar tus ítems (los ítems no bayas se restauran después de la batalla). En los juegos vanilla, los entrenadores no pueden robar ítems.
 #define B_RETURN_STOLEN_NPC_ITEMS   GEN_LATEST // En Gen5+, Thief y Covet ya no roban ítems de NPCs.
+#define B_STEAL_WILD_ITEMS          GEN_LATEST // In Gen9, Thief and Covet steal a wild pokemon's item and send it to the bag. Before Gen9, the stolen item would be held by the Thief/Covet user.
 #define B_RESTORE_HELD_BATTLE_ITEMS GEN_LATEST // En Gen9, todos los ítems no bayas se restauran después de la batalla.
 #define B_SOUL_DEW_BOOST            GEN_LATEST // En Gens3-6, Soul Dew aumenta el Sp. Atk y Sp. Def de Latios y Latias. En Gen7+ aumenta el poder de sus movimientos de tipo Psíquico y Dragón en su lugar.
 #define B_NET_BALL_MODIFIER         GEN_LATEST // En Gen7+, el multiplicador de captura de Net Ball es x5 en lugar de x3.

@@ -6696,6 +6696,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
                     break;
             }
             SWAP(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], temp);
+            SWAP(gActionsByTurnOrder[i], gActionsByTurnOrder[j], temp);
             break;
         }
     }
