@@ -52,22 +52,24 @@ struct PaletteFadeControl
     // These three are only used for TOD blending
     struct BlendSettings *bld0;
     struct BlendSettings *bld1;
-    u16 weight:9; // [0, 256], so must be 9 bits
-    u8 delayCounter:6;
-    u16 y:5; // blend coefficient
-    u16 targetY:5; // target blend coefficient
-    u16 blendColor:15;
-    bool16 active:1;
-    u16 multipurpose2:6;
-    bool16 yDec:1; // whether blend coefficient is decreasing
-    bool16 bufferTransferDisabled:1;
-    u16 mode:2;
-    bool16 shouldResetBlendRegisters:1;
-    bool16 hardwareFadeFinishing:1;
-    u16 softwareFadeFinishingCounter:5;
-    bool16 softwareFadeFinishing:1;
-    bool16 objPaletteToggle:1;
-    u8 deltaY:4; // rate of change of blend coefficient
+    u32 weight:9; // [0, 256], so must be 9 bits
+    u32 delayCounter:6;
+    u32 y:5; // blend coefficient
+    u32 targetY:5; // target blend coefficient
+    u32 multipurpose2:6;
+    bool32 active:1;
+    u32 blendColor:15;
+    // end of word
+    bool32 yDec:1; // whether blend coefficient is decreasing
+    bool32 bufferTransferDisabled:1;
+    u32 mode:2;
+    bool32 shouldResetBlendRegisters:1;
+    bool32 hardwareFadeFinishing:1;
+    u32 softwareFadeFinishingCounter:5;
+    bool32 softwareFadeFinishing:1;
+    bool32 objPaletteToggle:1;
+    u32 deltaY:4; // rate of change of blend coefficient
+    u32 padding:15;
 };
 
 extern const struct BlendSettings gTimeOfDayBlend[];

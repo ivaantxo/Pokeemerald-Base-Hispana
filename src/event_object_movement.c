@@ -1870,7 +1870,9 @@ u8 CreateObjectGraphicsSpriteWithTag(u16 graphicsId, void (*callback)(struct Spr
     else if (spriteTemplate->paletteTag != TAG_NONE)
     {
         if (paletteTag == TAG_NONE)
+        {
             LoadObjectEventPalette(spriteTemplate->paletteTag);
+        }
         else
         {
             LoadObjectEventPaletteWithTag(spriteTemplate->paletteTag, paletteTag);
@@ -2111,7 +2113,6 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
 
     if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
         UpdateSpritePaletteWithWeather(paletteNum, FALSE);
-
     return paletteNum;
 }
 
@@ -2624,7 +2625,6 @@ void UpdateLightSprite(struct Sprite *sprite)
     s16 y = sprite->data[7];
     u16 sheetTileStart;
     u32 paletteNum;
-    // Ripped from RemoveObjectEventIfOutsideView
     if (!(x >= left && x <= right && y >= top && y <= bottom))
     {
         sheetTileStart = sprite->sheetTileStart;
@@ -2644,7 +2644,8 @@ void UpdateLightSprite(struct Sprite *sprite)
 
     switch (sprite->data[5]) // lightType
     {
-    case 0:
+    default:
+    case LIGHT_TYPE_BALL:
         if (gPaletteFade.active) // if palette fade is active, don't flicker since the timer won't be updated
         {
             Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY);
@@ -2664,7 +2665,8 @@ void UpdateLightSprite(struct Sprite *sprite)
                 LoadSpritePaletteInSlot(&sObjectEventSpritePalettes[FindObjectEventPaletteIndexByTag(OBJ_EVENT_PAL_TAG_LIGHT_2)], sprite->oam.paletteNum);
         }
         break;
-    case 1 ... 2:
+    case LIGHT_TYPE_PKMN_CENTER_SIGN:
+    case LIGHT_TYPE_POKE_MART_SIGN:
         Weather_SetBlendCoeffs(12, BASE_SHADOW_INTENSITY);
         sprite->invisible = FALSE;
         break;
@@ -2676,7 +2678,7 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
 {
     struct Sprite *sprite;
     const struct SpriteTemplate *template;
-    u8 i;
+    u32 i;
     for (i = 0; i < MAX_SPRITES; i++)
     {
         sprite = &gSprites[i];
@@ -2700,27 +2702,29 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
     sprite->coordOffsetEnabled = TRUE;
     switch (lightType)
     {
-    case 0: // Rustboro lanterns
+    default:
+    case LIGHT_TYPE_BALL:
         sprite->centerToCornerVecX = -(32 >> 1);
         sprite->centerToCornerVecY = -(32 >> 1);
         sprite->oam.priority = 1;
-        sprite->oam.objMode = 1; // BLEND
+        sprite->oam.objMode = ST_OAM_OBJ_BLEND;
         sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
         sprite->x += 8;
         sprite->y += 22 + sprite->centerToCornerVecY;
         break;
-    case 1 ... 2: // Pokemon Center & mart
+    case LIGHT_TYPE_PKMN_CENTER_SIGN:
+    case LIGHT_TYPE_POKE_MART_SIGN:
         sprite->centerToCornerVecX = -(16 >> 1);
         sprite->centerToCornerVecY = -(16 >> 1);
         sprite->oam.priority = 2;
         sprite->subpriority = 0xFF;
-        sprite->oam.objMode = 1; // BLEND
+        sprite->oam.objMode = ST_OAM_OBJ_BLEND;
     }
 }
 
 void TrySpawnLightSprites(s16 camX, s16 camY)
 {
-    u8 i;
+    u32 i;
     u8 objectCount;
     s16 left = gSaveBlock1Ptr->pos.x - 2;
     s16 right = gSaveBlock1Ptr->pos.x + MAP_OFFSET_W + 2;
@@ -2741,9 +2745,11 @@ void TrySpawnLightSprites(s16 camX, s16 camY)
         struct ObjectEventTemplate *template = &gSaveBlock1Ptr->objectEventTemplates[i];
         s16 npcX = template->x + MAP_OFFSET;
         s16 npcY = template->y + MAP_OFFSET;
-        if (top <= npcY && bottom >= npcY && left <= npcX && right >= npcX && !FlagGet(template->flagId))
-            if (template->graphicsId == OBJ_EVENT_GFX_LIGHT_SPRITE)  // event is light sprite instead
-                SpawnLightSprite(npcX, npcY, camX, camY, template->trainerRange_berryTreeId);
+        if (top <= npcY && bottom >= npcY
+         && left <= npcX && right >= npcX
+         && !FlagGet(template->flagId)
+         && template->graphicsId == OBJ_EVENT_GFX_LIGHT_SPRITE)  // event is light sprite instead
+            SpawnLightSprite(npcX, npcY, camX, camY, template->trainerRange_berryTreeId);
     }
 }
 
@@ -10203,7 +10209,7 @@ static void DoFlaggedGroundEffects(struct ObjectEvent *objEvent, struct Sprite *
         if (flags & 1)
             sGroundEffectFuncs[i](objEvent, sprite);
     if (!(gWeatherPtr->noShadows || objEvent->inHotSprings || objEvent->inSandPile || MetatileBehavior_IsPuddle(objEvent->currentMetatileBehavior)))
-      GroundEffect_Shadow(objEvent, sprite);
+        GroundEffect_Shadow(objEvent, sprite);
 }
 
 void filters_out_some_ground_effects(struct ObjectEvent *objEvent, u32 *flags)
