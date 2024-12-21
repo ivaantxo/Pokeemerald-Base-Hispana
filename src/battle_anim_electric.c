@@ -742,7 +742,9 @@ static void AnimZapCannonSpark_Step(struct Sprite *sprite)
             sprite->invisible ^= 1;
     }
     else
+    {
         DestroyAnimSprite(sprite);
+    }
 }
 
 static void AnimThunderboltOrb_Step(struct Sprite *sprite)
@@ -1024,7 +1026,9 @@ static void AnimTask_ElectricChargingParticles_Step(u8 taskId)
         }
     }
     else if(task->data[7] == 0)
+    {
         DestroyAnimVisualTask(taskId);
+    }
 }
 
 static void AnimElectricChargingParticles_Step(struct Sprite *sprite)
@@ -1145,7 +1149,9 @@ void AnimTask_VoltTackleAttackerReappear(u8 taskId)
                 gSprites[task->data[15]].x2 = task->data[14];
             }
             else
+            {
                 task->data[0]++;
+            }
 
         }
         break;
