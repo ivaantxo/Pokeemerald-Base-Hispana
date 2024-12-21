@@ -871,7 +871,9 @@ static void ContestEffect_ScrambleNextTurnOrder(void)
                         break;
                     }
                     else
+                    {
                         rval--;
+                    }
                 }
             }
         }
@@ -911,7 +913,9 @@ static void ContestEffect_BadlyStartleMonsWithGoodAppeals(void)
                 eContestAppealResults.jam = RoundUp(eContestAppealResults.jam);
             }
             else
+            {
                 eContestAppealResults.jam = 10;
+            }
             eContestAppealResults.jamQueue[0] = i;
             eContestAppealResults.jamQueue[1] = CONTESTANT_NONE;
             if (WasAtLeastOneOpponentJammed())
@@ -1074,7 +1078,9 @@ static s16 RoundTowardsZero(s16 score)
             score -= 10 - absScore;
     }
     else
+    {
         score -= absScore;
+    }
     return score;
 }
 
