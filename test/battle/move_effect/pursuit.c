@@ -610,4 +610,67 @@ SINGLE_BATTLE_TEST("Pursuit attacks a switching foe and switchin is correctly st
     }
 }
 
+SINGLE_BATTLE_TEST("Pursuit doesn't cause mon with Emergency Exit to switch twice")
+{
+    GIVEN {
+        PLAYER(SPECIES_GOLISOPOD) { HP(101); MaxHP(200); Ability(ABILITY_EMERGENCY_EXIT); }
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_VOLTORB);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT); SEND_OUT(player, 2); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Golisopod");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponent);
+        ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
+        SEND_IN_MESSAGE("Voltorb");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_VOLTORB);
+    }
+}
+
+SINGLE_BATTLE_TEST("Pursuit user gets forced out by Red Card and target still switches out")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_RED_CARD].holdEffect == HOLD_EFFECT_RED_CARD);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
+        PLAYER(SPECIES_VOLTORB);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_VOLTORB);
+    } WHEN {
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Wobbuffet");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("The opposing Voltorb was dragged out!");
+        SEND_IN_MESSAGE("Voltorb");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_VOLTORB);
+        EXPECT_EQ(opponent->species, SPECIES_VOLTORB);
+    }
+}
+
+SINGLE_BATTLE_TEST("Pursuit user faints to Life Orb and target still switches out")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_VOLTORB);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIFE_ORB); HP(1); }
+        OPPONENT(SPECIES_VOLTORB);
+    } WHEN {
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT); SEND_OUT(opponent, 1); }
+    } SCENE {
+        SWITCH_OUT_MESSAGE("Wobbuffet");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PURSUIT, opponent);
+        HP_BAR(opponent);
+        MESSAGE("The opposing Wobbuffet fainted!");
+        SEND_IN_MESSAGE("Voltorb");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_VOLTORB);
+        EXPECT_EQ(opponent->species, SPECIES_VOLTORB);
+    }
+}
+
 TO_DO_BATTLE_TEST("Baton Pass doesn't cause Pursuit to increase its power or priority");

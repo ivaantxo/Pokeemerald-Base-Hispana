@@ -3230,6 +3230,13 @@ void SwitchInClearSetData(u32 battler)
     gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
     gBattleStruct->canPickupItem &= ~(1u << battler);
 
+    if (gBattleStruct->pursuitTarget & (1u << battler))
+    {
+        gBattleStruct->pursuitTarget = 0;
+        gBattleStruct->pursuitSwitchByMove = FALSE;
+        gBattleStruct->pursuitStoredSwitch = 0;
+    }
+
     for (i = 0; i < ARRAY_COUNT(gSideTimers); i++)
     {
         // Switched into sticky web user slot, so reset stored battler ID
@@ -3360,9 +3367,13 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->lastTakenMoveFrom[battler][1] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][2] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][3] = 0;
-    gBattleStruct->pursuitTarget = 0;
-    gBattleStruct->pursuitSwitchByMove = FALSE;
-    gBattleStruct->pursuitStoredSwitch = 0;
+    
+    if (gBattleStruct->pursuitTarget & (1u << battler))
+    {
+        gBattleStruct->pursuitTarget = 0;
+        gBattleStruct->pursuitSwitchByMove = FALSE;
+        gBattleStruct->pursuitStoredSwitch = 0;
+    }
 
     gBattleStruct->palaceFlags &= ~(1u << battler);
     gBattleStruct->boosterEnergyActivates &= ~(1u << battler);
