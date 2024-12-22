@@ -15121,10 +15121,10 @@ static void Cmd_switchoutabilities(void)
             break;
         case ABILITY_REGENERATOR:
         {
-            u32 regenerate = GetNonDynamaxMaxHP(gBattlerAttacker) / 3;
+            u32 regenerate = GetNonDynamaxMaxHP(battler) / 3;
             regenerate += gBattleMons[battler].hp;
-            if (gBattleStruct->moveDamage[gBattlerAttacker] > gBattleMons[battler].maxHP)
-                gBattleStruct->moveDamage[gBattlerAttacker] = gBattleMons[battler].maxHP;
+            if (regenerate > gBattleMons[battler].maxHP)
+                regenerate = gBattleMons[battler].maxHP;
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_HP_BATTLE,
                                          1u << *(gBattleStruct->battlerPartyIndexes + battler),
                                          sizeof(regenerate),
