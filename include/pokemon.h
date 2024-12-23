@@ -495,6 +495,24 @@ struct MoveInfo
         u8 powerOverride;
     } zMove;
 
+    union {
+        struct {
+            u16 stringId;
+            u16 status;
+        } twoTurnAttack;
+        struct {
+            u16 side;
+            u16 property; // can be used to remove the hardcoded values
+        } protect;
+        u32 status;
+        u16 moveProperty;
+        u16 holdEffect;
+        u16 type;
+        u16 fixedDamage;
+        u16 absorbPercentage;
+        u16 maxEffect;
+    } argument;
+
     s32 priority:4;
     u32 recoil:7;
     u32 strikeCount:4; // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
@@ -547,8 +565,6 @@ struct MoveInfo
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
     u32 padding:5; // end of word
-
-    u32 argument;
 
     // primary/secondary effects
     const struct AdditionalEffect *additionalEffects;

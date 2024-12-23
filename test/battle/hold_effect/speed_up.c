@@ -5,7 +5,7 @@ ASSUMPTIONS
 {
     ASSUME(gItemsInfo[ITEM_SALAC_BERRY].holdEffect == HOLD_EFFECT_SPEED_UP);
     ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].effect == EFFECT_FIXED_DAMAGE_ARG);
-    ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].argument == 40);
+    ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].argument.fixedDamage == 40);
 }
 
 SINGLE_BATTLE_TEST("Salac Berry raises the holder's Speed by one stage when HP drops to 1/4 or below")

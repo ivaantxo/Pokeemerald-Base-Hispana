@@ -215,7 +215,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will fail if sleep clau
             STATUS_ICON(opponent, sleep: TRUE);
         }
         MESSAGE("Sleep Clause kept the opposing Wobbuffet awake!");
-    } 
+    }
 }
 
 SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will activate sleep clause")
@@ -245,7 +245,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will activate sleep cla
             STATUS_ICON(opponent, sleep: TRUE);
         }
         MESSAGE("Sleep Clause kept Zigzagoon awake!");
-    } 
+    }
 }
 
 AI_SINGLE_BATTLE_TEST("Sleep Clause: AI will not use Yawn while sleep clause is active")
@@ -507,7 +507,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: G-Max Befuddle can only sleep one opposing mon
 {
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
-        ASSUME(gMovesInfo[MOVE_G_MAX_BEFUDDLE].argument == MAX_EFFECT_EFFECT_SPORE_FOES);
+        ASSUME(gMovesInfo[MOVE_G_MAX_BEFUDDLE].argument.maxEffect == MAX_EFFECT_EFFECT_SPORE_FOES);
         PLAYER(SPECIES_BUTTERFREE) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_CATERPIE);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -682,7 +682,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
         STATUS_ICON(opponentLeft, sleep: TRUE);
         MESSAGE("Zigzagoon used Uproar!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_UPROAR, playerRight);
-        MESSAGE("Zigzagoon caused an uproar!"); 
+        MESSAGE("Zigzagoon caused an uproar!");
         MESSAGE("The uproar woke the opposing Zigzagoon!");
         STATUS_ICON(opponentLeft, sleep: FALSE);
         MESSAGE("The opposing Zigzagoon used Roar!");
@@ -1131,7 +1131,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 {
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
-        ASSUME(gMovesInfo[MOVE_G_MAX_SWEETNESS].argument == MAX_EFFECT_AROMATHERAPY);
+        ASSUME(gMovesInfo[MOVE_G_MAX_SWEETNESS].argument.maxEffect == MAX_EFFECT_AROMATHERAPY);
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_APPLETUN) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_WOBBUFFET);
@@ -1467,7 +1467,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Yawn'd Pokémon who's partner is slept before 
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
         MESSAGE("The opposing Zigzagoon fell asleep!");
         STATUS_ICON(opponentLeft, sleep: TRUE);
-        NONE_OF { 
+        NONE_OF {
             MESSAGE( "The opposing Zigzagoon fell asleep!");
             STATUS_ICON(opponentRight, sleep: TRUE);
         }
@@ -1638,13 +1638,13 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep Clause does not prevent sleeping your pa
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_ZIGZAGOON);
-        PLAYER(SPECIES_ZIGZAGOON); 
+        PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_ZIGZAGOON); 
+        OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SPORE, target: playerRight); }
         TURN { SWITCH(playerRight, 2); MOVE(playerLeft, MOVE_SPORE, target: playerRight); }
@@ -1681,13 +1681,13 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep Clause does not prevent sleeping your pa
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
         PLAYER(SPECIES_ZIGZAGOON);
-        PLAYER(SPECIES_ZIGZAGOON); 
+        PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_ZIGZAGOON); 
+        OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_YAWN, target: playerRight); }
         TURN {}

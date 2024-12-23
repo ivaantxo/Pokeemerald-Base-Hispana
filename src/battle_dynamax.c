@@ -320,7 +320,7 @@ u8 GetMaxMovePower(u32 move)
 {
     u8 tier;
     // G-Max Drum Solo, G-Max Hydrosnipe, and G-Max Fireball always have 160 base power.
-    if (gMovesInfo[GetMaxMove(gBattlerAttacker, move)].argument == MAX_EFFECT_FIXED_POWER)
+    if (gMovesInfo[GetMaxMove(gBattlerAttacker, move)].argument.maxEffect == MAX_EFFECT_FIXED_POWER)
         return 160;
 
     // Exceptions to all other rules below:
@@ -470,7 +470,7 @@ void ChooseDamageNonTypesString(u8 type)
 // Returns the status effect that should be applied by a G-Max Move.
 static u32 GetMaxMoveStatusEffect(u32 move)
 {
-    u8 maxEffect = gMovesInfo[move].argument;
+    u8 maxEffect = gMovesInfo[move].argument.maxEffect;
     switch (maxEffect)
     {
         // Status 1
@@ -522,7 +522,7 @@ void BS_SetMaxMoveEffect(void)
 {
     NATIVE_ARGS();
     u16 effect = 0;
-    u8 maxEffect = gMovesInfo[gCurrentMove].argument;
+    u8 maxEffect = gMovesInfo[gCurrentMove].argument.maxEffect;
 
     // Don't continue if the move didn't land.
     if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
@@ -541,7 +541,7 @@ void BS_SetMaxMoveEffect(void)
             if (!NoAliveMonsForEitherParty())
             {
                 // Max Effects are ordered by stat ID.
-                SET_STATCHANGER(gMovesInfo[gCurrentMove].argument, 1, FALSE);
+                SET_STATCHANGER(gMovesInfo[gCurrentMove].argument.maxEffect, 1, FALSE);
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_EffectRaiseStatAllies;
                 effect++;
@@ -569,7 +569,7 @@ void BS_SetMaxMoveEffect(void)
                         break;
                     default:
                         // Max Effects are ordered by stat ID.
-                        statId = gMovesInfo[gCurrentMove].argument - MAX_EFFECT_LOWER_ATTACK + 1;
+                        statId = gMovesInfo[gCurrentMove].argument.maxEffect - MAX_EFFECT_LOWER_ATTACK + 1;
                         break;
                 }
                 SET_STATCHANGER(statId, stage, TRUE);
@@ -618,7 +618,7 @@ void BS_SetMaxMoveEffect(void)
         case MAX_EFFECT_PSYCHIC_TERRAIN:
         {
             u32 statusFlag = 0;
-            switch (gMovesInfo[gCurrentMove].argument)
+            switch (gMovesInfo[gCurrentMove].argument.moveProperty)
             {
                 case MAX_EFFECT_MISTY_TERRAIN:
                     statusFlag = STATUS_FIELD_MISTY_TERRAIN;

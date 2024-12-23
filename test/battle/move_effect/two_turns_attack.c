@@ -10,12 +10,12 @@ ASSUMPTIONS
 
     // Solar Beam - check for sun
     ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].effect == EFFECT_SOLAR_BEAM);
-    ASSUME(HIHALF(gMovesInfo[MOVE_SOLAR_BLADE].argument) == B_WEATHER_SUN);
+    ASSUME(HIHALF(gMovesInfo[MOVE_SOLAR_BLADE].argument.twoTurnAttack.status) == B_WEATHER_SUN);
     ASSUME(gMovesInfo[MOVE_SOLAR_BLADE].effect == EFFECT_SOLAR_BEAM);
-    ASSUME(HIHALF(gMovesInfo[MOVE_SOLAR_BLADE].argument) == B_WEATHER_SUN);
+    ASSUME(HIHALF(gMovesInfo[MOVE_SOLAR_BLADE].argument.twoTurnAttack.status) == B_WEATHER_SUN);
 
     // Electro shot - check for rain
-    ASSUME(HIHALF(gMovesInfo[MOVE_ELECTRO_SHOT].argument) == B_WEATHER_RAIN);
+    ASSUME(HIHALF(gMovesInfo[MOVE_ELECTRO_SHOT].argument.twoTurnAttack.status) == B_WEATHER_RAIN);
     ASSUME(gMovesInfo[MOVE_ELECTRO_SHOT].effect == EFFECT_TWO_TURNS_ATTACK);
     ASSUME(MoveHasAdditionalEffectSelf(MOVE_ELECTRO_SHOT, MOVE_EFFECT_SP_ATK_PLUS_1) == TRUE);
 }
