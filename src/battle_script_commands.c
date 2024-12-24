@@ -14362,7 +14362,7 @@ static bool32 CheckIfCanFireTwoTurnMoveNow(u8 battler, bool8 checkChargeTurnEffe
 
     // Certain two-turn moves may fire on the first turn in the right weather (Solar Beam, Electro Shot)
     // By default, all two-turn moves have the option of adding weather to their argument
-    if (IsBattlerWeatherAffected(battler, gMovesInfo[gCurrentMove].argument.status)) // TODO: Two Turn Moves affected by weather need a better rewrite
+    if (IsBattlerWeatherAffected(battler, gMovesInfo[gCurrentMove].argument.twoTurnAttack.status))
         return TRUE;
 
     return FALSE;
