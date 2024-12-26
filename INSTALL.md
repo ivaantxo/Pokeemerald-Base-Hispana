@@ -110,9 +110,9 @@ To compile the `modern` target with this toolchain, the subdirectories `lib`, `i
 
 ### Building with debug info
 
-To build **pokeemerald.elf** with debug symbols under a modern toolchain:
+To build **pokeemerald.elf** with debug symbols and debug-compatible optimization under a modern toolchain:
 ```bash
-make DINFO=1
+make debug
 ```
 
 # Useful additional tools
