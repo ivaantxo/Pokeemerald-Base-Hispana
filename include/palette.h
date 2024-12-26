@@ -45,6 +45,13 @@ struct BlendSettings {
   u32 coeff:5;
 };
 
+struct __attribute__((packed)) TimeBlendSettings {
+  struct BlendSettings bld0;
+  struct BlendSettings bld1;
+  u16 weight;
+  u16 altWeight;
+};
+
 struct PaletteFadeControl
 {
     u32 multipurpose1; // This field needs to exist or errors will occur
