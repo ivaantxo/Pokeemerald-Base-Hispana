@@ -99,7 +99,7 @@ void InvertPlttBuffer(u32 selectedPalettes);
 void TintPlttBuffer(u32 selectedPalettes, s8 r, s8 g, s8 b);
 void UnfadePlttBuffer(u32 selectedPalettes);
 void BeginFastPaletteFade(u8 submode);
-void BeginHardwarePaletteFade(u8 blendCnt, u8 delay, u8 y, u8 targetY, u8 shouldResetBlendRegisters);
+void BeginHardwarePaletteFade(u16 blendCnt, u8 delay, u8 y, u8 targetY, u8 shouldResetBlendRegisters);
 void BlendPalettes(u32 selectedPalettes, u8 coeff, u16 color);
 void BlendPalettesFine(u32 palettes, u16 *src, u16 *dst, u32 coeff, u32 color);
 void BlendPalettesUnfaded(u32 selectedPalettes, u8 coeff, u16 color);
