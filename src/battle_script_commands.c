@@ -1126,19 +1126,6 @@ static bool32 NoTargetPresent(u8 battler, u32 move)
     return FALSE;
 }
 
-static bool32 TryFormChangeBeforeMove(void)
-{
-    bool32 result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE);
-    if (!result)
-        result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY);
-    if (!result)
-        return FALSE;
-
-    BattleScriptPushCursor();
-    gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
-    return TRUE;
-}
-
 bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
 {
       if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
@@ -1177,21 +1164,11 @@ static void Cmd_attackcanceler(void)
     CMD_ARGS();
 
     s32 i;
-    u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
-    u32 moveType = GetMoveType(gCurrentMove);
 
     if (gBattleStruct->usedEjectItem & (1u << gBattlerAttacker))
     {
         gBattleStruct->usedEjectItem = 0;
         gCurrentActionFuncId = B_ACTION_TRY_FINISH;
-        return;
-    }
-
-    // Weight-based moves are blocked by Dynamax.
-    if ((GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX) && IsMoveBlockedByDynamax(gCurrentMove))
-    {
-        BattleScriptPushCursor();
-        gBattlescriptCurrInstr = BattleScript_MoveBlockedByDynamax;
         return;
     }
 
@@ -1207,28 +1184,8 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL < GEN_7 && TryFormChangeBeforeMove())
+    if (AtkCanceller_MoveSuccessOrder())
         return;
-    if (AtkCanceller_UnableToUseMove(moveType))
-        return;
-
-    if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
-    {
-        if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
-            return;
-        }
-        else if (moveType == TYPE_WATER && (gBattleWeather & B_WEATHER_SUN_PRIMAL))
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_EVAPORATED_IN_SUN;
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
-            return;
-        }
-    }
 
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_OFF
      && GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND
@@ -1242,22 +1199,6 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
-    // Check Protean activation.
-    if (ProteanTryChangeType(gBattlerAttacker, attackerAbility, gCurrentMove, moveType))
-    {
-        if (B_PROTEAN_LIBERO == GEN_9)
-            gDisableStructs[gBattlerAttacker].usedProteanLibero = TRUE;
-        PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
-        gBattlerAbility = gBattlerAttacker;
-        BattleScriptPushCursor();
-        PrepareStringBattle(STRINGID_EMPTYSTRING3, gBattlerAttacker);
-        gBattleCommunication[MSG_DISPLAY] = 1;
-        gBattlescriptCurrInstr = BattleScript_ProteanActivates;
-        return;
-    }
-
-    if (AtkCanceller_UnableToUseMove2())
-        return;
     if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
         return;
     if (!gBattleMons[gBattlerAttacker].pp[gCurrMovePos] && gCurrentMove != MOVE_STRUGGLE
@@ -1268,8 +1209,6 @@ static void Cmd_attackcanceler(void)
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         return;
     }
-    if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryFormChangeBeforeMove())
-        return;
 
     gHitMarker &= ~HITMARKER_ALLOW_NO_PP;
 

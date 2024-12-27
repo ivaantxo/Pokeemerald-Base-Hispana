@@ -100,33 +100,37 @@ struct TypePower
 enum
 {
     CANCELLER_FLAGS,
+    CANCELLER_STANCE_CHANGE_1,
     CANCELLER_SKY_DROP,
+    CANCELLER_RECHARGE,
     CANCELLER_ASLEEP,
     CANCELLER_FROZEN,
     CANCELLER_OBEDIENCE,
     CANCELLER_TRUANT,
-    CANCELLER_RECHARGE,
     CANCELLER_FLINCH,
+    CANCELLER_IN_LOVE,
     CANCELLER_DISABLED,
-    CANCELLER_GRAVITY,
     CANCELLER_HEAL_BLOCKED,
+    CANCELLER_GRAVITY,
+    CANCELLER_THROAT_CHOP,
     CANCELLER_TAUNTED,
     CANCELLER_IMPRISONED,
     CANCELLER_CONFUSED,
     CANCELLER_PARALYSED,
-    CANCELLER_IN_LOVE,
     CANCELLER_BIDE,
     CANCELLER_THAW,
+    CANCELLER_STANCE_CHANGE_2,
+    CANCELLER_WEATHER_PRIMAL,
+    CANCELLER_DYNAMAX_BLOCKED,
     CANCELLER_POWDER_MOVE,
     CANCELLER_POWDER_STATUS,
-    CANCELLER_THROAT_CHOP,
+    CANCELLER_PROTEAN,
+    CANCELLER_PSYCHIC_TERRAIN,
     CANCELLER_EXPLODING_DAMP,
     CANCELLER_MULTIHIT_MOVES,
     CANCELLER_Z_MOVES,
     CANCELLER_MULTI_TARGET_MOVES,
     CANCELLER_END,
-    CANCELLER_PSYCHIC_TERRAIN,
-    CANCELLER_END2,
 };
 
 enum {
@@ -197,9 +201,8 @@ u8 DoBattlerEndTurnEffects(void);
 bool32 HandleWishPerishSongOnTurnEnd(void);
 bool32 HandleFaintedMonActions(void);
 void TryClearRageAndFuryCutter(void);
-u8 AtkCanceller_UnableToUseMove(u32 moveType);
+u32 AtkCanceller_MoveSuccessOrder(void);
 void SetAtkCancellerForCalledMove(void);
-u8 AtkCanceller_UnableToUseMove2(void);
 bool32 HasNoMonsToSwitch(u32 battler, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility);
 u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef);

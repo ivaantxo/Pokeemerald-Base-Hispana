@@ -1431,6 +1431,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max One Blow bypasses Max Guard for full damage"
 }
 
 // Bug Testing
+//  This test will fail if it's the first test a thread runs
 DOUBLE_BATTLE_TEST("(DYNAMAX) Max Flare doesn't softlock the game when fainting player partner")
 {
     GIVEN {
