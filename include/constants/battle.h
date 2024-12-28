@@ -297,6 +297,8 @@ enum BattleWeather
     BATTLE_WEATHER_STRONG_WINDS,
 };
 
+#define BATTLE_WEATHER_COUNT 10
+
 // Battle Weather flags
 #define B_WEATHER_NONE          0
 #define B_WEATHER_RAIN_NORMAL   (1 << BATTLE_WEATHER_RAIN)

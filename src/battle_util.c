@@ -1568,20 +1568,70 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
     return FALSE;
 }
 
-#define BATTLE_WEATHER_MESSAGE_STOPPED  0
-#define BATTLE_WEATHER_MESSAGE_TURN     1
-#define BATTLE_WEATHER_ANIMATION        2
-static const u32 sBattleWeatherAttributes[][3] =
+struct BattleWeatherInfo
 {
-    // Type of Weather                 // End Message                  // Weather Continues             // Weather Animation
-    [BATTLE_WEATHER_RAIN]           = {B_MSG_WEATHER_END_RAIN,         B_MSG_WEATHER_TURN_RAIN,         B_ANIM_RAIN_CONTINUES},
-    [BATTLE_WEATHER_RAIN_DOWNPOUR]  = {B_MSG_WEATHER_END_RAIN,         B_MSG_WEATHER_TURN_DOWNPOUR,     B_ANIM_RAIN_CONTINUES},
-    [BATTLE_WEATHER_SUN]            = {B_MSG_WEATHER_END_SUN,          B_MSG_WEATHER_TURN_SUN,          B_ANIM_SUN_CONTINUES},
-    [BATTLE_WEATHER_SANDSTORM]      = {B_MSG_WEATHER_END_SANDSTORM,    B_MSG_WEATHER_TURN_SANDSTORM,    B_ANIM_SANDSTORM_CONTINUES},
-    [BATTLE_WEATHER_HAIL]           = {B_MSG_WEATHER_END_HAIL,         B_MSG_WEATHER_TURN_HAIL,         B_ANIM_HAIL_CONTINUES},
-    [BATTLE_WEATHER_SNOW]           = {B_MSG_WEATHER_END_SNOW,         B_MSG_WEATHER_TURN_SNOW,         B_ANIM_SNOW_CONTINUES},
-    [BATTLE_WEATHER_FOG]            = {B_MSG_WEATHER_END_FOG,          B_MSG_WEATHER_TURN_FOG,          B_ANIM_FOG_CONTINUES},
-    [BATTLE_WEATHER_STRONG_WINDS]   = {B_MSG_WEATHER_END_STRONG_WINDS, B_MSG_WEATHER_TURN_STRONG_WINDS, B_ANIM_STRONG_WINDS},
+    u8 endMessage;
+    u8 continuesMessage;
+    u8 animation;
+};
+
+static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
+{
+    [BATTLE_WEATHER_RAIN] =
+    {
+        .endMessage = B_MSG_WEATHER_END_RAIN,
+        .continuesMessage = B_MSG_WEATHER_TURN_RAIN,
+        .animation = B_ANIM_RAIN_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_RAIN_DOWNPOUR] =
+    {
+        .endMessage = B_MSG_WEATHER_END_RAIN,
+        .continuesMessage = B_MSG_WEATHER_TURN_DOWNPOUR,
+        .animation = B_ANIM_RAIN_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_SUN] =
+    {
+        .endMessage = B_MSG_WEATHER_END_SUN,
+        .continuesMessage = B_MSG_WEATHER_TURN_SUN,
+        .animation = B_ANIM_SUN_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_SANDSTORM] =
+    {
+        .endMessage = B_MSG_WEATHER_END_SANDSTORM,
+        .continuesMessage = B_MSG_WEATHER_TURN_SANDSTORM,
+        .animation = B_ANIM_SANDSTORM_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_HAIL] =
+    {
+        .endMessage = B_MSG_WEATHER_END_HAIL,
+        .continuesMessage = B_MSG_WEATHER_TURN_HAIL,
+        .animation = B_ANIM_HAIL_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_SNOW] =
+    {
+        .endMessage = B_MSG_WEATHER_END_SNOW,
+        .continuesMessage = B_MSG_WEATHER_TURN_SNOW,
+        .animation = B_ANIM_SNOW_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_FOG] =
+    {
+        .endMessage = B_MSG_WEATHER_END_FOG,
+        .continuesMessage = B_MSG_WEATHER_TURN_FOG,
+        .animation = B_ANIM_FOG_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_STRONG_WINDS] =
+    {
+        .endMessage = B_MSG_WEATHER_END_STRONG_WINDS,
+        .continuesMessage = B_MSG_WEATHER_TURN_STRONG_WINDS,
+        .animation = B_ANIM_STRONG_WINDS,
+    },
 };
 
 static bool32 TryEndTurnWeather(void)
@@ -1602,30 +1652,27 @@ static bool32 TryEndTurnWeather(void)
 
     if (gBattleWeather & B_WEATHER_PRIMAL_ANY) // Might be redundant. handled in else case?
     {
-        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherAttributes[currBattleWeather][BATTLE_WEATHER_MESSAGE_TURN];
-        gBattleScripting.animArg1 = sBattleWeatherAttributes[currBattleWeather][BATTLE_WEATHER_ANIMATION];
+        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].continuesMessage;
+        gBattleScripting.animArg1 = sBattleWeatherInfo[currBattleWeather].animation;
         BattleScriptExecute(BattleScript_WeatherContinues);
         effect++;
     }
     else if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
     {
-        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherAttributes[currBattleWeather][BATTLE_WEATHER_MESSAGE_STOPPED];
+        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].endMessage;
         BattleScriptExecute(BattleScript_WeatherFaded);
         effect++;
     }
     else
     {
-        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherAttributes[currBattleWeather][BATTLE_WEATHER_MESSAGE_TURN];
-        gBattleScripting.animArg1 = sBattleWeatherAttributes[currBattleWeather][BATTLE_WEATHER_ANIMATION];
+        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].continuesMessage;
+        gBattleScripting.animArg1 = sBattleWeatherInfo[currBattleWeather].animation;
         BattleScriptExecute(BattleScript_WeatherContinues);
         effect++;
     }
 
     return effect;
 }
-#undef BATTLE_WEATHER_MESSAGE_STOPPED
-#undef BATTLE_WEATHER_MESSAGE_TURN
-#undef BATTLE_WEATHER_ANIMATION
 
 u8 DoFieldEndTurnEffects(void)
 {
