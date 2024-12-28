@@ -9244,7 +9244,7 @@ void AnimTask_DynamaxGrowth(u8 taskId) // from CFRU
 
 void AnimTask_GetWeatherToSet(u8 taskId)
 {
-    switch (gMovesInfo[gCurrentMove].argument)
+    switch (gMovesInfo[gCurrentMove].argument.maxEffect)
     {
         case MAX_EFFECT_SUN:
             gBattleAnimArgs[ARG_RET_ID] = 1;

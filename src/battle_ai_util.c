@@ -470,11 +470,11 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
             return TRUE;
         break;
     case EFFECT_FAIL_IF_NOT_ARG_TYPE:
-        if (!IS_BATTLER_OF_TYPE(battlerAtk, gMovesInfo[move].argument))
+        if (!IS_BATTLER_OF_TYPE(battlerAtk, gMovesInfo[move].argument.type))
             return TRUE;
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && gMovesInfo[move].argument == ARG_TRY_REMOVE_TERRAIN_FAIL)
+        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && gMovesInfo[move].argument.moveProperty == ARG_TRY_REMOVE_TERRAIN_FAIL)
             return TRUE;
         break;
     case EFFECT_POLTERGEIST:
@@ -566,7 +566,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         expected = minimum = gBattleMons[damageCalcData->battlerAtk].level * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
         break;
     case EFFECT_FIXED_DAMAGE_ARG:
-        expected = minimum = gMovesInfo[move].argument * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        expected = minimum = gMovesInfo[move].argument.fixedDamage * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
         break;
     case EFFECT_MULTI_HIT:
         if (move == MOVE_WATER_SHURIKEN && gBattleMons[damageCalcData->battlerAtk].species == SPECIES_GRENINJA_ASH)
@@ -2027,7 +2027,7 @@ bool32 HasMoveEffect(u32 battlerId, u32 effect)
     return FALSE;
 }
 
-bool32 HasMoveEffectANDArg(u32 battlerId, u32 effect, u32 argument)
+bool32 IsPowerBasedOnStatus(u32 battlerId, u32 effect, u32 argument)
 {
     s32 i;
     u16 *moves = GetMovesArray(battlerId);
@@ -2036,7 +2036,7 @@ bool32 HasMoveEffectANDArg(u32 battlerId, u32 effect, u32 argument)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
             && gMovesInfo[moves[i]].effect == effect
-            && (gMovesInfo[moves[i]].argument & argument))
+            && (gMovesInfo[moves[i]].argument.status & argument))
             return TRUE;
     }
 
@@ -2419,7 +2419,7 @@ bool32 HasDamagingMove(u32 battlerId)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].power != 0)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !IS_MOVE_STATUS(moves[i]))
             return TRUE;
     }
 
@@ -2434,7 +2434,7 @@ bool32 HasDamagingMoveOfType(u32 battlerId, u32 type)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
-          && gMovesInfo[moves[i]].type == type && gMovesInfo[moves[i]].power != 0)
+          && gMovesInfo[moves[i]].type == type && !IS_MOVE_STATUS(moves[i]))
             return TRUE;
     }
 
@@ -2477,7 +2477,7 @@ bool32 IsTwoTurnNotSemiInvulnerableMove(u32 battlerAtk, u32 move)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_TWO_TURNS_ATTACK:
         return !(AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB
-              || (AI_GetWeather(AI_DATA) & gMovesInfo[move].argument));
+              || (AI_GetWeather(AI_DATA) & gMovesInfo[move].argument.twoTurnAttack.status));
     default:
         return FALSE;
     }
@@ -3229,7 +3229,7 @@ bool32 ShouldAbsorb(u32 battlerAtk, u32 battlerDef, u32 move, s32 damage)
     if (move == 0xFFFF || AI_IsFaster(battlerAtk, battlerDef, move))
     {
         // using item or user goes first
-        u32 healPercent = (gMovesInfo[move].argument == 0) ? 50 : gMovesInfo[move].argument;
+        u32 healPercent = (gMovesInfo[move].argument.absorbPercentage == 0) ? 50 : gMovesInfo[move].argument.absorbPercentage;
         s32 healDmg = (healPercent * damage) / 100;
 
         if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
@@ -3847,7 +3847,7 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT))
             ADJUST_SCORE_PTR(WEAK_EFFECT);    // stall tactic
 
-        if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PSN_ANY)
+        if (IsPowerBasedOnStatus(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PSN_ANY)
           || HasMoveEffect(battlerAtk, EFFECT_VENOM_DRENCH)
           || AI_DATA->abilities[battlerAtk] == ABILITY_MERCILESS)
             ADJUST_SCORE_PTR(DECENT_EFFECT);
@@ -3874,8 +3874,8 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
                 ADJUST_SCORE_PTR(WEAK_EFFECT);
         }
 
-        if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN)
-          || HasMoveEffectANDArg(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN))
+        if (IsPowerBasedOnStatus(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN)
+          || IsPowerBasedOnStatus(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN))
             ADJUST_SCORE_PTR(WEAK_EFFECT);
     }
 }
@@ -3892,7 +3892,7 @@ void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         u32 defSpeed = AI_DATA->speedStats[battlerDef];
 
         if ((defSpeed >= atkSpeed && defSpeed / 2 < atkSpeed) // You'll go first after paralyzing foe
-          || HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PARALYSIS)
+          || IsPowerBasedOnStatus(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PARALYSIS)
           || (HasMoveWithMoveEffectExcept(battlerAtk, MOVE_EFFECT_FLINCH, EFFECT_FIRST_TURN_ONLY)) // filter out Fake Out
           || gBattleMons[battlerDef].status2 & STATUS2_INFATUATION
           || gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
@@ -3917,8 +3917,8 @@ void IncreaseSleepScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
       && !(HasMoveEffect(battlerDef, EFFECT_SNORE) || HasMoveEffect(battlerDef, EFFECT_SLEEP_TALK)))
         ADJUST_SCORE_PTR(WEAK_EFFECT);
 
-    if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_SLEEP)
-      || HasMoveEffectANDArg(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_SLEEP))
+    if (IsPowerBasedOnStatus(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_SLEEP)
+      || IsPowerBasedOnStatus(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_SLEEP))
         ADJUST_SCORE_PTR(WEAK_EFFECT);
 }
 
@@ -3958,8 +3958,8 @@ void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
                 ADJUST_SCORE_PTR(WEAK_EFFECT);
         }
 
-        if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_FROSTBITE)
-          || HasMoveEffectANDArg(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_FROSTBITE))
+        if (IsPowerBasedOnStatus(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_FROSTBITE)
+          || IsPowerBasedOnStatus(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_FROSTBITE))
             ADJUST_SCORE_PTR(WEAK_EFFECT);
     }
 }
