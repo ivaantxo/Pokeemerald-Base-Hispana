@@ -1521,12 +1521,6 @@ enum
     ENDTURN_TAILWIND,
     ENDTURN_WISH,
     ENDTURN_WEATHER,
-    // ENDTURN_RAIN,
-    // ENDTURN_SANDSTORM,
-    // ENDTURN_SUN,
-    // ENDTURN_HAIL,
-    // ENDTURN_SNOW,
-    // ENDTURN_FOG,
     ENDTURN_DAMAGE_NON_TYPES,
     ENDTURN_GRAVITY,
     ENDTURN_WATER_SPORT,
@@ -1570,6 +1564,8 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
 
 struct BattleWeatherInfo
 {
+    u16 flag;
+    u8 rock;
     u8 endMessage;
     u8 continuesMessage;
     u8 animation;
@@ -1579,6 +1575,17 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 {
     [BATTLE_WEATHER_RAIN] =
     {
+        .flag = B_WEATHER_RAIN_NORMAL,
+        .rock = HOLD_EFFECT_DAMP_ROCK,
+        .endMessage = B_MSG_WEATHER_END_RAIN,
+        .continuesMessage = B_MSG_WEATHER_TURN_RAIN,
+        .animation = B_ANIM_RAIN_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_RAIN_PRIMAL] =
+    {
+        .flag = B_WEATHER_RAIN_PRIMAL,
+        .rock = HOLD_EFFECT_DAMP_ROCK,
         .endMessage = B_MSG_WEATHER_END_RAIN,
         .continuesMessage = B_MSG_WEATHER_TURN_RAIN,
         .animation = B_ANIM_RAIN_CONTINUES,
@@ -1586,6 +1593,8 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_RAIN_DOWNPOUR] =
     {
+        .flag = B_WEATHER_RAIN_NORMAL,
+        .rock = HOLD_EFFECT_DAMP_ROCK,
         .endMessage = B_MSG_WEATHER_END_RAIN,
         .continuesMessage = B_MSG_WEATHER_TURN_DOWNPOUR,
         .animation = B_ANIM_RAIN_CONTINUES,
@@ -1593,6 +1602,17 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_SUN] =
     {
+        .flag = B_WEATHER_SUN_NORMAL,
+        .rock = HOLD_EFFECT_HEAT_ROCK,
+        .endMessage = B_MSG_WEATHER_END_SUN,
+        .continuesMessage = B_MSG_WEATHER_TURN_SUN,
+        .animation = B_ANIM_SUN_CONTINUES,
+    },
+
+    [BATTLE_WEATHER_SUN_PRIMAL] =
+    {
+        .flag = B_WEATHER_SUN_PRIMAL,
+        .rock = HOLD_EFFECT_HEAT_ROCK,
         .endMessage = B_MSG_WEATHER_END_SUN,
         .continuesMessage = B_MSG_WEATHER_TURN_SUN,
         .animation = B_ANIM_SUN_CONTINUES,
@@ -1600,6 +1620,8 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_SANDSTORM] =
     {
+        .flag = B_WEATHER_SANDSTORM,
+        .rock = HOLD_EFFECT_SMOOTH_ROCK,
         .endMessage = B_MSG_WEATHER_END_SANDSTORM,
         .continuesMessage = B_MSG_WEATHER_TURN_SANDSTORM,
         .animation = B_ANIM_SANDSTORM_CONTINUES,
@@ -1607,6 +1629,8 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_HAIL] =
     {
+        .flag = B_WEATHER_HAIL,
+        .rock = HOLD_EFFECT_ICY_ROCK,
         .endMessage = B_MSG_WEATHER_END_HAIL,
         .continuesMessage = B_MSG_WEATHER_TURN_HAIL,
         .animation = B_ANIM_HAIL_CONTINUES,
@@ -1614,6 +1638,8 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_SNOW] =
     {
+        .flag = B_WEATHER_SNOW,
+        .rock = HOLD_EFFECT_ICY_ROCK,
         .endMessage = B_MSG_WEATHER_END_SNOW,
         .continuesMessage = B_MSG_WEATHER_TURN_SNOW,
         .animation = B_ANIM_SNOW_CONTINUES,
@@ -1621,6 +1647,8 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_FOG] =
     {
+        .flag = B_WEATHER_FOG,
+        .rock = HOLD_EFFECT_NONE,
         .endMessage = B_MSG_WEATHER_END_FOG,
         .continuesMessage = B_MSG_WEATHER_TURN_FOG,
         .animation = B_ANIM_FOG_CONTINUES,
@@ -1628,6 +1656,8 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
 
     [BATTLE_WEATHER_STRONG_WINDS] =
     {
+        .flag = B_WEATHER_STRONG_WINDS,
+        .rock = HOLD_EFFECT_NONE,
         .endMessage = B_MSG_WEATHER_END_STRONG_WINDS,
         .continuesMessage = B_MSG_WEATHER_TURN_STRONG_WINDS,
         .animation = B_ANIM_STRONG_WINDS,
@@ -1650,14 +1680,7 @@ static bool32 TryEndTurnWeather(void)
     if (currBattleWeather == 0xFF)
         return effect;
 
-    if (gBattleWeather & B_WEATHER_PRIMAL_ANY) // Might be redundant. handled in else case?
-    {
-        gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].continuesMessage;
-        gBattleScripting.animArg1 = sBattleWeatherInfo[currBattleWeather].animation;
-        BattleScriptExecute(BattleScript_WeatherContinues);
-        effect++;
-    }
-    else if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
+    if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
     {
         gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].endMessage;
         BattleScriptExecute(BattleScript_WeatherFaded);
@@ -1910,126 +1933,6 @@ u8 DoFieldEndTurnEffects(void)
             effect = TryEndTurnWeather();
             gBattleStruct->turnCountersTracker++;
             break;
-        // case ENDTURN_RAIN:
-        //     if (gBattleWeather & B_WEATHER_RAIN)
-        //     {
-        //         if (!(gBattleWeather & B_WEATHER_RAIN_PRIMAL)
-        //          && gWishFutureKnock.weatherDuration > 0
-        //          && --gWishFutureKnock.weatherDuration == 0)
-        //         {
-        //             gBattleWeather &= ~(B_WEATHER_RAIN | B_WEATHER_RAIN_DOWNPOUR);
-        //             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_RAIN_STOPPED;
-        //         }
-        //         else if (gBattleWeather & B_WEATHER_RAIN_DOWNPOUR)
-        //             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOWNPOUR_CONTINUES;
-        //         else
-        //             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_RAIN_CONTINUES;
-
-        //         BattleScriptExecute(BattleScript_RainContinuesOrEnds);
-        //         effect++;
-        //     }
-        //     gBattleStruct->turnCountersTracker++;
-        //     break;
-        // case ENDTURN_SANDSTORM:
-        //     if (gBattleWeather & B_WEATHER_SANDSTORM)
-        //     {
-        //         if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
-        //         {
-        //             gBattleWeather &= ~B_WEATHER_SANDSTORM;
-        //             gBattlescriptCurrInstr = BattleScript_SandStormHailSnowEnds;
-        //         }
-        //         else
-        //         {
-        //             gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
-        //         }
-
-        //         gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
-        //         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SANDSTORM;
-        //         BattleScriptExecute(gBattlescriptCurrInstr);
-        //         effect++;
-        //     }
-        //     gBattleStruct->turnCountersTracker++;
-        //     break;
-        // case ENDTURN_SUN:
-        //     if (gBattleWeather & B_WEATHER_SUN)
-        //     {
-        //         if (!(gBattleWeather & B_WEATHER_SUN_PRIMAL)
-        //          && gWishFutureKnock.weatherDuration > 0
-        //          && --gWishFutureKnock.weatherDuration == 0)
-        //         {
-        //             for (i = 0; i < gBattlersCount; i++)
-        //                 gDisableStructs[i].weatherAbilityDone = FALSE;
-        //             gBattleWeather &= ~B_WEATHER_SUN;
-        //             gBattlescriptCurrInstr = BattleScript_SunlightFaded;
-        //         }
-        //         else
-        //         {
-        //             gBattlescriptCurrInstr = BattleScript_SunlightContinues;
-        //         }
-
-        //         BattleScriptExecute(gBattlescriptCurrInstr);
-        //         effect++;
-        //     }
-        //     gBattleStruct->turnCountersTracker++;
-        //     break;
-        // case ENDTURN_HAIL:
-        //     if (gBattleWeather & B_WEATHER_HAIL)
-        //     {
-        //         if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
-        //         {
-        //             gBattleWeather &= ~B_WEATHER_HAIL;
-        //             gBattlescriptCurrInstr = BattleScript_SandStormHailSnowEnds;
-        //         }
-        //         else
-        //         {
-        //             gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
-        //         }
-
-        //         gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
-        //         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HAIL;
-        //         BattleScriptExecute(gBattlescriptCurrInstr);
-        //         effect++;
-        //     }
-        //     gBattleStruct->turnCountersTracker++;
-        //     break;
-        // case ENDTURN_SNOW:
-        //     if (gBattleWeather & B_WEATHER_SNOW)
-        //     {
-        //         if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
-        //         {
-        //             gBattleWeather &= ~B_WEATHER_SNOW;
-        //             gBattlescriptCurrInstr = BattleScript_SandStormHailSnowEnds;
-        //         }
-        //         else
-        //         {
-        //             gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
-        //         }
-
-        //         gBattleScripting.animArg1 = B_ANIM_SNOW_CONTINUES;
-        //         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SNOW;
-        //         BattleScriptExecute(gBattlescriptCurrInstr);
-        //         effect++;
-        //     }
-        //     gBattleStruct->turnCountersTracker++;
-        //     break;
-        // case ENDTURN_FOG:
-        //     if (gBattleWeather & B_WEATHER_FOG)
-        //     {
-        //         if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
-        //         {
-        //             gBattleWeather &= ~B_WEATHER_FOG;
-        //             gBattlescriptCurrInstr = BattleScript_FogEnded;
-        //         }
-        //         else
-        //         {
-        //             gBattlescriptCurrInstr = BattleScript_FogContinues;
-        //         }
-
-        //         BattleScriptExecute(gBattlescriptCurrInstr);
-        //         effect++;
-        //     }
-        //     gBattleStruct->turnCountersTracker++;
-        //     break;
         case ENDTURN_DAMAGE_NON_TYPES:
             while (gBattleStruct->turnSideTracker < 2)
             {
@@ -2349,6 +2252,7 @@ u8 DoBattlerEndTurnEffects(void)
                 gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 16;
                 if (gBattleStruct->moveDamage[battler] == 0)
                     gBattleStruct->moveDamage[battler] = 1;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SANDSTORM;
                 BattleScriptExecute(BattleScript_DamagingWeather);
                 effect++;
             }
@@ -2375,6 +2279,7 @@ u8 DoBattlerEndTurnEffects(void)
                 gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 16;
                 if (gBattleStruct->moveDamage[battler] == 0)
                     gBattleStruct->moveDamage[battler] = 1;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HAIL;
                 BattleScriptExecute(BattleScript_DamagingWeather);
                 effect++;
             }
@@ -3995,19 +3900,6 @@ bool32 HasNoMonsToSwitch(u32 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2
     }
 }
 
-static const u16 sWeatherFlagsInfo[][2] =
-{
-    [BATTLE_WEATHER_RAIN]         = {B_WEATHER_RAIN_NORMAL, HOLD_EFFECT_DAMP_ROCK},
-    [BATTLE_WEATHER_RAIN_PRIMAL]  = {B_WEATHER_RAIN_PRIMAL, HOLD_EFFECT_DAMP_ROCK},
-    [BATTLE_WEATHER_SUN]          = {B_WEATHER_SUN_NORMAL, HOLD_EFFECT_HEAT_ROCK},
-    [BATTLE_WEATHER_SUN_PRIMAL]   = {B_WEATHER_SUN_PRIMAL, HOLD_EFFECT_HEAT_ROCK},
-    [BATTLE_WEATHER_SANDSTORM]    = {B_WEATHER_SANDSTORM, HOLD_EFFECT_SMOOTH_ROCK},
-    [BATTLE_WEATHER_HAIL]         = {B_WEATHER_HAIL, HOLD_EFFECT_ICY_ROCK},
-    [BATTLE_WEATHER_STRONG_WINDS] = {B_WEATHER_STRONG_WINDS, HOLD_EFFECT_NONE},
-    [BATTLE_WEATHER_SNOW]         = {B_WEATHER_SNOW, HOLD_EFFECT_ICY_ROCK},
-    [BATTLE_WEATHER_FOG]          = {B_WEATHER_FOG, HOLD_EFFECT_NONE},
-};
-
 bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, bool32 viaAbility)
 {
     u16 battlerAbility = GetBattlerAbility(battler);
@@ -4018,15 +3910,17 @@ bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, bool32 viaAbilit
     {
         return FALSE;
     }
-    else if (B_ABILITY_WEATHER < GEN_6 && viaAbility && !(gBattleWeather & sWeatherFlagsInfo[battleWeatherId][0]))
+    else if (B_ABILITY_WEATHER < GEN_6 && viaAbility && !(gBattleWeather & sBattleWeatherInfo[battleWeatherId].flag))
     {
-        gBattleWeather = (sWeatherFlagsInfo[battleWeatherId][0] | sWeatherFlagsInfo[battleWeatherId][0]);
+        gBattleWeather = sBattleWeatherInfo[battleWeatherId].flag;
         return TRUE;
     }
-    else if (!(gBattleWeather & (sWeatherFlagsInfo[battleWeatherId][0] | sWeatherFlagsInfo[battleWeatherId][0])))
+    else if (!(gBattleWeather & sBattleWeatherInfo[battleWeatherId].flag))
     {
-        gBattleWeather = (sWeatherFlagsInfo[battleWeatherId][0]);
-        if (GetBattlerHoldEffect(battler, TRUE) == sWeatherFlagsInfo[battleWeatherId][1])
+        gBattleWeather = sBattleWeatherInfo[battleWeatherId].flag;
+        if (gBattleWeather & B_WEATHER_PRIMAL_ANY)
+            gWishFutureKnock.weatherDuration = 0;
+        if (GetBattlerHoldEffect(battler, TRUE) == sBattleWeatherInfo[battleWeatherId].rock)
             gWishFutureKnock.weatherDuration = 8;
         else
             gWishFutureKnock.weatherDuration = 5;
