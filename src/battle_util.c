@@ -1685,6 +1685,8 @@ static bool32 TryEndTurnWeather(void)
     if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
     {
         gBattleWeather = B_WEATHER_NONE;
+        for (u32 i = 0; i < gBattlersCount; i++)
+            gDisableStructs[i].weatherAbilityDone = FALSE;
         gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].endMessage;
         BattleScriptExecute(BattleScript_WeatherFaded);
         effect++;
