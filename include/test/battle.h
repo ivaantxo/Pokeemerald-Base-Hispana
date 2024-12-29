@@ -742,7 +742,7 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
 /* Test */
 
 #define TO_DO_BATTLE_TEST(_name) \
-    TEST("TODO: " _name) \
+    TEST(_name) \
     { \
         TO_DO; \
     }
