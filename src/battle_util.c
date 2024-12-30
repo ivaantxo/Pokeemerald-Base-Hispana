@@ -1554,7 +1554,7 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
     {
         if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
             BattleScriptExecute(BattleScript_GrassyTerrainHeals);
-        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
+        if (gFieldTimers.terrainTimer > 0 && --gFieldTimers.terrainTimer == 0)
         {
             gFieldStatuses &= ~terrainFlag;
             TryToRevertMimicryAndFlags();
@@ -4049,7 +4049,7 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 {
     if ((!(gFieldStatuses & statusFlag) && (!gBattleStruct->isSkyBattle)))
     {
-        gFieldStatuses &= ~(STATUS_FIELD_TERRAIN_ANY | STATUS_FIELD_TERRAIN_PERMANENT);
+        gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;
         gFieldStatuses |= statusFlag;
         gDisableStructs[battler].terrainAbilityDone = FALSE;
 
@@ -4328,6 +4328,43 @@ u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 mov
     return effect;
 }
 
+static inline u32 SetStartingFieldStatus(u32 flag, u32 message, u32 anim, u8 *timer)
+{
+    if (!(gFieldStatuses & flag))
+    {
+        gBattleCommunication[MULTISTRING_CHOOSER] = message;
+        gFieldStatuses |= flag;
+        gBattleScripting.animArg1 = anim;
+        if (gBattleStruct->startingStatusTimer)
+            *timer = gBattleStruct->startingStatusTimer;
+        else
+            *timer = 0; // Infinite
+
+        return 1;
+    }
+
+    return 0;
+}
+
+static inline u32 SetStartingSideStatus(u32 flag, u32 side, u32 message, u32 anim, u8 *timer)
+{
+    if (!(gSideStatuses[side] & flag))
+    {
+        gBattlerAttacker = gBattlerTarget = side;
+        gBattleCommunication[MULTISTRING_CHOOSER] = message;
+        gSideStatuses[side] |= flag;
+        gBattleScripting.animArg1 = anim;
+        if (gBattleStruct->startingStatusTimer)
+            *timer = gBattleStruct->startingStatusTimer;
+        else
+            *timer = 0; // Infinite
+
+        return 1;
+    }
+
+    return 0;
+}
+
 u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 moveArg)
 {
     u32 effect = 0;
@@ -4359,125 +4396,110 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     {
     case ABILITYEFFECT_SWITCH_IN_STATUSES:  // starting field/side/etc statuses with a variable
         {
-            u8 timerVal = gBattleStruct->startingStatusTimer;
-
             gBattleScripting.battler = battler;
             switch (gBattleStruct->startingStatus)
             {
             case STARTING_STATUS_ELECTRIC_TERRAIN:
-                if (!(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
-                    gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
-                    if (timerVal == 0)
-                        gFieldStatuses |= STATUS_FIELD_TERRAIN_PERMANENT;
-                    else
-                        gFieldTimers.terrainTimer = timerVal;
-                    effect = 2;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_ELECTRIC_TERRAIN,
+                                                B_MSG_TERRAIN_SET_ELECTRIC,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_MISTY_TERRAIN:
-                if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
-                    gFieldStatuses |= STATUS_FIELD_MISTY_TERRAIN;
-                    if (timerVal == 0)
-                        gFieldStatuses |= STATUS_FIELD_TERRAIN_PERMANENT;
-                    else
-                        gFieldTimers.terrainTimer = timerVal;
-                    effect = 2;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_MISTY_TERRAIN,
+                                                B_MSG_TERRAIN_SET_MISTY,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_GRASSY_TERRAIN:
-                if (!(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
-                    gFieldStatuses |= STATUS_FIELD_GRASSY_TERRAIN;
-                    if (timerVal == 0)
-                        gFieldStatuses |= STATUS_FIELD_TERRAIN_PERMANENT;
-                    else
-                        gFieldTimers.terrainTimer = timerVal;
-                    effect = 2;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_GRASSY_TERRAIN,
+                                                B_MSG_TERRAIN_SET_GRASSY,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_PSYCHIC_TERRAIN:
-                if (!(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
-                    gFieldStatuses |= STATUS_FIELD_PSYCHIC_TERRAIN;
-                    if (timerVal == 0)
-                        gFieldStatuses |= STATUS_FIELD_TERRAIN_PERMANENT;
-                    else
-                        gFieldTimers.terrainTimer = timerVal;
-                    effect = 2;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_PSYCHIC_TERRAIN,
+                                                B_MSG_TERRAIN_SET_PSYCHIC,
+                                                0,
+                                                &gFieldTimers.terrainTimer);
+                effect = (effect == 1) ? 2 : 0;
                 break;
             case STARTING_STATUS_TRICK_ROOM:
-                if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_TRICK_ROOM;
-                    gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-                    gBattleScripting.animArg1 = B_ANIM_TRICK_ROOM;
-                    if (timerVal == 0)
-                        gFieldTimers.trickRoomTimer = 0;    // infinite
-                    else
-                        gFieldTimers.trickRoomTimer = 5;
-                    effect = 1;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_TRICK_ROOM,
+                                                B_MSG_SET_TRICK_ROOM,
+                                                B_ANIM_TRICK_ROOM,
+                                                &gFieldTimers.trickRoomTimer);
                 break;
             case STARTING_STATUS_MAGIC_ROOM:
-                if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_MAGIC_ROOM;
-                    gFieldStatuses |= STATUS_FIELD_MAGIC_ROOM;
-                    gBattleScripting.animArg1 = B_ANIM_MAGIC_ROOM;
-                    if (timerVal == 0)
-                        gFieldTimers.magicRoomTimer = 0;    // infinite
-                    else
-                        gFieldTimers.magicRoomTimer = 5;
-                    effect = 1;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_MAGIC_ROOM,
+                                                B_MSG_SET_MAGIC_ROOM,
+                                                B_ANIM_MAGIC_ROOM,
+                                                &gFieldTimers.magicRoomTimer);
                 break;
             case STARTING_STATUS_WONDER_ROOM:
-                if (!(gFieldStatuses & STATUS_FIELD_WONDER_ROOM))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_WONDER_ROOM;
-                    gFieldStatuses |= STATUS_FIELD_WONDER_ROOM;
-                    gBattleScripting.animArg1 = B_ANIM_WONDER_ROOM;
-                    if (timerVal == 0)
-                        gFieldTimers.wonderRoomTimer = 0;    // infinite
-                    else
-                        gFieldTimers.wonderRoomTimer = 5;
-                    effect = 1;
-                }
+                effect = SetStartingFieldStatus(STATUS_FIELD_WONDER_ROOM,
+                                                B_MSG_SET_WONDER_ROOM,
+                                                B_ANIM_WONDER_ROOM,
+                                                &gFieldTimers.wonderRoomTimer);
                 break;
             case STARTING_STATUS_TAILWIND_PLAYER:
-                if (!(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_TAILWIND))
-                {
-                    gBattlerAttacker = B_POSITION_PLAYER_LEFT;
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_TAILWIND_PLAYER;
-                    gSideStatuses[B_SIDE_PLAYER] |= SIDE_STATUS_TAILWIND;
-                    gBattleScripting.animArg1 = B_ANIM_TAILWIND;
-                    if (timerVal == 0)
-                        gSideTimers[B_SIDE_PLAYER].tailwindTimer = 0; // infinite
-                    else
-                        gSideTimers[B_SIDE_PLAYER].tailwindTimer = 5;
-                    effect = 1;
-                }
+                effect = SetStartingSideStatus(SIDE_STATUS_TAILWIND,
+                                               B_SIDE_PLAYER,
+                                               B_MSG_SET_TAILWIND,
+                                               B_ANIM_TAILWIND,
+                                               &gSideTimers[B_SIDE_PLAYER].tailwindTimer);
                 break;
             case STARTING_STATUS_TAILWIND_OPPONENT:
-                if (!(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_TAILWIND))
-                {
-                    gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_TAILWIND_OPPONENT;
-                    gSideStatuses[B_SIDE_OPPONENT] |= SIDE_STATUS_TAILWIND;
-                    gBattleScripting.animArg1 = B_ANIM_TAILWIND;
-                    if (timerVal == 0)
-                        gSideTimers[B_SIDE_OPPONENT].tailwindTimer = 0; // infinite
-                    else
-                        gSideTimers[B_SIDE_OPPONENT].tailwindTimer = 5;
-                    effect = 1;
-                }
+                effect = SetStartingSideStatus(SIDE_STATUS_TAILWIND,
+                                               B_SIDE_OPPONENT,
+                                               B_MSG_SET_TAILWIND,
+                                               B_ANIM_TAILWIND,
+                                               &gSideTimers[B_SIDE_OPPONENT].tailwindTimer);
+                break;
+            case STARTING_STATUS_RAINBOW_PLAYER:
+                effect = SetStartingSideStatus(SIDE_STATUS_RAINBOW,
+                                               B_SIDE_PLAYER,
+                                               B_MSG_SET_RAINBOW,
+                                               B_ANIM_RAINBOW,
+                                               &gSideTimers[B_SIDE_PLAYER].rainbowTimer);
+                break;
+            case STARTING_STATUS_RAINBOW_OPPONENT:
+                effect = SetStartingSideStatus(SIDE_STATUS_RAINBOW,
+                                               B_SIDE_OPPONENT,
+                                               B_MSG_SET_RAINBOW,
+                                               B_ANIM_RAINBOW,
+                                               &gSideTimers[B_SIDE_OPPONENT].rainbowTimer);
+                break;
+            case STARTING_STATUS_SEA_OF_FIRE_PLAYER:
+                effect = SetStartingSideStatus(SIDE_STATUS_SEA_OF_FIRE,
+                                               B_SIDE_PLAYER,
+                                               B_MSG_SET_SEA_OF_FIRE,
+                                               B_ANIM_SEA_OF_FIRE,
+                                               &gSideTimers[B_SIDE_PLAYER].seaOfFireTimer);
+                break;
+            case STARTING_STATUS_SEA_OF_FIRE_OPPONENT:
+                effect = SetStartingSideStatus(SIDE_STATUS_SEA_OF_FIRE,
+                                               B_SIDE_OPPONENT,
+                                               B_MSG_SET_SEA_OF_FIRE,
+                                               B_ANIM_SEA_OF_FIRE,
+                                               &gSideTimers[B_SIDE_OPPONENT].seaOfFireTimer);
+                break;
+            case STARTING_STATUS_SWAMP_PLAYER:
+                effect = SetStartingSideStatus(SIDE_STATUS_SWAMP,
+                                               B_SIDE_PLAYER,
+                                               B_MSG_SET_SWAMP,
+                                               B_ANIM_SWAMP,
+                                               &gSideTimers[B_SIDE_PLAYER].swampTimer);
+                break;
+            case STARTING_STATUS_SWAMP_OPPONENT:
+                effect = SetStartingSideStatus(SIDE_STATUS_SWAMP,
+                                               B_SIDE_OPPONENT,
+                                               B_MSG_SET_SWAMP,
+                                               B_ANIM_SWAMP,
+                                               &gSideTimers[B_SIDE_OPPONENT].swampTimer);
                 break;
             }
 
@@ -4493,7 +4515,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM)
         {
             // overworld weather started rain, so just do electric terrain anim
-            gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+            gFieldStatuses = STATUS_FIELD_ELECTRIC_TERRAIN;
+            gFieldTimers.terrainTimer = 0;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;
@@ -4502,7 +4525,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
               && (GetCurrentWeather() == WEATHER_FOG_HORIZONTAL || GetCurrentWeather() == WEATHER_FOG_DIAGONAL)
               && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
         {
-            gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+            gFieldStatuses = STATUS_FIELD_MISTY_TERRAIN;
+            gFieldTimers.terrainTimer = 0;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;

@@ -16988,7 +16988,7 @@ void BS_SetRemoveTerrain(void)
     {
         u32 atkHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
 
-        gFieldStatuses &= ~(STATUS_FIELD_TERRAIN_ANY | STATUS_FIELD_TERRAIN_PERMANENT);
+        gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;
         gFieldStatuses |= statusFlag;
         gFieldTimers.terrainTimer = (atkHoldEffect == HOLD_EFFECT_TERRAIN_EXTENDER) ? 8 : 5;
         gBattlescriptCurrInstr = cmd->nextInstr;

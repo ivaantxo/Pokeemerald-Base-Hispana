@@ -1010,9 +1010,11 @@
 #define B_MSG_SET_TRICK_ROOM        4
 #define B_MSG_SET_MAGIC_ROOM        5
 #define B_MSG_SET_WONDER_ROOM       6
-#define B_MSG_SET_TAILWIND_PLAYER   7
-#define B_MSG_SET_TAILWIND_OPPONENT 8
-#define B_MSG_STARTING_STATUS_COUNT 9
+#define B_MSG_SET_TAILWIND          7
+#define B_MSG_SET_RAINBOW           8
+#define B_MSG_SET_SEA_OF_FIRE       9
+#define B_MSG_SET_SWAMP             10
+#define B_MSG_STARTING_STATUS_COUNT 11
 
 
 // gWrappedStringIds
