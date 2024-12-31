@@ -3177,15 +3177,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
     gBattleScripting.moveEffect &= ~MOVE_EFFECT_CERTAIN;
 
     if (!primary && affectsUser != MOVE_EFFECT_AFFECTS_USER
-      && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
-      && (battlerAbility == ABILITY_SHIELD_DUST || GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK))
-    {
-        if (battlerAbility == ABILITY_SHIELD_DUST)
-            RecordAbilityBattle(gEffectBattler, battlerAbility);
-        else
-            RecordItemEffectBattle(gEffectBattler, HOLD_EFFECT_COVERT_CLOAK);
+     && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
+     && IsMoveEffectBlockedByTarget(battlerAbility))
         INCREMENT_RESET_RETURN
-    }
 
     if (gSideStatuses[GetBattlerSide(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
         && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_CONFUSION)
@@ -6258,7 +6252,8 @@ static void Cmd_moveend(void)
             case MOVE_EFFECT_REMOVE_STATUS: // Smelling salts, Wake-Up Slap, Sparkling Aria
                 if ((gBattleMons[gBattlerTarget].status1 & gMovesInfo[gCurrentMove].argument.status)
                  && IsBattlerAlive(gBattlerTarget)
-                 && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+                 && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)
+                 && (gBattleStruct->numSpreadTargets > 1 || !IsMoveEffectBlockedByTarget(GetBattlerAbility(gBattlerTarget))))
                 {
                     gBattleMons[gBattlerTarget].status1 &= ~(gMovesInfo[gCurrentMove].argument.status);
 
