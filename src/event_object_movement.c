@@ -365,7 +365,7 @@ static const bool8 sMovementTypeHasRange[NUM_MOVEMENT_TYPES] = {
     [MOVEMENT_TYPE_COPY_PLAYER_CLOCKWISE_IN_GRASS] = TRUE,
 };
 
-const u8 gInitialMovementTypeFacingDirections[] = {
+const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
     [MOVEMENT_TYPE_NONE] = DIR_SOUTH,
     [MOVEMENT_TYPE_LOOK_AROUND] = DIR_SOUTH,
     [MOVEMENT_TYPE_WANDER_AROUND] = DIR_SOUTH,
@@ -447,6 +447,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_UP] = DIR_NORTH,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = DIR_WEST,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
+    [MOVEMENT_TYPE_FOLLOW_PLAYER] = DIR_SOUTH,
 };
 
 #define OBJ_EVENT_PAL_TAG_BRENDAN                 0x1100
@@ -1925,8 +1926,16 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
 struct Pokemon *GetFirstLiveMon(void) { // Return address of first conscious party mon or NULL
     u32 i;
     for (i = 0; i < PARTY_SIZE; i++) {
+        struct Pokemon *mon = &gPlayerParty[i];
+        if ((OW_MON_ALLOWED_SPECIES && GetMonData(mon, MON_DATA_SPECIES_OR_EGG) != VarGet(OW_MON_ALLOWED_SPECIES))
+            || (OW_MON_ALLOWED_MET_LVL && GetMonData(mon, MON_DATA_MET_LEVEL) != VarGet(OW_MON_ALLOWED_MET_LVL))
+            || (OW_MON_ALLOWED_MET_LOC && GetMonData(mon, MON_DATA_MET_LOCATION) != VarGet(OW_MON_ALLOWED_MET_LOC))
+        ) {
+            continue;
+        }
+
         if (gPlayerParty[i].hp > 0 && !(gPlayerParty[i].box.isEgg || gPlayerParty[i].box.isBadEgg))
-        return &gPlayerParty[i];
+            return &gPlayerParty[i];
     }
     return NULL;
 }
@@ -5307,6 +5316,7 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
     if (ObjectEventExecSingleMovementAction(objectEvent, sprite)) {
     #endif
         objectEvent->singleMovementActive = FALSE;
+        objectEvent->facingDirectionLocked = FALSE;
         if (sprite->sTypeFuncId) // restore nonzero state
             sprite->sTypeFuncId = 1;
     } else if (objectEvent->movementActionId < MOVEMENT_ACTION_EXIT_POKEBALL) {
@@ -5384,6 +5394,15 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
 
     // Follow player
     direction = GetDirectionToFace(x, y, targetX, targetY);
+    // During a script, if player sidesteps or backsteps,
+    // mirror player's direction instead
+    if (ArePlayerFieldControlsLocked()
+        && gObjectEvents[gPlayerAvatar.objectEventId].facingDirection != gObjectEvents[gPlayerAvatar.objectEventId].movementDirection
+    ) {
+        direction = gObjectEvents[gPlayerAvatar.objectEventId].movementDirection;
+        objectEvent->facingDirectionLocked = TRUE;
+    }
+
     MoveCoords(direction, &x, &y);
     #ifdef MB_SIDEWAYS_STAIRS_RIGHT_SIDE // https://github.com/ghoulslash/pokeemerald/tree/sideways_stairs
     GetCollisionAtCoords(objectEvent, x, y, direction); // Sets directionOverwrite for stairs
@@ -9447,10 +9466,10 @@ static void DoTracksGroundEffect_SlitherTracks(struct ObjectEvent *objEvent, str
 	//  each byte in that row is for the next direction of the bike in the order
 	//  of down, up, left, right.
 	static const u8 slitherTracks_Transitions[4][4] = {
-		1, 2, 7, 8,
-		1, 2, 6, 5,
-		5, 8, 3, 4,
-		6, 7, 3, 4,
+		{1, 2, 7, 8},
+		{1, 2, 6, 5},
+		{5, 8, 3, 4},
+		{6, 7, 3, 4},
 	};
 
 	if (objEvent->currentCoords.x != objEvent->previousCoords.x || objEvent->currentCoords.y != objEvent->previousCoords.y)
