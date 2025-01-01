@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].effect == EFFECT_SOLAR_BEAM);
-    ASSUME(gMovesInfo[MOVE_SOLAR_BLADE].argument.twoTurnAttack.status == B_WEATHER_SUN);
+    ASSUME(GetMoveEffect(MOVE_SOLAR_BEAM) == EFFECT_SOLAR_BEAM);
+    ASSUME(GetMoveTwoTurnAttackWeather(MOVE_SOLAR_BLADE) == B_WEATHER_SUN);
 }
 
 SINGLE_BATTLE_TEST("Solar Beam does not need a charging turn if Sun is up")

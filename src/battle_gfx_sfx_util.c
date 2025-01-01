@@ -329,7 +329,7 @@ static u8 GetBattlePalaceMoveGroup(u8 battler, u16 move)
     case MOVE_TARGET_RANDOM:
     case MOVE_TARGET_BOTH:
     case MOVE_TARGET_FOES_AND_ALLY:
-        if (IS_MOVE_STATUS(move))
+        if (IsBattleMoveStatus(move))
             return PALACE_MOVE_GROUP_SUPPORT;
         else
             return PALACE_MOVE_GROUP_ATTACK;
@@ -1043,7 +1043,8 @@ void LoadBattleMonGfxAndAnimate(u8 battler, bool8 loadMonSprite, u8 spriteId)
 
 void TrySetBehindSubstituteSpriteBit(u8 battler, u16 move)
 {
-    if (gMovesInfo[move].effect == EFFECT_SUBSTITUTE || gMovesInfo[move].effect == EFFECT_SHED_TAIL)
+    u32 effect = GetMoveEffect(move);
+    if (effect == EFFECT_SUBSTITUTE || effect == EFFECT_SHED_TAIL)
         gBattleSpritesDataPtr->battlerData[battler].behindSubstitute = 1;
 }
 

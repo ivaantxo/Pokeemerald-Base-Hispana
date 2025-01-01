@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_ABSORB].effect == EFFECT_ABSORB);
+    ASSUME(GetMoveEffect(MOVE_ABSORB) == EFFECT_ABSORB);
 }
 
 SINGLE_BATTLE_TEST("Absorb recovers 50% of the damage dealt")
@@ -50,7 +50,7 @@ DOUBLE_BATTLE_TEST("Matcha Gatcha recovers 50% of the damage dealt from both tar
     s16 healedRight;
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_MATCHA_GOTCHA].effect == EFFECT_ABSORB);
+        ASSUME(GetMoveEffect(MOVE_MATCHA_GOTCHA) == EFFECT_ABSORB);
         PLAYER(SPECIES_PIKACHU) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_STARYU);
