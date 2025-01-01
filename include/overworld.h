@@ -30,6 +30,11 @@
 #define TIME_OF_DAY_DAY 2
 #define TIME_OF_DAY_MAX TIME_OF_DAY_DAY
 
+// trigger a time-of-day blend once
+#define HOURS_BLEND_ONCE 25
+// don't update currentTimeBlend
+#define HOURS_FREEZE_BLEND 26
+
 struct InitialPlayerAvatarState
 {
     u8 transitionFlags;
@@ -42,14 +47,6 @@ struct LinkPlayerObjectEvent
     u8 linkPlayerId;
     u8 objEventId;
     u8 movementMode;
-};
-
-struct __attribute__((packed)) TimeBlendSettings {
-  u16 weight:9;
-  u16 time1:3;
-  u16 time0:3;
-  u16 unused:1;
-  u16 altWeight;
 };
 
 // Exported RAM declarations
@@ -65,7 +62,7 @@ extern bool8 (*gFieldCallback2)(void);
 extern u8 gLocalLinkPlayerId;
 extern u8 gFieldLinkPlayerCount;
 extern u8 gTimeOfDay;
-extern u16 gTimeUpdateCounter;
+extern s16 gTimeUpdateCounter;
 
 extern struct TimeBlendSettings currentTimeBlend;
 
@@ -175,5 +172,6 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void);
 bool32 Overworld_SendKeysToLinkIsRunning(void);
 bool32 IsSendingKeysOverCable(void);
 void ClearLinkPlayerObjectEvents(void);
+bool16 SetTimeOfDay(u16 hours);
 
 #endif // GUARD_OVERWORLD_H
