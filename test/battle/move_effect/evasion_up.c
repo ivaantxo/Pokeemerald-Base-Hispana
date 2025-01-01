@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_DOUBLE_TEAM) == EFFECT_EVASION_UP);
 }
 
-SINGLE_BATTLE_TEST("Double Team raises Evasion")
+SINGLE_BATTLE_TEST("Double Team raises Evasion by 1 stage")
 {
     PASSES_RANDOMLY(GetMoveAccuracy(MOVE_SCRATCH) * 3 / 4, 100, RNG_ACCURACY);
     GIVEN {
