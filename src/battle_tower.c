@@ -1590,7 +1590,7 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
             move = MOVE_FRUSTRATION;
 
         SetMonMoveSlot(dst, move, j);
-        if (gMovesInfo[move].effect == EFFECT_FRUSTRATION)
+        if (GetMoveEffect(move) == EFFECT_FRUSTRATION)
             friendship = 0;  // Frustration is more powerful the lower the pokemon's friendship is.
     }
 
@@ -1755,39 +1755,6 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
         // The Pokémon was successfully added to the trainer's party, so it's safe to move on to
         // the next party slot.
         i++;
-    }
-}
-
-// Probably an early draft before the 'CreateApprenticeMon' was written.
-static void UNUSED Unused_CreateApprenticeMons(u16 trainerId, u8 firstMonId)
-{
-    s32 i, j;
-    u8 friendship = MAX_FRIENDSHIP;
-    u8 level = 0;
-    u8 fixedIV = 0;
-    struct Apprentice *apprentice = &gSaveBlock2Ptr->apprentices[0];
-
-    if (apprentice->numQuestions < 5)
-        fixedIV = 6;
-    else
-        fixedIV = 9;
-
-    if (gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_50)
-        level = FRONTIER_MAX_LEVEL_OPEN;
-    else
-        level = FRONTIER_MAX_LEVEL_50;
-
-    for (i = 0; i != FRONTIER_PARTY_SIZE; i++)
-    {
-        CreateMonWithEVSpread(&gEnemyParty[firstMonId + i], apprentice->party[i].species, level, fixedIV, 8);
-        friendship = MAX_FRIENDSHIP;
-        for (j = 0; j < MAX_MON_MOVES; j++)
-        {
-            if (gMovesInfo[apprentice->party[i].moves[j]].effect == EFFECT_FRUSTRATION)
-                friendship = 0;
-        }
-        SetMonData(&gEnemyParty[firstMonId + i], MON_DATA_FRIENDSHIP, &friendship);
-        SetMonData(&gEnemyParty[firstMonId + i], MON_DATA_HELD_ITEM, &apprentice->party[i].item);
     }
 }
 

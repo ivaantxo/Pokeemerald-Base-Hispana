@@ -160,6 +160,7 @@ static void BattleTest_SetUp(void *data)
 {
     const struct BattleTest *test = data;
     memset(STATE, 0, sizeof(*STATE));
+    TestInitConfigData();
     InvokeTestFunction(test);
     STATE->parameters = STATE->parametersCount;
     if (STATE->parametersCount == 0 && test->resultsSize > 0)
@@ -365,6 +366,7 @@ u32 RandomUniform(enum RandomTag tag, u32 lo, u32 hi)
 
     if (tag == STATE->rngTag)
     {
+        STATE->didRunRandomly = TRUE;
         u32 n = hi - lo + 1;
         if (STATE->trials == 1)
         {
@@ -401,6 +403,7 @@ u32 RandomUniformExcept(enum RandomTag tag, u32 lo, u32 hi, bool32 (*reject)(u32
 
     if (tag == STATE->rngTag)
     {
+        STATE->didRunRandomly = TRUE;
         if (STATE->trials == 1)
         {
             u32 n = 0, i;
@@ -449,6 +452,7 @@ u32 RandomWeightedArray(enum RandomTag tag, u32 sum, u32 n, const u8 *weights)
 
     if (tag == STATE->rngTag)
     {
+        STATE->didRunRandomly = TRUE;
         if (STATE->trials == 1)
         {
             STATE->trials = n;
@@ -522,6 +526,7 @@ const void *RandomElementArray(enum RandomTag tag, const void *array, size_t siz
 
     if (tag == STATE->rngTag)
     {
+        STATE->didRunRandomly = TRUE;
         if (STATE->trials == 1)
         {
             STATE->trials = count;
@@ -1156,6 +1161,7 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
                 switch (string[j])
                 {
                 case CHAR_SPACE:
+                case CHAR_NBSP:
                 case CHAR_PROMPT_SCROLL:
                 case CHAR_PROMPT_CLEAR:
                 case CHAR_NEWLINE:
@@ -1349,6 +1355,7 @@ static void CB2_BattleTest_NextParameter(void)
     else
     {
         STATE->trials = 0;
+        STATE->didRunRandomly = FALSE;
         BattleTest_Run(gTestRunnerState.test->data);
     }
 }
@@ -1366,7 +1373,6 @@ static inline rng_value_t MakeRngValue(const u16 seed)
 
 static void CB2_BattleTest_NextTrial(void)
 {
-    ClearFlagAfterTest();
     TearDownBattle();
 
     SetMainCallback2(CB2_BattleTest_NextParameter);
@@ -1395,6 +1401,9 @@ static void CB2_BattleTest_NextTrial(void)
     }
     else
     {
+        if (STATE->rngTag && !STATE->didRunRandomly && STATE->expectedRatio != Q_4_12(0.0) && STATE->expectedRatio != Q_4_12(1.0))
+            Test_ExitWithResult(TEST_RESULT_INVALID, SourceLine(0), ":L%s:%d: PASSES_RANDOMLY specified but no Random* call with that tag executed", gTestRunnerState.test->filename, SourceLine(0));
+
         // This is a tolerance of +/- ~2%.
         if (abs(STATE->observedRatio - STATE->expectedRatio) <= Q_4_12(0.02))
             gTestRunnerState.result = TEST_RESULT_PASS;
@@ -1408,6 +1417,7 @@ static void BattleTest_TearDown(void *data)
     // Free resources that aren't cleaned up when the battle was
     // aborted unexpectedly.
     ClearFlagAfterTest();
+    TestFreeConfigData();
     if (STATE->tearDownBattle)
         TearDownBattle();
 }
@@ -1502,6 +1512,12 @@ void SetFlagForTest(u32 sourceLine, u16 flagId)
     INVALID_IF(DATA.flagId != 0, "FLAG can only be set once per test");
     DATA.flagId = flagId;
     FlagSet(flagId);
+}
+
+void TestSetConfig(u32 sourceLine, enum GenConfigTag configTag, u32 value)
+{
+    INVALID_IF(!STATE->runGiven, "WITH_CONFIG outside of GIVEN");
+    SetGenConfig(configTag, value);
 }
 
 void ClearFlagAfterTest(void)
@@ -1758,7 +1774,8 @@ void Moves_(u32 sourceLine, u16 moves[MAX_MON_MOVES])
             break;
         INVALID_IF(moves[i] >= MOVES_COUNT, "Illegal move: %d", moves[i]);
         SetMonData(DATA.currentMon, MON_DATA_MOVE1 + i, &moves[i]);
-        SetMonData(DATA.currentMon, MON_DATA_PP1 + i, &gMovesInfo[moves[i]].pp);
+        u32 pp = GetMovePP(moves[i]);
+        SetMonData(DATA.currentMon, MON_DATA_PP1 + i, &pp);
     }
     DATA.explicitMoves[DATA.currentSide] |= 1 << DATA.currentPartyIndex;
 }
@@ -2076,7 +2093,8 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
             {
                 INVALID_IF(DATA.explicitMoves[battlerId & BIT_SIDE] & (1 << DATA.currentMonIndexes[battlerId]), "Missing explicit %S", GetMoveName(ctx->move));
                 SetMonData(mon, MON_DATA_MOVE1 + i, &ctx->move);
-                SetMonData(DATA.currentMon, MON_DATA_PP1 + i, &gMovesInfo[ctx->move].pp);
+                u32 pp = GetMovePP(ctx->move);
+                SetMonData(DATA.currentMon, MON_DATA_PP1 + i, &pp);
                 *moveSlot = i;
                 *moveId = ctx->move;
                 break;
@@ -2105,7 +2123,7 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
         // Check invalid item usage.
         INVALID_IF(ctx->gimmick == GIMMICK_MEGA && holdEffect != HOLD_EFFECT_MEGA_STONE && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && holdEffect != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
-        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type
+        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != GetMoveType(*moveId)
                    && GetSignatureZMove(*moveId, species, item) == MOVE_NONE
                    && *moveId != MOVE_PHOTON_GEYSER, // exception because test won't recognize Ultra Necrozma pre-Burst
                    "Cannot turn %S into a Z-Move with %S", GetMoveName(ctx->move), ItemId_GetName(item));
@@ -2167,7 +2185,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     MoveGetIdAndSlot(battlerId, &ctx, &moveId, &moveSlot, sourceLine);
     target = MoveGetTarget(battlerId, moveId, &ctx, sourceLine);
 
-    if (gMovesInfo[moveId].effect == EFFECT_REVIVAL_BLESSING)
+    if (GetMoveEffect(moveId) == EFFECT_REVIVAL_BLESSING)
         requirePartyIndex = MoveGetFirstFainted(battlerId) != PARTY_SIZE;
 
     // Check party menu moves.

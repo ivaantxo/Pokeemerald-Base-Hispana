@@ -165,3 +165,6 @@ AI always assumes it will roll the lowest possible result when comparing damage 
 
 ## `AI_FLAG_SEQUENCE_SWITCHING`
 AI will always switch out after a KO in exactly party order as defined in the trainer data (ie. slot 1, then 2, then 3, etc.). The AI will never switch out mid-battle unless forced to (Roar etc.). If the AI uses a move that requires a switch where it makes a decision about what to send in (U-Turn etc.), it will always switch out into the lowest available party index.
+
+## `AI_FLAG_WEIGH_ABILITY_PREDICTION`
+AI will predict the player's ability based to its aiRating. Without this flag the AI randomly assumes an ability with an even distribution between all possible abilities until one is confirmed. With this flag, it instead guesses proportionally to each ability's aiRating, making it far more likely to guess an ability like Water Absorb than Damp if both are options.

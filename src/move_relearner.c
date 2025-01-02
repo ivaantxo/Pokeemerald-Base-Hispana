@@ -165,18 +165,18 @@ enum {
 static EWRAM_DATA struct
 {
     u8 state;
-    u8 heartSpriteIds[16];                               /*0x001*/
-    u16 movesToLearn[MAX_RELEARNER_MOVES];               /*0x01A*/
-    u8 partyMon;                                         /*0x044*/
-    u8 moveSlot;                                         /*0x045*/
-    struct ListMenuItem menuItems[MAX_RELEARNER_MOVES];  /*0x0E8*/
-    u8 numMenuChoices;                                   /*0x110*/
-    u8 numToShowAtOnce;                                  /*0x111*/
-    u8 moveListMenuTask;                                 /*0x112*/
-    u8 moveListScrollArrowTask;                          /*0x113*/
-    u8 moveDisplayArrowTask;                             /*0x114*/
-    u16 scrollOffset;                                    /*0x116*/
-    u8 categoryIconSpriteId;                             /*0x117*/
+    u8 heartSpriteIds[16];                                   /*0x001*/
+    u16 movesToLearn[MAX_RELEARNER_MOVES];                   /*0x01A*/
+    u8 partyMon;                                             /*0x044*/
+    u8 moveSlot;                                             /*0x045*/
+    struct ListMenuItem menuItems[MAX_RELEARNER_MOVES + 1];  /*0x0E8*/
+    u8 numMenuChoices;                                       /*0x110*/
+    u8 numToShowAtOnce;                                      /*0x111*/
+    u8 moveListMenuTask;                                     /*0x112*/
+    u8 moveListScrollArrowTask;                              /*0x113*/
+    u8 moveDisplayArrowTask;                                 /*0x114*/
+    u16 scrollOffset;                                        /*0x116*/
+    u8 categoryIconSpriteId;                                 /*0x117*/
 } *sMoveRelearnerStruct = {0};
 
 static EWRAM_DATA struct {
@@ -969,7 +969,7 @@ void MoveRelearnerShowHideHearts(s32 moveId)
     }
     else
     {
-        numHearts = (u8)(gContestEffects[gMovesInfo[moveId].contestEffect].appeal / 10);
+        numHearts = (u8)(gContestEffects[GetMoveContestEffect(moveId)].appeal / 10);
 
         if (numHearts == 0xFF)
             numHearts = 0;
@@ -983,7 +983,7 @@ void MoveRelearnerShowHideHearts(s32 moveId)
             gSprites[sMoveRelearnerStruct->heartSpriteIds[i]].invisible = FALSE;
         }
 
-        numHearts = (u8)(gContestEffects[gMovesInfo[moveId].contestEffect].jam / 10);
+        numHearts = (u8)(gContestEffects[GetMoveContestEffect(moveId)].jam / 10);
 
         if (numHearts == 0xFF)
             numHearts = 0;
