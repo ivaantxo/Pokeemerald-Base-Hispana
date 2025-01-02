@@ -59,7 +59,7 @@
 #define LIT_STAR_TILE_TAG       0x4010
 #define HELD_ITEM_TAG           0xd750
 
-// Dexnav search variable
+// DexNav search variable
 #define DEXNAV_MASK_SPECIES         0x3FFF  // First 14 bits
 #define DEXNAV_MASK_ENVIRONMENT     0xC000  // Last two bit
 
@@ -72,6 +72,6 @@ bool8 TryFindHiddenPokemon(void);
 u32 CalculateDexnavShinyRolls(void);
 void IncrementDexNavChain(void);
 
-extern bool8 gDexnavBattle;
+extern bool8 gDexNavBattle;
 
 #endif // GUARD_DEXNAV_H

@@ -134,7 +134,7 @@ struct DexNavGUI
 EWRAM_DATA static struct DexNavSearch *sDexNavSearchDataPtr = NULL;
 EWRAM_DATA static struct DexNavGUI *sDexNavUiDataPtr = NULL;
 EWRAM_DATA static u8 *sBg1TilemapBuffer = NULL;
-EWRAM_DATA bool8 gDexnavBattle = FALSE;
+EWRAM_DATA bool8 gDexNavBattle = FALSE;
 
 //// Function Declarations
 //GUI
@@ -977,7 +977,7 @@ static void DexNavDrawIcons(void)
 /////////////////////
 //// SEARCH TASK ////
 /////////////////////
-bool8 TryStartDexnavSearch(void)
+bool8 TryStartDexNavSearch(void)
 {
     u8 taskId;
     u16 val = VarGet(VAR_DEXNAV_SPECIES);
@@ -1110,7 +1110,7 @@ static void Task_DexNavSearch(u8 taskId)
     
     if (sDexNavSearchDataPtr->proximity < 1)
     {
-        gDexnavBattle = TRUE;
+        gDexNavBattle = TRUE;
         CreateDexNavWildMon(sDexNavSearchDataPtr->species, sDexNavSearchDataPtr->potential, sDexNavSearchDataPtr->monLevel, 
                             sDexNavSearchDataPtr->abilityNum, sDexNavSearchDataPtr->heldItem, sDexNavSearchDataPtr->moves);
 
@@ -2326,7 +2326,7 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
 {
     if (DEXNAV_ENABLED == FALSE)
     {   // must have it enabled to enter
-        DebugPrintfLevel(MGBA_LOG_ERROR, "Dexnav was opened when DEXNAV_ENABLED config was disabled! Check include/config/dexnav.h");
+        DebugPrintfLevel(MGBA_LOG_ERROR, "DexNav was opened when DEXNAV_ENABLED config was disabled! Check include/config/dexnav.h");
         DestroyTask(taskId);
     }
     else if (!gPaletteFade.active)
@@ -2655,7 +2655,7 @@ static void DexNavDrawHiddenIcons(void)
 /////////////////////////
 //// GENERAL UTILITY ////
 /////////////////////////
-u32 CalculateDexnavShinyRolls(void)
+u32 CalculateDexNavShinyRolls(void)
 {
     u32 chainBonus, rndBonus;
     u8 chain = gSaveBlock3Ptr->dexNavChain;
