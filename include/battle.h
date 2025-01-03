@@ -17,6 +17,7 @@
 #include "battle_dynamax.h"
 #include "battle_terastal.h"
 #include "battle_gimmick.h"
+#include "move.h"
 #include "random.h" // for rng_value_t
 
 // Helper for accessing command arguments and advancing gBattlescriptCurrInstr.
@@ -69,20 +70,6 @@
 
 // Special indicator value for shellBellDmg in SpecialStatus
 #define IGNORE_SHELL_BELL 0xFFFF
-
-// For defining EFFECT_HIT etc. with battle TV scores and flags etc.
-struct __attribute__((packed, aligned(2))) BattleMoveEffect
-{
-    const u8 *battleScript;
-    u16 battleTvScore:3;
-    u16 encourageEncore:1;
-    u16 twoTurnEffect:1;
-    u16 semiInvulnerableEffect:1;
-    u16 usesProtectCounter:1;
-    u16 padding:9;
-};
-
-#define GET_MOVE_BATTLESCRIPT(move) gBattleMoveEffects[gMovesInfo[move].effect].battleScript
 
 struct ResourceFlags
 {
@@ -864,11 +851,25 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define F_DYNAMIC_TYPE_IGNORE_PHYSICALITY  (1 << 6) // If set, the dynamic type's physicality won't be used for certain move effects.
 #define F_DYNAMIC_TYPE_SET                 (1 << 7) // Set for all dynamic types to distinguish a dynamic type of Normal (0) from no dynamic type.
 
-#define IS_MOVE_PHYSICAL(move) (GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
-#define IS_MOVE_SPECIAL(move) (GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL)
-#define IS_MOVE_STATUS(move) (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
+static inline bool32 IsBattleMovePhysical(u32 move)
+{
+    return GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL;
+}
 
-#define IS_MOVE_RECOIL(move)(gMovesInfo[move].recoil > 0 || gMovesInfo[move].effect == EFFECT_RECOIL_IF_MISS)
+static inline bool32 IsBattleMoveSpecial(u32 move)
+{
+    return GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL;
+}
+
+static inline bool32 IsBattleMoveStatus(u32 move)
+{
+    return GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS;
+}
+
+static inline bool32 IsBattleMoveRecoil(u32 move)
+{
+    return GetMoveRecoil(move) > 0 || GetMoveEffect(move) == EFFECT_RECOIL_IF_MISS;
+}
 
 /* Checks if 'battlerId' is any of the types.
  * Passing multiple types is more efficient than calling this multiple
@@ -1112,7 +1113,6 @@ extern u8 gChosenMovePos;
 extern u16 gCurrentMove;
 extern u16 gChosenMove;
 extern u16 gCalledMove;
-extern s32 gHpDealt;
 extern s32 gBideDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
 extern u16 gLastUsedAbility;
@@ -1176,7 +1176,6 @@ extern u32 gFieldStatuses;
 extern struct FieldTimer gFieldTimers;
 extern u8 gBattlerAbility;
 extern struct QueuedStatBoost gQueuedStatBoosts[MAX_BATTLERS_COUNT];
-extern const struct BattleMoveEffect gBattleMoveEffects[];
 
 extern void (*gPreBattleCallback1)(void);
 extern void (*gBattleMainFunc)(void);

@@ -266,7 +266,6 @@
 #define STATUS_FIELD_PSYCHIC_TERRAIN                (1 << 9)
 #define STATUS_FIELD_ION_DELUGE                     (1 << 10)
 #define STATUS_FIELD_FAIRY_LOCK                     (1 << 11)
-#define STATUS_FIELD_TERRAIN_PERMANENT              (1 << 12)   // Overworld thunderstorm generates electric terrain
 
 #define STATUS_FIELD_TERRAIN_ANY        (STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN)
 
@@ -331,7 +330,11 @@
 #define MOVE_EFFECT_TOXIC               6
 #define MOVE_EFFECT_FROSTBITE           7
 #define PRIMARY_STATUS_MOVE_EFFECT      MOVE_EFFECT_FROSTBITE // All above move effects apply primary status
-#define MOVE_EFFECT_FREEZE_OR_FROSTBITE (B_USE_FROSTBITE == TRUE ? MOVE_EFFECT_FROSTBITE : MOVE_EFFECT_FREEZE)
+#if B_USE_FROSTBITE == TRUE
+#define MOVE_EFFECT_FREEZE_OR_FROSTBITE MOVE_EFFECT_FROSTBITE
+#else
+#define MOVE_EFFECT_FREEZE_OR_FROSTBITE MOVE_EFFECT_FREEZE
+#endif
 #define MOVE_EFFECT_CONFUSION           8
 #define MOVE_EFFECT_FLINCH              9
 #define MOVE_EFFECT_TRI_ATTACK          10
@@ -405,8 +408,16 @@
 #define MOVE_EFFECT_PSYCHIC_NOISE       78
 #define MOVE_EFFECT_TERA_BLAST          79
 #define MOVE_EFFECT_ORDER_UP            80
+#define MOVE_EFFECT_ION_DELUGE          81
+#define MOVE_EFFECT_AROMATHERAPY        82 // No functionality yet
+#define MOVE_EFFECT_HAZE                83
+#define MOVE_EFFECT_LEECH_SEED          84
+#define MOVE_EFFECT_REFLECT             85
+#define MOVE_EFFECT_LIGHT_SCREEN        86
+#define MOVE_EFFECT_SALT_CURE           87
+#define MOVE_EFFECT_EERIE_SPELL         88
 
-#define NUM_MOVE_EFFECTS                81
+#define NUM_MOVE_EFFECTS                89
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CERTAIN             0x4000
@@ -509,7 +520,7 @@
 #define MOVE_TARGET_ALLY                (1 << 7)
 #define MOVE_TARGET_ALL_BATTLERS        ((1 << 8) | MOVE_TARGET_USER) // No functionality for status moves
 
-// For the second argument of GetMoveTarget, when no target override is needed
+// For the second argument of GetBattleMoveTarget, when no target override is needed
 #define NO_TARGET_OVERRIDE 0
 
 // Constants for Parental Bond
@@ -527,15 +538,24 @@
 
 // Constants for B_VAR_STARTING_STATUS
 // Timer value controlled by B_VAR_STARTING_STATUS_TIMER
-#define STARTING_STATUS_NONE                0
-#define STARTING_STATUS_ELECTRIC_TERRAIN    1
-#define STARTING_STATUS_MISTY_TERRAIN       2
-#define STARTING_STATUS_GRASSY_TERRAIN      3
-#define STARTING_STATUS_PSYCHIC_TERRAIN     4
-#define STARTING_STATUS_TRICK_ROOM          5
-#define STARTING_STATUS_MAGIC_ROOM          6
-#define STARTING_STATUS_WONDER_ROOM         7
-#define STARTING_STATUS_TAILWIND_PLAYER     8
-#define STARTING_STATUS_TAILWIND_OPPONENT   9
+enum StartingStatus
+{
+    STARTING_STATUS_NONE,
+    STARTING_STATUS_ELECTRIC_TERRAIN,
+    STARTING_STATUS_MISTY_TERRAIN,
+    STARTING_STATUS_GRASSY_TERRAIN,
+    STARTING_STATUS_PSYCHIC_TERRAIN,
+    STARTING_STATUS_TRICK_ROOM,
+    STARTING_STATUS_MAGIC_ROOM,
+    STARTING_STATUS_WONDER_ROOM,
+    STARTING_STATUS_TAILWIND_PLAYER,
+    STARTING_STATUS_TAILWIND_OPPONENT,
+    STARTING_STATUS_RAINBOW_PLAYER,
+    STARTING_STATUS_RAINBOW_OPPONENT,
+    STARTING_STATUS_SEA_OF_FIRE_PLAYER,
+    STARTING_STATUS_SEA_OF_FIRE_OPPONENT,
+    STARTING_STATUS_SWAMP_PLAYER,
+    STARTING_STATUS_SWAMP_OPPONENT,
+};
 
 #endif // GUARD_CONSTANTS_BATTLE_H
