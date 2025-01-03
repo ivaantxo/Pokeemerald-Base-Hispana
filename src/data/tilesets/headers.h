@@ -7,7 +7,7 @@
 // consider taking a look at the .pla files
 // to mark colors as lights, instead.
 // The old method *should* still work, however.
-// See the README for details.
+// Check docs/tutorials/dns.md for details.
 
 // Whether a palette has lights the color indices to blend are stored in the palette's color 0
 #define LIGHT_PAL(x) ((x) < NUM_PALS_IN_PRIMARY ? 1 << (x) : 1 << ((x) - NUM_PALS_IN_PRIMARY))
