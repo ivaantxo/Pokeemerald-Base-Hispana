@@ -1656,14 +1656,7 @@ void UpdatePalettesWithTime(u32 palettes)
     palettes &= PALETTES_MAP | PALETTES_OBJECTS; // Don't blend UI pals
     if (!palettes)
         return;
-    TimeMixPalettes(
-        palettes,
-        gPlttBufferUnfaded,
-        gPlttBufferFaded,
-        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
-        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
-        currentTimeBlend.weight
-    );
+    TimeMixPalettes(palettes, gPlttBufferUnfaded, gPlttBufferFaded, (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0], (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1], currentTimeBlend.weight);
     }
 }
 
@@ -1673,12 +1666,7 @@ u8 UpdateSpritePaletteWithTime(u8 paletteNum)
     {
         if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(paletteNum)))
             return paletteNum;
-        TimeMixPalettes(1,
-                        &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)],
-                        &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)],
-                        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
-                        (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
-                        currentTimeBlend.weight
+        TimeMixPalettes(1, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0], (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1], currentTimeBlend.weight
         );
     }
     return paletteNum;
