@@ -1669,14 +1669,15 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
 
 static bool32 TryEndTurnWeather(void)
 {
+    u32 i = 0;
     u32 effect = 0;
     u32 currBattleWeather = 0xFF;
 
-    for (u32 weather = 0; weather < ARRAY_COUNT(sBattleWeatherInfo); weather++)
+    for (i = 0; i < ARRAY_COUNT(sBattleWeatherInfo); i++)
     {
-        if (gBattleWeather & sBattleWeatherInfo[weather].flag)
+        if (gBattleWeather & sBattleWeatherInfo[i].flag)
         {
-            currBattleWeather = weather;
+            currBattleWeather = i;
             break;
         }
     }
@@ -1687,7 +1688,7 @@ static bool32 TryEndTurnWeather(void)
     if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
     {
         gBattleWeather = B_WEATHER_NONE;
-        for (u32 i = 0; i < gBattlersCount; i++)
+        for (i = 0; i < gBattlersCount; i++)
             gDisableStructs[i].weatherAbilityDone = FALSE;
         gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].endMessage;
         BattleScriptExecute(BattleScript_WeatherFaded);
