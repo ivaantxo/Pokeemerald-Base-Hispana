@@ -1672,13 +1672,14 @@ static bool32 TryEndTurnWeather(void)
     u32 effect = 0;
     u32 currBattleWeather = 0xFF;
 
-    if      (gBattleWeather & B_WEATHER_RAIN)         currBattleWeather = BATTLE_WEATHER_RAIN;
-    else if (gBattleWeather & B_WEATHER_SUN)          currBattleWeather = BATTLE_WEATHER_SUN;
-    else if (gBattleWeather & B_WEATHER_SANDSTORM)    currBattleWeather = BATTLE_WEATHER_SANDSTORM;
-    else if (gBattleWeather & B_WEATHER_HAIL)         currBattleWeather = BATTLE_WEATHER_HAIL;
-    else if (gBattleWeather & B_WEATHER_SNOW)         currBattleWeather = BATTLE_WEATHER_SNOW;
-    else if (gBattleWeather & B_WEATHER_FOG)          currBattleWeather = BATTLE_WEATHER_FOG;
-    else if (gBattleWeather & B_WEATHER_STRONG_WINDS) currBattleWeather = BATTLE_WEATHER_STRONG_WINDS;
+    for (u32 weather = 0; weather < ARRAY_COUNT(sBattleWeatherInfo); weather++)
+    {
+        if (gBattleWeather & sBattleWeatherInfo[weather].flag)
+        {
+            currBattleWeather = weather;
+            break;
+        }
+    }
 
     if (currBattleWeather == 0xFF)
         return effect;
@@ -4013,29 +4014,36 @@ bool32 HasNoMonsToSwitch(u32 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2
 bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, bool32 viaAbility)
 {
     u16 battlerAbility = GetBattlerAbility(battler);
-    if (gBattleWeather & B_WEATHER_PRIMAL_ANY
+
+    if (gBattleWeather & sBattleWeatherInfo[battleWeatherId].flag)
+    {
+        return FALSE;
+    }
+    else if (gBattleWeather & B_WEATHER_PRIMAL_ANY
         && battlerAbility != ABILITY_DESOLATE_LAND
         && battlerAbility != ABILITY_PRIMORDIAL_SEA
         && battlerAbility != ABILITY_DELTA_STREAM)
     {
         return FALSE;
     }
-    else if (B_ABILITY_WEATHER < GEN_6 && viaAbility && !(gBattleWeather & sBattleWeatherInfo[battleWeatherId].flag))
+    else if (B_ABILITY_WEATHER < GEN_6 && viaAbility)
     {
         gBattleWeather = sBattleWeatherInfo[battleWeatherId].flag;
         return TRUE;
     }
-    else if (!(gBattleWeather & sBattleWeatherInfo[battleWeatherId].flag))
+    else
     {
+        u32 rock = sBattleWeatherInfo[battleWeatherId].rock;
         gBattleWeather = sBattleWeatherInfo[battleWeatherId].flag;
         if (gBattleWeather & B_WEATHER_PRIMAL_ANY)
             gWishFutureKnock.weatherDuration = 0;
-        if (GetBattlerHoldEffect(battler, TRUE) == sBattleWeatherInfo[battleWeatherId].rock)
+        if (rock != 0 && GetBattlerHoldEffect(battler, TRUE) == rock)
             gWishFutureKnock.weatherDuration = 8;
         else
             gWishFutureKnock.weatherDuration = 5;
         return TRUE;
     }
+
     return FALSE;
 }
 
