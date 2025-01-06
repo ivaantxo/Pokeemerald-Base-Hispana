@@ -12224,3 +12224,20 @@ bool32 IsMoveEffectBlockedByTarget(u32 ability)
 
     return FALSE;
 }
+
+u32 NumAffectedSpreadMoveTargets(void)
+{
+    u32 targetCount = 1;
+
+    if (!IsDoubleSpreadMove())
+        return targetCount;
+
+    targetCount = 0;
+    for (u32 battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (MoveResultHasEffect(battler))
+            targetCount++;
+    }
+
+    return targetCount;
+}

@@ -6275,7 +6275,7 @@ static void Cmd_moveend(void)
                 if ((gBattleMons[gBattlerTarget].status1 & argStatus)
                  && IsBattlerAlive(gBattlerTarget)
                  && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)
-                 && (gBattleStruct->numSpreadTargets > 1 || !IsMoveEffectBlockedByTarget(GetBattlerAbility(gBattlerTarget))))
+                 && (NumAffectedSpreadMoveTargets() > 1 || !IsMoveEffectBlockedByTarget(GetBattlerAbility(gBattlerTarget))))
                 {
                     gBattleMons[gBattlerTarget].status1 &= ~(argStatus);
 

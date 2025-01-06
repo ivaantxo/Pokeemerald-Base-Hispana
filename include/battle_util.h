@@ -338,5 +338,6 @@ bool32 IsSleepClauseEnabled();
 void ClearDamageCalcResults(void);
 u32 DoesDestinyBondFail(u32 battler);
 bool32 IsMoveEffectBlockedByTarget(u32 ability);
+u32 NumAffectedSpreadMoveTargets(void);
 
 #endif // GUARD_BATTLE_UTIL_H
