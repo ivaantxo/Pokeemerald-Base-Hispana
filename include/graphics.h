@@ -2,10 +2,13 @@
 #define GUARD_GRAPHICS_H
 
 // overworld
+extern const u32 gSignpostWindow_Gfx[];
 extern const u32 gMessageBox_Gfx[];
 extern const u16 gMessageBox_Pal[];
 
 // pokeballs
+extern const u32 gBallGfx_Strange[];
+extern const u32 gBallPal_Strange[];
 extern const u32 gBallGfx_Poke[];
 extern const u32 gBallPal_Poke[];
 extern const u32 gBallGfx_Great[];
@@ -397,6 +400,8 @@ extern const u32 gRaySceneChasesAway_Light_Gfx[];
 extern const u32 gRaySceneChasesAway_Ring_Gfx[];
 
 // Poké Balls
+extern const u32 gItemIcon_StrangeBall[];
+extern const u32 gItemIconPalette_StrangeBall[];
 extern const u32 gItemIcon_PokeBall[];
 extern const u32 gItemIconPalette_PokeBall[];
 extern const u32 gItemIcon_GreatBall[];
@@ -2924,6 +2929,8 @@ extern const u32 gBattleAnimSpritePal_IvyCudgelGrass[];
 extern const u32 gBattleAnimSpritePal_IvyCudgelFire[];
 extern const u32 gBattleAnimSpritePal_IvyCudgelRock[];
 extern const u32 gBattleAnimSpritePal_IvyCudgelWater[];
+extern const u32 gBattleAnimSpriteGfx_PinkVioletOrb[];
+extern const u32 gBattleAnimSpritePal_PinkVioletOrb[];
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
@@ -3142,6 +3149,7 @@ extern const u32 gBattleAnimBgPalette_Surf[];
 extern const u32 gBattleAnimBackgroundImageMuddyWater_Pal[];
 
 extern const u32 gEnemyMonShadow_Gfx[];
+extern const u32 gEnemyMonShadowsSized_Gfx[];
 
 extern const u32 gBattleAnimFogTilemap[];
 
@@ -3217,6 +3225,11 @@ extern const u32 gBattleAnimBgImage_Sandstorm[];
 extern const u32 gBattleAnimBgImage_Rainbow[];
 extern const u32 gBattleAnimBGPalette_Rainbow[];
 extern const u32 gBattleAnimBgTilemap_Rainbow[];
+
+// Pledge Effect field status - Swamp
+extern const u32 gBattleAnimBgImage_Swamp[];
+extern const u32 gBattleAnimBGPalette_Swamp[];
+extern const u32 gBattleAnimBgTilemap_Swamp[];
 
 // Pokédex Area Screen
 extern const u32 gPokedexAreaScreenAreaUnknown_Gfx[];
@@ -3408,14 +3421,8 @@ extern const u8 gMailTilemap_Retro[];
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
 
-extern const u16 gPokeJumpBonuses_Pal[];
-extern const u32 gPokeJumpBonuses_Gfx[];
-extern const u32 gPokeJumpBonuses_Tilemap[];
-
 extern const u16 g321Start_Pal[];
 extern const u32 g321Start_Gfx[];
-
-extern const u16 gBlenderCenter_Pal[];
 
 extern const u32 gFrontierPassMapScreen_Gfx[];
 
@@ -3433,28 +3440,15 @@ extern const u16 gRouletteAzurill_Pal[];
 extern const u16 gRouletteSkitty_Pal[];
 extern const u16 gRouletteMakuhita_Pal[];
 
-// pokedex cry screen
-extern const u16 gCryMeter_Pal[];
-extern const u8 gCryMeter_Gfx[];
-
 // credits
 extern const u32 gCreditsCopyrightEnd_Gfx[];
 extern const u32 gCreditsCopyrightEnd_Tilemap[];
 
-// pokenav match call gfx
-extern const u16 gMatchCallUI_Pal[];
-extern const u32 gMatchCallUI_Gfx[];
-extern const u32 gMatchCallUI_Tilemap[];
-
-// pokenav conditions search results
-extern const u16 gConditionSearchResultFramePal[];
-extern const u32 gConditionSearchResultTiles[];
-extern const u32 gConditionSearchResultTilemap[];
-
-// pokenav ribbon list
-extern const u16 gMonRibbonListFramePal[];
-extern const u32 gMonRibbonListFrameTiles[];
-extern const u32 gMonRibbonListFrameTilemap[];
+//Battle Icons
+extern const u32 gBattleIcons_Gfx1[];
+extern const u32 gBattleIcons_Gfx2[];
+extern const u32 gBattleIcons_Pal1[];
+extern const u32 gBattleIcons_Pal2[];
 
 //Tutoriales
     //Iconos de tipos

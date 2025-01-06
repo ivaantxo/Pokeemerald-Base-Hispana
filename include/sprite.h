@@ -334,5 +334,7 @@ struct BoxPokemon;
 u8 LoadUniqueSpritePalette(const struct SpritePalette *palette, struct BoxPokemon *boxMon);
 u8 LoadUniqueSpritePaletteByPersonality(const struct SpritePalette *palette, u16 species, u32 personality);
 u8 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct SpritePalette *palette2);
+void RequestSpriteFrameImageCopy(u16 index, u16 tileNum, const struct SpriteFrameImage *images);
+void SetSpriteOamFlipBits(struct Sprite *sprite, u8 hFlip, u8 vFlip);
 
 #endif //GUARD_SPRITE_H

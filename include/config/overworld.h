@@ -3,11 +3,20 @@
 
 // Configuración de movimiento
 #define OW_RUNNING_INDOORS          GEN_LATEST  // En Gen4+, los jugadores pueden correr en interiores.
+#define OW_AUTO_SIGNPOST            FALSE       // Si es TRUE, y el tile enfrente del jugador es MB_SIGNPOST, MB_POKEMART_SIGN, o MB_POKEMON_CENTER_SIGN, el jugador automáticamente leerá el mensaje, como en FRLG.
+#define SLOW_MOVEMENT_ON_STAIRS     FALSE       // Si es TRUE, el jugador se moverá más despacio en las escaleras, como en FRLG.
 
 // Otras configuraciones
 #define OW_POISON_DAMAGE                GEN_LATEST // En Gen4, los Pokémon ya no se desmayan por Veneno en el mundo exterior. En Gen5+, no reciben daño en absoluto.
 #define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // Si está habilitado, puedes ser visto por dos entrenadores al mismo tiempo incluso si solo tienes un Pokémon elegible en tu equipo.
 #define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // Si está habilitado, las ventanas emergentes del mapa no aparecerán si entras en un mapa con el mismo Id de Sección del Mapa que el último.
+#define OW_FRLG_WHITEOUT                FALSE      // Si es TRUE, mostrará un mensaje adicional más un evento de curación al ser debilitado, como en FRLG.
+
+// Item Obtain Description Box
+#define OW_ITEM_DESCRIPTIONS_OFF        0   // Nunca muestra descripciones
+#define OW_ITEM_DESCRIPTIONS_FIRST_TIME 1   // Solo muestra descripciones la primera vez (** Rompe partidas guardadas - mira struct SaveBlock3 **)
+#define OW_ITEM_DESCRIPTIONS_ALWAYS     2   // Siempre muestra descripciones
+#define OW_SHOW_ITEM_DESCRIPTIONS       OW_ITEM_DESCRIPTIONS_OFF    // Si es TRUE, se mostrarán descripciones de objetos al recibirlos.
 
 // Estas definiciones generacionales solo hacen una distinción para Bayas y el OW_PC_MOVE_ORDER
 #define GEN_6_XY GEN_6
@@ -32,6 +41,7 @@
 #define OW_BERRY_GROWTH_RATE           GEN_3      // Preajustes para cuánto tiempo tarda cada planta de baya en crecer.
 #define OW_BERRY_YIELD_RATE            GEN_3      // Preajustes para cuántas bayas puede producir cada planta.
 #define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // Si OW_BERRY_MOISTURE está habilitado, esta configuración cambia la rapidez con la que se seca el suelo. GEN_4 usa una tasa de drenaje dependiente de la baya, GEN_6_XY se seca en 24 horas (4 horas con el Abono relevante) y GEN_6_ORAS se seca en 4 horas. Otros valores son ilegales.
+#define OW_BERRY_IMMORTAL              FALSE      // Si es TRUE, una vez que un árbol de bayas haya crecido una baya, el árbol no desaparecerá hasta que el jugador la recoja.
 
 // Pokémon en el mundo exterior
 #define OW_POKEMON_OBJECT_EVENTS       TRUE       // Agrega campos de Evento de Objeto para cada especie. Puede ser utilizado para NPCs usando el macro OBJ_EVENT_GFX_SPECIES (por ejemplo, OBJ_EVENT_GFX_SPECIES(BULBASAUR))
@@ -97,6 +107,8 @@
 #define OW_POPUP_BW_ALPHA_BLEND    FALSE                    // Habilita el mezclado alfa/transparencia para las ventanas emergentes. Principalmente destinado a usarse con la opción de color negro.
 
 // Centro Pokémon
-#define OW_IGNORE_EGGS_ON_HEAL     GEN_LATEST               // En Gen 4+, la enfermera en el Centro Pokémon no cura los Huevos en la máquina de curación.
+#define OW_IGNORE_EGGS_ON_HEAL           GEN_LATEST         // En Gen 4+, la enfermera en el Centro Pokémon no cura los Huevos en la máquina de curación.
+#define OW_UNION_DISABLE_CHECK           FALSE              // Si es TRUE, la enfermera no informará de si hay un entrenador esperando en la Sala Unión. Esto hace más rápida la carga del mapa del Centro Pokémon.
+#define OW_FLAG_MOVE_UNION_ROOM_CHECK    0                  // Si está flag está seteada, el juego solo chequeará si hay jugadores en la Sala Unión cuando se están curando los Pokémon, y no cuando el jugador entra al Centro Pokémon. Esto hace más rápida la carga del mapa del Centro Pokémon. Esto es ignorado si OW_UNION_DISABLE_CHECK es TRUE.
 
 #endif // GUARD_CONFIG_OVERWORLD_H

@@ -86,18 +86,18 @@ static const struct WindowTemplate sHelpBarWindowTemplate[] =
 
 static const u8 *const sHelpBarTexts[HELPBAR_COUNT] =
 {
-    [HELPBAR_NONE]                 = gText_Pokenav_ClearButtonList,
-    [HELPBAR_MAP_ZOOMED_OUT]       = gText_PokenavMap_ZoomedOutButtons,
-    [HELPBAR_MAP_ZOOMED_IN]        = gText_PokenavMap_ZoomedInButtons,
-    [HELPBAR_CONDITION_MON_LIST]   = gText_PokenavCondition_MonListButtons,
-    [HELPBAR_CONDITION_MON_STATUS] = gText_PokenavCondition_MonStatusButtons,
-    [HELPBAR_CONDITION_MARKINGS]   = gText_PokenavCondition_MarkingButtons,
-    [HELPBAR_MC_TRAINER_LIST]      = gText_PokenavMatchCall_TrainerListButtons,
-    [HELPBAR_MC_CALL_MENU]         = gText_PokenavMatchCall_CallMenuButtons,
-    [HELPBAR_MC_CHECK_PAGE]        = gText_PokenavMatchCall_CheckTrainerButtons,
-    [HELPBAR_RIBBONS_MON_LIST]     = gText_PokenavRibbons_MonListButtons,
-    [HELPBAR_RIBBONS_LIST]         = gText_PokenavRibbons_RibbonListButtons,
-    [HELPBAR_RIBBONS_CHECK]        = gText_PokenavRibbons_RibbonCheckButtons,
+    [HELPBAR_NONE]                 = COMPOUND_STRING("{CLEAR 0x80}"),
+    [HELPBAR_MAP_ZOOMED_OUT]       = COMPOUND_STRING("{A_BUTTON}Aumentar {B_BUTTON}Salir"),
+    [HELPBAR_MAP_ZOOMED_IN]        = COMPOUND_STRING("{A_BUTTON}Completo {B_BUTTON}Salir"),
+    [HELPBAR_CONDITION_MON_LIST]   = COMPOUND_STRING("{A_BUTTON}Condición {B_BUTTON}Salir"),
+    [HELPBAR_CONDITION_MON_STATUS] = COMPOUND_STRING("{A_BUTTON}Marcas {B_BUTTON}Salir"),
+    [HELPBAR_CONDITION_MARKINGS]   = COMPOUND_STRING("{A_BUTTON}Elegir marca {B_BUTTON}Salir"),
+    [HELPBAR_MC_TRAINER_LIST]      = COMPOUND_STRING("{A_BUTTON}Menú {B_BUTTON}Salir"),
+    [HELPBAR_MC_CALL_MENU]         = COMPOUND_STRING("{A_BUTTON}OK {B_BUTTON}Salir"),
+    [HELPBAR_MC_CHECK_PAGE]        = COMPOUND_STRING("{B_BUTTON}Salir"),
+    [HELPBAR_RIBBONS_MON_LIST]     = COMPOUND_STRING("{A_BUTTON}Cintas {B_BUTTON}Salir"),
+    [HELPBAR_RIBBONS_LIST]         = COMPOUND_STRING("{A_BUTTON}Mirar {B_BUTTON}Salir"),
+    [HELPBAR_RIBBONS_CHECK]        = COMPOUND_STRING("{B_BUTTON}Salir"),
 };
 
 static const u8 sHelpBarTextColors[3] =

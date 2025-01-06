@@ -39,7 +39,6 @@
 #define B_MULTIPLE_TARGETS_DMG      GEN_LATEST // En Gen4+, el daño causado por movimientos que golpean múltiples objetivos a la vez se reduce al 75%. Antes, era 50%.
 
 // Configuración de tipos
-#define B_EXPANDED_TYPE_NAMES       TRUE       // Si es TRUE, los nombres de tipos se expanden de 6 caracteres a 8 caracteres.
 #define B_GHOSTS_ESCAPE             GEN_LATEST // En Gen6+, habilidades como Shadow Tag o movimientos como Mean Look fallan contra Pokémon de tipo Fantasma. También pueden escapar de cualquier Batalla Silvestre.
 #define B_PARALYZE_ELECTRIC         GEN_LATEST // En Gen6+, los Pokémon de tipo Eléctrico no pueden ser paralizados.
 #define B_POWDER_GRASS              GEN_LATEST // En Gen6+, los Pokémon de tipo Planta son inmunes a los movimientos de polvo y esporas.
@@ -67,7 +66,7 @@
 #define B_UPDATED_MOVE_TYPES        GEN_LATEST // Actualiza los tipos de movimientos.
 #define B_UPDATED_MOVE_FLAGS        GEN_LATEST // Actualiza las flags de los movimientos.
 #define B_PHYSICAL_SPECIAL_SPLIT    GEN_LATEST // En Gen3, el tipo del movimiento determina si será físico o especial. El ícono de división en el resumen reflejará esto.
-#define B_RECOIL_IF_MISS_DMG        GEN_LATEST // En Gen5+, Jump Kick y High Jump Kick siempre harán la mitad del HP máximo del usuario al fallar.
+#define B_RECOIL_IF_MISS_DMG        GEN_LATEST // En Gen5+, Patada salto y Patada salto alta siempre harán la mitad del HP máximo del usuario al fallar.
 #define B_KLUTZ_FLING_INTERACTION   GEN_LATEST // En Gen5+, los Pokémon con la habilidad Klutz no pueden usar Fling.
 #define B_UPDATED_CONVERSION        GEN_LATEST // En Gen6+, Conversion cambia el tipo del usuario para coincidir con el primer movimiento del usuario. Antes, elegía un movimiento al azar.
 #define B_UPDATED_CONVERSION_2      GEN_LATEST // En Gen5+, Conversión 2 cambia el tipo del usuario a un tipo que resista el último ataque del objetivo. Antes, lo hacía al último ataque recibido. Además, Forcejeo se consideraba tipo Normal antes de 5ª gen.
@@ -78,28 +77,28 @@
 #define B_UPDATED_ABILITY_DATA      GEN_LATEST // Afecta las flags.
 
 // Configuración de precisión de movimientos
-#define B_TOXIC_NEVER_MISS          GEN_LATEST // En Gen6+, si Toxic es usado por un Pokémon de tipo Veneno, nunca fallará.
+#define B_TOXIC_NEVER_MISS          GEN_LATEST // En Gen6+, si Tóxico es usado por un Pokémon de tipo Veneno, nunca fallará.
 #define B_MINIMIZE_DMG_ACC          GEN_LATEST // En Gen6+, los movimientos que causan daño doble a Pokémon minimizados también omitirán las comprobaciones de precisión.
-#define B_BLIZZARD_HAIL             GEN_LATEST // En Gen4+, Blizzard pasa por alto las comprobaciones de precisión si está granizando.
-#define B_SHEER_COLD_ACC            GEN_LATEST // En Gen7+, la probabilidad base de que Sheer Cold acierte se reduce al 20% si el usuario no es de tipo Hielo.
+#define B_BLIZZARD_HAIL             GEN_LATEST // En Gen4+, Ventisca pasa por alto las comprobaciones de precisión si está granizando.
+#define B_SHEER_COLD_ACC            GEN_LATEST // En Gen7+, la probabilidad base de que Frío polar acierte se reduce al 20% si el usuario no es de tipo Hielo.
 
 // Configuración de cambios de estadísticas de movimientos
 #define B_FELL_STINGER_STAT_RAISE   GEN_LATEST // En Gen7+, eleva el Atk en 3 etapas en lugar de 2 si causa que el objetivo se desmaye.
 #define B_KINGS_SHIELD_LOWER_ATK    GEN_LATEST // En Gen8+, reduce el Atk en 1 etapa en lugar de 2 a los oponentes que lo golpean.
-#define B_SPEED_BUFFING_RAPID_SPIN  GEN_LATEST // En Gen8, Rapid Spin aumenta la Velocidad del usuario en 1 etapa.
+#define B_SPEED_BUFFING_RAPID_SPIN  GEN_LATEST // En Gen8, Giro rápido aumenta la Velocidad del usuario en 1 etapa.
 #define B_CHARGE_SPDEF_RAISE        GEN_LATEST // En Gen5+, Charge aumenta la Defensa Especial del usuario en 1 etapa.
-#define B_MINIMIZE_EVASION          GEN_LATEST // En Gen5+, Minimize aumenta la evasión en 2 etapas en lugar de 1.
-#define B_GROWTH_STAT_RAISE         GEN_LATEST // En Gen5+, Growth aumenta el Ataque además de la Ataque Especial en 1 etapa cada uno. Bajo los efectos del sol, los aumenta en 2 etapas cada uno en su lugar.
+#define B_MINIMIZE_EVASION          GEN_LATEST // En Gen5+, Reducción aumenta la evasión en 2 etapas en lugar de 1.
+#define B_GROWTH_STAT_RAISE         GEN_LATEST // En Gen5+, Desarrollo aumenta el Ataque además de la Ataque Especial en 1 etapa cada uno. Bajo los efectos del sol, los aumenta en 2 etapas cada uno en su lugar.
 
 // Otras configuraciones de movimientos
 #define B_INCINERATE_GEMS           GEN_LATEST // En Gen6+, Incinerate puede destruir Gemas.
 #define B_CAN_SPITE_FAIL            GEN_LATEST // En Gen4+, Spite ya no puede fallar si el último movimiento del oponente solo tiene 1 PP restante.
-#define B_CRASH_IF_TARGET_IMMUNE    GEN_LATEST // En Gen4+, el usuario de Jump Kick o High Jump Kick "seguirá adelante y chocará" si ataca a un objetivo que es inmune al movimiento.
+#define B_CRASH_IF_TARGET_IMMUNE    GEN_LATEST // En Gen4+, el usuario de Patada salto y Patada salto alta "seguirá adelante y chocará" si ataca a un objetivo que es inmune al movimiento.
 #define B_MEMENTO_FAIL              GEN_LATEST // En Gen4+, Memento falla si no hay objetivo o si el objetivo está protegido o detrás de un sustituto. Pero no si el Atk/Sp. Atk están en -6.
-#define B_GLARE_GHOST               GEN_LATEST // En Gen4+, Glare puede golpear a Pokémon de tipo Fantasma normalmente.
+#define B_GLARE_GHOST               GEN_LATEST // En Gen4+, Deslumbrar puede golpear a Pokémon de tipo Fantasma normalmente.
 #define B_SKILL_SWAP                GEN_LATEST // En Gen4+, Skill Swap activa las habilidades de entrada después de su uso.
 #define B_BRICK_BREAK               GEN_LATEST // En Gen4+, puedes destruir las pantallas de tu propio lado. En Gen 5+, las pantallas no se eliminan si el objetivo es inmune.
-#define B_WISH_HP_SOURCE            GEN_LATEST // En Gen5+, Wish cura la mitad del HP máximo del usuario en lugar del objetivo.
+#define B_WISH_HP_SOURCE            GEN_LATEST // En Gen5+, Deseo cura la mitad del HP máximo del usuario en lugar del objetivo.
 #define B_RAMPAGE_CANCELLING        GEN_LATEST // En Gen5+, un Thrash fallido, etc., se cancela excepto en su último turno.
 #define B_HEAL_BLOCKING             GEN_LATEST // En Gen5+, Heal Block previene la curación por Black Sludge, Leftovers, Shell Bell. Los Pokémon afectados no consumirán Bayas que restauran HP o Berry Juice.
                                                // Las habilidades drenantes no curarán pero prevendrán daño. En Gen6+, Heal Block previene el uso de la mayoría de los movimientos que drenan HP.
@@ -107,20 +106,20 @@
 #define B_METRONOME_MOVES           GEN_LATEST // Esta configuración determinará hasta qué generación Metronome seleccionará movimientos.
 #define B_TELEPORT_BEHAVIOR         GEN_LATEST // A partir de LGPE (Gen8+ aquí), Teleport permite al usuario intercambiarse con otro miembro del equipo.
 #define B_BEAT_UP                   GEN_LATEST // En Gen5+, Beat Up usa una fórmula diferente para calcular su daño y causa daño de tipo Sombra. Antes de Gen 5, cada golpe también anunciaba el nombre del miembro del equipo.
-#define B_DARK_VOID_FAIL            GEN_LATEST // En Gen7+, solo Darkrai puede usar Dark Void.
+#define B_DARK_VOID_FAIL            GEN_LATEST // En Gen7+, solo Darkrai puede usar Brecha negra.
 #define B_BURN_HIT_THAW             GEN_LATEST // En Gen6+, los movimientos dañinos con una posibilidad de quemadura descongelarán al objetivo, independientemente de si son movimientos de tipo Fuego o no.
 #define B_HEALING_WISH_SWITCH       GEN_LATEST // En Gen5+, el Pokémon que recibe Healing Wish entra al final del turno.
                                                // Además, en gen8+ el efecto de Healing Wish se almacenará hasta que el usuario cambie a un Pokémon afectado por estado o herido.
-#define B_DEFOG_CLEARS_TERRAIN      GEN_LATEST // En Gen8+, Defog también limpia el Terreno activo.
-#define B_STOCKPILE_RAISES_DEFS     GEN_LATEST // En Gen4+, Stockpile también aumenta las estadísticas de Defensa y Defensa Especial. Una vez que se usa Spit Up / Swallow, estos cambios de estadísticas se pierden.
-#define B_TRANSFORM_SHINY           GEN_LATEST // En Gen4+, Transform copiará el estado shiny del oponente en lugar de mantener su propio estado shiny.
+#define B_DEFOG_EFFECT_CLEARING     GEN_LATEST // En Gen6+, Despejar quita las trapas de los campos de ambos rivales. En Gen8+, Defog también quita los Campos activos.
+#define B_STOCKPILE_RAISES_DEFS     GEN_LATEST // En Gen4+, Reserva también aumenta las estadísticas de Defensa y Defensa Especial. Una vez que se usa Escupir / Tragar, estos cambios de estadísticas se pierden.
+#define B_TRANSFORM_SHINY           GEN_LATEST // En Gen4+, Transformación copiará el estado shiny del oponente en lugar de mantener su propio estado shiny.
 #define B_TRANSFORM_FORM_CHANGES    GEN_LATEST // En Gen5+, los Pokémon transformados no pueden cambiar de forma.
-#define B_WIDE_GUARD                GEN_LATEST // Solo en Gen5, Wide Guard tiene una posibilidad de fallar si se usa consecutivamente.
+#define B_WIDE_GUARD                GEN_LATEST // Solo en Gen5, Vastaguardia tiene una posibilidad de fallar si se usa consecutivamente.
 #define B_QUICK_GUARD               GEN_LATEST // Solo en Gen5, Quick Guard tiene una posibilidad de fallar si se usa consecutivamente.
 #define B_IMPRISON                  GEN_LATEST // En Gen5+, Imprison no falla si los Pokémon opuestos no tienen ningún movimiento que el usuario conozca.
 #define B_ALLY_SWITCH_FAIL_CHANCE   GEN_LATEST // En Gen9, usar Ally Switch consecutivamente disminuye la probabilidad de éxito de cada uso consecutivo.
-#define B_SKETCH_BANS               GEN_LATEST // En Gen9+, Sketch no puede copiar más movimientos que en generaciones anteriores.
-#define B_KNOCK_OFF_REMOVAL         GEN_LATEST // En Gen5+, Knock Off elimina el objeto del oponente en lugar de hacerlo inutilizable.
+#define B_SKETCH_BANS               GEN_LATEST // En Gen9+, Esquema no puede copiar más movimientos que en generaciones anteriores.
+#define B_KNOCK_OFF_REMOVAL         GEN_LATEST // En Gen5+, Desarme elimina el objeto del oponente en lugar de hacerlo inutilizable.
 #define B_HEAL_BELL_SOUNDPROOF      GEN_LATEST // En Gen5, Heal Bell afecta a todos los Pokémon con Soundproof. En Gen6-8 afecta a Pokémon inactivos, pero no a los que están en batalla. En Gen9 siempre afecta al usuario.
 #define B_CHARGE                    GEN_LATEST // En Gen8-, estado Cargado se pierde sea cuál sea el tipo del siguiente movimiento.
 #define B_POWDER_RAIN               GEN_LATEST // En Gen7+, Polvo explosivo no daña al atacante si está lloviendo.
@@ -128,7 +127,6 @@
 #define B_QUASH_TURN_ORDER          GEN_LATEST // En Gen8+, los ataques se ven afectados por Último lugar según su velocidad. Antes de la 8 gen, los que eran afectados por este ataque se movían en el orden en que recibían el movimiento.
 
 // Configuración de habilidades
-#define B_EXPANDED_ABILITY_NAMES    TRUE       // Si es TRUE, los nombres de las habilidades se expanden de 12 caracteres a 16 caracteres.
 #define B_ABILITY_WEATHER           GEN_LATEST // En Gen6+, el clima inducido por habilidades dura 5 turnos. Antes, duraba hasta que terminara la batalla o hasta que fuera cambiado por un movimiento o una habilidad que afecte el clima.
 #define B_GALE_WINGS                GEN_LATEST // En Gen7+ requiere HP completo para activarse.
 #define B_STANCE_CHANGE_FAIL        GEN_LATEST // En Gen7+, Stance Change falla si el Pokémon no puede usar un movimiento debido a confusión, parálisis, etc. En Gen6, no lo hacía.
@@ -189,6 +187,7 @@
 #define B_SMART_WILD_AI_FLAG        0     // Si no es 0, puedes configurar esta flag en un script para habilitar la IA inteligente de Pokémon salvajes.
 #define B_FLAG_NO_BAG_USE           0     // Si esta flag está activada, la capacidad de usar la bolsa en batalla está desactivada.
 #define B_FLAG_NO_CATCHING          0     // Si esta flag está activada, la capacidad de capturar Pokémon salvajes está desactivada.
+#define B_FLAG_NO_RUNNING           0     // Si esta flag está activada, no se puede escapar de batallas salvajes. Además, hace que Rugido/Torbellino y Teletransporte (con el config en menos de 8ª Gen) fallen.
 #define B_FLAG_AI_VS_AI_BATTLE      0     // Si esta flag está activada, los Pokémon del jugador serán controlados por la IA en las siguientes batallas.
 #define B_FLAG_DYNAMAX_BATTLE       0     // Si esta flag está activada, la habilidad de Dynamax en batalla está habilitada para todos los entrenadores.
 #define B_FLAG_TERA_ORB_CHARGED     0     // Si esta flag está activada, el Tera Orb está cargado. Se activa automáticamente al curar y se borra al Terastalizar una vez configurado.
@@ -209,14 +208,18 @@
 // Configuración de flags y Variables
 #define B_RESET_FLAGS_VARS_AFTER_WHITEOUT TRUE // Si es TRUE, Overworld_ResetBattleFlagsAndVars reiniciará las flags y variables relacionadas con la batalla cuando el jugador se desmaye.
 
+// Configuración de compañero de batalla
+#define B_SHOW_PARTNER_TARGET             FALSE // Si es TRUE, muestra el objetivo del ataque del compañero.
+
 // Configuración de Terrenos
 #define B_TERRAIN_BG_CHANGE         TRUE       // Si se establece en TRUE, los movimientos de terreno cambian permanentemente el fondo de batalla predeterminado hasta que el efecto se desvanezca.
 #define B_THUNDERSTORM_TERRAIN      TRUE       // Si es TRUE, las tormentas eléctricas en el mundo exterior generan Lluvia y Terreno Eléctrico como en Gen 8.
 #define B_TERRAIN_TYPE_BOOST        GEN_LATEST // En Gen8, el daño se aumenta en un 30% en lugar de un 50%.
-#define B_SECRET_POWER_EFFECT       GEN_LATEST // Los efectos de Secret Power cambian según el terreno y la generación. Consulta el caso de MOVE_EFFECT_SECRET_POWER en `SetMoveEffect`.
-#define B_SECRET_POWER_ANIMATION    GEN_LATEST // Las animaciones de Secret Power cambian según el terreno y la generación.
-#define B_NATURE_POWER_MOVES        GEN_LATEST // Nature Power llama a diferentes movimientos según el terreno y la generación. Consulta sNaturePowerMoves.
-#define B_CAMOUFLAGE_TYPES          GEN_LATEST // Camouflage cambia al usuario a diferentes tipos según el terreno y la generación. Consulta sTerrainToType.
+#define B_SECRET_POWER_EFFECT       GEN_LATEST // Los efectos de Daño secreto cambian según el terreno y la generación. Consulta el caso de MOVE_EFFECT_SECRET_POWER en `SetMoveEffect`.
+#define B_SECRET_POWER_ANIMATION    GEN_LATEST // Las animaciones de Daño secreto cambian según el terreno y la generación.
+#define B_NATURE_POWER_MOVES        GEN_LATEST // Adaptación llama a diferentes movimientos según el terreno y la generación. Consulta sNaturePowerMoves.
+#define B_CAMOUFLAGE_TYPES          GEN_LATEST // Camuflaje cambia al usuario a diferentes tipos según el terreno y la generación. Consulta sTerrainToType.
+#define B_NEW_TERRAIN_BACKGROUNDS   FALSE      // Si es TRUE, usa nuevos fondos para los Campos.
 
 // Configuración de Interfaz
 #define B_ABILITY_POP_UP            TRUE  // En Gen5+, las habilidades de los Pokémon se muestran en una ventana emergente cuando se activan en batalla.
@@ -226,7 +229,6 @@
 #define B_SHOW_TARGETS              TRUE  // Si se establece en TRUE, se mostrarán todos los objetivos disponibles para los movimientos que golpean a 2 o 3 Pokémon antes de seleccionar un movimiento.
 #define B_SHOW_CATEGORY_ICON        TRUE  // Si se establece en TRUE, se mostrará un ícono en el resumen que indica la categoría del movimiento.
 #define B_HIDE_HEALTHBOX_IN_ANIMS   TRUE  // Si se establece en TRUE, se ocultan las cajas de salud durante las animaciones de movimiento.
-#define B_EXPANDED_MOVE_NAMES       TRUE  // Si se establece en FALSE, los nombres de los movimientos se reducen de 16 caracteres a 12 caracteres.
 #define B_WAIT_TIME_MULTIPLIER      16    // Esto determina cuánto duran las pausas de texto en la batalla. En Vanilla es 16. Valores más bajos resultan en batallas más rápidas.
 #define B_QUICK_MOVE_CURSOR_TO_RUN  FALSE // Si se establece en TRUE, presionar B en las opciones de batalla contra un encuentro salvaje moverá el cursor a la opción de huir.
 #define B_MOVE_DESCRIPTION_BUTTON   L_BUTTON // Si se establece en un botón diferente a B_LAST_USED_BALL_BUTTON, presionar este botón abrirá el menú de descripción del movimiento.
@@ -236,8 +238,8 @@
 #define B_CATCHING_CHARM_BOOST      20         // % de aumento en las probabilidades de Captura Crítica si el jugador tiene el Catching Charm.
 #define B_CRITICAL_CAPTURE          TRUE       // Si se establece en TRUE, la Captura Crítica estará habilitada.
 #define B_LAST_USED_BALL            TRUE       // Si es TRUE, se implementará la característica de "última bola usada" de Gen 7.
-#define B_LAST_USED_BALL_BUTTON     R_BUTTON   // Si se implementa la última bola usada, este botón (o combinación de botones) activará el lanzamiento de la última bola usada.
-#define B_LAST_USED_BALL_CYCLE      TRUE       // Si es TRUE, mantener presionado B_LAST_USED_BALL_BUTTON mientras se presiona el D-Pad ciclará entre las bolas.
+#define B_LAST_USED_BALL_BUTTON     R_BUTTON   // Si se implementa la última bola usada, este botón (o combinación de botones) activará el lanzamiento de la última Poké Ball usada.
+#define B_LAST_USED_BALL_CYCLE      TRUE       // Si es TRUE, mantener presionado B_LAST_USED_BALL_BUTTON mientras se presiona el D-Pad ciclará entre las Poké Balls.
 
 // Otras Configuraciones
 #define B_DOUBLE_WILD_CHANCE            0          // % de probabilidad de encontrar dos Pokémon en un Encuentro Salvaje.
@@ -252,23 +254,23 @@
 #define B_USE_FROSTBITE                 FALSE      // En PLA, Frostbite reemplaza a Freeze. Habilitar esta flag hace lo mismo aquí. Los movimientos aún pueden ser seleccionados para Freeze o Frostbite. Freeze-Dry, Secret Power y Tri Attack dependen de esta configuración.
 #define B_OVERWORLD_SNOW                GEN_LATEST // En Gen9+, la nieve en el mundo exterior invocará nieve en lugar de granizo en batalla.
 #define B_OVERWORLD_FOG                 GEN_LATEST // En Gen8+, la niebla en el mundo exterior invoca Terreno Brumoso en batalla. Solo en Gen4, la niebla en el mundo exterior invoca la condición climática única de niebla en batalla.
-#define B_TOXIC_REVERSAL                GEN_LATEST // En Gen5+, el veneno malo se convierte en veneno normal al final de las batallas.
+#define B_TOXIC_REVERSAL                GEN_LATEST // En Gen5+, el veneno grave se convierte en veneno normal al final de las batallas.
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // En Gen4+, intentar capturar a un Pokémon de un entrenador no consume la Poké Ball.
 
 // Configuración de Animaciones
-#define B_NEW_SWORD_PARTICLE            TRUE    // Si se establece en TRUE, actualiza la partícula de Swords Dance.
-#define B_NEW_LEECH_SEED_PARTICLE       TRUE    // Si se establece en TRUE, actualiza la partícula de animación de Leech Seed.
+#define B_NEW_SWORD_PARTICLE            TRUE    // Si se establece en TRUE, actualiza la partícula de Danza espada.
+#define B_NEW_LEECH_SEED_PARTICLE       TRUE    // Si se establece en TRUE, actualiza la partícula de animación de Drenadoras.
 #define B_NEW_HORN_ATTACK_PARTICLE      TRUE    // Si se establece en TRUE, actualiza la partícula de cuerno de Horn Attack.
 #define B_NEW_ROCKS_PARTICLE            TRUE    // Si se establece en TRUE, actualiza las partículas de roca.
 #define B_NEW_LEAF_PARTICLE             TRUE    // Si se establece en TRUE, actualiza la partícula de hoja.
-#define B_NEW_EMBER_PARTICLES           TRUE    // Si se establece en TRUE, actualiza la partícula de fuego de Ember.
-#define B_NEW_MEAN_LOOK_PARTICLE        TRUE    // Si se establece en TRUE, actualiza la partícula de ojo de Mean Look.
-#define B_NEW_TEETH_PARTICLE            TRUE    // Si se establece en TRUE, actualiza la partícula de dientes de Bite/Crunch.
+#define B_NEW_EMBER_PARTICLES           TRUE    // Si se establece en TRUE, actualiza la partícula de fuego de Ascuas.
+#define B_NEW_MEAN_LOOK_PARTICLE        TRUE    // Si se establece en TRUE, actualiza la partícula de ojo de Mal de ojo.
+#define B_NEW_TEETH_PARTICLE            TRUE    // Si se establece en TRUE, actualiza la partícula de dientes de Mordisco/Triturar.
 #define B_NEW_HANDS_FEET_PARTICLE       TRUE    // Si se establece en TRUE, actualiza las partículas de golpe/pateo/punch.
-#define B_NEW_SPIKES_PARTICLE           TRUE    // Si se establece en TRUE, actualiza la partícula de Spikes.
-#define B_NEW_FLY_BUBBLE_PARTICLE       TRUE    // Si se establece en TRUE, actualiza la partícula de 'burbuja' de Fly.
-#define B_NEW_CURSE_NAIL_PARTICLE       TRUE    // Si se establece en TRUE, actualiza la uña de Curse.
-#define B_NEW_BATON_PASS_BALL_PARTICLE  TRUE    // Si se establece en TRUE, actualiza el sprite de Poké Ball de Baton Pass.
+#define B_NEW_SPIKES_PARTICLE           TRUE    // Si se establece en TRUE, actualiza la partícula de Púas.
+#define B_NEW_FLY_BUBBLE_PARTICLE       TRUE    // Si se establece en TRUE, actualiza la partícula de 'burbuja' de Vuelo.
+#define B_NEW_CURSE_NAIL_PARTICLE       TRUE    // Si se establece en TRUE, actualiza la uña de Maldición.
+#define B_NEW_BATON_PASS_BALL_PARTICLE  TRUE    // Si se establece en TRUE, actualiza el sprite de Poké Ball de Relevo.
 #define B_NEW_MORNING_SUN_STAR_PARTICLE TRUE    // Si se establece en TRUE, actualiza las partículas de estrella de Morning Sun.
 #define B_NEW_IMPACT_PALETTE            TRUE    // Si se establece en TRUE, actualiza la paleta básica de 'impacto'.
 #define B_NEW_SURF_PARTICLE_PALETTE     TRUE    // Si se establece en TRUE, actualiza la paleta de ola de Surf.
@@ -277,5 +279,14 @@
 #define B_ENEMY_THROW_BALLS          GEN_LATEST  // En GEN_6+, los entrenadores enemigos lanzan Poké Balls en la batalla en lugar de aparecer solo en el suelo y abrirse.
 #define B_ENEMY_THROW_BALLS_SOUND    GEN_LATEST  // En GEN_5+, las Poké Balls de los entrenadores enemigos hacen un sonido al ser lanzadas para sacar un Pokémon. Esto solo se puede usar cuando B_ENEMY_THROW_BALLS está configurado en GEN_6 o posterior.
 #define B_PLAYER_THROW_BALLS_SOUND   GEN_LATEST  // En GEN_5+, las Poké Balls del jugador hacen un sonido al ser lanzadas para sacar un Pokémon.
+
+#define SHOW_TYPES_NEVER    0
+#define SHOW_TYPES_ALWAYS   1
+#define SHOW_TYPES_CAUGHT   2
+#define B_SHOW_TYPES        SHOW_TYPES_NEVER // When defined as SHOW_TYPES_ALWAYS, after selecting "Fight" in battle, the types of all Pokemon are revealed. Whe defined as SHOW_TYPES_OWN, types are only revealed if the player owns the mon in question.
+
+// Pokémon battle sprite settings
+#define B_ENEMY_MON_SHADOW_STYLE        GEN_3 // En Gen4+, todos los rivales tienen sombra.
+                                              // Ahora mismo, las sombras de Gen4+ no funcionan como deberían con los mensajes en combate en los que aparece el entrenador.
 
 #endif // GUARD_CONFIG_BATTLE_H

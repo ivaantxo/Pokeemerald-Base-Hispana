@@ -17,35 +17,35 @@ static const struct LilycoveContestLadyValues sContestLadyValues[] =
         .monGfxId = OBJ_EVENT_GFX_ZIGZAGOON_1,
         .monSpecies = SPECIES_ZIGZAGOON,
         .monName = COMPOUND_STRING("HANDSOME"),
-        .categoryName = COMPOUND_STRING("coolness"),
+        .categoryName = COMPOUND_STRING("carisma"),
         .contestName = gText_CoolnessContest,
     },
     [CONTEST_CATEGORY_BEAUTY] = {
         .monGfxId = OBJ_EVENT_GFX_SKITTY,
         .monSpecies = SPECIES_SKITTY,
         .monName = COMPOUND_STRING("VINNY"),
-        .categoryName = COMPOUND_STRING("beauty"),
+        .categoryName = COMPOUND_STRING("belleza"),
         .contestName = gText_BeautyContest,
     },
     [CONTEST_CATEGORY_CUTE] = {
         .monGfxId = OBJ_EVENT_GFX_POOCHYENA,
         .monSpecies = SPECIES_POOCHYENA,
         .monName = COMPOUND_STRING("MOREME"),
-        .categoryName = COMPOUND_STRING("cuteness"),
+        .categoryName = COMPOUND_STRING("dulzura"),
         .contestName = gText_CutenessContest,
     },
     [CONTEST_CATEGORY_SMART] = {
         .monGfxId = OBJ_EVENT_GFX_KECLEON,
         .monSpecies = SPECIES_KECLEON,
         .monName = COMPOUND_STRING("IRONHARD"),
-        .categoryName = COMPOUND_STRING("smartness"),
+        .categoryName = COMPOUND_STRING("ingenio"),
         .contestName = gText_SmartnessContest,
     },
     [CONTEST_CATEGORY_TOUGH] = {
         .monGfxId = OBJ_EVENT_GFX_PIKACHU,
         .monSpecies = SPECIES_PIKACHU,
         .monName = COMPOUND_STRING("MUSCLE"),
-        .categoryName = COMPOUND_STRING("toughness"),
+        .categoryName = COMPOUND_STRING("dureza"),
         .contestName = gText_ToughnessContest,
     },
 };
@@ -201,12 +201,12 @@ static const u16 sQuizLadyPrizes[] =
 // Favor Lady data
 static const u8 *const sFavorLadyRequests[] =
 {
-    COMPOUND_STRING("slippery"),
-    COMPOUND_STRING("roundish"),
-    COMPOUND_STRING("wham-ish"),
-    COMPOUND_STRING("shiny"),
-    COMPOUND_STRING("sticky"),
-    COMPOUND_STRING("pointy"),
+    COMPOUND_STRING("resbaladizo"),
+    COMPOUND_STRING("redondeado"),
+    COMPOUND_STRING("como un golpe"),
+    COMPOUND_STRING("brillante"),
+    COMPOUND_STRING("pegajoso"),
+    COMPOUND_STRING("punteado"),
 };
 
 static const u16 sFavorLadyAcceptedItems_Slippery[] =

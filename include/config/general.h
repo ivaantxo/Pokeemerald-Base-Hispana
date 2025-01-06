@@ -72,6 +72,8 @@
 #define SUMMARY_SCREEN_NATURE_COLORS TRUE    // Si es TRUE, los aumentos y reducciones basados en la naturaleza se mostrarán en rojo y azul en la pantalla de resumen.
 #define HQ_RANDOM                    TRUE    // Si es TRUE, reemplaza el RNG predeterminado con una implementación del RNG SFC32. Puede romper el código que depende del RNG.
 #define COMPETITIVE_PARTY_SYNTAX     TRUE    // Si es TRUE, los equipos se definen en "sintaxis competitiva".
+#define AUTO_SCROLL_TEXT             TRUE    // Si es TRUE, el texto automáticamente pasará a la siguiente línea después de NUM_FRAMES_AUTO_SCROLL_DELAY. El jugador todavía podrá pulsar A_BUTTON o B_BUTTON para pasar a la siguiente línea por sí mismo.
+#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
 
 // Constantes del sistema de medidas para usar con UNITS
 #define UNITS_IMPERIAL               0       // Pulgadas, pies, libras
@@ -83,4 +85,5 @@
 // Pantalla de Nombres
 #define AUTO_LOWERCASE_KEYBOARD      GEN_LATEST  // A partir de GEN_6, después de ingresar el primer carácter en mayúsculas, el teclado cambia a letras minúsculas.
 
+#define SAVE_TYPE_ERROR_SCREEN              FALSE   // When enabled, this shows an error message when the game is loaded on a cart without a flash chip or on an emulator with the wrong save type setting instead of crashing.
 #endif // GUARD_CONFIG_GENERAL_H

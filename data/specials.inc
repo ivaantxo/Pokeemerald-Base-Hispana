@@ -552,3 +552,4 @@ gSpecials::
 	def_special Script_GetChosenMonOffensiveIVs
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special DoSpecialMiningGame
+	def_special UseBlankMessageToCancelPokemonPic
