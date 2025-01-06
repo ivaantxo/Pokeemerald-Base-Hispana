@@ -697,7 +697,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_NOONEWILLBEABLETORUNAWAY]             = COMPOUND_STRING("¡Nadie podrá huir durante el próximo turno!"),
     [STRINGID_DESTINYKNOTACTIVATES]                 = COMPOUND_STRING("¡{B_SCR_NAME_WITH_PREFIX} se ha enamorado debido a {B_LAST_ITEM}!"),
     [STRINGID_CLOAKEDINAFREEZINGLIGHT]              = COMPOUND_STRING("¡Una luz fría envuelve a {B_ATK_NAME_WITH_PREFIX}!"),
-    [STRINGID_CLEARAMULETWONTLOWERSTATS]            = COMPOUND_STRING("¡El {B_LAST_ITEM} de {B_DEF_NAME_WITH_PREFIX} evita que sus estadísticas sean reducidas!"),
+    [STRINGID_CLEARAMULETWONTLOWERSTATS]            = COMPOUND_STRING("¡El {B_LAST_ITEM} de {B_SCR_NAME_WITH_PREFIX} evita que sus estadísticas sean reducidas!"),
     [STRINGID_FERVENTWISHREACHED]                   = COMPOUND_STRING("¡El ruego vehemente de {B_ATK_TRAINER_NAME} alcanza a {B_ATK_NAME_WITH_PREFIX}!"),
     [STRINGID_AIRLOCKACTIVATES]                     = COMPOUND_STRING("¡Las misteriosas turbulencias protegen a los Pokémon de tipo Volador!"),
     [STRINGID_PRESSUREENTERS]                       = COMPOUND_STRING("¡{B_SCR_NAME_WITH_PREFIX} ejerce presión!"),
@@ -1276,7 +1276,10 @@ const u16 gWeatherStartsStringIds[] =
 
 const u16 gTerrainStartsStringIds[] =
 {
-    STRINGID_MISTSWIRLSAROUND, STRINGID_ELECTRICCURRENTISRUNNING, STRINGID_ISCOVEREDWITHGRASS, STRINGID_SEEMSWEIRD,
+    [B_MSG_TERRAIN_SET_MISTY]    = STRINGID_MISTSWIRLSAROUND,
+    [B_MSG_TERRAIN_SET_ELECTRIC] = STRINGID_ELECTRICCURRENTISRUNNING,
+    [B_MSG_TERRAIN_SET_PSYCHIC]  = STRINGID_SEEMSWEIRD,
+    [B_MSG_TERRAIN_SET_GRASSY]   = STRINGID_ISCOVEREDWITHGRASS,
 };
 
 const u16 gPrimalWeatherBlocksStringIds[] =
@@ -2573,7 +2576,9 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     toCpy = gStringVar2;
                 }
                 else
+                {
                     toCpy = gBattleTextBuff2;
+                }
                 break;
             case B_TXT_BUFF3:
                 if (gBattleTextBuff3[0] == B_BUFF_PLACEHOLDER_BEGIN)
@@ -2582,7 +2587,9 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     toCpy = gStringVar3;
                 }
                 else
+                {
                     toCpy = gBattleTextBuff3;
+                }
                 break;
             case B_TXT_COPY_VAR_1:
                 toCpy = gStringVar1;
@@ -2691,7 +2698,9 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                                 toCpy = text;
                             }
                             else
+                            {
                                 toCpy = sText_EnigmaBerry;
+                            }
                         }
                     }
                     else

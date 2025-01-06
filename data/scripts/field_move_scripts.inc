@@ -383,6 +383,18 @@ EventScript_UseDig::
 	lockall
 	goto EventScript_DigCommon
 
+
+EventScript_CutGrassCommon:
+	isfollowerfieldmoveuser VAR_0x8004
+	setfieldeffectargument 3, VAR_0x8004 @ skip pose if true
+	dofieldeffect FLDEFF_USE_CUT_ON_GRASS
+	waitstate
+
+@ Use Cut grass from party menu
+EventScript_UseCutGrass::
+	lockall
+	goto EventScript_CutGrassCommon
+
 Text_CantDive:
 	.string "El mar es muy profundo en esta zona.\n"
 	.string "Un POKéMON podría bucear aquí.$"

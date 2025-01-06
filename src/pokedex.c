@@ -2410,7 +2410,9 @@ static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
         if (vOffset >= LIST_SCROLL_STEP)
             vOffset -= LIST_SCROLL_STEP;
         if (entryNum < 0 || entryNum >= NATIONAL_DEX_COUNT || sPokedexView->pokedexList[entryNum].dexNum == 0xFFFF)
+        {
             ClearMonListEntry(17, vOffset * 2, ignored);
+        }
         else
         {
             ClearMonListEntry(17, vOffset * 2, ignored);
@@ -2705,7 +2707,9 @@ static bool8 TryDoInfoScreenScroll(void)
         }
 
         if (sPokedexView->selectedPokemon == selectedPokemon)
+        {
             return FALSE;
+        }
         else
         {
             sPokedexView->selectedPokemon = selectedPokemon;
@@ -2728,7 +2732,9 @@ static bool8 TryDoInfoScreenScroll(void)
         }
 
         if (sPokedexView->selectedPokemon == selectedPokemon)
+        {
             return FALSE;
+        }
         else
         {
             sPokedexView->selectedPokemon = selectedPokemon;

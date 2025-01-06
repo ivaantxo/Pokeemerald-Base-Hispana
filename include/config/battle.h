@@ -154,17 +154,20 @@
 #define B_ABILITY_TRIGGER_CHANCE    GEN_LATEST // En Gen3, Shed Skin, Cute Charm, Flame Body, Static y Poison Point tienen un 1/3 de probabilidad de activarse. En Gen 4+ es 30%.
                                                // En Gen3, Effect Spore tiene un 10% de probabilidad de dormir, envenenar o paralizar, con una probabilidad igual.
                                                // En Gen4, es 30%. En Gen5+ tiene un 11% de probabilidad de dormir, 9% de envenenar y 10% de paralizar.
+#define B_PICKUP_WILD               GEN_LATEST // En Gen9+, Recogida permite al usuario utilizar su propio objeto usado en batallas contra Pokémon salvajes.
+#define B_MAGIC_GUARD               GEN_LATEST // En Gen4+, Guardia mágica ignora la inmovilización causada por la parálisis.
 
 // Configuración de ítems
 #define B_HP_BERRIES                GEN_LATEST // En Gen4+, las bayas que restauran HP se activan inmediatamente después de que HP cae a la mitad. En Gen3, el efecto ocurre al final del turno.
 #define B_BERRIES_INSTANT           GEN_LATEST // En Gen4+, la mayoría de las bayas se activan al inicio de la batalla/cambio si es aplicable. En Gen3, solo se activan al final del movimiento o al final del turno.
 #define B_CONFUSE_BERRIES_HEAL      GEN_LATEST // Antes de Gen7, Figy y bayas similares restauran 1/8 de HP y se activan a la mitad de HP. En Gen7 restauran la mitad de HP, activándose al 25% de HP. En Gen8 curan 1/3 de HP.
 #define B_X_ITEMS_BUFF              GEN_LATEST // En Gen7+, los X Items aumentan una estadística en 2 etapas en lugar de 1.
-#define B_MENTAL_HERB               GEN_LATEST // En Gen5+, Mental Herb cura Taunt, Encore, Torment, Heal Block y Disable además de Infatuation.
+#define B_MENTAL_HERB               GEN_LATEST // En Gen5+, Hierba mental cura Mofa, Otra vez, Tormento, Anticura y Anulación además de Enamoramiento.
 #define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE       // Si es TRUE, los entrenadores pueden robar/intercambiar tus ítems (los ítems no bayas se restauran después de la batalla). En los juegos vanilla, los entrenadores no pueden robar ítems.
-#define B_RETURN_STOLEN_NPC_ITEMS   GEN_LATEST // En Gen5+, Thief y Covet ya no roban ítems de NPCs.
+#define B_RETURN_STOLEN_NPC_ITEMS   GEN_LATEST // En Gen5+, Ladrón y Antojo ya no roban ítems de NPCs.
+#define B_STEAL_WILD_ITEMS          GEN_LATEST // En Gen9, Ladrón y Antojo roban el objeto a los Pokémon salvajes y los mandan a la mochila. Antes, este era equipado al usuario del ataque.
 #define B_RESTORE_HELD_BATTLE_ITEMS GEN_LATEST // En Gen9, todos los ítems no bayas se restauran después de la batalla.
-#define B_SOUL_DEW_BOOST            GEN_LATEST // En Gens3-6, Soul Dew aumenta el Sp. Atk y Sp. Def de Latios y Latias. En Gen7+ aumenta el poder de sus movimientos de tipo Psíquico y Dragón en su lugar.
+#define B_SOUL_DEW_BOOST            GEN_LATEST // En Gens3-6, Soul Dew aumenta el Ataque especial y Defensa especial de Latios y Latias. En Gen7+ aumenta el poder de sus movimientos de tipo Psíquico y Dragón en su lugar.
 #define B_NET_BALL_MODIFIER         GEN_LATEST // En Gen7+, el multiplicador de captura de Net Ball es x5 en lugar de x3.
 #define B_DIVE_BALL_MODIFIER        GEN_LATEST // En Gen4+, la efectividad de Dive Ball aumenta cuando se navega o se pesca.
 #define B_NEST_BALL_MODIFIER        GEN_LATEST // La fórmula de Nest Ball varía según la Gen. Consulta Cmd_handleballthrow.
@@ -223,7 +226,8 @@
 
 // Configuración de Interfaz
 #define B_ABILITY_POP_UP            TRUE  // En Gen5+, las habilidades de los Pokémon se muestran en una ventana emergente cuando se activan en batalla.
-#define B_FAST_INTRO                TRUE  // Si se establece en TRUE, los textos de introducción de la batalla se imprimen al mismo tiempo que la animación de un Pokémon, en lugar de esperar a que termine la animación.
+#define B_FAST_INTRO_PKMN_TEXT      TRUE  // Si se establece en TRUE, los textos de introducción de la batalla se imprimen al mismo tiempo que la animación de un Pokémon, en lugar de esperar a que termine la animación.
+#define B_FAST_INTRO_NO_SLIDE       FALSE // Si se establece en TRUE, se saltará la animación de deslizamiento que se produce al entrar en combate.
 #define B_FAST_HP_DRAIN             TRUE  // Si se establece en TRUE, las barras de HP se moverán más rápido.
 #define B_FAST_EXP_GROW             TRUE  // Si se establece en TRUE, las barras de EXP se moverán más rápido.
 #define B_SHOW_TARGETS              TRUE  // Si se establece en TRUE, se mostrarán todos los objetivos disponibles para los movimientos que golpean a 2 o 3 Pokémon antes de seleccionar un movimiento.

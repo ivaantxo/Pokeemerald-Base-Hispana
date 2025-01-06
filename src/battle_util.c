@@ -225,7 +225,7 @@ void HandleAction_UseMove(void)
     }
     else if (IsDoubleBattle()
            && gSideTimers[side].followmeTimer == 0
-           && (gMovesInfo[gCurrentMove].power != 0 || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
+           && (!IS_MOVE_STATUS(gCurrentMove) || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
             || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
     {
@@ -285,7 +285,7 @@ void HandleAction_UseMove(void)
             gBattlerTarget = battler;
         }
     }
-	else if (IsDoubleBattle() && moveTarget & MOVE_TARGET_RANDOM)
+    else if (IsDoubleBattle() && moveTarget & MOVE_TARGET_RANDOM)
     {
         gBattlerTarget = SetRandomTarget(gBattlerAttacker);
         if (gAbsentBattlerFlags & (1u << gBattlerTarget)
@@ -301,7 +301,7 @@ void HandleAction_UseMove(void)
         else
             gBattlerTarget = gBattlerAttacker;
     }
-	else if (IsDoubleBattle() && moveTarget == MOVE_TARGET_FOES_AND_ALLY)
+    else if (IsDoubleBattle() && moveTarget == MOVE_TARGET_FOES_AND_ALLY)
     {
         for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
         {
@@ -569,7 +569,8 @@ void HandleAction_ThrowBall(void)
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
     gLastUsedItem = gBallToDisplay;
-    RemoveBagItem(gLastUsedItem, 1);
+    if (!ItemId_GetImportance(gLastUsedItem))
+    	RemoveBagItem(gLastUsedItem, 1);
     gBattlescriptCurrInstr = BattleScript_BallThrow;
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
@@ -922,15 +923,15 @@ u8 GetBattlerForBattleScript(u8 caseId)
 bool32 IsBattlerMarkedForControllerExec(u32 battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        return (gBattleControllerExecFlags & (1 << (battler + 28))) != 0;
+        return (gBattleControllerExecFlags & (1u << (battler + 28))) != 0;
     else
-        return (gBattleControllerExecFlags & (1 << battler)) != 0;
+        return (gBattleControllerExecFlags & (1u << battler)) != 0;
 }
 
 void MarkBattlerForControllerExec(u32 battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        gBattleControllerExecFlags |= 1u << (32 - MAX_BATTLERS_COUNT);
+        gBattleControllerExecFlags |= 1u << (battler + 32 - MAX_BATTLERS_COUNT);
     else
         gBattleControllerExecFlags |= 1u << battler;
 }
@@ -1662,17 +1663,12 @@ u8 DoFieldEndTurnEffects(void)
         switch (gBattleStruct->turnCountersTracker)
         {
         case ENDTURN_ORDER:
-            for (i = 0; i < gBattlersCount; i++)
-            {
-                gBattlerByTurnOrder[i] = i;
-            }
             for (i = 0; i < gBattlersCount - 1; i++)
             {
                 s32 j;
                 for (j = i + 1; j < gBattlersCount; j++)
                 {
-                    if (!gProtectStructs[i].quash
-                            && !gProtectStructs[j].quash
+                    if (!(gProtectStructs[i].quash && gProtectStructs[j].quash)
                             && GetWhichBattlerFaster(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], FALSE) == -1)
                         SwapTurnOrder(i, j);
                 }
@@ -1888,9 +1884,13 @@ u8 DoFieldEndTurnEffects(void)
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_RAIN_STOPPED;
                     }
                     else if (gBattleWeather & B_WEATHER_RAIN_DOWNPOUR)
+                    {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOWNPOUR_CONTINUES;
+                    }
                     else
+                    {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_RAIN_CONTINUES;
+                    }
                 }
                 else if (gBattleWeather & B_WEATHER_RAIN_DOWNPOUR)
                 {
@@ -3193,6 +3193,19 @@ void SetAtkCancellerForCalledMove(void)
     gBattleStruct->isAtkCancelerForCalledMove = TRUE;
 }
 
+static inline bool32 TryFormChangeBeforeMove(void)
+{
+    bool32 result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE);
+    if (!result)
+        result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY);
+    if (!result)
+        return FALSE;
+
+    BattleScriptPushCursor();
+    gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
+    return TRUE;
+}
+
 u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
     u32 effect = 0;
@@ -3215,6 +3228,11 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                 effect = 1;
             }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_STANCE_CHANGE_1:
+            if (B_STANCE_CHANGE_FAIL < GEN_7 && TryFormChangeBeforeMove())
+                effect = 1;
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_ASLEEP: // check being asleep
@@ -3468,7 +3486,10 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_PARALYSED: // paralysis
-            if (!gBattleStruct->isAtkCancelerForCalledMove && (gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS) && !RandomPercentage(RNG_PARALYSIS, 75))
+            if (!gBattleStruct->isAtkCancelerForCalledMove
+             && gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS
+             && (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD && B_MAGIC_GUARD >= GEN_4)
+             && !RandomPercentage(RNG_PARALYSIS, 75))
             {
                 gProtectStructs[gBattlerAttacker].prlzImmobility = TRUE;
                 // This is removed in FRLG and Emerald for some reason
@@ -3552,6 +3573,11 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 }
                 effect = 2;
             }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_STANCE_CHANGE_2:
+            if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryFormChangeBeforeMove())
+                effect = 1;
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_POWDER_MOVE:
@@ -5681,7 +5707,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_COLOR_CHANGE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && move != MOVE_STRUGGLE
-             && gMovesInfo[move].power != 0
+             && !IS_MOVE_STATUS(move)
              && TARGET_TURN_DAMAGED
              && !IS_BATTLER_OF_TYPE(battler, moveType)
              && moveType != TYPE_STELLAR
@@ -8306,6 +8332,18 @@ u32 ItemBattleEffects(enum ItemEffect caseID, u32 battler, bool32 moveTurn)
                 gBattlescriptCurrInstr = BattleScript_WhiteHerbRet;
             }
             break;
+        case HOLD_EFFECT_EJECT_PACK:
+            if (gProtectStructs[battler].statFell
+             && gProtectStructs[battler].disableEjectPack == 0
+             && CountUsablePartyMons(battler) > 0)
+            {
+                gBattleScripting.battler = battler;
+                gPotentialItemEffectBattler = battler;
+                effect = ITEM_STATS_CHANGE;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_EjectPackActivates;
+            }
+            break;
         }
         break;
     }
@@ -8635,7 +8673,7 @@ bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move)
         return TRUE;
     else if (gProtectStructs[battlerDef].spikyShielded)
         return TRUE;
-    else if (gProtectStructs[battlerDef].kingsShielded && gMovesInfo[move].power != 0)
+    else if (gProtectStructs[battlerDef].kingsShielded && !IS_MOVE_STATUS(move))
         return TRUE;
     else if (gProtectStructs[battlerDef].maxGuarded)
         return TRUE;
@@ -9067,7 +9105,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
     case EFFECT_ROUND:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (i != battlerAtk && IsBattlerAlive(i) && gLastMoves[i] == MOVE_ROUND)
+            if (i != battlerAtk && IsBattlerAlive(i) && gMovesInfo[gLastUsedMove].effect == EFFECT_ROUND)
             {
                 basePower *= 2;
                 break;
@@ -10616,7 +10654,7 @@ static uq4_12_t GetInverseTypeMultiplier(uq4_12_t multiplier)
     }
 }
 
-uq4_12_t GetTypeEffectiveness(struct Pokemon *mon, u8 moveType)
+uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, u8 moveType)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
     u16 abilityDef = GetMonAbility(mon);
@@ -11541,7 +11579,7 @@ u16 GetUsedHeldItem(u32 battler)
 bool32 CantPickupItem(u32 battler)
 {
     // Used by RandomUniformExcept() for RNG_PICKUP
-    if (battler == gBattlerAttacker && gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))
+    if (battler == gBattlerAttacker && (B_PICKUP_WILD < GEN_9 || gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK)))
         return TRUE;
     return !(IsBattlerAlive(battler) && GetUsedHeldItem(battler) && gBattleStruct->canPickupItem & (1u << battler));
 }
@@ -11767,7 +11805,12 @@ bool32 MoveIsAffectedBySheerForce(u32 move)
     u32 i;
     for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
     {
+        if (gMovesInfo[move].additionalEffects[i].sheerForceBoost == SHEER_FORCE_NO_BOOST)
+            continue;
+
         if (gMovesInfo[move].additionalEffects[i].chance > 0)
+            return TRUE;
+        if (gMovesInfo[move].additionalEffects[i].sheerForceBoost == SHEER_FORCE_BOOST)
             return TRUE;
     }
     return FALSE;
