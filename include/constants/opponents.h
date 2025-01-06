@@ -3,868 +3,873 @@
 
 #include "constants/battle_partner.h"
 
-#define TRAINER_NONE                          0
-#define TRAINER_SAWYER_1                      1
-#define TRAINER_GRUNT_AQUA_HIDEOUT_1          2
-#define TRAINER_GRUNT_AQUA_HIDEOUT_2          3
-#define TRAINER_GRUNT_AQUA_HIDEOUT_3          4
-#define TRAINER_GRUNT_AQUA_HIDEOUT_4          5
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_1       6
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_2       7
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8
-#define TRAINER_GABRIELLE_1                   9
-#define TRAINER_GRUNT_PETALBURG_WOODS        10
-#define TRAINER_MARCEL                       11
-#define TRAINER_ALBERTO                      12
-#define TRAINER_ED                           13
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_4      14
-#define TRAINER_DECLAN                       15
-#define TRAINER_GRUNT_RUSTURF_TUNNEL         16
-#define TRAINER_GRUNT_WEATHER_INST_1         17
-#define TRAINER_GRUNT_WEATHER_INST_2         18
-#define TRAINER_GRUNT_WEATHER_INST_3         19
-#define TRAINER_GRUNT_MUSEUM_1               20
-#define TRAINER_GRUNT_MUSEUM_2               21
-#define TRAINER_GRUNT_SPACE_CENTER_1         22
-#define TRAINER_GRUNT_MT_PYRE_1              23
-#define TRAINER_GRUNT_MT_PYRE_2              24
-#define TRAINER_GRUNT_MT_PYRE_3              25
-#define TRAINER_GRUNT_WEATHER_INST_4         26
-#define TRAINER_GRUNT_AQUA_HIDEOUT_5         27
-#define TRAINER_GRUNT_AQUA_HIDEOUT_6         28
-#define TRAINER_FREDRICK                     29
-#define TRAINER_MATT                         30
-#define TRAINER_ZANDER                       31
-#define TRAINER_SHELLY_WEATHER_INSTITUTE     32
-#define TRAINER_SHELLY_SEAFLOOR_CAVERN       33
-#define TRAINER_ARCHIE                       34
-#define TRAINER_LEAH                         35
-#define TRAINER_DAISY                        36
-#define TRAINER_ROSE_1                       37
-#define TRAINER_FELIX                        38
-#define TRAINER_VIOLET                       39
-#define TRAINER_ROSE_2                       40
-#define TRAINER_ROSE_3                       41
-#define TRAINER_ROSE_4                       42
-#define TRAINER_ROSE_5                       43
-#define TRAINER_DUSTY_1                      44
-#define TRAINER_CHIP                         45
-#define TRAINER_FOSTER                       46
-#define TRAINER_DUSTY_2                      47
-#define TRAINER_DUSTY_3                      48
-#define TRAINER_DUSTY_4                      49
-#define TRAINER_DUSTY_5                      50
-#define TRAINER_GABBY_AND_TY_1               51
-#define TRAINER_GABBY_AND_TY_2               52
-#define TRAINER_GABBY_AND_TY_3               53
-#define TRAINER_GABBY_AND_TY_4               54
-#define TRAINER_GABBY_AND_TY_5               55
-#define TRAINER_GABBY_AND_TY_6               56
-#define TRAINER_LOLA_1                       57
-#define TRAINER_AUSTINA                      58
-#define TRAINER_GWEN                         59
-#define TRAINER_LOLA_2                       60
-#define TRAINER_LOLA_3                       61
-#define TRAINER_LOLA_4                       62
-#define TRAINER_LOLA_5                       63
-#define TRAINER_RICKY_1                      64
-#define TRAINER_SIMON                        65
-#define TRAINER_CHARLIE                      66
-#define TRAINER_RICKY_2                      67
-#define TRAINER_RICKY_3                      68
-#define TRAINER_RICKY_4                      69
-#define TRAINER_RICKY_5                      70
-#define TRAINER_RANDALL                      71
-#define TRAINER_PARKER                       72
-#define TRAINER_GEORGE                       73
-#define TRAINER_BERKE                        74
-#define TRAINER_BRAXTON                      75
-#define TRAINER_VINCENT                      76
-#define TRAINER_LEROY                        77
-#define TRAINER_WILTON_1                     78
-#define TRAINER_EDGAR                        79
-#define TRAINER_ALBERT                       80
-#define TRAINER_SAMUEL                       81
-#define TRAINER_VITO                         82
-#define TRAINER_OWEN                         83
-#define TRAINER_WILTON_2                     84
-#define TRAINER_WILTON_3                     85
-#define TRAINER_WILTON_4                     86
-#define TRAINER_WILTON_5                     87
-#define TRAINER_WARREN                       88
-#define TRAINER_MARY                         89
-#define TRAINER_ALEXIA                       90
-#define TRAINER_JODY                         91
-#define TRAINER_WENDY                        92
-#define TRAINER_KEIRA                        93
-#define TRAINER_BROOKE_1                     94
-#define TRAINER_JENNIFER                     95
-#define TRAINER_HOPE                         96
-#define TRAINER_SHANNON                      97
-#define TRAINER_MICHELLE                     98
-#define TRAINER_CAROLINE                     99
-#define TRAINER_JULIE                       100
-#define TRAINER_BROOKE_2                    101
-#define TRAINER_BROOKE_3                    102
-#define TRAINER_BROOKE_4                    103
-#define TRAINER_BROOKE_5                    104
-#define TRAINER_PATRICIA                    105
-#define TRAINER_KINDRA                      106
-#define TRAINER_TAMMY                       107
-#define TRAINER_VALERIE_1                   108
-#define TRAINER_TASHA                       109
-#define TRAINER_VALERIE_2                   110
-#define TRAINER_VALERIE_3                   111
-#define TRAINER_VALERIE_4                   112
-#define TRAINER_VALERIE_5                   113
-#define TRAINER_CINDY_1                     114
-#define TRAINER_DAPHNE                      115
-#define TRAINER_GRUNT_SPACE_CENTER_2        116
-#define TRAINER_CINDY_2                     117
-#define TRAINER_BRIANNA                     118
-#define TRAINER_NAOMI                       119
-#define TRAINER_CINDY_3                     120
-#define TRAINER_CINDY_4                     121
-#define TRAINER_CINDY_5                     122
-#define TRAINER_CINDY_6                     123
-#define TRAINER_MELISSA                     124
-#define TRAINER_SHEILA                      125
-#define TRAINER_SHIRLEY                     126
-#define TRAINER_JESSICA_1                   127
-#define TRAINER_CONNIE                      128
-#define TRAINER_BRIDGET                     129
-#define TRAINER_OLIVIA                      130
-#define TRAINER_TIFFANY                     131
-#define TRAINER_JESSICA_2                   132
-#define TRAINER_JESSICA_3                   133
-#define TRAINER_JESSICA_4                   134
-#define TRAINER_JESSICA_5                   135
-#define TRAINER_WINSTON_1                   136
-#define TRAINER_MOLLIE                      137
-#define TRAINER_GARRET                      138
-#define TRAINER_WINSTON_2                   139
-#define TRAINER_WINSTON_3                   140
-#define TRAINER_WINSTON_4                   141
-#define TRAINER_WINSTON_5                   142
-#define TRAINER_STEVE_1                     143
-#define TRAINER_THALIA_1                    144
-#define TRAINER_MARK                        145
-#define TRAINER_GRUNT_MT_CHIMNEY_1          146
-#define TRAINER_STEVE_2                     147
-#define TRAINER_STEVE_3                     148
-#define TRAINER_STEVE_4                     149
-#define TRAINER_STEVE_5                     150
-#define TRAINER_LUIS                        151
-#define TRAINER_DOMINIK                     152
-#define TRAINER_DOUGLAS                     153
-#define TRAINER_DARRIN                      154
-#define TRAINER_TONY_1                      155
-#define TRAINER_JEROME                      156
-#define TRAINER_MATTHEW                     157
-#define TRAINER_DAVID                       158
-#define TRAINER_SPENCER                     159
-#define TRAINER_ROLAND                      160
-#define TRAINER_NOLEN                       161
-#define TRAINER_STAN                        162
-#define TRAINER_BARRY                       163
-#define TRAINER_DEAN                        164
-#define TRAINER_RODNEY                      165
-#define TRAINER_RICHARD                     166
-#define TRAINER_HERMAN                      167
-#define TRAINER_SANTIAGO                    168
-#define TRAINER_GILBERT                     169
-#define TRAINER_FRANKLIN                    170
-#define TRAINER_KEVIN                       171
-#define TRAINER_JACK                        172
-#define TRAINER_DUDLEY                      173
-#define TRAINER_CHAD                        174
-#define TRAINER_TONY_2                      175
-#define TRAINER_TONY_3                      176
-#define TRAINER_TONY_4                      177
-#define TRAINER_TONY_5                      178
-#define TRAINER_TAKAO                       179
-#define TRAINER_HITOSHI                     180
-#define TRAINER_KIYO                        181
-#define TRAINER_KOICHI                      182
-#define TRAINER_NOB_1                       183
-#define TRAINER_NOB_2                       184
-#define TRAINER_NOB_3                       185
-#define TRAINER_NOB_4                       186
-#define TRAINER_NOB_5                       187
-#define TRAINER_YUJI                        188
-#define TRAINER_DAISUKE                     189
-#define TRAINER_ATSUSHI                     190
-#define TRAINER_KIRK                        191
-#define TRAINER_GRUNT_AQUA_HIDEOUT_7        192
-#define TRAINER_GRUNT_AQUA_HIDEOUT_8        193
-#define TRAINER_SHAWN                       194
-#define TRAINER_FERNANDO_1                  195
-#define TRAINER_DALTON_1                    196
-#define TRAINER_DALTON_2                    197
-#define TRAINER_DALTON_3                    198
-#define TRAINER_DALTON_4                    199
-#define TRAINER_DALTON_5                    200
-#define TRAINER_COLE                        201
-#define TRAINER_JEFF                        202
-#define TRAINER_AXLE                        203
-#define TRAINER_JACE                        204
-#define TRAINER_KEEGAN                      205
-#define TRAINER_BERNIE_1                    206
-#define TRAINER_BERNIE_2                    207
-#define TRAINER_BERNIE_3                    208
-#define TRAINER_BERNIE_4                    209
-#define TRAINER_BERNIE_5                    210
-#define TRAINER_DREW                        211
-#define TRAINER_BEAU                        212
-#define TRAINER_LARRY                       213
-#define TRAINER_SHANE                       214
-#define TRAINER_JUSTIN                      215
-#define TRAINER_ETHAN_1                     216
-#define TRAINER_AUTUMN                      217
-#define TRAINER_TRAVIS                      218
-#define TRAINER_ETHAN_2                     219
-#define TRAINER_ETHAN_3                     220
-#define TRAINER_ETHAN_4                     221
-#define TRAINER_ETHAN_5                     222
-#define TRAINER_BRENT                       223
-#define TRAINER_DONALD                      224
-#define TRAINER_TAYLOR                      225
-#define TRAINER_JEFFREY_1                   226
-#define TRAINER_DEREK                       227
-#define TRAINER_JEFFREY_2                   228
-#define TRAINER_JEFFREY_3                   229
-#define TRAINER_JEFFREY_4                   230
-#define TRAINER_JEFFREY_5                   231
-#define TRAINER_EDWARD                      232
-#define TRAINER_PRESTON                     233
-#define TRAINER_VIRGIL                      234
-#define TRAINER_BLAKE                       235
-#define TRAINER_WILLIAM                     236
-#define TRAINER_JOSHUA                      237
-#define TRAINER_CAMERON_1                   238
-#define TRAINER_CAMERON_2                   239
-#define TRAINER_CAMERON_3                   240
-#define TRAINER_CAMERON_4                   241
-#define TRAINER_CAMERON_5                   242
-#define TRAINER_JACLYN                      243
-#define TRAINER_HANNAH                      244
-#define TRAINER_SAMANTHA                    245
-#define TRAINER_MAURA                       246
-#define TRAINER_KAYLA                       247
-#define TRAINER_ALEXIS                      248
-#define TRAINER_JACKI_1                     249
-#define TRAINER_JACKI_2                     250
-#define TRAINER_JACKI_3                     251
-#define TRAINER_JACKI_4                     252
-#define TRAINER_JACKI_5                     253
-#define TRAINER_WALTER_1                    254
-#define TRAINER_MICAH                       255
-#define TRAINER_THOMAS                      256
-#define TRAINER_WALTER_2                    257
-#define TRAINER_WALTER_3                    258
-#define TRAINER_WALTER_4                    259
-#define TRAINER_WALTER_5                    260
-#define TRAINER_SIDNEY                      261
-#define TRAINER_PHOEBE                      262
-#define TRAINER_GLACIA                      263
-#define TRAINER_DRAKE                       264
-#define TRAINER_ROXANNE_1                   265
-#define TRAINER_BRAWLY_1                    266
-#define TRAINER_WATTSON_1                   267
-#define TRAINER_FLANNERY_1                  268
-#define TRAINER_NORMAN_1                    269
-#define TRAINER_WINONA_1                    270
-#define TRAINER_TATE_AND_LIZA_1             271
-#define TRAINER_JUAN_1                      272
-#define TRAINER_JERRY_1                     273
-#define TRAINER_TED                         274
-#define TRAINER_PAUL                        275
-#define TRAINER_JERRY_2                     276
-#define TRAINER_JERRY_3                     277
-#define TRAINER_JERRY_4                     278
-#define TRAINER_JERRY_5                     279
-#define TRAINER_KAREN_1                     280
-#define TRAINER_GEORGIA                     281
-#define TRAINER_KAREN_2                     282
-#define TRAINER_KAREN_3                     283
-#define TRAINER_KAREN_4                     284
-#define TRAINER_KAREN_5                     285
-#define TRAINER_KATE_AND_JOY                286
-#define TRAINER_ANNA_AND_MEG_1              287
-#define TRAINER_ANNA_AND_MEG_2              288
-#define TRAINER_ANNA_AND_MEG_3              289
-#define TRAINER_ANNA_AND_MEG_4              290
-#define TRAINER_ANNA_AND_MEG_5              291
-#define TRAINER_VICTOR                      292
-#define TRAINER_MIGUEL_1                    293
-#define TRAINER_COLTON                      294
-#define TRAINER_MIGUEL_2                    295
-#define TRAINER_MIGUEL_3                    296
-#define TRAINER_MIGUEL_4                    297
-#define TRAINER_MIGUEL_5                    298
-#define TRAINER_VICTORIA                    299
-#define TRAINER_VANESSA                     300
-#define TRAINER_BETHANY                     301
-#define TRAINER_ISABEL_1                    302
-#define TRAINER_ISABEL_2                    303
-#define TRAINER_ISABEL_3                    304
-#define TRAINER_ISABEL_4                    305
-#define TRAINER_ISABEL_5                    306
-#define TRAINER_TIMOTHY_1                   307
-#define TRAINER_TIMOTHY_2                   308
-#define TRAINER_TIMOTHY_3                   309
-#define TRAINER_TIMOTHY_4                   310
-#define TRAINER_TIMOTHY_5                   311
-#define TRAINER_VICKY                       312
-#define TRAINER_SHELBY_1                    313
-#define TRAINER_SHELBY_2                    314
-#define TRAINER_SHELBY_3                    315
-#define TRAINER_SHELBY_4                    316
-#define TRAINER_SHELBY_5                    317
-#define TRAINER_CALVIN_1                    318
-#define TRAINER_BILLY                       319
-#define TRAINER_JOSH                        320
-#define TRAINER_TOMMY                       321
-#define TRAINER_JOEY                        322
-#define TRAINER_BEN                         323
-#define TRAINER_QUINCY                      324
-#define TRAINER_KATELYNN                    325
-#define TRAINER_JAYLEN                      326
-#define TRAINER_DILLON                      327
-#define TRAINER_CALVIN_2                    328
-#define TRAINER_CALVIN_3                    329
-#define TRAINER_CALVIN_4                    330
-#define TRAINER_CALVIN_5                    331
-#define TRAINER_EDDIE                       332
-#define TRAINER_ALLEN                       333
-#define TRAINER_TIMMY                       334
-#define TRAINER_WALLACE                     335
-#define TRAINER_ANDREW                      336
-#define TRAINER_IVAN                        337
-#define TRAINER_CLAUDE                      338
-#define TRAINER_ELLIOT_1                    339
-#define TRAINER_NED                         340
-#define TRAINER_DALE                        341
-#define TRAINER_NOLAN                       342
-#define TRAINER_BARNY                       343
-#define TRAINER_WADE                        344
-#define TRAINER_CARTER                      345
-#define TRAINER_ELLIOT_2                    346
-#define TRAINER_ELLIOT_3                    347
-#define TRAINER_ELLIOT_4                    348
-#define TRAINER_ELLIOT_5                    349
-#define TRAINER_RONALD                      350
-#define TRAINER_JACOB                       351
-#define TRAINER_ANTHONY                     352
-#define TRAINER_BENJAMIN_1                  353
-#define TRAINER_BENJAMIN_2                  354
-#define TRAINER_BENJAMIN_3                  355
-#define TRAINER_BENJAMIN_4                  356
-#define TRAINER_BENJAMIN_5                  357
-#define TRAINER_ABIGAIL_1                   358
-#define TRAINER_JASMINE                     359
-#define TRAINER_ABIGAIL_2                   360
-#define TRAINER_ABIGAIL_3                   361
-#define TRAINER_ABIGAIL_4                   362
-#define TRAINER_ABIGAIL_5                   363
-#define TRAINER_DYLAN_1                     364
-#define TRAINER_DYLAN_2                     365
-#define TRAINER_DYLAN_3                     366
-#define TRAINER_DYLAN_4                     367
-#define TRAINER_DYLAN_5                     368
-#define TRAINER_MARIA_1                     369
-#define TRAINER_MARIA_2                     370
-#define TRAINER_MARIA_3                     371
-#define TRAINER_MARIA_4                     372
-#define TRAINER_MARIA_5                     373
-#define TRAINER_CAMDEN                      374
-#define TRAINER_DEMETRIUS                   375
-#define TRAINER_ISAIAH_1                    376
-#define TRAINER_PABLO_1                     377
-#define TRAINER_CHASE                       378
-#define TRAINER_ISAIAH_2                    379
-#define TRAINER_ISAIAH_3                    380
-#define TRAINER_ISAIAH_4                    381
-#define TRAINER_ISAIAH_5                    382
-#define TRAINER_ISOBEL                      383
-#define TRAINER_DONNY                       384
-#define TRAINER_TALIA                       385
-#define TRAINER_KATELYN_1                   386
-#define TRAINER_ALLISON                     387
-#define TRAINER_KATELYN_2                   388
-#define TRAINER_KATELYN_3                   389
-#define TRAINER_KATELYN_4                   390
-#define TRAINER_KATELYN_5                   391
-#define TRAINER_NICOLAS_1                   392
-#define TRAINER_NICOLAS_2                   393
-#define TRAINER_NICOLAS_3                   394
-#define TRAINER_NICOLAS_4                   395
-#define TRAINER_NICOLAS_5                   396
-#define TRAINER_AARON                       397
-#define TRAINER_PERRY                       398
-#define TRAINER_HUGH                        399
-#define TRAINER_PHIL                        400
-#define TRAINER_JARED                       401
-#define TRAINER_HUMBERTO                    402
-#define TRAINER_PRESLEY                     403
-#define TRAINER_EDWARDO                     404
-#define TRAINER_COLIN                       405
-#define TRAINER_ROBERT_1                    406
-#define TRAINER_BENNY                       407
-#define TRAINER_CHESTER                     408
-#define TRAINER_ROBERT_2                    409
-#define TRAINER_ROBERT_3                    410
-#define TRAINER_ROBERT_4                    411
-#define TRAINER_ROBERT_5                    412
-#define TRAINER_ALEX                        413
-#define TRAINER_BECK                        414
-#define TRAINER_YASU                        415
-#define TRAINER_TAKASHI                     416
-#define TRAINER_DIANNE                      417
-#define TRAINER_JANI                        418
-#define TRAINER_LAO_1                       419
-#define TRAINER_LUNG                        420
-#define TRAINER_LAO_2                       421
-#define TRAINER_LAO_3                       422
-#define TRAINER_LAO_4                       423
-#define TRAINER_LAO_5                       424
-#define TRAINER_JOCELYN                     425
-#define TRAINER_LAURA                       426
-#define TRAINER_CYNDY_1                     427
-#define TRAINER_CORA                        428
-#define TRAINER_PAULA                       429
-#define TRAINER_CYNDY_2                     430
-#define TRAINER_CYNDY_3                     431
-#define TRAINER_CYNDY_4                     432
-#define TRAINER_CYNDY_5                     433
-#define TRAINER_MADELINE_1                  434
-#define TRAINER_CLARISSA                    435
-#define TRAINER_ANGELICA                    436
-#define TRAINER_MADELINE_2                  437
-#define TRAINER_MADELINE_3                  438
-#define TRAINER_MADELINE_4                  439
-#define TRAINER_MADELINE_5                  440
-#define TRAINER_BEVERLY                     441
-#define TRAINER_IMANI                       442
-#define TRAINER_KYLA                        443
-#define TRAINER_DENISE                      444
-#define TRAINER_BETH                        445
-#define TRAINER_TARA                        446
-#define TRAINER_MISSY                       447
-#define TRAINER_ALICE                       448
-#define TRAINER_JENNY_1                     449
-#define TRAINER_GRACE                       450
-#define TRAINER_TANYA                       451
-#define TRAINER_SHARON                      452
-#define TRAINER_NIKKI                       453
-#define TRAINER_BRENDA                      454
-#define TRAINER_KATIE                       455
-#define TRAINER_SUSIE                       456
-#define TRAINER_KARA                        457
-#define TRAINER_DANA                        458
-#define TRAINER_SIENNA                      459
-#define TRAINER_DEBRA                       460
-#define TRAINER_LINDA                       461
-#define TRAINER_KAYLEE                      462
-#define TRAINER_LAUREL                      463
-#define TRAINER_CARLEE                      464
-#define TRAINER_JENNY_2                     465
-#define TRAINER_JENNY_3                     466
-#define TRAINER_JENNY_4                     467
-#define TRAINER_JENNY_5                     468
-#define TRAINER_HEIDI                       469
-#define TRAINER_BECKY                       470
-#define TRAINER_CAROL                       471
-#define TRAINER_NANCY                       472
-#define TRAINER_MARTHA                      473
-#define TRAINER_DIANA_1                     474
-#define TRAINER_CEDRIC                      475
-#define TRAINER_IRENE                       476
-#define TRAINER_DIANA_2                     477
-#define TRAINER_DIANA_3                     478
-#define TRAINER_DIANA_4                     479
-#define TRAINER_DIANA_5                     480
-#define TRAINER_AMY_AND_LIV_1               481
-#define TRAINER_AMY_AND_LIV_2               482
-#define TRAINER_GINA_AND_MIA_1              483
-#define TRAINER_MIU_AND_YUKI                484
-#define TRAINER_AMY_AND_LIV_3               485
-#define TRAINER_GINA_AND_MIA_2              486
-#define TRAINER_AMY_AND_LIV_4               487
-#define TRAINER_AMY_AND_LIV_5               488
-#define TRAINER_AMY_AND_LIV_6               489
-#define TRAINER_HUEY                        490
-#define TRAINER_EDMOND                      491
-#define TRAINER_ERNEST_1                    492
-#define TRAINER_DWAYNE                      493
-#define TRAINER_PHILLIP                     494
-#define TRAINER_LEONARD                     495
-#define TRAINER_DUNCAN                      496
-#define TRAINER_ERNEST_2                    497
-#define TRAINER_ERNEST_3                    498
-#define TRAINER_ERNEST_4                    499
-#define TRAINER_ERNEST_5                    500
-#define TRAINER_ELI                         501
-#define TRAINER_ANNIKA                      502
-#define TRAINER_JAZMYN                      503
-#define TRAINER_JONAS                       504
-#define TRAINER_KAYLEY                      505
-#define TRAINER_AURON                       506
-#define TRAINER_KELVIN                      507
-#define TRAINER_MARLEY                      508
-#define TRAINER_REYNA                       509
-#define TRAINER_HUDSON                      510
-#define TRAINER_CONOR                       511
-#define TRAINER_EDWIN_1                     512
-#define TRAINER_HECTOR                      513
-#define TRAINER_TABITHA_MOSSDEEP            514
-#define TRAINER_EDWIN_2                     515
-#define TRAINER_EDWIN_3                     516
-#define TRAINER_EDWIN_4                     517
-#define TRAINER_EDWIN_5                     518
-#define TRAINER_WALLY_VR_1                  519
-#define TRAINER_BRENDAN_ROUTE_103_MUDKIP    520
-#define TRAINER_BRENDAN_ROUTE_110_MUDKIP    521
-#define TRAINER_BRENDAN_ROUTE_119_MUDKIP    522
-#define TRAINER_BRENDAN_ROUTE_103_TREECKO   523
-#define TRAINER_BRENDAN_ROUTE_110_TREECKO   524
-#define TRAINER_BRENDAN_ROUTE_119_TREECKO   525
-#define TRAINER_BRENDAN_ROUTE_103_TORCHIC   526
-#define TRAINER_BRENDAN_ROUTE_110_TORCHIC   527
-#define TRAINER_BRENDAN_ROUTE_119_TORCHIC   528
-#define TRAINER_MAY_ROUTE_103_MUDKIP        529
-#define TRAINER_MAY_ROUTE_110_MUDKIP        530
-#define TRAINER_MAY_ROUTE_119_MUDKIP        531
-#define TRAINER_MAY_ROUTE_103_TREECKO       532
-#define TRAINER_MAY_ROUTE_110_TREECKO       533
-#define TRAINER_MAY_ROUTE_119_TREECKO       534
-#define TRAINER_MAY_ROUTE_103_TORCHIC       535
-#define TRAINER_MAY_ROUTE_110_TORCHIC       536
-#define TRAINER_MAY_ROUTE_119_TORCHIC       537
-#define TRAINER_ISAAC_1                     538
-#define TRAINER_DAVIS                       539
-#define TRAINER_MITCHELL                    540
-#define TRAINER_ISAAC_2                     541
-#define TRAINER_ISAAC_3                     542
-#define TRAINER_ISAAC_4                     543
-#define TRAINER_ISAAC_5                     544
-#define TRAINER_LYDIA_1                     545
-#define TRAINER_HALLE                       546
-#define TRAINER_GARRISON                    547
-#define TRAINER_LYDIA_2                     548
-#define TRAINER_LYDIA_3                     549
-#define TRAINER_LYDIA_4                     550
-#define TRAINER_LYDIA_5                     551
-#define TRAINER_JACKSON_1                   552
-#define TRAINER_LORENZO                     553
-#define TRAINER_SEBASTIAN                   554
-#define TRAINER_JACKSON_2                   555
-#define TRAINER_JACKSON_3                   556
-#define TRAINER_JACKSON_4                   557
-#define TRAINER_JACKSON_5                   558
-#define TRAINER_CATHERINE_1                 559
-#define TRAINER_JENNA                       560
-#define TRAINER_SOPHIA                      561
-#define TRAINER_CATHERINE_2                 562
-#define TRAINER_CATHERINE_3                 563
-#define TRAINER_CATHERINE_4                 564
-#define TRAINER_CATHERINE_5                 565
-#define TRAINER_JULIO                       566
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_5     567
-#define TRAINER_GRUNT_UNUSED                568
-#define TRAINER_GRUNT_MT_PYRE_4             569
-#define TRAINER_GRUNT_JAGGED_PASS           570
-#define TRAINER_MARC                        571
-#define TRAINER_BRENDEN                     572
-#define TRAINER_LILITH                      573
-#define TRAINER_CRISTIAN                    574
-#define TRAINER_SYLVIA                      575
-#define TRAINER_LEONARDO                    576
-#define TRAINER_ATHENA                      577
-#define TRAINER_HARRISON                    578
-#define TRAINER_GRUNT_MT_CHIMNEY_2          579
-#define TRAINER_CLARENCE                    580
-#define TRAINER_TERRY                       581
-#define TRAINER_NATE                        582
-#define TRAINER_KATHLEEN                    583
-#define TRAINER_CLIFFORD                    584
-#define TRAINER_NICHOLAS                    585
-#define TRAINER_GRUNT_SPACE_CENTER_3        586
-#define TRAINER_GRUNT_SPACE_CENTER_4        587
-#define TRAINER_GRUNT_SPACE_CENTER_5        588
-#define TRAINER_GRUNT_SPACE_CENTER_6        589
-#define TRAINER_GRUNT_SPACE_CENTER_7        590
-#define TRAINER_MACEY                       591
-#define TRAINER_BRENDAN_RUSTBORO_TREECKO    592
-#define TRAINER_BRENDAN_RUSTBORO_MUDKIP     593
-#define TRAINER_PAXTON                      594
-#define TRAINER_ISABELLA                    595
-#define TRAINER_GRUNT_WEATHER_INST_5        596
-#define TRAINER_TABITHA_MT_CHIMNEY          597
-#define TRAINER_JONATHAN                    598
-#define TRAINER_BRENDAN_RUSTBORO_TORCHIC    599
-#define TRAINER_MAY_RUSTBORO_MUDKIP         600
-#define TRAINER_MAXIE_MAGMA_HIDEOUT         601
-#define TRAINER_MAXIE_MT_CHIMNEY            602
-#define TRAINER_TIANA                       603
-#define TRAINER_HALEY_1                     604
-#define TRAINER_JANICE                      605
-#define TRAINER_VIVI                        606
-#define TRAINER_HALEY_2                     607
-#define TRAINER_HALEY_3                     608
-#define TRAINER_HALEY_4                     609
-#define TRAINER_HALEY_5                     610
-#define TRAINER_SALLY                       611
-#define TRAINER_ROBIN                       612
-#define TRAINER_ANDREA                      613
-#define TRAINER_CRISSY                      614
-#define TRAINER_RICK                        615
-#define TRAINER_LYLE                        616
-#define TRAINER_JOSE                        617
-#define TRAINER_DOUG                        618
-#define TRAINER_GREG                        619
-#define TRAINER_KENT                        620
-#define TRAINER_JAMES_1                     621
-#define TRAINER_JAMES_2                     622
-#define TRAINER_JAMES_3                     623
-#define TRAINER_JAMES_4                     624
-#define TRAINER_JAMES_5                     625
-#define TRAINER_BRICE                       626
-#define TRAINER_TRENT_1                     627
-#define TRAINER_LENNY                       628
-#define TRAINER_LUCAS_1                     629
-#define TRAINER_ALAN                        630
-#define TRAINER_CLARK                       631
-#define TRAINER_ERIC                        632
-#define TRAINER_LUCAS_2                     633
-#define TRAINER_MIKE_1                      634
-#define TRAINER_MIKE_2                      635
-#define TRAINER_TRENT_2                     636
-#define TRAINER_TRENT_3                     637
-#define TRAINER_TRENT_4                     638
-#define TRAINER_TRENT_5                     639
-#define TRAINER_DEZ_AND_LUKE                640
-#define TRAINER_LEA_AND_JED                 641
-#define TRAINER_KIRA_AND_DAN_1              642
-#define TRAINER_KIRA_AND_DAN_2              643
-#define TRAINER_KIRA_AND_DAN_3              644
-#define TRAINER_KIRA_AND_DAN_4              645
-#define TRAINER_KIRA_AND_DAN_5              646
-#define TRAINER_JOHANNA                     647
-#define TRAINER_GERALD                      648
-#define TRAINER_VIVIAN                      649
-#define TRAINER_DANIELLE                    650
-#define TRAINER_HIDEO                       651
-#define TRAINER_KEIGO                       652
-#define TRAINER_RILEY                       653
-#define TRAINER_FLINT                       654
-#define TRAINER_ASHLEY                      655
-#define TRAINER_WALLY_MAUVILLE              656
-#define TRAINER_WALLY_VR_2                  657
-#define TRAINER_WALLY_VR_3                  658
-#define TRAINER_WALLY_VR_4                  659
-#define TRAINER_WALLY_VR_5                  660
-#define TRAINER_BRENDAN_LILYCOVE_MUDKIP     661
-#define TRAINER_BRENDAN_LILYCOVE_TREECKO    662
-#define TRAINER_BRENDAN_LILYCOVE_TORCHIC    663
-#define TRAINER_MAY_LILYCOVE_MUDKIP         664
-#define TRAINER_MAY_LILYCOVE_TREECKO        665
-#define TRAINER_MAY_LILYCOVE_TORCHIC        666
-#define TRAINER_JONAH                       667
-#define TRAINER_HENRY                       668
-#define TRAINER_ROGER                       669
-#define TRAINER_ALEXA                       670
-#define TRAINER_RUBEN                       671
-#define TRAINER_KOJI_1                      672
-#define TRAINER_WAYNE                       673
-#define TRAINER_AIDAN                       674
-#define TRAINER_REED                        675
-#define TRAINER_TISHA                       676
-#define TRAINER_TORI_AND_TIA                677
-#define TRAINER_KIM_AND_IRIS                678
-#define TRAINER_TYRA_AND_IVY                679
-#define TRAINER_MEL_AND_PAUL                680
-#define TRAINER_JOHN_AND_JAY_1              681
-#define TRAINER_JOHN_AND_JAY_2              682
-#define TRAINER_JOHN_AND_JAY_3              683
-#define TRAINER_JOHN_AND_JAY_4              684
-#define TRAINER_JOHN_AND_JAY_5              685
-#define TRAINER_RELI_AND_IAN                686
-#define TRAINER_LILA_AND_ROY_1              687
-#define TRAINER_LILA_AND_ROY_2              688
-#define TRAINER_LILA_AND_ROY_3              689
-#define TRAINER_LILA_AND_ROY_4              690
-#define TRAINER_LILA_AND_ROY_5              691
-#define TRAINER_LISA_AND_RAY                692
-#define TRAINER_CHRIS                       693
-#define TRAINER_DAWSON                      694
-#define TRAINER_SARAH                       695
-#define TRAINER_DARIAN                      696
-#define TRAINER_HAILEY                      697
-#define TRAINER_CHANDLER                    698
-#define TRAINER_KALEB                       699
-#define TRAINER_JOSEPH                      700
-#define TRAINER_ALYSSA                      701
-#define TRAINER_MARCOS                      702
-#define TRAINER_RHETT                       703
-#define TRAINER_TYRON                       704
-#define TRAINER_CELINA                      705
-#define TRAINER_BIANCA                      706
-#define TRAINER_HAYDEN                      707
-#define TRAINER_SOPHIE                      708
-#define TRAINER_COBY                        709
-#define TRAINER_LAWRENCE                    710
-#define TRAINER_WYATT                       711
-#define TRAINER_ANGELINA                    712
-#define TRAINER_KAI                         713
-#define TRAINER_CHARLOTTE                   714
-#define TRAINER_DEANDRE                     715
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_1       716
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_2       717
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_3       718
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_4       719
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_5       720
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_6       721
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_7       722
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_8       723
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_9       724
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_10      725
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_11      726
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_12      727
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_13      728
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_14      729
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_15      730
-#define TRAINER_GRUNT_MAGMA_HIDEOUT_16      731
-#define TRAINER_TABITHA_MAGMA_HIDEOUT       732
-#define TRAINER_DARCY                       733
-#define TRAINER_MAXIE_MOSSDEEP              734
-#define TRAINER_PETE                        735
-#define TRAINER_ISABELLE                    736
-#define TRAINER_ANDRES_1                    737
-#define TRAINER_JOSUE                       738
-#define TRAINER_CAMRON                      739
-#define TRAINER_CORY_1                      740
-#define TRAINER_CAROLINA                    741
-#define TRAINER_ELIJAH                      742
-#define TRAINER_CELIA                       743
-#define TRAINER_BRYAN                       744
-#define TRAINER_BRANDEN                     745
-#define TRAINER_BRYANT                      746
-#define TRAINER_SHAYLA                      747
-#define TRAINER_KYRA                        748
-#define TRAINER_JAIDEN                      749
-#define TRAINER_ALIX                        750
-#define TRAINER_HELENE                      751
-#define TRAINER_MARLENE                     752
-#define TRAINER_DEVAN                       753
-#define TRAINER_JOHNSON                     754
-#define TRAINER_MELINA                      755
-#define TRAINER_BRANDI                      756
-#define TRAINER_AISHA                       757
-#define TRAINER_MAKAYLA                     758
-#define TRAINER_FABIAN                      759
-#define TRAINER_DAYTON                      760
-#define TRAINER_RACHEL                      761
-#define TRAINER_LEONEL                      762
-#define TRAINER_CALLIE                      763
-#define TRAINER_CALE                        764
-#define TRAINER_MYLES                       765
-#define TRAINER_PAT                         766
-#define TRAINER_CRISTIN_1                   767
-#define TRAINER_MAY_RUSTBORO_TREECKO        768
-#define TRAINER_MAY_RUSTBORO_TORCHIC        769
-#define TRAINER_ROXANNE_2                   770
-#define TRAINER_ROXANNE_3                   771
-#define TRAINER_ROXANNE_4                   772
-#define TRAINER_ROXANNE_5                   773
-#define TRAINER_BRAWLY_2                    774
-#define TRAINER_BRAWLY_3                    775
-#define TRAINER_BRAWLY_4                    776
-#define TRAINER_BRAWLY_5                    777
-#define TRAINER_WATTSON_2                   778
-#define TRAINER_WATTSON_3                   779
-#define TRAINER_WATTSON_4                   780
-#define TRAINER_WATTSON_5                   781
-#define TRAINER_FLANNERY_2                  782
-#define TRAINER_FLANNERY_3                  783
-#define TRAINER_FLANNERY_4                  784
-#define TRAINER_FLANNERY_5                  785
-#define TRAINER_NORMAN_2                    786
-#define TRAINER_NORMAN_3                    787
-#define TRAINER_NORMAN_4                    788
-#define TRAINER_NORMAN_5                    789
-#define TRAINER_WINONA_2                    790
-#define TRAINER_WINONA_3                    791
-#define TRAINER_WINONA_4                    792
-#define TRAINER_WINONA_5                    793
-#define TRAINER_TATE_AND_LIZA_2             794
-#define TRAINER_TATE_AND_LIZA_3             795
-#define TRAINER_TATE_AND_LIZA_4             796
-#define TRAINER_TATE_AND_LIZA_5             797
-#define TRAINER_JUAN_2                      798
-#define TRAINER_JUAN_3                      799
-#define TRAINER_JUAN_4                      800
-#define TRAINER_JUAN_5                      801
-#define TRAINER_ANGELO                      802
-#define TRAINER_DARIUS                      803
-#define TRAINER_STEVEN                      804
-#define TRAINER_ANABEL                      805
-#define TRAINER_TUCKER                      806
-#define TRAINER_SPENSER                     807
-#define TRAINER_GRETA                       808
-#define TRAINER_NOLAND                      809
-#define TRAINER_LUCY                        810
-#define TRAINER_BRANDON                     811
-#define TRAINER_ANDRES_2                    812
-#define TRAINER_ANDRES_3                    813
-#define TRAINER_ANDRES_4                    814
-#define TRAINER_ANDRES_5                    815
-#define TRAINER_CORY_2                      816
-#define TRAINER_CORY_3                      817
-#define TRAINER_CORY_4                      818
-#define TRAINER_CORY_5                      819
-#define TRAINER_PABLO_2                     820
-#define TRAINER_PABLO_3                     821
-#define TRAINER_PABLO_4                     822
-#define TRAINER_PABLO_5                     823
-#define TRAINER_KOJI_2                      824
-#define TRAINER_KOJI_3                      825
-#define TRAINER_KOJI_4                      826
-#define TRAINER_KOJI_5                      827
-#define TRAINER_CRISTIN_2                   828
-#define TRAINER_CRISTIN_3                   829
-#define TRAINER_CRISTIN_4                   830
-#define TRAINER_CRISTIN_5                   831
-#define TRAINER_FERNANDO_2                  832
-#define TRAINER_FERNANDO_3                  833
-#define TRAINER_FERNANDO_4                  834
-#define TRAINER_FERNANDO_5                  835
-#define TRAINER_SAWYER_2                    836
-#define TRAINER_SAWYER_3                    837
-#define TRAINER_SAWYER_4                    838
-#define TRAINER_SAWYER_5                    839
-#define TRAINER_GABRIELLE_2                 840
-#define TRAINER_GABRIELLE_3                 841
-#define TRAINER_GABRIELLE_4                 842
-#define TRAINER_GABRIELLE_5                 843
-#define TRAINER_THALIA_2                    844
-#define TRAINER_THALIA_3                    845
-#define TRAINER_THALIA_4                    846
-#define TRAINER_THALIA_5                    847
-#define TRAINER_MARIELA                     848
-#define TRAINER_ALVARO                      849
-#define TRAINER_EVERETT                     850
-#define TRAINER_RED                         851
-#define TRAINER_LEAF                        852
-#define TRAINER_BRENDAN_PLACEHOLDER         853
-#define TRAINER_MAY_PLACEHOLDER             854
+// Ahora las flags de entrenadores están separadas de las flags tradicionales. Eso tiene como principal ventaja
+// que no están delimitadas a un cierto número: Puedes aumentar el número  de entrenadores tanto como quieras,
+// teniendo en cuenta que ocuparán más espacio en el saveblock. Por otro lado, hay que tener en cuenta también
+// de que, al añadir nuevos entrenadores, estarás cambiando el saveblock, lo que rompe las partidas previas
+// guardadas que tengas, como cualquier cambio en el saveblock.
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
-//       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+enum TrainerFlags
+{
+    TRAINER_NONE,
+    TRAINER_SAWYER_1,
+    TRAINER_GRUNT_AQUA_HIDEOUT_1,
+    TRAINER_GRUNT_AQUA_HIDEOUT_2,
+    TRAINER_GRUNT_AQUA_HIDEOUT_3,
+    TRAINER_GRUNT_AQUA_HIDEOUT_4,
+    TRAINER_GRUNT_SEAFLOOR_CAVERN_1,
+    TRAINER_GRUNT_SEAFLOOR_CAVERN_2,
+    TRAINER_GRUNT_SEAFLOOR_CAVERN_3,
+    TRAINER_GABRIELLE_1,
+    TRAINER_GRUNT_PETALBURG_WOODS,
+    TRAINER_MARCEL,
+    TRAINER_ALBERTO,
+    TRAINER_ED,
+    TRAINER_GRUNT_SEAFLOOR_CAVERN_4,
+    TRAINER_DECLAN,
+    TRAINER_GRUNT_RUSTURF_TUNNEL,
+    TRAINER_GRUNT_WEATHER_INST_1,
+    TRAINER_GRUNT_WEATHER_INST_2,
+    TRAINER_GRUNT_WEATHER_INST_3,
+    TRAINER_GRUNT_MUSEUM_1,
+    TRAINER_GRUNT_MUSEUM_2,
+    TRAINER_GRUNT_SPACE_CENTER_1,
+    TRAINER_GRUNT_MT_PYRE_1,
+    TRAINER_GRUNT_MT_PYRE_2,
+    TRAINER_GRUNT_MT_PYRE_3,
+    TRAINER_GRUNT_WEATHER_INST_4,
+    TRAINER_GRUNT_AQUA_HIDEOUT_5,
+    TRAINER_GRUNT_AQUA_HIDEOUT_6,
+    TRAINER_FREDRICK,
+    TRAINER_MATT,
+    TRAINER_ZANDER,
+    TRAINER_SHELLY_WEATHER_INSTITUTE,
+    TRAINER_SHELLY_SEAFLOOR_CAVERN,
+    TRAINER_ARCHIE,
+    TRAINER_LEAH,
+    TRAINER_DAISY,
+    TRAINER_ROSE_1,
+    TRAINER_FELIX,
+    TRAINER_VIOLET,
+    TRAINER_ROSE_2,
+    TRAINER_ROSE_3,
+    TRAINER_ROSE_4,
+    TRAINER_ROSE_5,
+    TRAINER_DUSTY_1,
+    TRAINER_CHIP,
+    TRAINER_FOSTER,
+    TRAINER_DUSTY_2,
+    TRAINER_DUSTY_3,
+    TRAINER_DUSTY_4,
+    TRAINER_DUSTY_5,
+    TRAINER_GABBY_AND_TY_1,
+    TRAINER_GABBY_AND_TY_2,
+    TRAINER_GABBY_AND_TY_3,
+    TRAINER_GABBY_AND_TY_4,
+    TRAINER_GABBY_AND_TY_5,
+    TRAINER_GABBY_AND_TY_6,
+    TRAINER_LOLA_1,
+    TRAINER_AUSTINA,
+    TRAINER_GWEN,
+    TRAINER_LOLA_2,
+    TRAINER_LOLA_3,
+    TRAINER_LOLA_4,
+    TRAINER_LOLA_5,
+    TRAINER_RICKY_1,
+    TRAINER_SIMON,
+    TRAINER_CHARLIE,
+    TRAINER_RICKY_2,
+    TRAINER_RICKY_3,
+    TRAINER_RICKY_4,
+    TRAINER_RICKY_5,
+    TRAINER_RANDALL,
+    TRAINER_PARKER,
+    TRAINER_GEORGE,
+    TRAINER_BERKE,
+    TRAINER_BRAXTON,
+    TRAINER_VINCENT,
+    TRAINER_LEROY,
+    TRAINER_WILTON_1,
+    TRAINER_EDGAR,
+    TRAINER_ALBERT,
+    TRAINER_SAMUEL,
+    TRAINER_VITO,
+    TRAINER_OWEN,
+    TRAINER_WILTON_2,
+    TRAINER_WILTON_3,
+    TRAINER_WILTON_4,
+    TRAINER_WILTON_5,
+    TRAINER_WARREN,
+    TRAINER_MARY,
+    TRAINER_ALEXIA,
+    TRAINER_JODY,
+    TRAINER_WENDY,
+    TRAINER_KEIRA,
+    TRAINER_BROOKE_1,
+    TRAINER_JENNIFER,
+    TRAINER_HOPE,
+    TRAINER_SHANNON,
+    TRAINER_MICHELLE,
+    TRAINER_CAROLINE,
+    TRAINER_JULIE,
+    TRAINER_BROOKE_2,
+    TRAINER_BROOKE_3,
+    TRAINER_BROOKE_4,
+    TRAINER_BROOKE_5,
+    TRAINER_PATRICIA,
+    TRAINER_KINDRA,
+    TRAINER_TAMMY,
+    TRAINER_VALERIE_1,
+    TRAINER_TASHA,
+    TRAINER_VALERIE_2,
+    TRAINER_VALERIE_3,
+    TRAINER_VALERIE_4,
+    TRAINER_VALERIE_5,
+    TRAINER_CINDY_1,
+    TRAINER_DAPHNE,
+    TRAINER_GRUNT_SPACE_CENTER_2,
+    TRAINER_CINDY_2,
+    TRAINER_BRIANNA,
+    TRAINER_NAOMI,
+    TRAINER_CINDY_3,
+    TRAINER_CINDY_4,
+    TRAINER_CINDY_5,
+    TRAINER_CINDY_6,
+    TRAINER_MELISSA,
+    TRAINER_SHEILA,
+    TRAINER_SHIRLEY,
+    TRAINER_JESSICA_1,
+    TRAINER_CONNIE,
+    TRAINER_BRIDGET,
+    TRAINER_OLIVIA,
+    TRAINER_TIFFANY,
+    TRAINER_JESSICA_2,
+    TRAINER_JESSICA_3,
+    TRAINER_JESSICA_4,
+    TRAINER_JESSICA_5,
+    TRAINER_WINSTON_1,
+    TRAINER_MOLLIE,
+    TRAINER_GARRET,
+    TRAINER_WINSTON_2,
+    TRAINER_WINSTON_3,
+    TRAINER_WINSTON_4,
+    TRAINER_WINSTON_5,
+    TRAINER_STEVE_1,
+    TRAINER_THALIA_1,
+    TRAINER_MARK,
+    TRAINER_GRUNT_MT_CHIMNEY_1,
+    TRAINER_STEVE_2,
+    TRAINER_STEVE_3,
+    TRAINER_STEVE_4,
+    TRAINER_STEVE_5,
+    TRAINER_LUIS,
+    TRAINER_DOMINIK,
+    TRAINER_DOUGLAS,
+    TRAINER_DARRIN,
+    TRAINER_TONY_1,
+    TRAINER_JEROME,
+    TRAINER_MATTHEW,
+    TRAINER_DAVID,
+    TRAINER_SPENCER,
+    TRAINER_ROLAND,
+    TRAINER_NOLEN,
+    TRAINER_STAN,
+    TRAINER_BARRY,
+    TRAINER_DEAN,
+    TRAINER_RODNEY,
+    TRAINER_RICHARD,
+    TRAINER_HERMAN,
+    TRAINER_SANTIAGO,
+    TRAINER_GILBERT,
+    TRAINER_FRANKLIN,
+    TRAINER_KEVIN,
+    TRAINER_JACK,
+    TRAINER_DUDLEY,
+    TRAINER_CHAD,
+    TRAINER_TONY_2,
+    TRAINER_TONY_3,
+    TRAINER_TONY_4,
+    TRAINER_TONY_5,
+    TRAINER_TAKAO,
+    TRAINER_HITOSHI,
+    TRAINER_KIYO,
+    TRAINER_KOICHI,
+    TRAINER_NOB_1,
+    TRAINER_NOB_2,
+    TRAINER_NOB_3,
+    TRAINER_NOB_4,
+    TRAINER_NOB_5,
+    TRAINER_YUJI,
+    TRAINER_DAISUKE,
+    TRAINER_ATSUSHI,
+    TRAINER_KIRK,
+    TRAINER_GRUNT_AQUA_HIDEOUT_7,
+    TRAINER_GRUNT_AQUA_HIDEOUT_8,
+    TRAINER_SHAWN,
+    TRAINER_FERNANDO_1,
+    TRAINER_DALTON_1,
+    TRAINER_DALTON_2,
+    TRAINER_DALTON_3,
+    TRAINER_DALTON_4,
+    TRAINER_DALTON_5,
+    TRAINER_COLE,
+    TRAINER_JEFF,
+    TRAINER_AXLE,
+    TRAINER_JACE,
+    TRAINER_KEEGAN,
+    TRAINER_BERNIE_1,
+    TRAINER_BERNIE_2,
+    TRAINER_BERNIE_3,
+    TRAINER_BERNIE_4,
+    TRAINER_BERNIE_5,
+    TRAINER_DREW,
+    TRAINER_BEAU,
+    TRAINER_LARRY,
+    TRAINER_SHANE,
+    TRAINER_JUSTIN,
+    TRAINER_ETHAN_1,
+    TRAINER_AUTUMN,
+    TRAINER_TRAVIS,
+    TRAINER_ETHAN_2,
+    TRAINER_ETHAN_3,
+    TRAINER_ETHAN_4,
+    TRAINER_ETHAN_5,
+    TRAINER_BRENT,
+    TRAINER_DONALD,
+    TRAINER_TAYLOR,
+    TRAINER_JEFFREY_1,
+    TRAINER_DEREK,
+    TRAINER_JEFFREY_2,
+    TRAINER_JEFFREY_3,
+    TRAINER_JEFFREY_4,
+    TRAINER_JEFFREY_5,
+    TRAINER_EDWARD,
+    TRAINER_PRESTON,
+    TRAINER_VIRGIL,
+    TRAINER_BLAKE,
+    TRAINER_WILLIAM,
+    TRAINER_JOSHUA,
+    TRAINER_CAMERON_1,
+    TRAINER_CAMERON_2,
+    TRAINER_CAMERON_3,
+    TRAINER_CAMERON_4,
+    TRAINER_CAMERON_5,
+    TRAINER_JACLYN,
+    TRAINER_HANNAH,
+    TRAINER_SAMANTHA,
+    TRAINER_MAURA,
+    TRAINER_KAYLA,
+    TRAINER_ALEXIS,
+    TRAINER_JACKI_1,
+    TRAINER_JACKI_2,
+    TRAINER_JACKI_3,
+    TRAINER_JACKI_4,
+    TRAINER_JACKI_5,
+    TRAINER_WALTER_1,
+    TRAINER_MICAH,
+    TRAINER_THOMAS,
+    TRAINER_WALTER_2,
+    TRAINER_WALTER_3,
+    TRAINER_WALTER_4,
+    TRAINER_WALTER_5,
+    TRAINER_SIDNEY,
+    TRAINER_PHOEBE,
+    TRAINER_GLACIA,
+    TRAINER_DRAKE,
+    TRAINER_ROXANNE_1,
+    TRAINER_BRAWLY_1,
+    TRAINER_WATTSON_1,
+    TRAINER_FLANNERY_1,
+    TRAINER_NORMAN_1,
+    TRAINER_WINONA_1,
+    TRAINER_TATE_AND_LIZA_1,
+    TRAINER_JUAN_1,
+    TRAINER_JERRY_1,
+    TRAINER_TED,
+    TRAINER_PAUL,
+    TRAINER_JERRY_2,
+    TRAINER_JERRY_3,
+    TRAINER_JERRY_4,
+    TRAINER_JERRY_5,
+    TRAINER_KAREN_1,
+    TRAINER_GEORGIA,
+    TRAINER_KAREN_2,
+    TRAINER_KAREN_3,
+    TRAINER_KAREN_4,
+    TRAINER_KAREN_5,
+    TRAINER_KATE_AND_JOY,
+    TRAINER_ANNA_AND_MEG_1,
+    TRAINER_ANNA_AND_MEG_2,
+    TRAINER_ANNA_AND_MEG_3,
+    TRAINER_ANNA_AND_MEG_4,
+    TRAINER_ANNA_AND_MEG_5,
+    TRAINER_VICTOR,
+    TRAINER_MIGUEL_1,
+    TRAINER_COLTON,
+    TRAINER_MIGUEL_2,
+    TRAINER_MIGUEL_3,
+    TRAINER_MIGUEL_4,
+    TRAINER_MIGUEL_5,
+    TRAINER_VICTORIA,
+    TRAINER_VANESSA,
+    TRAINER_BETHANY,
+    TRAINER_ISABEL_1,
+    TRAINER_ISABEL_2,
+    TRAINER_ISABEL_3,
+    TRAINER_ISABEL_4,
+    TRAINER_ISABEL_5,
+    TRAINER_TIMOTHY_1,
+    TRAINER_TIMOTHY_2,
+    TRAINER_TIMOTHY_3,
+    TRAINER_TIMOTHY_4,
+    TRAINER_TIMOTHY_5,
+    TRAINER_VICKY,
+    TRAINER_SHELBY_1,
+    TRAINER_SHELBY_2,
+    TRAINER_SHELBY_3,
+    TRAINER_SHELBY_4,
+    TRAINER_SHELBY_5,
+    TRAINER_CALVIN_1,
+    TRAINER_BILLY,
+    TRAINER_JOSH,
+    TRAINER_TOMMY,
+    TRAINER_JOEY,
+    TRAINER_BEN,
+    TRAINER_QUINCY,
+    TRAINER_KATELYNN,
+    TRAINER_JAYLEN,
+    TRAINER_DILLON,
+    TRAINER_CALVIN_2,
+    TRAINER_CALVIN_3,
+    TRAINER_CALVIN_4,
+    TRAINER_CALVIN_5,
+    TRAINER_EDDIE,
+    TRAINER_ALLEN,
+    TRAINER_TIMMY,
+    TRAINER_WALLACE,
+    TRAINER_ANDREW,
+    TRAINER_IVAN,
+    TRAINER_CLAUDE,
+    TRAINER_ELLIOT_1,
+    TRAINER_NED,
+    TRAINER_DALE,
+    TRAINER_NOLAN,
+    TRAINER_BARNY,
+    TRAINER_WADE,
+    TRAINER_CARTER,
+    TRAINER_ELLIOT_2,
+    TRAINER_ELLIOT_3,
+    TRAINER_ELLIOT_4,
+    TRAINER_ELLIOT_5,
+    TRAINER_RONALD,
+    TRAINER_JACOB,
+    TRAINER_ANTHONY,
+    TRAINER_BENJAMIN_1,
+    TRAINER_BENJAMIN_2,
+    TRAINER_BENJAMIN_3,
+    TRAINER_BENJAMIN_4,
+    TRAINER_BENJAMIN_5,
+    TRAINER_ABIGAIL_1,
+    TRAINER_JASMINE,
+    TRAINER_ABIGAIL_2,
+    TRAINER_ABIGAIL_3,
+    TRAINER_ABIGAIL_4,
+    TRAINER_ABIGAIL_5,
+    TRAINER_DYLAN_1,
+    TRAINER_DYLAN_2,
+    TRAINER_DYLAN_3,
+    TRAINER_DYLAN_4,
+    TRAINER_DYLAN_5,
+    TRAINER_MARIA_1,
+    TRAINER_MARIA_2,
+    TRAINER_MARIA_3,
+    TRAINER_MARIA_4,
+    TRAINER_MARIA_5,
+    TRAINER_CAMDEN,
+    TRAINER_DEMETRIUS,
+    TRAINER_ISAIAH_1,
+    TRAINER_PABLO_1,
+    TRAINER_CHASE,
+    TRAINER_ISAIAH_2,
+    TRAINER_ISAIAH_3,
+    TRAINER_ISAIAH_4,
+    TRAINER_ISAIAH_5,
+    TRAINER_ISOBEL,
+    TRAINER_DONNY,
+    TRAINER_TALIA,
+    TRAINER_KATELYN_1,
+    TRAINER_ALLISON,
+    TRAINER_KATELYN_2,
+    TRAINER_KATELYN_3,
+    TRAINER_KATELYN_4,
+    TRAINER_KATELYN_5,
+    TRAINER_NICOLAS_1,
+    TRAINER_NICOLAS_2,
+    TRAINER_NICOLAS_3,
+    TRAINER_NICOLAS_4,
+    TRAINER_NICOLAS_5,
+    TRAINER_AARON,
+    TRAINER_PERRY,
+    TRAINER_HUGH,
+    TRAINER_PHIL,
+    TRAINER_JARED,
+    TRAINER_HUMBERTO,
+    TRAINER_PRESLEY,
+    TRAINER_EDWARDO,
+    TRAINER_COLIN,
+    TRAINER_ROBERT_1,
+    TRAINER_BENNY,
+    TRAINER_CHESTER,
+    TRAINER_ROBERT_2,
+    TRAINER_ROBERT_3,
+    TRAINER_ROBERT_4,
+    TRAINER_ROBERT_5,
+    TRAINER_ALEX,
+    TRAINER_BECK,
+    TRAINER_YASU,
+    TRAINER_TAKASHI,
+    TRAINER_DIANNE,
+    TRAINER_JANI,
+    TRAINER_LAO_1,
+    TRAINER_LUNG,
+    TRAINER_LAO_2,
+    TRAINER_LAO_3,
+    TRAINER_LAO_4,
+    TRAINER_LAO_5,
+    TRAINER_JOCELYN,
+    TRAINER_LAURA,
+    TRAINER_CYNDY_1,
+    TRAINER_CORA,
+    TRAINER_PAULA,
+    TRAINER_CYNDY_2,
+    TRAINER_CYNDY_3,
+    TRAINER_CYNDY_4,
+    TRAINER_CYNDY_5,
+    TRAINER_MADELINE_1,
+    TRAINER_CLARISSA,
+    TRAINER_ANGELICA,
+    TRAINER_MADELINE_2,
+    TRAINER_MADELINE_3,
+    TRAINER_MADELINE_4,
+    TRAINER_MADELINE_5,
+    TRAINER_BEVERLY,
+    TRAINER_IMANI,
+    TRAINER_KYLA,
+    TRAINER_DENISE,
+    TRAINER_BETH,
+    TRAINER_TARA,
+    TRAINER_MISSY,
+    TRAINER_ALICE,
+    TRAINER_JENNY_1,
+    TRAINER_GRACE,
+    TRAINER_TANYA,
+    TRAINER_SHARON,
+    TRAINER_NIKKI,
+    TRAINER_BRENDA,
+    TRAINER_KATIE,
+    TRAINER_SUSIE,
+    TRAINER_KARA,
+    TRAINER_DANA,
+    TRAINER_SIENNA,
+    TRAINER_DEBRA,
+    TRAINER_LINDA,
+    TRAINER_KAYLEE,
+    TRAINER_LAUREL,
+    TRAINER_CARLEE,
+    TRAINER_JENNY_2,
+    TRAINER_JENNY_3,
+    TRAINER_JENNY_4,
+    TRAINER_JENNY_5,
+    TRAINER_HEIDI,
+    TRAINER_BECKY,
+    TRAINER_CAROL,
+    TRAINER_NANCY,
+    TRAINER_MARTHA,
+    TRAINER_DIANA_1,
+    TRAINER_CEDRIC,
+    TRAINER_IRENE,
+    TRAINER_DIANA_2,
+    TRAINER_DIANA_3,
+    TRAINER_DIANA_4,
+    TRAINER_DIANA_5,
+    TRAINER_AMY_AND_LIV_1,
+    TRAINER_AMY_AND_LIV_2,
+    TRAINER_GINA_AND_MIA_1,
+    TRAINER_MIU_AND_YUKI,
+    TRAINER_AMY_AND_LIV_3,
+    TRAINER_GINA_AND_MIA_2,
+    TRAINER_AMY_AND_LIV_4,
+    TRAINER_AMY_AND_LIV_5,
+    TRAINER_AMY_AND_LIV_6,
+    TRAINER_HUEY,
+    TRAINER_EDMOND,
+    TRAINER_ERNEST_1,
+    TRAINER_DWAYNE,
+    TRAINER_PHILLIP,
+    TRAINER_LEONARD,
+    TRAINER_DUNCAN,
+    TRAINER_ERNEST_2,
+    TRAINER_ERNEST_3,
+    TRAINER_ERNEST_4,
+    TRAINER_ERNEST_5,
+    TRAINER_ELI,
+    TRAINER_ANNIKA,
+    TRAINER_JAZMYN,
+    TRAINER_JONAS,
+    TRAINER_KAYLEY,
+    TRAINER_AURON,
+    TRAINER_KELVIN,
+    TRAINER_MARLEY,
+    TRAINER_REYNA,
+    TRAINER_HUDSON,
+    TRAINER_CONOR,
+    TRAINER_EDWIN_1,
+    TRAINER_HECTOR,
+    TRAINER_TABITHA_MOSSDEEP,
+    TRAINER_EDWIN_2,
+    TRAINER_EDWIN_3,
+    TRAINER_EDWIN_4,
+    TRAINER_EDWIN_5,
+    TRAINER_WALLY_VR_1,
+    TRAINER_BRENDAN_ROUTE_103_MUDKIP,
+    TRAINER_BRENDAN_ROUTE_110_MUDKIP,
+    TRAINER_BRENDAN_ROUTE_119_MUDKIP,
+    TRAINER_BRENDAN_ROUTE_103_TREECKO,
+    TRAINER_BRENDAN_ROUTE_110_TREECKO,
+    TRAINER_BRENDAN_ROUTE_119_TREECKO,
+    TRAINER_BRENDAN_ROUTE_103_TORCHIC,
+    TRAINER_BRENDAN_ROUTE_110_TORCHIC,
+    TRAINER_BRENDAN_ROUTE_119_TORCHIC,
+    TRAINER_MAY_ROUTE_103_MUDKIP,
+    TRAINER_MAY_ROUTE_110_MUDKIP,
+    TRAINER_MAY_ROUTE_119_MUDKIP,
+    TRAINER_MAY_ROUTE_103_TREECKO,
+    TRAINER_MAY_ROUTE_110_TREECKO,
+    TRAINER_MAY_ROUTE_119_TREECKO,
+    TRAINER_MAY_ROUTE_103_TORCHIC,
+    TRAINER_MAY_ROUTE_110_TORCHIC,
+    TRAINER_MAY_ROUTE_119_TORCHIC,
+    TRAINER_ISAAC_1,
+    TRAINER_DAVIS,
+    TRAINER_MITCHELL,
+    TRAINER_ISAAC_2,
+    TRAINER_ISAAC_3,
+    TRAINER_ISAAC_4,
+    TRAINER_ISAAC_5,
+    TRAINER_LYDIA_1,
+    TRAINER_HALLE,
+    TRAINER_GARRISON,
+    TRAINER_LYDIA_2,
+    TRAINER_LYDIA_3,
+    TRAINER_LYDIA_4,
+    TRAINER_LYDIA_5,
+    TRAINER_JACKSON_1,
+    TRAINER_LORENZO,
+    TRAINER_SEBASTIAN,
+    TRAINER_JACKSON_2,
+    TRAINER_JACKSON_3,
+    TRAINER_JACKSON_4,
+    TRAINER_JACKSON_5,
+    TRAINER_CATHERINE_1,
+    TRAINER_JENNA,
+    TRAINER_SOPHIA,
+    TRAINER_CATHERINE_2,
+    TRAINER_CATHERINE_3,
+    TRAINER_CATHERINE_4,
+    TRAINER_CATHERINE_5,
+    TRAINER_JULIO,
+    TRAINER_GRUNT_SEAFLOOR_CAVERN_5,
+    TRAINER_GRUNT_UNUSED,
+    TRAINER_GRUNT_MT_PYRE_4,
+    TRAINER_GRUNT_JAGGED_PASS,
+    TRAINER_MARC,
+    TRAINER_BRENDEN,
+    TRAINER_LILITH,
+    TRAINER_CRISTIAN,
+    TRAINER_SYLVIA,
+    TRAINER_LEONARDO,
+    TRAINER_ATHENA,
+    TRAINER_HARRISON,
+    TRAINER_GRUNT_MT_CHIMNEY_2,
+    TRAINER_CLARENCE,
+    TRAINER_TERRY,
+    TRAINER_NATE,
+    TRAINER_KATHLEEN,
+    TRAINER_CLIFFORD,
+    TRAINER_NICHOLAS,
+    TRAINER_GRUNT_SPACE_CENTER_3,
+    TRAINER_GRUNT_SPACE_CENTER_4,
+    TRAINER_GRUNT_SPACE_CENTER_5,
+    TRAINER_GRUNT_SPACE_CENTER_6,
+    TRAINER_GRUNT_SPACE_CENTER_7,
+    TRAINER_MACEY,
+    TRAINER_BRENDAN_RUSTBORO_TREECKO,
+    TRAINER_BRENDAN_RUSTBORO_MUDKIP,
+    TRAINER_PAXTON,
+    TRAINER_ISABELLA,
+    TRAINER_GRUNT_WEATHER_INST_5,
+    TRAINER_TABITHA_MT_CHIMNEY,
+    TRAINER_JONATHAN,
+    TRAINER_BRENDAN_RUSTBORO_TORCHIC,
+    TRAINER_MAY_RUSTBORO_MUDKIP,
+    TRAINER_MAXIE_MAGMA_HIDEOUT,
+    TRAINER_MAXIE_MT_CHIMNEY,
+    TRAINER_TIANA,
+    TRAINER_HALEY_1,
+    TRAINER_JANICE,
+    TRAINER_VIVI,
+    TRAINER_HALEY_2,
+    TRAINER_HALEY_3,
+    TRAINER_HALEY_4,
+    TRAINER_HALEY_5,
+    TRAINER_SALLY,
+    TRAINER_ROBIN,
+    TRAINER_ANDREA,
+    TRAINER_CRISSY,
+    TRAINER_RICK,
+    TRAINER_LYLE,
+    TRAINER_JOSE,
+    TRAINER_DOUG,
+    TRAINER_GREG,
+    TRAINER_KENT,
+    TRAINER_JAMES_1,
+    TRAINER_JAMES_2,
+    TRAINER_JAMES_3,
+    TRAINER_JAMES_4,
+    TRAINER_JAMES_5,
+    TRAINER_BRICE,
+    TRAINER_TRENT_1,
+    TRAINER_LENNY,
+    TRAINER_LUCAS_1,
+    TRAINER_ALAN,
+    TRAINER_CLARK,
+    TRAINER_ERIC,
+    TRAINER_LUCAS_2,
+    TRAINER_MIKE_1,
+    TRAINER_MIKE_2,
+    TRAINER_TRENT_2,
+    TRAINER_TRENT_3,
+    TRAINER_TRENT_4,
+    TRAINER_TRENT_5,
+    TRAINER_DEZ_AND_LUKE,
+    TRAINER_LEA_AND_JED,
+    TRAINER_KIRA_AND_DAN_1,
+    TRAINER_KIRA_AND_DAN_2,
+    TRAINER_KIRA_AND_DAN_3,
+    TRAINER_KIRA_AND_DAN_4,
+    TRAINER_KIRA_AND_DAN_5,
+    TRAINER_JOHANNA,
+    TRAINER_GERALD,
+    TRAINER_VIVIAN,
+    TRAINER_DANIELLE,
+    TRAINER_HIDEO,
+    TRAINER_KEIGO,
+    TRAINER_RILEY,
+    TRAINER_FLINT,
+    TRAINER_ASHLEY,
+    TRAINER_WALLY_MAUVILLE,
+    TRAINER_WALLY_VR_2,
+    TRAINER_WALLY_VR_3,
+    TRAINER_WALLY_VR_4,
+    TRAINER_WALLY_VR_5,
+    TRAINER_BRENDAN_LILYCOVE_MUDKIP,
+    TRAINER_BRENDAN_LILYCOVE_TREECKO,
+    TRAINER_BRENDAN_LILYCOVE_TORCHIC,
+    TRAINER_MAY_LILYCOVE_MUDKIP,
+    TRAINER_MAY_LILYCOVE_TREECKO,
+    TRAINER_MAY_LILYCOVE_TORCHIC,
+    TRAINER_JONAH,
+    TRAINER_HENRY,
+    TRAINER_ROGER,
+    TRAINER_ALEXA,
+    TRAINER_RUBEN,
+    TRAINER_KOJI_1,
+    TRAINER_WAYNE,
+    TRAINER_AIDAN,
+    TRAINER_REED,
+    TRAINER_TISHA,
+    TRAINER_TORI_AND_TIA,
+    TRAINER_KIM_AND_IRIS,
+    TRAINER_TYRA_AND_IVY,
+    TRAINER_MEL_AND_PAUL,
+    TRAINER_JOHN_AND_JAY_1,
+    TRAINER_JOHN_AND_JAY_2,
+    TRAINER_JOHN_AND_JAY_3,
+    TRAINER_JOHN_AND_JAY_4,
+    TRAINER_JOHN_AND_JAY_5,
+    TRAINER_RELI_AND_IAN,
+    TRAINER_LILA_AND_ROY_1,
+    TRAINER_LILA_AND_ROY_2,
+    TRAINER_LILA_AND_ROY_3,
+    TRAINER_LILA_AND_ROY_4,
+    TRAINER_LILA_AND_ROY_5,
+    TRAINER_LISA_AND_RAY,
+    TRAINER_CHRIS,
+    TRAINER_DAWSON,
+    TRAINER_SARAH,
+    TRAINER_DARIAN,
+    TRAINER_HAILEY,
+    TRAINER_CHANDLER,
+    TRAINER_KALEB,
+    TRAINER_JOSEPH,
+    TRAINER_ALYSSA,
+    TRAINER_MARCOS,
+    TRAINER_RHETT,
+    TRAINER_TYRON,
+    TRAINER_CELINA,
+    TRAINER_BIANCA,
+    TRAINER_HAYDEN,
+    TRAINER_SOPHIE,
+    TRAINER_COBY,
+    TRAINER_LAWRENCE,
+    TRAINER_WYATT,
+    TRAINER_ANGELINA,
+    TRAINER_KAI,
+    TRAINER_CHARLOTTE,
+    TRAINER_DEANDRE,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_1,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_2,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_3,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_4,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_5,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_6,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_7,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_8,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_9,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_10,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_11,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_12,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_13,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_14,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_15,
+    TRAINER_GRUNT_MAGMA_HIDEOUT_16,
+    TRAINER_TABITHA_MAGMA_HIDEOUT,
+    TRAINER_DARCY,
+    TRAINER_MAXIE_MOSSDEEP,
+    TRAINER_PETE,
+    TRAINER_ISABELLE,
+    TRAINER_ANDRES_1,
+    TRAINER_JOSUE,
+    TRAINER_CAMRON,
+    TRAINER_CORY_1,
+    TRAINER_CAROLINA,
+    TRAINER_ELIJAH,
+    TRAINER_CELIA,
+    TRAINER_BRYAN,
+    TRAINER_BRANDEN,
+    TRAINER_BRYANT,
+    TRAINER_SHAYLA,
+    TRAINER_KYRA,
+    TRAINER_JAIDEN,
+    TRAINER_ALIX,
+    TRAINER_HELENE,
+    TRAINER_MARLENE,
+    TRAINER_DEVAN,
+    TRAINER_JOHNSON,
+    TRAINER_MELINA,
+    TRAINER_BRANDI,
+    TRAINER_AISHA,
+    TRAINER_MAKAYLA,
+    TRAINER_FABIAN,
+    TRAINER_DAYTON,
+    TRAINER_RACHEL,
+    TRAINER_LEONEL,
+    TRAINER_CALLIE,
+    TRAINER_CALE,
+    TRAINER_MYLES,
+    TRAINER_PAT,
+    TRAINER_CRISTIN_1,
+    TRAINER_MAY_RUSTBORO_TREECKO,
+    TRAINER_MAY_RUSTBORO_TORCHIC,
+    TRAINER_ROXANNE_2,
+    TRAINER_ROXANNE_3,
+    TRAINER_ROXANNE_4,
+    TRAINER_ROXANNE_5,
+    TRAINER_BRAWLY_2,
+    TRAINER_BRAWLY_3,
+    TRAINER_BRAWLY_4,
+    TRAINER_BRAWLY_5,
+    TRAINER_WATTSON_2,
+    TRAINER_WATTSON_3,
+    TRAINER_WATTSON_4,
+    TRAINER_WATTSON_5,
+    TRAINER_FLANNERY_2,
+    TRAINER_FLANNERY_3,
+    TRAINER_FLANNERY_4,
+    TRAINER_FLANNERY_5,
+    TRAINER_NORMAN_2,
+    TRAINER_NORMAN_3,
+    TRAINER_NORMAN_4,
+    TRAINER_NORMAN_5,
+    TRAINER_WINONA_2,
+    TRAINER_WINONA_3,
+    TRAINER_WINONA_4,
+    TRAINER_WINONA_5,
+    TRAINER_TATE_AND_LIZA_2,
+    TRAINER_TATE_AND_LIZA_3,
+    TRAINER_TATE_AND_LIZA_4,
+    TRAINER_TATE_AND_LIZA_5,
+    TRAINER_JUAN_2,
+    TRAINER_JUAN_3,
+    TRAINER_JUAN_4,
+    TRAINER_JUAN_5,
+    TRAINER_ANGELO,
+    TRAINER_DARIUS,
+    TRAINER_STEVEN,
+    TRAINER_ANABEL,
+    TRAINER_TUCKER,
+    TRAINER_SPENSER,
+    TRAINER_GRETA,
+    TRAINER_NOLAND,
+    TRAINER_LUCY,
+    TRAINER_BRANDON,
+    TRAINER_ANDRES_2,
+    TRAINER_ANDRES_3,
+    TRAINER_ANDRES_4,
+    TRAINER_ANDRES_5,
+    TRAINER_CORY_2,
+    TRAINER_CORY_3,
+    TRAINER_CORY_4,
+    TRAINER_CORY_5,
+    TRAINER_PABLO_2,
+    TRAINER_PABLO_3,
+    TRAINER_PABLO_4,
+    TRAINER_PABLO_5,
+    TRAINER_KOJI_2,
+    TRAINER_KOJI_3,
+    TRAINER_KOJI_4,
+    TRAINER_KOJI_5,
+    TRAINER_CRISTIN_2,
+    TRAINER_CRISTIN_3,
+    TRAINER_CRISTIN_4,
+    TRAINER_CRISTIN_5,
+    TRAINER_FERNANDO_2,
+    TRAINER_FERNANDO_3,
+    TRAINER_FERNANDO_4,
+    TRAINER_FERNANDO_5,
+    TRAINER_SAWYER_2,
+    TRAINER_SAWYER_3,
+    TRAINER_SAWYER_4,
+    TRAINER_SAWYER_5,
+    TRAINER_GABRIELLE_2,
+    TRAINER_GABRIELLE_3,
+    TRAINER_GABRIELLE_4,
+    TRAINER_GABRIELLE_5,
+    TRAINER_THALIA_2,
+    TRAINER_THALIA_3,
+    TRAINER_THALIA_4,
+    TRAINER_THALIA_5,
+    TRAINER_MARIELA,
+    TRAINER_ALVARO,
+    TRAINER_EVERETT,
+    TRAINER_RED,
+    TRAINER_LEAF,
+    TRAINER_BRENDAN_PLACEHOLDER,
+    TRAINER_MAY_PLACEHOLDER,
 
-#define TRAINERS_COUNT                      855
-#define MAX_TRAINERS_COUNT                  864
-#define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
+    TRAINERS_COUNT
+};
+
+#define TRAINER_PARTNER(partner)           (TRAINERS_COUNT + partner)
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

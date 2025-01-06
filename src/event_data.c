@@ -33,6 +33,7 @@ void InitEventData(void)
     memset(gSaveBlock1Ptr->flags, 0, sizeof(gSaveBlock1Ptr->flags));
     memset(gSaveBlock1Ptr->vars, 0, sizeof(gSaveBlock1Ptr->vars));
     memset(sSpecialFlags, 0, sizeof(sSpecialFlags));
+    memset(gSaveBlock1Ptr->trainerFlags, 0, sizeof(gSaveBlock1Ptr->trainerFlags));
 }
 
 void ClearTempFieldEventData(void)
@@ -210,11 +211,26 @@ u8 *GetFlagPointer(u16 id)
         return &sSpecialFlags[(id - SPECIAL_FLAGS_START) / 8];
 }
 
+u8 *GetTrainerFlagPointer(u16 id)
+{
+    if (id == 0 || id >= TRAINERS_COUNT)
+        return NULL;
+    return &gSaveBlock1Ptr->trainerFlags[id / 8];
+}
+
 u8 FlagSet(u16 id)
 {
     u8 *ptr = GetFlagPointer(id);
     if (ptr)
         *ptr |= 1 << (id & 7);
+    return 0;
+}
+
+u8 TrainerFlagSet(u16 id)
+{
+    u8 *ptr = GetTrainerFlagPointer(id);
+    if (ptr)
+        *ptr |= 1 << (id % 8);
     return 0;
 }
 
@@ -234,6 +250,14 @@ u8 FlagClear(u16 id)
     return 0;
 }
 
+u8 TrainerFlagClear(u16 id)
+{
+    u8 *ptr = GetTrainerFlagPointer(id);
+    if (ptr)
+        *ptr &= ~(1 << (id % 8));
+    return 0;
+}
+
 bool8 FlagGet(u16 id)
 {
     u8 *ptr = GetFlagPointer(id);
@@ -244,5 +268,15 @@ bool8 FlagGet(u16 id)
     if (!(((*ptr) >> (id & 7)) & 1))
         return FALSE;
 
+    return TRUE;
+}
+
+bool8 TrainerFlagGet(u16 id)
+{
+    u8 *ptr = GetTrainerFlagPointer(id);
+    if (!ptr)
+        return FALSE;
+    if (!(((*ptr) >> (id % 8)) & 1))
+        return FALSE;
     return TRUE;
 }

@@ -24,10 +24,14 @@ u16 VarGetIfExist(u16 id);
 bool8 VarSet(u16 id, u16 value);
 u16 VarGetObjectEventGraphicsId(u8 id);
 u8 *GetFlagPointer(u16 id);
+u8 *GetTrainerFlagPointer(u16 id);
 u8 FlagSet(u16 id);
+u8 TrainerFlagSet(u16 id);
 u8 FlagToggle(u16 id);
 u8 FlagClear(u16 id);
+u8 TrainerFlagClear(u16 id);
 bool8 FlagGet(u16 id);
+bool8 TrainerFlagGet(u16 id);
 
 extern u16 gSpecialVar_0x8000;
 extern u16 gSpecialVar_0x8001;
