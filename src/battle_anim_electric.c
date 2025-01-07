@@ -29,6 +29,8 @@ static bool8 CreateShockWaveBoltSprite(struct Task *task, u8 taskId);
 static void AnimShockWaveProgressingBolt(struct Sprite *);
 static bool8 CreateShockWaveLightningSprite(struct Task *task, u8 taskId);
 static void AnimShockWaveLightning(struct Sprite *sprite);
+static void AnimIon(struct Sprite *);
+static void AnimIon_Step(struct Sprite *);
 
 static const union AnimCmd sAnim_Lightning[] =
 {
@@ -559,6 +561,34 @@ const struct SpriteTemplate gSeedFlareGreenChargeTemplate =
     .callback = AnimGrowingChargeOrb
 };
 
+static const union AnimCmd sAnim_Ion[] =
+{
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(8, 2),
+    ANIMCMD_FRAME(16, 2),
+    ANIMCMD_FRAME(24, 6),
+    ANIMCMD_FRAME(32, 2),
+    ANIMCMD_FRAME(40, 2),
+    ANIMCMD_FRAME(48, 2),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnims_Ion[] =
+{
+    sAnim_Ion,
+};
+
+const struct SpriteTemplate gIonSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IONS,
+    .paletteTag = ANIM_TAG_IONS,
+    .oam = &gOamData_AffineOff_ObjNormal_16x32,
+    .anims = sAnims_Ion,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimIon,
+};
+
 // functions
 static void AnimLightning(struct Sprite *sprite)
 {
@@ -701,7 +731,9 @@ static void AnimZapCannonSpark_Step(struct Sprite *sprite)
             sprite->invisible ^= 1;
     }
     else
+    {
         DestroyAnimSprite(sprite);
+    }
 }
 
 static void AnimThunderboltOrb_Step(struct Sprite *sprite)
@@ -983,7 +1015,9 @@ static void AnimTask_ElectricChargingParticles_Step(u8 taskId)
         }
     }
     else if(task->data[7] == 0)
+    {
         DestroyAnimVisualTask(taskId);
+    }
 }
 
 static void AnimElectricChargingParticles_Step(struct Sprite *sprite)
@@ -1104,7 +1138,9 @@ void AnimTask_VoltTackleAttackerReappear(u8 taskId)
                 gSprites[task->data[15]].x2 = task->data[14];
             }
             else
+            {
                 task->data[0]++;
+            }
 
         }
         break;
@@ -1451,4 +1487,45 @@ static void AnimShockWaveLightning(struct Sprite *sprite)
         gTasks[sprite->data[6]].data[sprite->data[7]]--;
         DestroySprite(sprite);
     }
+}
+
+// Copy of Rain Dance's function but displays the ion sprite instead
+// arg 0: initial step
+// arg 1: amount (?)
+// arg 2: duration
+void AnimTask_CreateIons(u8 taskId)
+{
+    u8 x, y;
+
+    if (gTasks[taskId].data[0] == 0)
+    {
+        gTasks[taskId].data[1] = gBattleAnimArgs[0];
+        gTasks[taskId].data[2] = gBattleAnimArgs[1];
+        gTasks[taskId].data[3] = gBattleAnimArgs[2];
+    }
+    gTasks[taskId].data[0]++;
+    if (gTasks[taskId].data[0] % gTasks[taskId].data[2] == 1)
+    {
+        x = Random2() % DISPLAY_WIDTH;
+        y = Random2() % (DISPLAY_HEIGHT / 2);
+        CreateSprite(&gIonSpriteTemplate, x, y, 4);
+    }
+    if (gTasks[taskId].data[0] == gTasks[taskId].data[3])
+        DestroyAnimVisualTask(taskId);
+}
+
+static void AnimIon(struct Sprite *sprite)
+{
+    sprite->callback = AnimIon_Step;
+}
+
+static void AnimIon_Step(struct Sprite *sprite)
+{
+    if (++sprite->data[0] <= 13)
+    {
+        sprite->x2++;
+        sprite->y2 += 4;
+    }
+    if (sprite->animEnded)
+        DestroySprite(sprite);
 }

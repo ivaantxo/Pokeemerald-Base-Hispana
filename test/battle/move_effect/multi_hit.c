@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit the maximum amount with Skill Link")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 5 time(s)!");
+        MESSAGE("The Pokémon was hit 5 time(s)!");
     }
 }
 
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit twice 35% of the time")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 2 time(s)!");
+        MESSAGE("The Pokémon was hit 2 time(s)!");
     }
 }
 
@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit thrice 35% of the time")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 3 time(s)!");
+        MESSAGE("The Pokémon was hit 3 time(s)!");
     }
 }
 
@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit four times 15% of the time")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 4 time(s)!");
+        MESSAGE("The Pokémon was hit 4 time(s)!");
     }
 }
 
@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit five times 15% of the time")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 5 time(s)!");
+        MESSAGE("The Pokémon was hit 5 time(s)!");
     }
 }
 
@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit at least four times with Loaded Dice")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 4 time(s)!");
+        MESSAGE("The Pokémon was hit 4 time(s)!");
     }
 }
 
@@ -134,7 +134,7 @@ SINGLE_BATTLE_TEST("Multi hit Moves hit five times 50 Percent of the time with L
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
-        MESSAGE("Hit 5 time(s)!");
+        MESSAGE("The Pokémon was hit 5 time(s)!");
     }
 }
 
@@ -152,7 +152,7 @@ SINGLE_BATTLE_TEST("Scale Shot decreases defense and increases speed after final
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        MESSAGE("Hit 5 time(s)!");
+        MESSAGE("The Pokémon was hit 5 time(s)!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Wobbuffet's Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -160,27 +160,43 @@ SINGLE_BATTLE_TEST("Scale Shot decreases defense and increases speed after final
     }
 }
 
-SINGLE_BATTLE_TEST("Endure does not prevent multiple hits and stat changes occur at the end of the turn")
+SINGLE_BATTLE_TEST("Scale Shot is immune to Fairy types and will end the move correctly")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SCALE_SHOT].effect == EFFECT_MULTI_HIT);
-        ASSUME(gMovesInfo[MOVE_ENDURE].effect == EFFECT_ENDURE);
+        ASSUME(gMovesInfo[MOVE_SCALE_SHOT].type == TYPE_DRAGON);
+        ASSUME(gSpeciesInfo[SPECIES_CLEFAIRY].types[0] == TYPE_FAIRY || gSpeciesInfo[SPECIES_CLEFAIRY].types[1] == TYPE_FAIRY);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_CLEFAIRY) { HP(1); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_ENDURE); MOVE(player, MOVE_SCALE_SHOT); }
+        TURN { MOVE(player, MOVE_SCALE_SHOT); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ENDURE, opponent);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        MESSAGE("Hit 5 time(s)!");
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Defense fell!");
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Speed rose!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
+        MESSAGE("It doesn't affect the opposing Clefairy…");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Scale Shot does not corrupt the next turn move used")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SCALE_SHOT].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_SCALE_SHOT, target: opponentRight); SWITCH(playerLeft, 2); SEND_OUT(opponentRight, 2); }
+        TURN { MOVE(playerRight, MOVE_BULLDOZE); MOVE(playerLeft, MOVE_CELEBRATE); MOVE(opponentRight, MOVE_CELEBRATE); MOVE(opponentLeft, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, playerRight);
+        HP_BAR(opponentRight);
+        MESSAGE("The Pokémon was hit 1 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLDOZE, playerRight);
+        HP_BAR(playerLeft);
+        HP_BAR(opponentLeft);
+        HP_BAR(opponentRight);
     }
 }
 
@@ -198,7 +214,7 @@ SINGLE_BATTLE_TEST("Scale Shot decreases defense and increases speed after the 4
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        MESSAGE("Hit 4 time(s)!");
+        MESSAGE("The Pokémon was hit 4 time(s)!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Wobbuffet's Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -223,8 +239,8 @@ SINGLE_BATTLE_TEST("Scale Shot decreases defense and increases speed after killi
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        MESSAGE("Foe Slugma fainted!");
-        MESSAGE("Hit 3 time(s)!");
+        MESSAGE("The opposing Slugma fainted!");
+        MESSAGE("The Pokémon was hit 3 time(s)!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Bagon's Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -252,7 +268,7 @@ SINGLE_BATTLE_TEST("Multi Hit moves will not disrupt Destiny Bond flag")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
         }
-        MESSAGE("Wobbuffet took Foe Wobbuffet with it!");
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Wobbuffet took its attacker down with it!");
+        MESSAGE("The opposing Wobbuffet fainted!");
     }
 }

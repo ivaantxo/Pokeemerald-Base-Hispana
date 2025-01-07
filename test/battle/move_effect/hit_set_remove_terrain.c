@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Steel Roller and Ice Spinner can remove a terrain from the f
             MESSAGE("The electricity disappeared from the battlefield.");
             break;
         case MOVE_PSYCHIC_TERRAIN:
-            MESSAGE("The weirdness disappeared from the battlefield.");
+            MESSAGE("The weirdness disappeared from the battlefield!");
             break;
         case MOVE_GRASSY_TERRAIN:
             MESSAGE("The grass disappeared from the battlefield.");
@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("Ice Spinner doesn't fail if there is no terrain on the field
     }
 }
 
-AI_SINGLE_BATTLE_TEST("Steel Roller will not be chosen by the AI if it might fail")
+AI_SINGLE_BATTLE_TEST("AI will not choose Steel Roller if it might fail")
 {
     u32 move;
 
@@ -104,7 +104,7 @@ AI_SINGLE_BATTLE_TEST("Steel Roller will not be chosen by the AI if it might fai
     }
 }
 
-AI_SINGLE_BATTLE_TEST("Ice Spinner can be chosen by the AI regardless if there is a terrain or not")
+AI_SINGLE_BATTLE_TEST("AI will can choose Ice Spinner regardless if there is a terrain or not")
 {
     u32 move;
 

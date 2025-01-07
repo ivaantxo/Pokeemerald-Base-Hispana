@@ -3328,7 +3328,7 @@ static void AnimSolarBeamSmallOrb(struct Sprite *sprite)
 {
     InitSpritePosToAnimAttacker(sprite, TRUE);
 
-    if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gAnimMoveIndex == MOVE_CORE_ENFORCER)
+    if (IsDoubleBattle() && gAnimMoveIndex == MOVE_CORE_ENFORCER)
     {
         CoreEnforcerLoadBeamTarget(sprite);
     }
@@ -5413,7 +5413,9 @@ static void AnimMilkBottle_Step1(struct Sprite *sprite)
                     sprite->data[6]++;
             }
             else if (sprite->data[7] > 0)
+            {
                 sprite->data[7]--;
+            }
 
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(sprite->data[6], sprite->data[7]));
             if (sprite->data[6] == 16 && sprite->data[7] == 0)
@@ -5495,8 +5497,8 @@ static void AnimMilkBottle_Step2(struct Sprite *sprite, int unk1, int unk2)
 
 void AnimGrantingStars(struct Sprite *sprite)
 {
-    if (!gBattleAnimArgs[2])
-        SetSpriteCoordsToAnimAttackerCoords(sprite);
+    if (!InitSpritePosToAnimBattler(gBattleAnimArgs[2], sprite, FALSE))
+        return;
 
     SetAnimSpriteInitialXOffset(sprite, gBattleAnimArgs[0]);
     sprite->y += gBattleAnimArgs[1];
@@ -6616,12 +6618,102 @@ static void ReloadBattlerSprites(u32 battler, struct Pokemon *party)
     UpdateIndicatorVisibilityAndType(gHealthboxSpriteIds[battler], TRUE);
 
     // Try to recreate shadow sprite
-    if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId < MAX_SPRITES)
+    if (B_ENEMY_MON_SHADOW_STYLE >= GEN_4 && P_GBA_STYLE_SPECIES_GFX == FALSE)
     {
-        DestroySprite(&gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId]);
-        gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId = MAX_SPRITES;
-        CreateEnemyShadowSprite(battler);
-        SetBattlerShadowSpriteCallback(battler, GetMonData(mon, MON_DATA_SPECIES));
+        // Both of these *should* be true, but use an OR just to be certain
+        if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary < MAX_SPRITES
+            || gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary < MAX_SPRITES)
+        {
+            DestroySprite(&gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary]);
+            DestroySprite(&gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary]);
+            gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary = MAX_SPRITES;
+            gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary = MAX_SPRITES;
+            CreateEnemyShadowSprite(battler);
+            SetBattlerShadowSpriteCallback(battler, GetMonData(mon, MON_DATA_SPECIES));
+        }
+    }
+    else
+    {
+        if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary < MAX_SPRITES)
+        {
+            DestroySprite(&gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary]);
+            gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary = MAX_SPRITES;
+            CreateEnemyShadowSprite(battler);
+            SetBattlerShadowSpriteCallback(battler, GetMonData(mon, MON_DATA_SPECIES));
+        }
+    }
+}
+
+static void TrySwapSkyDropTargets(u32 battlerAtk, u32 battlerPartner)
+{
+    u32 i, temp;
+
+    // battlerAtk is using Ally Switch
+    // check if our partner is the target of sky drop
+    // If so, change that index to battlerAtk
+    for (i = 0; i < gBattlersCount; i++) {
+        if (gBattleStruct->skyDropTargets[i] == battlerPartner) {
+            gBattleStruct->skyDropTargets[i] = battlerAtk;
+            break;
+        }
+    }
+
+    // Then swap our own sky drop targets with the partner in case our partner is mid-skydrop
+    SWAP(gBattleStruct->skyDropTargets[battlerAtk], gBattleStruct->skyDropTargets[battlerPartner], temp);
+}
+
+#define TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, side, field)    \
+    if (gSideTimers[side].field == battlerAtk)                      \
+        gSideTimers[side].field = battlerPartner;                   \
+    else if (gSideTimers[side].field == battlerPartner)             \
+        gSideTimers[side].field = battlerAtk;
+
+static void TrySwapStickyWebBattlerId(u32 battlerAtk, u32 battlerPartner)
+{
+    u32 atkSide = GetBattlerSide(battlerAtk);
+    u32 oppSide = GetBattlerSide(BATTLE_OPPOSITE(battlerAtk));
+
+    // not all of these are needed to be swapped, but are done so to be robust to anything in the future that might care about them
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, reflectBattlerId);
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, lightscreenBattlerId);
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, mistBattlerId);
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, safeguardBattlerId);
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, auroraVeilBattlerId);
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, tailwindBattlerId);
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, luckyChantBattlerId);
+
+    // if we've set sticky web on the opposing side, need to swap stickyWebBattlerId for mirror armor
+    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, oppSide, stickyWebBattlerId);
+}
+#undef TRY_SIDE_TIMER_BATTLER_ID_SWAP
+
+static void TrySwapWishBattlerIds(u32 battlerAtk, u32 battlerPartner)
+{
+    u32 i, temp;
+    u32 oppSide = GetBattlerSide(BATTLE_OPPOSITE(battlerAtk));
+
+    // if used future sight on opposing side, properly track who used it
+    if (gSideStatuses[oppSide] & SIDE_STATUS_FUTUREATTACK) {
+        for (i = 0; i < gBattlersCount; i++) {
+            if (IsAlly(i,battlerAtk))
+                continue;   // only on opposing side
+            if (gWishFutureKnock.futureSightBattlerIndex[i] == battlerAtk) {
+                // if target was attacked with future sight from us, now they'll be the partner slot
+                gWishFutureKnock.futureSightBattlerIndex[i] = battlerPartner;
+                gWishFutureKnock.futureSightPartyIndex[i] = gBattlerPartyIndexes[battlerPartner];
+                break;
+            } else if (gWishFutureKnock.futureSightBattlerIndex[i] == battlerPartner) {
+                gWishFutureKnock.futureSightBattlerIndex[i] = battlerAtk;
+                gWishFutureKnock.futureSightPartyIndex[i] = gBattlerPartyIndexes[battlerAtk];
+                break;
+            }
+        }
+    }
+
+    // swap wish party indices
+    if (gWishFutureKnock.wishCounter[battlerAtk] > 0
+            || gWishFutureKnock.wishCounter[battlerPartner] > 0) {
+        SWAP(gWishFutureKnock.wishPartyId[battlerAtk], gWishFutureKnock.wishPartyId[battlerPartner], temp);
     }
 }
 
@@ -6644,6 +6736,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     SwapStructData(&gSpecialStatuses[battlerAtk], &gSpecialStatuses[battlerPartner], data, sizeof(struct SpecialStatus));
     SwapStructData(&gProtectStructs[battlerAtk], &gProtectStructs[battlerPartner], data, sizeof(struct ProtectStruct));
     SwapStructData(&gBattleSpritesDataPtr->battlerData[battlerAtk], &gBattleSpritesDataPtr->battlerData[battlerPartner], data, sizeof(struct BattleSpriteInfo));
+    SwapStructData(&gBattleStruct->illusion[battlerAtk], &gBattleStruct->illusion[battlerPartner], data, sizeof(struct Illusion));
 
     SWAP(gBattleSpritesDataPtr->battlerData[battlerAtk].invisible, gBattleSpritesDataPtr->battlerData[battlerPartner].invisible, temp);
     SWAP(gTransformedPersonalities[battlerAtk], gTransformedPersonalities[battlerPartner], temp);
@@ -6667,6 +6760,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
                     break;
             }
             SWAP(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], temp);
+            SWAP(gActionsByTurnOrder[i], gActionsByTurnOrder[j], temp);
             break;
         }
     }
@@ -6674,6 +6768,10 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     party = GetBattlerParty(battlerAtk);
     SwitchTwoBattlersInParty(battlerAtk, battlerPartner);
     SWAP(gBattlerPartyIndexes[battlerAtk], gBattlerPartyIndexes[battlerPartner], temp);
+
+    TrySwapSkyDropTargets(battlerAtk, battlerPartner);
+    TrySwapStickyWebBattlerId(battlerAtk, battlerPartner);
+    TrySwapWishBattlerIds(battlerAtk, battlerPartner);
 
     // For Snipe Shot and abilities Stalwart/Propeller Tail - keep the original target.
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)

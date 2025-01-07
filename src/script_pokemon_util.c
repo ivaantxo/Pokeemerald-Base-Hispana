@@ -317,7 +317,7 @@ void SetTeraType(struct ScriptContext *ctx)
  * if side/slot are assigned, it will create the mon at the assigned party location
  * if slot == PARTY_SIZE, it will give the mon to first available party or storage slot
  */
-static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8 gender, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny, bool8 ggMaxFactor, u8 teraType)
+static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u16 item, enum PokeBall ball, u8 nature, u8 abilityNum, u8 gender, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny, bool8 ggMaxFactor, u8 teraType)
 {
     u16 nationalDexNum;
     int sentToPc;
@@ -396,8 +396,8 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
 
     // ball
-    if (ball > LAST_BALL)
-        ball = ITEM_POKE_BALL;
+    if (ball > POKEBALL_COUNT)
+        ball = BALL_POKE;
     SetMonData(&mon, MON_DATA_POKEBALL, &ball);
 
     // held item
@@ -487,12 +487,49 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
     u8 speedEv        = PARSE_FLAG(8, 0);
     u8 spAtkEv        = PARSE_FLAG(9, 0);
     u8 spDefEv        = PARSE_FLAG(10, 0);
-    u8 hpIv           = PARSE_FLAG(11, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 atkIv          = PARSE_FLAG(12, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 defIv          = PARSE_FLAG(13, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 speedIv        = PARSE_FLAG(14, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 spAtkIv        = PARSE_FLAG(15, Random() % (MAX_PER_STAT_IVS + 1));
-    u8 spDefIv        = PARSE_FLAG(16, Random() % (MAX_PER_STAT_IVS + 1));
+    u8 hpIv           = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 atkIv          = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 defIv          = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 speedIv        = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 spAtkIv        = Random() % (MAX_PER_STAT_IVS + 1);
+    u8 spDefIv        = Random() % (MAX_PER_STAT_IVS + 1);
+
+    // Perfect IV calculation
+    u32 i;
+    u8 availableIVs[NUM_STATS];
+    u8 selectedIvs[NUM_STATS];
+    if (gSpeciesInfo[species].perfectIVCount != 0)
+    {
+        // Initialize a list of IV indices.
+        for (i = 0; i < NUM_STATS; i++)
+            availableIVs[i] = i;
+
+        // Select the IVs that will be perfected.
+        for (i = 0; i < NUM_STATS && i < gSpeciesInfo[species].perfectIVCount; i++)
+        {
+            u8 index = Random() % (NUM_STATS - i);
+            selectedIvs[i] = availableIVs[index];
+            RemoveIVIndexFromList(availableIVs, index);
+        }
+        for (i = 0; i < NUM_STATS && i < gSpeciesInfo[species].perfectIVCount; i++)
+        {
+            switch (selectedIvs[i])
+            {
+            case STAT_HP:    hpIv    = MAX_PER_STAT_IVS; break;
+            case STAT_ATK:   atkIv   = MAX_PER_STAT_IVS; break;
+            case STAT_DEF:   defIv   = MAX_PER_STAT_IVS; break;
+            case STAT_SPEED: speedIv = MAX_PER_STAT_IVS; break;
+            case STAT_SPATK: spAtkIv = MAX_PER_STAT_IVS; break;
+            case STAT_SPDEF: spDefIv = MAX_PER_STAT_IVS; break;
+            }
+        }
+    }
+    hpIv              = PARSE_FLAG(11, hpIv);
+    atkIv             = PARSE_FLAG(12, atkIv);
+    defIv             = PARSE_FLAG(13, defIv);
+    speedIv           = PARSE_FLAG(14, speedIv);
+    spAtkIv           = PARSE_FLAG(15, spAtkIv);
+    spDefIv           = PARSE_FLAG(16, spDefIv);
     u16 move1         = PARSE_FLAG(17, MOVE_NONE);
     u16 move2         = PARSE_FLAG(18, MOVE_NONE);
     u16 move3         = PARSE_FLAG(19, MOVE_NONE);

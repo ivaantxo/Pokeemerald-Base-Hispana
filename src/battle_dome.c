@@ -2030,8 +2030,8 @@ static void InitDomeTrainers(void)
         rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_SPDEF, NULL);
         rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_SPEED, NULL);
         rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_MAX_HP, NULL);
-        monTypesBits |= gBitTable[gSpeciesInfo[GetMonData(&gPlayerParty[trainerId], MON_DATA_SPECIES, NULL)].types[0]];
-        monTypesBits |= gBitTable[gSpeciesInfo[GetMonData(&gPlayerParty[trainerId], MON_DATA_SPECIES, NULL)].types[1]];
+        monTypesBits |= 1u << gSpeciesInfo[GetMonData(&gPlayerParty[trainerId], MON_DATA_SPECIES, NULL)].types[0];
+        monTypesBits |= 1u << gSpeciesInfo[GetMonData(&gPlayerParty[trainerId], MON_DATA_SPECIES, NULL)].types[1];
     }
 
     // Count the number of types in the players party, to factor into the ranking
@@ -2062,8 +2062,8 @@ static void InitDomeTrainers(void)
             rankingScores[i] += statValues[STAT_SPDEF];
             rankingScores[i] += statValues[STAT_SPEED];
             rankingScores[i] += statValues[STAT_HP];
-            monTypesBits |= gBitTable[gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[0]];
-            monTypesBits |= gBitTable[gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[1]];
+            monTypesBits |= 1u << gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[0];
+            monTypesBits |= 1u << gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[1];
         }
 
         for (monTypesCount = 0, j = 0; j < 32; j++)
@@ -2344,9 +2344,9 @@ static int SelectOpponentMonsFromParty(int *partyMovePoints, bool8 allowRandom)
             while (i != DOME_BATTLE_PARTY_SIZE)
             {
                 u32 rand = Random() & FRONTIER_PARTY_SIZE;
-                if (rand != FRONTIER_PARTY_SIZE && !(selectedMonBits & gBitTable[rand]))
+                if (rand != FRONTIER_PARTY_SIZE && !(selectedMonBits & (1u << rand)))
                 {
-                    selectedMonBits |= gBitTable[rand];
+                    selectedMonBits |= 1u << rand;
                     i++;
                 }
             }
@@ -2376,7 +2376,7 @@ static int SelectOpponentMonsFromParty(int *partyMovePoints, bool8 allowRandom)
 
         for (i = 0; i < DOME_BATTLE_PARTY_SIZE; i++)
         {
-            selectedMonBits |= gBitTable[partyPositions[i]];
+            selectedMonBits |= 1u << partyPositions[i];
         }
     }
 
@@ -4326,7 +4326,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeStatusMoveEffect(move);
                     break;
                 case MOVE_POINTS_DMG:
-                    allocatedArray[k] = (gMovesInfo[move].power != 0) ? 1 : 0;
+                    allocatedArray[k] = (!IS_MOVE_STATUS(move)) ? 1 : 0;
                     break;
                 case MOVE_POINTS_DEF:
                     allocatedArray[k] = IsDomeDefensiveMoveEffect(gMovesInfo[move].effect) ? 1 : 0;
@@ -5108,7 +5108,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
                 moveIds[i * MAX_MON_MOVES + j] = gFacilityTrainerMons[DOME_MONS[winnerTournamentId][i]].moves[j];
 
             movePower = gMovesInfo[moveIds[i * MAX_MON_MOVES + j]].power;
-            if (movePower == 0)
+            if (IS_MOVE_STATUS(moveIds[i * MAX_MON_MOVES + j]))
                 movePower = 40;
             else if (movePower == 1)
                 movePower = 60;
@@ -5803,8 +5803,8 @@ static void InitRandomTourneyTreeResults(void)
             statSums[i] += statValues[STAT_SPDEF];
             statSums[i] += statValues[STAT_SPEED];
             statSums[i] += statValues[STAT_HP];
-            monTypesBits |= gBitTable[gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[0]];
-            monTypesBits |= gBitTable[gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[1]];
+            monTypesBits |= 1u << gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[0];
+            monTypesBits |= 1u << gSpeciesInfo[gFacilityTrainerMons[DOME_MONS[i][j]].species].types[1];
         }
 
         // Because GF hates temporary vars, trainerId acts like monTypesCount here.
