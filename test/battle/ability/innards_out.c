@@ -66,10 +66,10 @@ SINGLE_BATTLE_TEST("Innards Out does not damage Magic Guard Pokemon")
     }
 }
 
-// IO damage for Future Sight must equal the actually lost HP of the Future Sight target
 SINGLE_BATTLE_TEST("Innards Out uses correct damage amount for Future Sight")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].effect == EFFECT_FUTURE_SIGHT);
         PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -86,10 +86,10 @@ SINGLE_BATTLE_TEST("Innards Out uses correct damage amount for Future Sight")
     }
 }
 
-// IO shouldn't trigger if future sight user is no longer on field
 SINGLE_BATTLE_TEST("Innards Out doesn't trigger if Future Sight user is not on field")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].effect == EFFECT_FUTURE_SIGHT);
         PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -109,10 +109,10 @@ SINGLE_BATTLE_TEST("Innards Out doesn't trigger if Future Sight user is not on f
     }
 }
 
-//IO should trigger if future sight user returns on the field
 SINGLE_BATTLE_TEST("Innards Out triggers if Future Sight user is back on the field")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].effect == EFFECT_FUTURE_SIGHT);
         PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);

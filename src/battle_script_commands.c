@@ -2461,7 +2461,7 @@ static void Cmd_datahpupdate(void)
 
                 // Record damage for foreseen moves
                 if (gWishFutureKnock.futureSightDmg[battler] == 0
-                  && IsForeSeenMove(gWishFutureKnock.futureSightMove[battler]))
+                  && gMovesInfo[gWishFutureKnock.futureSightMove[battler]].effect == EFFECT_FUTURE_SIGHT)
                     gWishFutureKnock.futureSightDmg[battler] = gHpDealt;
                 
                 // Note: While physicalDmg/specialDmg below are only distinguished between for Counter/Mirror Coat, they are
