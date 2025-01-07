@@ -2188,6 +2188,14 @@ bool32 HasHealingEffect(u32 battlerId)
     return FALSE;
 }
 
+bool32 IsForeSeenMove(u32 moveId)
+{
+    if (moveId == MOVE_FUTURE_SIGHT || moveId == MOVE_DOOM_DESIRE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool32 IsTrappingMove(u32 move)
 {
     switch (gMovesInfo[move].effect)

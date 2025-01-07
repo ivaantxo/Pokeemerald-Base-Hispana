@@ -65,3 +65,66 @@ SINGLE_BATTLE_TEST("Innards Out does not damage Magic Guard Pokemon")
         NOT HP_BAR(opponent);
     }
 }
+
+// IO damage for Future Sight must equal the actually lost HP of the Future Sight target
+SINGLE_BATTLE_TEST("Innards Out uses correct damage amount for Future Sight")
+{
+    GIVEN {
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FUTURE_SIGHT); }
+        TURN { }
+        TURN { SEND_OUT(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FUTURE_SIGHT, opponent);
+        MESSAGE("Pyukumuku took the Future Sight attack!");
+        HP_BAR(player);
+        ABILITY_POPUP(player, ABILITY_INNARDS_OUT);
+        HP_BAR(opponent, damage: 1);
+    }
+}
+
+// IO shouldn't trigger if future sight user is no longer on field
+SINGLE_BATTLE_TEST("Innards Out doesn't trigger if Future Sight user is not on field")
+{
+    GIVEN {
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FUTURE_SIGHT); }
+        TURN { SWITCH(opponent, 1); }
+        TURN { SEND_OUT(player, 1); } //SEND_OUT(opponent, 0); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FUTURE_SIGHT, opponent);
+        MESSAGE("Pyukumuku took the Future Sight attack!");
+        HP_BAR(player);
+        NONE_OF {
+         ABILITY_POPUP(player, ABILITY_INNARDS_OUT);
+         HP_BAR(opponent);
+        }
+    }
+}
+
+//IO should trigger if future sight user returns on the field
+SINGLE_BATTLE_TEST("Innards Out triggers if Future Sight user is back on the field")
+{
+    GIVEN {
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FUTURE_SIGHT); }
+        TURN { SWITCH(opponent, 1); }
+        TURN { SWITCH(opponent, 0); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FUTURE_SIGHT, opponent);
+        MESSAGE("Pyukumuku took the Future Sight attack!");
+        HP_BAR(player);
+        ABILITY_POPUP(player, ABILITY_INNARDS_OUT);
+        HP_BAR(opponent);
+    }
+}
