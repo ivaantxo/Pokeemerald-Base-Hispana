@@ -11,7 +11,6 @@ Route110_MapScripts::
 
 Route110_OnResume:
 	special UpdateCyclingRoadState
-	msgbox Route110_Text_WeCantTalkAboutAquaActivities, MSGBOX_SIGN
 	end
 
 Route110_OnTransition:
