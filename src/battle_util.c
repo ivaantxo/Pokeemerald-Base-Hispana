@@ -5808,9 +5808,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 {
                     //no Innards Out effect if Future Sight user is currently not on field
                     if (gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] == gBattlerPartyIndexes[gBattlerAttacker]
-                    || gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] == BATTLE_PARTNER(gBattlerPartyIndexes[gBattlerAttacker]))
+                     || gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] == BATTLE_PARTNER(gBattlerPartyIndexes[gBattlerAttacker]))
                     {
-                        gBattleMoveDamage = gWishFutureKnock.futureSightDmg[gBattlerTarget];
+                        gBattleMoveDamage = gWishFutureKnock.futureSightDmg;
+                        gWishFutureKnock.futureSightDmg = 0;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_AftermathDmg;
                         effect++;

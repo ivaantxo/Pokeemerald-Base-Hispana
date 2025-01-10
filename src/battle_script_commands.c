@@ -2460,10 +2460,8 @@ static void Cmd_datahpupdate(void)
                     gSpecialStatuses[battler].shellBellDmg = gHpDealt;
 
                 // Record damage for foreseen moves
-                if (gWishFutureKnock.futureSightDmg[battler] == 0
-                  && gMovesInfo[gWishFutureKnock.futureSightMove[battler]].effect == EFFECT_FUTURE_SIGHT)
-                    gWishFutureKnock.futureSightDmg[battler] = gHpDealt;
-                
+                gWishFutureKnock.futureSightDmg = gHpDealt;
+
                 // Note: While physicalDmg/specialDmg below are only distinguished between for Counter/Mirror Coat, they are
                 //       used in combination as general damage trackers for other purposes. specialDmg is additionally used
                 //       to help determine if a fire move should defrost the target.
@@ -13964,7 +13962,7 @@ static void Cmd_trysetfutureattack(void)
         gWishFutureKnock.futureSightBattlerIndex[gBattlerTarget] = gBattlerAttacker;
         gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] = gBattlerPartyIndexes[gBattlerAttacker];
         gWishFutureKnock.futureSightCounter[gBattlerTarget] = 3;
-        gWishFutureKnock.futureSightDmg[gBattlerTarget] = 0;
+        gWishFutureKnock.futureSightDmg = 0;
 
         if (gCurrentMove == MOVE_DOOM_DESIRE)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOOM_DESIRE;
