@@ -3,7 +3,6 @@
 
 // Configuración de movimiento
 #define OW_RUNNING_INDOORS          GEN_LATEST  // En Gen4+, los jugadores pueden correr en interiores.
-#define OW_AUTO_SIGNPOST            FALSE       // Si es TRUE, y el tile enfrente del jugador es MB_SIGNPOST, MB_POKEMART_SIGN, o MB_POKEMON_CENTER_SIGN, el jugador automáticamente leerá el mensaje, como en FRLG.
 #define SLOW_MOVEMENT_ON_STAIRS     FALSE       // Si es TRUE, el jugador se moverá más despacio en las escaleras, como en FRLG.
 
 // Otras configuraciones
