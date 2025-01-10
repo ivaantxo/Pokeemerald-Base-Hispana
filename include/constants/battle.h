@@ -253,6 +253,13 @@
 #define SIDE_STATUS_SCREEN_ANY     (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)
 #define SIDE_STATUS_PLEDGE_ANY     (SIDE_STATUS_RAINBOW | SIDE_STATUS_SEA_OF_FIRE | SIDE_STATUS_SWAMP)
 
+// Used for damaging entry hazards based on type
+enum TypeSideHazard
+{
+    TYPE_SIDE_HAZARD_POINTED_STONES = TYPE_ROCK,
+    TYPE_SIDE_HAZARD_SHARP_STEEL    = TYPE_STEEL,
+};
+
 // Field affecting statuses.
 #define STATUS_FIELD_MAGIC_ROOM                     (1 << 0)
 #define STATUS_FIELD_TRICK_ROOM                     (1 << 1)

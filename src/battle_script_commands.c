@@ -7755,7 +7755,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
     {
         gDisableStructs[battler].stealthRockDone = TRUE;
-        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(GetMoveType(MOVE_STEALTH_ROCK), battler);
+        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(TYPE_ROCK, battler);
 
         if (gBattleStruct->moveDamage[battler] != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_STEALTHROCKDMG);
@@ -7814,7 +7814,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
     {
         gDisableStructs[battler].steelSurgeDone = TRUE;
-        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(GetMoveType(MOVE_G_MAX_STEELSURGE), battler);
+        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(TYPE_STEEL, battler);
 
         if (gBattleStruct->moveDamage[battler] != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_SHARPSTEELDMG);

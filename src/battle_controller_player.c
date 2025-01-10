@@ -1711,18 +1711,19 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
 static void MoveSelectionDisplayMoveType(u32 battler)
 {
     u8 *txtPtr, *end;
-    u8 type;
     u32 speciesId;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    type = GetMoveType(moveInfo->moves[gMoveSelectionCursor[battler]]);
+    u32 move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    u32 type = GetMoveType(move);
+    u32 effect = GetMoveEffect(move);
 
-    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_BLAST)
+    if (effect == EFFECT_TERA_BLAST)
     {
         if (IsGimmickSelected(battler, GIMMICK_TERA) || GetActiveGimmick(battler) == GIMMICK_TERA)
             type = GetBattlerTeraType(battler);
     }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
+    else if (effect == EFFECT_IVY_CUDGEL)
     {
         speciesId = gBattleMons[battler].species;
 
@@ -1731,12 +1732,12 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             || speciesId == SPECIES_OGERPON_CORNERSTONE || speciesId == SPECIES_OGERPON_CORNERSTONE_TERA)
             type = gBattleMons[battler].types[1];
     }
-    else if (GetMoveCategory(moveInfo->moves[gMoveSelectionCursor[battler]]) == DAMAGE_CATEGORY_STATUS
+    else if (GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS
              && (GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX)))
     {
         type = TYPE_NORMAL; // Max Guard is always a Normal-type move
     }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_STARSTORM)
+    else if (effect == EFFECT_TERA_STARSTORM)
     {
         if (gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR
         || (IsGimmickSelected(battler, GIMMICK_TERA) && gBattleMons[battler].species == SPECIES_TERAPAGOS_TERASTAL))
@@ -1745,7 +1746,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     else if (P_SHOW_DYNAMIC_TYPES) // Non-vanilla changes to battle UI showing dynamic types
     {
         struct Pokemon *mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
-        type = CheckDynamicMoveType(mon, moveInfo->moves[gMoveSelectionCursor[battler]], battler);
+        type = CheckDynamicMoveType(mon, move, battler);
     }
     end = StringCopy(txtPtr, gTypesInfo[type].name);
 

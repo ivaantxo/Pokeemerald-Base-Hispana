@@ -10829,14 +10829,14 @@ uq4_12_t GetTypeModifier(u32 atkType, u32 defType)
     return gTypeEffectivenessTable[atkType][defType];
 }
 
-s32 GetStealthHazardDamageByTypesAndHP(u8 hazardType, u8 type1, u8 type2, u32 maxHp)
+s32 GetStealthHazardDamageByTypesAndHP(enum TypeSideHazard hazardType, u8 type1, u8 type2, u32 maxHp)
 {
     s32 dmg = 0;
     uq4_12_t modifier = UQ_4_12(1.0);
 
-    modifier = uq4_12_multiply(modifier, GetTypeModifier(hazardType, type1));
+    modifier = uq4_12_multiply(modifier, GetTypeModifier((u8)hazardType, type1));
     if (type2 != type1)
-        modifier = uq4_12_multiply(modifier, GetTypeModifier(hazardType, type2));
+        modifier = uq4_12_multiply(modifier, GetTypeModifier((u8)hazardType, type2));
 
     switch (modifier)
     {
@@ -10873,7 +10873,7 @@ s32 GetStealthHazardDamageByTypesAndHP(u8 hazardType, u8 type1, u8 type2, u32 ma
     return dmg;
 }
 
-s32 GetStealthHazardDamage(u8 hazardType, u32 battler)
+s32 GetStealthHazardDamage(enum TypeSideHazard hazardType, u32 battler)
 {
     u8 type1 = gBattleMons[battler].types[0];
     u8 type2 = gBattleMons[battler].types[1];
