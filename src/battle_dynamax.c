@@ -254,12 +254,12 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
     // Gigantamax check
     u32 i;
     u32 species = gBattleMons[battler].species;
-    u32 targetSpecies = SPECIES_NONE;
+    u32 targetSpecies = species;
 
     if (!gSpeciesInfo[species].isGigantamax)
         targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
-    if (targetSpecies != SPECIES_NONE)
+    if (targetSpecies != species)
         species = targetSpecies;
 
     if (gSpeciesInfo[species].isGigantamax)
