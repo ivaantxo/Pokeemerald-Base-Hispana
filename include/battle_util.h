@@ -339,5 +339,8 @@ void ClearDamageCalcResults(void);
 u32 DoesDestinyBondFail(u32 battler);
 bool32 IsMoveEffectBlockedByTarget(u32 ability);
 u32 NumAffectedSpreadMoveTargets(void);
+bool32 IsPursuitTargetSet(void);
+void ClearPursuitValuesIfSet(u32 battler);
+void ClearPursuitValues(void);
 
 #endif // GUARD_BATTLE_UTIL_H
