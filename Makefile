@@ -29,6 +29,9 @@ endif
 ifeq (debug,$(MAKECMDGOALS))
   DEBUG := 1
 endif
+ifeq ($(TESTELF),$(MAKECMDGOALS))
+  TEST := 1
+endif
 
 # Default make rule
 all: rom
