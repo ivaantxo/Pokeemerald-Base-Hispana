@@ -5887,27 +5887,18 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !IsBattlerAlive(gBattlerTarget)
              && IsBattlerAlive(gBattlerAttacker))
             {
-                //special Future Sight handling
-                if (gMovesInfo[gWishFutureKnock.futureSightMove[battler]].effect == EFFECT_FUTURE_SIGHT)
+                // Prevent Innards Out effect if Future Sight user is currently not on field
+                if (GetMoveEffect(gCurrentMove) == EFFECT_FUTURE_SIGHT)
                 {
-                    //no Innards Out effect if Future Sight user is currently not on field
-                    if (gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] == gBattlerPartyIndexes[gBattlerAttacker]
-                     || gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] == BATTLE_PARTNER(gBattlerPartyIndexes[gBattlerAttacker]))
-                    {
-                        gBattleStruct->moveDamage[gBattlerAttacker] = gWishFutureKnock.futureSightDmg;
-                        gWishFutureKnock.futureSightDmg = 0;
-                        BattleScriptPushCursor();
-                        gBattlescriptCurrInstr = BattleScript_AftermathDmg;
-                        effect++;
-                    }
+                    if (gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] != gBattlerPartyIndexes[gBattlerAttacker]
+                     && gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] != BATTLE_PARTNER(gBattlerPartyIndexes[gBattlerAttacker]))
+                        break;
                 }
-                else
-                {
-                    gBattleStruct->moveDamage[gBattlerAttacker] = gBattleStruct->moveDamage[gBattlerTarget];
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_AftermathDmg;
-                    effect++;
-                }
+
+                gBattleStruct->moveDamage[gBattlerAttacker] = gBattleStruct->moveDamage[gBattlerTarget];
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AftermathDmg;
+                effect++;
             }
             break;
         case ABILITY_EFFECT_SPORE:
