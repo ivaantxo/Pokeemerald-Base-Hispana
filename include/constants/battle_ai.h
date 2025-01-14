@@ -50,8 +50,9 @@
 #define AI_FLAG_SEQUENCE_SWITCHING          (1 << 19)  // AI switches in mons in exactly party order, and never switches mid-battle.
 #define AI_FLAG_DOUBLE_ACE_POKEMON          (1 << 20)  // AI has *two* Ace Pokémon. The last two Pokémons in the party won't be used unless they're the last ones remaining. Goes well in battles where the trainer ID equals to twins, couples, etc.
 #define AI_FLAG_WEIGH_ABILITY_PREDICTION    (1 << 21)  // AI will predict player's ability based on aiRating
+#define AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE  (1 << 22)  // AI adds score to highest damage move regardless of accuracy or secondary effect
 
-#define AI_FLAG_COUNT                       22
+#define AI_FLAG_COUNT                       23
 
 // The following options are enough to have a basic/smart trainer. Any other addtion could make the trainer worse/better depending on the flag
 #define AI_FLAG_BASIC_TRAINER         (AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY)

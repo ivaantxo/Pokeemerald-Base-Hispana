@@ -168,3 +168,6 @@ AI will always switch out after a KO in exactly party order as defined in the tr
 
 ## `AI_FLAG_WEIGH_ABILITY_PREDICTION`
 AI will predict the player's ability based to its aiRating. Without this flag the AI randomly assumes an ability with an even distribution between all possible abilities until one is confirmed. With this flag, it instead guesses proportionally to each ability's aiRating, making it far more likely to guess an ability like Water Absorb than Damp if both are options.
+
+## `AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE`
+AI will add score to its highest damaging move, regardless of accuracy or secondary effects. Replaces deprecated `AI_FLAG_PREFER_STRONGEST_MOVE`.
