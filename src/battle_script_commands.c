@@ -3566,7 +3566,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
                     // For a move that hits multiple targets (i.e. Make it Rain)
                     // we only want to print the message on the final hit
-                    if (!(IsSpreadMove(moveTarget) && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT))
+                    if (!(NumAffectedSpreadMoveTargets() > 1 && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT))
                     {
                         BattleScriptPush(gBattlescriptCurrInstr + 1);
                         gBattlescriptCurrInstr = BattleScript_MoveEffectPayDay;
@@ -4325,12 +4325,10 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
 static bool32 CanApplyAdditionalEffect(const struct AdditionalEffect *additionalEffect)
 {
-    u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
-
     // Self-targeting move effects only apply after the last mon has been hit
     if (additionalEffect->self
-     && IsSpreadMove(moveTarget)
-     && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT)
+     && NumAffectedSpreadMoveTargets() > 1
+     && GetNextTarget(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove), TRUE) != MAX_BATTLERS_COUNT)
         return FALSE;
 
     // Certain move effects only apply if the target raised stats this turn (e.g. Burning Jealousy)
