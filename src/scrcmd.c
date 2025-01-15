@@ -1527,9 +1527,6 @@ bool8 ScrCmd_turnvobject(struct ScriptContext *ctx)
 // The player is frozen after waiting for their current movement to finish.
 bool8 ScrCmd_lockall(struct ScriptContext *ctx)
 {
-    // As a special case, skip this during analysis.
-    if (Script_IsAnalyzingEffects())
-        return FALSE;
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     if (IsOverworldLinkActive())
@@ -1548,9 +1545,6 @@ bool8 ScrCmd_lockall(struct ScriptContext *ctx)
 // The player and selected object are frozen after waiting for their current movement to finish.
 bool8 ScrCmd_lock(struct ScriptContext *ctx)
 {
-    // As a special case, skip this during analysis.
-    if (Script_IsAnalyzingEffects())
-        return FALSE;
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     if (IsOverworldLinkActive())
@@ -1581,9 +1575,6 @@ bool8 ScrCmd_lock(struct ScriptContext *ctx)
 
 bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
 {
-    // As a special case, skip this during analysis.
-    if (Script_IsAnalyzingEffects())
-        return FALSE;
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     u8 playerObjectId;
@@ -1603,9 +1594,6 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
 
 bool8 ScrCmd_release(struct ScriptContext *ctx)
 {
-    // As a special case, skip this during analysis.
-    if (Script_IsAnalyzingEffects())
-        return FALSE;
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     u8 playerObjectId;
@@ -2858,9 +2846,6 @@ bool8 ScrCmd_selectapproachingtrainer(struct ScriptContext *ctx)
 
 bool8 ScrCmd_lockfortrainer(struct ScriptContext *ctx)
 {
-    // As a special case, skip this during analysis.
-    if (Script_IsAnalyzingEffects())
-        return FALSE;
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     if (IsOverworldLinkActive())

@@ -1,8 +1,6 @@
 #ifndef GUARD_SCRIPT_H
 #define GUARD_SCRIPT_H
 
-#include <setjmp.h>
-
 struct ScriptContext;
 
 typedef bool8 (*ScrCmdFunc)(struct ScriptContext *);
@@ -107,9 +105,11 @@ enum // effects
     SCREFF_TRAINERBATTLE = 1 << 2, // 'trainerbattle' command.
 };
 
+#define SCREFF_ANY (SCREFF_SAVE | SCREFF_HARDWARE | SCREFF_TRAINERBATTLE)
+
 enum // effects versions
 {
-    SCREFF_V1 = ~7,
+    SCREFF_V1 = 0xFFFFFFF8,
 };
 
 extern struct ScriptEffectContext *gScriptEffectContext;
@@ -140,7 +140,7 @@ static inline bool32 Script_IsAnalyzingEffects(void)
         _Static_assert((effects) & 0x80000000, "Script_RequestEffects requires an effects version"); \
         if ((effects) != SCREFF_V1) \
             if (Script_IsAnalyzingEffects()) \
-                Script_RequestEffects_Internal(effects); \
+                Script_RequestEffects_Internal((effects) & SCREFF_ANY); \
     })
 
 /* Optimize 'Script_RequestWriteVar' to a no-op if it would have no
