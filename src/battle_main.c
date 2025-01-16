@@ -4201,6 +4201,30 @@ enum
     STATE_SELECTION_SCRIPT_MAY_RUN
 };
 
+void SetupAISwitchingData(u32 battler, bool32 isAiRisky)
+{
+    s32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    
+    // AI's data
+    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, isAiRisky);
+    if (ShouldSwitch(battler))
+        AI_DATA->shouldSwitch |= (1u << battler);
+
+    // AI's predicting data
+    if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_SWITCH))
+    {
+        AI_DATA->aiSwitchPredictionInProgress = TRUE;
+        AI_DATA->battlerDoingPrediction = battler;
+        AI_DATA->mostSuitableMonId[opposingBattler] = GetMostSuitableMonToSwitchInto(opposingBattler, isAiRisky);
+        if (ShouldSwitch(opposingBattler))
+            AI_DATA->shouldSwitch |= (1u << opposingBattler);
+        AI_DATA->aiSwitchPredictionInProgress = FALSE;
+        
+        // Determine whether AI will use predictions this turn
+        AI_DATA->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, 50);
+    }
+}
+
 static void HandleTurnActionSelectionState(void)
 {
     s32 i, battler;
@@ -4225,11 +4249,7 @@ static void HandleTurnActionSelectionState(void)
                 // Setup battler data
                 sBattler_AI = battler;
                 BattleAI_SetupAIData(0xF, sBattler_AI);
-
-                // Setup switching data
-                AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, isAiRisky);
-                if (ShouldSwitch(battler))
-                    AI_DATA->shouldSwitch |= (1u << battler);
+                SetupAISwitchingData(battler, isAiRisky);
 
                 // Do scoring
                 gBattleStruct->aiMoveOrAction[battler] = BattleAI_ChooseMoveOrAction();

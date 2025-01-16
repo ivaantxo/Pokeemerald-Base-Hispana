@@ -102,6 +102,18 @@ bool32 IsAiBattlerPredictingAbility(u32 battlerId)
     return BattlerHasAi(battlerId);
 }
 
+bool32 IsBattlerPredictedToSwitch(u32 battler)
+{
+    // Check for prediction flag on AI, whether they're using those predictions this turn, and whether the AI thinks the player should switch
+    if (AI_THINKING_STRUCT->aiFlags[AI_DATA->battlerDoingPrediction] & AI_FLAG_PREDICT_SWITCH
+        || AI_THINKING_STRUCT->aiFlags[AI_DATA->battlerDoingPrediction] & AI_FLAG_PREDICT_SWITCH)
+     {
+        if (AI_DATA->predictingSwitch && AI_DATA->shouldSwitch & (1u << battler))
+            return TRUE;
+     }
+    return FALSE;
+}
+
 void ClearBattlerMoveHistory(u32 battlerId)
 {
     memset(BATTLE_HISTORY->usedMoves[battlerId], 0, sizeof(BATTLE_HISTORY->usedMoves[battlerId]));
@@ -475,16 +487,6 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
         break;
     case EFFECT_FIRST_TURN_ONLY:
         if (!gDisableStructs[battlerAtk].isFirstTurn)
-            return TRUE;
-        break;
-    case EFFECT_FOCUS_PUNCH:
-        if (HasDamagingMove(battlerDef) && !((gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
-         || IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
-         || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
-         // TODO: || IsPredictedToSwitch(battlerDef, battlerAtk)
-            return TRUE;
-        // If AI could Sub and doesn't have a Sub, don't Punch yet
-        if (HasMoveEffect(battlerAtk, EFFECT_SUBSTITUTE) && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
             return TRUE;
         break;
     }
@@ -2779,9 +2781,8 @@ enum AIPivot ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 mov
         if (CountUsablePartyMons(battlerAtk) == 0)
             return CAN_TRY_PIVOT; // can't switch, but attack might still be useful
 
-        //TODO - predict opponent switching
-        /*if (IsPredictedToSwitch(battlerDef, battlerAtk) && !hasStatBoost)
-            return SHOULD_PIVOT; // Try pivoting so you can switch to a better matchup to counter your new opponent*/
+        if (IsBattlerPredictedToSwitch(battlerDef))
+            return SHOULD_PIVOT; // Try pivoting so you can switch to a better matchup to counter your new opponent
 
         if (AI_IsFaster(battlerAtk, battlerDef, move)) // Attacker goes first
         {
@@ -3793,6 +3794,10 @@ static u32 IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, u32 statI
     if (AI_DATA->abilities[battlerDef] == ABILITY_OPPORTUNIST)
         return NO_INCREASE;
 
+    // If predicting switch, stat increases are great momentum
+    if (IsBattlerPredictedToSwitch(battlerDef))
+        tempScore += WEAK_EFFECT;
+
     switch (statId)
     {
     case STAT_CHANGE_ATK:
@@ -3951,7 +3956,7 @@ void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 
 void IncreaseSleepScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+    if (((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0) && gMovesInfo[GetBestDmgMoveFromBattler(battlerAtk, battlerDef)].effect != EFFECT_FOCUS_PUNCH)
             || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_SLP || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
@@ -4193,9 +4198,8 @@ void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *
     else if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
         ADJUST_SCORE_PTR(DECENT_EFFECT);
 
-    // TODO:
-    // if (IsPredictedToSwitch(battlerDef, battlerAtk)
-    //     ADJUST_SCORE_PTR(DECENT_EFFECT);
+    if (IsBattlerPredictedToSwitch(battlerDef))
+        ADJUST_SCORE(DECENT_EFFECT);
 
     if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
      || HasMoveEffect(battlerDef, EFFECT_TOXIC)
