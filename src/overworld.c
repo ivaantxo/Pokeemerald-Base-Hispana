@@ -1653,8 +1653,10 @@ void UpdatePalettesWithTime(u32 palettes)
         u32 mask = 1 << 16;
         if (palettes >= (1 << 16))
         for (i = 0; i < 16; i++, mask <<= 1)
+        {
             if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(i)))
                 palettes &= ~(mask);
+        }
 
     palettes &= PALETTES_MAP | PALETTES_OBJECTS; // Don't blend UI pals
     if (!palettes)

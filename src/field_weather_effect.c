@@ -1415,8 +1415,8 @@ void FogHorizontal_Main(void)
         CreateFogHorizontalSprites();
         if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
         {
-          Weather_SetTargetBlendCoeffs(12, 8, 3);
-          UpdateShadowColor(RGB(15, 15, 15)); // Gray
+            Weather_SetTargetBlendCoeffs(12, 8, 3);
+            UpdateShadowColor(RGB(15, 15, 15)); // Gray
         }
         else
         {

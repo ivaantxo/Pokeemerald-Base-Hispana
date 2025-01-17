@@ -2613,6 +2613,8 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
                         gFollowerBasicMessages[emotion].script);
 }
 
+#define sLightType data[5]
+
 // Sprite callback for light sprites
 void UpdateLightSprite(struct Sprite *sprite)
 {
@@ -2641,7 +2643,7 @@ void UpdateLightSprite(struct Sprite *sprite)
         return;
     }
 
-    switch (sprite->data[5]) // lightType
+    switch (sprite->sLightType)
     {
     default:
     case LIGHT_TYPE_BALL:
@@ -2693,7 +2695,7 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
     else
         UpdateSpritePaletteByTemplate(template, sprite);
     GetMapCoordsFromSpritePos(x + camX, y + camY, &sprite->x, &sprite->y);
-    sprite->data[5] = lightType;
+    sprite->sLightType = lightType;
     sprite->data[6] = x;
     sprite->data[7] = y;
     sprite->affineAnims = gDummySpriteAffineAnimTable;
@@ -2718,8 +2720,11 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
         sprite->oam.priority = 2;
         sprite->subpriority = 0xFF;
         sprite->oam.objMode = ST_OAM_OBJ_BLEND;
+        break;
     }
 }
+
+#undef sLightType
 
 void TrySpawnLightSprites(s16 camX, s16 camY)
 {
