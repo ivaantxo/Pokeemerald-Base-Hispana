@@ -1355,9 +1355,6 @@ void FogHorizontal_Main(void);
 static void CreateFogHorizontalSprites(void);
 static void DestroyFogHorizontalSprites(void);
 
-// Within the weather palette, shadow sprites' color index
-#define SHADOW_COLOR_INDEX 9
-
 // Updates just the color of shadows to match special weather blending
 u8 UpdateShadowColor(u16 color)
 {

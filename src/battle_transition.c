@@ -3916,7 +3916,7 @@ void Task_BattleTransition_Intro(u8 taskId)
 static bool8 TransitionIntro_FadeToGray(struct Task *task)
 {
     u8 paletteNum = IndexOfSpritePaletteTag(TAG_WEATHER_START);
-    u16 index = OBJ_PLTT_ID(paletteNum) + 9; // SHADOW_COLOR_INDEX
+    u16 index = OBJ_PLTT_ID(paletteNum) + SHADOW_COLOR_INDEX;
     if (task->tDelayTimer == 0 || --task->tDelayTimer == 0)
     {
         task->tDelayTimer = task->tFadeToGrayDelay;
@@ -3957,7 +3957,7 @@ static bool8 TransitionIntro_FadeFromGray(struct Task *task)
         SetGpuReg(REG_OFFSET_BLDCNT, task->tBldCntSaved);
         if (paletteNum < 16)
         {
-            u16 index = OBJ_PLTT_ID(paletteNum) + 9; // SHADOW_COLOR_INDEX
+            u16 index = OBJ_PLTT_ID(paletteNum) + SHADOW_COLOR_INDEX;
             gPlttBufferFaded[index] = task->tShadowColor;
         }
     }

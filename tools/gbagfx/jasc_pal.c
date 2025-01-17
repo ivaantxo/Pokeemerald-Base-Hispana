@@ -166,8 +166,7 @@ void ReadJascPalette(char *path, struct Palette *palette)
 
     if (fp == NULL)
         return;
-    // fprintf(stderr, "Opened auxiliary .pla file for reading: %s\n", path);
-    
+
     int i = 0;
     // Keep reading lines until number of colors is reached or we run out
     while (i < palette->numColors && fgets(line, MAX_LINE_LENGTH, fp) != NULL)

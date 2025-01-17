@@ -244,7 +244,7 @@ static u8 UpdateTimeOfDayPaletteFade(void)
         if (gPaletteFade.delayCounter < gPaletteFade_delay)
         {
             gPaletteFade.delayCounter++;
-            return 2;
+            return PALETTE_FADE_STATUS_DELAY;
         }
         gPaletteFade.delayCounter = 0;
     }
@@ -284,8 +284,8 @@ static u8 UpdateTimeOfDayPaletteFade(void)
     // palettes that were not blended above must be copied through
     if ((copyPalettes = ~timePalettes))
     {
-        u16 * src1 = src;
-        u16 * dst1 = dst;
+        u16 *src1 = src;
+        u16 *dst1 = dst;
         while (copyPalettes)
         {
             if (copyPalettes & 1)
@@ -355,7 +355,7 @@ static u32 UpdateNormalPaletteFade(void)
             if (gPaletteFade.delayCounter < gPaletteFade_delay)
             {
                 gPaletteFade.delayCounter++;
-                return 2;
+                return PALETTE_FADE_STATUS_DELAY;
             }
             gPaletteFade.delayCounter = 0;
         }
@@ -870,14 +870,14 @@ void TimeMixPalettes(u32 palettes, u16 *src, u16 *dst, struct BlendSettings *ble
     u32 defaultColor = DEFAULT_LIGHT_COLOR;
 
     if (!palettes)
-    return;
+        return;
 
     color0 = blend0->blendColor;
     tint0 = blend0->isTint;
-    coeff0 = tint0 ? 8*2 : blend0->coeff*2;
+    coeff0 = tint0 ? 16 : blend0->coeff * 2;
     color1 = blend1->blendColor;
     tint1 = blend1->isTint;
-    coeff1 = tint1 ? 8*2 : blend1->coeff*2;
+    coeff1 = tint1 ? 16 : blend1->coeff * 2;
 
     if (tint0)
     {

@@ -781,8 +781,8 @@ void FadeScreen(u8 mode, s8 delay)
         {
             UpdateAltBgPalettes(PALETTES_BG);
             BeginTimeOfDayPaletteFade(PALETTES_ALL, delay, 16, 0,
-                                      (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time0],
-                                      (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.time1],
+                                      (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.initialTimeOfDay],
+                                      (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.finalTimeOfDay],
                                       currentTimeBlend.weight, fadeColor);
         }
         else
