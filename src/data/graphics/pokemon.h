@@ -19787,92 +19787,92 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u8 gMonFootprint_Furfrou[] = INCBIN_U8("graphics/pokemon/furfrou/footprint.1bpp");
 #endif //P_FOOTPRINTS
 
-    const u32 gMonFrontPic_FurfrouHeartTrim[] = INCBIN_U32("graphics/pokemon/furfrou/heart_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouHeartTrim[] = INCBIN_U32("graphics/pokemon/furfrou/heart_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouHeartTrim[] = INCBIN_U32("graphics/pokemon/furfrou/heart_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouHeartTrim[] = INCBIN_U32("graphics/pokemon/furfrou/heart_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouHeartTrim[] = INCBIN_U8("graphics/pokemon/furfrou/heart_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouHeart[] = INCBIN_U32("graphics/pokemon/furfrou/heart/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouHeart[] = INCBIN_U32("graphics/pokemon/furfrou/heart/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouHeart[] = INCBIN_U32("graphics/pokemon/furfrou/heart/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouHeart[] = INCBIN_U32("graphics/pokemon/furfrou/heart/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouHeart[] = INCBIN_U8("graphics/pokemon/furfrou/heart/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouStarTrim[] = INCBIN_U32("graphics/pokemon/furfrou/star_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouStarTrim[] = INCBIN_U32("graphics/pokemon/furfrou/star_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouStarTrim[] = INCBIN_U32("graphics/pokemon/furfrou/star_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouStarTrim[] = INCBIN_U32("graphics/pokemon/furfrou/star_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouStarTrim[] = INCBIN_U8("graphics/pokemon/furfrou/star_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouStar[] = INCBIN_U32("graphics/pokemon/furfrou/star/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouStar[] = INCBIN_U32("graphics/pokemon/furfrou/star/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouStar[] = INCBIN_U32("graphics/pokemon/furfrou/star/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouStar[] = INCBIN_U32("graphics/pokemon/furfrou/star/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouStar[] = INCBIN_U8("graphics/pokemon/furfrou/star/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouDiamondTrim[] = INCBIN_U32("graphics/pokemon/furfrou/diamond_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouDiamondTrim[] = INCBIN_U32("graphics/pokemon/furfrou/diamond_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouDiamondTrim[] = INCBIN_U32("graphics/pokemon/furfrou/diamond_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouDiamondTrim[] = INCBIN_U32("graphics/pokemon/furfrou/diamond_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouDiamondTrim[] = INCBIN_U8("graphics/pokemon/furfrou/diamond_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouDiamond[] = INCBIN_U32("graphics/pokemon/furfrou/diamond/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouDiamond[] = INCBIN_U32("graphics/pokemon/furfrou/diamond/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouDiamond[] = INCBIN_U32("graphics/pokemon/furfrou/diamond/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouDiamond[] = INCBIN_U32("graphics/pokemon/furfrou/diamond/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouDiamond[] = INCBIN_U8("graphics/pokemon/furfrou/diamond/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouDebutanteTrim[] = INCBIN_U32("graphics/pokemon/furfrou/debutante_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouDebutanteTrim[] = INCBIN_U32("graphics/pokemon/furfrou/debutante_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouDebutanteTrim[] = INCBIN_U32("graphics/pokemon/furfrou/debutante_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouDebutanteTrim[] = INCBIN_U32("graphics/pokemon/furfrou/debutante_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouDebutanteTrim[] = INCBIN_U8("graphics/pokemon/furfrou/debutante_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouDebutante[] = INCBIN_U32("graphics/pokemon/furfrou/debutante/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouDebutante[] = INCBIN_U32("graphics/pokemon/furfrou/debutante/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouDebutante[] = INCBIN_U32("graphics/pokemon/furfrou/debutante/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouDebutante[] = INCBIN_U32("graphics/pokemon/furfrou/debutante/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouDebutante[] = INCBIN_U8("graphics/pokemon/furfrou/debutante/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouMatronTrim[] = INCBIN_U32("graphics/pokemon/furfrou/matron_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouMatronTrim[] = INCBIN_U32("graphics/pokemon/furfrou/matron_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouMatronTrim[] = INCBIN_U32("graphics/pokemon/furfrou/matron_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouMatronTrim[] = INCBIN_U32("graphics/pokemon/furfrou/matron_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouMatronTrim[] = INCBIN_U8("graphics/pokemon/furfrou/matron_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouMatron[] = INCBIN_U32("graphics/pokemon/furfrou/matron/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouMatron[] = INCBIN_U32("graphics/pokemon/furfrou/matron/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouMatron[] = INCBIN_U32("graphics/pokemon/furfrou/matron/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouMatron[] = INCBIN_U32("graphics/pokemon/furfrou/matron/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouMatron[] = INCBIN_U8("graphics/pokemon/furfrou/matron/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouDandyTrim[] = INCBIN_U32("graphics/pokemon/furfrou/dandy_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouDandyTrim[] = INCBIN_U32("graphics/pokemon/furfrou/dandy_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouDandyTrim[] = INCBIN_U32("graphics/pokemon/furfrou/dandy_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouDandyTrim[] = INCBIN_U32("graphics/pokemon/furfrou/dandy_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouDandyTrim[] = INCBIN_U8("graphics/pokemon/furfrou/dandy_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouDandy[] = INCBIN_U32("graphics/pokemon/furfrou/dandy/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouDandy[] = INCBIN_U32("graphics/pokemon/furfrou/dandy/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouDandy[] = INCBIN_U32("graphics/pokemon/furfrou/dandy/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouDandy[] = INCBIN_U32("graphics/pokemon/furfrou/dandy/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouDandy[] = INCBIN_U8("graphics/pokemon/furfrou/dandy/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouLaReineTrim[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouLaReineTrim[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouLaReineTrim[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouLaReineTrim[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouLaReineTrim[] = INCBIN_U8("graphics/pokemon/furfrou/la_reine_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouLaReine[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouLaReine[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouLaReine[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouLaReine[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouLaReine[] = INCBIN_U8("graphics/pokemon/furfrou/la_reine/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouKabukiTrim[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouKabukiTrim[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouKabukiTrim[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouKabukiTrim[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouKabukiTrim[] = INCBIN_U8("graphics/pokemon/furfrou/kabuki_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouKabuki[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouKabuki[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouKabuki[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouKabuki[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouKabuki[] = INCBIN_U8("graphics/pokemon/furfrou/kabuki/icon.4bpp");
 
-    const u32 gMonFrontPic_FurfrouPharaohTrim[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh_trim/anim_front.4bpp.lz");
-    const u32 gMonPalette_FurfrouPharaohTrim[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh_trim/normal.gbapal.lz");
-    const u32 gMonBackPic_FurfrouPharaohTrim[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh_trim/back.4bpp.lz");
-    const u32 gMonShinyPalette_FurfrouPharaohTrim[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh_trim/shiny.gbapal.lz");
-    const u8 gMonIcon_FurfrouPharaohTrim[] = INCBIN_U8("graphics/pokemon/furfrou/pharaoh_trim/icon.4bpp");
+    const u32 gMonFrontPic_FurfrouPharaoh[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh/anim_front.4bpp.lz");
+    const u32 gMonPalette_FurfrouPharaoh[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh/normal.gbapal.lz");
+    const u32 gMonBackPic_FurfrouPharaoh[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh/back.4bpp.lz");
+    const u32 gMonShinyPalette_FurfrouPharaoh[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh/shiny.gbapal.lz");
+    const u8 gMonIcon_FurfrouPharaoh[] = INCBIN_U8("graphics/pokemon/furfrou/pharaoh/icon.4bpp");
 
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_FurfrouNatural[] = INCBIN_COMP("graphics/pokemon/furfrou/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouHeartTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/heart_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouStarTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/star_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouDiamondTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/diamond_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouDebutanteTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/debutante_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouMatronTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/matron_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouDandyTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/dandy_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouLaReineTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/la_reine_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouKabukiTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/kabuki_trim/overworld.4bpp");
-    const u32 gObjectEventPic_FurfrouPharaohTrim[] = INCBIN_COMP("graphics/pokemon/furfrou/pharaoh_trim/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouHeart[] = INCBIN_COMP("graphics/pokemon/furfrou/heart/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouStar[] = INCBIN_COMP("graphics/pokemon/furfrou/star/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouDiamond[] = INCBIN_COMP("graphics/pokemon/furfrou/diamond/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouDebutante[] = INCBIN_COMP("graphics/pokemon/furfrou/debutante/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouMatron[] = INCBIN_COMP("graphics/pokemon/furfrou/matron/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouDandy[] = INCBIN_COMP("graphics/pokemon/furfrou/dandy/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouLaReine[] = INCBIN_COMP("graphics/pokemon/furfrou/la_reine/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouKabuki[] = INCBIN_COMP("graphics/pokemon/furfrou/kabuki/overworld.4bpp");
+    const u32 gObjectEventPic_FurfrouPharaoh[] = INCBIN_COMP("graphics/pokemon/furfrou/pharaoh/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gOverworldPalette_FurfrouNatural[] = INCBIN_U32("graphics/pokemon/furfrou/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouHeartTrim[] = INCBIN_U32("graphics/pokemon/furfrou/heart_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouStarTrim[] = INCBIN_U32("graphics/pokemon/furfrou/star_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouDiamondTrim[] = INCBIN_U32("graphics/pokemon/furfrou/diamond_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouDebutanteTrim[] = INCBIN_U32("graphics/pokemon/furfrou/debutante_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouMatronTrim[] = INCBIN_U32("graphics/pokemon/furfrou/matron_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouDandyTrim[] = INCBIN_U32("graphics/pokemon/furfrou/dandy_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouLaReineTrim[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouKabukiTrim[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki_trim/overworld_normal.gbapal.lz");
-    const u32 gOverworldPalette_FurfrouPharaohTrim[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh_trim/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouHeart[] = INCBIN_U32("graphics/pokemon/furfrou/heart/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouStar[] = INCBIN_U32("graphics/pokemon/furfrou/star/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouDiamond[] = INCBIN_U32("graphics/pokemon/furfrou/diamond/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouDebutante[] = INCBIN_U32("graphics/pokemon/furfrou/debutante/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouMatron[] = INCBIN_U32("graphics/pokemon/furfrou/matron/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouDandy[] = INCBIN_U32("graphics/pokemon/furfrou/dandy/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouLaReine[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouKabuki[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki/overworld_normal.gbapal.lz");
+    const u32 gOverworldPalette_FurfrouPharaoh[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh/overworld_normal.gbapal.lz");
     const u32 gShinyOverworldPalette_FurfrouNatural[] = INCBIN_U32("graphics/pokemon/furfrou/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouHeartTrim[] = INCBIN_U32("graphics/pokemon/furfrou/heart_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouStarTrim[] = INCBIN_U32("graphics/pokemon/furfrou/star_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouDiamondTrim[] = INCBIN_U32("graphics/pokemon/furfrou/diamond_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouDebutanteTrim[] = INCBIN_U32("graphics/pokemon/furfrou/debutante_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouMatronTrim[] = INCBIN_U32("graphics/pokemon/furfrou/matron_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouDandyTrim[] = INCBIN_U32("graphics/pokemon/furfrou/dandy_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouLaReineTrim[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouKabukiTrim[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki_trim/overworld_shiny.gbapal.lz");
-    const u32 gShinyOverworldPalette_FurfrouPharaohTrim[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh_trim/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouHeart[] = INCBIN_U32("graphics/pokemon/furfrou/heart/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouStar[] = INCBIN_U32("graphics/pokemon/furfrou/star/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouDiamond[] = INCBIN_U32("graphics/pokemon/furfrou/diamond/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouDebutante[] = INCBIN_U32("graphics/pokemon/furfrou/debutante/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouMatron[] = INCBIN_U32("graphics/pokemon/furfrou/matron/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouDandy[] = INCBIN_U32("graphics/pokemon/furfrou/dandy/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouLaReine[] = INCBIN_U32("graphics/pokemon/furfrou/la_reine/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouKabuki[] = INCBIN_U32("graphics/pokemon/furfrou/kabuki/overworld_shiny.gbapal.lz");
+    const u32 gShinyOverworldPalette_FurfrouPharaoh[] = INCBIN_U32("graphics/pokemon/furfrou/pharaoh/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_FURFROU
