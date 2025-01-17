@@ -33,7 +33,6 @@ struct Weather
         } s1;
         struct
         {
-            u8 filler0[0xA0];
             struct Sprite *fogHSprites[NUM_FOG_HORIZONTAL_SPRITES];
             struct Sprite *ashSprites[NUM_ASH_SPRITES];
             struct Sprite *fogDSprites[NUM_FOG_DIAGONAL_SPRITES];
@@ -130,7 +129,6 @@ struct Weather
     s16 droughtLastBrightnessStage;
     s16 droughtTimer;
     s16 droughtState;
-    u8 droughtUnused[9];
     u8 loadDroughtPalsIndex;
     u8 loadDroughtPalsOffset;
 };

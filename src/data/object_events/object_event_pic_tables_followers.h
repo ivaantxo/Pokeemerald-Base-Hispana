@@ -4679,32 +4679,32 @@ static const struct SpriteFrameImage sPicTable_Pangoro[] = {
 static const struct SpriteFrameImage sPicTable_FurfrouNatural[] = {
     overworld_ascending_frames(gObjectEventPic_FurfrouNatural, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouHeartTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouHeartTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouHeart[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouHeart, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouStarTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouStarTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouStar[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouStar, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouDiamondTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouDiamondTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouDiamond[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouDiamond, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouDebutanteTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouDebutanteTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouDebutante[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouDebutante, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouMatronTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouMatronTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouMatron[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouMatron, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouDandyTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouDandyTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouDandy[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouDandy, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouLaReineTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouLaReineTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouLaReine[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouLaReine, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouKabukiTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouKabukiTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouKabuki[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouKabuki, 4, 4),
 };
-static const struct SpriteFrameImage sPicTable_FurfrouPharaohTrim[] = {
-    overworld_ascending_frames(gObjectEventPic_FurfrouPharaohTrim, 4, 4),
+static const struct SpriteFrameImage sPicTable_FurfrouPharaoh[] = {
+    overworld_ascending_frames(gObjectEventPic_FurfrouPharaoh, 4, 4),
 };
 #endif //P_FAMILY_FURFROU
 
