@@ -1876,8 +1876,8 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
 
     return critChance;
 }
-#undef CRIT_BLOCKED
-#undef ALWAYS_CRITS
+#undef CRITICAL_HIT_BLOCKED
+#undef CRITICAL_HIT_ALWAYS
 
 s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
 {
@@ -6073,6 +6073,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_DEFROST: // defrosting check
             if (gBattleMons[gBattlerTarget].status1 & STATUS1_FREEZE
+                && IsBattlerTurnDamaged(gBattlerTarget)
                 && IsBattlerAlive(gBattlerTarget)
                 && gBattlerAttacker != gBattlerTarget
                 && (moveType == TYPE_FIRE || CanBurnHitThaw(gCurrentMove))
