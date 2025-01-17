@@ -230,8 +230,8 @@ static u8 UpdateTimeOfDayPaletteFade(void)
     u16 selectedPalettes;
     u16 timePalettes = 0; // palettes passed to the time-blender
     u16 copyPalettes;
-    u16 * src;
-    u16 * dst;
+    u16 *src;
+    u16 *dst;
 
     if (!gPaletteFade.active)
         return PALETTE_FADE_STATUS_DONE;

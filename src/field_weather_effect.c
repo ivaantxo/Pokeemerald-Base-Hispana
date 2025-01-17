@@ -1413,7 +1413,7 @@ void FogHorizontal_Main(void)
         if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
         {
             Weather_SetTargetBlendCoeffs(12, 8, 3);
-            UpdateShadowColor(RGB(15, 15, 15)); // Gray
+            UpdateShadowColor(RGB_GRAY);
         }
         else
         {
@@ -2005,7 +2005,7 @@ void Sandstorm_Main(void)
         break;
     case 1:
         Weather_SetTargetBlendCoeffs(16, 2, 0);
-        UpdateShadowColor(RGB(15, 15, 15));
+        UpdateShadowColor(RGB_GRAY);
         gWeatherPtr->initStep++;
         break;
     case 2:

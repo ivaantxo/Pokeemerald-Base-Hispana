@@ -1355,7 +1355,7 @@ static void InitPatternWeaveTransition(struct Task *task)
     sTransitionData->WIN0V = DISPLAY_HEIGHT;
     sTransitionData->BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL;
     sTransitionData->BLDALPHA = BLDALPHA_BLEND(task->tBlendTarget2, task->tBlendTarget1);
-    UpdateShadowColor(RGB(15, 15, 15)); // force shadows to gray
+    UpdateShadowColor(RGB_GRAY);
 
     for (i = 0; i < DISPLAY_HEIGHT; i++)
         gScanlineEffectRegBuffers[1][i] = DISPLAY_WIDTH;
@@ -4252,7 +4252,7 @@ static bool8 FrontierLogoWave_Init(struct Task *task)
     LZ77UnCompVram(sFrontierLogo_Tileset, tileset);
     LoadPalette(sFrontierLogo_Palette, BG_PLTT_ID(15), sizeof(sFrontierLogo_Palette));
     sTransitionData->cameraY = 0;
-    UpdateShadowColor(RGB(15, 15, 15)); // force shadows to gray
+    UpdateShadowColor(RGB_GRAY);
 
     task->tState++;
     return FALSE;
