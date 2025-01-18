@@ -1913,8 +1913,8 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
 
     return critChance;
 }
-#undef CRIT_BLOCKED
-#undef ALWAYS_CRITS
+#undef CRITICAL_HIT_BLOCKED
+#undef CRITICAL_HIT_ALWAYS
 
 s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
 {
@@ -5846,6 +5846,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_DEFROST: // defrosting check
             if (gBattleMons[gBattlerTarget].status1 & STATUS1_FREEZE
+                && TARGET_TURN_DAMAGED
                 && IsBattlerAlive(gBattlerTarget)
                 && gBattlerAttacker != gBattlerTarget
                 && (moveType == TYPE_FIRE || CanBurnHitThaw(gCurrentMove))
@@ -6940,7 +6941,7 @@ static void Cmd_switchinanim(void)
 {
     u32 battler;
 
-    CMD_ARGS(u8 battler, bool8 dontClearSubstitute);
+    CMD_ARGS(u8 battler, bool8 dontClearTransform, bool8 dontClearSubstitute);
 
     if (gBattleControllerExecFlags)
         return;
@@ -6957,7 +6958,7 @@ static void Cmd_switchinanim(void)
 
     gAbsentBattlerFlags &= ~(1u << battler);
 
-    BtlController_EmitSwitchInAnim(battler, BUFFER_A, gBattlerPartyIndexes[battler], cmd->dontClearSubstitute);
+    BtlController_EmitSwitchInAnim(battler, BUFFER_A, gBattlerPartyIndexes[battler], cmd->dontClearTransform, cmd->dontClearSubstitute);
     MarkBattlerForControllerExec(battler);
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16205,14 +16206,16 @@ void BS_GetBattlerSide(void)
 
 void BS_TrySymbiosis(void)
 {
-    NATIVE_ARGS();
+    NATIVE_ARGS(u8 battler);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
     //called by Bestow, Fling, and Bug Bite, which don't work with Cmd_removeitem.
-    u32 partner = BATTLE_PARTNER(gBattlerAttacker);
-    if (SYMBIOSIS_CHECK(gBattlerAttacker, partner))
+    u32 partner = BATTLE_PARTNER(battler);
+    if (SYMBIOSIS_CHECK(battler, partner))
     {
-        BestowItem(partner, gBattlerAttacker);
+        BestowItem(partner, battler);
         gLastUsedAbility = gBattleMons[partner].ability;
         gBattleScripting.battler = gBattlerAbility = partner;
+        gEffectBattler = battler;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SymbiosisActivates;
         return;

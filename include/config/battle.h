@@ -142,6 +142,7 @@
 #define B_SYMBIOSIS_GEMS            GEN_LATEST // En Gen7+, Symbiosis pasa un objeto después de un ataque potenciado por gema. Anteriormente, los objetos se pasaban antes de que el ataque potenciado por gema golpeara, haciendo que el efecto del objeto se aplicara.
 #define B_ABSORBING_ABILITY_STRING  GEN_LATEST // En Gen5+, las habilidades que absorben movimientos de un tipo específico usan una cadena genérica para aumentos y disminuciones de estadísticas.
 #define B_REDIRECT_ABILITY_IMMUNITY GEN_LATEST // En Gen5+, Pokémon con Lightning Rod/Storm Drain se vuelven inmunes a movimientos de tipo Eléctrico/Agua y aumentan su Sp. Atk en 1 etapa además del efecto de redirección.
+#define B_REDIRECT_ABILITY_ALLIES   GEN_LATEST // En Gen4+, Pararrayos/Colector tambi�n redirigen los movimientos de los aliados.
 #define B_LEAF_GUARD_PREVENTS_REST  GEN_LATEST // En Gen5+, Leaf Guard previene el uso de Rest en luz solar intensa.
 #define B_SNOW_WARNING              GEN_LATEST // En Gen9+, Snow Warning convocará nieve en lugar de granizo.
 #define B_TRANSISTOR_BOOST          GEN_LATEST // En Gen9+, Transistor solo aumentará los movimientos de tipo Eléctrico en 1.3x en lugar de 1.5x.
