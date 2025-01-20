@@ -4204,12 +4204,7 @@ enum
 void SetupAISwitchingData(u32 battler, bool32 isAiRisky)
 {
     s32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-
-    // AI's data
-    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, isAiRisky);
-    if (ShouldSwitch(battler))
-        AI_DATA->shouldSwitch |= (1u << battler);
-
+    
     // AI's predicting data
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_SWITCH))
     {
@@ -4223,6 +4218,11 @@ void SetupAISwitchingData(u32 battler, bool32 isAiRisky)
         // Determine whether AI will use predictions this turn
         AI_DATA->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, 50);
     }
+
+    // AI's data
+    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, isAiRisky);
+    if (ShouldSwitch(battler))
+        AI_DATA->shouldSwitch |= (1u << battler);
 }
 
 static void HandleTurnActionSelectionState(void)
