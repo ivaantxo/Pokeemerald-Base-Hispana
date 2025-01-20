@@ -68,6 +68,7 @@
 
 #define BATTLE_BUFFER_LINK_SIZE 0x1000
 
+// Cleared each time a mon leaves the field, either by switching out or fainting
 struct DisableStruct
 {
     u32 transformedMonPersonality;
