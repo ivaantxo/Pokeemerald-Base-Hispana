@@ -5410,6 +5410,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     switch (moveEffect)
     {
     case EFFECT_PURSUIT:
+    {
         u32 hitsToKO = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
         if (hitsToKO == 2)
             ADJUST_SCORE(GOOD_EFFECT);
@@ -5418,6 +5419,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         // else if (IsPredictedToUsePursuitableMove(battlerDef, battlerAtk) && !MoveWouldHitFirst(move, battlerAtk, battlerDef)) //Pursuit against fast U-Turn
         //     ADJUST_SCORE(GOOD_EFFECT);
         break;
+    }
 
     case EFFECT_FOCUS_PUNCH:
         ADJUST_SCORE(DECENT_EFFECT);
