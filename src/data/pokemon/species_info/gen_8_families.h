@@ -54,10 +54,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 1, SHADOW_SIZE_S)
         FOOTPRINT(Grookey)
         OVERWORLD(
-            sPicTable_Grookey,
+            gObjectEventPic_Grookey,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Grookey,
             gShinyOverworldPalette_Grookey
         )
@@ -116,10 +117,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(5, 6, SHADOW_SIZE_M)
         FOOTPRINT(Thwackey)
         OVERWORLD(
-            sPicTable_Thwackey,
+            gObjectEventPic_Thwackey,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Thwackey,
             gShinyOverworldPalette_Thwackey
         )
@@ -177,10 +179,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 8, SHADOW_SIZE_L)
         FOOTPRINT(Rillaboom)
         OVERWORLD(
-            sPicTable_Rillaboom,
+            gObjectEventPic_Rillaboom,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Rillaboom,
             gShinyOverworldPalette_Rillaboom
         )
@@ -299,10 +302,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 6, SHADOW_SIZE_S)
         FOOTPRINT(Scorbunny)
         OVERWORLD(
-            sPicTable_Scorbunny,
+            gObjectEventPic_Scorbunny,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Scorbunny,
             gShinyOverworldPalette_Scorbunny
         )
@@ -361,10 +365,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-4, 5, SHADOW_SIZE_S)
         FOOTPRINT(Raboot)
         OVERWORLD(
-            sPicTable_Raboot,
+            gObjectEventPic_Raboot,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Raboot,
             gShinyOverworldPalette_Raboot
         )
@@ -423,10 +428,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 14, SHADOW_SIZE_M)
         FOOTPRINT(Cinderace)
         OVERWORLD(
-            sPicTable_Cinderace,
+            gObjectEventPic_Cinderace,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Cinderace,
             gShinyOverworldPalette_Cinderace
         )
@@ -547,10 +553,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 3, SHADOW_SIZE_S)
         FOOTPRINT(Sobble)
         OVERWORLD(
-            sPicTable_Sobble,
+            gObjectEventPic_Sobble,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Sobble,
             gShinyOverworldPalette_Sobble
         )
@@ -609,10 +616,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 5, SHADOW_SIZE_M)
         FOOTPRINT(Drizzile)
         OVERWORLD(
-            sPicTable_Drizzile,
+            gObjectEventPic_Drizzile,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Drizzile,
             gShinyOverworldPalette_Drizzile
         )
@@ -671,10 +679,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-5, 12, SHADOW_SIZE_S)
         FOOTPRINT(Inteleon)
         OVERWORLD(
-            sPicTable_Inteleon,
+            gObjectEventPic_Inteleon,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Inteleon,
             gShinyOverworldPalette_Inteleon
         )
@@ -794,10 +803,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-7, 5, SHADOW_SIZE_S)
         FOOTPRINT(Skwovet)
         OVERWORLD(
-            sPicTable_Skwovet,
+            gObjectEventPic_Skwovet,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Skwovet,
             gShinyOverworldPalette_Skwovet
         )
@@ -858,10 +868,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-11, 10, SHADOW_SIZE_M)
         FOOTPRINT(Greedent)
         OVERWORLD(
-            sPicTable_Greedent,
+            gObjectEventPic_Greedent,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Greedent,
             gShinyOverworldPalette_Greedent
         )
@@ -929,10 +940,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, -3, SHADOW_SIZE_S)
         FOOTPRINT(Rookidee)
         OVERWORLD(
-            sPicTable_Rookidee,
+            gObjectEventPic_Rookidee,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Rookidee,
             gShinyOverworldPalette_Rookidee
         )
@@ -1001,10 +1013,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 16, SHADOW_SIZE_S)
         FOOTPRINT(Corvisquire)
         OVERWORLD(
-            sPicTable_Corvisquire,
+            gObjectEventPic_Corvisquire,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Corvisquire,
             gShinyOverworldPalette_Corvisquire
         )
@@ -1067,10 +1080,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 9, SHADOW_SIZE_L)
         FOOTPRINT(Corviknight)
         OVERWORLD(
-            sPicTable_Corviknight,
+            gObjectEventPic_Corviknight,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Corviknight,
             gShinyOverworldPalette_Corviknight
         )
@@ -1189,10 +1203,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 1, SHADOW_SIZE_S)
         FOOTPRINT(Blipbug)
         OVERWORLD(
-            sPicTable_Blipbug,
+            gObjectEventPic_Blipbug,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Blipbug,
             gShinyOverworldPalette_Blipbug
         )
@@ -1254,10 +1269,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 0, SHADOW_SIZE_M)
         FOOTPRINT(Dottler)
         OVERWORLD(
-            sPicTable_Dottler,
+            gObjectEventPic_Dottler,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dottler,
             gShinyOverworldPalette_Dottler
         )
@@ -1318,10 +1334,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 15, SHADOW_SIZE_M)
         FOOTPRINT(Orbeetle)
         OVERWORLD(
-            sPicTable_Orbeetle,
+            gObjectEventPic_Orbeetle,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Orbeetle,
             gShinyOverworldPalette_Orbeetle
         )
@@ -1442,10 +1459,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 4, SHADOW_SIZE_M)
         FOOTPRINT(Nickit)
         OVERWORLD(
-            sPicTable_Nickit,
+            gObjectEventPic_Nickit,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Nickit,
             gShinyOverworldPalette_Nickit
         )
@@ -1505,10 +1523,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-9, 7, SHADOW_SIZE_M)
         FOOTPRINT(Thievul)
         OVERWORLD(
-            sPicTable_Thievul,
+            gObjectEventPic_Thievul,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Thievul,
             gShinyOverworldPalette_Thievul
         )
@@ -1568,10 +1587,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 2, SHADOW_SIZE_S)
         FOOTPRINT(Gossifleur)
         OVERWORLD(
-            sPicTable_Gossifleur,
+            gObjectEventPic_Gossifleur,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Gossifleur,
             gShinyOverworldPalette_Gossifleur
         )
@@ -1631,10 +1651,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-2, 8, SHADOW_SIZE_S)
         FOOTPRINT(Eldegoss)
         OVERWORLD(
-            sPicTable_Eldegoss,
+            gObjectEventPic_Eldegoss,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Eldegoss,
             gShinyOverworldPalette_Eldegoss
         )
@@ -1694,10 +1715,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 1, SHADOW_SIZE_S)
         FOOTPRINT(Wooloo)
         OVERWORLD(
-            sPicTable_Wooloo,
+            gObjectEventPic_Wooloo,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Wooloo,
             gShinyOverworldPalette_Wooloo
         )
@@ -1757,10 +1779,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 8, SHADOW_SIZE_M)
         FOOTPRINT(Dubwool)
         OVERWORLD(
-            sPicTable_Dubwool,
+            gObjectEventPic_Dubwool,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dubwool,
             gShinyOverworldPalette_Dubwool
         )
@@ -1823,10 +1846,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(3, 1, SHADOW_SIZE_S)
         FOOTPRINT(Chewtle)
         OVERWORLD(
-            sPicTable_Chewtle,
+            gObjectEventPic_Chewtle,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Chewtle,
             gShinyOverworldPalette_Chewtle
         )
@@ -1889,10 +1913,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-2, 4, SHADOW_SIZE_L)
         FOOTPRINT(Drednaw)
         OVERWORLD(
-            sPicTable_Drednaw,
+            gObjectEventPic_Drednaw,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Drednaw,
             gShinyOverworldPalette_Drednaw
         )
@@ -2012,10 +2037,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 2, SHADOW_SIZE_M)
         FOOTPRINT(Yamper)
         OVERWORLD(
-            sPicTable_Yamper,
+            gObjectEventPic_Yamper,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Yamper,
             gShinyOverworldPalette_Yamper
         )
@@ -2075,10 +2101,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 7, SHADOW_SIZE_M)
         FOOTPRINT(Boltund)
         OVERWORLD(
-            sPicTable_Boltund,
+            gObjectEventPic_Boltund,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Boltund,
             gShinyOverworldPalette_Boltund
         )
@@ -2138,10 +2165,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, -3, SHADOW_SIZE_S)
         FOOTPRINT(Rolycoly)
         OVERWORLD(
-            sPicTable_Rolycoly,
+            gObjectEventPic_Rolycoly,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Rolycoly,
             gShinyOverworldPalette_Rolycoly
         )
@@ -2200,10 +2228,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 3, SHADOW_SIZE_M)
         FOOTPRINT(Carkol)
         OVERWORLD(
-            sPicTable_Carkol,
+            gObjectEventPic_Carkol,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Carkol,
             gShinyOverworldPalette_Carkol
         )
@@ -2262,10 +2291,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 12, SHADOW_SIZE_L)
         FOOTPRINT(Coalossal)
         OVERWORLD(
-            sPicTable_Coalossal,
+            gObjectEventPic_Coalossal,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Coalossal,
             gShinyOverworldPalette_Coalossal
         )
@@ -2385,10 +2415,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, -3, SHADOW_SIZE_S)
         FOOTPRINT(Applin)
         OVERWORLD(
-            sPicTable_Applin,
+            gObjectEventPic_Applin,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Applin,
             gShinyOverworldPalette_Applin
         )
@@ -2451,10 +2482,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-6, 11, SHADOW_SIZE_S)
         FOOTPRINT(Flapple)
         OVERWORLD(
-            sPicTable_Flapple,
+            gObjectEventPic_Flapple,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Flapple,
             gShinyOverworldPalette_Flapple
         )
@@ -2571,10 +2603,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(5, 6, SHADOW_SIZE_L)
         FOOTPRINT(Appletun)
         OVERWORLD(
-            sPicTable_Appletun,
+            gObjectEventPic_Appletun,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Appletun,
             gShinyOverworldPalette_Appletun
         )
@@ -2692,10 +2725,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-4, 8, SHADOW_SIZE_S)
         FOOTPRINT(Dipplin)
         OVERWORLD(
-            sPicTable_Dipplin,
+            gObjectEventPic_Dipplin,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dipplin,
             gShinyOverworldPalette_Dipplin
         )
@@ -2754,10 +2788,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 12, SHADOW_SIZE_L)
         FOOTPRINT(Hydrapple)
         OVERWORLD(
-            sPicTable_Hydrapple,
+            gObjectEventPic_Hydrapple,
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Hydrapple,
             gShinyOverworldPalette_Hydrapple
         )
@@ -2817,10 +2852,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(3, 1, SHADOW_SIZE_M)
         FOOTPRINT(Silicobra)
         OVERWORLD(
-            sPicTable_Silicobra,
+            gObjectEventPic_Silicobra,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Silicobra,
             gShinyOverworldPalette_Silicobra
         )
@@ -2880,10 +2916,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, -1, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Sandaconda)
         OVERWORLD(
-            sPicTable_Sandaconda,
+            gObjectEventPic_Sandaconda,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Sandaconda,
             gShinyOverworldPalette_Sandaconda
         )
@@ -3002,10 +3039,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(5, 14, SHADOW_SIZE_M)
         FOOTPRINT(Cramorant)
         OVERWORLD(
-            sPicTable_Cramorant,
+            gObjectEventPic_Cramorant,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Cramorant,
             gShinyOverworldPalette_Cramorant
         )
@@ -3180,10 +3218,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, -5, SHADOW_SIZE_S)
         FOOTPRINT(Arrokuda)
         OVERWORLD(
-            sPicTable_Arrokuda,
+            gObjectEventPic_Arrokuda,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Arrokuda,
             gShinyOverworldPalette_Arrokuda
         )
@@ -3243,10 +3282,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(4, 5, SHADOW_SIZE_M)
         FOOTPRINT(Barraskewda)
         OVERWORLD(
-            sPicTable_Barraskewda,
+            gObjectEventPic_Barraskewda,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Barraskewda,
             gShinyOverworldPalette_Barraskewda
         )
@@ -3306,10 +3346,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-2, 1, SHADOW_SIZE_M)
         FOOTPRINT(Toxel)
         OVERWORLD(
-            sPicTable_Toxel,
+            gObjectEventPic_Toxel,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Toxel,
             gShinyOverworldPalette_Toxel
         )
@@ -3370,10 +3411,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-6, 13, SHADOW_SIZE_M)
         FOOTPRINT(Toxtricity)
         OVERWORLD(
-            sPicTable_ToxtricityAmped,
+            gObjectEventPic_ToxtricityAmped,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ToxtricityAmped,
             gShinyOverworldPalette_ToxtricityAmped
         )
@@ -3486,10 +3528,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 12, SHADOW_SIZE_M)
         FOOTPRINT(Toxtricity)
         OVERWORLD(
-            sPicTable_ToxtricityLowKey,
+            gObjectEventPic_ToxtricityLowKey,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ToxtricityLowKey,
             gShinyOverworldPalette_ToxtricityLowKey
         )
@@ -3608,10 +3651,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(6, -4, SHADOW_SIZE_S)
         FOOTPRINT(Sizzlipede)
         OVERWORLD(
-            sPicTable_Sizzlipede,
+            gObjectEventPic_Sizzlipede,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Sizzlipede,
             gShinyOverworldPalette_Sizzlipede
         )
@@ -3675,10 +3719,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 7, SHADOW_SIZE_M)
         FOOTPRINT(Centiskorch)
         OVERWORLD(
-            sPicTable_Centiskorch,
+            gObjectEventPic_Centiskorch,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Centiskorch,
             gShinyOverworldPalette_Centiskorch
         )
@@ -3798,10 +3843,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, -2, SHADOW_SIZE_S)
         FOOTPRINT(Clobbopus)
         OVERWORLD(
-            sPicTable_Clobbopus,
+            gObjectEventPic_Clobbopus,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Clobbopus,
             gShinyOverworldPalette_Clobbopus
         )
@@ -3860,10 +3906,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(4, 9, SHADOW_SIZE_M)
         FOOTPRINT(Grapploct)
         OVERWORLD(
-            sPicTable_Grapploct,
+            gObjectEventPic_Grapploct,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Grapploct,
             gShinyOverworldPalette_Grapploct
         )
@@ -3923,10 +3970,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(3, 3, SHADOW_SIZE_S)
         FOOTPRINT(Sinistea)
         OVERWORLD(
-            sPicTable_Sinistea,
+            gObjectEventPic_Sinistea,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Sinistea,
             gShinyOverworldPalette_Sinistea
         )
@@ -3987,10 +4035,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(3, 4, SHADOW_SIZE_S)
         FOOTPRINT(Sinistea)
         OVERWORLD(
-            sPicTable_Sinistea,
+            gObjectEventPic_Sinistea,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Sinistea,
             gShinyOverworldPalette_Sinistea
         )
@@ -4050,10 +4099,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 12, SHADOW_SIZE_S)
         FOOTPRINT(Polteageist)
         OVERWORLD(
-            sPicTable_Polteageist,
+            gObjectEventPic_Polteageist,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Polteageist,
             gShinyOverworldPalette_Polteageist
         )
@@ -4113,10 +4163,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 11, SHADOW_SIZE_S)
         FOOTPRINT(Polteageist)
         OVERWORLD(
-            sPicTable_Polteageist,
+            gObjectEventPic_Polteageist,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Polteageist,
             gShinyOverworldPalette_Polteageist
         )
@@ -4177,10 +4228,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 1, SHADOW_SIZE_M)
         FOOTPRINT(Hatenna)
         OVERWORLD(
-            sPicTable_Hatenna,
+            gObjectEventPic_Hatenna,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Hatenna,
             gShinyOverworldPalette_Hatenna
         )
@@ -4239,10 +4291,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 5, SHADOW_SIZE_M)
         FOOTPRINT(Hattrem)
         OVERWORLD(
-            sPicTable_Hattrem,
+            gObjectEventPic_Hattrem,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Hattrem,
             gShinyOverworldPalette_Hattrem
         )
@@ -4300,10 +4353,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(6, 13, SHADOW_SIZE_S)
         FOOTPRINT(Hatterene)
         OVERWORLD(
-            sPicTable_Hatterene,
+            gObjectEventPic_Hatterene,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Hatterene,
             gShinyOverworldPalette_Hatterene
         )
@@ -4423,10 +4477,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 2, SHADOW_SIZE_S)
         FOOTPRINT(Impidimp)
         OVERWORLD(
-            sPicTable_Impidimp,
+            gObjectEventPic_Impidimp,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Impidimp,
             gShinyOverworldPalette_Impidimp
         )
@@ -4485,10 +4540,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 7, SHADOW_SIZE_M)
         FOOTPRINT(Morgrem)
         OVERWORLD(
-            sPicTable_Morgrem,
+            gObjectEventPic_Morgrem,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Morgrem,
             gShinyOverworldPalette_Morgrem
         )
@@ -4547,10 +4603,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(1, 11, SHADOW_SIZE_L)
         FOOTPRINT(Grimmsnarl)
         OVERWORLD(
-            sPicTable_Grimmsnarl,
+            gObjectEventPic_Grimmsnarl,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Grimmsnarl,
             gShinyOverworldPalette_Grimmsnarl
         )
@@ -4670,10 +4727,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 6, SHADOW_SIZE_S)
         FOOTPRINT(Milcery)
         OVERWORLD(
-            sPicTable_Milcery,
+            gObjectEventPic_Milcery,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Milcery,
             gShinyOverworldPalette_Milcery
         )
@@ -4737,13 +4795,14 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_Alcremie ##sweet,                                      \
         .iconSprite = gMonIcon_AlcremieStrawberryVanillaCream, /*AlcremieStrawberry##cream##*/  \
         .iconPalIndex = 1,                                                                      \
-        SHADOW(0, 5, SHADOW_SIZE_S)                                                                            \
+        SHADOW(0, 5, SHADOW_SIZE_S)                                                             \
         FOOTPRINT(Alcremie)                                                                     \
         OVERWORLD(                                                                              \
-            sPicTable_AlcremieStrawberry, /*Alcremie ##sweet*/                                  \
+            gObjectEventPic_AlcremieStrawberry, /*Alcremie ##sweet*/                            \
             SIZE_32x32,                                                                         \
             SHADOW_SIZE_M,                                                                      \
             TRACKS_FOOT,                                                                        \
+            sAnimTable_Following,                                                               \
             gOverworldPalette_AlcremieStrawberryVanillaCream, /*Alcremie ##sweet##cream*/       \
             gShinyOverworldPalette_AlcremieStrawberryVanillaCream /*Alcremie ##sweet##cream*/   \
         )                                                                                       \
@@ -4909,10 +4968,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-7, 5, SHADOW_SIZE_S)
         FOOTPRINT(Falinks)
         OVERWORLD(
-            sPicTable_Falinks,
+            gObjectEventPic_Falinks,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Falinks,
             gShinyOverworldPalette_Falinks
         )
@@ -4971,10 +5031,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, -4, SHADOW_SIZE_S)
         FOOTPRINT(Pincurchin)
         OVERWORLD(
-            sPicTable_Pincurchin,
+            gObjectEventPic_Pincurchin,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Pincurchin,
             gShinyOverworldPalette_Pincurchin
         )
@@ -5036,10 +5097,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-2, -7, SHADOW_SIZE_S)
         FOOTPRINT(Snom)
         OVERWORLD(
-            sPicTable_Snom,
+            gObjectEventPic_Snom,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Snom,
             gShinyOverworldPalette_Snom
         )
@@ -5100,10 +5162,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-7, 13, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Frosmoth)
         OVERWORLD(
-            sPicTable_Frosmoth,
+            gObjectEventPic_Frosmoth,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Frosmoth,
             gShinyOverworldPalette_Frosmoth
         )
@@ -5163,10 +5226,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 10, SHADOW_SIZE_L)
         FOOTPRINT(Stonjourner)
         OVERWORLD(
-            sPicTable_Stonjourner,
+            gObjectEventPic_Stonjourner,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Stonjourner,
             gShinyOverworldPalette_Stonjourner
         )
@@ -5227,10 +5291,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 13, SHADOW_SIZE_S)
         FOOTPRINT(Eiscue)
         OVERWORLD(
-            sPicTable_EiscueIce,
+            gObjectEventPic_EiscueIce,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_EiscueIce,
             gShinyOverworldPalette_EiscueIce
         )
@@ -5349,10 +5414,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 4, SHADOW_SIZE_S)
         FOOTPRINT(Indeedee)
         OVERWORLD(
-            sPicTable_IndeedeeM,
+            gObjectEventPic_IndeedeeM,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_IndeedeeM,
             gShinyOverworldPalette_IndeedeeM
         )
@@ -5411,10 +5477,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 4, SHADOW_SIZE_S)
         FOOTPRINT(Indeedee)
         OVERWORLD(
-            sPicTable_IndeedeeF,
+            gObjectEventPic_IndeedeeF,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_IndeedeeF,
             gShinyOverworldPalette_IndeedeeF
         )
@@ -5476,10 +5543,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 0, SHADOW_SIZE_S)
         FOOTPRINT(Morpeko)
         OVERWORLD(
-            sPicTable_MorpekoFullBelly,
+            gObjectEventPic_MorpekoFullBelly,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_MorpekoFullBelly,
             gShinyOverworldPalette_MorpekoFullBelly
         )
@@ -5599,10 +5667,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(5, 2, SHADOW_SIZE_M)
         FOOTPRINT(Cufant)
         OVERWORLD(
-            sPicTable_Cufant,
+            gObjectEventPic_Cufant,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Cufant,
             gShinyOverworldPalette_Cufant
         )
@@ -5662,10 +5731,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(6, 7, SHADOW_SIZE_L)
         FOOTPRINT(Copperajah)
         OVERWORLD(
-            sPicTable_Copperajah,
+            gObjectEventPic_Copperajah,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Copperajah,
             gShinyOverworldPalette_Copperajah
         )
@@ -5786,10 +5856,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-4, 10, SHADOW_SIZE_L)
         FOOTPRINT(Dracozolt)
         OVERWORLD(
-            sPicTable_Dracozolt,
+            gObjectEventPic_Dracozolt,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dracozolt,
             gShinyOverworldPalette_Dracozolt
         )
@@ -5848,10 +5919,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-2, 11, SHADOW_SIZE_M)
         FOOTPRINT(Arctozolt)
         OVERWORLD(
-            sPicTable_Arctozolt,
+            gObjectEventPic_Arctozolt,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Arctozolt,
             gShinyOverworldPalette_Arctozolt
         )
@@ -5911,10 +5983,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 11, SHADOW_SIZE_M)
         FOOTPRINT(Dracovish)
         OVERWORLD(
-            sPicTable_Dracovish,
+            gObjectEventPic_Dracovish,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dracovish,
             gShinyOverworldPalette_Dracovish
         )
@@ -5974,10 +6047,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 11, SHADOW_SIZE_L)
         FOOTPRINT(Arctovish)
         OVERWORLD(
-            sPicTable_Arctovish,
+            gObjectEventPic_Arctovish,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Arctovish,
             gShinyOverworldPalette_Arctovish
         )
@@ -6036,10 +6110,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 11, SHADOW_SIZE_L)
         FOOTPRINT(Duraludon)
         OVERWORLD(
-            sPicTable_Duraludon,
+            gObjectEventPic_Duraludon,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Duraludon,
             gShinyOverworldPalette_Duraludon
         )
@@ -6161,10 +6236,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(4, 14, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Archaludon)
         OVERWORLD(
-            sPicTable_Archaludon,
+            gObjectEventPic_Archaludon,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Archaludon,
             gShinyOverworldPalette_Archaludon
         )
@@ -6226,10 +6302,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 2, SHADOW_SIZE_S)
         FOOTPRINT(Dreepy)
         OVERWORLD(
-            sPicTable_Dreepy,
+            gObjectEventPic_Dreepy,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dreepy,
             gShinyOverworldPalette_Dreepy
         )
@@ -6289,10 +6366,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 9, SHADOW_SIZE_M)
         FOOTPRINT(Drakloak)
         OVERWORLD(
-            sPicTable_Drakloak,
+            gObjectEventPic_Drakloak,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Drakloak,
             gShinyOverworldPalette_Drakloak
         )
@@ -6352,10 +6430,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 12, SHADOW_SIZE_M)
         FOOTPRINT(Dragapult)
         OVERWORLD(
-            sPicTable_Dragapult,
+            gObjectEventPic_Dragapult,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Dragapult,
             gShinyOverworldPalette_Dragapult
         )
@@ -6414,10 +6493,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 9, SHADOW_SIZE_L)
         FOOTPRINT(Zacian)
         OVERWORLD(
-            sPicTable_ZacianHero,
+            gObjectEventPic_ZacianHero,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ZacianHero,
             gShinyOverworldPalette_ZacianHero
         )
@@ -6480,10 +6560,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 12, SHADOW_SIZE_L)
         FOOTPRINT(Zacian)
         OVERWORLD(
-            sPicTable_ZacianCrowned,
+            gObjectEventPic_ZacianCrowned,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ZacianCrowned,
             gShinyOverworldPalette_ZacianCrowned
         )
@@ -6548,10 +6629,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 12, SHADOW_SIZE_L)
         FOOTPRINT(Zamazenta)
         OVERWORLD(
-            sPicTable_ZamazentaHero,
+            gObjectEventPic_ZamazentaHero,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ZamazentaHero,
             gShinyOverworldPalette_ZamazentaHero
         )
@@ -6614,10 +6696,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 12, SHADOW_SIZE_L)
         FOOTPRINT(Zamazenta)
         OVERWORLD(
-            sPicTable_ZamazentaCrowned,
+            gObjectEventPic_ZamazentaCrowned,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_ZamazentaCrowned,
             gShinyOverworldPalette_ZamazentaCrowned
         )
@@ -6683,10 +6766,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 14, SHADOW_SIZE_L)
         FOOTPRINT(Eternatus)
         OVERWORLD(
-            sPicTable_Eternatus,
+            gObjectEventPic_Eternatus,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Eternatus,
             gShinyOverworldPalette_Eternatus
         )
@@ -6807,10 +6891,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-2, 5, SHADOW_SIZE_S)
         FOOTPRINT(Kubfu)
         OVERWORLD(
-            sPicTable_Kubfu,
+            gObjectEventPic_Kubfu,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Kubfu,
             gShinyOverworldPalette_Kubfu
         )
@@ -6874,10 +6959,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 14, SHADOW_SIZE_L)
         FOOTPRINT(Urshifu)
         OVERWORLD(
-            sPicTable_Urshifu,
+            gObjectEventPic_Urshifu,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Urshifu,
             gShinyOverworldPalette_Urshifu
         )
@@ -6998,10 +7084,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(4, 14, SHADOW_SIZE_M)
         FOOTPRINT(Urshifu)
         OVERWORLD(
-            sPicTable_Urshifu,
+            gObjectEventPic_Urshifu,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Urshifu,
             gShinyOverworldPalette_Urshifu
         )
@@ -7125,10 +7212,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(5, 11, SHADOW_SIZE_L)
         FOOTPRINT(Zarude)
         OVERWORLD(
-            sPicTable_Zarude,
+            gObjectEventPic_Zarude,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Zarude,
             gShinyOverworldPalette_Zarude
         )
@@ -7249,10 +7337,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 14, SHADOW_SIZE_S)
         FOOTPRINT(Regieleki)
         OVERWORLD(
-            sPicTable_Regieleki,
+            gObjectEventPic_Regieleki,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Regieleki,
             gShinyOverworldPalette_Regieleki
         )
@@ -7315,10 +7404,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(0, 13, SHADOW_SIZE_M)
         FOOTPRINT(Regidrago)
         OVERWORLD(
-            sPicTable_Regidrago,
+            gObjectEventPic_Regidrago,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Regidrago,
             gShinyOverworldPalette_Regidrago
         )
@@ -7379,10 +7469,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-5, 11, SHADOW_SIZE_L)
         FOOTPRINT(Glastrier)
         OVERWORLD(
-            sPicTable_Glastrier,
+            gObjectEventPic_Glastrier,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Glastrier,
             gShinyOverworldPalette_Glastrier
         )
@@ -7444,10 +7535,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-6, 12, SHADOW_SIZE_L)
         FOOTPRINT(Spectrier)
         OVERWORLD(
-            sPicTable_Spectrier,
+            gObjectEventPic_Spectrier,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Spectrier,
             gShinyOverworldPalette_Spectrier
         )
@@ -7509,10 +7601,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-1, 12, SHADOW_SIZE_S)
         FOOTPRINT(Calyrex)
         OVERWORLD(
-            sPicTable_Calyrex,
+            gObjectEventPic_Calyrex,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_Calyrex,
             gShinyOverworldPalette_Calyrex
         )
@@ -7575,10 +7668,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-5, 11, SHADOW_SIZE_L)
         FOOTPRINT(Calyrex)
         OVERWORLD(
-            sPicTable_CalyrexIce,
+            gObjectEventPic_CalyrexIce,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_CalyrexIce,
             gShinyOverworldPalette_CalyrexIce
         )
@@ -7641,10 +7735,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-5, 12, SHADOW_SIZE_L)
         FOOTPRINT(Calyrex)
         OVERWORLD(
-            sPicTable_CalyrexShadow,
+            gObjectEventPic_CalyrexShadow,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            sAnimTable_Following,
             gOverworldPalette_CalyrexShadow,
             gShinyOverworldPalette_CalyrexShadow
         )
@@ -7711,10 +7806,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(-3, 19, SHADOW_SIZE_M)
         FOOTPRINT(Enamorus)
         OVERWORLD(
-            sPicTable_EnamorusIncarnate,
+            gObjectEventPic_EnamorusIncarnate,
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_NONE,
+            sAnimTable_Following,
             gOverworldPalette_EnamorusIncarnate,
             gShinyOverworldPalette_EnamorusIncarnate
         )
@@ -7775,10 +7871,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         SHADOW(2, 8, SHADOW_SIZE_L)
         FOOTPRINT(Enamorus)
         OVERWORLD(
-            sPicTable_EnamorusTherian,
+            gObjectEventPic_EnamorusTherian,
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_NONE,
+            sAnimTable_Following,
             gOverworldPalette_EnamorusTherian,
             gShinyOverworldPalette_EnamorusTherian
         )
