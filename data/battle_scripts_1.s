@@ -785,7 +785,7 @@ BattleScript_EffectFlingConsumeBerry:
 	restorebattleritem BS_TARGET
 BattleScript_FlingEnd:
 	tryfaintmon BS_TARGET
-	trysymbiosis
+	trysymbiosis BS_ATTACKER
 	goto BattleScript_MoveEnd
 
 BattleScript_FlingFailConsumeItem::
@@ -1246,8 +1246,8 @@ BattleScript_MoveEffectBugBite::
 	consumeberry BS_ATTACKER, FALSE
 	bicword gHitMarker, HITMARKER_DISABLE_ANIMATION
 	setbyte sBERRY_OVERRIDE, 0
-	trysymbiosis
 	restoretarget
+    trysymbiosis BS_TARGET
 	return
 
 BattleScript_MoveEffectCoreEnforcer::
@@ -1576,7 +1576,7 @@ BattleScript_EffectBestow::
 	waitanimation
 	printstring STRINGID_BESTOWITEMGIVING
 	waitmessage B_WAIT_TIME_LONG
-	trysymbiosis
+	trysymbiosis BS_ATTACKER
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAfterYou::

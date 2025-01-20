@@ -4425,7 +4425,7 @@ u32 GetGMaxTargetSpecies(u32 species)
 {
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
     u32 i;
-    for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
         if (formChanges[i].method == FORM_CHANGE_BATTLE_GIGANTAMAX)
             return formChanges[i].targetSpecies;
@@ -6588,6 +6588,7 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
                 case FORM_CHANGE_WITHDRAW:
+                case FORM_CHANGE_DEPOSIT:
                 case FORM_CHANGE_FAINT:
                 case FORM_CHANGE_DAYS_PASSED:
                     targetSpecies = formChanges[i].targetSpecies;
@@ -6623,7 +6624,7 @@ void TrySetDayLimitToFormChange(struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
         if (formChanges[i].method == FORM_CHANGE_DAYS_PASSED && species != formChanges[i].targetSpecies)
         {
@@ -6638,13 +6639,10 @@ bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
     u32 i;
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    if (formChanges != NULL)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
-        for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
-        {
-            if (method == formChanges[i].method && species != formChanges[i].targetSpecies)
-                return TRUE;
-        }
+        if (method == formChanges[i].method && species != formChanges[i].targetSpecies)
+            return TRUE;
     }
 
     return FALSE;

@@ -61,10 +61,10 @@
 #include "gba/m4a_internal.h"
 
 #if DEXNAV_ENABLED
-STATIC_ASSERT(FLAG_SYS_DEXNAV_SEARCH != 0, FlagSysDexNavSearch_Must_Not_Be_Zero);
-STATIC_ASSERT(FLAG_SYS_DETECTOR_MODE != 0, FlagSysDetectorMode_Must_Not_Be_Zero);
-STATIC_ASSERT(VAR_DEXNAV_SPECIES != 0, VarDexNavSpecies_Must_Not_Be_Zero);
-STATIC_ASSERT(VAR_DEXNAV_STEP_COUNTER != 0, VarDexNavStepCounter_Must_Not_Be_Zero);
+STATIC_ASSERT(DN_FLAG_SEARCHING != 0, DNFlagSearching_Must_Not_Be_Zero);
+STATIC_ASSERT(DN_FLAG_DETECTOR_MODE != 0, DNFlagDetectorMode_Must_Not_Be_Zero);
+STATIC_ASSERT(DN_VAR_SPECIES != 0, DNVarSpecies_Must_Not_Be_Zero);
+STATIC_ASSERT(DN_VAR_STEP_COUNTER != 0, DNVarStepCounter_Must_Not_Be_Zero);
 #endif
 
 // Defines
@@ -859,7 +859,7 @@ static void Task_SetUpDexNavSearch(u8 taskId)
         DexNavUpdateSearchWindow(sDexNavSearchDataPtr->proximity, searchLevel);
     }
     
-    FlagSet(FLAG_SYS_DEXNAV_SEARCH);
+    FlagSet(DN_FLAG_SEARCHING);
     gPlayerAvatar.creeping = TRUE;  //initialize as true in case mon appears beside you
     task->tProximity = gSprites[gPlayerAvatar.spriteId].x;
     task->tFrameCount = 0;
@@ -980,9 +980,9 @@ static void DexNavDrawIcons(void)
 bool8 TryStartDexNavSearch(void)
 {
     u8 taskId;
-    u16 val = VarGet(VAR_DEXNAV_SPECIES);
+    u16 val = VarGet(DN_VAR_SPECIES);
     
-    if (FlagGet(FLAG_SYS_DEXNAV_SEARCH) || (val & DEXNAV_MASK_SPECIES) == SPECIES_NONE)
+    if (FlagGet(DN_FLAG_SEARCHING) || (val & DEXNAV_MASK_SPECIES) == SPECIES_NONE)
         return FALSE;
     
     HideMapNamePopUpWindow();
@@ -996,7 +996,7 @@ bool8 TryStartDexNavSearch(void)
 
 void EndDexNavSearch(u8 taskId)
 {
-    FlagClear(FLAG_SYS_DEXNAV_SEARCH);
+    FlagClear(DN_FLAG_SEARCHING);
     DestroyTask(taskId);
     RemoveDexNavWindowAndGfx();
     FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
@@ -1114,7 +1114,7 @@ static void Task_DexNavSearch(u8 taskId)
         CreateDexNavWildMon(sDexNavSearchDataPtr->species, sDexNavSearchDataPtr->potential, sDexNavSearchDataPtr->monLevel, 
                             sDexNavSearchDataPtr->abilityNum, sDexNavSearchDataPtr->heldItem, sDexNavSearchDataPtr->moves);
 
-        FlagClear(FLAG_SYS_DEXNAV_SEARCH);
+        FlagClear(DN_FLAG_SEARCHING);
         ScriptContext_SetupScript(EventScript_StartDexNavBattle);
         Free(sDexNavSearchDataPtr);
         DestroyTask(taskId);
@@ -2018,7 +2018,7 @@ static void DrawSpeciesIcons(void)
         species = sDexNavUiDataPtr->hiddenSpecies[i];
         x = ROW_HIDDEN_ICON_X + 24 * i;
         y = ROW_HIDDEN_ICON_Y;
-        if (FlagGet(FLAG_SYS_DETECTOR_MODE))
+        if (FlagGet(DN_FLAG_DETECTOR_MODE))
             TryDrawIconInSlot(species, x, y);
        else if (species == SPECIES_NONE || species > NUM_SPECIES)
             CreateNoDataIcon(x, y);
@@ -2043,7 +2043,7 @@ static u16 DexNavGetSpecies(void)
         species = sDexNavUiDataPtr->landSpecies[sDexNavUiDataPtr->cursorCol + COL_LAND_COUNT];
         break;
     case ROW_HIDDEN:
-        if (!FlagGet(FLAG_SYS_DETECTOR_MODE))
+        if (!FlagGet(DN_FLAG_DETECTOR_MODE))
             species = SPECIES_NONE;
         else
             species = sDexNavUiDataPtr->hiddenSpecies[sDexNavUiDataPtr->cursorCol];
@@ -2263,7 +2263,7 @@ static bool8 DexNav_DoGfxSetup(void)
         gMain.state++;
         break;
     case 7:
-        PrintSearchableSpecies(VarGet(VAR_DEXNAV_SPECIES) & DEXNAV_MASK_SPECIES);
+        PrintSearchableSpecies(VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES);
         DexNavLoadEncounterData();
         gMain.state++;
         break;
@@ -2461,7 +2461,7 @@ static void Task_DexNavMain(u8 taskId)
             PlayCry_Script(species, 0);
             
             // create value to store in a var
-            VarSet(VAR_DEXNAV_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+            VarSet(DN_VAR_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
         }
         else
         {
@@ -2492,11 +2492,11 @@ static void Task_DexNavMain(u8 taskId)
 /////////////////////////
 bool8 TryFindHiddenPokemon(void)
 {
-    u16 *stepPtr = GetVarPointer(VAR_DEXNAV_STEP_COUNTER);
+    u16 *stepPtr = GetVarPointer(DN_VAR_STEP_COUNTER);
     
     if (DEXNAV_ENABLED == 0
-            || !FlagGet(FLAG_SYS_DETECTOR_MODE)
-            || FlagGet(FLAG_SYS_DEXNAV_SEARCH)
+            || !FlagGet(DN_FLAG_DETECTOR_MODE)
+            || FlagGet(DN_FLAG_SEARCHING)
             || GetFlashLevel() > 0)
     {
         if (stepPtr != NULL)
@@ -2677,8 +2677,8 @@ void TryIncrementSpeciesSearchLevel(u16 dexNum)
 void ResetDexNavSearch(void)
 {
     gSaveBlock3Ptr->dexNavChain = 0;    //reset dex nav chaining on new map
-    VarSet(VAR_DEXNAV_STEP_COUNTER, 0); //reset hidden pokemon step counter
-    if (FlagGet(FLAG_SYS_DEXNAV_SEARCH))
+    VarSet(DN_VAR_STEP_COUNTER, 0); //reset hidden pokemon step counter
+    if (FlagGet(DN_FLAG_SEARCHING))
         EndDexNavSearch(FindTaskIdByFunc(Task_DexNavSearch));   //moving to new map ends dexnav search
 }
 

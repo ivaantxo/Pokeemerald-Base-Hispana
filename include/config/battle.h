@@ -158,7 +158,7 @@
                                                // In Gen3, Effect Spore has a 10% chance to sleep, poison or paralyze, with an equal chance.
                                                // In Gen4, it's 30%. In Gen5+ it has 11% to sleep, 9% chance to poison and 10% chance to paralyze.
 #define B_PICKUP_WILD               GEN_LATEST // In Gen9+, Pickup allows its user to pickup its own used item at the end of the turn in wild battles.
-#define B_MAGIC_GUARD               GEN_LATEST // In Gen4+, Magic Guard ignores immobilization caused by paralysis
+#define B_MAGIC_GUARD               GEN_LATEST // In Gen4 only, Magic Guard ignores immobilization caused by paralysis
 
 // Item settings
 #define B_HP_BERRIES                GEN_LATEST // In Gen4+, berries which restore HP activate immediately after HP drops to half. In Gen3, the effect occurs at the end of the turn.
@@ -299,5 +299,8 @@
 // Pokémon battle sprite settings
 #define B_ENEMY_MON_SHADOW_STYLE        GEN_3 // In Gen4+, all enemy Pokemon will have a shadow drawn beneath them.
                                               // Currently Gen4+ shadows don't properly work with Trainerslides
+
+//  Battle UI settings
+#define B_MOVE_REARRANGEMENT_IN_BATTLE  GEN_LATEST  //  In Gen 4+ move slots cannot be rearranged in battle
 
 #endif // GUARD_CONFIG_BATTLE_H
