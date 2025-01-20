@@ -2845,7 +2845,7 @@ static const union AnimCmd sAnim_Quagsire_1[] =
 
 #if P_PALDEAN_FORMS
 PLACEHOLDER_ANIM_SINGLE_FRAME(WooperPaldea);
-PLACEHOLDER_ANIM_SINGLE_FRAME(Clodsire);
+PLACEHOLDER_ANIM_TWO_FRAMES(Clodsire);
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_WOOPER
 
