@@ -100,6 +100,7 @@ enum UtilDebugMenu
     DEBUG_UTIL_MENU_ITEM_EXPANSION_VER,
     DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS,
     DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS,
+    DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI,
 };
 
 enum GivePCBagDebugMenu
@@ -381,6 +382,7 @@ static void DebugAction_Util_CheatStart(u8 taskId);
 static void DebugAction_Util_ExpansionVersion(u8 taskId);
 static void DebugAction_Util_BerryFunctions(u8 taskId);
 static void DebugAction_Util_CheckEWRAMCounters(u8 taskId);
+static void DebugAction_Util_Steven_Multi(u8 taskId);
 
 static void DebugAction_OpenPCBagFillMenu(u8 taskId);
 static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId);
@@ -489,6 +491,7 @@ extern const u8 Debug_CheckROMSpace[];
 extern const u8 Debug_BoxFilledMessage[];
 extern const u8 Debug_ShowExpansionVersion[];
 extern const u8 Debug_EventScript_EWRAMCounters[];
+extern const u8 Debug_EventScript_Steven_Multi[];
 
 extern const u8 Debug_BerryPestsDisabled[];
 extern const u8 Debug_BerryWeedsDisabled[];
@@ -517,14 +520,14 @@ static const u8 sDebugText_Give[] =          _("Give X…{CLEAR_TO 110}{RIGHT_AR
 static const u8 sDebugText_Sound[] =         _("Sound…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Cancel[] =        _("Cancel");
 // Script menu
-static const u8 sDebugText_Util_Script_1[] = _("Script 1");
-static const u8 sDebugText_Util_Script_2[] = _("Script 2");
-static const u8 sDebugText_Util_Script_3[] = _("Script 3");
-static const u8 sDebugText_Util_Script_4[] = _("Script 4");
-static const u8 sDebugText_Util_Script_5[] = _("Script 5");
-static const u8 sDebugText_Util_Script_6[] = _("Script 6");
-static const u8 sDebugText_Util_Script_7[] = _("Script 7");
-static const u8 sDebugText_Util_Script_8[] = _("Script 8");
+static const u8 sDebugText_Util_Script_1[] =     _("Script 1");
+static const u8 sDebugText_Util_Script_2[] =     _("Script 2");
+static const u8 sDebugText_Util_Script_3[] =     _("Script 3");
+static const u8 sDebugText_Util_Script_4[] =     _("Script 4");
+static const u8 sDebugText_Util_Script_5[] =     _("Script 5");
+static const u8 sDebugText_Util_Script_6[] =     _("Script 6");
+static const u8 sDebugText_Util_Script_7[] =     _("Script 7");
+static const u8 sDebugText_Util_Script_8[] =     _("Script 8");
 // Util Menu
 static const u8 sDebugText_Util_FlyToMap[] =                 _("Fly to map…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_WarpToMap[] =                _("Warp to map warp…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -547,6 +550,7 @@ static const u8 sDebugText_Util_CheatStart[] =               _("Cheat start");
 static const u8 sDebugText_Util_ExpansionVersion[] =         _("Expansion Version");
 static const u8 sDebugText_Util_BerryFunctions[] =           _("Berry Functions…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_EWRAMCounters[] =            _("EWRAM Counters…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_Util_Steven_Multi[] =             _("Steven Multi");
 // PC/Bag Menu
 static const u8 sDebugText_PCBag_Fill[] =                    _("Fill…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_PCBag_Fill_Pc_Fast[] =            _("Fill PC Boxes Fast");
@@ -741,6 +745,7 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
     [DEBUG_UTIL_MENU_ITEM_EXPANSION_VER]   = {sDebugText_Util_ExpansionVersion, DEBUG_UTIL_MENU_ITEM_EXPANSION_VER},
     [DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS] = {sDebugText_Util_BerryFunctions,   DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS},
     [DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS]  = {sDebugText_Util_EWRAMCounters,    DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS},
+    [DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI]    = {sDebugText_Util_Steven_Multi,     DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_PCBag[] =
@@ -913,6 +918,7 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
     [DEBUG_UTIL_MENU_ITEM_EXPANSION_VER]   = DebugAction_Util_ExpansionVersion,
     [DEBUG_UTIL_MENU_ITEM_BERRY_FUNCTIONS] = DebugAction_Util_BerryFunctions,
     [DEBUG_UTIL_MENU_ITEM_EWRAM_COUNTERS]  = DebugAction_Util_CheckEWRAMCounters,
+    [DEBUG_UTIL_MENU_ITEM_STEVEN_MULTI]    = DebugAction_Util_Steven_Multi,
 };
 
 static void (*const sDebugMenu_Actions_PCBag[])(u8) =
@@ -2337,6 +2343,11 @@ static void DebugAction_Util_ExpansionVersion(u8 taskId)
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
     ScriptContext_SetupScript(Debug_ShowExpansionVersion);
+}
+
+static void DebugAction_Util_Steven_Multi(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_Steven_Multi);
 }
 
 void BufferExpansionVersion(struct ScriptContext *ctx)
