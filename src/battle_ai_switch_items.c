@@ -825,7 +825,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
             {
                 aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL);
                 u32 aiEffect = GetMoveEffect(aiMove);
-                if (MoveHasAdditionalEffectSelf(aiMove, MOVE_EFFECT_RAPID_SPIN)
+                if (aiEffect == EFFECT_RAPID_SPIN
                  || (B_DEFOG_EFFECT_CLEARING >= GEN_6 && aiEffect == EFFECT_DEFOG)
                  || aiEffect == EFFECT_TIDY_UP)
                 {

@@ -5806,7 +5806,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Spins the body at high\n"
             "speed to strike the foe."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_RAPID_SPIN,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 50 : 20,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -5815,12 +5815,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_RAPID_SPIN,
-            .self = TRUE,
-        }
+        .additionalEffects = ADDITIONAL_EFFECTS(
         #if B_SPEED_BUFFING_RAPID_SPIN >= GEN_8
-            ,{
+            {
                 .moveEffect = MOVE_EFFECT_SPD_PLUS_1,
                 .self = TRUE,
                 .chance = 100,
@@ -19571,7 +19568,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Erases trap moves and Leech\n"
             "Seed. Poisons adjacent foes."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_RAPID_SPIN,
         .power = 30,
         .type = TYPE_POISON,
         .accuracy = 100,
@@ -19580,10 +19577,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-        .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_RAPID_SPIN,
-            .self = TRUE,
-        },
+        .additionalEffects = ADDITIONAL_EFFECTS(
         {
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 100,
