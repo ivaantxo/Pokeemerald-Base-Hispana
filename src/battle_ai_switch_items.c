@@ -1342,7 +1342,7 @@ static s32 GetSwitchinWeatherImpact(void)
     s32 weatherImpact = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability;
     u32 holdEffect = ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item);
 
-    if (WEATHER_HAS_EFFECT)
+    if (HasWeatherEffect())
     {
         // Damage
         if (holdEffect != HOLD_EFFECT_SAFETY_GOGGLES && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT)

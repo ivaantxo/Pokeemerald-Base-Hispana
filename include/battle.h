@@ -355,7 +355,7 @@ struct AiLogicData
     u8 monToSwitchInId[MAX_BATTLERS_COUNT]; // ID of the mon to switch in.
     u8 mostSuitableMonId[MAX_BATTLERS_COUNT]; // Stores result of GetMostSuitableMonToSwitchInto, which decides which generic mon the AI would switch into if they decide to switch. This can be overruled by specific mons found in ShouldSwitch; the final resulting mon is stored in AI_monToSwitchIntoId.
     struct SwitchinCandidate switchinCandidate; // Struct used for deciding which mon to switch to in battle_ai_switch_items.c
-    u8 weatherHasEffect:1; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
+    u8 weatherHasEffect:1; // The same as HasWeatherEffect(). Stored here, so it's called only once.
     u8 ejectButtonSwitch:1; // Tracks whether current switch out was from Eject Button
     u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack
     u8 predictingSwitch:1; // Determines whether AI will use predictions this turn or not

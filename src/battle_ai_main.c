@@ -468,7 +468,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     // Set delay timer to count how long it takes for AI to choose action/move
     gBattleStruct->aiDelayTimer = gMain.vblankCounter1;
 
-    aiData->weatherHasEffect = WEATHER_HAS_EFFECT;
+    aiData->weatherHasEffect = HasWeatherEffect();
     weather = AI_GetWeather(aiData);
 
     // get/assume all battler data and simulate AI damage
@@ -794,7 +794,7 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
                 aiData->effectiveness[battlerAtk][battlerDef][aiThink->movesetIndex] = effectivenessSwitchin[aiThink->movesetIndex];
                 aiData->moveAccuracy[battlerAtk][battlerDef][aiThink->movesetIndex] = moveAccuracySwitchin[aiThink->movesetIndex];
             }
-            
+
             else
             {
                 if (aiThink->aiLogicId < ARRAY_COUNT(sBattleAiFuncTable)
@@ -824,7 +824,7 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
     for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
         aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = simulatedDamageSwitchout[moveIndex];
-        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectivenessSwitchout[moveIndex]; 
+        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectivenessSwitchout[moveIndex];
         aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = moveAccuracySwitchout[moveIndex];
     }
 }
