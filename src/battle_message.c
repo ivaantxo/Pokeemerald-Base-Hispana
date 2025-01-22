@@ -137,9 +137,14 @@ static const u8 sText_Evasiveness[] = _("evasiveness");
 
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {
-    sText_HP, sText_Attack, sText_Defense,
-    sText_Speed, sText_SpAttack, sText_SpDefense,
-    sText_Accuracy, sText_Evasiveness
+    [STAT_HP]      = sText_HP,
+    [STAT_ATK]     = sText_Attack,
+    [STAT_DEF]     = sText_Defense,
+    [STAT_SPEED]   = sText_Speed,
+    [STAT_SPATK]   = sText_SpAttack,
+    [STAT_SPDEF]   = sText_SpDefense,
+    [STAT_ACC]     = sText_Accuracy,
+    [STAT_EVASION] = sText_Evasiveness,
 };
 const u8 *const gPokeblockWasTooXStringTable[FLAVOR_COUNT] =
 {

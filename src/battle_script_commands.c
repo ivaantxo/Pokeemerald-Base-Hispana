@@ -298,11 +298,6 @@ static const u16 sTrappingMoves[NUM_TRAPPING_MOVES] =
     MOVE_THUNDER_CAGE
 };
 
-static const u16 sBadgeFlags[8] = {
-    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
-    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
-};
-
 static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
 
 #define STAT_CHANGE_WORKED      0
@@ -8325,9 +8320,9 @@ static void Cmd_getmoneyreward(void)
                     sPartyLevel = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
             }
         }
-        for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
+        for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
         {
-            if (FlagGet(sBadgeFlags[i]) == TRUE)
+            if (FlagGet(gBadgeFlags[i]) == TRUE)
                 ++count;
         }
         money = sWhiteOutBadgeMoney[count] * sPartyLevel;
