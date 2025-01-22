@@ -424,33 +424,31 @@ enum BattleWeather
 #define MOVE_EFFECT_CONTINUE            0x8000
 
 // Battle terrain defines for gBattleTerrain.
-enum BattleTerrain
-{
-    BATTLE_TERRAIN_GRASS,
-    BATTLE_TERRAIN_LONG_GRASS,
-    BATTLE_TERRAIN_SAND,
-    BATTLE_TERRAIN_UNDERWATER,
-    BATTLE_TERRAIN_WATER,
-    BATTLE_TERRAIN_POND,
-    BATTLE_TERRAIN_MOUNTAIN,
-    BATTLE_TERRAIN_CAVE,
-    BATTLE_TERRAIN_BUILDING,
-    BATTLE_TERRAIN_PLAIN,
-    // New battle terrains are used for Secret Power but not fully implemented.
-    BATTLE_TERRAIN_SOARING,
-    BATTLE_TERRAIN_SKY_PILLAR,
-    BATTLE_TERRAIN_BURIAL_GROUND,
-    BATTLE_TERRAIN_PUDDLE,
-    BATTLE_TERRAIN_MARSH,
-    BATTLE_TERRAIN_SWAMP,
-    BATTLE_TERRAIN_SNOW,
-    BATTLE_TERRAIN_ICE,
-    BATTLE_TERRAIN_VOLCANO,
-    BATTLE_TERRAIN_DISTORTION_WORLD,
-    BATTLE_TERRAIN_SPACE,
-    BATTLE_TERRAIN_ULTRA_SPACE,
-    BATTLE_TERRAIN_COUNT,
-};
+#define BATTLE_TERRAIN_GRASS            0
+#define BATTLE_TERRAIN_LONG_GRASS       1
+#define BATTLE_TERRAIN_SAND             2
+#define BATTLE_TERRAIN_UNDERWATER       3
+#define BATTLE_TERRAIN_WATER            4
+#define BATTLE_TERRAIN_POND             5
+#define BATTLE_TERRAIN_MOUNTAIN         6
+#define BATTLE_TERRAIN_CAVE             7
+#define BATTLE_TERRAIN_BUILDING         8
+#define BATTLE_TERRAIN_PLAIN            9
+// New battle terrains are used for Secret Power but not fully implemented.
+#define BATTLE_TERRAIN_SOARING          10
+#define BATTLE_TERRAIN_SKY_PILLAR       11
+#define BATTLE_TERRAIN_BURIAL_GROUND    12
+#define BATTLE_TERRAIN_PUDDLE           13
+#define BATTLE_TERRAIN_MARSH            14
+#define BATTLE_TERRAIN_SWAMP            15
+#define BATTLE_TERRAIN_SNOW             16
+#define BATTLE_TERRAIN_ICE              17
+#define BATTLE_TERRAIN_VOLCANO          18
+#define BATTLE_TERRAIN_DISTORTION_WORLD 19
+#define BATTLE_TERRAIN_SPACE            20
+#define BATTLE_TERRAIN_ULTRA_SPACE      21
+
+#define BATTLE_TERRAIN_COUNT            22
 
 #define B_WAIT_TIME_LONG        (B_WAIT_TIME_MULTIPLIER * 4)
 #define B_WAIT_TIME_MED         (B_WAIT_TIME_MULTIPLIER * 3)

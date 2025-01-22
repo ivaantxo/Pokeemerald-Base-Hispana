@@ -44,6 +44,7 @@
 #include "constants/event_objects.h"
 #include "constants/field_effects.h"
 #include "constants/items.h"
+#include "constants/map_types.h"
 #include "constants/mauville_old_man.h"
 #include "constants/rgb.h"
 #include "constants/region_map_sections.h"

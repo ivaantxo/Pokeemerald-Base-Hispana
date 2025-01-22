@@ -1352,9 +1352,9 @@ u8 GetFrontierTrainerFrontSpriteId(u16 trainerId)
     }
 }
 
-enum TrainerClassID GetFrontierOpponentClass(u16 trainerId)
+u8 GetFrontierOpponentClass(u16 trainerId)
 {
-    enum TrainerClassID trainerClass = 0;
+    u8 trainerClass = 0;
     enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(trainerId);
     SetFacilityPtrsGetLevel();
 
@@ -2847,7 +2847,7 @@ u8 GetEreaderTrainerFrontSpriteId(void)
 #endif //FREE_BATTLE_TOWER_E_READER
 }
 
-enum TrainerClassID GetEreaderTrainerClassId(void)
+u8 GetEreaderTrainerClassId(void)
 {
 #if FREE_BATTLE_TOWER_E_READER == FALSE
     return gFacilityClassToTrainerClass[gSaveBlock2Ptr->frontier.ereaderTrainer.facilityClass];

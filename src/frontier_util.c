@@ -2459,7 +2459,7 @@ u8 GetFrontierBrainTrainerPicIndex(void)
     return GetTrainerPicFromId(gFrontierBrainInfo[facility].trainerId);
 }
 
-enum TrainerClassID GetFrontierBrainTrainerClass(void)
+u8 GetFrontierBrainTrainerClass(void)
 {
     s32 facility;
 

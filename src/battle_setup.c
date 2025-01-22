@@ -45,6 +45,7 @@
 #include "constants/game_stat.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "constants/map_types.h"
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
@@ -738,7 +739,7 @@ static void CB2_EndScriptedWildBattle(void)
     }
 }
 
-enum BattleTerrain BattleSetup_GetTerrainId(void)
+u8 BattleSetup_GetTerrainId(void)
 {
     u16 tileBehavior;
     s16 x, y;
@@ -890,7 +891,7 @@ u8 GetTrainerBattleTransition(void)
     u8 enemyLevel;
     u8 playerLevel;
     u32 trainerId = SanitizeTrainerId(gTrainerBattleOpponent_A);
-    enum TrainerClassID trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
+    u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
     if (DoesTrainerHaveMugshot(trainerId))
         return B_TRANSITION_MUGSHOT;
