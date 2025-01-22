@@ -612,8 +612,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
     bool8 nextIter;
     u8 scale = 0;
     u8 weight = 0;
-    //enum MapType currMapType = GetCurrentMapType();
-    u8 currMapType = GetCurrentMapType();
+    enum MapType currMapType = GetCurrentMapType();
     u8 tileBehaviour;
     u8 tileBuffer = 2;
     u8 *xPos = AllocZeroed((botX - topX) * (botY - topY) * sizeof(u8));
@@ -725,8 +724,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
 
 static bool8 TryStartHiddenMonFieldEffect(u8 environment, u8 xSize, u8 ySize, bool8 smallScan)
 {
-    //enum MapType currMapType = GetCurrentMapType();
-    u8 currMapType = GetCurrentMapType();
+    enum MapType currMapType = GetCurrentMapType();
     u8 fldEffId = 0;
     
     if (DexNavPickTile(environment, xSize, ySize, smallScan))

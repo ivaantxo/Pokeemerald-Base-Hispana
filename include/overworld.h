@@ -118,24 +118,13 @@ void TryFadeOutOldMapMusic(void);
 bool8 BGMusicStopped(void);
 void Overworld_FadeOutMapMusic(void);
 void UpdateAmbientCry(s16 *state, u16 *delayCounter);
-/*
 enum MapType GetMapTypeByGroupAndId(s8 mapGroup, s8 mapNum);
 enum MapType GetMapTypeByWarpData(struct WarpData *warp);
 enum MapType GetCurrentMapType(void);
 enum MapType GetLastUsedWarpMapType(void);
-*/
-u8 GetMapTypeByGroupAndId(s8 mapGroup, s8 mapNum);
-u8 GetMapTypeByWarpData(struct WarpData *warp);
-u8 GetCurrentMapType(void);
-u8 GetLastUsedWarpMapType(void);
-bool8 IsMapTypeOutdoors(u8 mapType);
-bool8 Overworld_MapTypeAllowsTeleportAndFly(u8 mapType);
-bool8 IsMapTypeIndoors(u8 mapType);
-/*
 bool8 IsMapTypeOutdoors(enum MapType mapType);
 bool8 Overworld_MapTypeAllowsTeleportAndFly(enum MapType mapType);
 bool8 IsMapTypeIndoors(enum MapType mapType);
-*/
 u8 GetSavedWarpRegionMapSectionId(void);
 u8 GetCurrentRegionMapSectionId(void);
 enum MapBattleScene GetCurrentMapBattleScene(void);

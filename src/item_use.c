@@ -1471,8 +1471,7 @@ static bool32 IsValidLocationForVsSeeker(void)
 {
     u16 mapGroup = gSaveBlock1Ptr->location.mapGroup;
     u16 mapNum = gSaveBlock1Ptr->location.mapNum;
-    //enum MapType mapType = gMapHeader.mapType;
-    u8 mapType = gMapHeader.mapType;
+    enum MapType mapType = gMapHeader.mapType;
 
     typedef struct {
         u16 mapGroup;
