@@ -291,7 +291,6 @@
 #define B_SHOW_TYPES        SHOW_TYPES_NEVER // When defined as SHOW_TYPES_ALWAYS, after selecting "Fight" in battle, the types of all Pokemon are revealed. Whe defined as SHOW_TYPES_OWN, types are only revealed if the player owns the mon in question.
 
 // Pokémon battle sprite settings
-#define B_ENEMY_MON_SHADOW_STYLE        GEN_3 // En Gen4+, todos los rivales tienen sombra.
-                                              // Ahora mismo, las sombras de Gen4+ no funcionan como deberían con los mensajes en combate en los que aparece el entrenador.
+#define B_ENEMY_MON_SHADOW_STYLE        GEN_LATEST // En Gen4+, todos los rivales tienen sombra.
 
 #endif // GUARD_CONFIG_BATTLE_H
