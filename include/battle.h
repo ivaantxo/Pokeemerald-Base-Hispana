@@ -832,6 +832,7 @@ struct BattleStruct
     u8 padding:7;
     u8 usedEjectItem;
     u8 usedMicleBerry;
+    u8 trainerSlideSpriteIds[MAX_BATTLERS_COUNT];
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
