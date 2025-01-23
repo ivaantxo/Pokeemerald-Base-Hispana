@@ -61,6 +61,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/trainer_slide.h"
 #include "constants/trainers.h"
 #include "battle_util.h"
 #include "constants/pokemon.h"
@@ -2697,9 +2698,8 @@ static void Cmd_critmessage(void)
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
 
-            // Signal for the trainer slide-in system.
-            if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlideFirstCriticalHitMsgState != 2)
-                gBattleStruct->trainerSlideFirstCriticalHitMsgState = 1;
+            TryInitalizeTrainerSlideEnemyLandsFirstCriticalHit(gBattlerTarget);
+            TryInitalizeTrainerSlidePlayerLandsFirstCriticalHit(gBattlerTarget);
 
             gBattleCommunication[MSG_DISPLAY] = 1;
         }
@@ -2845,11 +2845,8 @@ static void Cmd_resultmessage(void)
             {
                 stringId = STRINGID_SUPEREFFECTIVE;
             }
-            if (stringId) // Signal for the trainer slide-in system
-            {
-                if (GetBattlerSide(gBattlerTarget) != B_SIDE_PLAYER && gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState != 2)
-                    gBattleStruct->trainerSlideFirstSuperEffectiveHitMsgState = 1;
-            }
+            if (stringId == STRINGID_SUPEREFFECTIVE || stringId == STRINGID_SUPEREFFECTIVETWOFOES)
+                TryInitalizeTrainerSlidePlayerLandsFirstSuperEffectiveHit(gBattlerTarget);
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
             if (IsDoubleSpreadMove())
@@ -10698,7 +10695,7 @@ static void Cmd_various(void)
     case VARIOUS_TRY_TRAINER_SLIDE_MSG_FIRST_OFF:
     {
         VARIOUS_ARGS();
-        if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_FIRST_DOWN)))
+        if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_PLAYER_LANDS_FIRST_DOWN)))
         {
             gBattleScripting.battler = battler;
             BattleScriptPush(cmd->nextInstr);

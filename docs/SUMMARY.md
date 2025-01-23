@@ -18,6 +18,7 @@
     - [v1.7.x](tutorials/how_to_new_pokemon_1_7_0.md)
     - [v1.6.x](tutorials/how_to_new_pokemon_1_6_0.md)
   - [How to use the Testing System](tutorials/how_to_testing_system.md)
+  - [How to add new Trainer Slides](tutorials/how_to_new_trainer_slide.md)
 - [Changelog](./CHANGELOG.md)
     - [1.10.x]()
         - [Version 1.10.1](changelogs/1.10.x/1.10.1.md)

@@ -19,6 +19,7 @@
 #include "battle_gimmick.h"
 #include "move.h"
 #include "random.h" // for rng_value_t
+#include "trainer_slide.h"
 
 // Helper for accessing command arguments and advancing gBattlescriptCurrInstr.
 //
@@ -794,16 +795,6 @@ struct BattleStruct
     u8 bonusCritStages[MAX_BATTLERS_COUNT]; // G-Max Chi Strike boosts crit stages of allies.
     u8 itemPartyIndex[MAX_BATTLERS_COUNT];
     u8 itemMoveIndex[MAX_BATTLERS_COUNT];
-    u8 trainerSlideFirstCriticalHitMsgState:2;
-    u8 trainerSlideFirstSuperEffectiveHitMsgState:2;
-    u8 trainerSlideFirstSTABMoveMsgState:2;
-    u8 trainerSlidePlayerMonUnaffectedMsgState:2;
-    u8 trainerSlideHalfHpMsgDone:1;
-    u8 trainerSlideMegaEvolutionMsgDone:1;
-    u8 trainerSlideZMoveMsgDone:1;
-    u8 trainerSlideBeforeFirstTurnMsgDone:1;
-    u8 trainerSlideDynamaxMsgDone:1;
-    u8 trainerSlideLowHpMsgDone:1;
     u8 pledgeMove:1;
     u8 isSkyBattle:1;
     u32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
@@ -842,6 +833,7 @@ struct BattleStruct
     u8 printedStrongWindsWeakenedAttack:1;
     u8 numSpreadTargets:2;
     u8 padding3:2;
+    struct MessageStatus slideMessageStatus;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
