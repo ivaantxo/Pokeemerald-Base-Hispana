@@ -10827,25 +10827,25 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *failInstr);
         if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_SEEDS)
         {
-            u8 effect = 0;
+            enum ItemEffect effect = ITEM_NO_EFFECT;
             u16 item = gBattleMons[battler].item;
             switch (GetBattlerHoldEffectParam(battler))
             {
             case HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_ELECTRIC_TERRAIN, STAT_DEF, item, ITEMEFFECT_NONE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_ELECTRIC_TERRAIN, STAT_DEF, item, ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN);
                 break;
             case HOLD_EFFECT_PARAM_GRASSY_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_GRASSY_TERRAIN, STAT_DEF, item, ITEMEFFECT_NONE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_GRASSY_TERRAIN, STAT_DEF, item, ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN);
                 break;
             case HOLD_EFFECT_PARAM_MISTY_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_MISTY_TERRAIN, STAT_SPDEF, item, ITEMEFFECT_NONE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_MISTY_TERRAIN, STAT_SPDEF, item, ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN);
                 break;
             case HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN:
-                effect = TryHandleSeed(battler, STATUS_FIELD_PSYCHIC_TERRAIN, STAT_SPDEF, item, ITEMEFFECT_NONE);
+                effect = TryHandleSeed(battler, STATUS_FIELD_PSYCHIC_TERRAIN, STAT_SPDEF, item, ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN);
                 break;
             }
 
-            if (effect)
+            if (effect != ITEM_NO_EFFECT)
                 return;
         }
         gBattlescriptCurrInstr = cmd->failInstr;
