@@ -2471,6 +2471,11 @@
 	callnative Script_SetDifficulty, requests_effects=1
 	.byte \difficulty
 	.endm
+    
+	.macro forcesave
+	callnative Script_ForceSaveGame
+	waitstate
+	.endm
 
 	@ Makes the trainer unable to see the player if executed.
 	@ This is a no-op if the player interacts with the trainer.
