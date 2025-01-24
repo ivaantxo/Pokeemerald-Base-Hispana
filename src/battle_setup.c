@@ -360,12 +360,6 @@ const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
     [REMATCH_WALLACE] = REMATCH(TRAINER_WALLACE, TRAINER_WALLACE, TRAINER_WALLACE, TRAINER_WALLACE, TRAINER_WALLACE, EVER_GRANDE_CITY),
 };
 
-static const u16 sBadgeFlags[NUM_BADGES] =
-{
-    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
-    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
-};
-
 #define tState data[0]
 #define tTransition data[1]
 
@@ -1920,9 +1914,9 @@ static bool32 HasAtLeastFiveBadges(void)
 {
     s32 i, count;
 
-    for (count = 0, i = 0; i < ARRAY_COUNT(sBadgeFlags); i++)
+    for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
     {
-        if (FlagGet(sBadgeFlags[i]) == TRUE)
+        if (FlagGet(gBadgeFlags[i]) == TRUE)
         {
             if (++count >= 5)
                 return TRUE;

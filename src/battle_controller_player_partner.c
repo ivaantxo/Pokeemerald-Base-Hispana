@@ -405,7 +405,7 @@ static void PlayerPartnerHandleChoosePokemon(u32 battler)
                 }
             }
         }
-        *(gBattleStruct->monToSwitchIntoId + battler) = chosenMonId;
+        gBattleStruct->monToSwitchIntoId[battler] = chosenMonId;
     }
     else // Mon to switch out has been already chosen.
     {
