@@ -7138,6 +7138,7 @@ static enum ItemEffect TryEjectPack(u32 battler, enum ItemCaseId caseID)
     {
         gProtectStructs[battler].statFell = FALSE;
         gBattleScripting.battler = battler;
+        AI_DATA->ejectPackSwitch = TRUE;
         if (caseID == ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN)
         {
             BattleScriptExecute(BattleScript_EjectPackActivate_End2);
