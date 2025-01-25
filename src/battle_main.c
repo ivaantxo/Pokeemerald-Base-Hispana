@@ -5870,6 +5870,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
                 break;
             case WEATHER_RAIN:
             case WEATHER_RAIN_THUNDERSTORM:
+            case WEATHER_DOWNPOUR:
                 if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
                     return TYPE_WATER;
                 break;
