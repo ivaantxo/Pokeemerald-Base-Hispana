@@ -148,6 +148,7 @@ void SetCurrentAndNextWeatherNoDelay(u8 weather);
 void ApplyWeatherColorMapIfIdle(s8 colorMapIndex);
 void ApplyWeatherColorMapIfIdle_Gradual(u8 colorMapIndex, u8 targetColorMapIndex, u8 colorMapStepDelay);
 void FadeScreen(u8 mode, s8 delay);
+u16 FadeScreenHardware(u8 mode, s8 delay);
 bool8 IsWeatherNotFadingIn(void);
 void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog);
 void ApplyWeatherColorMapToPals(u8 startPalIndex, u8 numPalettes);
@@ -165,7 +166,9 @@ void PlayRainStoppingSoundEffect(void);
 u8 IsWeatherChangeComplete(void);
 void SetWeatherScreenFadeOut(void);
 void SetWeatherPalStateIdle(void);
+const u8* SetPaletteColorMapType(u8 paletteIndex, u8 colorMapType);
 void PreservePaletteInWeather(u8 preservedPalIndex);
+void ResetPaletteColorMapType(u8 paletteIndex);
 void ResetPreservedPalettesInWeather(void);
 bool32 IsWeatherAlphaBlend(void);
 

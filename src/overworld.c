@@ -200,7 +200,7 @@ COMMON_DATA u8 gFieldLinkPlayerCount = 0;
 
 u8 gTimeOfDay;
 struct TimeBlendSettings currentTimeBlend;
-u16 gTimeUpdateCounter; // playTimeVBlanks will eventually overflow, so this is used to update TOD
+s16 gTimeUpdateCounter; // playTimeVBlanks will eventually overflow, so this is used to update TOD
 
 // EWRAM vars
 EWRAM_DATA static u8 sObjectEventLoadFlag = 0;
@@ -212,6 +212,7 @@ EWRAM_DATA static u16 sLastMapSectionId = 0;
 EWRAM_DATA static struct InitialPlayerAvatarState sInitialPlayerAvatarState = {0};
 EWRAM_DATA static u16 sAmbientCrySpecies = 0;
 EWRAM_DATA static bool8 sIsAmbientCryWaterMon = FALSE;
+EWRAM_DATA static u8 sHoursOverride = 0; // used to override apparent time of day hours
 EWRAM_DATA struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4] = {0};
 EWRAM_DATA bool8 gExitStairsMovementDisabled = FALSE;
 
@@ -910,6 +911,8 @@ static void LoadMapFromWarp(bool32 a1)
     TrySetMapSaveWarpStatus();
     ClearTempFieldEventData();
     ResetDexNavSearch();
+    // reset hours override on every warp
+    sHoursOverride = 0; 
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
 #if FREE_MATCH_CALL == FALSE
@@ -1557,37 +1560,37 @@ void UpdateTimeOfDay(void)
 {
     s32 hours, minutes;
     RtcCalcLocalTime();
-    hours = gLocalTime.hours;
-    minutes = gLocalTime.minutes;
+    hours = sHoursOverride ? sHoursOverride : gLocalTime.hours;
+    minutes = sHoursOverride ? 0 : gLocalTime.minutes;
 
     if (IsBetweenHours(hours, MORNING_HOUR_BEGIN, MORNING_HOUR_MIDDLE)) // night->morning
     {
-        currentTimeBlend.initialTimeOfDay = TIME_NIGHT;
-        currentTimeBlend.finalTimeOfDay = TIME_MORNING;
+        currentTimeBlend.bld0 = gTimeOfDayBlend[TIME_NIGHT];
+        currentTimeBlend.bld1 = gTimeOfDayBlend[TIME_MORNING];
         currentTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_BEGIN, MORNING_HOUR_MIDDLE);
         currentTimeBlend.altWeight = (DEFAULT_WEIGHT - currentTimeBlend.weight) / 2;
         gTimeOfDay = TIME_MORNING;
     }
     else if (IsBetweenHours(hours, MORNING_HOUR_MIDDLE, MORNING_HOUR_END)) // morning->day
     {
-        currentTimeBlend.initialTimeOfDay = TIME_MORNING;
-        currentTimeBlend.finalTimeOfDay = TIME_DAY;
+        currentTimeBlend.bld0 = gTimeOfDayBlend[TIME_MORNING];
+        currentTimeBlend.bld1 = gTimeOfDayBlend[TIME_DAY];
         currentTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_MIDDLE, MORNING_HOUR_END);
         currentTimeBlend.altWeight = (DEFAULT_WEIGHT - currentTimeBlend.weight) / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_MORNING;
     }
     else if (IsBetweenHours(hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END)) // evening
     {
-        currentTimeBlend.initialTimeOfDay = TIME_DAY;
-        currentTimeBlend.finalTimeOfDay = TIME_EVENING;
+        currentTimeBlend.bld0 = gTimeOfDayBlend[TIME_DAY];
+        currentTimeBlend.bld1 = gTimeOfDayBlend[TIME_EVENING];
         currentTimeBlend.weight = TIME_BLEND_WEIGHT(EVENING_HOUR_BEGIN, EVENING_HOUR_END);
         currentTimeBlend.altWeight = currentTimeBlend.weight / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_EVENING;
     }
     else if (IsBetweenHours(hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1)) // evening->night
     {
-        currentTimeBlend.initialTimeOfDay = TIME_EVENING;
-        currentTimeBlend.finalTimeOfDay = TIME_NIGHT;
+        currentTimeBlend.bld0 = gTimeOfDayBlend[TIME_EVENING];
+        currentTimeBlend.bld1 = gTimeOfDayBlend[TIME_NIGHT];
         currentTimeBlend.weight = TIME_BLEND_WEIGHT(NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1);
         currentTimeBlend.altWeight = currentTimeBlend.weight / 2;
         gTimeOfDay = TIME_NIGHT;
@@ -1596,12 +1599,14 @@ void UpdateTimeOfDay(void)
     {
         currentTimeBlend.weight = DEFAULT_WEIGHT;
         currentTimeBlend.altWeight = 0;
-        gTimeOfDay = currentTimeBlend.initialTimeOfDay = currentTimeBlend.finalTimeOfDay = TIME_NIGHT;
+        currentTimeBlend.bld0 = currentTimeBlend.bld1 = gTimeOfDayBlend[TIME_NIGHT];
+        gTimeOfDay = TIME_NIGHT;
     }
     else // day
     {
         currentTimeBlend.weight = currentTimeBlend.altWeight = DEFAULT_WEIGHT;
-        gTimeOfDay = currentTimeBlend.initialTimeOfDay = currentTimeBlend.finalTimeOfDay = TIME_DAY;
+        currentTimeBlend.bld0 = currentTimeBlend.bld1 = gTimeOfDayBlend[TIME_DAY];
+        gTimeOfDay = TIME_DAY;
     }
 }
 
@@ -1658,10 +1663,10 @@ void UpdatePalettesWithTime(u32 palettes)
                 palettes &= ~(mask);
         }
 
-    palettes &= PALETTES_MAP | PALETTES_OBJECTS; // Don't blend UI pals
-    if (!palettes)
-        return;
-    TimeMixPalettes(palettes, gPlttBufferUnfaded, gPlttBufferFaded, (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.initialTimeOfDay], (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.finalTimeOfDay], currentTimeBlend.weight);
+        palettes &= PALETTES_MAP | PALETTES_OBJECTS; // Don't blend UI pals
+        if (!palettes)
+            return;
+        TimeMixPalettes(palettes, gPlttBufferUnfaded, gPlttBufferFaded, &currentTimeBlend.bld0, &currentTimeBlend.bld1, currentTimeBlend.weight);
     }
 }
 
@@ -1671,8 +1676,7 @@ u8 UpdateSpritePaletteWithTime(u8 paletteNum)
     {
         if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(paletteNum)))
             return paletteNum;
-        TimeMixPalettes(1, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.initialTimeOfDay], (struct BlendSettings *)&gTimeOfDayBlend[currentTimeBlend.finalTimeOfDay], currentTimeBlend.weight
-        );
+        TimeMixPalettes(1, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &currentTimeBlend.bld0, &currentTimeBlend.bld1, currentTimeBlend.weight);
     }
     return paletteNum;
 }
@@ -1689,20 +1693,17 @@ static void OverworldBasic(void)
     UpdateTilesetAnimations();
     DoScheduledBgTilemapCopiesToVram();
     // Every minute if no palette fade is active, update TOD blending as needed
-    if (!gPaletteFade.active && ++gTimeUpdateCounter >= (SECONDS_PER_MINUTE * 60 / FakeRtc_GetSecondsRatio()))
-    {
-        struct TimeBlendSettings cachedBlend = {
-            .initialTimeOfDay = currentTimeBlend.initialTimeOfDay,
-            .finalTimeOfDay = currentTimeBlend.finalTimeOfDay,
-            .weight = currentTimeBlend.weight,
-        };
-        gTimeUpdateCounter = 0;
+    if (!gPaletteFade.active && --gTimeUpdateCounter <= 0) {
+        struct TimeBlendSettings cachedBlend = currentTimeBlend;
+        u32 *bld0 = (u32*)&cachedBlend;
+        u32 *bld1 = (u32*)&currentTimeBlend;
+        gTimeUpdateCounter = (SECONDS_PER_MINUTE * 60 / FakeRtc_GetSecondsRatio());
         UpdateTimeOfDay();
         FormChangeTimeUpdate();
-        if (cachedBlend.initialTimeOfDay != currentTimeBlend.initialTimeOfDay
-         || cachedBlend.finalTimeOfDay != currentTimeBlend.finalTimeOfDay
-         || cachedBlend.weight != currentTimeBlend.weight)
-        {
+        if (bld0[0] != bld1[0]
+            || bld0[1] != bld1[1]
+            || bld0[2] != bld1[2]
+        ) {
            UpdateAltBgPalettes(PALETTES_BG);
            UpdatePalettesWithTime(PALETTES_ALL);
         }
@@ -3679,3 +3680,15 @@ void ScriptHideItemDescription(struct ScriptContext *ctx)
 #endif // OW_SHOW_ITEM_DESCRIPTIONS
 
 
+// returns old sHoursOverride
+u16 SetTimeOfDay(u16 hours) {
+    u16 oldHours = sHoursOverride;
+    sHoursOverride = hours;
+    gTimeUpdateCounter = 0;
+    return oldHours;
+}
+
+bool8 ScrFunc_settimeofday(struct ScriptContext *ctx) {
+    SetTimeOfDay(ScriptReadByte(ctx));
+    return FALSE;
+}

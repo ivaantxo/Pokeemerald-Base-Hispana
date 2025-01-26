@@ -26,6 +26,11 @@
 
 #define SKIP_OBJECT_EVENT_LOAD  1
 
+// trigger a time-of-day blend once
+#define HOURS_BLEND_ONCE 25
+// don't update currentTimeBlend
+#define HOURS_FREEZE_BLEND 26
+
 struct InitialPlayerAvatarState
 {
     u8 transitionFlags;
@@ -40,15 +45,7 @@ struct LinkPlayerObjectEvent
     u8 movementMode;
 };
 
-struct __attribute__((packed)) TimeBlendSettings
-{
-    u16 weight:9;
-    u16 finalTimeOfDay:3;
-    u16 initialTimeOfDay:3;
-    u16 unused:1;
-    u16 altWeight;
-};
-
+// Exported RAM declarations
 extern struct WarpData gLastUsedWarp;
 extern struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4];
 
@@ -63,7 +60,7 @@ extern u8 gFieldLinkPlayerCount;
 extern bool8 gExitStairsMovementDisabled;
 extern bool8 gSkipShowMonAnim;
 extern u8 gTimeOfDay;
-extern u16 gTimeUpdateCounter;
+extern s16 gTimeUpdateCounter;
 
 extern struct TimeBlendSettings currentTimeBlend;
 
@@ -173,6 +170,7 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void);
 bool32 Overworld_SendKeysToLinkIsRunning(void);
 bool32 IsSendingKeysOverCable(void);
 void ClearLinkPlayerObjectEvents(void);
+bool16 SetTimeOfDay(u16 hours);
 
 // Item Description Headers
 enum ItemObtainFlags

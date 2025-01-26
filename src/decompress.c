@@ -73,7 +73,7 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
 
     // Check for LZ77 header and read uncompressed size, or fallback if not compressed (zero size)
     if ((size = IsLZ77Data(template->images->data, TILE_SIZE_4BPP, MAX_DECOMPRESSION_BUFFER_SIZE)) == 0)
-        return LoadSpriteSheetByTemplateWithOffset(template, 0, offset);
+        return LoadSpriteSheetByTemplate(template, 0, offset);
 
     void *buffer = malloc_and_decompress(template->images->data, NULL);
     myImage.data = buffer;
@@ -81,7 +81,7 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
     myTemplate.images = &myImage;
     myTemplate.tileTag = template->tileTag;
 
-    u32 ret = LoadSpriteSheetByTemplateWithOffset(&myTemplate, 0, offset);
+    u32 ret = LoadSpriteSheetByTemplate(&myTemplate, 0, offset);
     Free(buffer);
     return ret;
 }

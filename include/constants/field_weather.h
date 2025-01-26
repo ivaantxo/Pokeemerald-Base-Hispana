@@ -3,6 +3,14 @@
 
 #include "config/overworld.h"
 
+// sPaletteColorMapTypes & field_effect_scripts
+enum
+{
+    COLOR_MAP_NONE,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_CONTRAST,
+};
+
 #define MAX_RAIN_SPRITES             24
 #define NUM_CLOUD_SPRITES            3
 #define NUM_FOG_HORIZONTAL_SPRITES   20

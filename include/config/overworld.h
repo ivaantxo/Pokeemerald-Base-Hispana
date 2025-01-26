@@ -60,6 +60,33 @@
 #define OW_FOLLOWERS_WEATHER_FORMS     FALSE      // If TRUE, Castform and Cherrim gain FORM_CHANGE_OVERWORLD_WEATHER, which will make them transform in the overworld based on the weather.
 #define OW_FOLLOWERS_COPY_WILD_PKMN    FALSE      // If TRUE, follower Pokémon that know Transform or have Illusion/Imposter will copy wild Pokémon at random.
 
+// New/old handling for followers during scripts;
+// TRUE: Script collisions hide follower, FLAG_SAFE_FOLLOWER_MOVEMENT on by default
+// (scripted player movement moves follower too!)
+// FALSE: Script collisions unhandled, FLAG_SAFE_FOLLOWER_MOVEMENT off by default
+#define OW_MON_SCRIPT_MOVEMENT TRUE
+
+// If set, the only pokemon allowed to follow you
+// will be those matching species, met location,
+// and/or met level;
+// These accept vars, too: VAR_TEMP_1, etc
+#define OW_MON_ALLOWED_SPECIES (0)
+#define OW_MON_ALLOWED_MET_LVL (0)
+#define OW_MON_ALLOWED_MET_LOC (0)
+// Examples:
+// Yellow Pikachu:
+// #define OW_MON_ALLOWED_SPECIES (SPECIES_PIKACHU)
+// #define OW_MON_ALLOWED_MET_LVL (0)
+// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_PALLET_TOWN)
+// Hoenn Starter:
+// #define OW_MON_ALLOWED_SPECIES (0)
+// #define OW_MON_ALLOWED_MET_LVL (5)
+// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_ROUTE_101)
+// Species set in VAR_XXXX:
+// #define OW_MON_ALLOWED_SPECIES (VAR_XXXX)
+// #define OW_MON_ALLOWED_MET_LVL (0)
+// #define OW_MON_ALLOWED_MET_LOC (0)
+
 // Out-of-battle Ability effects
 #define OW_SYNCHRONIZE_NATURE       GEN_LATEST // In Gen8+, if a Pokémon with Synchronize leads the party, wild Pokémon will always have their same Nature as opposed to the 50% chance in previous games. Gift Pokémon excluded.
                                                // In USUM (here GEN_7), if a Pokémon with Synchronize leads the party, gift Pokémon will always have their same Nature regardless of their Egg Group.

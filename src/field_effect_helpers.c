@@ -57,8 +57,8 @@ u32 FldEff_Shadow(void);
 void SetUpShadow(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     gFieldEffectArguments[0] = objectEvent->localId;
-    gFieldEffectArguments[1] = gSaveBlock1Ptr->location.mapNum;
-    gFieldEffectArguments[2] = gSaveBlock1Ptr->location.mapGroup;
+    gFieldEffectArguments[1] = objectEvent->mapNum;
+    gFieldEffectArguments[2] = objectEvent->mapGroup;
     FldEff_Shadow();
 }
 
@@ -339,19 +339,23 @@ u32 FldEff_Shadow(void)
     for (i = MAX_SPRITES - 1; i > -1; i--) // Search backwards, because of CreateSpriteAtEnd
     {
         // Return early if a shadow sprite already exists
-        if (gSprites[i].data[0] == gFieldEffectArguments[0] && gSprites[i].callback == UpdateShadowFieldEffect)
+        if (gSprites[i].callback == UpdateShadowFieldEffect &&
+            gSprites[i].sLocalId == gFieldEffectArguments[0] &&
+            gSprites[i].sMapNum == gFieldEffectArguments[1] &&
+            gSprites[i].sMapGroup == gFieldEffectArguments[2]
+        )
             return 0;
     }
     objectEventId = GetObjectEventIdByLocalIdAndMap(gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
     graphicsInfo = GetObjectEventGraphicsInfo(gObjectEvents[objectEventId].graphicsId);
     if (graphicsInfo->shadowSize == SHADOW_SIZE_NONE) // don't create a shadow at all
         return 0;
-    LoadSpriteSheetByTemplate(gFieldEffectObjectTemplatePointers[sShadowEffectTemplateIds[graphicsInfo->shadowSize]], 0);
+        LoadSpriteSheetByTemplate(gFieldEffectObjectTemplatePointers[sShadowEffectTemplateIds[graphicsInfo->shadowSize]], 0, 0);
     spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[sShadowEffectTemplateIds[graphicsInfo->shadowSize]], 0, 0, OW_OBJECT_SUBPRIORITY + 1);
     if (spriteId != MAX_SPRITES)
     {
         // SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 12));
-        gSprites[spriteId].oam.objMode = 1; // BLEND
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
         gSprites[spriteId].coordOffsetEnabled = TRUE;
         gSprites[spriteId].sLocalId = gFieldEffectArguments[0];
         gSprites[spriteId].sMapNum = gFieldEffectArguments[1];
