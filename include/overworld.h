@@ -28,7 +28,7 @@
 
 // trigger a time-of-day blend once
 #define HOURS_BLEND_ONCE 25
-// don't update currentTimeBlend
+// don't update gTimeBlend
 #define HOURS_FREEZE_BLEND 26
 
 struct InitialPlayerAvatarState
@@ -62,7 +62,7 @@ extern bool8 gSkipShowMonAnim;
 extern u8 gTimeOfDay;
 extern s16 gTimeUpdateCounter;
 
-extern struct TimeBlendSettings currentTimeBlend;
+extern struct TimeBlendSettings gTimeBlend;
 
 extern const struct UCoords32 gDirectionToVectors[];
 

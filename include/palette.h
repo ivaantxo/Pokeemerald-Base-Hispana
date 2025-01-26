@@ -46,11 +46,12 @@ struct BlendSettings
     u32 unused:2;
 };
 
-struct TimeBlendSettings {
-  struct BlendSettings bld0;
-  struct BlendSettings bld1;
-  u16 weight;
-  u16 altWeight;
+struct TimeBlendSettings
+{
+    struct BlendSettings startBlend;
+    struct BlendSettings endBlend;
+    u16 weight;
+    u16 altWeight;
 };
 
 struct PaletteFadeControl

@@ -900,9 +900,9 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
         {
             // All 'gTilesetPalettes_' arrays should have ALIGNED(4) in them,
             // but we use SmartCopy here just in case they don't
-            if (skipFaded) {
+            if (skipFaded)
                 CpuCopy16(tileset->palettes[NUM_PALS_IN_PRIMARY], &gPlttBufferUnfaded[destOffset], size);
-            } else
+            else
                 LoadPaletteFast(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
             low = NUM_PALS_IN_PRIMARY;
             high = NUM_PALS_TOTAL;

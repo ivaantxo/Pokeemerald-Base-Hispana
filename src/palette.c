@@ -732,7 +732,8 @@ static void UpdateBlendRegisters(void)
     SetGpuReg(REG_OFFSET_BLDCNT, (u16)gPaletteFade_blendCnt);
     SetGpuReg(REG_OFFSET_BLDY, gPaletteFade.y);
     // If fade-out, also adjust BLDALPHA and DISPCNT
-    if (!gPaletteFade.yDec /*&& gPaletteFade.mode == HARDWARE_FADE*/) {
+    if (!gPaletteFade.yDec /*&& gPaletteFade.mode == HARDWARE_FADE*/)
+    {
         u16 bldAlpha = GetGpuReg(REG_OFFSET_BLDALPHA);
         u8 tgt1 = BLDALPHA_TGT1(bldAlpha);
         u8 tgt2 = BLDALPHA_TGT2(bldAlpha);

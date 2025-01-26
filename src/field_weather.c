@@ -792,7 +792,7 @@ void FadeScreen(u8 mode, s8 delay)
         else if (MapHasNaturalLight(gMapHeader.mapType))
         {
             UpdateAltBgPalettes(PALETTES_BG);
-            BeginTimeOfDayPaletteFade(PALETTES_ALL, delay, 16, 0, &currentTimeBlend.bld0, &currentTimeBlend.bld1, currentTimeBlend.weight, fadeColor);
+            BeginTimeOfDayPaletteFade(PALETTES_ALL, delay, 16, 0, &gTimeBlend.startBlend, &gTimeBlend.endBlend, gTimeBlend.weight, fadeColor);
         }
         else
         {
@@ -811,7 +811,8 @@ void FadeScreen(u8 mode, s8 delay)
 // Note: This enables blending in all windows;
 // These bits may need to be disabled later
 // (i.e if blending lighting effects using WINOBJ)
-u16 FadeScreenHardware(u8 mode, s8 delay) {
+u16 FadeScreenHardware(u8 mode, s8 delay)
+{
     u16 bldCnt = GetGpuReg(REG_OFFSET_BLDCNT) & BLDCNT_TGT2_ALL;
     bldCnt |= BLDCNT_TGT1_ALL;
     // enable blend in all windows
@@ -1161,11 +1162,13 @@ void SetWeatherPalStateIdle(void)
     gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
 }
 
-const u8* SetPaletteColorMapType(u8 paletteIndex, u8 colorMapType) {
+const u8* SetPaletteColorMapType(u8 paletteIndex, u8 colorMapType)
+{
     if (sPaletteColorMapTypes[paletteIndex] == colorMapType)
         return sPaletteColorMapTypes;
     // setup field effect color map
-    if (sPaletteColorMapTypes != sFieldEffectPaletteColorMapTypes) {
+    if (sPaletteColorMapTypes != sFieldEffectPaletteColorMapTypes)
+    {
         CpuCopy16(sBasePaletteColorMapTypes, sFieldEffectPaletteColorMapTypes, 32);
         sPaletteColorMapTypes = sFieldEffectPaletteColorMapTypes;
     }
@@ -1178,7 +1181,8 @@ void PreservePaletteInWeather(u8 preservedPalIndex)
     SetPaletteColorMapType(preservedPalIndex, COLOR_MAP_NONE);
 }
 
-void ResetPaletteColorMapType(u8 paletteIndex) {
+void ResetPaletteColorMapType(u8 paletteIndex)
+{
     if (sPaletteColorMapTypes == sBasePaletteColorMapTypes)
         return;
     sFieldEffectPaletteColorMapTypes[paletteIndex] = sBasePaletteColorMapTypes[paletteIndex];
