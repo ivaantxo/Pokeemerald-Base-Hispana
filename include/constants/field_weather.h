@@ -1,6 +1,11 @@
 #ifndef GUARD_CONSTANTS_FIELD_WEATHER_H
 #define GUARD_CONSTANTS_FIELD_WEATHER_H
 
+// sPaletteColorMapTypes & field_effect_scripts
+#define COLOR_MAP_NONE          0
+#define COLOR_MAP_DARK_CONTRAST 1
+#define COLOR_MAP_CONTRAST      2
+
 #define MAX_RAIN_SPRITES             24
 #define NUM_CLOUD_SPRITES            3
 #define NUM_FOG_HORIZONTAL_SPRITES   20
