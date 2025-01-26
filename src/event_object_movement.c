@@ -2397,6 +2397,8 @@ void UpdateLightSprite(struct Sprite *sprite) {
         return;
     }
 
+    // Note to self: Don't set window registers during hardware fade!
+
     switch (sprite->data[5]) { // lightType
     case 0:
         if (gPaletteFade.active) { // if palette fade is active, don't flicker since the timer won't be updated

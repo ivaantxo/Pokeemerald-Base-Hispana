@@ -818,6 +818,7 @@ void FadeScreen(u8 mode, s8 delay)
 // fades screen using BLDY
 // Note: This enables blending in all windows;
 // These bits may need to be disabled later
+// (i.e if blending lighting effects using WINOBJ)
 u16 FadeScreenHardware(u8 mode, s8 delay) {
     u16 bldCnt = GetGpuReg(REG_OFFSET_BLDCNT) & BLDCNT_TGT2_ALL;
     bldCnt |= BLDCNT_TGT1_ALL;
@@ -1008,7 +1009,10 @@ void Weather_SetBlendCoeffs(u8 eva, u8 evb)
     gWeatherPtr->currBlendEVB = evb;
     gWeatherPtr->targetBlendEVA = eva;
     gWeatherPtr->targetBlendEVB = evb;
-    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(eva, evb));
+
+    // don't update BLDALPHA if a hardware fade is on-screen
+    if ((GetGpuReg(REG_OFFSET_BLDCNT) & BLDCNT_EFFECT_EFF_MASK) < BLDCNT_EFFECT_LIGHTEN)
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(eva, evb));
 }
 
 void Weather_SetTargetBlendCoeffs(u8 eva, u8 evb, int delay)
