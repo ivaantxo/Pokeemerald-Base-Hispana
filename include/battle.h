@@ -128,7 +128,7 @@ struct DisableStruct
     u16 overwrittenAbility;   // abilities overwritten during battle (keep separate from battle history in case of switching)
     u8 boosterEnergyActivates:1;
     u8 roostActive:1;
-    u8 unbrudenActive:1;
+    u8 unburdenActive:1;
     u8 startEmergencyExit:1;
     u8 neutralizingGas:1;
     u8 iceFaceActivationPrevention:1; // fixes hit escape move edge case
