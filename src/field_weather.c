@@ -1166,7 +1166,7 @@ const u8* SetPaletteColorMapType(u8 paletteIndex, u8 colorMapType) {
         return sPaletteColorMapTypes;
     // setup field effect color map
     if (sPaletteColorMapTypes != sFieldEffectPaletteColorMapTypes) {
-        CpuFastCopy(sBasePaletteColorMapTypes, sFieldEffectPaletteColorMapTypes, 32);
+        CpuCopy16(sBasePaletteColorMapTypes, sFieldEffectPaletteColorMapTypes, 32);
         sPaletteColorMapTypes = sFieldEffectPaletteColorMapTypes;
     }
     sFieldEffectPaletteColorMapTypes[paletteIndex] = colorMapType;

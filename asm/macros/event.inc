@@ -2545,6 +2545,6 @@
 	@ putting them into their pokeball;
 	@ by default waits for their movement to finish
 	.macro hidefollower wait=1
-	callfunc ScrFunc_hidefollower
+	callnative ScrFunc_hidefollower
 	.2byte \wait
 	.endm

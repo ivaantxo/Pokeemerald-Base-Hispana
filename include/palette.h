@@ -46,7 +46,7 @@ struct BlendSettings
     u32 unused:2;
 };
 
-struct __attribute__((packed)) TimeBlendSettings {
+struct TimeBlendSettings {
   struct BlendSettings bld0;
   struct BlendSettings bld1;
   u16 weight;
