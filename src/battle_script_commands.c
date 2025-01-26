@@ -6999,7 +6999,7 @@ static void Cmd_moveend(void)
                 gBattleStruct->pledgeMove = FALSE;
             if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE)
                 SetActiveGimmick(gBattlerAttacker, GIMMICK_NONE);
-            if (B_CHARGE <= GEN_8 || moveType == TYPE_ELECTRIC)
+            if (B_CHARGE >= GEN_9 && moveType == TYPE_ELECTRIC && (IsBattlerTurnDamaged(gBattlerTarget) || !MoveResultHasEffect(gBattlerTarget)))
                 gStatuses3[gBattlerAttacker] &= ~(STATUS3_CHARGED_UP);
             memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
             ClearDamageCalcResults();
