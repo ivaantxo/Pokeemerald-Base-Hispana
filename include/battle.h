@@ -1248,10 +1248,5 @@ static inline bool32 IsBattlerInvalidForSpreadMove(u32 battlerAtk, u32 battlerDe
         || (battlerDef == BATTLE_PARTNER(battlerAtk) && (moveTarget == MOVE_TARGET_BOTH));
 }
 
-static inline bool32 MoveResultHasEffect(u32 battler)
-{
-    return !(gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_NO_EFFECT);
-}
-
 #endif // GUARD_BATTLE_H
 
