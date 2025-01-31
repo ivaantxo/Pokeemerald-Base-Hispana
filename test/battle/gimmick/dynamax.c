@@ -1205,7 +1205,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Terror traps both opponents")
 SINGLE_BATTLE_TEST("(DYNAMAX) Baton Pass passes G-Max Terror's escape prevention effect")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_G_MAX_TERROR].argument == MAX_EFFECT_MEAN_LOOK);
+        ASSUME(GetMoveMaxEffect(MOVE_G_MAX_TERROR) == MAX_EFFECT_MEAN_LOOK);
         PLAYER(SPECIES_GENGAR) { GigantamaxFactor(TRUE); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
