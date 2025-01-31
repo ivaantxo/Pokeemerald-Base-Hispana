@@ -276,6 +276,7 @@ enum MoveEndEffects
     MOVEEND_ITEM_EFFECTS_TARGET,
     MOVEEND_MOVE_EFFECTS2,
     MOVEEND_ITEM_EFFECTS_ALL,
+    MOVEEND_HIT_SWITCH_TARGET,
     MOVEEND_KINGSROCK, // These item effects will occur each strike of a multi-hit move
     MOVEEND_NUM_HITS,
     MOVEEND_SUBSTITUTE,

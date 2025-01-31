@@ -1571,7 +1571,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_HIT_SWITCH_TARGET] =
     {
-        .battleScript = BattleScript_EffectHitSwitchTarget,
+        .battleScript = BattleScript_EffectHit,
         .battleTvScore = 0, // TODO: Assign points
     },
 
