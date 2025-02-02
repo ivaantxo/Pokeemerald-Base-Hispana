@@ -6303,6 +6303,43 @@ static void Cmd_moveend(void)
             else
                 gBattleScripting.moveendState++;
             break;
+        case MOVEEND_HIT_SWITCH_TARGET:
+            if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_SWITCH_TARGET
+             && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+             && IsBattlerTurnDamaged(gBattlerTarget)
+             && IsBattlerAlive(gBattlerTarget)
+             && IsBattlerAlive(gBattlerAttacker)
+             && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT)
+            {
+                u32 targetAbility = GetBattlerAbility(gBattlerTarget);
+                if (targetAbility == ABILITY_GUARD_DOG)
+                {
+                    gBattleScripting.moveendState++;
+                    break;
+                }
+
+                effect = TRUE;
+                BattleScriptPushCursor();
+                if (targetAbility == ABILITY_SUCTION_CUPS)
+                {
+                    gBattlescriptCurrInstr = BattleScript_AbilityPreventsPhasingOutRet;
+                }
+                else if (gStatuses3[gBattlerTarget] & STATUS3_ROOTED)
+                {
+                    gBattlescriptCurrInstr = BattleScript_PrintMonIsRootedRet;
+                }
+                else if (GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX)
+                {
+                    gBattlescriptCurrInstr = BattleScript_HitSwitchTargetDynamaxed;
+                }
+                else
+                {
+                    gBattleScripting.switchCase = B_SWITCH_HIT;
+                    gBattlescriptCurrInstr = BattleScript_TryHitSwitchTarget;
+                }
+            }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_KINGSROCK: // King's rock
             // These effects will occur at each hit in a multi-strike move
             if (ItemBattleEffects(ITEMEFFECT_KINGSROCK, 0, FALSE))
@@ -17680,26 +17717,6 @@ void BS_JumpIfBlockedBySoundproof(void)
     else
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
-    }
-}
-
-void BS_TryHitSwitchTarget(void)
-{
-    NATIVE_ARGS(const u8 *failInstr);
-
-    if (IsBattlerAlive(gBattlerAttacker)
-     && IsBattlerAlive(gBattlerTarget)
-     && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
-     && IsBattlerTurnDamaged(gBattlerTarget)
-     && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT
-     && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
-    {
-        gBattleScripting.switchCase = B_SWITCH_HIT;
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
-    else
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
     }
 }
 
