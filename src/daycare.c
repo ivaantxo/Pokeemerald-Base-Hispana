@@ -549,14 +549,15 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
     s32 parent;
     s32 natureTries = 0;
+    rng_value_t personalityRand;
 
-    SeedRng2(gMain.vblankCounter2);
+    personalityRand = LocalRandomSeed(gMain.vblankCounter2);
     parent = GetParentToInheritNature(daycare);
 
     // don't inherit nature
     if (parent < 0)
     {
-        daycare->offspringPersonality = (Random2() << 16) | ((Random() % 0xfffe) + 1);
+        daycare->offspringPersonality = (LocalRandom(&personalityRand) << 16) | ((Random() % 0xfffe) + 1);
     }
     // inherit nature
     else
@@ -566,7 +567,7 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 
         do
         {
-            personality = (Random2() << 16) | (Random());
+            personality = (LocalRandom(&personalityRand) << 16) | (Random());
             if (wantedNature == GetNatureFromPersonality(personality) && personality != 0)
                 break; // found a personality with the same nature
 
@@ -1566,4 +1567,3 @@ static u8 ModifyBreedingScoreForOvalCharm(u8 score)
 
     return score;
 }
-
