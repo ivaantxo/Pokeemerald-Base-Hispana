@@ -197,13 +197,10 @@ void ActivateDynamax(u32 battler)
 // Unsets the flags used for Dynamaxing and reverts max HP if needed.
 void UndoDynamax(u32 battler)
 {
-    u8 side = GetBattlerSide(battler);
-    u8 monId = gBattlerPartyIndexes[battler];
-
     // Revert HP if battler is still Dynamaxed.
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
     {
-        struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[monId] : &gEnemyParty[monId];
+        struct Pokemon *mon = GetPartyBattlerData(battler);
         uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
         gBattleMons[battler].hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * mult + 1) + UQ_4_12_ROUND); // round up
         SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
