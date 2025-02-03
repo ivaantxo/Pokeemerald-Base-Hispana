@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("Dragon Tail switches the target after Rocky Helmet and Iron 
     }
 }
 
-SINGLE_BATTLE_TEST("Dragon Tail effect will fails against Guard Dog ability")
+SINGLE_BATTLE_TEST("Dragon Tail effect fails against target with Guard Dog")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("Dragon Tail effect will fails against Guard Dog ability")
     }
 }
 
-SINGLE_BATTLE_TEST("Dragon Tail effect will fails against Suction Cups ability")
+SINGLE_BATTLE_TEST("Dragon Tail effect fails against target with Suction Cups")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -114,6 +114,7 @@ SINGLE_BATTLE_TEST("Dragon Tail effect will fails against Suction Cups ability")
         TURN { MOVE(player, MOVE_DRAGON_TAIL); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_TAIL, player);
+        ABILITY_POPUP(opponent, ABILITY_SUCTION_CUPS);
         MESSAGE("The opposing Octillery anchors itself with Suction Cups!");
         NOT MESSAGE("The opposing Charmander was dragged out!");
     }
