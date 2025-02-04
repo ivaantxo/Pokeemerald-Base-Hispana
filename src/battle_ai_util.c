@@ -3031,7 +3031,7 @@ bool32 AI_CanGetFrostbite(u32 battler, u32 ability)
       || ability == ABILITY_COMATOSE
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
       || gBattleMons[battler].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battler)
+      || IsAbilityStatusProtected(battler, ability)
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)
         return FALSE;
     return TRUE;

@@ -9320,25 +9320,25 @@ u32 IsFlowerVeilProtected(u32 battler)
         return 0;
 }
 
-u32 IsLeafGuardProtected(u32 battler)
+u32 IsLeafGuardProtected(u32 battler, u32 ability)
 {
     if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
-        return GetBattlerAbility(battler) == ABILITY_LEAF_GUARD;
+        return ability == ABILITY_LEAF_GUARD;
     else
         return 0;
 }
 
-bool32 IsShieldsDownProtected(u32 battler)
+bool32 IsShieldsDownProtected(u32 battler, u32 ability)
 {
-    return (GetBattlerAbility(battler) == ABILITY_SHIELDS_DOWN
+    return (ability == ABILITY_SHIELDS_DOWN
             && GetFormIdFromFormSpeciesId(gBattleMons[battler].species) < GetFormIdFromFormSpeciesId(SPECIES_MINIOR_CORE_RED)); // Minior is not in core form
 }
 
-u32 IsAbilityStatusProtected(u32 battler)
+u32 IsAbilityStatusProtected(u32 battler, u32 ability)
 {
-    return IsFlowerVeilProtected(battler)
-        || IsLeafGuardProtected(battler)
-        || IsShieldsDownProtected(battler);
+    return IsLeafGuardProtected(battler, ability)
+        || IsShieldsDownProtected(battler, ability)
+        || IsFlowerVeilProtected(battler);
 }
 
 u32 GetHighestStatId(u32 battler)
@@ -9612,7 +9612,7 @@ static void Cmd_various(void)
     case VARIOUS_JUMP_IF_SHIELDS_DOWN_PROTECTED:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        if (IsShieldsDownProtected(battler))
+        if (IsShieldsDownProtected(battler, GetBattlerAbility(battler)))
         {
             gBattlerAbility = battler;
             gBattlescriptCurrInstr = cmd->jumpInstr;
@@ -11169,7 +11169,7 @@ static void Cmd_various(void)
     case VARIOUS_JUMP_IF_LEAF_GUARD_PROTECTED:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        if (IsLeafGuardProtected(battler))
+        if (IsLeafGuardProtected(battler, GetBattlerAbility(battler)))
         {
             gBattlerAbility = battler;
             gBattlescriptCurrInstr = cmd->jumpInstr;

@@ -2687,7 +2687,7 @@ u8 DoBattlerEndTurnEffects(void)
                 if (!(gStatuses3[battler] & STATUS3_YAWN) && !(gBattleMons[battler].status1 & STATUS1_ANY)
                  && battlerAbility != ABILITY_VITAL_SPIRIT
                  && battlerAbility != ABILITY_INSOMNIA && !UproarWakeUpCheck(battler)
-                 && !IsLeafGuardProtected(battler))
+                 && !IsLeafGuardProtected(battler, battlerAbility))
                 {
                     CancelMultiTurnMoves(battler);
                     gEffectBattler = gBattlerTarget = battler;
@@ -6810,7 +6810,7 @@ bool32 CanBeSlept(u32 battler, u32 ability, enum SleepClauseBlock isBlockedBySle
      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battler].status1 & STATUS1_ANY
      || IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)
-     || IsAbilityStatusProtected(battler)
+     || IsAbilityStatusProtected(battler, ability)
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
@@ -6825,7 +6825,7 @@ bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef, u32 defAbility)
      || defAbility == ABILITY_COMATOSE
      || defAbility == ABILITY_PURIFYING_SALT
      || IsAbilityOnSide(battlerDef, ABILITY_PASTEL_VEIL)
-     || IsAbilityStatusProtected(battlerDef)
+     || IsAbilityStatusProtected(battlerDef, defAbility)
      || IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
@@ -6841,7 +6841,7 @@ bool32 CanBeBurned(u32 battler, u32 ability)
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_THERMAL_EXCHANGE
      || ability == ABILITY_PURIFYING_SALT
-     || IsAbilityStatusProtected(battler)
+     || IsAbilityStatusProtected(battler, ability)
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
@@ -6855,7 +6855,7 @@ bool32 CanBeParalyzed(u32 battler, u32 ability)
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
       || gBattleMons[battler].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battler)
+      || IsAbilityStatusProtected(battler, ability)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
@@ -6871,7 +6871,7 @@ bool32 CanBeFrozen(u32 battler)
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_PURIFYING_SALT
      || gBattleMons[battler].status1 & STATUS1_ANY
-     || IsAbilityStatusProtected(battler)
+     || IsAbilityStatusProtected(battler, ability)
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
@@ -6886,7 +6886,7 @@ bool32 CanGetFrostbite(u32 battler)
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
       || gBattleMons[battler].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battler)
+      || IsAbilityStatusProtected(battler, ability)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
