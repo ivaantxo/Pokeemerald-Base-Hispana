@@ -3090,6 +3090,50 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     TrySaveExchangedItem(battlerItem, gLastUsedItem);
 }
 
+static inline bool32 TrySetReflect(u32 battler)
+{
+    u32 side = GetBattlerSide(battler);
+    if (!(gSideStatuses[side] & SIDE_STATUS_REFLECT))
+    {
+        gSideStatuses[side] |= SIDE_STATUS_REFLECT;
+        if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
+            gSideTimers[side].reflectTimer = gBattleTurnCounter + 8;
+        else
+            gSideTimers[side].reflectTimer = gBattleTurnCounter + 5;
+        gSideTimers[side].reflectBattlerId = battler;
+
+        if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, battler) == 2)
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_DOUBLE;
+        else
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_SINGLE;
+
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static inline bool32 TrySetLightScreen(u32 battler)
+{
+    u32 side = GetBattlerSide(battler);
+    if (!(gSideStatuses[side] & SIDE_STATUS_LIGHTSCREEN))
+    {
+        gSideStatuses[side] |= SIDE_STATUS_LIGHTSCREEN;
+        if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
+            gSideTimers[side].lightscreenTimer = gBattleTurnCounter + 8;
+        else
+            gSideTimers[side].lightscreenTimer = gBattleTurnCounter + 5;
+        gSideTimers[side].lightscreenBattlerId = battler;
+
+        if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, battler) == 2)
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_LIGHTSCREEN_DOUBLE;
+        else
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_LIGHTSCREEN_SINGLE;
+
+        return TRUE;
+    }
+    return FALSE;
+}
+
 #define INCREMENT_RESET_RETURN                  \
 {                                               \
     gBattlescriptCurrInstr++;                   \
@@ -3110,7 +3154,6 @@ void SetMoveEffect(bool32 primary, bool32 certain)
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR);
     u32 flags = 0;
     u32 battlerAbility;
-    u32 side;
     bool8 activateAfterFaint = FALSE;
 
     // NULL move effect
@@ -4220,41 +4263,15 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_REFLECT:
-                side = GetBattlerSide(gBattlerAttacker);
-                if (!(gSideStatuses[side] & SIDE_STATUS_REFLECT))
+                if (TrySetReflect(gBattlerAttacker))
                 {
-                    gSideStatuses[side] |= SIDE_STATUS_REFLECT;
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-                        gSideTimers[side].reflectTimer = gBattleTurnCounter + 8;
-                    else
-                        gSideTimers[side].reflectTimer = gBattleTurnCounter + 5;
-                    gSideTimers[side].reflectBattlerId = gBattlerAttacker;
-
-                    if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker) == 2)
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_DOUBLE;
-                    else
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_SINGLE;
-
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectReflect;
                 }
                 break;
             case MOVE_EFFECT_LIGHT_SCREEN:
-                side = GetBattlerSide(gBattlerAttacker);
-                if (!(gSideStatuses[side] & SIDE_STATUS_LIGHTSCREEN))
+                if (TrySetLightScreen(gBattlerAttacker))
                 {
-                    gSideStatuses[side] |= SIDE_STATUS_LIGHTSCREEN;
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-                        gSideTimers[side].lightscreenTimer = gBattleTurnCounter + 8;
-                    else
-                        gSideTimers[side].lightscreenTimer = gBattleTurnCounter + 5;
-                    gSideTimers[side].lightscreenBattlerId = gBattlerAttacker;
-
-                    if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker) == 2)
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_LIGHTSCREEN_DOUBLE;
-                    else
-                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_LIGHTSCREEN_SINGLE;
-
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectLightScreen;
                 }
@@ -11626,26 +11643,12 @@ static void Cmd_setfieldweather(void)
 static void Cmd_setreflect(void)
 {
     CMD_ARGS();
-
-    if (gSideStatuses[GetBattlerSide(gBattlerAttacker)] & SIDE_STATUS_REFLECT)
+    if (!TrySetReflect(gBattlerAttacker))
     {
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SIDE_STATUS_FAILED;
     }
-    else
-    {
-        gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_REFLECT;
-        if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-            gSideTimers[GetBattlerSide(gBattlerAttacker)].reflectTimer = gBattleTurnCounter + 8;
-        else
-            gSideTimers[GetBattlerSide(gBattlerAttacker)].reflectTimer = gBattleTurnCounter + 5;
-        gSideTimers[GetBattlerSide(gBattlerAttacker)].reflectBattlerId = gBattlerAttacker;
 
-        if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker) == 2)
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_DOUBLE;
-        else
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_SINGLE;
-    }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -12674,24 +12677,10 @@ static void Cmd_setlightscreen(void)
 {
     CMD_ARGS();
 
-    if (gSideStatuses[GetBattlerSide(gBattlerAttacker)] & SIDE_STATUS_LIGHTSCREEN)
+    if (!TrySetLightScreen(gBattlerAttacker))
     {
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SIDE_STATUS_FAILED;
-    }
-    else
-    {
-        gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_LIGHTSCREEN;
-        if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-            gSideTimers[GetBattlerSide(gBattlerAttacker)].lightscreenTimer = gBattleTurnCounter + 8;
-        else
-            gSideTimers[GetBattlerSide(gBattlerAttacker)].lightscreenTimer = gBattleTurnCounter + 5;
-        gSideTimers[GetBattlerSide(gBattlerAttacker)].lightscreenBattlerId = gBattlerAttacker;
-
-        if (IsDoubleBattle() && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker) == 2)
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_LIGHTSCREEN_DOUBLE;
-        else
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_LIGHTSCREEN_SINGLE;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
