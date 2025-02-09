@@ -6,8 +6,6 @@
 #include "battle_ai_util.h"
 #include "battle_scripts.h"
 #include "battle_z_move.h"
-#include "constants/moves.h"
-#include "constants/abilities.h"
 #include "item.h"
 #include "util.h"
 #include "pokemon.h"
@@ -47,6 +45,7 @@
 #include "pokenav.h"
 #include "menu_specialized.h"
 #include "data.h"
+#include "generational_changes.h"
 #include "constants/abilities.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
@@ -1819,16 +1818,19 @@ static void Cmd_ppreduce(void)
 }
 
 // The chance is 1/N for each stage.
-static const u32 sGen7CriticalHitOdds[] = {24, 8, 2, 1, 1};
-static const u32 sGen6CriticalHitOdds[] = {16, 8, 2, 1, 1};
-static const u32 sCriticalHitOdds[]     = {16, 8, 4, 3, 2}; // Gens 2,3,4,5
+static const u32 sGen7CriticalHitOdds[] = {24,  8,  2,  1,   1}; // 1/X
+static const u32 sGen6CriticalHitOdds[] = {16,  8,  2,  1,   1}; // 1/X
+static const u32 sCriticalHitOdds[]     = {16,  8,  4,  3,   2}; // 1/X, Gens 3,4,5
+static const u32 sGen2CriticalHitOdds[] = {17, 32, 64, 85, 128}; // X/256
 
 static inline u32 GetCriticalHitOdds(u32 critChance)
 {
-    if (B_CRIT_CHANCE >= GEN_7)
+    if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) >= GEN_7)
         return sGen7CriticalHitOdds[critChance];
-    if (B_CRIT_CHANCE == GEN_6)
+    if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_6)
         return sGen6CriticalHitOdds[critChance];
+    if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_2)
+        return sGen2CriticalHitOdds[critChance];
 
     return sCriticalHitOdds[critChance];
 }
@@ -1870,7 +1872,7 @@ static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect)
 
 #define CRITICAL_HIT_BLOCKED -1
 #define CRITICAL_HIT_ALWAYS  -2
-s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
+s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
 {
     s32 critChance = 0;
 
@@ -1913,75 +1915,51 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
 
     return critChance;
 }
-#undef CRITICAL_HIT_BLOCKED
-#undef CRITICAL_HIT_ALWAYS
-
-s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
-{
-    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
-    return CalcCritChanceStageArgs(battlerAtk, battlerDef, move, recordAbility, abilityAtk, abilityDef, holdEffectAtk);
-}
 
 // Bulbapedia: https://bulbapedia.bulbagarden.net/wiki/Critical_hit#Generation_I
 // Crit chance = Threshold / 256, Threshold maximum of 255
 // Threshold = Base Speed / 2
 // High crit move = 8 * (Base Speed / 2)
 // Focus Energy = 4 * (Base Speed / 2)
-s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
+s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
 {
-    // Vanilla
-    u32 focusEnergyScaler = 4;
-    u32 highCritRatioScaler = 8;
-
-    // Not vanilla
-    u32 superLuckScaler = 4;
-    u32 scopeLensScaler = 4;
-    u32 luckyPunchScaler = 8;
-    u32 farfetchdLeekScaler = 8;
-
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
     s32 bonusCritStage = gBattleStruct->bonusCritStages[battlerAtk]; // G-Max Chi Strike
-    u32 abilityAtk = GetBattlerAbility(battlerAtk);
-    u32 abilityDef = GetBattlerAbility(battlerDef);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
+    u32 holdEffectCritStage = GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk);
     u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
 
     critChance = baseSpeed / 2;
 
     // Crit scaling
     if (moveCritStage > 0)
-        critChance = critChance * highCritRatioScaler * moveCritStage;
+        critChance *= 8 * moveCritStage;
 
     if (bonusCritStage > 0)
-        critChance = critChance * bonusCritStage;
+        critChance *= bonusCritStage;
 
-    if ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
-        critChance = critChance * focusEnergyScaler;
+    if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY)
+        critChance *= 4;
+    else if (gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER)
+        critChance *= 2;
 
-    if (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
-        critChance = critChance * scopeLensScaler;
-    else if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[battlerAtk].species == SPECIES_CHANSEY)
-        critChance = critChance * luckyPunchScaler;
-    else if (IsBattlerLeekAffected(battlerAtk, holdEffectAtk))
-        critChance = critChance * farfetchdLeekScaler;
+    if (holdEffectCritStage > 0)
+        critChance *= 4 * holdEffectCritStage;
 
     if (abilityAtk == ABILITY_SUPER_LUCK)
-        critChance = critChance * superLuckScaler;
+        critChance *= 4;
 
     if (critChance > 255)
         critChance = 255;
 
     // Prevented crits
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT)
-        critChance = -1;
+        critChance = CRITICAL_HIT_BLOCKED;
     else if (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
-        critChance = -1;
+        critChance = CRITICAL_HIT_BLOCKED;
     }
 
     // Guaranteed crits
@@ -1989,7 +1967,7 @@ s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
              || gMovesInfo[move].alwaysCriticalHit == TRUE
              || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY))
     {
-        critChance = -2;
+        critChance = CRITICAL_HIT_ALWAYS;
     }
 
     return critChance;
@@ -2002,6 +1980,8 @@ s32 GetCritHitOdds(s32 critChanceIndex)
     else
         return GetCriticalHitOdds(critChanceIndex);
 }
+#undef CRITICAL_HIT_BLOCKED
+#undef CRITICAL_HIT_ALWAYS
 
 static void Cmd_critcalc(void)
 {
@@ -2009,11 +1989,14 @@ static void Cmd_critcalc(void)
 
     u16 partySlot;
     s32 critChance;
+    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
+    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+    u32 holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
 
-    if (B_CRIT_CHANCE == GEN_1)
-        critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+    if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
+        critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
     else
-        critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+        critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
 
     gPotentialItemEffectBattler = gBattlerAttacker;
 
@@ -2025,14 +2008,10 @@ static void Cmd_critcalc(void)
         gIsCriticalHit = TRUE;
     else
     {
-        if (B_CRIT_CHANCE == GEN_1)
-        {
-            u8 critRoll = RandomUniform(RNG_CRITICAL_HIT, 1, 256);
-            if (critRoll <= critChance)
-                gIsCriticalHit = 1;
-            else
-                gIsCriticalHit = 0;
-        }
+        if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
+            gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, critChance, 256);
+        else if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_2)
+            gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, GetCriticalHitOdds(critChance), 256);
         else
             gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, 1, GetCriticalHitOdds(critChance));
     }
@@ -12604,7 +12583,10 @@ static void Cmd_setfocusenergy(void)
     }
     else
     {
-        gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;
+        if (GetGenConfig(GEN_CONFIG_FOCUS_ENERGY_CRIT_RATIO) >= GEN_3)
+            gBattleMons[battler].status2 |= STATUS2_FOCUS_ENERGY;
+        else
+            gBattleMons[battler].status2 |= STATUS2_DRAGON_CHEER;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
