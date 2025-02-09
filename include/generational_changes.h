@@ -6,7 +6,8 @@
 
 static const u8 sGenerationalChanges[GEN_CONFIG_COUNT] =
 {
-    [GEN_CONFIG_GALE_WINGS] = B_GALE_WINGS,
+    [GEN_CONFIG_GALE_WINGS]           = B_GALE_WINGS,
+    [GEN_CONFIG_HEAL_BELL_SOUNDPROOF] = B_HEAL_BELL_SOUNDPROOF,
 };
 
 #if TESTING

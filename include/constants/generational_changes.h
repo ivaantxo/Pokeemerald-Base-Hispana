@@ -4,6 +4,7 @@
 enum GenConfigTag
 {
     GEN_CONFIG_GALE_WINGS,
+    GEN_CONFIG_HEAL_BELL_SOUNDPROOF,
     GEN_CONFIG_COUNT
 };
 

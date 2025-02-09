@@ -25,7 +25,6 @@
 #include "event_data.h"
 #include "evolution_scene.h"
 #include "field_weather.h"
-#include "generational_changes.h"
 #include "graphics.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"

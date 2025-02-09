@@ -17,6 +17,7 @@
 #include "battle_dynamax.h"
 #include "battle_terastal.h"
 #include "battle_gimmick.h"
+#include "generational_changes.h"
 #include "move.h"
 #include "random.h" // for rng_value_t
 #include "trainer_slide.h"

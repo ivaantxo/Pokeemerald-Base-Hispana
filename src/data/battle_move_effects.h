@@ -1895,12 +1895,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_SPARKLY_SWIRL] =
-    {
-        .battleScript = BattleScript_EffectSparklySwirl,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_HYPERSPACE_FURY] =
     {
         .battleScript = BattleScript_EffectHyperspaceFury,
