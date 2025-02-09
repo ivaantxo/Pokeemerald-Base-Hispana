@@ -30,7 +30,7 @@ struct Sfc32State {
 
 typedef struct Sfc32State rng_value_t;
 
-#define RNG_VALUE_EMPTY {}
+#define RNG_VALUE_EMPTY {0}
 
 // Calling this function directly is discouraged.
 // Use LocalRandom() instead.
@@ -43,9 +43,14 @@ static inline u32 _SFC32_Next(struct Sfc32State *state)
     return result;
 }
 
+static inline u32 LocalRandom32(rng_value_t *val)
+{
+    return _SFC32_Next(val);
+}
+
 static inline u16 LocalRandom(rng_value_t *val)
 {
-    return _SFC32_Next(val) >> 16;
+    return LocalRandom32(val) >> 16;
 }
 
 u32 Random32(void);
