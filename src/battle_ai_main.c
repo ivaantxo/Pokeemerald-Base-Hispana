@@ -760,7 +760,7 @@ void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink
           && aiThink->score[aiThink->movesetIndex] > 0
           && ShouldConsiderMoveForBattler(battlerAtk, battlerDef, aiThink->moveConsidered))
         {
-            if (IsChaseEffect(gMovesInfo[aiThink->moveConsidered].effect))
+            if (IsChaseEffect(GetMoveEffect(aiThink->moveConsidered)))
             {
                 // Save new switchin data
                 simulatedDamageSwitchin[aiThink->movesetIndex] = aiData->simulatedDmg[battlerAtk][battlerDef][aiThink->movesetIndex];
@@ -5398,7 +5398,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     u32 ability = gBattleMons[battlerAtk].ability;
     u32 opposingHazardFlags = gSideStatuses[GetBattlerSide(battlerDef)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES);
     u32 aiHazardFlags = gSideStatuses[GetBattlerSide(battlerAtk)] & (SIDE_STATUS_HAZARDS_ANY);
-    u32 moveEffect = gMovesInfo[move].effect;
+    u32 moveEffect = GetMoveEffect(move);
     struct AiLogicData *aiData = AI_DATA;
     uq4_12_t effectiveness = aiData->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
 
@@ -5518,9 +5518,9 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     }
 
     // Additional effects
-    for (i = 0; i < gMovesInfo[move].numAdditionalEffects; i++)
+    for (i = 0; i < GetMoveAdditionalEffectCount(move); i++)
     {
-        switch (gMovesInfo[move].additionalEffects[i].moveEffect)
+        switch (GetMoveAdditionalEffectById(move, i)->moveEffect)
         {
             case MOVE_EFFECT_WRAP:
                 ADJUST_SCORE(-GOOD_EFFECT);

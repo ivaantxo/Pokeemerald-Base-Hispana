@@ -164,7 +164,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         playerMove = gBattleMons[opposingBattler].moves[i];
-        if (playerMove != MOVE_NONE && !IsBattleMoveStatus(playerMove) && gMovesInfo[playerMove].effect != EFFECT_FOCUS_PUNCH)
+        if (playerMove != MOVE_NONE && !IsBattleMoveStatus(playerMove) && GetMoveEffect(playerMove) != EFFECT_FOCUS_PUNCH)
         {
             damageTaken = AI_CalcDamage(playerMove, opposingBattler, battler, &effectiveness, FALSE, weather, DMG_ROLL_HIGHEST).expected;
             if (damageTaken > maxDamageTaken)
@@ -1703,7 +1703,7 @@ static s32 GetMaxDamagePlayerCouldDealToSwitchin(u32 battler, u32 opposingBattle
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         playerMove = gBattleMons[opposingBattler].moves[i];
-        if (playerMove != MOVE_NONE && !IsBattleMoveStatus(playerMove) && gMovesInfo[playerMove].effect != EFFECT_FOCUS_PUNCH)
+        if (playerMove != MOVE_NONE && !IsBattleMoveStatus(playerMove) && GetMoveEffect(playerMove) != EFFECT_FOCUS_PUNCH)
         {
             damageTaken = AI_CalcPartyMonDamage(playerMove, opposingBattler, battler, battleMon, FALSE, DMG_ROLL_HIGHEST);
             if (damageTaken > maxDamageTaken)

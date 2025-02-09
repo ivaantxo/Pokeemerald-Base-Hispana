@@ -6468,7 +6468,7 @@ static void Cmd_moveend(void)
             break;
         }
         case MOVEEND_RAPID_SPIN:
-            if (gMovesInfo[gCurrentMove].effect == EFFECT_RAPID_SPIN
+            if (GetMoveEffect(gCurrentMove) == EFFECT_RAPID_SPIN
              && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
              && IsBattlerTurnDamaged(gBattlerTarget))
             {
@@ -6644,7 +6644,7 @@ static void Cmd_moveend(void)
                 gBattleScripting.moveendState++;
             break;
         case MOVEEND_HIT_SWITCH_TARGET:
-            if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_SWITCH_TARGET
+            if (GetMoveEffect(gCurrentMove) == EFFECT_HIT_SWITCH_TARGET
              && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
              && IsBattlerTurnDamaged(gBattlerTarget)
              && IsBattlerAlive(gBattlerTarget)
@@ -7088,7 +7088,7 @@ static void Cmd_moveend(void)
                             else // Eject Pack
                             {
                                 if (!gDisableStructs[gBattlerTarget].startEmergencyExit
-                                    && !(gMovesInfo[gCurrentMove].effect == EFFECT_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker)))
+                                    && !(GetMoveEffect(gCurrentMove) == EFFECT_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker)))
                                 {
                                     effect = TRUE;
                                     gBattleStruct->battlerState[battler].usedEjectItem = TRUE;

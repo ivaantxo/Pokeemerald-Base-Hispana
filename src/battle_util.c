@@ -8189,8 +8189,8 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
                 && gBattlerAttacker != gBattlerTarget
                 && !IsBattlerAtMaxHp(gBattlerAttacker)
                 && IsBattlerAlive(gBattlerAttacker)
-                && gMovesInfo[gCurrentMove].effect != EFFECT_FUTURE_SIGHT
-                && gMovesInfo[gCurrentMove].effect != EFFECT_PAIN_SPLIT
+                && GetMoveEffect(gCurrentMove) != EFFECT_FUTURE_SIGHT
+                && GetMoveEffect(gCurrentMove) != EFFECT_PAIN_SPLIT
                 && (B_HEAL_BLOCKING < GEN_5 || !(gStatuses3[battler] & STATUS3_HEAL_BLOCK)))
             {
                 gLastUsedItem = atkItem;
