@@ -1989,8 +1989,10 @@ static u32 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
     {
         struct SpritePalette spritePalette;
         u16 palTag = species + OBJ_EVENT_MON + (shiny ? OBJ_EVENT_MON_SHINY : 0);
+    #if P_GENDER_DIFFERENCES
         if (female && gSpeciesInfo[species].overworldShinyPaletteFemale != NULL)
             palTag += OBJ_EVENT_MON_FEMALE;
+    #endif
         // palette already loaded
         if ((paletteNum = IndexOfSpritePaletteTag(palTag)) < 16)
             return paletteNum;
