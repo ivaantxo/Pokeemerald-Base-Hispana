@@ -2272,7 +2272,6 @@ enum
     ENDTURN_ITEMS2,
     ENDTURN_ORBS,
     ENDTURN_ROOST,
-    ENDTURN_ELECTRIFY,
     ENDTURN_POWDER,
     ENDTURN_THROAT_CHOP,
     ENDTURN_SLOW_START,
@@ -2864,10 +2863,6 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_ROOST: // Return flying type.
             if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_ROOST)
                 gBattleResources->flags->flags[battler] &= ~RESOURCE_FLAG_ROOST;
-            gBattleStruct->turnEffectsTracker++;
-            break;
-        case ENDTURN_ELECTRIFY:
-            gStatuses4[battler] &= ~STATUS4_ELECTRIFIED;
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_POWDER:
