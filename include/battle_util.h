@@ -241,7 +241,6 @@ u32 GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegating, bool32 check
 u32 GetBattlerHoldEffectParam(u32 battler);
 bool32 IsMoveMakingContact(u32 move, u32 battlerAtk);
 bool32 IsBattlerGrounded(u32 battler);
-bool32 IsBattlerAlive(u32 battler);
 u32 GetMoveSlot(u16 *moves, u32 move);
 u32 GetBattlerWeight(u32 battler);
 u32 CalcRolloutBasePower(u32 battlerAtk, u32 basePower, u32 rolloutTimer);

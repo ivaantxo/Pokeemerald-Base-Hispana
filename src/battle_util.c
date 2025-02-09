@@ -8853,18 +8853,6 @@ bool32 IsBattlerGrounded(u32 battler)
     return IsBattlerGroundedInverseCheck(battler, FALSE);
 }
 
-bool32 IsBattlerAlive(u32 battler)
-{
-    if (gBattleMons[battler].hp == 0)
-        return FALSE;
-    else if (battler >= gBattlersCount)
-        return FALSE;
-    else if (gAbsentBattlerFlags & (1u << battler))
-        return FALSE;
-    else
-        return TRUE;
-}
-
 u32 GetMoveSlot(u16 *moves, u32 move)
 {
     u32 i;
