@@ -140,9 +140,13 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
+    {
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
+    }
     else
+    {
         LZ77UnCompWram(src->data, dest);
+    }
 
     DuplicateDeoxysTiles(dest, species);
     DrawSpindaSpots(species, personality, dest, isFrontPic);
@@ -254,7 +258,8 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
             // While the remaining space will be filled with actual data
             if (object_size == 6)
             {
-                for (k = 0; k < 256; k++) {
+                for (k = 0; k < 256; k++)
+                {
                     *dest = 0;
                     dest++;
                 }
@@ -264,14 +269,16 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
             {
                 if (object_size == 6)
                 {
-                    for (k = 0; k < 32; k++) {
+                    for (k = 0; k < 32; k++)
+                    {
                         *dest = 0;
                         dest++;
                     }
                 }
 
                 // Copy tile data
-                for (k = 0; k < 32 * object_size; k++) {
+                for (k = 0; k < 32 * object_size; k++)
+                {
                     *dest = *src;
                     src++;
                     dest++;
@@ -279,7 +286,8 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
 
                 if (object_size == 6)
                 {
-                    for (k = 0; k < 32; k++) {
+                    for (k = 0; k < 32; k++)
+                    {
                         *dest = 0;
                         dest++;
                     }
@@ -288,7 +296,8 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
 
             if (object_size == 6)
             {
-                for (k = 0; k < 256; k++) {
+                for (k = 0; k < 256; k++)
+                {
                     *dest = 0;
                     dest++;
                 }
@@ -362,9 +371,13 @@ void LoadSpecialPokePic_2(const struct CompressedSpriteSheet *src, void *dest, s
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
+    {
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
+    }
     else
+    {
         LZ77UnCompWram(src->data, dest);
+    }
 
     DuplicateDeoxysTiles(dest, species);
     DrawSpindaSpots(species, personality, dest, isFrontPic);
@@ -420,9 +433,13 @@ void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
+    {
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
+    }
     else
+    {
         LZ77UnCompWram(src->data, dest);
+    }
 
     DrawSpindaSpots(species, personality, dest, isFrontPic);
 }
