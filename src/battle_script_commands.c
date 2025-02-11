@@ -13946,9 +13946,10 @@ static void Cmd_healpartystatus(void)
 {
     CMD_ARGS();
 
-    u32 i, zero = 0;
+    u32 i = 0;
+    u32 zero = 0;
+    u32 toHeal = 0;
     u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
-    u8 toHeal = 0;
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
     bool32 isSoundMove = IsSoundMove(gCurrentMove);
 
@@ -16270,6 +16271,8 @@ static void Cmd_displaydexinfo(void)
     switch (gBattleCommunication[0])
     {
     case 0:
+        FREE_AND_SET_NULL(gBattleResources->aiData);
+
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gBattleCommunication[0]++;
         break;
@@ -16309,8 +16312,9 @@ static void Cmd_displaydexinfo(void)
         }
         break;
     case 5:
-        if (!gPaletteFade.active)
+        if (!gPaletteFade.active) {
             gBattlescriptCurrInstr = cmd->nextInstr;
+        }
         break;
     }
 }

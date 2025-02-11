@@ -1217,9 +1217,35 @@ static inline u32 GetBattlerPosition(u32 battler)
     return gBattlerPositions[battler];
 }
 
+static inline u32 GetBattlerAtPosition(u32 position)
+{
+    u32 battler;
+    for (battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (GetBattlerPosition(battler) == position)
+            break;
+    }
+    return battler;
+}
+
+static inline u32 GetPartnerBattler(u32 battler)
+{
+    return GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+}
+
+static inline u32 GetOppositeBattler(u32 battler)
+{
+    return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+}
+
 static inline u32 GetBattlerSide(u32 battler)
 {
     return GetBattlerPosition(battler) & BIT_SIDE;
+}
+
+static inline u32 GetOpposingSideBattler(u32 battler)
+{
+    return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(battler)));
 }
 
 static inline struct Pokemon* GetPartyBattlerData(u32 battler)
