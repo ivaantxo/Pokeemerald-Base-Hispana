@@ -168,12 +168,13 @@ static void HandleEndTurnWeather(u32 battler, u32 *effect)
 static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
 {
     u32 ability = GetBattlerAbility(battler);
-    u32 currBattleWeather = 0xFF;
+    u32 currBattleWeather = GetCurrentBattleWeather();
 
     if (currBattleWeather == 0xFF)
     {
+        // If there is no weather on the field, no need to check other battlers so go to next state
         gBattleStruct->turnEffectsBattlerId = 0;
-        gBattleStruct->endTurnEventsCounter++; // If there is no weather on the field, no need to check other battlers so go to next state
+        gBattleStruct->endTurnEventsCounter++;
         return;
     }
 
@@ -182,7 +183,6 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
     if (!IsBattlerAlive(battler) || !HasWeatherEffect())
         return;
 
-    currBattleWeather = GetCurrentBattleWeather();
 
     switch (currBattleWeather)
     {

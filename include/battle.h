@@ -102,7 +102,7 @@ struct DisableStruct
     u8 embargoTimer;
     u8 magnetRiseTimer;
     u8 telekinesisTimer;
-    u8 healBlockTimer;
+    u16 healBlockTimer;
     u8 laserFocusTimer;
     u16 throatChopTimer;
     u8 wrapTurns;

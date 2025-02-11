@@ -581,6 +581,9 @@ enum MoveEffects
 #define HANDLE_TYPE_PRIMAL_REVERSION 1
 #define HANDLE_TYPE_ULTRA_BURST 2
 
+// Constants for Torment
+#define PERMANENT_TORMENT   0xF
+
 // Constants for B_VAR_STARTING_STATUS
 // Timer value controlled by B_VAR_STARTING_STATUS_TIMER
 enum StartingStatus

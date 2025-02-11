@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when going below 50% max-HP but 
     }
 }
 
-SINGLE_BATTLE_TEST("Emergency Exit activ out when taking taking residual damage and falling under 50% max-hp damage - Burn")
+SINGLE_BATTLE_TEST("Emergency Exit activates when taking residual damage and falling under 50% max-hp - Burn")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("Emergency Exit activ out when taking taking residual damage 
     }
 }
 
-SINGLE_BATTLE_TEST("Emergency Exit activ out when taking taking residual damage and falling under 50% max-hp damage - Weather")
+SINGLE_BATTLE_TEST("Emergency Exit activates when taking residual damage and falling under 50% max-hp - Weather")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("Emergency Exit activ out when taking taking residual damage 
     }
 }
 
-SINGLE_BATTLE_TEST("Emergency Exit activ out when taking taking residual damage and falling under 50% max-hp damage - Salt Cure")
+SINGLE_BATTLE_TEST("Emergency Exit activates when taking residual damage and falling under 50% max-hp - Salt Cure")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);

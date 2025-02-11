@@ -5909,6 +5909,7 @@ BattleScript_WonderRoomEnds::
 BattleScript_MagicRoomEnds::
 	printstring STRINGID_MAGICROOMENDS
 	waitmessage B_WAIT_TIME_LONG
+	tryhealingitem
 	end2
 
 BattleScript_GrassyTerrainEnds::
@@ -7396,6 +7397,7 @@ BattleScript_YawnEnd:
 BattleScript_EmbargoEndTurn::
 	printstring STRINGID_EMBARGOENDS
 	waitmessage B_WAIT_TIME_LONG
+	tryhealingitem
 	end2
 
 BattleScript_TelekinesisEndTurn::
