@@ -16271,8 +16271,6 @@ static void Cmd_displaydexinfo(void)
     switch (gBattleCommunication[0])
     {
     case 0:
-        FREE_AND_SET_NULL(gBattleResources->aiData);
-
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gBattleCommunication[0]++;
         break;
