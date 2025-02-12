@@ -2092,9 +2092,8 @@ static void RefreshFollowerGraphics(struct ObjectEvent *objEvent)
         sprite->y += -(graphicsInfo->height >> 1) - sprite->centerToCornerVecY;
     }
 
-    #if OW_GFX_COMPRESS
-    LoadSheetGraphicsInfo(graphicsInfo, objEvent->graphicsId, sprite);
-    #endif
+    if (OW_GFX_COMPRESS)
+        LoadSheetGraphicsInfo(graphicsInfo, objEvent->graphicsId, sprite);
 
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
@@ -5515,8 +5514,8 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     // During a script, if player sidesteps or backsteps,
     // mirror player's direction instead
     if (ArePlayerFieldControlsLocked()
-        && gObjectEvents[gPlayerAvatar.objectEventId].facingDirection != gObjectEvents[gPlayerAvatar.objectEventId].movementDirection
-    ) {
+        && gObjectEvents[gPlayerAvatar.objectEventId].facingDirection != gObjectEvents[gPlayerAvatar.objectEventId].movementDirection)
+    {
         direction = gObjectEvents[gPlayerAvatar.objectEventId].movementDirection;
         objectEvent->facingDirectionLocked = TRUE;
     }
@@ -6209,7 +6208,8 @@ u32 GetObjectObjectCollidesWith(struct ObjectEvent *objectEvent, s16 x, s16 y, b
     if (objectEvent->localId == OBJ_EVENT_ID_FOLLOWER)
         return OBJECT_EVENTS_COUNT; // follower cannot collide with other objects, but they can collide with it
 
-    if (addCoords) {
+    if (addCoords)
+    {
         x += objectEvent->currentCoords.x;
         y += objectEvent->currentCoords.y;
     }
