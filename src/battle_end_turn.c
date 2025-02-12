@@ -162,7 +162,7 @@ static void HandleEndTurnVarious(u32 battler, u32 *effect)
 static void HandleEndTurnWeather(u32 battler, u32 *effect)
 {
     gBattleStruct->endTurnEventsCounter++;
-    *effect = EndOrConinueWeather();
+    *effect = EndOrContinueWeather();
 }
 
 static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)

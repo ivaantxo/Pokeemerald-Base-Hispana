@@ -215,7 +215,7 @@ u32 GetCurrentBattleWeather(void)
     return currBattleWeather;
 }
 
-u32 EndOrConinueWeather(void)
+u32 EndOrContinueWeather(void)
 {
     u32 currBattleWeather = GetCurrentBattleWeather();
 
@@ -4088,9 +4088,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 }
                 break;
             case ABILITY_ICE_BODY:
-            if (!IsBattlerAtMaxHp(battler)
-             && !(gStatuses3[battler] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
-             && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                if (!IsBattlerAtMaxHp(battler)
+                 && !(gStatuses3[battler] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+                 && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_IceBodyHeal);
                     gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 16;
