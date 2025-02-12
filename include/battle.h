@@ -17,6 +17,7 @@
 #include "battle_dynamax.h"
 #include "battle_terastal.h"
 #include "battle_gimmick.h"
+#include "generational_changes.h"
 #include "move.h"
 #include "random.h" // for rng_value_t
 #include "trainer_slide.h"
@@ -816,6 +817,7 @@ struct BattleStruct
     u8 pursuitSwitchByMove:1;
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;
+    u16 prevTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at start of turn
 
     // Simultaneous hp reduction for spread moves
     s32 moveDamage[MAX_BATTLERS_COUNT];
@@ -1184,6 +1186,18 @@ extern bool8 gLastUsedBallMenuPresent;
 extern u8 gPartyCriticalHits[PARTY_SIZE];
 extern u8 gCategoryIconSpriteId;
 
+static inline bool32 IsBattlerAlive(u32 battler)
+{
+    if (gBattleMons[battler].hp == 0)
+        return FALSE;
+    else if (battler >= gBattlersCount)
+        return FALSE;
+    else if (gAbsentBattlerFlags & (1u << battler))
+        return FALSE;
+    else
+        return TRUE;
+}
+
 static inline bool32 IsBattlerTurnDamaged(u32 battler)
 {
     return gSpecialStatuses[battler].physicalDmg != 0
@@ -1201,9 +1215,35 @@ static inline u32 GetBattlerPosition(u32 battler)
     return gBattlerPositions[battler];
 }
 
+static inline u32 GetBattlerAtPosition(u32 position)
+{
+    u32 battler;
+    for (battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (GetBattlerPosition(battler) == position)
+            break;
+    }
+    return battler;
+}
+
+static inline u32 GetPartnerBattler(u32 battler)
+{
+    return GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+}
+
+static inline u32 GetOppositeBattler(u32 battler)
+{
+    return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+}
+
 static inline u32 GetBattlerSide(u32 battler)
 {
     return GetBattlerPosition(battler) & BIT_SIDE;
+}
+
+static inline u32 GetOpposingSideBattler(u32 battler)
+{
+    return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(battler)));
 }
 
 static inline struct Pokemon* GetPartyBattlerData(u32 battler)

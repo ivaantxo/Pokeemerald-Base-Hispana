@@ -956,15 +956,6 @@ BattleScript_MoveEffectIonDeluge::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
-BattleScript_EffectSparklySwirl::
-	call BattleScript_EffectHit_Ret
-	tryfaintmon BS_TARGET
-	healpartystatus
-	waitstate
-	updatestatusicon BS_ATTACKER_WITH_PARTNER
-	waitstate
-	goto BattleScript_MoveEnd
-
 BattleScript_MoveEffectHaze::
 	printstring STRINGID_STATCHANGESGONE
 	waitmessage B_WAIT_TIME_LONG
@@ -1299,12 +1290,33 @@ BattleScript_VCreateStatLossRet:
 	return
 
 BattleScript_SpectralThiefSteal::
+	setbyte sB_ANIM_TURN, 1
+	playmoveanimation BS_ATTACKER, MOVE_SPECTRAL_THIEF
+	waitanimation
+	setbyte sB_ANIM_TURN, 0
 	printstring STRINGID_SPECTRALTHIEFSTEAL
 	waitmessage B_WAIT_TIME_LONG
 	setbyte sB_ANIM_ARG2, 0
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	spectralthiefprintstats
-	return
+	flushtextbox
+	goto BattleScript_EffectSpectralThiefFromDamage
+
+BattleScript_EffectSpectralThief::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	typecalc
+	tryspectralthiefsteal BattleScript_SpectralThiefSteal
+BattleScript_EffectSpectralThiefFromDamage:
+	critcalc
+	damagecalc
+	adjustdamage
+	call BattleScript_Hit_RetFromAtkAnimation
+	tryfaintmon BS_TARGET
+	moveendall
+	end
 
 BattleScript_EffectPartingShot::
 	attackcanceler
@@ -4075,13 +4087,16 @@ BattleScript_EffectHealBell::
 	attackcanceler
 	attackstring
 	ppreduce
-	healpartystatus
-	waitstate
 	attackanimation
 	waitanimation
+BattleScript_EffectHealBell_FromHeal::
+	healpartystatus
+	waitstate
 	printfromtable gPartyStatusHealStringIds
 	waitmessage B_WAIT_TIME_LONG
-	jumpifnotmove MOVE_HEAL_BELL, BattleScript_PartyHealEnd
+	jumpifblockedbysoundproof BS_ATTACKER_PARTNER, BattleScript_HealBellSoundproof
+	goto BattleScript_PartyHealEnd
+BattleScript_HealBellSoundproof::
 	jumpifbyte CMP_NO_COMMON_BITS, cMULTISTRING_CHOOSER, B_MSG_BELL_SOUNDPROOF_ATTACKER, BattleScript_CheckHealBellMon2Unaffected
 	printstring STRINGID_PKMNSXBLOCKSY
 	waitmessage B_WAIT_TIME_LONG
@@ -9988,29 +10003,6 @@ BattleScript_HealOneSixthAlliesIncrement:
 BattleScript_HealOneSixthAlliesEnd:
 	restoretarget
 	goto BattleScript_MoveEnd
-
-BattleScript_EffectCureStatusAllies::
-	jumpifteamhealthy BS_ATTACKER, BattleScript_MoveEnd
-	savetarget
-	copybyte gBattlerTarget, gBattlerAttacker
-BattleScript_CureStatusAlliesLoop:
-	jumpifabsent BS_TARGET, BattleScript_CureStatusAlliesIncrement
-	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_CureStatusActivate
-BattleScript_CureStatusAlliesIncrement:
-	jumpifbytenotequal gBattlerTarget, gBattlerAttacker, BattleScript_CureStatusAlliesEnd
-	setallytonexttarget BattleScript_CureStatusAlliesLoop
-BattleScript_CureStatusAlliesEnd:
-	restoretarget
-	goto BattleScript_MoveEnd
-
-BattleScript_CureStatusActivate:
-	curestatus BS_TARGET
-	updatestatusicon BS_TARGET
-	swapattackerwithtarget
-	printstring STRINGID_PKMNSTATUSNORMAL
-	waitmessage B_WAIT_TIME_LONG
-	swapattackerwithtarget
-	goto BattleScript_CureStatusAlliesIncrement
 
 BattleScript_EffectRecycleBerriesAllies::
 	savetarget

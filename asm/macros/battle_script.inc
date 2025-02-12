@@ -1786,6 +1786,15 @@
 	callnative BS_RemoveTerrain
 	.endm
 
+	.macro tryspectralthiefsteal jumpInstr:req
+	callnative BS_TrySpectralThiefSteal
+	.4byte \jumpInstr
+	.endm
+
+	.macro spectralthiefprintstats
+	callnative BS_SpectralThiefPrintStats
+	.endm
+
 	.macro setmoveresultflags flags:req
 	callnative BS_SetMoveResultFlags
 	.2byte \flags
@@ -2100,10 +2109,6 @@
 
 	.macro setpowder battler:req
 	various \battler, VARIOUS_SET_POWDER
-	.endm
-
-	.macro spectralthiefprintstats
-	various BS_ATTACKER, VARIOUS_SPECTRAL_THIEF
 	.endm
 
 	.macro bringdownairbornebattler battler:req
