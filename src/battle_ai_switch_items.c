@@ -593,6 +593,10 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
         {
             switchMon = TRUE;
 
+            // If we don't have a good switchin, not worth switching
+            if (AI_DATA->mostSuitableMonId[battler] == PARTY_SIZE)
+                switchMon = FALSE;
+
             // Check if Active Pokemon can KO opponent instead of switching
             // Will still fall asleep, but take out opposing Pokemon first
             if (AiExpectsToFaintPlayer(battler))
@@ -626,7 +630,8 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
 
         // Secondary Damage
         if (monAbility != ABILITY_MAGIC_GUARD
-            && !AiExpectsToFaintPlayer(battler))
+            && !AiExpectsToFaintPlayer(battler)
+            && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
         {
             //Toxic
             if (((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >= STATUS1_TOXIC_TURN(2))
@@ -654,6 +659,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
         // Infatuation
         if (gBattleMons[battler].status2 & STATUS2_INFATUATION
             && !AiExpectsToFaintPlayer(battler)
+            && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
             && RandomPercentage(RNG_AI_SWITCH_INFATUATION, GetSwitchChance(SHOULD_SWITCH_INFATUATION)))
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }

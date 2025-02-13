@@ -655,7 +655,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has bee
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Yawn'd with more than 1/3 HP remaining")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Yawn'd with more than 1/3 HP remaining and it has a good switchin")
 {
     u32 hp;
     PARAMETRIZE { hp = 30; }
@@ -665,14 +665,31 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has bee
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
         PLAYER(SPECIES_SLAKOTH) { Moves(MOVE_TACKLE, MOVE_YAWN); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); HP(hp); MaxHP(30); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_SLAKOTH) { Moves(MOVE_TACKLE); HP(hp); MaxHP(30); }
+        OPPONENT(SPECIES_SLAKOTH) { Moves(MOVE_HEADBUTT); }
     } WHEN {
         TURN { MOVE(player, MOVE_YAWN) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
         if (hp == 30)
             TURN { MOVE(player, MOVE_YAWN) ; EXPECT_SWITCH(opponent, 1); }
         else
             TURN { MOVE(player, MOVE_YAWN) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will not switch out if it has been Yawn'd with more than 1/3 HP remaining and it does not have a good switchin")
+{
+    u32 hp;
+    PARAMETRIZE { hp = 30; }
+    PARAMETRIZE { hp = 10; }
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_SLAKOTH) { Moves(MOVE_TACKLE, MOVE_YAWN); }
+        OPPONENT(SPECIES_SLAKOTH) { Moves(MOVE_TACKLE); HP(hp); MaxHP(30); }
+        OPPONENT(SPECIES_SLAKOTH) { Level(1); Moves(MOVE_HEADBUTT); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_YAWN) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_TACKLE) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
     }
 }
 
@@ -1005,15 +1022,15 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI won't switch out if Yawn'd wi
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | aceFlag | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_SMART_SWITCHING);
-        PLAYER(SPECIES_SLOWKING) { Moves(MOVE_YAWN, MOVE_CONFUSION, MOVE_POWER_GEM, MOVE_WATER_PULSE); Item(ITEM_LEFTOVERS); }
-        OPPONENT(SPECIES_SCOLIPEDE) { Moves(MOVE_POISON_TAIL); }
-        OPPONENT(SPECIES_ABSOL) { Moves(MOVE_KNOCK_OFF, MOVE_CRUNCH); }
+        PLAYER(SPECIES_SLAKOTH) { Moves(MOVE_TACKLE, MOVE_YAWN); }
+        OPPONENT(SPECIES_SLAKOTH) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_SLAKOTH) { Moves(MOVE_HEADBUTT); }
     } WHEN {
-        TURN { MOVE(player, MOVE_YAWN); EXPECT_MOVE(opponent, MOVE_POISON_TAIL); }
+        TURN { MOVE(player, MOVE_YAWN); EXPECT_MOVE(opponent, MOVE_TACKLE); }
         if (aceFlag)
-            TURN { MOVE(player, MOVE_POWER_GEM); EXPECT_MOVE(opponent, MOVE_POISON_TAIL); }
+            TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_TACKLE); }
         else
-            TURN { MOVE(player, MOVE_POWER_GEM); EXPECT_SWITCH(opponent, 1); }
+            TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
     }
 }
 
