@@ -24,8 +24,8 @@
 
 enum AbilityEffectOptions
 {
-  ABILITY_CHECK_TRIGGER,
-  ABILITY_RUN_SCRIPT,
+    ABILITY_CHECK_TRIGGER,
+    ABILITY_RUN_SCRIPT,
 };
 
 enum MoveAbsorbed
