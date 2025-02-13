@@ -295,27 +295,6 @@
 
 #define SHADOW_SIZE_XL_BATTLE_ONLY  SHADOW_SIZE_NONE    // Battle-only definition for XL shadow size.
 
-// If set, the only pokemon allowed to follow you
-// will be those matching species, met location,
-// and/or met level;
-// These accept vars, too: VAR_TEMP_1, etc
-#define OW_MON_ALLOWED_SPECIES (0)
-#define OW_MON_ALLOWED_MET_LVL (0)
-#define OW_MON_ALLOWED_MET_LOC (0)
-// Examples:
-// Yellow Pikachu:
-// #define OW_MON_ALLOWED_SPECIES (SPECIES_PIKACHU)
-// #define OW_MON_ALLOWED_MET_LVL (0)
-// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_PALLET_TOWN)
-// Hoenn Starter:
-// #define OW_MON_ALLOWED_SPECIES (0)
-// #define OW_MON_ALLOWED_MET_LVL (5)
-// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_ROUTE_101)
-// Species set in VAR_XXXX:
-// #define OW_MON_ALLOWED_SPECIES (VAR_XXXX)
-// #define OW_MON_ALLOWED_MET_LVL (0)
-// #define OW_MON_ALLOWED_MET_LOC (0)
-
 #define F_INANIMATE                        (1 << 6)
 #define F_DISABLE_REFLECTION_PALETTE_LOAD  (1 << 7)
 
