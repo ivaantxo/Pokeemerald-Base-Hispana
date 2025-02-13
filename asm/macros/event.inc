@@ -2440,9 +2440,7 @@
 	.2byte \dest
 	.endm
 
-	@ hide any follower pokemon if present,
-	@ putting them into their pokeball;
-	@ by default waits for their movement to finish
+	@ Hides any follower Pokémon if present, putting them into their Poké Ball; by default waits for their movement to finish.
 	.macro hidefollower wait=1
 	callnative ScrFunc_hidefollower
 	.2byte \wait
