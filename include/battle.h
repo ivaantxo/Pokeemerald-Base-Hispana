@@ -1243,6 +1243,11 @@ static inline u32 GetBattlerSide(u32 battler)
     return GetBattlerPosition(battler) & BIT_SIDE;
 }
 
+static inline bool32 IsBattlerAlly(u32 battlerAtk, u32 battlerDef)
+{
+    return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
+}
+
 static inline u32 GetOpposingSideBattler(u32 battler)
 {
     return GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(battler)));

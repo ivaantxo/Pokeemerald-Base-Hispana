@@ -2068,8 +2068,9 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
 
 u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
 {
-    s32 i;
-    u8 retVal = 0;
+    u32 i;
+    u32 battlerSide;
+    u32 retVal = 0;
 
     switch (caseId)
     {
@@ -2088,9 +2089,10 @@ u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
         }
         break;
     case BATTLE_ALIVE_SIDE:
+        battlerSide = GetBattlerSide(battler);
         for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         {
-            if (GetBattlerSide(i) == GetBattlerSide(battler) && !(gAbsentBattlerFlags & (1u << i)))
+            if (GetBattlerSide(i) == battlerSide && !(gAbsentBattlerFlags & (1u << i)))
                 retVal++;
         }
         break;
@@ -7033,7 +7035,7 @@ u32 GetRegionalFormByRegion(u32 species, u32 region)
         {
             if (firstFoundSpecies == 0)
                 firstFoundSpecies = formTable[formId];
-            
+
             if (IsSpeciesRegionalFormFromRegion(formTable[formId], region))
                 return formTable[formId];
         }

@@ -346,7 +346,7 @@ void HandleAction_UseMove(void)
         for (battler = 0; battler < gBattlersCount; battler++)
         {
             ability = GetBattlerAbility(battler);
-            if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsAlly(gBattlerAttacker, battler))
+            if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsBattlerAlly(gBattlerAttacker, battler))
                 && battler != gBattlerAttacker
                 && gBattleStruct->moveTarget[gBattlerAttacker] != battler
                 && ((ability == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
@@ -458,7 +458,7 @@ void HandleAction_UseMove(void)
         }
     }
 
-    if ((GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
+    if ((IsBattlerAlly(gBattlerAttacker, gBattlerTarget))
      && (!IsBattlerAlive(gBattlerTarget) || gProtectStructs[BATTLE_PARTNER(gBattlerAttacker)].usedAllySwitch))
     {
         gBattlescriptCurrInstr = BattleScript_FailedFromAtkCanceler;
@@ -4253,7 +4253,7 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
     case ABILITY_DAZZLING:
     case ABILITY_QUEENLY_MAJESTY:
     case ABILITY_ARMOR_TAIL:
-        if (atkPriority > 0 && !IsAlly(battlerAtk, battlerDef))
+        if (atkPriority > 0 && !IsBattlerAlly(battlerAtk, battlerDef))
         {
             if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
@@ -4278,7 +4278,7 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability
         case ABILITY_DAZZLING:
         case ABILITY_QUEENLY_MAJESTY:
         case ABILITY_ARMOR_TAIL:
-            if (atkPriority > 0 && !IsAlly(battlerAtk, BATTLE_PARTNER(battlerDef)))
+            if (atkPriority > 0 && !IsBattlerAlly(battlerAtk, BATTLE_PARTNER(battlerDef)))
             {
                 if (gBattleMons[battlerAtk].status2 & STATUS2_MULTIPLETURNS)
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
@@ -6309,7 +6309,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 SetTypeBeforeUsingMove(gCalledMove, battler);
 
                 // Make sure that the target isn't an ally - if it is, target the original user
-                if (GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker))
+                if (IsBattlerAlly(gBattlerTarget, gBattlerAttacker))
                     gBattlerTarget = (gBattleScripting.savedBattler & 0xF0) >> 4;
                 gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
                 BattleScriptExecute(BattleScript_DancerActivates);
@@ -11677,7 +11677,7 @@ bool32 BlocksPrankster(u16 move, u32 battlerPrankster, u32 battlerDef, bool32 ch
         return FALSE;
     if (!gProtectStructs[battlerPrankster].pranksterElevated)
         return FALSE;
-    if (GetBattlerSide(battlerPrankster) == GetBattlerSide(battlerDef))
+    if (IsBattlerAlly(battlerPrankster, battlerDef))
         return FALSE;
     if (checkTarget && (GetBattlerMoveTargetType(battlerPrankster, move) & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_DEPENDS)))
         return FALSE;
@@ -11744,12 +11744,13 @@ u32 GetBattlerMoveTargetType(u32 battler, u32 move)
 bool32 CanTargetBattler(u32 battlerAtk, u32 battlerDef, u16 move)
 {
     if (GetMoveEffect(move) == EFFECT_HIT_ENEMY_HEAL_ALLY
-      && GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef)
-      && gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+    &&  IsBattlerAlly(battlerAtk, battlerDef)
+    &&  gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
         return FALSE;   // Pokémon affected by Heal Block cannot target allies with Pollen Puff
-    if ((GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX || IsGimmickSelected(battlerAtk, GIMMICK_DYNAMAX))
-      && GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef))
+    if (IsBattlerAlly(battlerAtk, battlerDef) && (GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX
+                                               || IsGimmickSelected(battlerAtk, GIMMICK_DYNAMAX)))
         return FALSE;
+
     return TRUE;
 }
 
@@ -11868,11 +11869,6 @@ u32 CalcSecondaryEffectChance(u32 battler, u32 battlerAbility, const struct Addi
 bool32 MoveEffectIsGuaranteed(u32 battler, u32 battlerAbility, const struct AdditionalEffect *additionalEffect)
 {
     return additionalEffect->chance == 0 || CalcSecondaryEffectChance(battler, battlerAbility, additionalEffect) >= 100;
-}
-
-bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
-{
-    return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
 }
 
 bool32 IsGen6ExpShareEnabled(void)
