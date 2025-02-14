@@ -336,6 +336,7 @@ static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
 static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount, u16 usedMove);
 static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u8 *failInstr, u16 move);
+static void ResetValuesForCalledMove(void);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -8133,6 +8134,18 @@ static void Cmd_hidepartystatussummary(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static void ResetValuesForCalledMove(void)
+{
+    if (gBattlerByTurnOrder[gCurrentTurnActionNumber] != gBattlerAttacker)
+        gBattleStruct->atkCancellerTracker = 0;
+    else
+        SetAtkCancellerForCalledMove();
+    gBattleScripting.animTurn = 0;
+    gBattleScripting.animTargetsHit = 0;
+    SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
+    HandleMoveTargetRedirection();
+}
+
 static void Cmd_jumptocalledmove(void)
 {
     CMD_ARGS(bool8 notChosenMove);
@@ -8141,6 +8154,8 @@ static void Cmd_jumptocalledmove(void)
         gCurrentMove = gCalledMove;
     else
         gChosenMove = gCurrentMove = gCalledMove;
+
+    ResetValuesForCalledMove();
 
     gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
 }
@@ -10193,10 +10208,8 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->failInstr;
             else
             {
-                SetTypeBeforeUsingMove(gCalledMove, gBattlerTarget);
                 gEffectBattler = gBattleStruct->lastMoveTarget[gBattlerTarget];
                 gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
-                gBattleStruct->atkCancellerTracker = 0;
                 PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
                 gBattlescriptCurrInstr = cmd->nextInstr;
             }
@@ -11212,8 +11225,8 @@ static void SetMoveForMirrorMove(u32 move)
         gCurrentMove = move;
     }
 
-    SetAtkCancellerForCalledMove();
     gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
+    ResetValuesForCalledMove();
     gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
 }
 
@@ -12765,10 +12778,10 @@ static void Cmd_metronome(void)
 #endif
 
     gCurrentMove = RandomUniformExcept(RNG_METRONOME, 1, moveCount - 1, InvalidMetronomeMove);
-    SetAtkCancellerForCalledMove();
     PrepareStringBattle(STRINGID_WAGGLINGAFINGER, gBattlerAttacker);
     gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
     gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
+    ResetValuesForCalledMove();
 }
 
 static void Cmd_dmgtolevel(void)
@@ -17342,14 +17355,10 @@ void BS_JumpIfBlockedBySoundproof(void)
 void BS_SetMagicCoatTarget(void)
 {
     NATIVE_ARGS();
-    u32 side;
     gBattleStruct->attackerBeforeBounce = gBattleScripting.battler = gBattlerAttacker;
     gBattlerAttacker = gBattlerTarget;
-    side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
-    if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
-        gBattlerTarget = gSideTimers[side].followmeTarget;
-    else
-        gBattlerTarget = gBattleStruct->attackerBeforeBounce;
+    gBattlerTarget = gBattleStruct->attackerBeforeBounce;
+    HandleMoveTargetRedirection();
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
