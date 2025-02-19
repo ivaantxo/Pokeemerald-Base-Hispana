@@ -8145,9 +8145,7 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
                     atkHoldEffectParam *= 2;
                 if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW && gCurrentMove != MOVE_SECRET_POWER)
                     atkHoldEffectParam *= 2;
-                if (gBattleStruct->moveDamage[battler] != 0  // Need to have done damage
-                    && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
-                    && IsBattlerTurnDamaged(gBattlerTarget)
+                if (IsBattlerTurnDamaged(gBattlerTarget)
                     && !MoveIgnoresKingsRock(gCurrentMove)
                     && gBattleMons[gBattlerTarget].hp
                     && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam)
