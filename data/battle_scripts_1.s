@@ -3657,12 +3657,12 @@ BattleScript_EffectParalyze::
 	jumpifmovehadnoeffect BattleScript_ButItFailed
 	jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_AlreadyParalyzed
 	jumpifelectricabilityaffected BS_TARGET, ABILITY_VOLT_ABSORB, BattleScript_VoltAbsorbHeal
+	clearmoveresultflags MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
 	tryparalyzetype BS_ATTACKER, BS_TARGET, BattleScript_NotAffected
 	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
 	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
 	jumpifsafeguard BattleScript_SafeguardProtected
-	clearmoveresultflags MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
 	attackanimation
 	waitanimation
 	seteffectprimary MOVE_EFFECT_PARALYSIS
