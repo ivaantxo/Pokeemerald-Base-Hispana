@@ -34,7 +34,7 @@ EventScript_PkmnCenterNurse_IllTakeYourPkmn2::
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 	hidefollower 0
-	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Turn @ Changed from Common_Movement_WalkInPlaceFasterLeft to force the follower to enter their Poké Ball
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Turn
 	waitmovement 0
 	dofieldeffect FLDEFF_POKECENTER_HEAL
 .if OW_UNION_DISABLE_CHECK == FALSE && OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
