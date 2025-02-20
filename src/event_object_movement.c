@@ -1828,19 +1828,6 @@ static u32 LoadDynamicFollowerPaletteFromGraphicsId(u16 graphicsId, struct Sprit
     return paletteNum;
 }
 
-// Like LoadObjectEventPalette, but overwrites the palette tag that is loaded
-static u8 LoadObjectEventPaletteWithTag(u16 paletteTag, u16 overTag)
-{
-    u32 i = FindObjectEventPaletteIndexByTag(paletteTag);
-    struct SpritePalette spritePalette;
-    if (i == 0xFF)
-        return i;
-    spritePalette = sObjectEventSpritePalettes[i];
-    if (overTag != TAG_NONE)
-        spritePalette.tag = overTag; // overwrite palette tag
-    return LoadSpritePaletteIfTagExists(&spritePalette);
-}
-
 // Used to create a sprite using a graphicsId associated with object events.
 u8 CreateObjectGraphicsSpriteWithTag(u16 graphicsId, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u16 paletteTag)
 {
