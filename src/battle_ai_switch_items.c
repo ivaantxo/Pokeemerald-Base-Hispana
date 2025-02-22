@@ -125,6 +125,20 @@ static bool32 IsAceMon(u32 battler, u32 monPartyId)
     return FALSE;
 }
 
+static bool32 AreStatsRaised(u32 battler)
+{
+    u8 buffedStatsValue = 0;
+    s32 i;
+
+    for (i = 0; i < NUM_BATTLE_STATS; i++)
+    {
+        if (gBattleMons[battler].statStages[i] > DEFAULT_STAT_STAGE)
+            buffedStatsValue += gBattleMons[battler].statStages[i] - DEFAULT_STAT_STAGE;
+    }
+
+    return (buffedStatsValue > STAY_IN_STATS_RAISED);
+}
+
 void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
 {
     if (BATTLE_TWO_VS_ONE_OPPONENT && (battler & BIT_SIDE) == B_SIDE_OPPONENT)
@@ -408,7 +422,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     s32 firstId;
     s32 lastId;
     struct Pokemon *party;
-    u16 monAbility;
+    u16 monAbility, aiMove;
     u32 opposingBattler = GetOppositeBattler(battler);
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
     u32 incomingType = GetMoveType(incomingMove);
@@ -421,9 +435,25 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         return FALSE;
     if (gBattleStruct->prevTurnSpecies[battler] != gBattleMons[battler].species) // AI mon has changed, player's behaviour no longer reliable; note to override this if using AI_FLAG_PREDICT_MOVE
         return FALSE; 
-
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING_STAY_IN, STAY_IN_ABSORBING_PERCENTAGE) || AI_DATA->aiSwitchPredictionInProgress))
         return FALSE;
+    if (AreStatsRaised(battler))
+        return FALSE;
+
+    // Don't switch if mon could OHKO
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        aiMove = gBattleMons[battler].moves[i];
+        if (aiMove != MOVE_NONE)
+        {
+            // Only check damage if it's a damaging move
+            if (!IsBattleMoveStatus(aiMove))
+            {
+                if (AI_DATA->simulatedDmg[battler][opposingBattler][i].expected > gBattleMons[opposingBattler].hp)
+                    return FALSE;
+            }
+        }
+    }
 
     if (IsDoubleBattle())
     {
@@ -760,20 +790,6 @@ static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng)
     }
 
     return FALSE;
-}
-
-static bool32 AreStatsRaised(u32 battler)
-{
-    u8 buffedStatsValue = 0;
-    s32 i;
-
-    for (i = 0; i < NUM_BATTLE_STATS; i++)
-    {
-        if (gBattleMons[battler].statStages[i] > DEFAULT_STAT_STAGE)
-            buffedStatsValue += gBattleMons[battler].statStages[i] - DEFAULT_STAT_STAGE;
-    }
-
-    return (buffedStatsValue > 3);
 }
 
 static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 percentChance)
