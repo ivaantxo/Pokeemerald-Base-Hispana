@@ -820,8 +820,6 @@ struct BattleStruct
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;
     u16 prevTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at start of turn
-
-    // Simultaneous hp reduction for spread moves
     s32 moveDamage[MAX_BATTLERS_COUNT];
     s32 critChance[MAX_BATTLERS_COUNT];
     u16 moveResultFlags[MAX_BATTLERS_COUNT];
