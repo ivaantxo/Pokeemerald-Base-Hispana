@@ -7329,7 +7329,7 @@ static void Cmd_moveend(void)
                 else if (IsBattlerAlive(gBattlerTarget))
                 {
                     gBattlerAttacker = gBattlerTarget;
-                    if (gBattleStruct->pursuitSwitchByMove)
+                    if (gBattleStruct->pursuitStoredSwitch == PARTY_SIZE)
                         gBattlescriptCurrInstr = BattleScript_MoveSwitchOpenPartyScreen;
                     else
                         gBattlescriptCurrInstr = BattleScript_DoSwitchOut;
@@ -14270,7 +14270,6 @@ static void Cmd_jumpifnopursuitswitchdmg(void)
     {
         ChangeOrderTargetAfterAttacker();
         gBattleStruct->battlerState[gBattlerAttacker].pursuitTarget = TRUE;
-        gBattleStruct->pursuitSwitchByMove = gActionsByTurnOrder[gCurrentTurnActionNumber] == B_ACTION_USE_MOVE;
         gBattleStruct->pursuitStoredSwitch = gBattleStruct->monToSwitchIntoId[gBattlerAttacker];
         gBattleStruct->moveTarget[gBattlerTarget] = gBattlerAttacker;
         gBattlerTarget = savedTarget;

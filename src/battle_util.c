@@ -3214,7 +3214,6 @@ static void CancellerAsleep(u32 *effect)
             {
                 u32 moveEffect = GetMoveEffect(gChosenMove);
                 if (moveEffect != EFFECT_SNORE && moveEffect != EFFECT_SLEEP_TALK)
-                if (gChosenMove != MOVE_SNORE && gChosenMove != MOVE_SLEEP_TALK)
                 {
                     gBattlescriptCurrInstr = BattleScript_MoveUsedIsAsleep;
                     gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -12256,8 +12255,7 @@ void ClearPursuitValues(void)
 {
     for (u32 i = 0; i < gBattlersCount; i++)
         gBattleStruct->battlerState[i].pursuitTarget = FALSE;
-    gBattleStruct->pursuitSwitchByMove = FALSE;
-    gBattleStruct->pursuitStoredSwitch = 0;
+    gBattleStruct->pursuitStoredSwitch = PARTY_SIZE;
 }
 
 void ClearPursuitValuesIfSet(u32 battler)
