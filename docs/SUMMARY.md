@@ -12,6 +12,7 @@
   - [How to add a new move](tutorials/how_to_new_move.md)
   - [How to add a new trainer class](tutorials/how_to_trainer_class.md)
   - [How to add a new Pokémon]()
+    - [v1.11.x](tutorials/how_to_new_pokemon_1_11_0.md)
     - [v1.10.x](tutorials/how_to_new_pokemon_1_10_0.md)
     - [v1.9.x](tutorials/how_to_new_pokemon_1_9_0.md)
     - [v1.8.x](tutorials/how_to_new_pokemon_1_8_0.md)
