@@ -5924,11 +5924,12 @@ BattleScript_WonderRoomEnds::
 BattleScript_MagicRoomEnds::
 	printstring STRINGID_MAGICROOMENDS
 	waitmessage B_WAIT_TIME_LONG
-	setbyte gBattlerAttacker, 0
+	setbyte gBattlerTarget, 0
 BattleScript_MagicRoomHealingItemsLoop:
+	copyarraywithindex gBattlerAttacker, gBattlerByTurnOrder, gBattlerTarget, 1
 	tryhealingitem
-	addbyte gBattlerAttacker, 1 @ TODO: Pretty sure it should be based on speed
-	jumpifbytenotequal gBattlerAttacker, gBattlersCount, BattleScript_MagicRoomHealingItemsLoop
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_MagicRoomHealingItemsLoop
 	end2
 
 BattleScript_TerrainEnds_Ret::
