@@ -2427,6 +2427,19 @@ bool32 IsSwitchOutEffect(u32 effect)
     }
 }
 
+bool32 IsSubstituteEffect(u32 effect)
+{
+    // Substitute effects like Substitute, Shed Tail, etc.
+    switch (effect)
+    {
+    case EFFECT_SUBSTITUTE:
+    case EFFECT_SHED_TAIL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 bool32 IsChaseEffect(u32 effect)
 {
     // Effects that hit switching out mons like Pursuit
@@ -4232,31 +4245,32 @@ bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, st
          && HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL));
 }
 
-void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
+u32 IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     u32 effect = GetMoveEffect(move);
+    u32 scoreIncrease = 0;
     if (effect == EFFECT_SUBSTITUTE) // Substitute specific
     {
         if (HasAnyKnownMove(battlerDef) && GetBestDmgFromBattler(battlerDef, battlerAtk) < gBattleMons[battlerAtk].maxHP / 4)
-            ADJUST_SCORE_PTR(GOOD_EFFECT);
+            scoreIncrease += GOOD_EFFECT;
     }
     else if (effect == EFFECT_SHED_TAIL) // Shed Tail specific
     {
         if ((ShouldPivot(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_THINKING_STRUCT->movesetIndex))
         && (HasAnyKnownMove(battlerDef) && (GetBestDmgFromBattler(battlerDef, battlerAtk) < gBattleMons[battlerAtk].maxHP / 2)))
-            ADJUST_SCORE_PTR(BEST_EFFECT);
+            scoreIncrease += BEST_EFFECT;
     }
 
     if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
-        ADJUST_SCORE_PTR(GOOD_EFFECT);
+        scoreIncrease += GOOD_EFFECT;
 
     if (gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
-        ADJUST_SCORE_PTR(GOOD_EFFECT);
+        scoreIncrease += GOOD_EFFECT;
     else if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
-        ADJUST_SCORE_PTR(DECENT_EFFECT);
+        scoreIncrease += DECENT_EFFECT;
 
     if (IsBattlerPredictedToSwitch(battlerDef))
-        ADJUST_SCORE(DECENT_EFFECT);
+        scoreIncrease += DECENT_EFFECT;
 
     if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
      || HasMoveEffect(battlerDef, EFFECT_TOXIC)
@@ -4265,10 +4279,11 @@ void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *
      || HasMoveEffect(battlerDef, EFFECT_WILL_O_WISP)
      || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
      || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
-        ADJUST_SCORE_PTR(GOOD_EFFECT);
+        scoreIncrease += GOOD_EFFECT;
 
     if (AI_DATA->hpPercents[battlerAtk] > 70)
-        ADJUST_SCORE_PTR(WEAK_EFFECT);
+        scoreIncrease += WEAK_EFFECT;
+    return scoreIncrease;
 }
 
 bool32 HasLowAccuracyMove(u32 battlerAtk, u32 battlerDef)
