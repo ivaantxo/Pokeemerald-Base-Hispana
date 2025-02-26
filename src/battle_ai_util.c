@@ -423,17 +423,6 @@ static inline s32 DmgRoll(s32 dmg)
 bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType)
 {
     struct AiLogicData *aiData = AI_DATA;
-    /*
-    u32 battlerDefAbility;
-
-    if (DoesBattlerIgnoreAbilityChecks(battlerAtk, aiData->abilities[battlerAtk], move))
-        battlerDefAbility = ABILITY_NONE;
-    else
-        battlerDefAbility = aiData->abilities[battlerDef];
-
-    if (battlerDef == BATTLE_PARTNER(battlerAtk))
-        battlerDefAbility = aiData->abilities[battlerDef];
-    */
 
     if (gBattleStruct->battlerState[battlerDef].commandingDondozo)
         return TRUE;
