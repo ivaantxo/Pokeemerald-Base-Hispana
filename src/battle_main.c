@@ -513,7 +513,8 @@ static void CB2_InitBattleInternal(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
-                                                                        | BATTLE_TYPE_TRAINER_HILL)))
+                                                                        | BATTLE_TYPE_TRAINER_HILL
+                                                                        | BATTLE_TYPE_RECORDED)))
     {
         gBattleTypeFlags |= (IsTrainerDoubleBattle(TRAINER_BATTLE_PARAM.opponentA) ? BATTLE_TYPE_DOUBLE : 0);
     }
@@ -3205,6 +3206,9 @@ void SwitchInClearSetData(u32 battler)
     gCurrentMove = MOVE_NONE;
     gBattleStruct->arenaTurnCounter = 0xFF;
 
+    // Restore struct member so replacement does not miss timing
+    gSpecialStatuses[battler].switchInAbilityDone = FALSE;
+
     // Reset damage to prevent things like red card activating if the switched-in mon is holding it
     gSpecialStatuses[battler].physicalDmg = 0;
     gSpecialStatuses[battler].specialDmg = 0;
@@ -3875,7 +3879,7 @@ static void TryDoEventsBeforeFirstTurn(void)
             gBattleStruct->monToSwitchIntoId[i] = PARTY_SIZE;
             gChosenActionByBattler[i] = B_ACTION_NONE;
             gChosenMoveByBattler[i] = MOVE_NONE;
-            gBattleStruct->battlerState[i].absentBattlerFlags = gAbsentBattlerFlags & (1u << i);
+            gBattleStruct->battlerState[i].absentBattlerFlags = (gAbsentBattlerFlags & (1u << i) ? TRUE : FALSE);
         }
         TurnValuesCleanUp(FALSE);
         SpecialStatusesClear();
@@ -3985,7 +3989,7 @@ void BattleTurnPassed(void)
     {
         gChosenActionByBattler[i] = B_ACTION_NONE;
         gChosenMoveByBattler[i] = MOVE_NONE;
-        gBattleStruct->battlerState[i].absentBattlerFlags = gAbsentBattlerFlags & (1u << i);
+        gBattleStruct->battlerState[i].absentBattlerFlags = (gAbsentBattlerFlags & (1u << i) ? TRUE : FALSE);
         gBattleStruct->monToSwitchIntoId[i] = PARTY_SIZE;
         gStatuses4[i] &= ~STATUS4_ELECTRIFIED;
         gBattleMons[i].status2 &= ~STATUS2_FLINCHED;

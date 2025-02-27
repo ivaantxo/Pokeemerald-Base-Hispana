@@ -1640,8 +1640,8 @@
 	callnative BS_TryTriggerStatusForm
 	.endm
 
-	.macro setphotongeysercategory
-	callnative BS_SetPhotonGeyserCategory
+	.macro setdynamicmovecategory
+	callnative BS_SetDynamicMoveCategory
 	.endm
 
 	.macro tryupperhand failInstr:req

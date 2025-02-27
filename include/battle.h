@@ -814,12 +814,9 @@ struct BattleStruct
     u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
     u8 redCardActivates:1;
     u8 padding2:2; // padding in the middle so pursuit fields are together
-    u8 pursuitSwitchByMove:1;
     u8 pursuitStoredSwitch; // Stored id for the Pursuit target's switch
     s32 battlerExpReward;
     u16 prevTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at start of turn
-
-    // Simultaneous hp reduction for spread moves
     s32 moveDamage[MAX_BATTLERS_COUNT];
     s32 critChance[MAX_BATTLERS_COUNT];
     u16 moveResultFlags[MAX_BATTLERS_COUNT];
@@ -830,9 +827,13 @@ struct BattleStruct
     u8 calculatedSpreadMoveAccuracy:1;
     u8 printedStrongWindsWeakenedAttack:1;
     u8 numSpreadTargets:2;
-    u8 padding3:2;
+    u8 bypassMoldBreakerChecks:1; // for ABILITYEFFECT_IMMUNITY
+    u8 padding3:1;
+    u8 usedEjectItem;
+    u8 usedMicleBerry;
     struct MessageStatus slideMessageStatus;
     u8 trainerSlideSpriteIds[MAX_BATTLERS_COUNT];
+    u8 embodyAspectBoost[NUM_BATTLE_SIDES];
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
@@ -1239,6 +1240,11 @@ static inline u32 GetOppositeBattler(u32 battler)
 static inline u32 GetBattlerSide(u32 battler)
 {
     return GetBattlerPosition(battler) & BIT_SIDE;
+}
+
+static inline bool32 IsBattlerAlly(u32 battlerAtk, u32 battlerDef)
+{
+    return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
 }
 
 static inline u32 GetOpposingSideBattler(u32 battler)

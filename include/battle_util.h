@@ -24,8 +24,8 @@
 
 enum AbilityEffectOptions
 {
-  ABILITY_CHECK_TRIGGER,
-  ABILITY_RUN_SCRIPT,
+    ABILITY_CHECK_TRIGGER,
+    ABILITY_RUN_SCRIPT,
 };
 
 enum MoveAbsorbed
@@ -175,6 +175,7 @@ void HandleAction_ThrowBall(void);
 u32 GetCurrentBattleWeather(void);
 u32 EndOrContinueWeather(void);
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move);
+bool32 HandleMoveTargetRedirection(void);
 void HandleAction_UseMove(void);
 void HandleAction_Switch(void);
 void HandleAction_UseItem(void);
