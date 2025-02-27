@@ -1206,7 +1206,6 @@ static void HandleEndTurnThirdEventBlock(u32 battler, u32 *effect)
             }
             if (gBattlerAttacker != gBattlersCount)
             {
-                *effect = 2;  // a Pokémon was awaken
                 break;
             }
             else
