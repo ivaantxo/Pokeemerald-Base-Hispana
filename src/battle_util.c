@@ -217,12 +217,12 @@ u32 GetCurrentBattleWeather(void)
     return currBattleWeather;
 }
 
-u32 EndOrContinueWeather(void)
+bool32 EndOrContinueWeather(void)
 {
     u32 currBattleWeather = GetCurrentBattleWeather();
 
     if (currBattleWeather == 0xFF)
-        return 1;
+        return FALSE;
 
     if (gWishFutureKnock.weatherDuration > 0 && --gWishFutureKnock.weatherDuration == 0)
     {
@@ -231,17 +231,17 @@ u32 EndOrContinueWeather(void)
             gDisableStructs[battler].weatherAbilityDone = FALSE;
         gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].endMessage;
         BattleScriptExecute(BattleScript_WeatherFaded);
-        return 1;
+        return TRUE;
     }
     else
     {
         gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].continuesMessage;
         gBattleScripting.animArg1 = sBattleWeatherInfo[currBattleWeather].animation;
         BattleScriptExecute(BattleScript_WeatherContinues);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static u32 CalcBeatUpPower(void)

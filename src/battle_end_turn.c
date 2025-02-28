@@ -110,8 +110,10 @@ static inline bool32 IsBattlerProtectedByMagicGuard(u32 battler, u32 ability)
     return TRUE;
 }
 
-static void HandleEndTurnOrder(u32 battler, u32 *effect)
+static bool32 HandleEndTurnOrder(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleTurnCounter++;
     gBattleStruct->endTurnEventsCounter++;
 
@@ -128,11 +130,15 @@ static void HandleEndTurnOrder(u32 battler, u32 *effect)
                 SwapTurnOrder(i, j);
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnVarious(u32 battler, u32 *effect)
+static bool32 HandleEndTurnVarious(u32 battler)
 {
     u32 i;
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK && gFieldTimers.fairyLockTimer == gBattleTurnCounter)
@@ -157,16 +163,20 @@ static void HandleEndTurnVarious(u32 battler, u32 *effect)
 
         gBattleStruct->hpBefore[i] = gBattleMons[i].hp;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnWeather(u32 battler, u32 *effect)
+static bool32 HandleEndTurnWeather(u32 battler)
 {
     gBattleStruct->endTurnEventsCounter++;
-    *effect = EndOrContinueWeather();
+    return EndOrContinueWeather();
 }
 
-static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
+static bool32 HandleEndTurnWeatherDamage(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 ability = GetBattlerAbility(battler);
     u32 currBattleWeather = GetCurrentBattleWeather();
 
@@ -175,13 +185,13 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
         // If there is no weather on the field, no need to check other battlers so go to next state
         gBattleStruct->turnEffectsBattlerId = 0;
         gBattleStruct->endTurnEventsCounter++;
-        return;
+        return effect;
     }
 
     gBattleStruct->turnEffectsBattlerId++;
 
     if (!IsBattlerAlive(battler) || !HasWeatherEffect())
-        return;
+        return effect;
 
 
     switch (currBattleWeather)
@@ -195,7 +205,7 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
         if (ability == ABILITY_DRY_SKIN || ability == ABILITY_RAIN_DISH)
         {
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-                *effect = 1;
+                effect = TRUE;
         }
         break;
     case BATTLE_WEATHER_SUN:
@@ -203,7 +213,7 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
         if (ability == ABILITY_DRY_SKIN)
         {
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-                *effect = 1;
+                effect = TRUE;
         }
         break;
     case BATTLE_WEATHER_SANDSTORM:
@@ -221,7 +231,7 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
                 gBattleStruct->moveDamage[battler] = 1;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SANDSTORM;
             BattleScriptExecute(BattleScript_DamagingWeather);
-            *effect = 1;
+            effect = TRUE;
         }
         break;
     case BATTLE_WEATHER_HAIL:
@@ -229,7 +239,7 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
         if (ability == ABILITY_ICE_BODY)
         {
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-                *effect = 1;
+                effect = TRUE;
         }
         else if (currBattleWeather == BATTLE_WEATHER_HAIL)
         {
@@ -245,15 +255,18 @@ static void HandleEndTurnWeatherDamage(u32 battler, u32 *effect)
                     gBattleStruct->moveDamage[battler] = 1;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_HAIL;
                 BattleScriptExecute(BattleScript_DamagingWeather);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         break;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnEmergencyExit(u32 battler, u32 *effect)
+static bool32 HandleEndTurnEmergencyExit(u32 battler)
 {
+    bool32 effect = FALSE;
     u32 ability = GetBattlerAbility(battler);
 
     gBattleStruct->turnEffectsBattlerId++;
@@ -278,32 +291,40 @@ static void HandleEndTurnEmergencyExit(u32 battler, u32 *effect)
             else
                 BattleScriptExecute(BattleScript_EmergencyExitWildEnd2);
 
-            *effect = 1;
+            effect = TRUE;
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnAffection(u32 battler, u32 *effect)
+static bool32 HandleEndTurnAffection(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (!B_AFFECTION_MECHANICS
      || !IsBattlerAlive(battler)
      || GetBattlerSide(battler) != B_SIDE_PLAYER)
-        return;
+        return effect;
 
     if (GetBattlerAffectionHearts(gBattlerAttacker) >= AFFECTION_FOUR_HEARTS && (Random() % 100 < 20))
     {
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
         BattleScriptExecute(BattleScript_AffectionBasedStatusHeal);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
 // Note: Technically Future Sight, Doom Desire and Wish need a queue but
 // I think we should accept this slight inconsistency so custom moves don't have to touch this code
-static void HandleEndTurnFutureSight(u32 battler, u32 *effect)
+static bool32 HandleEndTurnFutureSight(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gWishFutureKnock.futureSightCounter[battler] == gBattleTurnCounter)
@@ -317,7 +338,7 @@ static void HandleEndTurnFutureSight(u32 battler, u32 *effect)
         }
 
         if (!IsBattlerAlive(battler))
-            return;
+            return effect;
 
         if (gWishFutureKnock.futureSightMove[battler] == MOVE_FUTURE_SIGHT)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FUTURE_SIGHT;
@@ -335,12 +356,16 @@ static void HandleEndTurnFutureSight(u32 battler, u32 *effect)
             SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
 
         BattleScriptExecute(BattleScript_MonTookFutureAttack);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnWish(u32 battler, u32 *effect)
+static bool32 HandleEndTurnWish(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gWishFutureKnock.wishCounter[battler] == gBattleTurnCounter && IsBattlerAlive(battler))
@@ -365,12 +390,16 @@ static void HandleEndTurnWish(u32 battler, u32 *effect)
         else
             BattleScriptExecute(BattleScript_WishComesTrue);
 
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
+static bool32 HandleEndTurnFirstEventBlock(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 side;
 
     switch (gBattleStruct->eventBlockCounter)
@@ -387,7 +416,7 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
                 gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 6;
                 ChooseDamageNonTypesString(gSideTimers[side].damageNonTypesType);
                 BattleScriptExecute(BattleScript_DamageNonTypesContinues);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         gBattleStruct->eventBlockCounter++;
@@ -400,7 +429,7 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
             BtlController_EmitStatusAnimation(battler, BUFFER_A, FALSE, STATUS1_BURN);
             MarkBattlerForControllerExec(battler);
             BattleScriptExecute(BattleScript_HurtByTheSeaOfFire);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -421,7 +450,7 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
                     SetMoveEffect(TRUE, FALSE);
                     if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                         BattleScriptExecute(BattleScript_ThrashConfuses);
-                    *effect = 1;
+                    effect = TRUE;
                 }
             }
         }
@@ -433,7 +462,7 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
             gBattlerAttacker = battler;
             gBattleStruct->moveDamage[battler] = -(GetNonDynamaxMaxHP(battler) / 16);
             BattleScriptExecute(BattleScript_GrassyTerrainHeals);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -446,7 +475,7 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
         case ABILITY_HYDRATION:
         case ABILITY_SHED_SKIN:
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-                *effect = 1;
+                effect = TRUE;
             break;
         }
         gBattleStruct->eventBlockCounter++;
@@ -460,7 +489,7 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
         case HOLD_EFFECT_LEFTOVERS:
         case HOLD_EFFECT_BLACK_SLUDGE:
             if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
-                *effect = 1;
+                effect = TRUE;
             break;
         }
         gBattleStruct->eventBlockCounter = 0;
@@ -468,10 +497,14 @@ static void HandleEndTurnFirstEventBlock(u32 battler, u32 *effect)
         break;
     }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnAquaRing(u32 battler, u32 *effect)
+static bool32 HandleEndTurnAquaRing(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_AQUA_RING
@@ -481,12 +514,16 @@ static void HandleEndTurnAquaRing(u32 battler, u32 *effect)
     {
         gBattleStruct->moveDamage[battler] = GetDrainedBigRootHp(battler, GetNonDynamaxMaxHP(battler) / 16);
         BattleScriptExecute(BattleScript_AquaRingHeal);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnIngrain(u32 battler, u32 *effect)
+static bool32 HandleEndTurnIngrain(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_ROOTED
@@ -496,12 +533,16 @@ static void HandleEndTurnIngrain(u32 battler, u32 *effect)
     {
         gBattleStruct->moveDamage[battler] = GetDrainedBigRootHp(battler, GetNonDynamaxMaxHP(battler) / 16);
         BattleScriptExecute(BattleScript_IngrainTurnHeal);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnLeechSeed(u32 battler, u32 *effect)
+static bool32 HandleEndTurnLeechSeed(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_LEECHSEED
@@ -530,12 +571,16 @@ static void HandleEndTurnLeechSeed(u32 battler, u32 *effect)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_DRAIN;
             BattleScriptExecute(BattleScript_LeechSeedTurnDrainRecovery);
         }
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnPoison(u32 battler, u32 *effect)
+static bool32 HandleEndTurnPoison(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 ability = GetBattlerAbility(battler);
 
     gBattleStruct->turnEffectsBattlerId++;
@@ -553,7 +598,7 @@ static void HandleEndTurnPoison(u32 battler, u32 *effect)
                     gBattleStruct->moveDamage[battler] = 1;
                 gBattleStruct->moveDamage[battler] *= -1;
                 BattleScriptExecute(BattleScript_PoisonHealActivates);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         else if (gBattleMons[battler].status1 & STATUS1_TOXIC_POISON)
@@ -565,7 +610,7 @@ static void HandleEndTurnPoison(u32 battler, u32 *effect)
                 gBattleMons[battler].status1 += STATUS1_TOXIC_TURN(1);
             gBattleStruct->moveDamage[battler] *= (gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >> 8;
             BattleScriptExecute(BattleScript_PoisonTurnDmg);
-            *effect = 1;
+            effect = TRUE;
         }
         else
         {
@@ -573,13 +618,17 @@ static void HandleEndTurnPoison(u32 battler, u32 *effect)
             if (gBattleStruct->moveDamage[battler] == 0)
                 gBattleStruct->moveDamage[battler] = 1;
             BattleScriptExecute(BattleScript_PoisonTurnDmg);
-            *effect = 1;
+            effect = TRUE;
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnBurn(u32 battler, u32 *effect)
+static bool32 HandleEndTurnBurn(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 ability = GetBattlerAbility(battler);
 
     gBattleStruct->turnEffectsBattlerId++;
@@ -598,12 +647,16 @@ static void HandleEndTurnBurn(u32 battler, u32 *effect)
         if (gBattleStruct->moveDamage[battler] == 0)
             gBattleStruct->moveDamage[battler] = 1;
         BattleScriptExecute(BattleScript_BurnTurnDmg);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnFrostbite(u32 battler, u32 *effect)
+static bool32 HandleEndTurnFrostbite(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gBattleMons[battler].status1 & STATUS1_FROSTBITE
@@ -614,12 +667,16 @@ static void HandleEndTurnFrostbite(u32 battler, u32 *effect)
         if (gBattleStruct->moveDamage[battler] == 0)
             gBattleStruct->moveDamage[battler] = 1;
         BattleScriptExecute(BattleScript_FrostbiteTurnDmg);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnNightmare(u32 battler, u32 *effect)
+static bool32 HandleEndTurnNightmare(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gBattleMons[battler].status2 & STATUS2_NIGHTMARE
@@ -632,17 +689,21 @@ static void HandleEndTurnNightmare(u32 battler, u32 *effect)
             if (gBattleStruct->moveDamage[battler] == 0)
                 gBattleStruct->moveDamage[battler] = 1;
             BattleScriptExecute(BattleScript_NightmareTurnDmg);
-            *effect = 1;
+            effect = TRUE;
         }
         else
         {
             gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnCurse(u32 battler, u32 *effect)
+static bool32 HandleEndTurnCurse(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gBattleMons[battler].status2 & STATUS2_CURSED
@@ -653,12 +714,16 @@ static void HandleEndTurnCurse(u32 battler, u32 *effect)
         if (gBattleStruct->moveDamage[battler] == 0)
             gBattleStruct->moveDamage[battler] = 1;
         BattleScriptExecute(BattleScript_CurseTurnDmg);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnWrap(u32 battler, u32 *effect)
+static bool32 HandleEndTurnWrap(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gBattleMons[battler].status2 & STATUS2_WRAPPED && IsBattlerAlive(battler))
@@ -683,12 +748,16 @@ static void HandleEndTurnWrap(u32 battler, u32 *effect)
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[battler]);
             BattleScriptExecute(BattleScript_WrapEnds);
         }
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnSaltCure(u32 battler, u32 *effect)
+static bool32 HandleEndTurnSaltCure(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses4[battler] & STATUS4_SALT_CURE
@@ -703,12 +772,16 @@ static void HandleEndTurnSaltCure(u32 battler, u32 *effect)
             gBattleStruct->moveDamage[battler] = 1;
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SALT_CURE);
         BattleScriptExecute(BattleScript_SaltCureExtraDamage);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnOctolock(u32 battler, u32 *effect)
+static bool32 HandleEndTurnOctolock(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gDisableStructs[battler].octolock)
@@ -716,12 +789,16 @@ static void HandleEndTurnOctolock(u32 battler, u32 *effect)
         gBattlerTarget = battler;
         gBattlerAttacker = gDisableStructs[battler].battlerPreventingEscape;
         BattleScriptExecute(BattleScript_OctolockEndTurn);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnSyrupBomb(u32 battler, u32 *effect)
+static bool32 HandleEndTurnSyrupBomb(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if ((gStatuses4[battler] & STATUS4_SYRUP_BOMB) && (IsBattlerAlive(battler)))
@@ -731,36 +808,48 @@ static void HandleEndTurnSyrupBomb(u32 battler, u32 *effect)
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SYRUP_BOMB);
         gBattlescriptCurrInstr = BattleScript_SyrupBombEndTurn;
         BattleScriptExecute(gBattlescriptCurrInstr);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnTaunt(u32 battler, u32 *effect)
+static bool32 HandleEndTurnTaunt(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gDisableStructs[battler].tauntTimer && --gDisableStructs[battler].tauntTimer == 0)
     {
         BattleScriptExecute(BattleScript_BufferEndTurn);
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnTorment(u32 battler, u32 *effect)
+static bool32 HandleEndTurnTorment(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gDisableStructs[battler].tormentTimer > 0 && --gDisableStructs[battler].tormentTimer == 0)
     {
         gBattleMons[battler].status2 &= ~STATUS2_TORMENT;
         BattleScriptExecute(BattleScript_TormentEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnEncore(u32 battler, u32 *effect)
+static bool32 HandleEndTurnEncore(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gDisableStructs[battler].encoreTimer != 0)
@@ -776,13 +865,17 @@ static void HandleEndTurnEncore(u32 battler, u32 *effect)
             gDisableStructs[battler].encoredMove = 0;
             gDisableStructs[battler].encoreTimer = 0;
             BattleScriptExecute(BattleScript_EncoredNoMore);
-            *effect = 1;
+            effect = TRUE;
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnDisable(u32 battler, u32 *effect)
+static bool32 HandleEndTurnDisable(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 moveIndex = 0;
     gBattleStruct->turnEffectsBattlerId++;
 
@@ -802,13 +895,17 @@ static void HandleEndTurnDisable(u32 battler, u32 *effect)
         {
             gDisableStructs[battler].disabledMove = 0;
             BattleScriptExecute(BattleScript_DisabledNoMore);
-            *effect = 1;
+            effect = TRUE;
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnMagnetRise(u32 battler, u32 *effect)
+static bool32 HandleEndTurnMagnetRise(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_MAGNET_RISE && gDisableStructs[battler].magnetRiseTimer == gBattleTurnCounter)
@@ -816,24 +913,32 @@ static void HandleEndTurnMagnetRise(u32 battler, u32 *effect)
         gStatuses3[battler] &= ~STATUS3_MAGNET_RISE;
         BattleScriptExecute(BattleScript_BufferEndTurn);
         PREPARE_STRING_BUFFER(gBattleTextBuff1, STRINGID_ELECTROMAGNETISM);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnTelekinesis(u32 battler, u32 *effect)
+static bool32 HandleEndTurnTelekinesis(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_TELEKINESIS && gDisableStructs[battler].telekinesisTimer == gBattleTurnCounter)
     {
         gStatuses3[battler] &= ~STATUS3_TELEKINESIS;
         BattleScriptExecute(BattleScript_TelekinesisEndTurn);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnHealBlock(u32 battler, u32 *effect)
+static bool32 HandleEndTurnHealBlock(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_HEAL_BLOCK && gDisableStructs[battler].healBlockTimer == gBattleTurnCounter)
@@ -841,24 +946,32 @@ static void HandleEndTurnHealBlock(u32 battler, u32 *effect)
         gStatuses3[battler] &= ~STATUS3_HEAL_BLOCK;
         BattleScriptExecute(BattleScript_BufferEndTurn);
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_HEAL_BLOCK);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnEmbargo(u32 battler, u32 *effect)
+static bool32 HandleEndTurnEmbargo(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gStatuses3[battler] & STATUS3_EMBARGO && gDisableStructs[battler].embargoTimer == gBattleTurnCounter)
     {
         gStatuses3[battler] &= ~STATUS3_EMBARGO;
         BattleScriptExecute(BattleScript_EmbargoEndTurn);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnYawn(u32 battler, u32 *effect)
+static bool32 HandleEndTurnYawn(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 ability = GetBattlerAbility(battler);
 
     gBattleStruct->turnEffectsBattlerId++;
@@ -900,13 +1013,17 @@ static void HandleEndTurnYawn(u32 battler, u32 *effect)
                 MarkBattlerForControllerExec(battler);
                 BattleScriptExecute(BattleScript_YawnMakesAsleep);
             }
-            *effect = 1;
+            effect = TRUE;
         }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnPerishSong(u32 battler, u32 *effect)
+static bool32 HandleEndTurnPerishSong(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (IsBattlerAlive(battler) && gStatuses3[battler] & STATUS3_PERISH_SONG)
@@ -923,20 +1040,28 @@ static void HandleEndTurnPerishSong(u32 battler, u32 *effect)
             gDisableStructs[battler].perishSongTimer--;
             BattleScriptExecute(BattleScript_PerishSongCountGoesDown);
         }
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnRoost(u32 battler, u32 *effect)
+static bool32 HandleEndTurnRoost(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (gDisableStructs[battler].roostActive)
         gDisableStructs[battler].roostActive = FALSE;
+
+    return effect;
 }
 
-static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
+static bool32 HandleEndTurnSecondEventBlock(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 side = gBattleStruct->turnSideTracker;
 
     switch (gBattleStruct->eventBlockCounter)
@@ -949,7 +1074,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             BattleScriptExecute(BattleScript_SideStatusWoreOff);
             gBattleCommunication[MULTISTRING_CHOOSER] = side;
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_REFLECT);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -961,7 +1086,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             BattleScriptExecute(BattleScript_SideStatusWoreOff);
             gBattleCommunication[MULTISTRING_CHOOSER] = side;
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_LIGHT_SCREEN);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -971,7 +1096,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
             gSideStatuses[side] &= ~SIDE_STATUS_SAFEGUARD;
             BattleScriptExecute(BattleScript_SafeguardEnds);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -983,7 +1108,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             BattleScriptExecute(BattleScript_SideStatusWoreOff);
             gBattleCommunication[MULTISTRING_CHOOSER] = side;
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_MIST);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -993,7 +1118,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             gBattlerAttacker = gSideTimers[side].tailwindBattlerId;
             gSideStatuses[side] &= ~SIDE_STATUS_TAILWIND;
             BattleScriptExecute(BattleScript_TailwindEnds);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -1003,7 +1128,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             gBattlerAttacker = gSideTimers[side].luckyChantBattlerId;
             gSideStatuses[side] &= ~SIDE_STATUS_LUCKY_CHANT;
             BattleScriptExecute(BattleScript_LuckyChantEnds);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -1020,7 +1145,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             {
                 gSideStatuses[side] &= ~SIDE_STATUS_RAINBOW;
                 BattleScriptExecute(BattleScript_TheRainbowDisappeared);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         gBattleStruct->eventBlockCounter++;
@@ -1038,7 +1163,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             {
                 gSideStatuses[side] &= ~SIDE_STATUS_SEA_OF_FIRE;
                 BattleScriptExecute(BattleScript_TheSeaOfFireDisappeared);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         gBattleStruct->eventBlockCounter++;
@@ -1056,7 +1181,7 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             {
                 gSideStatuses[side] &= ~SIDE_STATUS_SWAMP;
                 BattleScriptExecute(BattleScript_TheSwampDisappeared);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         gBattleStruct->eventBlockCounter++;
@@ -1069,87 +1194,113 @@ static void HandleEndTurnSecondEventBlock(u32 battler, u32 *effect)
             BattleScriptExecute(BattleScript_SideStatusWoreOff);
             gBattleCommunication[MULTISTRING_CHOOSER] = side;
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_AURORA_VEIL);
-            *effect = 1;
+            effect = TRUE;
         }
         gBattleStruct->turnSideTracker++;
         gBattleStruct->eventBlockCounter = 0;
         break;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnTrickRoom(u32 battler, u32 *effect)
+static bool32 HandleEndTurnTrickRoom(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer == gBattleTurnCounter)
     {
         gFieldStatuses &= ~STATUS_FIELD_TRICK_ROOM;
         BattleScriptExecute(BattleScript_TrickRoomEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnGravity(u32 battler, u32 *effect)
+static bool32 HandleEndTurnGravity(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_GRAVITY && gFieldTimers.gravityTimer == gBattleTurnCounter)
     {
         gFieldStatuses &= ~STATUS_FIELD_GRAVITY;
         BattleScriptExecute(BattleScript_GravityEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnWaterSport(u32 battler, u32 *effect)
+static bool32 HandleEndTurnWaterSport(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_WATERSPORT && gFieldTimers.waterSportTimer == gBattleTurnCounter)
     {
         gFieldStatuses &= ~STATUS_FIELD_WATERSPORT;
         BattleScriptExecute(BattleScript_WaterSportEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnMudSport(u32 battler, u32 *effect)
+static bool32 HandleEndTurnMudSport(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_MUDSPORT && gFieldTimers.mudSportTimer == gBattleTurnCounter)
     {
         gFieldStatuses &= ~STATUS_FIELD_MUDSPORT;
         BattleScriptExecute(BattleScript_MudSportEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnWonderRoom(u32 battler, u32 *effect)
+static bool32 HandleEndTurnWonderRoom(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_WONDER_ROOM && gFieldTimers.wonderRoomTimer == gBattleTurnCounter)
     {
         gFieldStatuses &= ~STATUS_FIELD_WONDER_ROOM;
         BattleScriptExecute(BattleScript_WonderRoomEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnMagicRoom(u32 battler, u32 *effect)
+static bool32 HandleEndTurnMagicRoom(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM && gFieldTimers.magicRoomTimer == gBattleTurnCounter)
     {
         gFieldStatuses &= ~STATUS_FIELD_MAGIC_ROOM;
         BattleScriptExecute(BattleScript_MagicRoomEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static u32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
+static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
 {
     if (gFieldStatuses & terrainFlag && gFieldTimers.terrainTimer == gBattleTurnCounter)
     {
@@ -1157,32 +1308,38 @@ static u32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
         TryToRevertMimicryAndFlags();
         gBattleCommunication[MULTISTRING_CHOOSER] = stringTableId;
         BattleScriptExecute(BattleScript_TerrainEnds);
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void HandleEndTurnTerrain(u32 battler, u32 *effect)
+static bool32 HandleEndTurnTerrain(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->endTurnEventsCounter++;
 
     if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-        *effect = EndTurnTerrain(STATUS_FIELD_ELECTRIC_TERRAIN, B_MSG_TERRAIN_END_ELECTRIC);
+        effect = EndTurnTerrain(STATUS_FIELD_ELECTRIC_TERRAIN, B_MSG_TERRAIN_END_ELECTRIC);
     else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
-        *effect = EndTurnTerrain(STATUS_FIELD_MISTY_TERRAIN, B_MSG_TERRAIN_END_MISTY);
+        effect = EndTurnTerrain(STATUS_FIELD_MISTY_TERRAIN, B_MSG_TERRAIN_END_MISTY);
     else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
-        *effect = EndTurnTerrain(STATUS_FIELD_GRASSY_TERRAIN, B_MSG_TERRAIN_END_GRASSY);
+        effect = EndTurnTerrain(STATUS_FIELD_GRASSY_TERRAIN, B_MSG_TERRAIN_END_GRASSY);
     else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
-        *effect = EndTurnTerrain(STATUS_FIELD_PSYCHIC_TERRAIN, B_MSG_TERRAIN_END_PSYCHIC);
+        effect = EndTurnTerrain(STATUS_FIELD_PSYCHIC_TERRAIN, B_MSG_TERRAIN_END_PSYCHIC);
+
+    return effect;
 }
 
-static void HandleEndTurnThirdEventBlock(u32 battler, u32 *effect)
+static bool32 HandleEndTurnThirdEventBlock(u32 battler)
 {
+    bool32 effect = FALSE;
+
     if (!IsBattlerAlive(battler))
     {
         gBattleStruct->turnEffectsBattlerId++;
-        return;
+        return effect;
     }
 
     switch (gBattleStruct->eventBlockCounter)
@@ -1228,7 +1385,7 @@ static void HandleEndTurnThirdEventBlock(u32 battler, u32 *effect)
                     CancelMultiTurnMoves(battler);
                 }
                 BattleScriptExecute(BattleScript_PrintUproarOverTurns);
-                *effect = 1;
+                effect = TRUE;
             }
         }
         gBattleStruct->eventBlockCounter++;
@@ -1248,7 +1405,7 @@ static void HandleEndTurnThirdEventBlock(u32 battler, u32 *effect)
         case ABILITY_PICKUP:
         case ABILITY_SPEED_BOOST:
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-                *effect = 1;
+                effect = TRUE;
             break;
         }
         gBattleStruct->eventBlockCounter++;
@@ -1263,11 +1420,11 @@ static void HandleEndTurnThirdEventBlock(u32 battler, u32 *effect)
         case HOLD_EFFECT_STICKY_BARB:
         case HOLD_EFFECT_TOXIC_ORB:
             if (ItemBattleEffects(ITEMEFFECT_ORBS, battler, FALSE))
-                *effect = 1;
+                effect = TRUE;
             break;
         case HOLD_EFFECT_RESTORE_STATS:
             if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
-                *effect = 1;
+                effect = TRUE;
             break;
         }
         gBattleStruct->eventBlockCounter = 0;
@@ -1275,10 +1432,14 @@ static void HandleEndTurnThirdEventBlock(u32 battler, u32 *effect)
         break;
     }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnAbilities(u32 battler, u32 *effect)
+static bool32 HandleEndTurnAbilities(u32 battler)
 {
+    bool32 effect = FALSE;
+
     u32 ability = GetBattlerAbility(battler);
 
     gBattleStruct->turnEffectsBattlerId++;
@@ -1290,12 +1451,16 @@ static void HandleEndTurnAbilities(u32 battler, u32 *effect)
     case ABILITY_SHIELDS_DOWN:
     case ABILITY_ZEN_MODE:
         if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-            *effect = 1;
+            effect = TRUE;
     }
+
+    return effect;
 }
 
-static void HandleEndTurnFourthEventBlock(u32 battler, u32 *effect)
+static bool32 HandleEndTurnFourthEventBlock(u32 battler)
 {
+    bool32 effect = FALSE;
+
     switch (gBattleStruct->eventBlockCounter)
     {
     case FOURTH_EVENT_BLOCK_HUNGER_SWITCH:
@@ -1304,7 +1469,7 @@ static void HandleEndTurnFourthEventBlock(u32 battler, u32 *effect)
         if (ability == ABILITY_HUNGER_SWITCH)
         {
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
-                *effect = 1;
+                effect = TRUE;
         }
         gBattleStruct->eventBlockCounter++;
         break;
@@ -1315,28 +1480,34 @@ static void HandleEndTurnFourthEventBlock(u32 battler, u32 *effect)
         if (holdEffect == HOLD_EFFECT_EJECT_PACK)
         {
             if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
-                *effect = 1;
+                effect = TRUE;
         }
         gBattleStruct->eventBlockCounter = 0;
         gBattleStruct->turnEffectsBattlerId++;
         break;
     }
     }
+
+    return effect;
 }
 
-static void HandleEndTurnDynamax(u32 battler, u32 *effect)
+static bool32 HandleEndTurnDynamax(u32 battler)
 {
+    bool32 effect = FALSE;
+
     gBattleStruct->turnEffectsBattlerId++;
 
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && gBattleStruct->dynamax.dynamaxTurns[battler] == gBattleTurnCounter)
     {
         UndoDynamax(battler);
         BattleScriptExecute(BattleScript_DynamaxEnds);
-        *effect = 1;
+        effect = TRUE;
     }
+
+    return effect;
 }
 
-static void (*const sEndTurnEffectHandlers[])(u32 battler, u32 *effect) =
+static bool32 (*const sEndTurnEffectHandlers[])(u32 battler) =
 {
     [ENDTURN_ORDER] = HandleEndTurnOrder,
     [ENDTURN_VARIOUS] = HandleEndTurnVarious,
@@ -1390,8 +1561,6 @@ static void (*const sEndTurnEffectHandlers[])(u32 battler, u32 *effect) =
 u32 DoEndTurnEffects(void)
 {
     u32 battler = MAX_BATTLERS_COUNT;
-    u32 effect = 0;
-
     gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_IGNORE_BIDE);
 
     for (;;)
@@ -1413,9 +1582,8 @@ u32 DoEndTurnEffects(void)
         }
 
         battler = gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->turnEffectsBattlerId];
-        sEndTurnEffectHandlers[gBattleStruct->endTurnEventsCounter](battler, &effect);
 
-        if (effect != 0)
+        if (sEndTurnEffectHandlers[gBattleStruct->endTurnEventsCounter](battler))
             return TRUE;
     }
 }

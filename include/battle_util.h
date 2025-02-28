@@ -173,7 +173,7 @@ enum SleepClauseBlock
 
 void HandleAction_ThrowBall(void);
 u32 GetCurrentBattleWeather(void);
-u32 EndOrContinueWeather(void);
+bool32 EndOrContinueWeather(void);
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move);
 bool32 HandleMoveTargetRedirection(void);
 void HandleAction_UseMove(void);
