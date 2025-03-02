@@ -5969,12 +5969,14 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         switch (species)
         {
         case SPECIES_OGERPON_WELLSPRING:
-        case SPECIES_OGERPON_HEARTHFLAME:
-        case SPECIES_OGERPON_CORNERSTONE:
         case SPECIES_OGERPON_WELLSPRING_TERA:
+            return TYPE_WATER;
+        case SPECIES_OGERPON_HEARTHFLAME:
         case SPECIES_OGERPON_HEARTHFLAME_TERA:
+            return TYPE_FIRE;
+        case SPECIES_OGERPON_CORNERSTONE:
         case SPECIES_OGERPON_CORNERSTONE_TERA:
-            return type2;
+            return TYPE_ROCK;
         }
         break;
     case EFFECT_NATURAL_GIFT:
