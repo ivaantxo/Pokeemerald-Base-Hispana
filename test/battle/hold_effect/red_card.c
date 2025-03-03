@@ -520,3 +520,57 @@ SINGLE_BATTLE_TEST("Red Card activates before Eject Pack")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
+
+DOUBLE_BATTLE_TEST("Dancer still activates after Red Card")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) ;
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_DANCER); }
+        PLAYER(SPECIES_CHANSEY);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
+        OPPONENT(SPECIES_BULBASAUR);
+        OPPONENT(SPECIES_SHUCKLE);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_FIERY_DANCE, target: opponentLeft); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Fiery Dance!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIERY_DANCE, playerLeft);
+        HP_BAR(opponentLeft);
+        // Red card trigger
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
+        MESSAGE("The opposing Wobbuffet held up its Red Card against Wobbuffet!");
+        MESSAGE("Chansey was dragged out!");
+        // Dancer
+        ABILITY_POPUP(playerRight, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIERY_DANCE, playerRight);
+        HP_BAR(opponentLeft);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Red Card: Dancer still activate after Red Card even if blocked by Suction Cups")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SUCTION_CUPS); }
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_DANCER); }
+        PLAYER(SPECIES_CHANSEY);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
+        OPPONENT(SPECIES_BULBASAUR);
+        OPPONENT(SPECIES_SHUCKLE);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_FIERY_DANCE, target: opponentLeft); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Fiery Dance!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIERY_DANCE, playerLeft);
+        HP_BAR(opponentLeft);
+        // red card trigger
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
+        MESSAGE("The opposing Wobbuffet held up its Red Card against Wobbuffet!");
+        MESSAGE("Wobbuffet anchors itself with Suction Cups!");
+        NOT MESSAGE("Chansey was dragged out!");
+        // Dancer
+        ABILITY_POPUP(playerRight, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIERY_DANCE, playerRight);
+        HP_BAR(opponentLeft);
+    }
+}
+
