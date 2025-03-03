@@ -6045,6 +6045,8 @@ BattleScript_RoarSuccessSwitch::
 BattleScript_RoarSuccessSwitch_Ret:
 	swapattackerwithtarget  @ continuation of RedCardActivates
 	restoretarget
+	restoreattacker
+	restoresavedmove
 	setbyte sSWITCH_CASE, B_SWITCH_NORMAL
 	return
 
@@ -9519,6 +9521,8 @@ BattleScript_RedCardActivationNoSwitch::
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING
 	restoretarget
+	restoreattacker
+	restoresavedmove
 	return
 
 BattleScript_RedCardActivates::
@@ -9537,22 +9541,17 @@ BattleScript_RedCardEnd:
 	return
 BattleScript_RedCardIngrain:
 	printstring STRINGID_PKMNANCHOREDITSELF
+BattleScript_RedCardIngrainContinue:
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING
 	restoretarget
 	return
 BattleScript_RedCardSuctionCups:
-	printstring STRINGID_PKMNANCHORSITSELFWITH
-	waitmessage B_WAIT_TIME_LONG
-	removeitem BS_SCRIPTING
-	restoretarget
-	return
+    printstring STRINGID_PKMNANCHORSITSELFWITH
+    goto BattleScript_RedCardIngrainContinue
 BattleScript_RedCardDynamaxed:
 	printstring STRINGID_MOVEBLOCKEDBYDYNAMAX
-	waitmessage B_WAIT_TIME_LONG
-	removeitem BS_SCRIPTING
-	restoretarget
-	return
+    goto BattleScript_RedCardIngrainContinue
 
 BattleScript_EjectButtonActivates::
 	makevisible BS_ATTACKER

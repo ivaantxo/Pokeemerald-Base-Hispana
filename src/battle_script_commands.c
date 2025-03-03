@@ -7075,6 +7075,8 @@ static void Cmd_moveend(void)
                         {
                             gLastUsedItem = gBattleMons[battler].item;
                             SaveBattlerTarget(battler); // save battler with red card
+                            SaveBattlerAttacker(gBattlerAttacker);
+                            gBattleStruct->savedMove = gCurrentMove;
                             gBattleScripting.battler = battler;
                             gEffectBattler = gBattlerAttacker;
                             gBattleStruct->redCardActivates = TRUE;
@@ -18637,3 +18639,16 @@ void BS_SetSteelsurge(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
+
+void BS_RestoreSavedMove(void)
+{
+    NATIVE_ARGS();
+
+    if (gBattleStruct->savedMove == MOVE_NONE)
+        DebugPrintfLevel(MGBA_LOG_WARN, "restoresavedmove was called with no move saved!");
+
+    gCurrentMove = gBattleStruct->savedMove;
+    gBattleStruct->savedMove = MOVE_NONE;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
