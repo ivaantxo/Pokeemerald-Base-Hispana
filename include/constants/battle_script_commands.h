@@ -293,13 +293,13 @@ enum MoveEndEffects
     MOVEEND_LIFEORB_SHELLBELL, // Includes shell bell, throat spray, etc
     MOVEEND_CHANGED_ITEMS,
     MOVEEND_PICKPOCKET,
-    MOVEEND_DANCER,
     MOVEEND_EMERGENCY_EXIT,
     MOVEEND_SYMBIOSIS,
     MOVEEND_OPPORTUNIST, // Occurs after other stat change items/abilities to try and copy the boosts
     MOVEEND_SAME_MOVE_TURNS,
     MOVEEND_SET_EVOLUTION_TRACKER,
     MOVEEND_CLEAR_BITS,
+    MOVEEND_DANCER,
     MOVEEND_PURSUIT_NEXT_ACTION,
     MOVEEND_COUNT,
 };
