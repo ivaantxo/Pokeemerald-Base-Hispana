@@ -300,3 +300,37 @@ DOUBLE_BATTLE_TEST("Dancer still activate after Red Card even if blocked by Suct
         HP_BAR(opponentLeft);
     }
 }
+
+DOUBLE_BATTLE_TEST("Dancer correctly restores move targets")
+{
+    GIVEN {
+        ASSUME(IsDanceMove(MOVE_REVELATION_DANCE));
+        PLAYER(SPECIES_ORICORIO) { Speed(10); }
+        PLAYER(SPECIES_ORICORIO) { Speed(3); }
+        OPPONENT(SPECIES_ORICORIO) { Speed(1); }
+        OPPONENT(SPECIES_ORICORIO) { Speed(5); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_REVELATION_DANCE, target: opponentLeft);
+               MOVE(opponentRight, MOVE_TACKLE, target: playerRight);
+               MOVE(playerRight, MOVE_TACKLE, target: opponentRight);
+               MOVE(opponentLeft, MOVE_TACKLE, target: playerRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, playerLeft);
+        HP_BAR(opponentLeft);
+        ABILITY_POPUP(opponentLeft, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, opponentLeft);
+        HP_BAR(playerLeft);
+        ABILITY_POPUP(playerRight, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, playerRight);
+        HP_BAR(opponentLeft);
+        ABILITY_POPUP(opponentRight, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, opponentRight);
+        HP_BAR(playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
+        HP_BAR(playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
+        HP_BAR(opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        HP_BAR(playerRight);
+    }
+}

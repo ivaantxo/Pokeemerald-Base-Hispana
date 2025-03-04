@@ -7143,49 +7143,6 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
-        case MOVEEND_DANCER: // Special case because it's so annoying
-            if (IsDanceMove(gCurrentMove) && !gBattleStruct->snatchedMoveIsUsed)
-            {
-                u32 battler, nextDancer = 0;
-                bool32 hasDancerTriggered = FALSE;
-
-                for (battler = 0; battler < gBattlersCount; battler++)
-                {
-                    if (gSpecialStatuses[battler].dancerUsedMove)
-                    {
-                        // in case a battler fails to act on a Dancer-called move
-                        hasDancerTriggered = TRUE;
-                        break;
-                    }
-                }
-
-                if (!(gBattleStruct->moveResultFlags[gBattlerTarget] & (MOVE_RESULT_FAILED | MOVE_RESULT_DOESNT_AFFECT_FOE)
-                 || (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE && !hasDancerTriggered)
-                 || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove && gBattleStruct->bouncedMoveIsUsed)))
-                {   // Dance move succeeds
-                    // Set target for other Dancer mons; set bit so that mon cannot activate Dancer off of its own move
-                    if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
-                    {
-                        gBattleScripting.savedBattler = gBattlerTarget | 0x4;
-                        gBattleScripting.savedBattler |= (gBattlerAttacker << 4);
-                        gSpecialStatuses[gBattlerAttacker].dancerUsedMove = TRUE;
-                    }
-                    for (battler = 0; battler < gBattlersCount; battler++)
-                    {
-                        if (GetBattlerAbility(battler) == ABILITY_DANCER && !gSpecialStatuses[battler].dancerUsedMove)
-                        {
-                            if (!nextDancer || (gBattleMons[battler].speed < gBattleMons[nextDancer & 0x3].speed))
-                                nextDancer = battler | 0x4;
-                        }
-                    }
-                    if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, 0))
-                        effect = TRUE;
-
-                    ClearDamageCalcResults();
-                }
-            }
-            gBattleScripting.moveendState++;
-            break;
         case MOVEEND_EMERGENCY_EXIT: // Special case, because moves hitting multiple opponents stop after switching out
             for (i = 0; i < gBattlersCount; i++)
             {
@@ -7291,8 +7248,6 @@ static void Cmd_moveend(void)
             gBattleStruct->isAtkCancelerForCalledMove = FALSE;
             gBattleStruct->swapDamageCategory = FALSE;
             gBattleStruct->categoryOverride = FALSE;
-            gBattleStruct->bouncedMoveIsUsed = FALSE;
-            gBattleStruct->snatchedMoveIsUsed = FALSE;
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->fickleBeamBoosted = FALSE;
@@ -7305,7 +7260,6 @@ static void Cmd_moveend(void)
             if (B_CHARGE >= GEN_9 && moveType == TYPE_ELECTRIC && (IsBattlerTurnDamaged(gBattlerTarget) || gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT))
                 gStatuses3[gBattlerAttacker] &= ~(STATUS3_CHARGED_UP);
             memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
-            ClearDamageCalcResults();
 
             for (i = 0; i < gBattlersCount; i++)
             {
@@ -7320,6 +7274,47 @@ static void Cmd_moveend(void)
                 }
             }
 
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_DANCER: // Special case because it's so annoying
+            if (IsDanceMove(gCurrentMove) && !gBattleStruct->snatchedMoveIsUsed)
+            {
+                u32 battler, nextDancer = 0;
+                bool32 hasDancerTriggered = FALSE;
+
+                for (battler = 0; battler < gBattlersCount; battler++)
+                {
+                    if (gSpecialStatuses[battler].dancerUsedMove)
+                    {
+                        // in case a battler fails to act on a Dancer-called move
+                        hasDancerTriggered = TRUE;
+                        break;
+                    }
+                }
+
+                if (!(gBattleStruct->moveResultFlags[gBattlerTarget] & (MOVE_RESULT_FAILED | MOVE_RESULT_DOESNT_AFFECT_FOE)
+                 || (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE && !hasDancerTriggered)
+                 || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove && gBattleStruct->bouncedMoveIsUsed)))
+                {   // Dance move succeeds
+                    // Set target for other Dancer mons; set bit so that mon cannot activate Dancer off of its own move
+                    if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
+                    {
+                        gBattleScripting.savedBattler = gBattlerTarget | 0x4;
+                        gBattleScripting.savedBattler |= (gBattlerAttacker << 4);
+                        gSpecialStatuses[gBattlerAttacker].dancerUsedMove = TRUE;
+                    }
+                    for (battler = 0; battler < gBattlersCount; battler++)
+                    {
+                        if (GetBattlerAbility(battler) == ABILITY_DANCER && !gSpecialStatuses[battler].dancerUsedMove)
+                        {
+                            if (!nextDancer || (gBattleMons[battler].speed < gBattleMons[nextDancer & 0x3].speed))
+                                nextDancer = battler | 0x4;
+                        }
+                    }
+                    if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, 0))
+                        effect = TRUE;
+                }
+            }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_PURSUIT_NEXT_ACTION:
