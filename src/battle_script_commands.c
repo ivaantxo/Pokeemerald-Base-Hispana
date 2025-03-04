@@ -8740,6 +8740,7 @@ static void ResetValuesForCalledMove(void)
     gBattleScripting.animTargetsHit = 0;
     SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
     HandleMoveTargetRedirection();
+    ClearDamageCalcResults();
 }
 
 static void Cmd_jumptocalledmove(void)
