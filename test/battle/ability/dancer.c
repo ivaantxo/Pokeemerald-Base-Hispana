@@ -103,10 +103,10 @@ DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches")
     GIVEN {
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
-        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_DANCER); Speed(3); }
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_DANCER); Speed(10); }
         PLAYER(SPECIES_WYNAUT) { Speed(5); }
         OPPONENT(SPECIES_ORICORIO) { Ability(ABILITY_DANCER); Speed(20); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_FAKE_OUT, target: playerLeft); MOVE(playerRight, MOVE_DRAGON_DANCE); }
     } SCENE {
