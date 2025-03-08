@@ -85,12 +85,12 @@ struct DisableStruct
     s8 stockpileBeforeSpDef;
     u8 substituteHP;
     u8 encoredMovePos;
-    u8 disableTimer:4;
-    u8 encoreTimer:4;
-    u8 perishSongTimer:4;
-    u8 rolloutTimer:4;
-    u8 rolloutTimerStartValue:4;
-    u8 tauntTimer:4;
+    u16 disableTimer;
+    u16 encoreTimer;
+    u16 perishSongTimer;
+    u16 rolloutTimer;
+    u16 rolloutTimerStartValue;
+    u16 tauntTimer;
     u8 furyCutterCounter;
     u8 battlerPreventingEscape;
     u8 battlerWithSureHit;
@@ -99,16 +99,16 @@ struct DisableStruct
     u8 chargeTimer:4;
     u8 rechargeTimer;
     u8 autotomizeCount;
-    u8 slowStartTimer;
-    u8 embargoTimer;
-    u8 magnetRiseTimer;
-    u8 telekinesisTimer;
+    u16 slowStartTimer;
+    u16 embargoTimer;
+    u16 magnetRiseTimer;
+    u16 telekinesisTimer;
     u16 healBlockTimer;
-    u8 laserFocusTimer;
+    u16 laserFocusTimer;
     u16 throatChopTimer;
     u8 wrapTurns;
-    u8 syrupBombTimer;
-    u8 tormentTimer:4; // used for G-Max Meltdown
+    u16 syrupBombTimer;
+    u16 tormentTimer:4; // used for G-Max Meltdown
     u8 usedMoves:4;
     u8 truantCounter:1;
     u8 truantSwitchInHack:1;
@@ -731,7 +731,7 @@ struct BattleStruct
     u8 friskedAbility:1; // If identifies two mons, show the ability pop-up only once.
     u8 fickleBeamBoosted:1;
     u8 poisonPuppeteerConfusion:1;
-    u8 startingStatusTimer;
+    u16 startingStatusTimer;
     u8 atkCancellerTracker;
     struct BattleTvMovePoints tvMovePoints;
     struct BattleTv tv;
