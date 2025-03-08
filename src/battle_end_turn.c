@@ -210,7 +210,7 @@ static bool32 HandleEndTurnWeatherDamage(u32 battler)
         break;
     case BATTLE_WEATHER_SUN:
     case BATTLE_WEATHER_SUN_PRIMAL:
-        if (ability == ABILITY_DRY_SKIN)
+        if (ability == ABILITY_DRY_SKIN || ability == ABILITY_SOLAR_POWER)
         {
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, ability, 0, MOVE_NONE))
                 effect = TRUE;
@@ -404,7 +404,7 @@ static bool32 HandleEndTurnFirstEventBlock(u32 battler)
 
     switch (gBattleStruct->eventBlockCounter)
     {
-    case FIRST_EVENT_BLOCK_GMAX_MOVE_RESIDUAL: // TODO: Needs a queue
+    case FIRST_EVENT_BLOCK_GMAX_MOVE_RESIDUAL: // TODO: Has to be split into 3 statuses and needs a queue
         side = GetBattlerSide(battler);
         if (gSideStatuses[side] & SIDE_STATUS_DAMAGE_NON_TYPES)
         {
@@ -433,7 +433,7 @@ static bool32 HandleEndTurnFirstEventBlock(u32 battler)
         }
         gBattleStruct->eventBlockCounter++;
         break;
-    case FIRST_EVENT_BLOCK_THRASH: // TODO: Move to moveend
+    case FIRST_EVENT_BLOCK_THRASH: // TODO: Move to moveend / not sure. Might be best to keep here
         if (gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
         {
             gBattleMons[battler].status2 -= STATUS2_LOCK_CONFUSE_TURN(1);
