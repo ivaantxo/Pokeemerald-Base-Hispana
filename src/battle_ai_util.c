@@ -648,8 +648,16 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     *maximumDamage = maximum;
 }
 
-static inline bool32 ShouldCalcCritDamage(s32 critChanceIndex, u32 battlerAtk)
+static inline bool32 ShouldCalcCritDamage(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData)
 {
+    s32 critChanceIndex = 0;
+
+    // Get crit chance
+    if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
+        critChanceIndex = CalcCritChanceStageGen1(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
+    else
+        critChanceIndex = CalcCritChanceStage(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
+
     if (critChanceIndex == CRITICAL_HIT_ALWAYS)
         return TRUE;
     if (critChanceIndex >= RISKY_AI_CRIT_STAGE_THRESHOLD // Not guaranteed but above Risky threshold
@@ -700,107 +708,69 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
     if (movePower && !isDamageMoveUnusable)
     {
-        s32 critChanceIndex, fixedBasePower;
-
         u32 types[3];
         AI_StoreBattlerTypes(battlerAtk, types);
 
         ProteanTryChangeType(battlerAtk, aiData->abilities[battlerAtk], move, moveType);
-        fixedBasePower = SetFixedMoveBasePower(battlerAtk, move);
+        s32 fixedBasePower = SetFixedMoveBasePower(battlerAtk, move);
 
         struct DamageCalculationData damageCalcData;
         damageCalcData.battlerAtk = battlerAtk;
         damageCalcData.battlerDef = battlerDef;
         damageCalcData.move = move;
         damageCalcData.moveType = moveType;
-        damageCalcData.isCrit = FALSE;
+        damageCalcData.isCrit = ShouldCalcCritDamage(battlerAtk, battlerDef, move, aiData);
         damageCalcData.randomFactor = FALSE;
         damageCalcData.updateFlags = FALSE;
 
-        // Get crit chance
-        if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
-            critChanceIndex = CalcCritChanceStageGen1(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
-        else
-            critChanceIndex = CalcCritChanceStage(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
-        // Use crit damage
-        if (ShouldCalcCritDamage(critChanceIndex, battlerAtk))
+        if (moveEffect == EFFECT_TRIPLE_KICK)
         {
-            damageCalcData.isCrit = TRUE;
-            s32 critDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
-                                                  effectivenessMultiplier, weather,
-                                                  aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                  aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+            for (gMultiHitCounter = GetMoveStrikeCount(move); gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
+            {
+                s32 damageByRollType = 0;
 
-            simDamage.minimum = GetDamageByRollType(critDmg, DMG_ROLL_LOWEST);
-            simDamage.minimum = ApplyModifiersAfterDmgRoll(simDamage.minimum, &damageCalcData, effectivenessMultiplier,
-                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                s32 oneTripleKickHit = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
+                                                               effectivenessMultiplier, weather,
+                                                               aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                               aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-            simDamage.median = GetDamageByRollType(critDmg, DMG_ROLL_DEFAULT);
-            simDamage.median = ApplyModifiersAfterDmgRoll(simDamage.median, &damageCalcData, effectivenessMultiplier,
-                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_LOWEST);
+                simDamage.minimum += ApplyModifiersAfterDmgRoll(damageByRollType, &damageCalcData, effectivenessMultiplier,
+                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-            simDamage.maximum = GetDamageByRollType(critDmg, DMG_ROLL_HIGHEST);
-            simDamage.maximum = ApplyModifiersAfterDmgRoll(simDamage.maximum, &damageCalcData, effectivenessMultiplier,
-                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_DEFAULT);
+                simDamage.median += ApplyModifiersAfterDmgRoll(damageByRollType, &damageCalcData, effectivenessMultiplier,
+                                                               aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                               aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+
+                damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_HIGHEST);
+                simDamage.maximum += ApplyModifiersAfterDmgRoll(damageByRollType, &damageCalcData, effectivenessMultiplier,
+                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+            }
         }
-
-        // Use non-crit damage
         else
         {
-            s32 nonCritDmg = 0, tripleKickDmgMin = 0, tripleKickDmgDefault = 0, tripleKickDmgMax = 0;
-            if (moveEffect == EFFECT_TRIPLE_KICK)
-            {
-                for (gMultiHitCounter = GetMoveStrikeCount(move); gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
-                {
-                    s32 oneTripleKickHit = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
-                                                                   effectivenessMultiplier, weather,
-                                                                   aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                                   aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+            u32 damage = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
+                                                 effectivenessMultiplier, weather,
+                                                 aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                 aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-                    simDamage.minimum = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_LOWEST);
-                    tripleKickDmgMin += ApplyModifiersAfterDmgRoll(simDamage.minimum, &damageCalcData, effectivenessMultiplier,
-                                                             aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                             aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+            simDamage.minimum = GetDamageByRollType(damage, DMG_ROLL_LOWEST);
+            simDamage.minimum = ApplyModifiersAfterDmgRoll(simDamage.minimum, &damageCalcData, effectivenessMultiplier,
+                                                           aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                           aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-                    simDamage.median = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_DEFAULT);
-                    tripleKickDmgDefault += ApplyModifiersAfterDmgRoll(simDamage.median, &damageCalcData, effectivenessMultiplier,
-                                                             aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                             aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+            simDamage.median = GetDamageByRollType(damage, DMG_ROLL_DEFAULT);
+            simDamage.median = ApplyModifiersAfterDmgRoll(simDamage.median, &damageCalcData, effectivenessMultiplier,
+                                                          aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                          aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-                    simDamage.maximum = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_HIGHEST);
-                    tripleKickDmgMax += ApplyModifiersAfterDmgRoll(simDamage.maximum, &damageCalcData, effectivenessMultiplier,
-                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-                }
-                simDamage.minimum = tripleKickDmgMin;
-                simDamage.median = tripleKickDmgDefault;
-                simDamage.maximum = tripleKickDmgMax;
-            }
-            else
-            {
-                nonCritDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
-                                                     effectivenessMultiplier, weather,
-                                                     aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                     aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-
-                simDamage.minimum = GetDamageByRollType(nonCritDmg, DMG_ROLL_LOWEST);
-                simDamage.minimum = ApplyModifiersAfterDmgRoll(simDamage.minimum, &damageCalcData, effectivenessMultiplier,
-                    aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                    aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-
-                simDamage.median = GetDamageByRollType(nonCritDmg, DMG_ROLL_DEFAULT);
-                simDamage.median = ApplyModifiersAfterDmgRoll(simDamage.median, &damageCalcData, effectivenessMultiplier,
-                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-
-                simDamage.maximum = GetDamageByRollType(nonCritDmg, DMG_ROLL_HIGHEST);
-                simDamage.maximum = ApplyModifiersAfterDmgRoll(simDamage.maximum, &damageCalcData, effectivenessMultiplier,
-                    aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                    aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-            }
+            simDamage.maximum = GetDamageByRollType(damage, DMG_ROLL_HIGHEST);
+            simDamage.maximum = ApplyModifiersAfterDmgRoll(simDamage.maximum, &damageCalcData, effectivenessMultiplier,
+                                                           aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                           aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
         }
 
         if (GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
