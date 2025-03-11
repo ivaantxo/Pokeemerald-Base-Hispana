@@ -61,7 +61,7 @@ bool32 AI_IsSlower(u32 battlerAi, u32 battlerDef, u32 move)
 
 u32 GetAIChosenMove(u32 battlerId)
 {
-    return (gBattleMons[battlerId].moves[gBattleStruct->aiMoveOrAction[battlerId]]);
+    return (gBattleMons[battlerId].moves[gAiBattleData->moveOrAction[battlerId]]);
 }
 
 bool32 AI_RandLessThan(u32 val)
