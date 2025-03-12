@@ -77,9 +77,13 @@ DOUBLE_BATTLE_TEST("Leech Seed will drain HP based on speed of the drained mon")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LEECH_SEED, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LEECH_SEED, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LEECH_SEED, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_LEECH_SEED_DRAIN, opponentRight);
         HP_BAR(opponentRight);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_LEECH_SEED_DRAIN, opponentLeft);
         HP_BAR(opponentLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_LEECH_SEED_DRAIN, playerRight);
         HP_BAR(playerRight);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_LEECH_SEED_DRAIN, playerLeft);
         HP_BAR(playerLeft);
     }
 }

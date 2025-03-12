@@ -108,7 +108,7 @@ struct DisableStruct
     u16 throatChopTimer;
     u8 wrapTurns;
     u16 syrupBombTimer;
-    u16 tormentTimer:4; // used for G-Max Meltdown
+    u16 tormentTimer; // used for G-Max Meltdown
     u8 usedMoves:4;
     u8 truantCounter:1;
     u8 truantSwitchInHack:1;
