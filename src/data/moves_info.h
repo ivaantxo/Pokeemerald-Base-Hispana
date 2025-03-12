@@ -6757,10 +6757,17 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     [MOVE_HAIL] =
     {
         .name = COMPOUND_STRING("Hail"),
-        .description = COMPOUND_STRING(
-            "Summons a hailstorm that\n"
-            "strikes every turn."),
-        .effect = EFFECT_HAIL,
+        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
+            .description = COMPOUND_STRING(
+                "Summons a snowstorm that\n"
+                "lasts for five turns."),
+            .effect = EFFECT_SNOWSCAPE,
+        #else
+            .description = COMPOUND_STRING(
+                "Summons a hailstorm that\n"
+                "strikes every turn."),
+            .effect = EFFECT_HAIL,
+        #endif
         .power = 0,
         .type = TYPE_ICE,
         .accuracy = 0,
@@ -6775,7 +6782,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_HAIL,
         .contestComboMoves = {0},
-        .battleAnimScript = gBattleAnimMove_Hail,
+        .battleAnimScript = (B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW) ? gBattleAnimMove_Snowscape : gBattleAnimMove_Hail,
         .validApprenticeMove = TRUE,
     },
 
@@ -16629,9 +16636,19 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     [MOVE_AURORA_VEIL] =
     {
         .name = COMPOUND_STRING("Aurora Veil"),
+        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
+        .description = COMPOUND_STRING(
+            "Weakens all attacks, but\n"
+            "only usable with snow."),
+        #elif B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_BOTH
+        .description = COMPOUND_STRING(
+            "Weakens all attacks if\n"
+            "used in hail or snow."),
+        #else
         .description = COMPOUND_STRING(
             "Weakens all attacks, but\n"
             "only usable with hail."),
+        #endif
         .effect = EFFECT_AURORA_VEIL,
         .power = 0,
         .type = TYPE_ICE,
@@ -20130,9 +20147,15 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     [MOVE_CHILLY_RECEPTION] =
     {
         .name = COMPOUND_STRING("Chilly Reception"),
+        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL
+        .description = COMPOUND_STRING(
+            "Bad joke summons hailstorm.\n"
+            "The user also switches out."),
+        #else
         .description = COMPOUND_STRING(
             "Bad joke summons snowstorm.\n"
             "The user also switches out."),
+        #endif
         .effect = EFFECT_CHILLY_RECEPTION,
         .power = 0,
         .type = TYPE_ICE,
@@ -20171,10 +20194,17 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     [MOVE_SNOWSCAPE] =
     {
         .name = COMPOUND_STRING("Snowscape"),
-        .description = COMPOUND_STRING(
-            "Summons a snowstorm that\n"
-            "lasts for five turns."),
-        .effect = EFFECT_SNOWSCAPE,
+        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL
+            .description = COMPOUND_STRING(
+                "Summons a hailstorm that\n"
+                "strikes every turn."),
+            .effect = EFFECT_HAIL,
+        #else
+            .description = COMPOUND_STRING(
+                "Summons a snowstorm that\n"
+                "lasts for five turns."),
+            .effect = EFFECT_SNOWSCAPE,
+        #endif
         .power = 0,
         .type = TYPE_ICE,
         .accuracy = 0,
@@ -20186,7 +20216,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-        .battleAnimScript = gBattleAnimMove_Snowscape,
+        .battleAnimScript = (B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL) ? gBattleAnimMove_Hail : gBattleAnimMove_Snowscape,
     },
 
     [MOVE_POUNCE] =
