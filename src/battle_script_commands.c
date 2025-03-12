@@ -16736,6 +16736,8 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
         && !IsMoveParentalBondBanned(move)
         && GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS
         && GetMoveStrikeCount(move) < 2
+        && GetMoveEffect(move) != EFFECT_SEMI_INVULNERABLE
+        && GetMoveEffect(move) != EFFECT_TWO_TURNS_ATTACK
         && GetMoveEffect(move) != EFFECT_MULTI_HIT)
     {
         if (IsDoubleBattle())
