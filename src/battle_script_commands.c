@@ -6361,7 +6361,7 @@ static void Cmd_moveend(void)
                 gBattleScripting.moveendState++;
                 break;
             }
-            else if (moveRecoil > 0
+            else if (moveEffect == EFFECT_RECOIL
                   && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
                   && IsBattlerAlive(gBattlerAttacker)
                   && IsBattlerTurnDamaged(gBattlerTarget)

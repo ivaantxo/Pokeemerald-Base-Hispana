@@ -947,10 +947,6 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     u32 abilityDef = AI_DATA->abilities[battlerDef];
     u8 i;
 
-    // recoil
-    if (GetMoveRecoil(move) > 0 && AI_IsDamagedByRecoil(battlerAtk))
-        return TRUE;
-
     switch (GetMoveEffect(move))
     {
     case EFFECT_MAX_HP_50_RECOIL:
@@ -959,6 +955,9 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_FINAL_GAMBIT:
         return TRUE;
     case EFFECT_RECOIL_IF_MISS:
+        if (AI_IsDamagedByRecoil(battlerAtk))
+            return TRUE;
+    case EFFECT_RECOIL:
         if (AI_IsDamagedByRecoil(battlerAtk))
             return TRUE;
         break;
@@ -3923,7 +3922,7 @@ static u32 IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, u32 statI
             {
                 if (GetMonData(&playerParty[AI_DATA->mostSuitableMonId[battlerDef]], MON_DATA_SPEED, NULL) > gBattleMons[battlerAtk].speed)
                     return NO_INCREASE;
-            }   
+            }
         }
         // Otherwise if predicting switch, stat increases are great momentum
         tempScore += WEAK_EFFECT;
