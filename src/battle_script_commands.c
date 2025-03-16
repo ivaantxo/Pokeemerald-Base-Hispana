@@ -1972,9 +1972,9 @@ static void Cmd_critcalc(void)
         u32 abilityDef = GetBattlerAbility(battlerDef);
 
         if (GetGenConfig(GEN_CONFIG_CRIT_CHANCE) == GEN_1)
-            gBattleStruct->critChance[battlerDef] = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
+            gBattleStruct->critChance[battlerDef] = CalcCritChanceStageGen1(gBattlerAttacker, battlerDef, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
         else
-            gBattleStruct->critChance[battlerDef] = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
+            gBattleStruct->critChance[battlerDef] = CalcCritChanceStage(gBattlerAttacker, battlerDef, gCurrentMove, TRUE, abilityAtk, abilityDef, holdEffectAtk);
 
         if (gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
             gSpecialStatuses[battlerDef].criticalHit = FALSE;
