@@ -283,6 +283,11 @@
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // In Gen4+, trying to catch a Trainer's Pokémon does not consume the Poké Ball.
 #define B_SLEEP_CLAUSE                  FALSE      // Enables Sleep Clause all the time in every case, overriding B_FLAG_SLEEP_CLAUSE. Use that for modularity.
 
+#define NUM_BEEPS_GEN_LATEST            4                    // Loops 4 times
+#define NUM_BEEPS_GEN_3                 -1                   // Loops infinitely
+#define NUM_BEEPS_OFF                   0                    // Doesn't play at all
+#define B_NUM_LOW_HEALTH_BEEPS          NUM_BEEPS_GEN_LATEST // This controls the number of times the "low health" beep will loop. Setting this value to NUM_BEEPS_OFF will disable the beep, while NUM_BEEPS_GEN_3 will loop infinitely. You can set this to any number you want, the defines listed are just for ease of use.
+
 // Animation Settings
 #define B_NEW_SWORD_PARTICLE            FALSE    // If set to TRUE, it updates Swords Dance's particle.
 #define B_NEW_LEECH_SEED_PARTICLE       FALSE    // If set to TRUE, it updates Leech Seed's animation particle.
