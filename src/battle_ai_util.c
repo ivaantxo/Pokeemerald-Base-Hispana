@@ -40,8 +40,8 @@ static bool32 AI_IsDoubleSpreadMove(u32 battlerAtk, u32 move)
         if (moveTargetType == MOVE_TARGET_BOTH && battlerAtk == BATTLE_PARTNER(battlerDef))
             continue;
 
-        if (IsBattlerAlive(battlerDef) && !IsSemiInvulnerable(battlerDef, move)) 
-            numOfTargets++; 
+        if (IsBattlerAlive(battlerDef) && !IsSemiInvulnerable(battlerDef, move))
+            numOfTargets++;
     }
 
     if (numOfTargets > 1)
@@ -534,28 +534,6 @@ static inline s32 GetDamageByRollType(s32 dmg, enum DamageRollType rollType)
         return DmgRoll(dmg);
 }
 
-static inline void SetMoveDamageCategory(u32 battlerAtk, u32 battlerDef, u32 move)
-{
-    switch (GetMoveEffect(move))
-    {
-    case EFFECT_PHOTON_GEYSER:
-        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL);
-        break;
-    case EFFECT_SHELL_SIDE_ARM:
-        if (gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] == DAMAGE_CATEGORY_PHYSICAL)
-            gBattleStruct->swapDamageCategory = TRUE;
-        break;
-    case EFFECT_TERA_BLAST:
-        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
-            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
-        break;
-    case EFFECT_TERA_STARSTORM:
-        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA && GET_BASE_SPECIES_ID(GetMonData(GetPartyBattlerData(battlerAtk), MON_DATA_SPECIES)) == SPECIES_TERAPAGOS)
-            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
-        break;
-    }
-}
-
 static inline s32 SetFixedMoveBasePower(u32 battlerAtk, u32 move)
 {
     s32 fixedBasePower = 0, n = 0;
@@ -669,17 +647,17 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         minimum *= strikeCount;
         maximum *= strikeCount;
     }
-    
-    if (abilityAtk == ABILITY_PARENTAL_BOND 
+
+    if (abilityAtk == ABILITY_PARENTAL_BOND
         && !strikeCount
-        && effect != EFFECT_TRIPLE_KICK 
+        && effect != EFFECT_TRIPLE_KICK
         && effect != EFFECT_MULTI_HIT
         && !AI_IsDoubleSpreadMove(damageCalcData->battlerAtk, move))
     {
         median  += median  / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
         minimum += minimum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
         maximum += maximum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
-    }    
+    }
 
     if (median == 0)
         median = 1;
@@ -742,7 +720,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
 
-    SetMoveDamageCategory(battlerAtk, battlerDef, move);
+    SetDynamicMoveCategory(battlerAtk, battlerDef, move);
     SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetBattleMoveType(move);
     effectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, aiData->abilities[battlerDef], FALSE);

@@ -11390,18 +11390,52 @@ static u32 SwapMoveDamageCategory(u32 move)
     return DAMAGE_CATEGORY_PHYSICAL;
 }
 
-u8 GetBattleMoveCategory(u32 moveId)
+/*
+    The Global States gBattleStruct->categoryOverride and gBattleStruct->swapDamageCategory
+    can be removed but a lot of function arguments (battlerAtk and battlerDef) have to be added for this, about 50+.
+    This is potentially a good change because it is less likely to cause bugs in the future.
+*/
+u32 GetBattleMoveCategory(u32 move)
 {
-    if (gBattleStruct != NULL && gBattleStruct->swapDamageCategory) // Photon Geyser, Shell Side Arm, Light That Burns the Sky, Tera Blast
-        return SwapMoveDamageCategory(moveId);
-    if (gBattleStruct != NULL && (IsZMove(moveId) || IsMaxMove(moveId))) // TODO: Might be buggy depending on when this is called.
-        return gBattleStruct->categoryOverride;
-    if (B_PHYSICAL_SPECIAL_SPLIT >= GEN_4)
-        return GetMoveCategory(moveId);
+    if (gMain.inBattle)
+    {
+        if (gBattleStruct->swapDamageCategory) // Photon Geyser, Shell Side Arm, Light That Burns the Sky, Tera Blast
+            return SwapMoveDamageCategory(move);
+        if (IsZMove(move) || IsMaxMove(move)) // TODO: Might be buggy depending on when this is called.
+            return gBattleStruct->categoryOverride;
+        if (IsBattleMoveStatus(move))
+            return DAMAGE_CATEGORY_STATUS;
+    }
 
-    if (IsBattleMoveStatus(moveId))
-        return DAMAGE_CATEGORY_STATUS;
-    return gTypesInfo[GetBattleMoveType(moveId)].damageCategory;
+    if (B_PHYSICAL_SPECIAL_SPLIT <= GEN_4)
+        return gTypesInfo[GetBattleMoveType(move)].damageCategory;
+
+    return GetMoveCategory(move);
+}
+
+void SetDynamicMoveCategory(u32 battlerAtk, u32 battlerDef, u32 move)
+{
+    switch (GetMoveEffect(move))
+    {
+    case EFFECT_PHOTON_GEYSER:
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL);
+        break;
+    case EFFECT_SHELL_SIDE_ARM:
+        if (gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] == DAMAGE_CATEGORY_PHYSICAL)
+            gBattleStruct->swapDamageCategory = TRUE;
+        break;
+    case EFFECT_TERA_BLAST:
+        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
+            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
+        break;
+    case EFFECT_TERA_STARSTORM:
+        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA && GET_BASE_SPECIES_ID(GetMonData(GetPartyBattlerData(battlerAtk), MON_DATA_SPECIES)) == SPECIES_TERAPAGOS)
+            gBattleStruct->swapDamageCategory = GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL;
+        break;
+    default:
+        gBattleStruct->swapDamageCategory = FALSE;
+        break;
+    }
 }
 
 static bool32 TryRemoveScreens(u32 battler)

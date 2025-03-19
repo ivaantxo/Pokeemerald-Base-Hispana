@@ -1996,9 +1996,7 @@ static void Cmd_critcalc(void)
 
 static inline void CalculateAndSetMoveDamage(struct DamageCalculationData *damageCalcData, u32 battlerDef)
 {
-    if (GetMoveEffect(gCurrentMove) == EFFECT_SHELL_SIDE_ARM)
-        gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[gBattlerAttacker][battlerDef] != GetMoveCategory(gCurrentMove));
-
+    SetDynamicMoveCategory(gBattlerAttacker, battlerDef, gCurrentMove);
     damageCalcData->battlerDef = battlerDef;
     damageCalcData->isCrit = gSpecialStatuses[battlerDef].criticalHit;
     gBattleStruct->moveDamage[battlerDef] = CalculateMoveDamage(damageCalcData, 0);
@@ -17709,28 +17707,6 @@ void BS_AllySwitchFailChance(void)
             gDisableStructs[gBattlerAttacker].protectUses++;
         }
     }
-    gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-void BS_SetDynamicMoveCategory(void)
-{
-    NATIVE_ARGS();
-
-    switch (GetMoveEffect(gCurrentMove))
-    {
-    case EFFECT_TERA_BLAST:
-        if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA)
-            gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
-        break;
-    case EFFECT_TERA_STARSTORM:
-        if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA && gBattleMons[gBattlerAttacker].species == SPECIES_TERAPAGOS_STELLAR)
-            gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
-        break;
-    default:
-        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) != GetMoveCategory(gCurrentMove));
-        break;
-    }
-
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

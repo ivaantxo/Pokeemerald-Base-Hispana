@@ -1641,10 +1641,6 @@
 	callnative BS_TryTriggerStatusForm
 	.endm
 
-	.macro setdynamicmovecategory
-	callnative BS_SetDynamicMoveCategory
-	.endm
-
 	.macro tryupperhand failInstr:req
 	callnative BS_TryUpperHand
 	.4byte \failInstr
@@ -2382,7 +2378,7 @@
 	callnative BS_SwapStats
 	.byte \stat
 	.endm
-    
+
 	.macro restoresavedmove
 	callnative BS_RestoreSavedMove
 	.endm
