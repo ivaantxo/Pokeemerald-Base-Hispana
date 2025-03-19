@@ -340,7 +340,6 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
 static void RemoveAllWeather(void);
 static void RemoveAllTerrains(void);
 static bool8 CanAbilityPreventStatLoss(u16 abilityDef);
-static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
 static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount, u16 usedMove);
 static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u8 *failInstr, u16 move);
@@ -16794,7 +16793,7 @@ static bool8 CanAbilityPreventStatLoss(u16 abilityDef)
     return FALSE;
 }
 
-static bool8 CanBurnHitThaw(u16 move)
+bool32 CanBurnHitThaw(u16 move)
 {
     u8 i;
 
