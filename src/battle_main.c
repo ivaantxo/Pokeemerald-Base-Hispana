@@ -3396,9 +3396,6 @@ const u8* FaintClearSetData(u32 battler)
         }
     }
 
-    // Clear Dynamax data
-    UndoDynamax(battler);
-
     return result;
 }
 
@@ -3518,16 +3515,9 @@ static void DoBattleIntro(void)
         }
 
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-        {
             gBattleStruct->introState++;
-        }
         else // Skip party summary since it is a wild battle.
-        {
-            if (B_FAST_INTRO_PKMN_TEXT == TRUE)
-                gBattleStruct->introState = BATTLE_INTRO_STATE_INTRO_TEXT; // Don't wait for sprite, print message at the same time.
-            else
-                gBattleStruct->introState++; // Wait for sprite to load.
-        }
+            gBattleStruct->introState = BATTLE_INTRO_STATE_INTRO_TEXT;
         break;
     case BATTLE_INTRO_STATE_DRAW_PARTY_SUMMARY:
         if (!gBattleControllerExecFlags)

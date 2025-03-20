@@ -274,7 +274,7 @@ bool32 HandleMoveTargetRedirection(void)
         for (battler = 0; battler < gBattlersCount; battler++)
         {
             ability = GetBattlerAbility(battler);
-            if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsAlly(gBattlerAttacker, battler))
+            if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsBattlerAlly(gBattlerAttacker, battler))
                 && battler != gBattlerAttacker
                 && gBattleStruct->moveTarget[gBattlerAttacker] != battler
                 && ((ability == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
@@ -494,8 +494,6 @@ void HandleAction_Switch(void)
     if (gBattleResults.playerSwitchesCounter < 255)
         gBattleResults.playerSwitchesCounter++;
 
-    if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
-        UndoDynamax(gBattlerAttacker); // this is better performed here instead of SwitchInClearSetData
     TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_SWITCH);
 }
 
@@ -3590,28 +3588,6 @@ static void CancellerDynamaxBlocked(u32 *effect)
     }
 }
 
-static void CancellerPowderMove(u32 *effect)
-{
-    if (IsPowderMove(gCurrentMove) && (gBattlerAttacker != gBattlerTarget))
-    {
-        if (B_POWDER_GRASS >= GEN_6
-            && (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT))
-        {
-            gBattlerAbility = gBattlerTarget;
-            *effect = 1;
-        }
-        else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_SAFETY_GOGGLES)
-        {
-            RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_SAFETY_GOGGLES);
-            gLastUsedItem = gBattleMons[gBattlerTarget].item;
-            *effect = 1;
-        }
-
-        if (*effect != 0)
-            gBattlescriptCurrInstr = BattleScript_PowderMoveNoEffect;
-    }
-}
-
 static void CancellerPowderStatus(u32 *effect)
 {
     if (TryActivatePowderStatus(gCurrentMove))
@@ -3844,7 +3820,6 @@ static const MoveSuccessOrderCancellers sMoveSuccessOrderCancellers[] =
     [CANCELLER_STANCE_CHANGE_2] = CancellerStanceChangeTwo,
     [CANCELLER_WEATHER_PRIMAL] = CancellerWeatherPrimal,
     [CANCELLER_DYNAMAX_BLOCKED] = CancellerDynamaxBlocked,
-    [CANCELLER_POWDER_MOVE] = CancellerPowderMove,
     [CANCELLER_POWDER_STATUS] = CancellerPowderStatus,
     [CANCELLER_PROTEAN] = CancellerProtean,
     [CANCELLER_PSYCHIC_TERRAIN] = CancellerPsychicTerrain,
@@ -4243,7 +4218,7 @@ static void ChooseStatBoostAnimation(u32 battler)
 bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef, enum AbilityEffectOptions option)
 {
     const u8 *battleScriptBlocksMove = NULL;
-    u32 atkPriority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+    s32 atkPriority = AI_DATA->aiCalcInProgress ? GetBattleMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
     u32 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
     u32 battlerAbility = battlerDef;
 
@@ -6603,7 +6578,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gDisableStructs[battler].terrainAbilityDone = TRUE;
                 ChangeTypeBasedOnTerrain(battler);
                 gBattlerAbility = gBattleScripting.battler = battler;
-                BattleScriptPushCursorAndCallback(BattleScript_MimicryActivates_End3);
+                BattleScriptPushCursorAndCallback(BattleScript_MimicryActivates);
                 effect++;
             }
             break;
@@ -10912,11 +10887,11 @@ s32 GetStealthHazardDamageByTypesAndHP(enum TypeSideHazard hazardType, u8 type1,
 
 s32 GetStealthHazardDamage(enum TypeSideHazard hazardType, u32 battler)
 {
-    u8 type1 = gBattleMons[battler].types[0];
-    u8 type2 = gBattleMons[battler].types[1];
+    u32 types[3];
+    GetBattlerTypes(battler, FALSE, types);
     u32 maxHp = gBattleMons[battler].maxHP;
 
-    return GetStealthHazardDamageByTypesAndHP(hazardType, type1, type2, maxHp);
+    return GetStealthHazardDamageByTypesAndHP(hazardType, types[0], types[1], maxHp);
 }
 
 bool32 IsPartnerMonFromSameTrainer(u32 battler)
@@ -12376,4 +12351,31 @@ bool32 HasWeatherEffect(void)
     }
 
     return TRUE;
+}
+
+bool32 IsMovePowderBlocked(u32 battlerAtk, u32 battlerDef, u32 move)
+{
+    bool32 effect = FALSE;
+
+    if (IsPowderMove(move) && (battlerAtk != battlerDef))
+    {
+        if (B_POWDER_GRASS >= GEN_6
+         && (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) || GetBattlerAbility(battlerDef) == ABILITY_OVERCOAT))
+        {
+            gBattlerAbility = battlerDef;
+            RecordAbilityBattle(gBattlerTarget, ABILITY_OVERCOAT);
+            effect = TRUE;
+        }
+        else if (GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_SAFETY_GOGGLES)
+        {
+            RecordItemEffectBattle(battlerDef, HOLD_EFFECT_SAFETY_GOGGLES);
+            gLastUsedItem = gBattleMons[battlerDef].item;
+            effect = TRUE;
+        }
+
+        if (effect)
+            gBattlescriptCurrInstr = BattleScript_PowderMoveNoEffect;
+    }
+
+    return effect;
 }
