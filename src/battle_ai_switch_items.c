@@ -987,10 +987,11 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
 static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
 {
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
+    u32 lastUsedMove = AI_DATA->lastUsedMove[battler];
 
     if (HOLD_EFFECT_CHOICE(holdEffect) && IsBattlerItemEnabled(battler))
     {
-        if (GetMoveCategory(AI_DATA->lastUsedMove[battler]) == DAMAGE_CATEGORY_STATUS && RandomPercentage(RNG_AI_SWITCH_CHOICE_LOCKED, GetSwitchChance(SHOULD_SWITCH_CHOICE_LOCKED)))
+        if ((GetMoveCategory(lastUsedMove) == DAMAGE_CATEGORY_STATUS || AI_GetMoveEffectiveness(lastUsedMove, battler, GetOppositeBattler(battler)) > UQ_4_12(0.0)) && RandomPercentage(RNG_AI_SWITCH_CHOICE_LOCKED, GetSwitchChance(SHOULD_SWITCH_CHOICE_LOCKED)))
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
 
