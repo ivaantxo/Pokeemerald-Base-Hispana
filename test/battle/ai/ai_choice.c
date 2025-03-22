@@ -199,6 +199,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they are trappe
 AI_SINGLE_BATTLE_TEST("Choiced Pokémon will switch if locked into a move the player is immune to")
 {
     GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_GASTLY].types[0] == TYPE_GHOST);
         ASSUME(GetMoveType(MOVE_SURF) == TYPE_WATER);
         ASSUME(GetMoveType(MOVE_BODY_SLAM) == TYPE_NORMAL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
