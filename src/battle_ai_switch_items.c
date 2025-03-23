@@ -991,7 +991,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
 
     if (HOLD_EFFECT_CHOICE(holdEffect) && IsBattlerItemEnabled(battler))
     {
-        if ((GetMoveCategory(lastUsedMove) == DAMAGE_CATEGORY_STATUS || AI_GetMoveEffectiveness(lastUsedMove, battler, GetOppositeBattler(battler)) > UQ_4_12(0.0)) && RandomPercentage(RNG_AI_SWITCH_CHOICE_LOCKED, GetSwitchChance(SHOULD_SWITCH_CHOICE_LOCKED)))
+        if ((GetMoveCategory(lastUsedMove) == DAMAGE_CATEGORY_STATUS || (AI_GetMoveEffectiveness(lastUsedMove, battler, GetOppositeBattler(battler)) == UQ_4_12(0.0))) && RandomPercentage(RNG_AI_SWITCH_CHOICE_LOCKED, GetSwitchChance(SHOULD_SWITCH_CHOICE_LOCKED)))
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
 
