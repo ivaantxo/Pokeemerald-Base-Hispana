@@ -2628,15 +2628,9 @@ static void Cmd_datahpupdate(void)
                     gProtectStructs[battler].physicalDmg = gBattleStruct->moveDamage[battler];
                     gSpecialStatuses[battler].physicalDmg = gBattleStruct->moveDamage[battler];
                     if (cmd->battler == BS_TARGET)
-                    {
                         gProtectStructs[battler].physicalBattlerId = gBattlerAttacker;
-                        gSpecialStatuses[battler].physicalBattlerId = gBattlerAttacker;
-                    }
                     else
-                    {
                         gProtectStructs[battler].physicalBattlerId = gBattlerTarget;
-                        gSpecialStatuses[battler].physicalBattlerId = gBattlerTarget;
-                    }
                 }
                 else if (!IsBattleMovePhysical(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && effect != EFFECT_PAIN_SPLIT)
                 {
@@ -2644,15 +2638,9 @@ static void Cmd_datahpupdate(void)
                     gProtectStructs[battler].specialDmg = gBattleStruct->moveDamage[battler];
                     gSpecialStatuses[battler].specialDmg = gBattleStruct->moveDamage[battler];
                     if (cmd->battler == BS_TARGET)
-                    {
                         gProtectStructs[battler].specialBattlerId = gBattlerAttacker;
-                        gSpecialStatuses[battler].specialBattlerId = gBattlerAttacker;
-                    }
                     else
-                    {
                         gProtectStructs[battler].specialBattlerId = gBattlerTarget;
-                        gSpecialStatuses[battler].specialBattlerId = gBattlerTarget;
-                    }
                 }
             }
             gHitMarker &= ~HITMARKER_PASSIVE_DAMAGE;

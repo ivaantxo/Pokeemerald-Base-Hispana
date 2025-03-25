@@ -197,8 +197,6 @@ struct SpecialStatus
 {
     s32 physicalDmg;
     s32 specialDmg;
-    u8 physicalBattlerId;
-    u8 specialBattlerId;
     u8 changedStatsBattlerId; // Battler that was responsible for the latest stat change. Can be self.
     u8 statLowered:1;
     u8 lightningRodRedirected:1;
