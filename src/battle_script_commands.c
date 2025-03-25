@@ -10628,7 +10628,7 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->failInstr;
         else if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
             gBattlescriptCurrInstr = cmd->failInstr;
-        else if (IsBattleMoveStatus(gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]]))
+        else if (IsBattleMoveStatus(gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]]) && !gProtectStructs[gBattlerTarget].noValidMoves)
             gBattlescriptCurrInstr = cmd->failInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
