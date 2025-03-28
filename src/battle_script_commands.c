@@ -6406,10 +6406,9 @@ static void Cmd_moveend(void)
             else if (moveEffect == EFFECT_RECOIL
                   && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
                   && IsBattlerAlive(gBattlerAttacker)
-                  && IsBattlerTurnDamaged(gBattlerTarget)
-                  && gBattleScripting.savedDmg != 0) // Some checks may be redundant alongside this one
+                  && IsBattlerTurnDamaged(gBattlerTarget))
             {
-                gBattleStruct->moveDamage[gBattlerAttacker] = max(1, gBattleScripting.savedDmg * max(1, moveRecoil) / 100);
+                gBattleStruct->moveDamage[gBattlerAttacker] = max(1, gBattleStruct->moveDamage[gBattlerTarget] * max(1, moveRecoil) / 100);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_MoveEffectRecoil;
                 effect = TRUE;
