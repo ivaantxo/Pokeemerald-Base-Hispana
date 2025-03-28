@@ -339,7 +339,7 @@ static bool32 SetTargetToNextPursuiter(u32 battlerDef);
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler);
 static void RemoveAllWeather(void);
 static void RemoveAllTerrains(void);
-static bool8 CanAbilityPreventStatLoss(u16 abilityDef);
+static bool32 CanAbilityPreventStatLoss(u32 abilityDef);
 static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
 static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount, u16 usedMove);
@@ -1321,9 +1321,10 @@ static void Cmd_attackcanceler(void)
         RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
     }
     else if (IsBattlerProtected(gBattlerAttacker, gBattlerTarget, gCurrentMove)
-     && (gCurrentMove != MOVE_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
+     && (effect != EFFECT_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
      && (!gBattleMoveEffects[effect].twoTurnEffect || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
      && effect != EFFECT_SUCKER_PUNCH
+     && effect != EFFECT_COUNTER
      && effect != EFFECT_UPPER_HAND)
     {
         if (IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
@@ -6169,14 +6170,31 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
     return battler;
 }
 
-static inline bool32 IsProtectivePadsProtected(u32 battler, u32 move)
+static inline bool32 IsProtectivePadsProtected(u32 battler, u32 move, u32 holdEffect)
 {
-    if (!IsMoveMakingContact(move, battler))
+    if (holdEffect != HOLD_EFFECT_PROTECTIVE_PADS)
         return FALSE;
 
-    if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_PROTECTIVE_PADS)
+    RecordItemEffectBattle(battler, holdEffect);
+    return TRUE;
+}
+
+static inline bool32 IsProtectEffectAffected(u32 battler, u32 move)
+{
+    u32 holdEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
+    if (IsProtectivePadsProtected(battler, move, holdEffect))
+        return TRUE;
+
+    if (holdEffect == HOLD_EFFECT_CLEAR_AMULET)
     {
-        RecordItemEffectBattle(battler, HOLD_EFFECT_PROTECTIVE_PADS);
+        RecordItemEffectBattle(battler, holdEffect);
+        return TRUE;
+    }
+
+    u32 ability = GetBattlerAbility(gBattlerAttacker);
+    if (CanAbilityPreventStatLoss(ability))
+    {
+        RecordAbilityBattle(battler, ability);
         return TRUE;
     }
 
@@ -6219,9 +6237,8 @@ static void Cmd_moveend(void)
             if (gProtectStructs[gBattlerAttacker].touchedProtectLike)
             {
                 if (gProtectStructs[gBattlerTarget].spikyShielded
-                 && moveEffect != EFFECT_COUNTER
-                 && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove)
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                 && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE))
+                 && !IsMagicGuardProtected(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
@@ -6233,7 +6250,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].kingsShielded
-                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -6248,7 +6265,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].banefulBunkered
-                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_POISON | MOVE_EFFECT_AFFECTS_USER;
@@ -6260,7 +6277,7 @@ static void Cmd_moveend(void)
                 else if (gProtectStructs[gBattlerTarget].obstructed
                       && moveEffect != EFFECT_SUCKER_PUNCH
                       && moveEffect != EFFECT_UPPER_HAND
-                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -6272,7 +6289,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].silkTrapped
-                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
@@ -6284,7 +6301,7 @@ static void Cmd_moveend(void)
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].burningBulwarked
-                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove))
+                      && !IsProtectivePadsProtected(gBattlerAttacker, gCurrentMove, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_BURN | MOVE_EFFECT_AFFECTS_USER;
@@ -16824,7 +16841,7 @@ static bool8 IsFinalStrikeEffect(u32 moveEffect)
     return FALSE;
 }
 
-static bool8 CanAbilityPreventStatLoss(u16 abilityDef)
+static bool32 CanAbilityPreventStatLoss(u32 abilityDef)
 {
     switch (abilityDef)
     {
