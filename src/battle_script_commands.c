@@ -2108,6 +2108,7 @@ static void Cmd_adjustdamage(void)
             gSpecialStatuses[battlerDef].enduredDamage = TRUE;
             continue;
         }
+
         if (GetBattlerAbility(battlerDef) == ABILITY_ICE_FACE && IsBattleMovePhysical(gCurrentMove) && gBattleMons[battlerDef].species == SPECIES_EISCUE)
         {
             // Damage deals typeless 0 HP.
@@ -2118,6 +2119,7 @@ static void Cmd_adjustdamage(void)
             // Form change will be done after attack animation in Cmd_resultmessage.
             continue;
         }
+
         if (gBattleMons[gBattlerTarget].hp > gBattleStruct->moveDamage[battlerDef])
             continue;
 
@@ -2669,6 +2671,11 @@ static void Cmd_datahpupdate(void)
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_HP_BATTLE, 0, sizeof(gBattleMons[battler].hp), &gBattleMons[battler].hp);
             MarkBattlerForControllerExec(battler);
         }
+
+        if (gBattlerAttacker != gBattlerTarget
+         && GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
+         && IsBattlerTurnDamaged(gBattlerTarget))
+            gBattleStruct->timesGotHit[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]]++;
     }
 
     TryRestoreDamageAfterCheeckPouch(battler);
@@ -6746,16 +6753,6 @@ static void Cmd_moveend(void)
                 gStatuses3[gBattlerTarget] &= ~STATUS3_SEMI_INVULNERABLE;
                 gBattleScripting.moveendState++;
                 return;
-            }
-            gBattleScripting.moveendState++;
-            break;
-        case MOVEEND_NUM_HITS:
-            if (gBattlerAttacker != gBattlerTarget
-                && GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS
-                && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
-                && IsBattlerTurnDamaged(gBattlerTarget))
-            {
-                gBattleStruct->timesGotHit[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]]++;
             }
             gBattleScripting.moveendState++;
             break;
