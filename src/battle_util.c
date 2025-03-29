@@ -5867,6 +5867,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 }
                 else
                 {
+                    gBattleScripting.battler = gBattlerTarget;
                     gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
                     if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
                         gBattleStruct->moveDamage[gBattlerAttacker] = 1;
@@ -5889,6 +5890,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         break;
                 }
 
+                gBattleScripting.battler = gBattlerTarget;
                 gBattleStruct->moveDamage[gBattlerAttacker] = gBattleStruct->moveDamage[gBattlerTarget];
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AftermathDmg;

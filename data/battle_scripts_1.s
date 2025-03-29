@@ -7075,7 +7075,7 @@ BattleScript_AnticipationActivates::
 
 BattleScript_AftermathDmg::
 	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
+	call BattleScript_AbilityPopUpScripting
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_AftermathDmgRet
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_ATTACKER
