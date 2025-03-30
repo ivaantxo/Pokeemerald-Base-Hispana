@@ -131,7 +131,7 @@
 
 #define FEATURE_FLAG_ASSERT(flag, id) STATIC_ASSERT(flag > TEMP_FLAGS_END || flag == 0, id)
 
-#ifndef NDEBUG
+#if !(defined (NDEBUG)) || DEBUG_AI_DELAY_TIMER
 static inline void CycleCountStart()
 {
     REG_TM2CNT_H = 0;
