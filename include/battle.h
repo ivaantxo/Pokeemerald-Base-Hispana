@@ -797,8 +797,9 @@ struct BattleStruct
     u8 itemMoveIndex[MAX_BATTLERS_COUNT];
     u8 pledgeMove:1;
     u8 isSkyBattle:1;
-    u32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
-    u32 aiDelayFrames; // Number of frames it took to choose an action.
+    s32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
+    s32 aiDelayFrames; // Number of frames it took to choose an action.
+    s32 aiDelayCycles; // Number of cycles it took to choose an action.
     u8 timesGotHit[NUM_BATTLE_SIDES][PARTY_SIZE];
     u8 transformZeroToHero[NUM_BATTLE_SIDES];
     u8 stickySyrupdBy[MAX_BATTLERS_COUNT];
