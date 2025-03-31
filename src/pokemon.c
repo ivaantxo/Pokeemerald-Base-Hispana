@@ -7057,3 +7057,9 @@ bool32 IsSpeciesForeignRegionalForm(u32 species, u32 currentRegion)
     }
     return FALSE;
 }
+
+u32 GetTeraTypeFromPersonality(struct Pokemon *mon)
+{
+    const u8 *types = gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types;
+    return (GetMonData(mon, MON_DATA_PERSONALITY) & 0x1) == 0 ? types[0] : types[1];
+}
