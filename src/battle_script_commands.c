@@ -1362,7 +1362,9 @@ static void Cmd_attackcanceler(void)
     }
 
     // Z-moves and Max Moves bypass protection, but deal reduced damage (factored in AccumulateOtherModifiers)
-    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove)) && IS_BATTLER_PROTECTED(gBattlerTarget))
+    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove))
+     && gProtectStructs[gBattlerTarget].protected != PROTECT_NONE
+     && gProtectStructs[gBattlerTarget].protected != PROTECT_MAX_GUARD)
     {
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = BattleScript_CouldntFullyProtect;
@@ -1705,7 +1707,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
             gBattlescriptCurrInstr = nextInstr;
         if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
         {
-            if (gProtectStructs[gBattlerTarget].maxGuarded)
+            if (gProtectStructs[gBattlerTarget].protected == PROTECT_MAX_GUARD)
                 gBattlescriptCurrInstr = nextInstr;
             else
                 AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, gCurrentMove);
@@ -3950,19 +3952,20 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_FEINT:
-                if (IS_BATTLER_PROTECTED(gBattlerTarget))
+                i = FALSE; // Remove Protect if any
+                if (gProtectStructs[gBattlerTarget].protected != PROTECT_NONE
+                 && gProtectStructs[gBattlerTarget].protected != PROTECT_MAX_GUARD)
                 {
-                    gProtectStructs[gBattlerTarget].protected = FALSE;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_WIDE_GUARD;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_QUICK_GUARD;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_MAT_BLOCK;
-                    gProtectStructs[gBattlerTarget].spikyShielded = FALSE;
-                    gProtectStructs[gBattlerTarget].kingsShielded = FALSE;
-                    gProtectStructs[gBattlerTarget].banefulBunkered = FALSE;
-                    gProtectStructs[gBattlerTarget].obstructed = FALSE;
-                    gProtectStructs[gBattlerTarget].silkTrapped = FALSE;
-                    gProtectStructs[gBattlerTarget].burningBulwarked = FALSE;
+                    gProtectStructs[gBattlerTarget].protected = PROTECT_NONE;
+                    i = TRUE;
+                }
+                if (GetProtectType(gProtectStructs[BATTLE_PARTNER(gBattlerTarget)].protected) == PROTECT_TYPE_SIDE)
+                {
+                    gProtectStructs[BATTLE_PARTNER(gBattlerTarget)].protected = PROTECT_NONE;
+                    i = TRUE;
+                }
+                if (i)
+                {
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     if (gCurrentMove == MOVE_HYPERSPACE_FURY)
                         gBattlescriptCurrInstr = BattleScript_HyperspaceFuryRemoveProtect;
@@ -6462,84 +6465,104 @@ static void Cmd_moveend(void)
         case MOVEEND_PROTECT_LIKE_EFFECT:
             if (gProtectStructs[gBattlerAttacker].touchedProtectLike)
             {
-                if (gProtectStructs[gBattlerTarget].spikyShielded
-                 && !IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE))
-                 && !IsMagicGuardProtected(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
+                enum ProtectMethod method = gProtectStructs[gBattlerTarget].protected;
+                switch (method)
                 {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
-                    if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
-                        gBattleStruct->moveDamage[gBattlerAttacker] = 1;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SPIKY_SHIELD);
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_SpikyShieldEffect;
-                    effect = 1;
+                case PROTECT_SPIKY_SHIELD:
+                    if (moveEffect != EFFECT_COUNTER
+                     && !IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE))
+                     && !IsMagicGuardProtected(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        gBattleStruct->moveDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
+                        if (gBattleStruct->moveDamage[gBattlerAttacker] == 0)
+                            gBattleStruct->moveDamage[gBattlerAttacker] = 1;
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SPIKY_SHIELD);
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_SpikyShieldEffect;
+                        effect = 1;
+                    }
+                    break;
+                case PROTECT_KINGS_SHIELD:
+                    if (!IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        i = gBattlerAttacker;
+                        gBattlerAttacker = gBattlerTarget;
+                        gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+                        if (B_KINGS_SHIELD_LOWER_ATK >= GEN_8)
+                            gBattleScripting.moveEffect = MOVE_EFFECT_ATK_MINUS_1;
+                        else
+                            gBattleScripting.moveEffect = MOVE_EFFECT_ATK_MINUS_2;
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
+                        effect = 1;
+                    }
+                    break;
+                case PROTECT_BANEFUL_BUNKER:
+                    if (!IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        gBattleScripting.moveEffect = MOVE_EFFECT_POISON | MOVE_EFFECT_AFFECTS_USER;
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BANEFUL_BUNKER);
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
+                        effect = 1;
+                    }
+                    break;
+                case PROTECT_BURNING_BULWARK:
+                    if (!IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        gBattleScripting.moveEffect = MOVE_EFFECT_BURN | MOVE_EFFECT_AFFECTS_USER;
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BURNING_BULWARK);
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
+                        effect = 1;
+                    }
+                    break;
+                case PROTECT_OBSTRUCT:
+                    if (moveEffect != EFFECT_SUCKER_PUNCH // Why???
+                        && moveEffect != EFFECT_UPPER_HAND // Why???
+                        && !IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        i = gBattlerAttacker;
+                        gBattlerAttacker = gBattlerTarget;
+                        gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+                        gBattleScripting.moveEffect = MOVE_EFFECT_DEF_MINUS_2;
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
+                        effect = 1;
+                    }
+                    break;
+                case PROTECT_SILK_TRAP:
+                    if (!IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
+                    {
+                        gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                        i = gBattlerAttacker;
+                        gBattlerAttacker = gBattlerTarget;
+                        gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+                        gBattleScripting.moveEffect = MOVE_EFFECT_SPD_MINUS_1;
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
+                        effect = 1;
+                    }
+                    break;
+                case PROTECT_NONE:
+                case PROTECT_NORMAL:
+                case PROTECT_MAX_GUARD:
+                case PROTECT_WIDE_GUARD:
+                case PROTECT_QUICK_GUARD:
+                case PROTECT_CRAFTY_SHIELD:
+                case PROTECT_MAT_BLOCK:
+                    break;
                 }
-                else if (gProtectStructs[gBattlerTarget].kingsShielded
-                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
-                {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    i = gBattlerAttacker;
-                    gBattlerAttacker = gBattlerTarget;
-                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
-                    if (B_KINGS_SHIELD_LOWER_ATK >= GEN_8)
-                        gBattleScripting.moveEffect = MOVE_EFFECT_ATK_MINUS_1;
-                    else
-                        gBattleScripting.moveEffect = MOVE_EFFECT_ATK_MINUS_2;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
-                    effect = 1;
-                }
-                else if (gProtectStructs[gBattlerTarget].banefulBunkered
-                      && !IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
-                {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleScripting.moveEffect = MOVE_EFFECT_POISON | MOVE_EFFECT_AFFECTS_USER;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BANEFUL_BUNKER);
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
-                    effect = 1;
-                }
-                else if (gProtectStructs[gBattlerTarget].obstructed
-                      && moveEffect != EFFECT_SUCKER_PUNCH
-                      && moveEffect != EFFECT_UPPER_HAND
-                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
-                {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    i = gBattlerAttacker;
-                    gBattlerAttacker = gBattlerTarget;
-                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
-                    gBattleScripting.moveEffect = MOVE_EFFECT_DEF_MINUS_2;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
-                    effect = 1;
-                }
-                else if (gProtectStructs[gBattlerTarget].silkTrapped
-                      && !IsProtectEffectAffected(gBattlerAttacker, gCurrentMove))
-                {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    i = gBattlerAttacker;
-                    gBattlerAttacker = gBattlerTarget;
-                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
-                    gBattleScripting.moveEffect = MOVE_EFFECT_SPD_MINUS_1;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
-                    effect = 1;
-                }
-                else if (gProtectStructs[gBattlerTarget].burningBulwarked
-                      && !IsProtectivePadsProtected(gBattlerAttacker, GetBattlerHoldEffect(gBattlerAttacker, TRUE)))
-                {
-                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleScripting.moveEffect = MOVE_EFFECT_BURN | MOVE_EFFECT_AFFECTS_USER;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_BURNING_BULWARK);
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
-                    effect = 1;
-                }
+
                 // Not strictly a protect effect, but works the same way
-                else if (gProtectStructs[gBattlerTarget].beakBlastCharge
-                         && CanBeBurned(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker))
-                         && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT))
+                if (gProtectStructs[gBattlerTarget].beakBlastCharge
+                 && CanBeBurned(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker))
+                 && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleMons[gBattlerAttacker].status1 = STATUS1_BURN;
@@ -10817,7 +10840,7 @@ static void Cmd_various(void)
     case VARIOUS_SUCKER_PUNCH_CHECK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gProtectStructs[gBattlerTarget].obstructed)
+        if (gProtectStructs[gBattlerTarget].protected == PROTECT_OBSTRUCT)
             gBattlescriptCurrInstr = cmd->failInstr;
         else if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
             gBattlescriptCurrInstr = cmd->failInstr;
@@ -11840,102 +11863,40 @@ static void Cmd_setprotectlike(void)
 {
     CMD_ARGS();
 
-    bool32 fail = TRUE;
+    bool32 protectFails = TRUE;
     bool32 notLastTurn = TRUE;
+    u32 protectMethod = GetMoveProtectMethod(gCurrentMove);
 
     TryResetProtectUseCounter(gBattlerAttacker);
+
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
         notLastTurn = FALSE;
 
     if ((sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
-        || (gCurrentMove == MOVE_WIDE_GUARD && B_WIDE_GUARD != GEN_5)
-        || (gCurrentMove == MOVE_QUICK_GUARD && B_QUICK_GUARD != GEN_5))
+     || (protectMethod == PROTECT_WIDE_GUARD && B_WIDE_GUARD != GEN_5)
+     || (protectMethod == PROTECT_QUICK_GUARD && B_QUICK_GUARD != GEN_5))
     {
-        if (!GetMoveProtectSide(gCurrentMove)) // Protects one mon only.
+        if (GetMoveEffect(gCurrentMove) == EFFECT_ENDURE)
         {
-            if (GetMoveEffect(gCurrentMove) == EFFECT_ENDURE)
-            {
-                gProtectStructs[gBattlerAttacker].endured = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BRACED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_DETECT || gCurrentMove == MOVE_PROTECT)
-            {
-                gProtectStructs[gBattlerAttacker].protected = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_SPIKY_SHIELD)
-            {
-                gProtectStructs[gBattlerAttacker].spikyShielded = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_KINGS_SHIELD)
-            {
-                gProtectStructs[gBattlerAttacker].kingsShielded = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_BANEFUL_BUNKER)
-            {
-                gProtectStructs[gBattlerAttacker].banefulBunkered = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_OBSTRUCT)
-            {
-                gProtectStructs[gBattlerAttacker].obstructed = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_MAX_GUARD)
-            {
-                gProtectStructs[gBattlerAttacker].maxGuarded = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_SILK_TRAP)
-            {
-                gProtectStructs[gBattlerAttacker].silkTrapped = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
-            else if (gCurrentMove == MOVE_BURNING_BULWARK)
-            {
-                gProtectStructs[gBattlerAttacker].burningBulwarked = TRUE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
-            }
+            gProtectStructs[gBattlerAttacker].endured = TRUE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BRACED_ITSELF;
+        }
+        else if (GetProtectType(protectMethod) == PROTECT_TYPE_SIDE)
+        {
+            gProtectStructs[gBattlerAttacker].protected = protectMethod;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
+        }
+        else
+        {
+            gProtectStructs[gBattlerAttacker].protected = protectMethod;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+        }
 
-            gDisableStructs[gBattlerAttacker].protectUses++;
-            fail = FALSE;
-        }
-        else // Protects the whole side.
-        {
-            u8 side = GetBattlerSide(gBattlerAttacker);
-            if (gCurrentMove == MOVE_WIDE_GUARD && !(gSideStatuses[side] & SIDE_STATUS_WIDE_GUARD))
-            {
-                gSideStatuses[side] |= SIDE_STATUS_WIDE_GUARD;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                gDisableStructs[gBattlerAttacker].protectUses++;
-                fail = FALSE;
-            }
-            else if (gCurrentMove == MOVE_QUICK_GUARD && !(gSideStatuses[side] & SIDE_STATUS_QUICK_GUARD))
-            {
-                gSideStatuses[side] |= SIDE_STATUS_QUICK_GUARD;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                gDisableStructs[gBattlerAttacker].protectUses++;
-                fail = FALSE;
-            }
-            else if (gCurrentMove == MOVE_CRAFTY_SHIELD && !(gSideStatuses[side] & SIDE_STATUS_CRAFTY_SHIELD))
-            {
-                gSideStatuses[side] |= SIDE_STATUS_CRAFTY_SHIELD;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                gDisableStructs[gBattlerAttacker].protectUses++;
-                fail = FALSE;
-            }
-            else if (gCurrentMove == MOVE_MAT_BLOCK && !(gSideStatuses[side] & SIDE_STATUS_MAT_BLOCK))
-            {
-                gSideStatuses[side] |= SIDE_STATUS_MAT_BLOCK;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                fail = FALSE;
-            }
-        }
+        gDisableStructs[gBattlerAttacker].protectUses++;
+        protectFails = FALSE;
     }
 
-    if (fail)
+    if (protectFails)
     {
         gDisableStructs[gBattlerAttacker].protectUses = 0;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECT_FAILED;

@@ -138,11 +138,7 @@ struct DisableStruct
 // Fully Cleared each turn after end turn effects are done. A few things are cleared before end turn effects
 struct ProtectStruct
 {
-    u32 protected:1;
-    u32 spikyShielded:1;
-    u32 kingsShielded:1;
-    u32 banefulBunkered:1;
-    u32 obstructed:1;
+    u32 protected:7; // 126 protect options
     u32 endured:1;
     u32 noValidMoves:1;
     u32 helpingHand:1;
@@ -167,9 +163,8 @@ struct ProtectStruct
     u32 usedThroatChopPreventedMove:1;
     u32 statRaised:1;
     u32 usedCustapBerry:1;    // also quick claw
-    u32 touchedProtectLike:1;
-    u32 unused:1;
     // End of 32-bit bitfield
+    u16 touchedProtectLike:1;
     u16 disableEjectPack:1;
     u16 statFell:1;
     u16 pranksterElevated:1;
@@ -177,16 +172,13 @@ struct ProtectStruct
     u16 beakBlastCharge:1;
     u16 quash:1;
     u16 shellTrap:1;
-    u16 maxGuarded:1;
-    u16 silkTrapped:1;
-    u16 burningBulwarked:1;
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
     u16 usedAllySwitch:1;
-    u16 padding:2;
+    u16 padding:4;
     // End of 16-bit bitfield
-    u32 physicalDmg;
-    u32 specialDmg;
+    u16 physicalDmg;
+    u16 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
 };
@@ -909,18 +901,6 @@ static inline bool32 IsBattleMoveRecoil(u32 move)
     gBattleMons[battlerId].types[1] = gSpeciesInfo[gBattleMons[battlerId].species].types[1];   \
     gBattleMons[battlerId].types[2] = TYPE_MYSTERY;                                            \
 }
-
-#define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
-                                        || gProtectStructs[battlerId].spikyShielded                                    \
-                                        || gProtectStructs[battlerId].kingsShielded                                    \
-                                        || gProtectStructs[battlerId].banefulBunkered                                  \
-                                        || gProtectStructs[battlerId].burningBulwarked                                 \
-                                        || gProtectStructs[battlerId].obstructed                                       \
-                                        || gProtectStructs[battlerId].silkTrapped)
 
 #define GET_STAT_BUFF_ID(n) ((n & 7))              // first three bits 0x1, 0x2, 0x4
 #define GET_STAT_BUFF_VALUE_WITH_SIGN(n) ((n & 0xF8))

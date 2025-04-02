@@ -231,6 +231,7 @@ u32 IsAbilityOnField(u32 ability);
 u32 IsAbilityOnFieldExcept(u32 battler, u32 ability);
 u32 IsAbilityPreventingEscape(u32 battler);
 bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move);
+u32 GetProtectType(enum ProtectMethod method);
 bool32 CanBattlerEscape(u32 battler); // no ability check
 void BattleScriptExecute(const u8 *BS_ptr);
 void BattleScriptPushCursorAndCallback(const u8 *BS_ptr);

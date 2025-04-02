@@ -3836,7 +3836,7 @@ BattleScript_EffectHoldHands::
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpifsideaffecting BS_TARGET, SIDE_STATUS_CRAFTY_SHIELD, BattleScript_ButItFailed
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
 	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
