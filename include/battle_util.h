@@ -232,6 +232,7 @@ u32 IsAbilityOnField(u32 ability);
 u32 IsAbilityOnFieldExcept(u32 battler, u32 ability);
 u32 IsAbilityPreventingEscape(u32 battler);
 bool32 IsBattlerProtected(u32 battlerAtk, u32 battlerDef, u32 move);
+u32 GetProtectType(enum ProtectMethod method);
 bool32 CanBattlerEscape(u32 battler); // no ability check
 void BattleScriptExecute(const u8 *BS_ptr);
 void BattleScriptPushCursorAndCallback(const u8 *BS_ptr);
@@ -351,13 +352,11 @@ bool32 IsSleepClauseEnabled();
 void ClearDamageCalcResults(void);
 u32 DoesDestinyBondFail(u32 battler);
 bool32 IsMoveEffectBlockedByTarget(u32 ability);
-u32 NumAffectedSpreadMoveTargets(void);
 bool32 IsPursuitTargetSet(void);
 void ClearPursuitValuesIfSet(u32 battler);
 void ClearPursuitValues(void);
 bool32 HasWeatherEffect(void);
-bool32 IsMovePowderBlocked(u32 battlerAtk, u32 battlerDef, u32 move);
-bool32 EmergencyExitCanBeTriggered(u32 battler);
 u32 RestoreWhiteHerbStats(u32 battler);
+bool32 HadMoreThanHalfHpNowDoesnt(u32 battler);
 
 #endif // GUARD_BATTLE_UTIL_H
