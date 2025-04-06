@@ -10047,7 +10047,7 @@ BattleScript_DynamaxBegins_End3:
 BattleScript_DynamaxEnds::
 	flushtextbox
 	updatedynamax
-	playanimation BS_ATTACKER, B_ANIM_FORM_CHANGE
+	playanimation BS_SCRIPTING, B_ANIM_FORM_CHANGE
 	waitanimation
 	end2
 

@@ -836,7 +836,7 @@ static bool32 HandleEndTurnTorment(u32 battler)
 
     gBattleStruct->turnEffectsBattlerId++;
 
-    if (gDisableStructs[battler].tormentTimer > 0 && --gDisableStructs[battler].tormentTimer == 0)
+    if (gDisableStructs[battler].tormentTimer == gBattleTurnCounter)
     {
         gBattleMons[battler].status2 &= ~STATUS2_TORMENT;
         BattleScriptExecute(BattleScript_TormentEnds);
@@ -1499,6 +1499,7 @@ static bool32 HandleEndTurnDynamax(u32 battler)
 
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && gBattleStruct->dynamax.dynamaxTurns[battler] == gBattleTurnCounter)
     {
+        gBattleScripting.battler = battler;
         UndoDynamax(battler);
         BattleScriptExecute(BattleScript_DynamaxEnds);
         effect = TRUE;
