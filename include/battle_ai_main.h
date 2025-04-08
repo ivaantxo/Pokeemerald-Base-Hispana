@@ -122,5 +122,6 @@ void Ai_UpdateSwitchInData(u32 battler);
 void Ai_UpdateFaintData(u32 battler);
 void SetAiLogicDataForTurn(struct AiLogicData *aiData);
 void ResetDynamicAiFunc(void);
+u32 BattleAI_PredictMove(u32 battler, u32 opposingBattler);
 
 #endif // GUARD_BATTLE_AI_MAIN_H
