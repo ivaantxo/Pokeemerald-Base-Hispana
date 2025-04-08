@@ -238,8 +238,9 @@ void BattleAI_SetupFlags(void)
 
 void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
 {
-    u32 moveLimitations;
+    u32 moveLimitations, moveLimitationsTarget;
     u32 flags[MAX_BATTLERS_COUNT];
+    u32 moveIndex;
 
     // Clear AI data but preserve the flags.
     memcpy(&flags[0], &AI_THINKING_STRUCT->aiFlags[0], sizeof(u32) * MAX_BATTLERS_COUNT);
@@ -249,7 +250,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     moveLimitations = AI_DATA->moveLimitations[battler];
 
     // Conditional score reset, unlike Ruby.
-    for (u32 moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+    for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
         if (moveLimitations & (1u << moveIndex))
             SET_SCORE(battler, moveIndex, 0);
@@ -263,6 +264,22 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
 
     gBattlerTarget = SetRandomTarget(battler);
     gAiBattleData->chosenTarget[battler] = gBattlerTarget;
+
+    // Initialize move prediction scores
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)
+    {
+        moveLimitationsTarget = AI_DATA->moveLimitations[gBattlerTarget];
+
+        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+        {
+            if (moveLimitations & (1u << moveIndex))
+                SET_PREDICTED_SCORE(gBattlerTarget, moveIndex, 0);
+            if (defaultScoreMoves & 1)
+                SET_PREDICTED_SCORE(gBattlerTarget, moveIndex, AI_SCORE_DEFAULT);
+            else
+                SET_PREDICTED_SCORE(gBattlerTarget, moveIndex, 0);
+        }
+    }
 }
 
 u32 BattleAI_ChooseMoveOrAction(u32 battler)

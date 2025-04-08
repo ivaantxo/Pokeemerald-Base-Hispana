@@ -64,6 +64,12 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
         AI_THINKING_STRUCT->score[movesetIndex] = val; \
     } while (0) \
 
+#define SET_PREDICTED_SCORE(battler, movesetIndex, val) \
+    do \
+    { \
+        AI_THINKING_STRUCT->predictedScore[movesetIndex][battler] = val; \
+    } while (0) \
+
 #define ADJUST_SCORE(val) \
     do \
     { \

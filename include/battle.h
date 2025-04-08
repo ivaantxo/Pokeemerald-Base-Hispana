@@ -360,6 +360,7 @@ struct AI_ThinkingStruct
     u8 movesetIndex;
     u16 moveConsidered;
     s32 score[MAX_MON_MOVES];
+    s32 predictedScore[MAX_MON_MOVES][MAX_BATTLERS_COUNT];
     u32 funcResult;
     u32 aiFlags[MAX_BATTLERS_COUNT];
     u8 aiAction;
