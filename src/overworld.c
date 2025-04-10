@@ -1614,16 +1614,27 @@ void UpdateTimeOfDay(void)
     }
 }
 
+#undef MORNING_HOUR_MIDDLE
 #undef TIME_BLEND_WEIGHT
+#undef DEFAULT_WEIGHT
 
 // Whether a map type is naturally lit/outside
-bool8 MapHasNaturalLight(u8 mapType)
+bool32 MapHasNaturalLight(u8 mapType)
 {
     return (mapType == MAP_TYPE_TOWN
          || mapType == MAP_TYPE_CITY
          || mapType == MAP_TYPE_ROUTE
          || mapType == MAP_TYPE_OCEAN_ROUTE
     );
+}
+
+bool32 CurrentMapHasShadows(void)
+{
+    bool32 shouldHaveShadows = TRUE;
+    u32 currentMapType = gMapHeader.mapType;
+    if (currentMapType == MAP_TYPE_UNDERGROUND)
+        shouldHaveShadows = FALSE;
+    return shouldHaveShadows;
 }
 
 // Update & mix day / night bg palettes (into unfaded)
