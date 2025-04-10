@@ -1560,6 +1560,8 @@ const struct BlendSettings gTimeOfDayBlend[] =
 
 void UpdateTimeOfDay(void)
 {
+    if (!OW_ENABLE_DNS)
+        return;
     s32 hours, minutes;
     RtcCalcLocalTime();
     hours = sHoursOverride ? sHoursOverride : gLocalTime.hours;
@@ -1627,6 +1629,8 @@ bool8 MapHasNaturalLight(u8 mapType)
 // Update & mix day / night bg palettes (into unfaded)
 void UpdateAltBgPalettes(u16 palettes)
 {
+    if (!OW_ENABLE_DNS)
+        return;
     const struct Tileset *primary = gMapHeader.mapLayout->primaryTileset;
     const struct Tileset *secondary = gMapHeader.mapLayout->secondaryTileset;
     u32 i = 1;
@@ -1654,6 +1658,8 @@ void UpdateAltBgPalettes(u16 palettes)
 
 void UpdatePalettesWithTime(u32 palettes)
 {
+    if (!OW_ENABLE_DNS)
+        return;
     if (MapHasNaturalLight(gMapHeader.mapType))
     {
         u32 i;
@@ -1674,6 +1680,8 @@ void UpdatePalettesWithTime(u32 palettes)
 
 u8 UpdateSpritePaletteWithTime(u8 paletteNum)
 {
+    if (!OW_ENABLE_DNS)
+        return paletteNum;
     if (MapHasNaturalLight(gMapHeader.mapType))
     {
         if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(paletteNum)))
@@ -3449,7 +3457,7 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
         sprite->data[0] = linkPlayerId;
         objEvent->triggerGroundEffectsOnMove = FALSE;
         objEvent->localId = OBJ_EVENT_ID_DYNAMIC_BASE + linkPlayerId;
-        SetUpShadow(objEvent, sprite);
+        SetUpShadow(objEvent);
     }
 }
 

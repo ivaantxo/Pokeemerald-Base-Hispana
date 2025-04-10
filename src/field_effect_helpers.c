@@ -54,7 +54,7 @@ u32 FldEff_Shadow(void);
 #define sReflectionVerticalOffset   data[2]
 #define sIsStillReflection          data[7]
 
-void SetUpShadow(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+void SetUpShadow(struct ObjectEvent *objectEvent)
 {
     gFieldEffectArguments[0] = objectEvent->localId;
     gFieldEffectArguments[1] = objectEvent->mapNum;
@@ -390,6 +390,12 @@ void UpdateShadowFieldEffect(struct Sprite *sprite)
         sprite->y = linkedSprite->y + sprite->sYOffset;
         #endif
         sprite->invisible = linkedSprite->invisible;
+        if (objectEvent->jumpDone)
+        {
+            //  Ugly signaling to disable shadows after a jump
+            objectEvent->noShadow = TRUE;
+            objectEvent->jumpDone = FALSE;
+        }
         if (!objectEvent->active
          || objectEvent->noShadow
          || objectEvent->inHotSprings

@@ -65,7 +65,7 @@
 #define OW_FOLLOWERS_SCRIPT_MOVEMENT   TRUE       // If TRUE, follower Pokémon only go back to their Poké Ball if a non-player collides with them by setting the FLAG_SAFE_FOLLOWER_MOVEMENT flag by default.
 // Follower Pokémon Restrictions
 // If set, the only pokemon allowed to follow you will be those matching species, met location, and/or met level; These accept vars, too: VAR_TEMP_1, etc
-// For examples, check docs/dns.md:
+// For examples, see "docs/tutorials/how_to_new_pokemon.md"
 #define OW_FOLLOWERS_ALLOWED_SPECIES (0)
 #define OW_FOLLOWERS_ALLOWED_MET_LVL (0)
 #define OW_FOLLOWERS_ALLOWED_MET_LOC (0)
@@ -94,8 +94,12 @@
 #define OW_TIME_OF_DAY_FALLBACK         OW_TIME_OF_DAY_DEFAULT // The time of day that encounter tables fall back to. Defaults to whatever OW_TIME_OF_DAY_FALLBACK is set to.
 
 // Lighting
-#define OW_SHADOW_INTENSITY             4          // Ranges from 0 to 16, where 0 is fully transparent and 16 is black.
-#define OW_OBJECT_SUBPRIORITY           148        // The higher the value, the farther back compared to other sprites. Shadows should be behind object events.
+#define OW_SHADOW_INTENSITY             4       // Ranges from 0 to 16, where 0 is fully transparent and 16 is black.
+#define OW_OBJECT_SUBPRIORITY           148     // The higher the value, the farther back compared to other sprites. Shadows should be behind object events.
+#define OW_ENABLE_DNS                   TRUE    // If set to TRUE, overworld will be tinted depending on time of day
+
+// Object Event Shadows
+#define OW_OBJECT_VANILLA_SHADOWS      FALSE    //  In vanilla shadows in the overworld is only shown when jumping
 
 // Overworld flags
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
