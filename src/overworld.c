@@ -1624,8 +1624,7 @@ bool32 MapHasNaturalLight(u8 mapType)
     return (mapType == MAP_TYPE_TOWN
          || mapType == MAP_TYPE_CITY
          || mapType == MAP_TYPE_ROUTE
-         || mapType == MAP_TYPE_OCEAN_ROUTE
-    );
+         || mapType == MAP_TYPE_OCEAN_ROUTE);
 }
 
 bool32 CurrentMapHasShadows(void)
@@ -1658,9 +1657,9 @@ void UpdateAltBgPalettes(u16 palettes)
         if (palettes & 1)
         {
             if (i < NUM_PALS_IN_PRIMARY)
-                AvgPaletteWeighted(&((u16*)primary->palettes)[i*16], &((u16*)primary->palettes)[((i+9)%16)*16], gPlttBufferUnfaded + i * 16, gTimeBlend.altWeight);
+                AvgPaletteWeighted(&((u16 *)primary->palettes)[i * 16], &((u16 *)primary->palettes)[((i + 9) % 16) * 16], gPlttBufferUnfaded + i * 16, gTimeBlend.altWeight);
             else
-                AvgPaletteWeighted(&((u16*)secondary->palettes)[i*16], &((u16*)secondary->palettes)[((i+9)%16)*16], gPlttBufferUnfaded + i * 16, gTimeBlend.altWeight);
+                AvgPaletteWeighted(&((u16 *)secondary->palettes)[i * 16], &((u16 *)secondary->palettes)[((i + 9) % 16) * 16], gPlttBufferUnfaded + i * 16, gTimeBlend.altWeight);
         }
         i++;
         palettes >>= 1;
@@ -1669,36 +1668,29 @@ void UpdateAltBgPalettes(u16 palettes)
 
 void UpdatePalettesWithTime(u32 palettes)
 {
-    if (!OW_ENABLE_DNS)
+    if (!OW_ENABLE_DNS || !MapHasNaturalLight(gMapHeader.mapType))
         return;
-    if (MapHasNaturalLight(gMapHeader.mapType))
-    {
-        u32 i;
-        u32 mask = 1 << 16;
-        if (palettes >= (1 << 16))
+    u32 i;
+    u32 mask = 1 << 16;
+    if (palettes >= (1 << 16))
         for (i = 0; i < 16; i++, mask <<= 1)
         {
             if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(i)))
                 palettes &= ~(mask);
         }
 
-        palettes &= PALETTES_MAP | PALETTES_OBJECTS; // Don't blend UI pals
-        if (!palettes)
-            return;
-        TimeMixPalettes(palettes, gPlttBufferUnfaded, gPlttBufferFaded, &gTimeBlend.startBlend, &gTimeBlend.endBlend, gTimeBlend.weight);
-    }
+    palettes &= PALETTES_MAP | PALETTES_OBJECTS; // Don't blend UI pals
+    if (!palettes)
+        return;
+    TimeMixPalettes(palettes, gPlttBufferUnfaded, gPlttBufferFaded, &gTimeBlend.startBlend, &gTimeBlend.endBlend, gTimeBlend.weight);
 }
 
 u8 UpdateSpritePaletteWithTime(u8 paletteNum)
 {
-    if (!OW_ENABLE_DNS)
-        return paletteNum;
-    if (MapHasNaturalLight(gMapHeader.mapType))
-    {
-        if (IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(paletteNum)))
-            return paletteNum;
+    if (OW_ENABLE_DNS
+     && MapHasNaturalLight(gMapHeader.mapType)
+     && !IS_BLEND_IMMUNE_TAG(GetSpritePaletteTagByPaletteNum(paletteNum)))
         TimeMixPalettes(1, &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteNum)], &gPlttBufferFaded[OBJ_PLTT_ID(paletteNum)], &gTimeBlend.startBlend, &gTimeBlend.endBlend, gTimeBlend.weight);
-    }
     return paletteNum;
 }
 

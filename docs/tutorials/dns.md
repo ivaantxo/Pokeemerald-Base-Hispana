@@ -22,4 +22,4 @@ on separate lines to mark those colors as being light-blended, i.e:
 A: Set `OW_OBJECT_VANILLA_SHADOWS` to `TRUE` in `include/config/overworld.h`.
 
 ### Q: How do I disable shadows for certain locations?
-A: Shadows can be disabled for certain locations by modifying the `CurrentMapHasShadows` function in `src/overworld.c`
+A: Shadows can be disabled for certain locations by modifying the `CurrentMapHasShadows` function in `src/overworld.c`.

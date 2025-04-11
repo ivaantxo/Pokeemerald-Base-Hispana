@@ -161,48 +161,44 @@ bool32 BeginTimeOfDayPaletteFade(u32 selectedPalettes, s8 delay, u8 startY, u8 t
     u8 temp;
 
     if (gPaletteFade.active)
-    {
         return FALSE;
-    }
-    else
+
+    gPaletteFade.deltaY = 2;
+
+    if (delay < 0)
     {
-        gPaletteFade.deltaY = 2;
-
-        if (delay < 0)
-        {
-            gPaletteFade.deltaY += (delay * -1);
-            delay = 0;
-        }
-
-        gPaletteFade_selectedPalettes = selectedPalettes;
-        gPaletteFade.delayCounter = delay;
-        gPaletteFade_delay = delay;
-        gPaletteFade.y = startY;
-        gPaletteFade.targetY = targetY;
-        gPaletteFade.active = 1;
-        gPaletteFade.mode = TIME_OF_DAY_FADE;
-
-        gPaletteFade.blendColor = color;
-        gPaletteFade.bld0 = bld0;
-        gPaletteFade.bld1 = bld1;
-        gPaletteFade.weight = weight;
-
-        if (startY < targetY)
-            gPaletteFade.yDec = 0;
-        else
-            gPaletteFade.yDec = 1;
-
-        UpdatePaletteFade();
-
-        temp = gPaletteFade.bufferTransferDisabled;
-        gPaletteFade.bufferTransferDisabled = 0;
-        CpuCopy32(gPlttBufferFaded, (void *)PLTT, PLTT_SIZE);
-        sPlttBufferTransferPending = 0;
-        if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
-            UpdateBlendRegisters();
-        gPaletteFade.bufferTransferDisabled = temp;
-        return TRUE;
+        gPaletteFade.deltaY += (delay * -1);
+        delay = 0;
     }
+
+    gPaletteFade_selectedPalettes = selectedPalettes;
+    gPaletteFade.delayCounter = delay;
+    gPaletteFade_delay = delay;
+    gPaletteFade.y = startY;
+    gPaletteFade.targetY = targetY;
+    gPaletteFade.active = 1;
+    gPaletteFade.mode = TIME_OF_DAY_FADE;
+
+    gPaletteFade.blendColor = color;
+    gPaletteFade.bld0 = bld0;
+    gPaletteFade.bld1 = bld1;
+    gPaletteFade.weight = weight;
+
+    if (startY < targetY)
+        gPaletteFade.yDec = 0;
+    else
+        gPaletteFade.yDec = 1;
+
+    UpdatePaletteFade();
+
+    temp = gPaletteFade.bufferTransferDisabled;
+    gPaletteFade.bufferTransferDisabled = 0;
+    CpuCopy32(gPlttBufferFaded, (void *)PLTT, PLTT_SIZE);
+    sPlttBufferTransferPending = 0;
+    if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
+        UpdateBlendRegisters();
+    gPaletteFade.bufferTransferDisabled = temp;
+    return TRUE;
 }
 
 void ResetPaletteFadeControl(void)
@@ -316,16 +312,14 @@ static u8 UpdateTimeOfDayPaletteFade(void)
 
             if (!gPaletteFade.yDec)
             {
-                val = gPaletteFade.y;
-                val += gPaletteFade.deltaY;
+                val = gPaletteFade.y + gPaletteFade.deltaY;
                 if (val > gPaletteFade.targetY)
                     val = gPaletteFade.targetY;
                 gPaletteFade.y = val;
             }
             else
             {
-                val = gPaletteFade.y;
-                val -= gPaletteFade.deltaY;
+                val = gPaletteFade.y - gPaletteFade.deltaY;
                 if (val < 0)
                     val = 0;
                 gPaletteFade.y = val;
@@ -732,7 +726,7 @@ static void UpdateBlendRegisters(void)
     SetGpuReg(REG_OFFSET_BLDCNT, (u16)gPaletteFade_blendCnt);
     SetGpuReg(REG_OFFSET_BLDY, gPaletteFade.y);
     // If fade-out, also adjust BLDALPHA and DISPCNT
-    if (!gPaletteFade.yDec /*&& gPaletteFade.mode == HARDWARE_FADE*/)
+    if (!gPaletteFade.yDec)
     {
         u16 bldAlpha = GetGpuReg(REG_OFFSET_BLDALPHA);
         u8 tgt1 = BLDALPHA_TGT1(bldAlpha);
@@ -744,25 +738,24 @@ static void UpdateBlendRegisters(void)
         // FADE_TO_BLACK
         case BLDCNT_EFFECT_DARKEN:
             bldFade = BLDALPHA_TGT1(max(0, 16 - gPaletteFade.y));
-            SetGpuReg(
-                REG_OFFSET_BLDALPHA,
-                BLDALPHA_BLEND(min(tgt1, bldFade), min(tgt2, bldFade))
-            );
+            SetGpuReg(REG_OFFSET_BLDALPHA,
+                      BLDALPHA_BLEND(min(tgt1, bldFade), min(tgt2, bldFade)));
             break;
         // FADE_TO_WHITE
         case BLDCNT_EFFECT_LIGHTEN:
-            SetGpuReg(
-                REG_OFFSET_BLDALPHA,
-                BLDALPHA_BLEND(min(++tgt1, 31), min(++tgt2, 31))
-            );
+            SetGpuReg(REG_OFFSET_BLDALPHA,
+                      BLDALPHA_BLEND(min(++tgt1, 31), min(++tgt2, 31)));
             // cause display to show white when finished
             // (otherwise blend-mode sprites will still be visible)
             if (gPaletteFade.hardwareFadeFinishing && gPaletteFade.y >= 16)
                 SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_FORCED_BLANK);
             break;
         }
-    } else
+    }
+    else
+    {
         ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_FORCED_BLANK);
+    }
 
     if (gPaletteFade.hardwareFadeFinishing)
     {
@@ -849,8 +842,8 @@ void BlendPalettes(u32 selectedPalettes, u8 coeff, u32 color)
 void TimeBlendPalette(u16 palOffset, u32 coeff, u32 blendColor)
 {
     s32 newR, newG, newB, defR, defG, defB;
-    u16 * src = gPlttBufferUnfaded + palOffset;
-    u16 * dst = gPlttBufferFaded + palOffset;
+    u16 *src = gPlttBufferUnfaded + palOffset;
+    u16 *dst = gPlttBufferFaded + palOffset;
     u32 defaultBlendColor = DEFAULT_LIGHT_COLOR;
     u16 *srcEnd = src + 16;
     u32 altBlendColor = *dst++ = *src++; // color 0 is copied through unchanged
@@ -1182,8 +1175,8 @@ void TintPalette_CustomTone(u16 *palette, u32 count, u16 rTone, u16 gTone, u16 b
 void TintPalette_RGB_Copy(u16 palOffset, u32 blendColor)
 {
     s32 newR, newG, newB, rTone = 0, gTone = 0, bTone = 0;
-    u16 * src = gPlttBufferUnfaded + palOffset;
-    u16 * dst = gPlttBufferFaded + palOffset;
+    u16 *src = gPlttBufferUnfaded + palOffset;
+    u16 *dst = gPlttBufferFaded + palOffset;
     u32 defaultBlendColor = DEFAULT_LIGHT_COLOR;
     u16 *srcEnd = src + 16;
     u16 altBlendIndices = *dst++ = *src++; // color 0 is copied through unchanged
@@ -1248,6 +1241,8 @@ void TintPalette_RGB_Copy(u16 palOffset, u32 blendColor)
         altBlendIndices >>= 1;
     }
 }
+
+#undef DEFAULT_LIGHT_COLOR
 
 #define tCoeff       data[0]
 #define tCoeffTarget data[1]
