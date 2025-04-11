@@ -879,9 +879,6 @@ static void UNUSED ApplyGlobalTintToPaletteSlot(u8 slot, u8 count)
 
 static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u16 size, bool8 skipFaded)
 {
-    u32 low = 0;
-    u32 high = 0;
-
     if (tileset)
     {
         if (tileset->isSecondary == FALSE)
@@ -892,8 +889,6 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
                 LoadPaletteFast(tileset->palettes, destOffset, size);
             gPlttBufferFaded[destOffset] = gPlttBufferUnfaded[destOffset] = RGB_BLACK;
             ApplyGlobalTintToPaletteEntries(destOffset + 1, (size - 2) >> 1);
-            low = 0;
-            high = NUM_PALS_IN_PRIMARY;
         }
         else if (tileset->isSecondary == TRUE)
         {
@@ -903,8 +898,6 @@ static void LoadTilesetPalette(struct Tileset const *tileset, u16 destOffset, u1
                 CpuCopy16(tileset->palettes[NUM_PALS_IN_PRIMARY], &gPlttBufferUnfaded[destOffset], size);
             else
                 LoadPaletteFast(tileset->palettes[NUM_PALS_IN_PRIMARY], destOffset, size);
-            low = NUM_PALS_IN_PRIMARY;
-            high = NUM_PALS_TOTAL;
         }
         else
         {
