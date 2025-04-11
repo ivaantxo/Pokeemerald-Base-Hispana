@@ -339,11 +339,10 @@ u32 FldEff_Shadow(void)
     for (i = MAX_SPRITES - 1; i > -1; i--) // Search backwards, because of CreateSpriteAtEnd
     {
         // Return early if a shadow sprite already exists
-        if (gSprites[i].callback == UpdateShadowFieldEffect &&
-            gSprites[i].sLocalId == gFieldEffectArguments[0] &&
-            gSprites[i].sMapNum == gFieldEffectArguments[1] &&
-            gSprites[i].sMapGroup == gFieldEffectArguments[2]
-        )
+        if (gSprites[i].callback == UpdateShadowFieldEffect
+         && gSprites[i].sLocalId == gFieldEffectArguments[0]
+         && gSprites[i].sMapNum == gFieldEffectArguments[1]
+         && gSprites[i].sMapGroup == gFieldEffectArguments[2])
             return 0;
     }
     objectEventId = GetObjectEventIdByLocalIdAndMap(gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
