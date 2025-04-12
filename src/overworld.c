@@ -1629,11 +1629,9 @@ bool32 MapHasNaturalLight(u8 mapType)
 
 bool32 CurrentMapHasShadows(void)
 {
-    bool32 shouldHaveShadows = TRUE;
-    u32 currentMapType = gMapHeader.mapType;
-    if (currentMapType == MAP_TYPE_UNDERGROUND)
-        shouldHaveShadows = FALSE;
-    return shouldHaveShadows;
+    // Add all conditionals here for maps that shouldn't have shadows
+    // By default only cave maps are excluded from having shadows under object events
+    return (gMapHeader.mapType != MAP_TYPE_UNDERGROUND);
 }
 
 // Update & mix day / night bg palettes (into unfaded)

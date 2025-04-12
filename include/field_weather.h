@@ -166,7 +166,7 @@ void PlayRainStoppingSoundEffect(void);
 u8 IsWeatherChangeComplete(void);
 void SetWeatherScreenFadeOut(void);
 void SetWeatherPalStateIdle(void);
-const u8* SetPaletteColorMapType(u8 paletteIndex, enum ColorMapType colorMapType);
+const u8 *SetPaletteColorMapType(u8 paletteIndex, enum ColorMapType colorMapType);
 void PreservePaletteInWeather(u8 preservedPalIndex);
 void ResetPaletteColorMapType(u8 paletteIndex);
 void ResetPreservedPalettesInWeather(void);

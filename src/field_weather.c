@@ -1170,9 +1170,8 @@ void PreservePaletteInWeather(u8 preservedPalIndex)
 
 void ResetPaletteColorMapType(u8 paletteIndex)
 {
-    if (sPaletteColorMapTypes == sBasePaletteColorMapTypes)
-        return;
-    sFieldEffectPaletteColorMapTypes[paletteIndex] = sBasePaletteColorMapTypes[paletteIndex];
+    if (sPaletteColorMapTypes != sBasePaletteColorMapTypes)
+        sFieldEffectPaletteColorMapTypes[paletteIndex] = sBasePaletteColorMapTypes[paletteIndex];
 }
 
 void ResetPreservedPalettesInWeather(void)
