@@ -174,6 +174,7 @@ void RecordKnownMove(u32 battlerId, u32 move)
     s32 i;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
+
         if (BATTLE_HISTORY->usedMoves[battlerId][i] == move)
             break;
         if (BATTLE_HISTORY->usedMoves[battlerId][i] == MOVE_NONE)
@@ -577,15 +578,6 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
 
     switch (effect)
     {
-    case EFFECT_LEVEL_DAMAGE:
-        median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].level;
-        break;
-    case EFFECT_PSYWAVE:
-        median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].level;
-        break;
-    case EFFECT_FIXED_DAMAGE_ARG:
-        median = maximum = minimum = GetMoveFixedDamage(move);
-        break;
     case EFFECT_MULTI_HIT:
         if (move == MOVE_WATER_SHURIKEN && gBattleMons[damageCalcData->battlerAtk].species == SPECIES_GRENINJA_ASH)
         {
@@ -616,9 +608,6 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     case EFFECT_ENDEAVOR:
         // If target has less HP than user, Endeavor does no damage
         median = maximum = minimum = max(0, gBattleMons[damageCalcData->battlerDef].hp - gBattleMons[damageCalcData->battlerAtk].hp);
-        break;
-    case EFFECT_SUPER_FANG:
-        median = maximum = minimum = max(1, gBattleMons[damageCalcData->battlerDef].hp / 2);
         break;
     case EFFECT_FINAL_GAMBIT:
         median = maximum = minimum = gBattleMons[damageCalcData->battlerAtk].hp;
@@ -1350,7 +1339,7 @@ bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dm
         if (IsMoveUnusable(moveIndex, moves[moveIndex], moveLimitations))
             continue;
 
-        dmg = AI_GetDamage(battlerAtk, battlerDef, moveIndex, AI_DEFENDING, aiData);
+        dmg = AI_GetDamage(battlerDef, battlerAtk, moveIndex, AI_DEFENDING, aiData);
 
         if (dmgMod)
             dmg *= dmgMod;
@@ -3132,9 +3121,9 @@ static inline bool32 DoesBattlerBenefitFromAllVolatileStatus(u32 battler, u32 ab
 
 bool32 ShouldPoison(u32 battlerAtk, u32 battlerDef)
 {
-    u32 defAbility = GetBattlerAbility(battlerDef);
+    u32 defAbility = AI_DATA->abilities[battlerDef];
     // Battler can be poisoned and has move/ability that synergizes with being poisoned
-    if (CanBePoisoned(battlerAtk, battlerDef, GetBattlerAbility(battlerDef)) && (
+    if (CanBePoisoned(battlerAtk, battlerDef, defAbility) && (
         DoesBattlerBenefitFromAllVolatileStatus(battlerDef, defAbility)
         || defAbility == ABILITY_POISON_HEAL
         || (defAbility == ABILITY_TOXIC_BOOST && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))))
@@ -3152,7 +3141,7 @@ bool32 ShouldPoison(u32 battlerAtk, u32 battlerDef)
 
 bool32 ShouldBurn(u32 battlerAtk, u32 battlerDef)
 {
-    u32 defAbility = GetBattlerAbility(battlerDef);
+    u32 defAbility = AI_DATA->abilities[battlerDef];
     // Battler can be burned and has move/ability that synergizes with being burned
     if (CanBeBurned(battlerDef, defAbility) && (
         DoesBattlerBenefitFromAllVolatileStatus(battlerDef, defAbility)
@@ -3186,7 +3175,7 @@ bool32 ShouldFreezeOrFrostbite(u32 battlerAtk, u32 battlerDef)
     }
     else
     {
-        u32 defAbility = GetBattlerAbility(battlerDef);
+        u32 defAbility = AI_DATA->abilities[battlerDef];
         // Battler can be frostbitten and has move/ability that synergizes with being frostbitten
         if (CanBeFrozen(battlerDef) && 
             DoesBattlerBenefitFromAllVolatileStatus(battlerDef, defAbility))
@@ -3206,7 +3195,7 @@ bool32 ShouldFreezeOrFrostbite(u32 battlerAtk, u32 battlerDef)
 
 bool32 ShouldParalyze(u32 battlerAtk, u32 battlerDef)
 {
-    u32 defAbility = GetBattlerAbility(battlerDef);
+    u32 defAbility = AI_DATA->abilities[battlerDef];
     // Battler can be paralyzed and has move/ability that synergizes with being paralyzed
     if (CanBeParalyzed(battlerDef, defAbility) && (
         DoesBattlerBenefitFromAllVolatileStatus(battlerDef, defAbility)))
