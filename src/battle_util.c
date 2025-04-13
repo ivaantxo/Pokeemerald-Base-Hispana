@@ -65,6 +65,7 @@ static u32 GetFlingPowerFromItemId(u32 itemId);
 static void SetRandomMultiHitCounter();
 static u32 GetBattlerItemHoldEffectParam(u32 battler, u32 item);
 static bool32 CanBeInfinitelyConfused(u32 battler);
+static bool32 IsAnyTargetAffected(u32 battlerAtk);
 
 ARM_FUNC NOINLINE static uq4_12_t PercentToUQ4_12(u32 percent);
 ARM_FUNC NOINLINE static uq4_12_t PercentToUQ4_12_Floored(u32 percent);
@@ -4801,8 +4802,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_IMPOSTER:
             {
-                u32 diagonalBattler = BATTLE_OPPOSITE(battler);  
-                if (IsDoubleBattle())  
+                u32 diagonalBattler = BATTLE_OPPOSITE(battler);
+                if (IsDoubleBattle())
                     diagonalBattler = BATTLE_PARTNER(diagonalBattler);
                 if (IsBattlerAlive(diagonalBattler)
                     && !(gBattleMons[diagonalBattler].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
@@ -8213,9 +8214,9 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
             }
             break;
         case HOLD_EFFECT_THROAT_SPRAY:  // Does NOT need to be a damaging move
-            if (gProtectStructs[gBattlerAttacker].targetAffected
+            if (IsSoundMove(gCurrentMove)
              && IsBattlerAlive(gBattlerAttacker)
-             && IsSoundMove(gCurrentMove)
+             && IsAnyTargetAffected(gBattlerAttacker)
              && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)
              && !NoAliveMonsForEitherParty())   // Don't activate if battle will end
             {
@@ -12407,4 +12408,17 @@ bool32 HasWeatherEffect(void)
     }
 
     return TRUE;
+}
+
+static bool32 IsAnyTargetAffected(u32 battlerAtk)
+{
+    for (u32 battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+    {
+        if (battlerAtk == battlerDef)
+            continue;
+
+        if (!(gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT))
+            return TRUE;
+    }
+    return FALSE;
 }
