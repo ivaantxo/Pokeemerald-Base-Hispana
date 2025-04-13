@@ -12,6 +12,8 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
+// General End Turn Effects based on research from smogon from vanilla games:
+// https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/page-64#post-9244179
 enum EndTurnResolutionOrder
 {
     ENDTURN_ORDER,
@@ -64,16 +66,18 @@ enum EndTurnResolutionOrder
     ENDTURN_COUNT,
 };
 
+// Block that handles effects for each individual battler on the field (eg residual damage)
 enum FirstEventBlock
 {
-    FIRST_EVENT_BLOCK_GMAX_MOVE_RESIDUAL,
+    FIRST_EVENT_BLOCK_GMAX_MOVE_RESIDUAL, // Needs to be split
     FIRST_EVENT_BLOCK_SEA_OF_FIRE_DAMAGE,
-    FIRST_EVENT_BLOCK_THRASH,
+    FIRST_EVENT_BLOCK_THRASH, // Thrash isn't handled here in vanilla but for now it is that best place for it.
     FIRST_EVENT_BLOCK_GRASSY_TERRAIN_HEAL,
     FIRST_EVENT_BLOCK_ABILITIES,
     FIRST_EVENT_BLOCK_HEAL_ITEMS,
 };
 
+// Block that tries to remove side statuses
 enum SecondEventBlock
 {
     SECOND_EVENT_BLOCK_REFLECT,
@@ -88,6 +92,7 @@ enum SecondEventBlock
     SECOND_EVENT_BLOCK_AURORA_VEIL,
 };
 
+// Block that handles Uproar, items and non-form changing abilities
 enum ThirdEventBlock
 {
     THIRD_EVENT_BLOCK_UPROAR,
@@ -95,6 +100,7 @@ enum ThirdEventBlock
     THIRD_EVENT_BLOCK_ITEMS,
 };
 
+// Form changing abilities and Eject Pack
 enum FourthEventBlock
 {
     FOURTH_EVENT_BLOCK_HUNGER_SWITCH,
@@ -433,7 +439,7 @@ static bool32 HandleEndTurnFirstEventBlock(u32 battler)
         }
         gBattleStruct->eventBlockCounter++;
         break;
-    case FIRST_EVENT_BLOCK_THRASH: // TODO: Move to moveend / not sure. Might be best to keep here
+    case FIRST_EVENT_BLOCK_THRASH:
         if (gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
         {
             gBattleMons[battler].status2 -= STATUS2_LOCK_CONFUSE_TURN(1);
