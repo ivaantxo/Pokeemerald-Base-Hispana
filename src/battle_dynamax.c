@@ -471,12 +471,13 @@ void ChooseDamageNonTypesString(u8 type)
 void BS_UpdateDynamax(void)
 {
     NATIVE_ARGS();
-    struct Pokemon *mon = GetPartyBattlerData(gBattlerAttacker);
+    u32 battler = gBattleScripting.battler;
+    struct Pokemon *mon = GetPartyBattlerData(battler);
 
-    if (!IsGigantamaxed(gBattlerAttacker)) // RecalcBattlerStats will get called on form change.
-        RecalcBattlerStats(gBattlerAttacker, mon, GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX);
+    if (!IsGigantamaxed(battler)) // RecalcBattlerStats will get called on form change.
+        RecalcBattlerStats(battler, mon, GetActiveGimmick(battler) == GIMMICK_DYNAMAX);
 
-    UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], mon, HEALTHBOX_ALL);
+    UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_ALL);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
