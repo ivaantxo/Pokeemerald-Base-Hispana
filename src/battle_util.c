@@ -8449,9 +8449,6 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
                 gBattlescriptCurrInstr = BattleScript_WhiteHerbRet;
             }
             break;
-        case HOLD_EFFECT_EJECT_PACK:
-            effect = TryEjectPack(battler, ITEMEFFECT_ON_SWITCH_IN);
-            break;
         }
         break;
     }
@@ -9229,7 +9226,7 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData
             basePower *= 2;
         break;
     case EFFECT_LASH_OUT:
-        if (gProtectStructs[battlerAtk].statFell)
+        if (gProtectStructs[battlerAtk].lashOutAffected)
             basePower *= 2;
         break;
     case EFFECT_EXPLOSION:
