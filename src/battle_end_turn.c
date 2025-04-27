@@ -357,7 +357,6 @@ static bool32 HandleEndTurnFutureSight(u32 battler)
         gBattlerAttacker = gWishFutureKnock.futureSightBattlerIndex[battler];
         gCurrentMove = gWishFutureKnock.futureSightMove[battler];
 
-        party = GetSideParty(GetBattlerSide(gBattlerAttacker));
         if (!IsFutureSightAttackerInParty(gBattlerAttacker, gBattlerTarget))
             SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
 
