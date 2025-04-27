@@ -335,8 +335,6 @@ static bool32 HandleEndTurnFutureSight(u32 battler)
 
     if (gWishFutureKnock.futureSightCounter[battler] == gBattleTurnCounter)
     {
-        struct Pokemon *party;
-
         if (gWishFutureKnock.futureSightCounter[battler] == gBattleTurnCounter
          && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(battler)] <= gBattleTurnCounter)
         {
