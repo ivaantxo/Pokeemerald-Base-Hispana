@@ -4151,6 +4151,12 @@ void SetupAISwitchingData(u32 battler, u32 opposingBattler, enum SwitchType swit
         AI_DATA->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, PREDICT_SWITCH_CHANCE);
     }
 
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)
+    {
+        AI_DATA->predictedMove[opposingBattler] = gBattleMons[opposingBattler].moves[BattleAI_PredictMove(battler, opposingBattler)];
+        DebugPrintf("Predicted move: %d", AI_DATA->predictedMove[opposingBattler]);
+    }
+
     // AI's data
     AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, switchType);
     if (ShouldSwitch(battler))
@@ -4182,11 +4188,6 @@ static void HandleTurnActionSelectionState(void)
 
                 // Setup battler data
                 BattleAI_SetupAIData(0xF, battler);
-                if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)
-                {
-                    AI_DATA->predictedMove[opposingBattler] = BattleAI_PredictMove(battler, opposingBattler);
-                    DebugPrintf("Predicted move: %d", AI_DATA->predictedMove[opposingBattler]);
-                }
 
                 SetupAISwitchingData(battler, opposingBattler, switchType);
 
