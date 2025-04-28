@@ -134,7 +134,6 @@ enum CmdVarious
     VARIOUS_TRY_ELECTRIFY,
     VARIOUS_TRY_SOAK,
     VARIOUS_TRY_LAST_RESORT,
-    VARIOUS_SET_ARG_TO_BATTLE_DAMAGE,
     VARIOUS_TRY_AUTOTOMIZE,
     VARIOUS_ABILITY_POPUP,
     VARIOUS_JUMP_IF_TARGET_ALLY,
@@ -287,6 +286,7 @@ enum MoveEndEffects
     MOVEEND_LIFEORB_SHELLBELL, // Includes shell bell, throat spray, etc
     MOVEEND_EMERGENCY_EXIT,
     MOVEEND_EJECT_PACK,
+    MOVEEND_HIT_ESCAPE,
     MOVEEND_OPPORTUNIST, // Occurs after other stat change items/abilities to try and copy the boosts
     MOVEEND_PICKPOCKET,
     MOVEEND_WHITE_HERB,

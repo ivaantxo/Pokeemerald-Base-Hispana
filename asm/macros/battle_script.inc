@@ -829,7 +829,7 @@
 	.4byte \failInstr
 	.endm
 
-	.macro damagetohalftargethp
+	.macro unused_0x94
 	.byte 0x94
 	.endm
 
@@ -877,11 +877,11 @@
 	.byte 0x9e
 	.endm
 
-	.macro dmgtolevel
+	.macro unused_0x9f
 	.byte 0x9f
 	.endm
 
-	.macro psywavedamageeffect
+	.macro unused_0xA0
 	.byte 0xa0
 	.endm
 
@@ -1007,7 +1007,7 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro unused_bb
+	.macro tryhealingitem
 	.byte 0xbb
 	.endm
 
@@ -1140,9 +1140,8 @@
 	.4byte \failInstr
 	.endm
 
-	.macro trywish turnNumber:req, failInstr:req
+	.macro trywish failInstr:req
 	.byte 0xd4
-	.byte \turnNumber
 	.4byte \failInstr
 	.endm
 
@@ -1331,7 +1330,7 @@
 	.byte \stat
 	.endm
 
-	.macro jumpifoppositegenders jumpInstr:req
+	.macro jumpifcaptivateaffected jumpInstr:req
 	.byte 0xfc
 	.4byte \jumpInstr
 	.endm
@@ -1367,6 +1366,10 @@
 	callnative BS_RestoreAttacker
 	.endm
 
+	.macro jumpifintimidateabilityprevented
+	callnative BS_JumpIfIntimidateAbilityPrevented
+	.endm
+
 	.macro metalburstdamagecalculator failInstr:req
 	callnative BS_CalcMetalBurstDmg
 	.4byte \failInstr
@@ -1381,6 +1384,10 @@
 	.macro itemstatchangeeffects battler:req
 	callnative BS_RunStatChangeItems
 	.byte \battler
+	.endm
+
+	.macro tryintimidatejectpack
+	callnative BS_TryIntimidatEjectpack
 	.endm
 
 	.macro allyswitchswapbattlers
@@ -1505,12 +1512,6 @@
 
 	.macro jumpifshelltrap battler:req, jumpInstr:req
 	callnative BS_JumpIfShellTrap
-	.byte \battler
-	.4byte \jumpInstr
-	.endm
-
-	.macro jumpifemergencyexited battler:req, jumpInstr:req
-	callnative BS_JumpIfEmergencyExited
 	.byte \battler
 	.4byte \jumpInstr
 	.endm
@@ -1741,10 +1742,6 @@
 	.macro storehealingwish battler:req
 	callnative BS_StoreHealingWish
 	.byte \battler
-	.endm
-
-	.macro hitswitchtargetfailed
-	callnative BS_HitSwitchTargetFailed
 	.endm
 
 	.macro tryrevivalblessing, failInstr:req
@@ -2032,10 +2029,6 @@
 	.macro jumpifcantuselastresort battler:req, jumpInstr:req
 	various \battler, VARIOUS_TRY_LAST_RESORT
 	.4byte \jumpInstr
-	.endm
-
-	.macro setargtobattledamage
-	various BS_ATTACKER, VARIOUS_SET_ARG_TO_BATTLE_DAMAGE
 	.endm
 
 	.macro tryautotomize battler:req, failInstr:req
