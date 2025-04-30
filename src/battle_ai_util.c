@@ -87,7 +87,7 @@ bool32 AI_IsSlower(u32 battlerAi, u32 battlerDef, u32 move)
 
 u32 GetAIChosenMove(u32 battlerId)
 {
-    return (gBattleMons[battlerId].moves[gAiBattleData->moveOrAction[battlerId]]);
+    return (gBattleMons[battlerId].moves[gAiBattleData->chosenMoveIndex[battlerId]]);
 }
 
 bool32 AI_RandLessThan(u32 val)
@@ -3184,8 +3184,8 @@ bool32 ShouldFreezeOrFrostbite(u32 battlerAtk, u32 battlerDef, u32 abilityDef)
     else
     {
         // Battler can be frostbitten and has move/ability that synergizes with being frostbitten
-        if (CanBeFrozen(battlerAtk, battlerDef, abilityDef) &&
-            DoesBattlerBenefitFromAllVolatileStatus(battlerDef, abilityDef))
+        if (CanBeFrozen(battlerAtk, battlerDef, abilityDef)
+            && DoesBattlerBenefitFromAllVolatileStatus(battlerDef, abilityDef))
         {
             if (battlerAtk == battlerDef) // Targeting self
                 return TRUE;
