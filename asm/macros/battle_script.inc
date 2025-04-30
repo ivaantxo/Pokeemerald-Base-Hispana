@@ -1100,7 +1100,7 @@
 	.byte \battler
 	.endm
 
-	.macro callterrainattack
+	.macro callenvironmentattack
 	.byte 0xcc
 	.endm
 
@@ -1254,7 +1254,7 @@
 	.4byte \failInstr
 	.endm
 
-	.macro settypetoterrain failInstr:req
+	.macro settypetoenvironment failInstr:req
 	.byte 0xeb
 	.4byte \failInstr
 	.endm
