@@ -58,6 +58,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_DynamicFunc(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
+static s32 AI_CheckPpStall(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 
 static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
 {
@@ -86,7 +87,7 @@ static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
     [22] = NULL,                     // Unused
     [23] = AI_PredictSwitch,         // AI_FLAG_PREDICT_SWITCH
     [24] = NULL,                     // Unused
-    [25] = NULL,                     // Unused
+    [25] = AI_CheckPpStall,          // AI_FLAG_PP_STALL_PREVENTION
     [26] = NULL,                     // Unused
     [27] = NULL,                     // Unused
     [28] = AI_DynamicFunc,          // AI_FLAG_DYNAMIC_FUNC
@@ -552,6 +553,52 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
         // We add to existing to compound multiple calls
         gBattleStruct->aiDelayCycles += CycleCountEnd();
     AI_DATA->aiCalcInProgress = FALSE;
+}
+
+u32 GetPartyMonAbility(struct Pokemon *mon)
+{
+    //  Doesn't have any special handling yet
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+    u32 ability = gSpeciesInfo[species].abilities[GetMonData(mon, MON_DATA_ABILITY_NUM)];
+    return ability;
+}
+
+static u32 PpStallReduction(u32 move, u32 battlerAtk)
+{
+    if (move == MOVE_NONE)
+        return 0;
+    u32 tempBattleMonIndex = 0;
+    u32 totalStallValue = 0;
+    u32 returnValue = 0;
+    struct BattlePokemon backupBattleMon;
+    memcpy(&backupBattleMon, &gBattleMons[tempBattleMonIndex], sizeof(struct BattlePokemon));
+    for (u32 partyIndex = 0; partyIndex < PARTY_SIZE; partyIndex++)
+    {
+        u32 currentStallValue = gAiBattleData->playerStallMons[partyIndex];
+        if (currentStallValue == 0 || GetMonData(&gPlayerParty[partyIndex], MON_DATA_HP) == 0)
+            continue;
+        PokemonToBattleMon(&gPlayerParty[partyIndex], &gBattleMons[tempBattleMonIndex]);
+        u32 species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);
+        u32 abilityAtk = ABILITY_NONE;
+        u32 abilityDef = GetPartyMonAbility(&gPlayerParty[partyIndex]);
+        u32 moveType = GetBattleMoveType(move); //  Probably doesn't handle dynamic types right now
+        if (CanAbilityAbsorbMove(battlerAtk, tempBattleMonIndex, abilityDef, move, moveType, ABILITY_CHECK_TRIGGER)
+         || CanAbilityBlockMove(battlerAtk, tempBattleMonIndex, abilityAtk, abilityDef, move, ABILITY_CHECK_TRIGGER)
+         || (CalcPartyMonTypeEffectivenessMultiplier(move, species, abilityDef) == 0))
+        {
+            totalStallValue += currentStallValue;
+        }
+    }
+
+    for (u32 i = 0; returnValue == 0 && i < totalStallValue; i++)
+    {
+        if (RandomPercentage(RNG_AI_PP_STALL_DISREGARD_MOVE, (100 - PP_STALL_DISREGARD_MOVE_PERCENTAGE)))
+            returnValue = PP_STALL_SCORE_REDUCTION;
+    }
+
+    memcpy(&gBattleMons[tempBattleMonIndex], &backupBattleMon, sizeof(struct BattlePokemon));
+
+    return returnValue;
 }
 
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
@@ -5634,6 +5681,13 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     // This must be last or the player can gauge whether the AI is predicting based on how long it thinks
     if (!IsBattlerPredictedToSwitch(battlerDef))
         return unmodifiedScore;
+    return score;
+}
+
+static s32 AI_CheckPpStall(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
+{
+    if (GetBattlerSide(battlerAtk) == B_SIDE_OPPONENT)
+        score -= PpStallReduction(move, battlerAtk);
     return score;
 }
 
