@@ -6828,17 +6828,7 @@ static void TrySwapSkyDropTargets(u32 battlerAtk, u32 battlerPartner)
 
 static void TrySwapStickyWebBattlerId(u32 battlerAtk, u32 battlerPartner)
 {
-    u32 atkSide = GetBattlerSide(battlerAtk);
     u32 oppSide = GetBattlerSide(BATTLE_OPPOSITE(battlerAtk));
-
-    // not all of these are needed to be swapped, but are done so to be robust to anything in the future that might care about them
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, reflectBattlerId);
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, lightscreenBattlerId);
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, mistBattlerId);
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, safeguardBattlerId);
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, auroraVeilBattlerId);
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, tailwindBattlerId);
-    TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, atkSide, luckyChantBattlerId);
 
     // if we've set sticky web on the opposing side, need to swap stickyWebBattlerId for mirror armor
     TRY_SIDE_TIMER_BATTLER_ID_SWAP(battlerAtk, battlerPartner, oppSide, stickyWebBattlerId);
