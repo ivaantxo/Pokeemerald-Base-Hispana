@@ -2331,7 +2331,6 @@ static inline bool32 TryActivateWeakenessBerry(u32 battlerDef)
 {
     if (gSpecialStatuses[battlerDef].berryReduced && gBattleMons[battlerDef].item != ITEM_NONE)
     {
-        gSpecialStatuses[battlerDef].berryReduced = FALSE;
         gBattleScripting.battler = battlerDef;
         gLastUsedItem = gBattleMons[battlerDef].item;
         gBattleStruct->ateBerry[battlerDef & BIT_SIDE] |= 1u << gBattlerPartyIndexes[battlerDef];
@@ -6187,14 +6186,16 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
     return FALSE;
 }
 
-#define SYMBIOSIS_CHECK(battler, ally)                             \
-    GetBattlerAbility(ally) == ABILITY_SYMBIOSIS                   \
-    && gBattleMons[battler].item == ITEM_NONE                      \
-    && gBattleMons[ally].item != ITEM_NONE                         \
-    && CanBattlerGetOrLoseItem(battler, gBattleMons[ally].item)    \
-    && CanBattlerGetOrLoseItem(ally, gBattleMons[ally].item)       \
-    && IsBattlerAlive(battler)                                     \
-    && IsBattlerAlive(ally)
+static inline bool32 TryTriggerSymbiosis(u32 battler, u32 ally)
+{
+    return GetBattlerAbility(ally) == ABILITY_SYMBIOSIS
+        && gBattleMons[battler].item == ITEM_NONE
+        && gBattleMons[ally].item != ITEM_NONE
+        && CanBattlerGetOrLoseItem(battler, gBattleMons[ally].item)
+        && CanBattlerGetOrLoseItem(ally, gBattleMons[ally].item)
+        && IsBattlerAlive(battler)
+        && IsBattlerAlive(ally);
+}
 
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
 {
@@ -7354,7 +7355,7 @@ static void Cmd_moveend(void)
             {
                 if ((gSpecialStatuses[i].berryReduced
                       || (B_SYMBIOSIS_GEMS >= GEN_7 && gSpecialStatuses[i].gemBoost))
-                    && SYMBIOSIS_CHECK(i, BATTLE_PARTNER(i)))
+                    && TryTriggerSymbiosis(i, BATTLE_PARTNER(i)))
                 {
                     BestowItem(BATTLE_PARTNER(i), i);
                     gLastUsedAbility = gBattleMons[BATTLE_PARTNER(i)].ability;
@@ -9108,7 +9109,7 @@ static bool32 TrySymbiosis(u32 battler, u32 itemId)
         && (B_SYMBIOSIS_GEMS < GEN_7 || !(gSpecialStatuses[battler].gemBoost))
         && gCurrentMove != MOVE_FLING //Fling and damage-reducing berries are handled separately.
         && !gSpecialStatuses[battler].berryReduced
-        && SYMBIOSIS_CHECK(battler, BATTLE_PARTNER(battler)))
+        && TryTriggerSymbiosis(battler, BATTLE_PARTNER(battler)))
     {
         BestowItem(BATTLE_PARTNER(battler), battler);
         gLastUsedAbility = gBattleMons[BATTLE_PARTNER(battler)].ability;
@@ -17020,7 +17021,7 @@ void BS_TrySymbiosis(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     //called by Bestow, Fling, and Bug Bite, which don't work with Cmd_removeitem.
     u32 partner = BATTLE_PARTNER(battler);
-    if (SYMBIOSIS_CHECK(battler, partner))
+    if (TryTriggerSymbiosis(battler, partner))
     {
         BestowItem(partner, battler);
         gLastUsedAbility = gBattleMons[partner].ability;
