@@ -330,6 +330,9 @@ void SetupAIPredictionData(u32 battler, enum SwitchType switchType)
         AI_DATA->predictedMove[opposingBattler] = gBattleMons[opposingBattler].moves[BattleAI_PredictMove(battler, opposingBattler)];
         DebugPrintf("Predicted move: %d", AI_DATA->predictedMove[opposingBattler]);
         ModifySwitchAfterMoveScoring(opposingBattler);
+
+        // Determine whether AI will use predictions this turn
+        AI_DATA->predictingMove = RandomPercentage(RNG_AI_PREDICT_MOVE, PREDICT_MOVE_CHANCE);
     }
 }
 

@@ -456,10 +456,8 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     struct Pokemon *party;
     u16 monAbility, aiMove;
     u32 opposingBattler = GetOppositeBattler(battler);
-    u32 incomingMove = (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES) ? AI_DATA->predictedMove[opposingBattler] : AI_DATA->lastUsedMove[opposingBattler];
+    u32 incomingMove = ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES) && AI_DATA->predictingMove) ? AI_DATA->predictedMove[opposingBattler] : AI_DATA->lastUsedMove[opposingBattler];
     u32 incomingType = GetMoveType(incomingMove);
-    u32 predictedMove = incomingMove; // Update for move prediction
-    u32 predictedType = GetMoveType(predictedMove);
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     s32 i, j;
 
@@ -502,38 +500,38 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     }
 
     // Create an array of possible absorb abilities so the AI considers all of them
-    if (predictedType == TYPE_FIRE)
+    if (incomingType == TYPE_FIRE)
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_FLASH_FIRE;
     }
-    else if (predictedType == TYPE_WATER || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_WATER))
+    else if (incomingType == TYPE_WATER || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_WATER))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WATER_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_DRY_SKIN;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_STORM_DRAIN;
     }
-    else if (predictedType == TYPE_ELECTRIC || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_ELECTRIC))
+    else if (incomingType == TYPE_ELECTRIC || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_ELECTRIC))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_VOLT_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_MOTOR_DRIVE;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LIGHTNING_ROD;
     }
-    else if (predictedType == TYPE_GRASS || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_GRASS))
+    else if (incomingType == TYPE_GRASS || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_GRASS))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SAP_SIPPER;
     }
-    else if (predictedType == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_GROUND))
+    else if (incomingType == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_GROUND))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EARTH_EATER;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LEVITATE;
     }
-    else if (IsSoundMove(predictedMove) || (isOpposingBattlerChargingOrInvulnerable && IsSoundMove(incomingMove)))
+    else if (IsSoundMove(incomingMove) || (isOpposingBattlerChargingOrInvulnerable && IsSoundMove(incomingMove)))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SOUNDPROOF;
     }
-    else if (IsWindMove(predictedMove) || (isOpposingBattlerChargingOrInvulnerable && IsWindMove(incomingMove)))
+    else if (IsWindMove(incomingMove) || (isOpposingBattlerChargingOrInvulnerable && IsWindMove(incomingMove)))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WIND_RIDER;
     }
