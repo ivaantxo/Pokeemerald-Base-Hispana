@@ -4517,3 +4517,10 @@ bool32 HasBattlerSideAbility(u32 battler, u32 ability, struct AiLogicData *aiDat
         return TRUE;
     return FALSE;
 }
+
+u32 GetThinkingBattler(u32 battler)
+{
+    if (AI_DATA->aiPredictionInProgress)
+        return AI_DATA->battlerDoingPrediction;
+    return battler;
+}
