@@ -324,8 +324,13 @@ void SetupAIPredictionData(u32 battler, enum SwitchType switchType)
         AI_DATA->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, PREDICT_SWITCH_CHANCE);
     }
 
-    // TODO Move prediction
-    // ModifySwitchAfterMoveScoring(opposingBattler);
+    // Move prediction
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)
+    {
+        AI_DATA->predictedMove[opposingBattler] = gBattleMons[opposingBattler].moves[BattleAI_PredictMove(battler, opposingBattler)];
+        DebugPrintf("Predicted move: %d", AI_DATA->predictedMove[opposingBattler]);
+        ModifySwitchAfterMoveScoring(opposingBattler);
+    }
 }
 
 void ComputeBattlerDecisions(u32 battler)
