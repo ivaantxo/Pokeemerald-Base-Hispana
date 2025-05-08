@@ -268,7 +268,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     gAiBattleData->chosenTarget[battler] = gBattlerTarget;
 
     // Initialize move prediction scores
-    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVE)
     {
         u32 opposingBattler = GetOppositeBattler(battler);
         moveLimitationsTarget = AI_DATA->moveLimitations[opposingBattler];
@@ -323,7 +323,7 @@ void SetupAIPredictionData(u32 battler, enum SwitchType switchType)
     }
 
     // Move prediction
-    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVE)
     {
         AI_DATA->predictedMove[opposingBattler] = gBattleMons[opposingBattler].moves[BattleAI_ChooseMoveIndex(opposingBattler)];
         DebugPrintf("Predicted move: %d", AI_DATA->predictedMove[opposingBattler]);
@@ -971,7 +971,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     bool32 isDoubleBattle = IsValidDoubleBattle(battlerAtk);
     u32 i;
     u32 weather;
-    u32 predictedMove = aiData->lastUsedMove[battlerDef];
+    u32 predictedMove = ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_PREDICT_MOVE) && aiData->predictingMove) ? AI_DATA->predictedMove[battlerDef] : aiData->lastUsedMove[battlerDef];
     u32 abilityAtk = aiData->abilities[battlerAtk];
     u32 abilityDef = aiData->abilities[battlerDef];
     s32 atkPriority = GetBattleMovePriority(battlerAtk, abilityAtk, move);
@@ -994,8 +994,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (gBattleStruct->battlerState[battlerDef].commandingDondozo)
         RETURN_SCORE_MINUS(20);
 
-    // Don't setup into expected Focus Punch. Revisit alongside predictedMove with move prediction
-    if (GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS && moveEffect != EFFECT_SLEEP
+    // Don't setup into expected Focus Punch.
+    if (GetMoveCategory(move) == DAMAGE_CATEGORY_STATUS && moveEffect != EFFECT_SLEEP && GetMoveEffect(predictedMove) != EFFECT_FOCUS_PUNCH
         && GetMoveEffect(GetBestDmgMoveFromBattler(battlerDef, battlerAtk, AI_DEFENDING)) == EFFECT_FOCUS_PUNCH && RandomPercentage(RNG_AI_STATUS_FOCUS_PUNCH, STATUS_MOVE_FOCUS_PUNCH_CHANCE))
     {
         RETURN_SCORE_MINUS(20);
@@ -2900,7 +2900,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     bool32 partnerProtecting = (partnerEffect == EFFECT_PROTECT);
     bool32 attackerHasBadAbility = (gAbilitiesInfo[aiData->abilities[battlerAtk]].aiRating < 0);
     bool32 partnerHasBadAbility = (gAbilitiesInfo[atkPartnerAbility].aiRating < 0);
-    u32 predictedMove = aiData->lastUsedMove[battlerDef];
+    u32 predictedMove = ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_PREDICT_MOVE) && aiData->predictingMove) ? AI_DATA->predictedMove[battlerDef] : aiData->lastUsedMove[battlerDef];
 
     SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetBattleMoveType(move);
@@ -3471,7 +3471,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
     uq4_12_t effectiveness = aiData->effectiveness[battlerAtk][battlerDef][movesetIndex];
 
     s32 score = 0;
-    u32 predictedMove = aiData->lastUsedMove[battlerDef];
+    u32 predictedMove = ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_PREDICT_MOVE) && aiData->predictingMove) ? AI_DATA->predictedMove[battlerDef] : aiData->lastUsedMove[battlerDef];
     u32 predictedType = GetMoveType(predictedMove);
     u32 predictedMoveSlot = GetMoveSlot(GetMovesArray(battlerDef), predictedMove);
     bool32 isDoubleBattle = IsValidDoubleBattle(battlerAtk);
@@ -5579,6 +5579,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     enum BattleMoveEffects moveEffect = GetMoveEffect(move);
     struct AiLogicData *aiData = AI_DATA;
     uq4_12_t effectiveness = aiData->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
+    u32 predictedMove = ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_PREDICT_MOVE) && aiData->predictingMove) ? AI_DATA->predictedMove[battlerDef] : aiData->lastUsedMove[battlerDef];
 
     // Switch benefit
     switch (moveEffect)
@@ -5590,8 +5591,8 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             ADJUST_SCORE(GOOD_EFFECT);
         else if (hitsToKO == 1)
             ADJUST_SCORE(BEST_EFFECT);
-        // else if (IsPredictedToUsePursuitableMove(battlerDef, battlerAtk) && !MoveWouldHitFirst(move, battlerAtk, battlerDef)) //Pursuit against fast U-Turn
-        //     ADJUST_SCORE(GOOD_EFFECT);
+        else if (IsSwitchOutEffect(GetMoveEffect(predictedMove)) && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_SLOWER) // Pursuit against fast U-Turn
+            ADJUST_SCORE(DECENT_EFFECT);
         break;
     }
 

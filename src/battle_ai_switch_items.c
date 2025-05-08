@@ -449,14 +449,14 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     struct Pokemon *party;
     u16 monAbility, aiMove;
     u32 opposingBattler = GetOppositeBattler(battler);
-    u32 incomingMove = ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES) && AI_DATA->predictingMove) ? AI_DATA->predictedMove[opposingBattler] : AI_DATA->lastUsedMove[opposingBattler];
+    u32 incomingMove = ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVE) && AI_DATA->predictingMove) ? AI_DATA->predictedMove[opposingBattler] : AI_DATA->lastUsedMove[opposingBattler];
     u32 incomingType = GetMoveType(incomingMove);
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     s32 i, j;
 
     if (!(AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
-    if (gBattleStruct->prevTurnSpecies[battler] != gBattleMons[battler].species && !(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVES)) // AI mon has changed, player's behaviour no longer reliable; note to override this if using AI_FLAG_PREDICT_MOVE
+    if (gBattleStruct->prevTurnSpecies[battler] != gBattleMons[battler].species && !(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_PREDICT_MOVE)) // AI mon has changed, player's behaviour no longer reliable; override this if using AI_FLAG_PREDICT_MOVE
         return FALSE;
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING_STAY_IN, STAY_IN_ABSORBING_PERCENTAGE) || AI_DATA->aiPredictionInProgress))
         return FALSE;
