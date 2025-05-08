@@ -1153,3 +1153,27 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if all moves 
         TURN { EXPECT_SWITCH(opponent, 1); MOVE(player, MOVE_ROOST); }
     }
 }
+
+AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if Palafin-Zero isn't transformed yet")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_FINIZEN);
+        OPPONENT(SPECIES_PALAFIN_ZERO);
+        OPPONENT(SPECIES_FINIZEN);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("Switch AI: AI will use pivot move to activate Palafin's Zero to Hero rather than hard switching")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_FINIZEN);
+        OPPONENT(SPECIES_PALAFIN_ZERO) { Moves(MOVE_FLIP_TURN); }
+        OPPONENT(SPECIES_FINIZEN);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); EXPECT_MOVE(opponent, MOVE_FLIP_TURN); EXPECT_SEND_OUT(opponent, 1); }
+    }
+}
