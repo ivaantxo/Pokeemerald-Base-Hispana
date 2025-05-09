@@ -58,6 +58,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_DynamicFunc(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
+static s32 AI_CheckPpStall(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 
 static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
 {
@@ -73,26 +74,58 @@ static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
     [9] = AI_PowerfulStatus,         // AI_FLAG_POWERFUL_STATUS
     [10] = NULL,                     // AI_FLAG_NEGATE_UNAWARE
     [11] = NULL,                     // AI_FLAG_WILL_SUICIDE
-    [12] = NULL,                     // Unused
-    [13] = NULL,                     // Unused
-    [14] = NULL,                     // Unused
-    [15] = NULL,                     // Unused
-    [16] = NULL,                     // Unused
-    [17] = NULL,                     // Unused
-    [18] = NULL,                     // Unused
-    [19] = NULL,                     // Unused
-    [20] = NULL,                     // Unused
-    [21] = NULL,                     // Unused
-    [22] = NULL,                     // Unused
+    [12] = NULL,                     // AI_FLAG_PREFER_STATUS_MOVES
+    [13] = NULL,                     // AI_FLAG_STALL
+    [14] = NULL,                     // AI_FLAG_SMART_SWITCHING
+    [15] = NULL,                     // AI_FLAG_ACE_POKEMON
+    [16] = NULL,                     // AI_FLAG_OMNISCIENT
+    [17] = NULL,                     // AI_FLAG_SMART_MON_CHOICES
+    [18] = NULL,                     // AI_FLAG_CONSERVATIVE
+    [19] = NULL,                     // AI_FLAG_SEQUENCE_SWITCHING
+    [20] = NULL,                     // AI_FLAG_DOUBLE_ACE_POKEMON
+    [21] = NULL,                     // AI_FLAG_WEIGH_ABILITY_PREDICTION
+    [22] = NULL,                     // AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE
     [23] = AI_PredictSwitch,         // AI_FLAG_PREDICT_SWITCH
-    [24] = NULL,                     // Unused
-    [25] = NULL,                     // Unused
-    [26] = NULL,                     // Unused
+    [24] = NULL,                     // AI_FLAG_PREDICT_INCOMING_MON
+    [25] = AI_CheckPpStall,          // AI_FLAG_PP_STALL_PREVENTION
+    [26] = NULL,                     // AI_FLAG_PREDICT_MOVE
     [27] = NULL,                     // Unused
-    [28] = AI_DynamicFunc,          // AI_FLAG_DYNAMIC_FUNC
-    [29] = AI_Roaming,              // AI_FLAG_ROAMING
-    [30] = AI_Safari,               // AI_FLAG_SAFARI
-    [31] = AI_FirstBattle,          // AI_FLAG_FIRST_BATTLE
+    [28] = NULL,                     // Unused
+    [29] = NULL,                     // Unused
+    [30] = NULL,                     // Unused
+    [31] = NULL,                     // Unused
+    [32] = NULL,                     // Unused
+    [33] = NULL,                     // Unused
+    [34] = NULL,                     // Unused
+    [35] = NULL,                     // Unused
+    [36] = NULL,                     // Unused
+    [37] = NULL,                     // Unused
+    [38] = NULL,                     // Unused
+    [39] = NULL,                     // Unused
+    [40] = NULL,                     // Unused
+    [41] = NULL,                     // Unused
+    [42] = NULL,                     // Unused
+    [43] = NULL,                     // Unused
+    [44] = NULL,                     // Unused
+    [45] = NULL,                     // Unused
+    [46] = NULL,                     // Unused
+    [47] = NULL,                     // Unused
+    [48] = NULL,                     // Unused
+    [49] = NULL,                     // Unused
+    [50] = NULL,                     // Unused
+    [51] = NULL,                     // Unused
+    [52] = NULL,                     // Unused
+    [53] = NULL,                     // Unused
+    [54] = NULL,                     // Unused
+    [55] = NULL,                     // Unused
+    [56] = NULL,                     // Unused
+    [57] = NULL,                     // Unused
+    [58] = NULL,                     // Unused
+    [59] = NULL,                     // Unused
+    [60] = AI_DynamicFunc,          // AI_FLAG_DYNAMIC_FUNC
+    [61] = AI_Roaming,              // AI_FLAG_ROAMING
+    [62] = AI_Safari,               // AI_FLAG_SAFARI
+    [63] = AI_FirstBattle,          // AI_FLAG_FIRST_BATTLE
 };
 
 // Functions
@@ -124,10 +157,10 @@ void BattleAI_SetupItems(void)
     }
 }
 
-static u32 GetWildAiFlags(void)
+static u64 GetWildAiFlags(void)
 {
     u32 avgLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
-    u32 flags = 0;
+    u64 flags = 0;
 
     if (IsDoubleBattle())
         avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL)) / 2;
@@ -146,9 +179,9 @@ static u32 GetWildAiFlags(void)
     return flags;
 }
 
-static u32 GetAiFlags(u16 trainerId)
+static u64 GetAiFlags(u16 trainerId)
 {
-    u32 flags = 0;
+    u64 flags = 0;
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_HAS_AI) && !IsWildMonSmart())
         return 0;
@@ -196,55 +229,55 @@ static u32 GetAiFlags(u16 trainerId)
 void BattleAI_SetupFlags(void)
 {
     if (IsAiVsAiBattle())
-        gAiThinkingStruct->flags[B_POSITION_PLAYER_LEFT] = GetAiFlags(gPartnerTrainerId);
+        gAiThinkingStruct->aiFlags[B_POSITION_PLAYER_LEFT] = GetAiFlags(gPartnerTrainerId);
     else
-        gAiThinkingStruct->flags[B_POSITION_PLAYER_LEFT] = 0; // player has no AI
+        gAiThinkingStruct->aiFlags[B_POSITION_PLAYER_LEFT] = 0; // player has no AI
 
     if (DEBUG_OVERWORLD_MENU && gIsDebugBattle)
     {
-        gAiThinkingStruct->flags[B_POSITION_OPPONENT_LEFT] = gDebugAIFlags;
-        gAiThinkingStruct->flags[B_POSITION_OPPONENT_RIGHT] = gDebugAIFlags;
+        gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_LEFT] = gDebugAIFlags;
+        gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_RIGHT] = gDebugAIFlags;
         return;
     }
 
     if (IsWildMonSmart() && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER)))
     {
         // smart wild AI
-        gAiThinkingStruct->flags[B_POSITION_OPPONENT_LEFT] = GetAiFlags(0xFFFF);
-        gAiThinkingStruct->flags[B_POSITION_OPPONENT_RIGHT] = GetAiFlags(0xFFFF);
+        gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_LEFT] = GetAiFlags(0xFFFF);
+        gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_RIGHT] = GetAiFlags(0xFFFF);
     }
     else
     {
-        gAiThinkingStruct->flags[B_POSITION_OPPONENT_LEFT] = GetAiFlags(TRAINER_BATTLE_PARAM.opponentA);
+        gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_LEFT] = GetAiFlags(TRAINER_BATTLE_PARAM.opponentA);
         if (TRAINER_BATTLE_PARAM.opponentB != 0)
-            gAiThinkingStruct->flags[B_POSITION_OPPONENT_RIGHT] = GetAiFlags(TRAINER_BATTLE_PARAM.opponentB);
+            gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_RIGHT] = GetAiFlags(TRAINER_BATTLE_PARAM.opponentB);
         else
-            gAiThinkingStruct->flags[B_POSITION_OPPONENT_RIGHT] = gAiThinkingStruct->flags[B_POSITION_OPPONENT_LEFT];
+            gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_RIGHT] = gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_LEFT];
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
     {
-        gAiThinkingStruct->flags[B_POSITION_PLAYER_RIGHT] = GetAiFlags(gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE));
+        gAiThinkingStruct->aiFlags[B_POSITION_PLAYER_RIGHT] = GetAiFlags(gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE));
     }
     else if (IsDoubleBattle() && IsAiVsAiBattle())
     {
-        gAiThinkingStruct->flags[B_POSITION_PLAYER_RIGHT] = gAiThinkingStruct->flags[B_POSITION_PLAYER_LEFT];
+        gAiThinkingStruct->aiFlags[B_POSITION_PLAYER_RIGHT] = gAiThinkingStruct->aiFlags[B_POSITION_PLAYER_LEFT];
     }
     else
     {
-        gAiThinkingStruct->flags[B_POSITION_PLAYER_RIGHT] = 0; // player
+        gAiThinkingStruct->aiFlags[B_POSITION_PLAYER_RIGHT] = 0; // player
     }
 }
 
 void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
 {
     u32 moveLimitations;
-    u32 flags[MAX_BATTLERS_COUNT];
+    u64 flags[MAX_BATTLERS_COUNT];
 
     // Clear AI data but preserve the flags.
-    memcpy(&flags[0], &gAiThinkingStruct->flags[0], sizeof(u32) * MAX_BATTLERS_COUNT);
+    memcpy(&flags[0], &gAiThinkingStruct->aiFlags[0], sizeof(u64) * MAX_BATTLERS_COUNT);
     memset(gAiThinkingStruct, 0, sizeof(struct AiThinkingStruct));
-    memcpy(&gAiThinkingStruct->flags[0], &flags[0], sizeof(u32) * MAX_BATTLERS_COUNT);
+    memcpy(&gAiThinkingStruct->aiFlags[0], &flags[0], sizeof(u64) * MAX_BATTLERS_COUNT);
 
     moveLimitations = gAiLogicData->moveLimitations[battler];
 
@@ -282,12 +315,12 @@ bool32 BattlerChoseNonMoveAction(void)
     return FALSE;
 }
 
-void SetupAISwitchingData(u32 battler, enum SwitchType switchType)
+void SetupAIPredictionData(u32 battler, enum SwitchType switchType)
 {
     s32 opposingBattler = GetOppositeBattler(battler);
 
-    // AI's predicting data
-    if ((gAiThinkingStruct->flags[battler] & AI_FLAG_PREDICT_SWITCH))
+    // Switch prediction
+    if ((gAiThinkingStruct->aiFlags[battler] & AI_FLAG_PREDICT_SWITCH))
     {
         gAiLogicData->aiSwitchPredictionInProgress = TRUE;
         gAiLogicData->battlerDoingPrediction = battler;
@@ -301,11 +334,8 @@ void SetupAISwitchingData(u32 battler, enum SwitchType switchType)
         gAiLogicData->predictingSwitch = RandomPercentage(RNG_AI_PREDICT_SWITCH, PREDICT_SWITCH_CHANCE);
     }
 
-    // AI's data
-    gAiLogicData->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, switchType);
-    if (ShouldSwitch(battler))
-        gAiLogicData->shouldSwitch |= (1u << battler);
-    gBattleStruct->prevTurnSpecies[battler] = gBattleMons[battler].species;
+    // TODO Move prediction
+    // ModifySwitchAfterMoveScoring(opposingBattler);
 }
 
 void ComputeBattlerDecisions(u32 battler)
@@ -319,12 +349,24 @@ void ComputeBattlerDecisions(u32 battler)
             return;
 
         // Risky AI switches aggressively even mid battle
-        enum SwitchType switchType = (gAiThinkingStruct->flags[battler] & AI_FLAG_RISKY) ? SWITCH_AFTER_KO : SWITCH_MID_BATTLE;
+        enum SwitchType switchType = (gAiThinkingStruct->aiFlags[battler] & AI_FLAG_RISKY) ? SWITCH_AFTER_KO : SWITCH_MID_BATTLE;
 
         gAiLogicData->aiCalcInProgress = TRUE;
+
+        // Setup battler and prediction data
         BattleAI_SetupAIData(0xF, battler);
-        SetupAISwitchingData(battler, switchType);
+        SetupAIPredictionData(battler, switchType);
+
+        // AI's own switching data
+        gAiLogicData->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, switchType);
+        if (ShouldSwitch(battler))
+            gAiLogicData->shouldSwitch |= (1u << battler);
+        gBattleStruct->prevTurnSpecies[battler] = gBattleMons[battler].species;
+
+        // AI's move scoring
         gAiBattleData->chosenMoveIndex[battler] = BattleAI_ChooseMoveIndex(battler); // Calculate score and chose move index
+        ModifySwitchAfterMoveScoring(battler);
+
         gAiLogicData->aiCalcInProgress = FALSE;
     }
 }
@@ -366,7 +408,7 @@ static void CopyBattlerDataToAIParty(u32 bPosition, u32 side)
 void Ai_InitPartyStruct(void)
 {
     u32 i;
-    bool32 isOmniscient = (gAiThinkingStruct->flags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_OMNISCIENT) || (gAiThinkingStruct->flags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_OMNISCIENT);
+    bool32 isOmniscient = (gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_OMNISCIENT) || (gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_OMNISCIENT);
     struct Pokemon *mon;
 
     gAiPartyData->count[B_SIDE_PLAYER] = CalculatePlayerPartyCount();
@@ -554,25 +596,71 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     gAiLogicData->aiCalcInProgress = FALSE;
 }
 
+u32 GetPartyMonAbility(struct Pokemon *mon)
+{
+    //  Doesn't have any special handling yet
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+    u32 ability = gSpeciesInfo[species].abilities[GetMonData(mon, MON_DATA_ABILITY_NUM)];
+    return ability;
+}
+
+static u32 PpStallReduction(u32 move, u32 battlerAtk)
+{
+    if (move == MOVE_NONE)
+        return 0;
+    u32 tempBattleMonIndex = 0;
+    u32 totalStallValue = 0;
+    u32 returnValue = 0;
+    struct BattlePokemon backupBattleMon;
+    memcpy(&backupBattleMon, &gBattleMons[tempBattleMonIndex], sizeof(struct BattlePokemon));
+    for (u32 partyIndex = 0; partyIndex < PARTY_SIZE; partyIndex++)
+    {
+        u32 currentStallValue = gAiBattleData->playerStallMons[partyIndex];
+        if (currentStallValue == 0 || GetMonData(&gPlayerParty[partyIndex], MON_DATA_HP) == 0)
+            continue;
+        PokemonToBattleMon(&gPlayerParty[partyIndex], &gBattleMons[tempBattleMonIndex]);
+        u32 species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);
+        u32 abilityAtk = ABILITY_NONE;
+        u32 abilityDef = GetPartyMonAbility(&gPlayerParty[partyIndex]);
+        u32 moveType = GetBattleMoveType(move); //  Probably doesn't handle dynamic types right now
+        if (CanAbilityAbsorbMove(battlerAtk, tempBattleMonIndex, abilityDef, move, moveType, ABILITY_CHECK_TRIGGER)
+         || CanAbilityBlockMove(battlerAtk, tempBattleMonIndex, abilityAtk, abilityDef, move, ABILITY_CHECK_TRIGGER)
+         || (CalcPartyMonTypeEffectivenessMultiplier(move, species, abilityDef) == 0))
+        {
+            totalStallValue += currentStallValue;
+        }
+    }
+
+    for (u32 i = 0; returnValue == 0 && i < totalStallValue; i++)
+    {
+        if (RandomPercentage(RNG_AI_PP_STALL_DISREGARD_MOVE, (100 - PP_STALL_DISREGARD_MOVE_PERCENTAGE)))
+            returnValue = PP_STALL_SCORE_REDUCTION;
+    }
+
+    memcpy(&gBattleMons[tempBattleMonIndex], &backupBattleMon, sizeof(struct BattlePokemon));
+
+    return returnValue;
+}
+
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 {
     u8 currentMoveArray[MAX_MON_MOVES];
     u8 consideredMoveArray[MAX_MON_MOVES];
     u32 numOfBestMoves;
     s32 i;
-    u32 flags = gAiThinkingStruct->flags[battlerAi];
+    u64 flags = gAiThinkingStruct->aiFlags[battlerAi];
 
     gAiLogicData->partnerMove = 0;   // no ally
     while (flags != 0)
     {
         if (flags & 1)
         {
-            if (IsBattlerPredictedToSwitch(gBattlerTarget) && (gAiThinkingStruct->flags[battlerAi] & AI_FLAG_PREDICT_INCOMING_MON))
+            if (IsBattlerPredictedToSwitch(gBattlerTarget) && (gAiThinkingStruct->aiFlags[battlerAi] & AI_FLAG_PREDICT_INCOMING_MON))
                 BattleAI_DoAIProcessing_PredictedSwitchin(gAiThinkingStruct, gAiLogicData, battlerAi, gBattlerTarget);
             else
                 BattleAI_DoAIProcessing(gAiThinkingStruct, battlerAi, gBattlerTarget);
         }
-        flags >>= 1;
+        flags >>= (u64)1;
         gAiThinkingStruct->aiLogicId++;
     }
 
@@ -609,7 +697,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
 {
     s32 i, j;
-    u32 flags;
+    u64 flags;
     s32 bestMovePointsForTarget[MAX_BATTLERS_COUNT];
     u8 mostViableTargetsArray[MAX_BATTLERS_COUNT];
     u8 actionOrMoveIndex[MAX_BATTLERS_COUNT];
@@ -638,18 +726,18 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
             gAiLogicData->partnerMove = GetAllyChosenMove(battlerAi);
             gAiThinkingStruct->aiLogicId = 0;
             gAiThinkingStruct->movesetIndex = 0;
-            flags = gAiThinkingStruct->flags[battlerAi];
+            flags = gAiThinkingStruct->aiFlags[battlerAi];
 
             while (flags != 0)
             {
                 if (flags & 1)
                 {
-                    if (IsBattlerPredictedToSwitch(gBattlerTarget) && (gAiThinkingStruct->flags[battlerAi] & AI_FLAG_PREDICT_INCOMING_MON))
+                    if (IsBattlerPredictedToSwitch(gBattlerTarget) && (gAiThinkingStruct->aiFlags[battlerAi] & AI_FLAG_PREDICT_INCOMING_MON))
                         BattleAI_DoAIProcessing_PredictedSwitchin(gAiThinkingStruct, gAiLogicData, battlerAi, gBattlerTarget);
                     else
                         BattleAI_DoAIProcessing(gAiThinkingStruct, battlerAi, gBattlerTarget);
                 }
-                flags >>= 1;
+                flags >>= (u64)1;
                 gAiThinkingStruct->aiLogicId++;
             }
 
@@ -1151,7 +1239,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-20);
             break;
         case EFFECT_EXPLOSION:
-            if (!(gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_WILL_SUICIDE))
+            if (!(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE))
                 ADJUST_SCORE(-2);
 
             if (effectiveness == UQ_4_12(0.0))
@@ -1501,7 +1589,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-1);
             if ((predictedMove == MOVE_NONE || GetBattleMoveCategory(predictedMove) == DAMAGE_CATEGORY_STATUS
               || DoesSubstituteBlockMove(battlerAtk, BATTLE_PARTNER(battlerDef), predictedMove))
-              && !(predictedMove == MOVE_NONE && (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_RISKY))) // Let Risky AI predict blindly based on stats
+              && !(predictedMove == MOVE_NONE && (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_RISKY))) // Let Risky AI predict blindly based on stats
                 ADJUST_SCORE(-10);
             break;
 
@@ -2007,7 +2095,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_RECOIL_IF_MISS:
             if (aiData->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && gAiLogicData->moveAccuracy[battlerAtk][battlerDef][gAiThinkingStruct->movesetIndex] < 75
-            && !(gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_RISKY))
+            && !(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_RISKY))
                 ADJUST_SCORE(-6);
             break;
         case EFFECT_TRANSFORM:
@@ -2122,7 +2210,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     }
                 }
 
-                /*if (gAiThinkingStruct->flags[battlerAtk] == AI_SCRIPT_CHECK_BAD_MOVE //Only basic AI
+                /*if (gAiThinkingStruct->aiFlags[battlerAtk] == AI_SCRIPT_CHECK_BAD_MOVE //Only basic AI
                 && IsDoubleBattle()) //Make the regular AI know how to use Protect minimally in Doubles
                 {
                     u8 shouldProtect = ShouldProtect(battlerAtk, battlerDef, move);
@@ -2436,7 +2524,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             {
                 ADJUST_SCORE(-10);
             }
-            else if (!(gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_POWERFUL_STATUS))
+            else if (!(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_POWERFUL_STATUS))
             {
                 if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room Up
                 {
@@ -2955,7 +3043,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 }
                 break;
             case ABILITY_VOLT_ABSORB:
-                if (!(gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_HP_AWARE))
+                if (!(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_HP_AWARE))
                 {
                     RETURN_SCORE_MINUS(10);
                 }
@@ -2978,7 +3066,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             case ABILITY_WATER_ABSORB:
             case ABILITY_DRY_SKIN:
             case ABILITY_EARTH_EATER:
-                if (!(gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_HP_AWARE))
+                if (!(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_HP_AWARE))
                 {
                     RETURN_SCORE_MINUS(10);
                 }
@@ -3397,7 +3485,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         moveEffect = EFFECT_PROTECT;
 
     // check status move preference
-    if (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_PREFER_STATUS_MOVES && IsBattleMoveStatus(move) && effectiveness != UQ_4_12(0.0))
+    if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_PREFER_STATUS_MOVES && IsBattleMoveStatus(move) && effectiveness != UQ_4_12(0.0))
         ADJUST_SCORE(10);
 
     // check thawing moves
@@ -3405,7 +3493,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         ADJUST_SCORE(10);
 
     // check burn / frostbite
-    if (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_SMART_SWITCHING && gAiLogicData->abilities[battlerAtk] == ABILITY_NATURAL_CURE)
+    if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_SMART_SWITCHING && gAiLogicData->abilities[battlerAtk] == ABILITY_NATURAL_CURE)
     {
         if ((gBattleMons[battlerAtk].status1 & STATUS1_BURN && HasOnlyMovesWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL, TRUE))
         || (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && HasOnlyMovesWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL, TRUE)))
@@ -3431,14 +3519,14 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         break;
     case EFFECT_EXPLOSION:
     case EFFECT_MEMENTO:
-        if (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_WILL_SUICIDE && gBattleMons[battlerDef].statStages[STAT_EVASION] < 7)
+        if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE && gBattleMons[battlerDef].statStages[STAT_EVASION] < 7)
         {
             if (aiData->hpPercents[battlerAtk] < 50 && AI_RandLessThan(128))
                 ADJUST_SCORE(DECENT_EFFECT);
         }
         break;
     case EFFECT_FINAL_GAMBIT:
-        if (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_WILL_SUICIDE)
+        if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE)
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_MIRROR_MOVE:
@@ -4451,7 +4539,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(GOOD_EFFECT); // Partner might use pledge move
         break;
     case EFFECT_TRICK_ROOM:
-        if (!(gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_POWERFUL_STATUS))
+        if (!(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_POWERFUL_STATUS))
         {
             if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && GetBattlerSideSpeedAverage(battlerAtk) < GetBattlerSideSpeedAverage(battlerDef))
                 ADJUST_SCORE(GOOD_EFFECT);
@@ -4913,7 +5001,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
             ADJUST_AND_RETURN_SCORE(NO_DAMAGE_OR_FAILS); // No point in checking the move further so return early
         else
         {
-            if (gAiThinkingStruct->flags[battlerAtk] & (AI_FLAG_RISKY | AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE)
+            if (gAiThinkingStruct->aiFlags[battlerAtk] & (AI_FLAG_RISKY | AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE)
                 && GetBestDmgMoveFromBattler(battlerAtk, battlerDef, AI_ATTACKING) == move)
                 ADJUST_SCORE(BEST_DAMAGE_MOVE);
             else
@@ -4935,7 +5023,7 @@ static s32 AI_ForceSetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 
       || gBattleResults.battleTurnCounter != 0)
         return score;
 
-    if (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_SMART_SWITCHING
+    if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_SMART_SWITCHING
       && AI_IsSlower(battlerAtk, battlerDef, move)
       && CanTargetFaintAi(battlerDef, battlerAtk)
       && GetBattleMovePriority(battlerAtk, gAiLogicData->abilities[battlerAtk], move) == 0)
@@ -5512,7 +5600,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
     case EFFECT_FOCUS_PUNCH:
         ADJUST_SCORE(DECENT_EFFECT);
-        if (gAiThinkingStruct->flags[battlerAtk] & AI_FLAG_CHECK_BAD_MOVE)
+        if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_CHECK_BAD_MOVE)
         {
             if (aiData->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness < UQ_4_12(2.0))
                 ADJUST_SCORE(10);
@@ -5634,6 +5722,13 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     // This must be last or the player can gauge whether the AI is predicting based on how long it thinks
     if (!IsBattlerPredictedToSwitch(battlerDef))
         return unmodifiedScore;
+    return score;
+}
+
+static s32 AI_CheckPpStall(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
+{
+    if (GetBattlerSide(battlerAtk) == B_SIDE_OPPONENT)
+        score -= PpStallReduction(move, battlerAtk);
     return score;
 }
 

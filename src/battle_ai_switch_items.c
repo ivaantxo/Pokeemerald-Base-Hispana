@@ -101,6 +101,8 @@ u32 GetSwitchChance(enum ShouldSwitchScenario shouldSwitchScenario)
             return SHOULD_SWITCH_ATTACKING_STAT_MINUS_TWO_PERCENTAGE;
         case SHOULD_SWITCH_ATTACKING_STAT_MINUS_THREE_PLUS:
             return SHOULD_SWITCH_ATTACKING_STAT_MINUS_THREE_PLUS_PERCENTAGE;
+        case SHOULD_SWITCH_ALL_SCORES_BAD:
+            return SHOULD_SWITCH_ALL_SCORES_BAD_PERCENTAGE;
         default:
             return 100;
     }
@@ -115,11 +117,11 @@ u32 GetThinkingBattler(u32 battler)
 
 static bool32 IsAceMon(u32 battler, u32 monPartyId)
 {
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_ACE_POKEMON
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_ACE_POKEMON
             && !gBattleStruct->battlerState[battler].forcedSwitch
             && monPartyId == CalculateEnemyPartyCountInSide(battler)-1)
         return TRUE;
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_DOUBLE_ACE_POKEMON
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_DOUBLE_ACE_POKEMON
             && !gBattleStruct->battlerState[battler].forcedSwitch
             && (monPartyId == CalculateEnemyPartyCount()-1 || monPartyId == CalculateEnemyPartyCount()-2))
         return TRUE;
@@ -187,7 +189,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     enum BattleMoveEffects aiMoveEffect;
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
-    if (!(gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+    if (!(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
     // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
@@ -461,7 +463,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     s32 i, j;
 
-    if (!(gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+    if (!(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
     if (gBattleStruct->prevTurnSpecies[battler] != gBattleMons[battler].species) // AI mon has changed, player's behaviour no longer reliable; note to override this if using AI_FLAG_PREDICT_MOVE
         return FALSE;
@@ -584,7 +586,7 @@ static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler)
     u32 incomingMove = gAiLogicData->lastUsedMove[opposingBattler];
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
 
-    if (IsDoubleBattle() || !(gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+    if (IsDoubleBattle() || !(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
     if (isOpposingBattlerChargingOrInvulnerable && gAiLogicData->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_FREE_TURN, GetSwitchChance(SHOULD_SWITCH_FREE_TURN)))
@@ -603,7 +605,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
     s32 opposingBattler =  GetOppositeBattler(battler);
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
-    if (!(gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+    if (!(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
     // Check if current mon has an ability that traps opponent
@@ -647,7 +649,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
         && RandomPercentage(RNG_AI_SWITCH_PERISH_SONG, GetSwitchChance(SHOULD_SWITCH_PERISH_SONG)))
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
     {
         //Yawn
         if (gStatuses3[battler] & STATUS3_YAWN
@@ -768,6 +770,11 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
 
             return FALSE;
 
+        case ABILITY_ZERO_TO_HERO:
+            // Want to activate Palafin-Zero at all costs
+            if (gBattleMons[battler].species == SPECIES_PALAFIN_ZERO)
+                break;
+
         default:
             return FALSE;
     }
@@ -836,7 +843,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
     u16 move;
 
     // Similar functionality handled more thoroughly by ShouldSwitchIfHasBadOdds
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
         return FALSE;
 
     if (gLastLandedMoves[battler] == MOVE_NONE)
@@ -974,7 +981,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
     u32 opposingBattler = GetOppositeBattler(battler);
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
-    if (!(gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+    if (!(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
     // If not Encore'd don't switch
@@ -1024,7 +1031,7 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
     s8 spAttackingStage = gBattleMons[battler].statStages[STAT_SPATK];
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
-    if (!(gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+    if (!(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
     // Physical attacker
@@ -1063,24 +1070,6 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
     return FALSE;
 }
 
-static bool32 HasGoodSubstituteMove(u32 battler)
-{
-    int i;
-    u32 aiMove, opposingBattler = GetOppositeBattler(battler);
-    enum BattleMoveEffects aiMoveEffect;
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        aiMove = gBattleMons[battler].moves[i];
-        aiMoveEffect = GetMoveEffect(aiMove);
-        if (IsSubstituteEffect(aiMoveEffect))
-        {
-            if (IncreaseSubstituteMoveScore(battler, opposingBattler, aiMove) > 0)
-                return TRUE;
-        }
-    }
-    return FALSE;
-}
-
 bool32 ShouldSwitch(u32 battler)
 {
     u32 battlerIn1, battlerIn2;
@@ -1100,7 +1089,7 @@ bool32 ShouldSwitch(u32 battler)
         return FALSE;
 
     // Sequence Switching AI never switches mid-battle
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SEQUENCE_SWITCHING)
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SEQUENCE_SWITCHING)
         return FALSE;
 
     availableToSwitch = 0;
@@ -1152,9 +1141,7 @@ bool32 ShouldSwitch(u32 battler)
 
     if (ShouldSwitchIfWonderGuard(battler))
         return TRUE;
-    if ((gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
-        return FALSE;
-    if (HasGoodSubstituteMove(battler))
+    if ((gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
     if (ShouldSwitchIfTrapperInParty(battler))
         return TRUE;
@@ -1182,7 +1169,7 @@ bool32 ShouldSwitch(u32 battler)
     // Removing switch capabilites under specific conditions
     // These Functions prevent the "FindMonWithFlagsAndSuperEffective" from getting out of hand.
     // We don't use FindMonWithFlagsAndSuperEffective with AI_FLAG_SMART_SWITCHING, so we can bail early.
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
         return FALSE;
     if (HasSuperEffectiveMoveAgainstOpponents(battler, FALSE))
         return FALSE;
@@ -1196,6 +1183,109 @@ bool32 ShouldSwitch(u32 battler)
         return TRUE;
 
     return FALSE;
+}
+
+bool32 ShouldSwitchIfAllScoresBad(u32 battler)
+{
+    u32 i, score, opposingBattler = GetOppositeBattler(battler);
+    if (!(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
+        return FALSE;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        score = gAiBattleData->finalScore[battler][opposingBattler][i];
+        if (score > AI_BAD_SCORE_THRESHOLD)
+            return FALSE;
+    }
+    if (RandomPercentage(RNG_AI_SWITCH_ALL_SCORES_BAD, GetSwitchChance(SHOULD_SWITCH_ALL_SCORES_BAD)))
+        return TRUE;
+    return FALSE;
+}
+
+bool32 ShouldStayInToUseMove(u32 battler)
+{
+    u32 i, aiMove, opposingBattler = GetOppositeBattler(battler);
+    enum BattleMoveEffects aiMoveEffect;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        aiMove = gBattleMons[battler].moves[i];
+        aiMoveEffect = GetMoveEffect(aiMove);
+        if (aiMoveEffect == EFFECT_REVIVAL_BLESSING || IsSwitchOutEffect(aiMoveEffect))
+        {
+            if (gAiBattleData->finalScore[battler][opposingBattler][i] > AI_GOOD_SCORE_THRESHOLD)
+                return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+void ModifySwitchAfterMoveScoring(u32 battler)
+{
+    u32 battlerIn1, battlerIn2;
+    s32 firstId;
+    s32 lastId; // + 1
+    struct Pokemon *party;
+    s32 i;
+    s32 availableToSwitch;
+
+    if (gBattleMons[battler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
+        return;
+    if (gStatuses3[battler] & STATUS3_ROOTED)
+        return;
+    if (IsAbilityPreventingEscape(battler))
+        return;
+    if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
+        return;
+
+    // Sequence Switching AI never switches mid-battle
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SEQUENCE_SWITCHING)
+        return;
+
+    availableToSwitch = 0;
+
+    if (IsDoubleBattle())
+    {
+        u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerAtPosition(battler)));
+        battlerIn1 = battler;
+        if (gAbsentBattlerFlags & (1u << partner))
+            battlerIn2 = battler;
+        else
+            battlerIn2 = partner;
+    }
+    else
+    {
+        battlerIn1 = battler;
+        battlerIn2 = battler;
+    }
+
+    GetAIPartyIndexes(battler, &firstId, &lastId);
+    party = GetBattlerParty(battler);
+
+    for (i = firstId; i < lastId; i++)
+    {
+        if (!IsValidForBattle(&party[i]))
+            continue;
+        if (i == gBattlerPartyIndexes[battlerIn1])
+            continue;
+        if (i == gBattlerPartyIndexes[battlerIn2])
+            continue;
+        if (i == gBattleStruct->monToSwitchIntoId[battlerIn1])
+            continue;
+        if (i == gBattleStruct->monToSwitchIntoId[battlerIn2])
+            continue;
+        if (IsAceMon(battler, i))
+            continue;
+
+        availableToSwitch++;
+    }
+
+    if (availableToSwitch == 0)
+        return;
+
+    if (ShouldSwitchIfAllScoresBad(battler))
+        gAiLogicData->shouldSwitch |= (1u << battler);
+    else if (ShouldStayInToUseMove(battler))
+        gAiLogicData->shouldSwitch &= ~(1u << battler);
 }
 
 bool32 IsSwitchinValid(u32 battler)
@@ -2166,14 +2256,14 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, enum SwitchType switchType)
     GetAIPartyIndexes(battler, &firstId, &lastId);
     party = GetBattlerParty(battler);
 
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SEQUENCE_SWITCHING)
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SEQUENCE_SWITCHING)
     {
         bestMonId = GetNextMonInParty(party, firstId, lastId, battlerIn1, battlerIn2);
         return bestMonId;
     }
 
     // Only use better mon selection if AI_FLAG_SMART_MON_CHOICES is set for the trainer.
-    if (gAiThinkingStruct->flags[GetThinkingBattler(battler)] & AI_FLAG_SMART_MON_CHOICES && !IsDoubleBattle()) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
+    if (gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_MON_CHOICES && !IsDoubleBattle()) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     {
         bestMonId = GetBestMonIntegrated(party, firstId, lastId, battler, opposingBattler, battlerIn1, battlerIn2, switchType);
         return bestMonId;
@@ -2235,7 +2325,7 @@ static bool32 AiExpectsToFaintPlayer(u32 battler)
     if (gAiBattleData->actionFlee || gAiBattleData->choiceWatch)
         return FALSE; // AI not planning to use move
 
-    if (GetBattlerSide(target) != GetBattlerSide(battler)
+    if (!IsBattlerAlly(target, battler)
       && CanIndexMoveFaintTarget(battler, target, gAiBattleData->chosenMoveIndex[battler], AI_ATTACKING)
       && AI_IsFaster(battler, target, GetAIChosenMove(battler)))
     {
@@ -2294,11 +2384,11 @@ static bool32 ShouldUseItem(u32 battler)
         switch (ItemId_GetBattleUsage(item))
         {
         case EFFECT_ITEM_HEAL_AND_CURE_STATUS:
-            healAmount = GetHPHealAmount(itemEffects[GetItemEffectParamOffset(battler, item, 4, ITEM4_HEAL_HP)], &gEnemyParty[gBattlerPartyIndexes[battler]]);
+            healAmount = GetHPHealAmount(itemEffects[GetItemEffectParamOffset(battler, item, 4, ITEM4_HEAL_HP)], GetBattlerMon(battler));
             shouldUse = AI_ShouldHeal(battler, healAmount);
             break;
         case EFFECT_ITEM_RESTORE_HP:
-            healAmount = GetHPHealAmount(itemEffects[GetItemEffectParamOffset(battler, item, 4, ITEM4_HEAL_HP)], &gEnemyParty[gBattlerPartyIndexes[battler]]);
+            healAmount = GetHPHealAmount(itemEffects[GetItemEffectParamOffset(battler, item, 4, ITEM4_HEAL_HP)], GetBattlerMon(battler));
             shouldUse = AI_ShouldHeal(battler, healAmount);
             break;
         case EFFECT_ITEM_CURE_STATUS:

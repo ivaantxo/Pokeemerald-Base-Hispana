@@ -291,9 +291,12 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, enum FormChanges method);
 bool32 TryBattleFormChange(u32 battler, enum FormChanges method);
 bool32 DoBattlersShareType(u32 battler1, u32 battler2);
 bool32 CanBattlerGetOrLoseItem(u32 battler, u16 itemId);
+u32 GetBattlerVisualSpecies(u32 battler);
+bool32 TryClearIllusion(u32 battler, u32 caseID);
 u32 GetIllusionMonSpecies(u32 battler);
 struct Pokemon *GetIllusionMonPtr(u32 battler);
 void ClearIllusionMon(u32 battler);
+u32 GetIllusionMonPartyId(struct Pokemon *party, struct Pokemon *mon, struct Pokemon *partnerMon);
 bool32 SetIllusionMon(struct Pokemon *mon, u32 battler);
 bool32 ShouldGetStatBadgeBoost(u16 flagId, u32 battler);
 u32 GetBattleMoveCategory(u32 move);
@@ -336,6 +339,8 @@ bool32 IsMoveEffectRemoveSpeciesType(u32 move, u32 moveEffect, u32 argument);
 bool32 MoveHasChargeTurnAdditionalEffect(u32 move);
 bool32 CanTargetPartner(u32 battlerAtk, u32 battlerDef);
 bool32 TargetFullyImmuneToCurrMove(u32 battlerAtk, u32 battlerDef);
+bool32 MoodyCantRaiseStat(u32 stat);
+bool32 MoodyCantLowerStat(u32 stat);
 
 bool32 CanBeSlept(u32 battlerAtk, u32 battlerDef, u32 abilityDef, enum SleepClauseBlock isBlockedBySleepClause);
 bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef, u32 abilityAtk, u32 abilityDef);
@@ -377,5 +382,6 @@ bool32 HasWeatherEffect(void);
 u32 RestoreWhiteHerbStats(u32 battler);
 bool32 IsFutureSightAttackerInParty(u32 battlerAtk, u32 battlerDef);
 bool32 HadMoreThanHalfHpNowDoesnt(u32 battler);
+void UpdateStallMons(void);
 
 #endif // GUARD_BATTLE_UTIL_H

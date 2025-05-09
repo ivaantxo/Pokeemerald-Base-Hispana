@@ -5233,7 +5233,6 @@ BattleScript_FaintTarget::
 	dofaintanimation BS_TARGET
 	printstring STRINGID_TARGETFAINTED
 	cleareffectsonfaint BS_TARGET
-	tryactivatefellstinger BS_ATTACKER
 	tryactivatesoulheart
 	tryactivatereceiver BS_TARGET
 	trytrainerslidefirstdownmsg BS_TARGET
@@ -6846,6 +6845,14 @@ BattleScript_BattlerFormChangeWithStringEnd3::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_IllusionOffAndTerastallization::
+	call BattleScript_IllusionOff
+	goto BattleScript_Terastallization
+
+BattleScript_IllusionOffEnd3::
+	call BattleScript_IllusionOff
+	end3
+
 BattleScript_IllusionOff::
 	spriteignore0hp TRUE
 	playanimation BS_SCRIPTING, B_ANIM_ILLUSION_OFF
@@ -8210,7 +8217,7 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchIn::
 BattleScript_ScriptingAbilityStatRaise::
 	copybyte gBattlerAbility, sBATTLER
 	call BattleScript_AbilityPopUp
-	copybyte sSAVED_DMG, gBattlerAttacker
+	saveattacker
 	copybyte gBattlerAttacker, sBATTLER
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
 	setgraphicalstatchangevalues
@@ -8218,7 +8225,7 @@ BattleScript_ScriptingAbilityStatRaise::
 	waitanimation
 	printstring STRINGID_ATTACKERABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
-	copybyte gBattlerAttacker, sSAVED_DMG
+	restoreattacker
 	return
 
 BattleScript_WeakArmorActivates::
