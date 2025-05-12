@@ -1110,7 +1110,7 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
 {
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
-    u32 personality;
+    u32 personality = Random32();
     u32 value;
     u16 checksum;
     u8 i;
@@ -1119,11 +1119,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     bool32 isShiny;
 
     ZeroBoxMonData(boxMon);
-
-    if (hasFixedPersonality)
-        personality = fixedPersonality;
-    else
-        personality = Random32();
 
     // Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY)
@@ -1134,7 +1129,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else if (otIdType == OT_ID_PRESET)
     {
         value = fixedOtId;
-        isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
+        isShiny = GET_SHINY_VALUE(value, hasFixedPersonality ? fixedPersonality : personality) < SHINY_ODDS;
     }
     else // Player is the OT
     {
@@ -1180,6 +1175,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
         }
     }
+    
+    if (hasFixedPersonality)
+        personality = fixedPersonality;
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);

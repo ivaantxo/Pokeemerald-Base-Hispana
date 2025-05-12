@@ -2750,7 +2750,7 @@ bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, bool32 viaAbilit
     {
         return FALSE;
     }
-    else if (B_ABILITY_WEATHER < GEN_6 && viaAbility)
+    else if (GetGenConfig(GEN_CONFIG_ABILITY_WEATHER) < GEN_6 && viaAbility)
     {
         gBattleWeather = sBattleWeatherInfo[battleWeatherId].flag;
         return TRUE;
@@ -3631,7 +3631,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         {
                             move = gBattleMons[i].moves[j];
                             moveType = GetBattleMoveType(move);
-                            if (CalcTypeEffectivenessMultiplier(move, moveType, i, battler, ABILITY_ANTICIPATION, FALSE) >= UQ_4_12(2.0))
+                            if (CalcTypeEffectivenessMultiplier(move, moveType, i, battler, ABILITY_ANTICIPATION, FALSE) >= UQ_4_12(2.0) || GetMoveEffect(move) == EFFECT_OHKO)
                             {
                                 effect++;
                                 break;
@@ -6117,6 +6117,28 @@ static enum ItemEffect TryEjectPack(u32 battler, enum ItemCaseId caseID)
     return ITEM_NO_EFFECT;
 }
 
+static enum ItemEffect ConsumeBerserkGene(u32 battler, enum ItemCaseId caseID)
+{
+    if (CanBeInfinitelyConfused(battler))
+        gStatuses4[battler] |= STATUS4_INFINITE_CONFUSION;
+
+    BufferStatChange(battler, STAT_ATK, STRINGID_STATROSE);
+    gBattlerAttacker = gEffectBattler = battler;
+    SET_STATCHANGER(STAT_ATK, 2, FALSE);
+    gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + STAT_ATK;
+    gBattleScripting.animArg2 = 0;
+    if (caseID == ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN || caseID == ITEMEFFECT_NORMAL)
+    {
+        BattleScriptExecute(BattleScript_BerserkGeneRetEnd2);
+    }
+    else
+    {
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
+    }
+    return ITEM_STATS_CHANGE;
+}
+
 static u32 ItemRestorePp(u32 battler, u32 itemId, enum ItemCaseId caseID)
 {
     struct Pokemon *mon = GetBattlerMon(battler);
@@ -6530,19 +6552,7 @@ static u8 ItemEffectMoveEnd(u32 battler, enum ItemHoldEffect holdEffect)
         }
         break;
     case HOLD_EFFECT_BERSERK_GENE:
-        BufferStatChange(battler, STAT_ATK, STRINGID_STATROSE);
-        gEffectBattler = battler;
-        if (CanBeInfinitelyConfused(gEffectBattler))
-        {
-            gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
-        }
-        SET_STATCHANGER(STAT_ATK, 2, FALSE);
-
-        gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + STAT_ATK;
-        gBattleScripting.animArg2 = 0;
-
-        BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
-        effect = ITEM_STATS_CHANGE;
+        effect = ConsumeBerserkGene(battler, ITEMEFFECT_NONE);
         break;
     case HOLD_EFFECT_MIRROR_HERB:
         effect = TryConsumeMirrorHerb(battler, ITEMEFFECT_NONE);
@@ -6815,19 +6825,7 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
                 effect = TryEjectPack(battler, caseID);
                 break;
             case HOLD_EFFECT_BERSERK_GENE:
-                BufferStatChange(battler, STAT_ATK, STRINGID_STATROSE);
-                gEffectBattler = battler;
-                if (CanBeInfinitelyConfused(gEffectBattler))
-                {
-                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
-                }
-                SET_STATCHANGER(STAT_ATK, 2, FALSE);
-
-                gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + STAT_ATK;
-                gBattleScripting.animArg2 = 0;
-
-                BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
-                effect = ITEM_STATS_CHANGE;
+                effect = ConsumeBerserkGene(battler, caseID);
                 break;
             case HOLD_EFFECT_MIRROR_HERB:
                 effect = TryConsumeMirrorHerb(battler, caseID);
@@ -7030,19 +7028,7 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
                     effect = TrySetMicleBerry(battler, gLastUsedItem, caseID);
                 break;
             case HOLD_EFFECT_BERSERK_GENE:
-                BufferStatChange(battler, STAT_ATK, STRINGID_STATROSE);
-                gEffectBattler = battler;
-                if (CanBeInfinitelyConfused(gEffectBattler))
-                {
-                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
-                }
-                SET_STATCHANGER(STAT_ATK, 2, FALSE);
-
-                gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + STAT_ATK;
-                gBattleScripting.animArg2 = 0;
-
-                BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
-                effect = ITEM_STATS_CHANGE;
+                effect = ConsumeBerserkGene(battler, caseID);
                 break;
             case HOLD_EFFECT_MIRROR_HERB:
                 effect = TryConsumeMirrorHerb(battler, caseID);
@@ -7164,6 +7150,7 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
             break;
         case HOLD_EFFECT_LIFE_ORB:
             if (IsBattlerAlive(gBattlerAttacker)
+                && !IsBattleMoveStatus(gCurrentMove)
                 && (IsBattlerTurnDamaged(gBattlerTarget) || !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)) // Needs the second check in case of Substitute
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
                 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7819,12 +7806,24 @@ u32 GetProtectType(enum ProtectMethod method)
     return FALSE;
 }
 
-// Only called directly when calculating damage type effectiveness
-static bool32 IsBattlerGroundedInverseCheck(u32 battler, bool32 considerInverse)
+enum InverseBattleCheck
+{
+    INVERSE_BATTLE,
+    NOT_INVERSE_BATTLE
+};
+
+enum IronBallCheck
+{
+    CHECK_IRON_BALL,
+    IGNORE_IRON_BALL
+};
+
+// Only called directly when calculating damage type effectiveness, and Iron Ball's type effectiveness mechanics
+static bool32 IsBattlerGroundedInverseCheck(u32 battler, enum InverseBattleCheck checkInverse, enum IronBallCheck checkIronBall)
 {
     enum ItemHoldEffect holdEffect = GetBattlerHoldEffect(battler, TRUE);
 
-    if (holdEffect == HOLD_EFFECT_IRON_BALL)
+    if (!(checkIronBall == IGNORE_IRON_BALL) && holdEffect == HOLD_EFFECT_IRON_BALL)
         return TRUE;
     if (gFieldStatuses & STATUS_FIELD_GRAVITY)
         return TRUE;
@@ -7840,14 +7839,14 @@ static bool32 IsBattlerGroundedInverseCheck(u32 battler, bool32 considerInverse)
         return FALSE;
     if ((AI_DATA->aiCalcInProgress ? AI_DATA->abilities[battler] : GetBattlerAbility(battler)) == ABILITY_LEVITATE)
         return FALSE;
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_FLYING) && (!considerInverse || !FlagGet(B_FLAG_INVERSE_BATTLE)))
+    if (IS_BATTLER_OF_TYPE(battler, TYPE_FLYING) && (!(checkInverse == INVERSE_BATTLE) || !FlagGet(B_FLAG_INVERSE_BATTLE)))
         return FALSE;
     return TRUE;
 }
 
 bool32 IsBattlerGrounded(u32 battler)
 {
-    return IsBattlerGroundedInverseCheck(battler, FALSE);
+    return IsBattlerGroundedInverseCheck(battler, NOT_INVERSE_BATTLE, CHECK_IRON_BALL);
 }
 
 u32 GetMoveSlot(u16 *moves, u32 move)
@@ -8358,7 +8357,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
         break;
     case EFFECT_STOMPING_TANTRUM:
-        if (gBattleStruct->battlerState[battlerAtk].lastMoveFailed)
+        if (gBattleStruct->battlerState[battlerAtk].stompingTantrumTimer == 1)
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_MAGNITUDE:
@@ -9764,7 +9763,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         if (B_GLARE_GHOST < GEN_4 && move == MOVE_GLARE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
             modifier = UQ_4_12(0.0);
     }
-    else if (moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(battlerDef, TRUE) && !(MoveIgnoresTypeIfFlyingAndUngrounded(move)))
+    else if (moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(battlerDef, INVERSE_BATTLE, CHECK_IRON_BALL) && !(MoveIgnoresTypeIfFlyingAndUngrounded(move)))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities && defAbility == ABILITY_LEVITATE)
@@ -9785,6 +9784,17 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
     if (!IsBattlerGrounded(battlerDef)
      && MoveIgnoresTypeIfFlyingAndUngrounded(move)
      && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING))
+    {
+        modifier = UQ_4_12(1.0);
+    }
+
+    // Iron Ball ignores type modifiers for flying-type mons if it is the only source of grounding
+    if (B_IRON_BALL >= GEN_5
+        && moveType == TYPE_GROUND
+        && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
+        && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL
+        && !IsBattlerGroundedInverseCheck(battlerDef, NOT_INVERSE_BATTLE, IGNORE_IRON_BALL)
+        && !FlagGet(B_FLAG_INVERSE_BATTLE))
     {
         modifier = UQ_4_12(1.0);
     }
@@ -11369,8 +11379,8 @@ void ClearDamageCalcResults(void)
 bool32 DoesDestinyBondFail(u32 battler)
 {
     if (B_DESTINY_BOND_FAIL >= GEN_7
-        && GetMoveEffect(gLastResultingMoves[battler]) == EFFECT_DESTINY_BOND
-        && !gBattleStruct->battlerState[battler].lastMoveFailed)
+        && GetMoveEffect(gLastLandedMoves[battler]) == EFFECT_DESTINY_BOND
+        && GetMoveEffect(gLastResultingMoves[battler]) == EFFECT_DESTINY_BOND)
         return TRUE;
     return FALSE;
 }
