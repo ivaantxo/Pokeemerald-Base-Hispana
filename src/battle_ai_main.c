@@ -240,7 +240,7 @@ void BattleAI_SetupFlags(void)
 void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
 {
     u32 moveLimitations, moveLimitationsTarget;
-    u8 defaultScoreMovesTarget = defaultScoreMoves;
+    u32 defaultScoreMovesTarget = defaultScoreMoves;
     u64 flags[MAX_BATTLERS_COUNT];
     u32 moveIndex;
 
