@@ -34,7 +34,7 @@
 
 static u32 ChooseMoveOrAction_Singles(u32 battler);
 static u32 ChooseMoveOrAction_Doubles(u32 battler);
-static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battler, u32 battlerDef);
+static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAtk, u32 battlerDef);
 static inline void BattleAI_DoAIProcessing_PredictedSwitchin(struct AI_ThinkingStruct *aiThink, struct AiLogicData *aiData, u32 battlerAtk, u32 battlerDef);
 static bool32 IsPinchBerryItemEffect(enum ItemHoldEffect holdEffect);
 
@@ -813,26 +813,26 @@ static inline bool32 ShouldConsiderMoveForBattler(u32 battlerAi, u32 battlerDef,
     return TRUE;
 }
 
-static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battler, u32 battlerDef)
+static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAtk, u32 battlerDef)
 {
     do
     {
-        if (gBattleMons[battler].pp[aiThink->movesetIndex] == 0)
+        if (gBattleMons[battlerAtk].pp[aiThink->movesetIndex] == 0)
             aiThink->moveConsidered = MOVE_NONE;
         else
-            aiThink->moveConsidered = gBattleMons[battler].moves[aiThink->movesetIndex];
+            aiThink->moveConsidered = gBattleMons[battlerAtk].moves[aiThink->movesetIndex];
 
         // There is no point in calculating scores for all 3 battlers(2 opponents + 1 ally) with certain moves.
         if (aiThink->moveConsidered != MOVE_NONE
           && aiThink->score[aiThink->movesetIndex] > 0
-          && ShouldConsiderMoveForBattler(battler, battlerDef, aiThink->moveConsidered))
+          && ShouldConsiderMoveForBattler(battlerAtk, battlerDef, aiThink->moveConsidered))
         {
             if (aiThink->aiLogicId < ARRAY_COUNT(sBattleAiFuncTable)
               && sBattleAiFuncTable[aiThink->aiLogicId] != NULL)
             {
                 // Call AI function
                 aiThink->score[aiThink->movesetIndex] =
-                    sBattleAiFuncTable[aiThink->aiLogicId](battler,
+                    sBattleAiFuncTable[aiThink->aiLogicId](battlerAtk,
                       battlerDef,
                       aiThink->moveConsidered,
                       aiThink->score[aiThink->movesetIndex]);
