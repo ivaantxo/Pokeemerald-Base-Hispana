@@ -1220,7 +1220,7 @@ static void TrySetBattleSeminarShow(void)
 
     if (gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
         return;
-    else if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT)
+    else if (!IsOnPlayerSide(gBattlerAttacker))
         return;
     else if (gBattleMons[gBattlerAttacker].statStages[STAT_ACC] < DEFAULT_STAT_STAGE)
         return;

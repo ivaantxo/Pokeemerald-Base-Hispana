@@ -3086,7 +3086,7 @@ bool32 CanKnockOffItem(u32 battler, u32 item)
       | BATTLE_TYPE_RECORDED_LINK
       | BATTLE_TYPE_SECRET_BASE
       | (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE ? BATTLE_TYPE_TRAINER : 0)
-      )) && GetBattlerSide(battler) == B_SIDE_PLAYER)
+      )) && IsOnPlayerSide(battler))
         return FALSE;
 
     if (AI_DATA->abilities[battler] == ABILITY_STICKY_HOLD)
