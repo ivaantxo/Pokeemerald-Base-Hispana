@@ -1198,9 +1198,14 @@ static inline u32 GetBattlerSide(u32 battler)
     return GetBattlerPosition(battler) & BIT_SIDE;
 }
 
+static inline u32 IsOnPlayerSide(u32 battler)
+{
+    return GetBattlerSide(battler) == B_SIDE_PLAYER;
+}
+
 static inline bool32 IsBattlerAlly(u32 battlerAtk, u32 battlerDef)
 {
-    return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
+    return GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef);
 }
 
 static inline u32 GetOpposingSideBattler(u32 battler)
@@ -1211,12 +1216,12 @@ static inline u32 GetOpposingSideBattler(u32 battler)
 static inline struct Pokemon* GetBattlerMon(u32 battler)
 {
     u32 index = gBattlerPartyIndexes[battler];
-    return (GetBattlerSide(battler) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
+    return !IsOnPlayerSide(battler) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
 static inline struct Pokemon *GetSideParty(u32 side)
 {
-    return (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+    return side == B_SIDE_PLAYER ? gPlayerParty : gEnemyParty;
 }
 
 static inline struct Pokemon *GetBattlerParty(u32 battler)

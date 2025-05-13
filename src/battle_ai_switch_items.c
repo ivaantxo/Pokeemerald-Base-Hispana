@@ -2461,7 +2461,7 @@ static bool32 AI_ShouldHeal(u32 battler, u32 healAmount)
     //calculate max expected damage from the opponent
     for (opponent = 0; opponent < gBattlersCount; opponent++)
     {
-        if (GetBattlerSide(opponent) == B_SIDE_PLAYER)
+        if (IsOnPlayerSide(opponent))
         {
             dmg = GetBestDmgFromBattler(opponent, battler, AI_DEFENDING);
 
@@ -2491,7 +2491,7 @@ static bool32 AI_OpponentCanFaintAiWithMod(u32 battler, u32 healAmount)
     // Check special cases to NOT heal
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (GetBattlerSide(i) == B_SIDE_PLAYER && CanTargetFaintAiWithMod(i, battler, healAmount, 0))
+        if (IsOnPlayerSide(i) && CanTargetFaintAiWithMod(i, battler, healAmount, 0))
         {
             // Target is expected to faint us
             return TRUE;
