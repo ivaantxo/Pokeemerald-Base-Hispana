@@ -2163,7 +2163,7 @@ static void Controller_ReturnMonToBall(u32 battler)
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
         {
             gBattleSpritesDataPtr->healthBoxesData[battler].animationState = 0;
-            InitAndLaunchSpecialAnimation(battler, battler, battler, (!IsOnPlayerSide(battler)) ? B_ANIM_SWITCH_OUT_OPPONENT_MON : B_ANIM_SWITCH_OUT_PLAYER_MON);
+            InitAndLaunchSpecialAnimation(battler, battler, battler, !IsOnPlayerSide(battler) ? B_ANIM_SWITCH_OUT_OPPONENT_MON : B_ANIM_SWITCH_OUT_PLAYER_MON);
             gBattlerControllerFuncs[battler] = Controller_ReturnMonToBall2;
         }
         break;
@@ -2767,7 +2767,7 @@ void BtlController_HandleHitAnimation(u32 battler)
 
 void BtlController_HandlePlaySE(u32 battler)
 {
-    s8 pan = (IsOnPlayerSide(battler)) ? SOUND_PAN_ATTACKER : SOUND_PAN_TARGET;
+    s32 pan = IsOnPlayerSide(battler) ? SOUND_PAN_ATTACKER : SOUND_PAN_TARGET;
 
     PlaySE12WithPanning(gBattleResources->bufferA[battler][1] | (gBattleResources->bufferA[battler][2] << 8), pan);
     BattleControllerComplete(battler);

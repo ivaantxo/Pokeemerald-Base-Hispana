@@ -1552,7 +1552,7 @@ void AnimTask_WaterSport(u8 taskId)
 
     task->data[3] = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2);
     task->data[4] = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET);
-    task->data[7] = (IsOnPlayerSide(gBattleAnimAttacker)) ? 1 : -1;
+    task->data[7] = IsOnPlayerSide(gBattleAnimAttacker) ? 1 : -1;
     if (IsContest())
         task->data[7] *= -1;
     task->data[5] = task->data[3] + task->data[7] * 8;

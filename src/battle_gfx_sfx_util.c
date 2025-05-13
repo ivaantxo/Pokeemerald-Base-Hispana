@@ -642,7 +642,7 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
     }
 
     position = GetBattlerPosition(battler);
-    HandleLoadSpecialPokePic((!IsOnPlayerSide(battler)),
+    HandleLoadSpecialPokePic(!IsOnPlayerSide(battler),
                              gMonSpritesGfxPtr->spritesGfx[position],
                              species, personalityValue);
 
@@ -970,7 +970,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
             }
         }
 
-        HandleLoadSpecialPokePic((!IsOnPlayerSide(battlerAtk)),
+        HandleLoadSpecialPokePic(!IsOnPlayerSide(battlerAtk),
                                  gMonSpritesGfxPtr->spritesGfx[position],
                                  targetSpecies,
                                  personalityValue);

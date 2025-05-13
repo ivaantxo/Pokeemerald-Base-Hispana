@@ -2103,21 +2103,21 @@ u8 CountAliveMonsInBattle(u8 caseId, u32 battler)
     switch (caseId)
     {
     case BATTLE_ALIVE_EXCEPT_BATTLER:
-        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        for (i = 0; i < gBattlersCount; i++)
         {
             if (i != battler && !(gAbsentBattlerFlags & (1u << i)))
                 retVal++;
         }
         break;
     case BATTLE_ALIVE_EXCEPT_BATTLER_SIDE:
-        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        for (i = 0; i < gBattlersCount; i++)
         {
             if (i != battler && i != BATTLE_PARTNER(battler) && !(gAbsentBattlerFlags & (1u << i)))
                 retVal++;
         }
         break;
     case BATTLE_ALIVE_SIDE:
-        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        for (i = 0; i < gBattlersCount; i++)
         {
             if (IsBattlerAlly(i, battler) && !(gAbsentBattlerFlags & (1u << i)))
                 retVal++;
