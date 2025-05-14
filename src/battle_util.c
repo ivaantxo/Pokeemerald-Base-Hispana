@@ -2990,7 +2990,7 @@ bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 abilityAtk, u32 a
          && !IsBattlerAlly(battlerAtk, partnerDef))
         {
             if (option == ABILITY_CHECK_TRIGGER_AI)
-                abilityDef = AI_DATA->abilities[partnerDef];
+                abilityDef = gAiLogicData->abilities[partnerDef];
             else
                 abilityDef = GetBattlerAbility(partnerDef);
 
@@ -6076,7 +6076,7 @@ static enum ItemEffect TryEjectPack(u32 battler, enum ItemCaseId caseID)
     {
         gProtectStructs[battler].statFell = FALSE;
         gBattleScripting.battler = battler;
-        AI_DATA->ejectPackSwitch = TRUE;
+        gAiLogicData->ejectPackSwitch = TRUE;
         if (caseID == ITEMEFFECT_ON_SWITCH_IN_FIRST_TURN)
         {
             BattleScriptExecute(BattleScript_EjectPackActivate_End2);
@@ -7811,7 +7811,7 @@ static bool32 IsBattlerGroundedInverseCheck(u32 battler, enum InverseBattleCheck
         return FALSE;
     if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
-    if ((AI_DATA->aiCalcInProgress ? AI_DATA->abilities[battler] : GetBattlerAbility(battler)) == ABILITY_LEVITATE)
+    if ((gAiLogicData->aiCalcInProgress ? gAiLogicData->abilities[battler] : GetBattlerAbility(battler)) == ABILITY_LEVITATE)
         return FALSE;
     if (IS_BATTLER_OF_TYPE(battler, TYPE_FLYING) && (!(checkInverse == INVERSE_BATTLE) || !FlagGet(B_FLAG_INVERSE_BATTLE)))
         return FALSE;
