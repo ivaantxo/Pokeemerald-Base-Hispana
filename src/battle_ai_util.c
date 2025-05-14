@@ -169,20 +169,20 @@ void RecordLastUsedMoveBy(u32 battlerId, u32 move)
     gBattleHistory->moveHistory[battlerId][*index] = move;
 }
 
-void RecordKnownMove(u32 battlerId, u32 move)
+void RecordKnownMove(u32 battler, u32 move)
 {
-    s32 i;
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
+    s32 moveIndex;
 
-        if (gBattleHistory->usedMoves[battlerId][i] == move)
+    for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+    {
+        if (gBattleMons[battler].moves[moveIndex] == move)
             break;
-        if (gBattleHistory->usedMoves[battlerId][i] == MOVE_NONE)
-        {
-            gBattleHistory->usedMoves[battlerId][i] = move;
-            gAiPartyData->mons[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]].moves[i] = move;
-            break;
-        }
+    }
+
+    if (moveIndex < MAX_MON_MOVES && gBattleHistory->usedMoves[battler][moveIndex] == MOVE_NONE)
+    {
+        gBattleHistory->usedMoves[battler][moveIndex] = move;
+        gAiPartyData->mons[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]].moves[moveIndex] = move;
     }
 }
 
@@ -1135,7 +1135,7 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
     u32 abilityAI = gAiLogicData->abilities[battlerAI];
     u32 abilityPlayer = gAiLogicData->abilities[battler];
 
-    u32 predictedMove = gAiLogicData->lastUsedMove[battler]; // TODO update for move prediction
+    u32 predictedMove = ((gAiThinkingStruct->aiFlags[battlerAI] & AI_FLAG_PREDICT_MOVE) && gAiLogicData->predictingMove) ? gAiLogicData->predictedMove[battler] : gAiLogicData->lastUsedMove[battler];
 
     s8 aiPriority = GetBattleMovePriority(battlerAI, abilityAI, moveConsidered);
     s8 playerPriority = GetBattleMovePriority(battler, abilityPlayer, predictedMove);
@@ -3086,7 +3086,7 @@ bool32 CanKnockOffItem(u32 battler, u32 item)
       | BATTLE_TYPE_RECORDED_LINK
       | BATTLE_TYPE_SECRET_BASE
       | (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE ? BATTLE_TYPE_TRAINER : 0)
-      )) && GetBattlerSide(battler) == B_SIDE_PLAYER)
+      )) && IsOnPlayerSide(battler))
         return FALSE;
 
     if (gAiLogicData->abilities[battler] == ABILITY_STICKY_HOLD)
@@ -4522,4 +4522,11 @@ bool32 HasBattlerSideAbility(u32 battler, u32 ability, struct AiLogicData *aiDat
     if (IsDoubleBattle() && gAiLogicData->abilities[BATTLE_PARTNER(battler)] == ability)
         return TRUE;
     return FALSE;
+}
+
+u32 GetThinkingBattler(u32 battler)
+{
+    if (gAiLogicData->aiPredictionInProgress)
+        return gAiLogicData->battlerDoingPrediction;
+    return battler;
 }
