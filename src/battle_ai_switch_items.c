@@ -449,7 +449,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     struct Pokemon *party;
     u16 monAbility, aiMove;
     u32 opposingBattler = GetOppositeBattler(battler);
-    u32 incomingMove = ((gAiThinkingStruct->aiFlags[battler] & AI_FLAG_PREDICT_MOVE) && gAiLogicData->predictingMove) ? gAiLogicData->predictedMove[opposingBattler] : gAiLogicData->lastUsedMove[opposingBattler];
+    u32 incomingMove = GetIncomingMove(battler, opposingBattler, gAiLogicData);
     u32 incomingType = GetMoveType(incomingMove);
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     s32 i, j;
@@ -574,7 +574,8 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
 static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler)
 {
     u32 opposingBattler = GetOppositeBattler(battler);
-    u32 incomingMove = ((gAiThinkingStruct->aiFlags[battler] & AI_FLAG_PREDICT_MOVE) && gAiLogicData->predictingMove) ? gAiLogicData->predictedMove[opposingBattler] : gAiLogicData->lastUsedMove[opposingBattler];
+    u32 incomingMove = GetIncomingMove(battler, opposingBattler, gAiLogicData);
+
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
 
     if (IsDoubleBattle() || !(gAiThinkingStruct->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING))
