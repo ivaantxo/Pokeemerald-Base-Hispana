@@ -8628,8 +8628,8 @@ static void Cmd_yesnoboxlearnmove(void)
             }
             else
             {
-                u16 moveId = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MOVE1 + movePosition);
-                if (IsMoveHM(moveId))
+                u16 move = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MOVE1 + movePosition);
+                if (IsMoveHM(move))
                 {
                     PrepareStringBattle(STRINGID_HMMOVESCANTBEFORGOTTEN, B_POSITION_PLAYER_LEFT);
                     gBattleScripting.learnMoveState = 6;
@@ -8638,7 +8638,7 @@ static void Cmd_yesnoboxlearnmove(void)
                 {
                     gBattlescriptCurrInstr = cmd->forgotMovePtr;
 
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff2, moveId)
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff2, move)
 
                     RemoveMonPPBonus(&gPlayerParty[gBattleStruct->expGetterMonId], movePosition);
                     SetMonMoveSlot(&gPlayerParty[gBattleStruct->expGetterMonId], gMoveToLearn, movePosition);
