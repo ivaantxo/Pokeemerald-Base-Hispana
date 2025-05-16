@@ -442,7 +442,7 @@ static bool32 HandleEndTurnFirstEventBlock(u32 battler)
         {
             gBattlerAttacker = battler;
             gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 8;
-            BtlController_EmitStatusAnimation(battler, BUFFER_A, FALSE, STATUS1_BURN);
+            BtlController_EmitStatusAnimation(battler, B_COMM_TO_CONTROLLER, FALSE, STATUS1_BURN);
             MarkBattlerForControllerExec(battler);
             BattleScriptExecute(BattleScript_HurtByTheSeaOfFire);
             effect = TRUE;
@@ -1027,7 +1027,7 @@ static bool32 HandleEndTurnYawn(u32 battler)
                     gBattleMons[battler].status1 |= ((Random() % 4) + 3);
 
                 TryActivateSleepClause(battler, gBattlerPartyIndexes[battler]);
-                BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                 MarkBattlerForControllerExec(battler);
                 BattleScriptExecute(BattleScript_YawnMakesAsleep);
             }
@@ -1349,7 +1349,7 @@ static bool32 HandleEndTurnThirdEventBlock(u32 battler)
                     gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
                     gBattleCommunication[MULTISTRING_CHOOSER] = 1;
                     BattleScriptExecute(BattleScript_MonWokeUpInUproar);
-                    BtlController_EmitSetMonData(gBattlerAttacker, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBattlerAttacker].status1);
+                    BtlController_EmitSetMonData(gBattlerAttacker, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBattlerAttacker].status1);
                     MarkBattlerForControllerExec(gBattlerAttacker);
                     break;
                 }
