@@ -1639,13 +1639,12 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
 
     // discouraged from hitting
     weather = AI_GetWeather();
-    if ((weather & B_WEATHER_SUN) && effect == EFFECT_THUNDER)
+    if ((weather & B_WEATHER_SUN) && MoveHas50AccuracyInSun(move))
         return FALSE;
 
-    // increased accuracy but don't always hit
-    if ((weather & B_WEATHER_RAIN) && effect == EFFECT_THUNDER)
+    if ((weather & B_WEATHER_RAIN) && MoveAlwaysHitsInRain(move))
         return TRUE;
-    if ((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && effect == EFFECT_BLIZZARD)
+    if ((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && MoveAlwaysHitsInHailSnow(move))
         return TRUE;
     if (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && MoveIncreasesPowerToMinimizedTargets(move))
         return TRUE;
@@ -1722,7 +1721,7 @@ bool32 ShouldSetHail(u32 battler, u32 ability, enum ItemHoldEffect holdEffect)
       || ability == ABILITY_OVERCOAT
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
-      || HasMoveEffect(battler, EFFECT_BLIZZARD)
+      || HasMoveThatAlwaysHitsInHailSnow(battler)
       || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
     {
@@ -1743,7 +1742,7 @@ bool32 ShouldSetRain(u32 battlerAtk, u32 atkAbility, enum ItemHoldEffect holdEff
       || atkAbility == ABILITY_HYDRATION
       || atkAbility == ABILITY_RAIN_DISH
       || atkAbility == ABILITY_DRY_SKIN
-      || HasMoveEffect(battlerAtk, EFFECT_THUNDER)
+      || HasMoveThatAlwaysHitsInRain(battlerAtk)
       || HasMoveEffect(battlerAtk, EFFECT_WEATHER_BALL)
       || HasMoveWithType(battlerAtk, TYPE_WATER)))
     {
@@ -1789,7 +1788,7 @@ bool32 ShouldSetSnow(u32 battler, u32 ability, enum ItemHoldEffect holdEffect)
       || ability == ABILITY_FORECAST
       || ability == ABILITY_SLUSH_RUSH
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
-      || HasMoveEffect(battler, EFFECT_BLIZZARD)
+      || HasMoveThatAlwaysHitsInHailSnow(battler)
       || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
     {
@@ -2648,6 +2647,42 @@ bool32 HasSnatchAffectedMove(u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveCanBeSnatched(moves[i]))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 HasMoveThatAlwaysHitsInRain(u32 battler)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveAlwaysHitsInRain(moves[i]))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 HasMoveThatHas50AccuracyInSun(u32 battler)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveHas50AccuracyInSun(moves[i]))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 HasMoveThatAlwaysHitsInHailSnow(u32 battler)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && MoveAlwaysHitsInHailSnow(moves[i]))
             return TRUE;
     }
     return FALSE;
