@@ -2277,8 +2277,7 @@ static void Cmd_adjustdamage(void)
     if (gSpecialStatuses[gBattlerAttacker].gemBoost
         && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
         && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
-        && gBattleMons[gBattlerAttacker].item
-        && gCurrentMove != MOVE_STRUGGLE)
+        && gBattleMons[gBattlerAttacker].item)
     {
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_GemActivates;
@@ -5234,8 +5233,9 @@ static void Cmd_getexp(void)
     }
 }
 
-bool32 NoAliveMonsForBattlerSide(u32 battler)
+static u32 CountAliveMonsForBattlerSide(u32 battler)
 {
+    u32 aliveMons = 0;
     struct Pokemon *party = GetBattlerParty(battler);
 
     for (u32 partyMon = 0; partyMon < PARTY_SIZE; partyMon++)
@@ -5243,10 +5243,15 @@ bool32 NoAliveMonsForBattlerSide(u32 battler)
         if (GetMonData(&party[partyMon], MON_DATA_SPECIES)
          && GetMonData(&party[partyMon], MON_DATA_HP) > 0
          && !GetMonData(&party[partyMon], MON_DATA_IS_EGG))
-            return FALSE;
+            aliveMons++;
     }
 
-    return TRUE;
+    return aliveMons;
+}
+
+bool32 NoAliveMonsForBattlerSide(u32 battler)
+{
+    return CountAliveMonsForBattlerSide(battler) == 0;
 }
 
 bool32 NoAliveMonsForPlayer(void)
@@ -5364,7 +5369,12 @@ static void Cmd_checkteamslost(void)
         }
         else
         {
-            if (emptyOpponentSpots != 0 && emptyPlayerSpots != 0)
+            u32 occupiedPlayerSpots = (gBattlersCount / 2) - emptyPlayerSpots;
+            u32 occupiedOpponentSpots = (gBattlersCount / 2) - emptyOpponentSpots;
+            u32 alivePlayerPartyMons = CountAliveMonsForBattlerSide(B_POSITION_PLAYER_LEFT) - occupiedPlayerSpots;
+            u32 aliveOpponentPartyMons = CountAliveMonsForBattlerSide(B_POSITION_OPPONENT_LEFT) - occupiedOpponentSpots;
+
+            if (emptyPlayerSpots > 0 && alivePlayerPartyMons > 0 && emptyOpponentSpots > 0 && aliveOpponentPartyMons > 0)
                 gBattlescriptCurrInstr = cmd->jumpInstr;
             else
                 gBattlescriptCurrInstr = cmd->nextInstr;
@@ -11134,7 +11144,7 @@ static void Cmd_various(void)
         if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_ROOM_SERVICE && TryRoomService(battler))
         {
             BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_BerryStatRaiseRet;
+            gBattlescriptCurrInstr = BattleScript_ConsumableStatRaiseRet;
         }
         else
         {
