@@ -18690,3 +18690,13 @@ void BS_JumpIfLastUsedItemHoldEffect(void)
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
+
+void BS_JumpIfNoWhiteOut(void)
+{
+    NATIVE_ARGS(const u8 *jumpInstr);
+
+    if (FlagGet(B_FLAG_NO_WHITEOUT))
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
