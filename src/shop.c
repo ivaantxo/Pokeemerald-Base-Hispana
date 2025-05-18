@@ -129,7 +129,7 @@ static void BuyMenuDecompressBgGraphics(void);
 static void BuyMenuSetListEntry(struct ListMenuItem *, u16, u8 *);
 static void BuyMenuAddItemIcon(u16, u8);
 static void BuyMenuRemoveItemIcon(u16, u8);
-static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet);
+static void BuyMenuPrint(u8 windowId, u8 fontId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet);
 static void BuyMenuDrawMapGraphics(void);
 static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void);
 static void BuyMenuCollectObjectEventData(void);
@@ -615,7 +615,7 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     }
 
     FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
-    BuyMenuPrint(WIN_ITEM_DESCRIPTION, description, 3, 1, 0, COLORID_NORMAL);
+    BuyMenuPrint(WIN_ITEM_DESCRIPTION, GetFontIdToFit(description, FONT_NORMAL, 0, WindowWidthPx(WIN_ITEM_DESCRIPTION) - 9), description, 3, 1, 0, COLORID_NORMAL);
 }
 
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
@@ -678,7 +678,7 @@ static void BuyMenuRemoveScrollIndicatorArrows(void)
 static void BuyMenuPrintCursor(u8 scrollIndicatorsTaskId, u8 colorSet)
 {
     u8 y = ListMenuGetYCoordForPrintingArrowCursor(scrollIndicatorsTaskId);
-    BuyMenuPrint(WIN_ITEM_LIST, gText_SelectorArrow2, 0, y, 0, colorSet);
+    BuyMenuPrint(WIN_ITEM_LIST, FONT_NORMAL, gText_SelectorArrow2, 0, y, 0, colorSet);
 }
 
 static void BuyMenuAddItemIcon(u16 item, u8 iconSlot)
@@ -759,9 +759,9 @@ static void BuyMenuInitWindows(void)
     PutWindowTilemap(WIN_ITEM_DESCRIPTION);
 }
 
-static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet)
+static void BuyMenuPrint(u8 windowId, u8 fontId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet)
 {
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 0, 0, sShopBuyMenuTextColors[colorSet], speed, text);
+    AddTextPrinterParameterized4(windowId, fontId, x, y, 0, 0, sShopBuyMenuTextColors[colorSet], speed, text);
 }
 
 static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)
@@ -1060,7 +1060,7 @@ static void Task_BuyHowManyDialogueInit(u8 taskId)
     DrawStdFrameWithCustomTileAndPalette(WIN_QUANTITY_IN_BAG, FALSE, 1, 13);
     ConvertIntToDecimalStringN(gStringVar1, quantityInBag, STR_CONV_MODE_RIGHT_ALIGN, MAX_ITEM_DIGITS + 1);
     StringExpandPlaceholders(gStringVar4, gText_InBagVar1);
-    BuyMenuPrint(WIN_QUANTITY_IN_BAG, gStringVar4, 0, 1, 0, COLORID_NORMAL);
+    BuyMenuPrint(WIN_QUANTITY_IN_BAG, FONT_NORMAL, gStringVar4, 0, 1, 0, COLORID_NORMAL);
     tItemCount = 1;
     DrawStdFrameWithCustomTileAndPalette(WIN_QUANTITY_PRICE, FALSE, 1, 13);
     BuyMenuPrintItemQuantityAndPrice(taskId);
@@ -1234,7 +1234,7 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
     PrintMoneyAmount(WIN_QUANTITY_PRICE, CalculateMoneyTextHorizontalPosition(sShopData->totalCost), 1, sShopData->totalCost, TEXT_SKIP_DRAW);
     ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, MAX_ITEM_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
-    BuyMenuPrint(WIN_QUANTITY_PRICE, gStringVar4, 0, 1, 0, COLORID_NORMAL);
+    BuyMenuPrint(WIN_QUANTITY_PRICE, FONT_NORMAL, gStringVar4, 0, 1, 0, COLORID_NORMAL);
 }
 
 static void ExitBuyMenu(u8 taskId)
