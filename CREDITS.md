@@ -38,6 +38,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/agsmgmaster64"><img src="https://avatars.githubusercontent.com/u/67435611?v=4?s=100" width="100px;" alt="agsmgmaster64"/><br /><sub><b>agsmgmaster64</b></sub></a><br /><a href="https://github.com/rh-hideout/pokeemerald-expansion/commits?author=agsmgmaster64" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/LinathanZel"><img src="https://avatars.githubusercontent.com/u/35115312?v=4?s=100" width="100px;" alt="Linathan"/><br /><sub><b>Linathan</b></sub></a><br /><a href="https://github.com/rh-hideout/pokeemerald-expansion/commits?author=LinathanZel" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ExpoSeed"><img src="https://avatars.githubusercontent.com/u/43502820?v=4?s=100" width="100px;" alt="ExpoSeed"/><br /><sub><b>ExpoSeed</b></sub></a><br /><a href="https://github.com/rh-hideout/pokeemerald-expansion/commits?author=ExpoSeed" title="Code">💻</a> <a href="#maintenance-ExpoSeed" title="Maintenance">🚧</a> <a href="https://github.com/rh-hideout/pokeemerald-expansion/pulls?q=is%3Apr+reviewed-by%3AExpoSeed" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
   <tfoot>
