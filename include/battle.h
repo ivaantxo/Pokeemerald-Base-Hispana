@@ -405,10 +405,10 @@ struct StatsArray
 
 struct BattleResources
 {
-    struct SecretBase* secretBase;
-    struct BattleScriptsStack* battleScriptsStack;
-    struct BattleCallbacksStack* battleCallbackStack;
-    struct StatsArray* beforeLvlUp;
+    struct SecretBase *secretBase;
+    struct BattleScriptsStack *battleScriptsStack;
+    struct BattleCallbacksStack *battleCallbackStack;
+    struct StatsArray *beforeLvlUp;
     struct AI_ThinkingStruct *ai;
     struct AiLogicData *aiData;
     struct AIPartyData *aiParty;

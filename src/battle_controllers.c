@@ -1156,15 +1156,15 @@ void BtlController_EmitMoveAnimation(u32 battler, u32 bufferId, u16 move, u8 tur
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 16 + sizeof(struct DisableStruct));
 }
 
-void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringID)
+void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringId)
 {
     s32 i;
     struct BattleMsgData *stringInfo;
 
     gBattleResources->transferBuffer[0] = CONTROLLER_PRINTSTRING;
     gBattleResources->transferBuffer[1] = gBattleOutcome;
-    gBattleResources->transferBuffer[2] = stringID;
-    gBattleResources->transferBuffer[3] = (stringID & 0xFF00) >> 8;
+    gBattleResources->transferBuffer[2] = stringId;
+    gBattleResources->transferBuffer[3] = (stringId & 0xFF00) >> 8;
 
     stringInfo = (struct BattleMsgData *)(&gBattleResources->transferBuffer[4]);
     stringInfo->currentMove = gCurrentMove;
@@ -1188,15 +1188,15 @@ void BtlController_EmitPrintString(u32 battler, u32 bufferId, u16 stringID)
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, sizeof(struct BattleMsgData) + 4);
 }
 
-void BtlController_EmitPrintSelectionString(u32 battler, u32 bufferId, u16 stringID)
+void BtlController_EmitPrintSelectionString(u32 battler, u32 bufferId, u16 stringId)
 {
     s32 i;
     struct BattleMsgData *stringInfo;
 
     gBattleResources->transferBuffer[0] = CONTROLLER_PRINTSTRINGPLAYERONLY;
     gBattleResources->transferBuffer[1] = CONTROLLER_PRINTSTRINGPLAYERONLY;
-    gBattleResources->transferBuffer[2] = stringID;
-    gBattleResources->transferBuffer[3] = (stringID & 0xFF00) >> 8;
+    gBattleResources->transferBuffer[2] = stringId;
+    gBattleResources->transferBuffer[3] = (stringId & 0xFF00) >> 8;
 
     stringInfo = (struct BattleMsgData *)(&gBattleResources->transferBuffer[4]);
     stringInfo->currentMove = gCurrentMove;
@@ -1494,7 +1494,7 @@ void BtlController_EmitIntroTrainerBallThrow(u32 battler, u32 bufferId)
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 4);
 }
 
-void BtlController_EmitDrawPartyStatusSummary(u32 battler, u32 bufferId, struct HpAndStatus* hpAndStatus, u8 flags)
+void BtlController_EmitDrawPartyStatusSummary(u32 battler, u32 bufferId, struct HpAndStatus *hpAndStatus, u8 flags)
 {
     s32 i;
 
@@ -1534,7 +1534,7 @@ void BtlController_EmitSpriteInvisibility(u32 battler, u32 bufferId, bool8 isInv
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 4);
 }
 
-void BtlController_EmitBattleAnimation(u32 battler, u32 bufferId, u8 animationId, struct DisableStruct* disableStructPtr, u16 argument)
+void BtlController_EmitBattleAnimation(u32 battler, u32 bufferId, u8 animationId, struct DisableStruct *disableStructPtr, u16 argument)
 {
     gBattleResources->transferBuffer[0] = CONTROLLER_BATTLEANIMATION;
     gBattleResources->transferBuffer[1] = animationId;
