@@ -1022,6 +1022,13 @@ void NPCFollow(struct ObjectEvent *npc, u32 state, bool32 ignoreScriptActive)
     else if (ArePlayerFieldControlsLocked() && !ignoreScriptActive)
         return;
 
+    // If the follower's object has been removed, create a new one and set it to reappear.
+    if (!follower->active)
+    {
+        CreateFollowerNPCAvatar();
+        SetFollowerNPCData(FNPC_DATA_WARP_END, FNPC_WARP_REAPPEAR);
+    }
+
     // Restore post warp behavior after setobjectxy.
     if (GetFollowerNPCData(FNPC_DATA_COME_OUT_DOOR) == FNPC_DOOR_NO_POS_SET)
         SetFollowerNPCData(FNPC_DATA_COME_OUT_DOOR, FNPC_DOOR_NONE);
