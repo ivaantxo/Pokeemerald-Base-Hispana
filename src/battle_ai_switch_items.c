@@ -1524,7 +1524,7 @@ bool32 IsMonGrounded(u16 heldItemEffect, u32 ability, u8 type1, u8 type2)
 static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon)
 {
     u8 defType1 = battleMon->types[0], defType2 = battleMon->types[1], tSpikesLayers;
-    u16 heldItemEffect = ItemId_GetHoldEffect(battleMon->item);
+    u16 heldItemEffect = GetItemHoldEffect(battleMon->item);
     u32 maxHP = battleMon->maxHP, ability = battleMon->ability, status = battleMon->status1;
     u32 spikesDamage = 0, tSpikesDamage = 0, hazardDamage = 0;
     u32 hazardFlags = gSideStatuses[GetBattlerSide(battler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SAFEGUARD);
@@ -1582,7 +1582,7 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
 static s32 GetSwitchinWeatherImpact(void)
 {
     s32 weatherImpact = 0, maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP, ability = gAiLogicData->switchinCandidate.battleMon.ability;
-    enum ItemHoldEffect holdEffect = ItemId_GetHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
+    enum ItemHoldEffect holdEffect = GetItemHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
 
     if (HasWeatherEffect())
     {
@@ -1646,7 +1646,7 @@ static s32 GetSwitchinWeatherImpact(void)
 static u32 GetSwitchinRecurringHealing(void)
 {
     u32 recurringHealing = 0, maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP, ability = gAiLogicData->switchinCandidate.battleMon.ability;
-    enum ItemHoldEffect holdEffect = ItemId_GetHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
+    enum ItemHoldEffect holdEffect = GetItemHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
 
     // Items
     if (ability != ABILITY_KLUTZ)
@@ -1680,7 +1680,7 @@ static u32 GetSwitchinRecurringHealing(void)
 static u32 GetSwitchinRecurringDamage(void)
 {
     u32 passiveDamage = 0, maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP, ability = gAiLogicData->switchinCandidate.battleMon.ability;
-    enum ItemHoldEffect holdEffect = ItemId_GetHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
+    enum ItemHoldEffect holdEffect = GetItemHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
 
     // Items
     if (ability != ABILITY_MAGIC_GUARD && ability != ABILITY_KLUTZ)
@@ -1712,7 +1712,7 @@ static u32 GetSwitchinStatusDamage(u32 battler)
 {
     u8 defType1 = gAiLogicData->switchinCandidate.battleMon.types[0], defType2 = gAiLogicData->switchinCandidate.battleMon.types[1];
     u8 tSpikesLayers = gSideTimers[GetBattlerSide(battler)].toxicSpikesAmount;
-    u16 heldItemEffect = ItemId_GetHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
+    u16 heldItemEffect = GetItemHoldEffect(gAiLogicData->switchinCandidate.battleMon.item);
     u32 status = gAiLogicData->switchinCandidate.battleMon.status1, ability = gAiLogicData->switchinCandidate.battleMon.ability, maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP;
     u32 statusDamage = 0;
 
@@ -1790,8 +1790,8 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
     u32 recurringHealing = GetSwitchinRecurringHealing();
     u32 statusDamage = GetSwitchinStatusDamage(battler);
     u32 hitsToKO = 0, singleUseItemHeal = 0;
-    u16 maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP, item = gAiLogicData->switchinCandidate.battleMon.item, heldItemEffect = ItemId_GetHoldEffect(item);
-    u8 weatherDuration = gWishFutureKnock.weatherDuration, holdEffectParam = ItemId_GetHoldEffectParam(item);
+    u16 maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP, item = gAiLogicData->switchinCandidate.battleMon.item, heldItemEffect = GetItemHoldEffect(item);
+    u8 weatherDuration = gWishFutureKnock.weatherDuration, holdEffectParam = GetItemHoldEffectParam(item);
     u32 opposingBattler = GetOppositeBattler(battler);
     u32 opposingAbility = gBattleMons[opposingBattler].ability, ability = gAiLogicData->switchinCandidate.battleMon.ability;
     bool32 usedSingleUseHealingItem = FALSE, opponentCanBreakMold = IsMoldBreakerTypeAbility(opposingBattler, opposingAbility);
@@ -2374,11 +2374,11 @@ static bool32 ShouldUseItem(u32 battler)
         item = gBattleHistory->trainerItems[i];
         if (item == ITEM_NONE)
             continue;
-        itemEffects = ItemId_GetEffect(item);
+        itemEffects = GetItemEffect(item);
         if (itemEffects == NULL)
             continue;
 
-        switch (ItemId_GetBattleUsage(item))
+        switch (GetItemBattleUsage(item))
         {
         case EFFECT_ITEM_HEAL_AND_CURE_STATUS:
             healAmount = GetHPHealAmount(itemEffects[GetItemEffectParamOffset(battler, item, 4, ITEM4_HEAL_HP)], GetBattlerMon(battler));
