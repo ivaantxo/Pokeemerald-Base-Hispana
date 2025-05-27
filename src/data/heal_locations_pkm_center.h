@@ -1,6 +1,6 @@
 #define DEFAULT_POKEMON_CENTER_COORDS .x = 7, .y = 4
 
-static const struct HealLocation sHealLocationsPokemonCenter[HEAL_LOCATION_COUNT - 1] =
+static const struct HealLocation sHealLocationsPokemonCenter[NUM_HEAL_LOCATIONS - 1] =
 {
     [HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F - 1] =
     {
@@ -148,7 +148,7 @@ static const struct HealLocation sHealLocationsPokemonCenter[HEAL_LOCATION_COUNT
 // e.g. for OldaleTown_PokemonCenter1F/events.inc the following entry gets generated:
 // object_event 1, OBJ_EVENT_GFX_NURSE, 7, 2, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, TRAINER_TYPE_NONE, 0, OldaleTown_PokemonCenter_1F_EventScript_Nurse, 0
 // In this case the localId is 1.
-static const u8 sHealNpcLocalId[HEAL_LOCATION_COUNT - 1] =
+static const u8 sHealNpcLocalId[NUM_HEAL_LOCATIONS - 1] =
 {
     [HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F - 1] = 1,
     [HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F - 1] = 1,

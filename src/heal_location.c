@@ -78,7 +78,7 @@ bool32 IsLastHealLocationPlayerHouse()
 
 u32 GetHealNpcLocalId(u32 healLocationId)
 {
-    if (healLocationId == HEAL_LOCATION_NONE || healLocationId >= HEAL_LOCATION_COUNT)
+    if (healLocationId == HEAL_LOCATION_NONE || healLocationId >= NUM_HEAL_LOCATIONS)
         return 0;
 
     return sHealNpcLocalId[healLocationId - 1];
