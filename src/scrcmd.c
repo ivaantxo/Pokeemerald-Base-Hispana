@@ -1006,7 +1006,7 @@ bool8 ScrCmd_warphole(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
 
     PlayerGetDestCoords(&x, &y);
-    if (mapGroup == MAP_GROUP(UNDEFINED) && mapNum == MAP_NUM(UNDEFINED))
+    if (mapGroup == MAP_GROUP(MAP_UNDEFINED) && mapNum == MAP_NUM(MAP_UNDEFINED))
         SetWarpDestinationToFixedHoleWarp(x - MAP_OFFSET, y - MAP_OFFSET);
     else
         SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, x - MAP_OFFSET, y - MAP_OFFSET);
@@ -1333,7 +1333,7 @@ bool8 ScrCmd_waitmovement(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    if (localId != 0)
+    if (localId != LOCALID_NONE)
         sMovingNpcId = localId;
     sMovingNpcMapGroup = gSaveBlock1Ptr->location.mapGroup;
     sMovingNpcMapNum = gSaveBlock1Ptr->location.mapNum;
@@ -1349,7 +1349,7 @@ bool8 ScrCmd_waitmovementat(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    if (localId != 0)
+    if (localId != LOCALID_NONE)
         sMovingNpcId = localId;
     mapGroup = ScriptReadByte(ctx);
     mapNum = ScriptReadByte(ctx);
@@ -1607,7 +1607,7 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
 
     HideFieldMessageBox();
-    playerObjectId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
+    playerObjectId = GetObjectEventIdByLocalIdAndMap(LOCALID_PLAYER, 0, 0);
     ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
     ScriptMovement_UnfreezeObjectEvents();
     UnfreezeObjectEvents();
@@ -1628,7 +1628,7 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
     HideFieldMessageBox();
     if (gObjectEvents[gSelectedObjectEvent].active)
         ObjectEventClearHeldMovementIfFinished(&gObjectEvents[gSelectedObjectEvent]);
-    playerObjectId = GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
+    playerObjectId = GetObjectEventIdByLocalIdAndMap(LOCALID_PLAYER, 0, 0);
     ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
     ScriptMovement_UnfreezeObjectEvents();
     UnfreezeObjectEvents();
