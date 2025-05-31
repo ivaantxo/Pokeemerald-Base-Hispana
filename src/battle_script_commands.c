@@ -5961,6 +5961,13 @@ static void Cmd_playstatchangeanimation(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     u32 ability = GetBattlerAbility(battler);
     u32 stats = cmd->stats;
+    bool32 defiantCompetitiveAffected = FALSE;
+
+    if (gBattleScripting.statAnimPlayed)
+    {
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
 
     // Handle Contrary and Simple
     if (ability == ABILITY_CONTRARY)
@@ -5972,6 +5979,10 @@ static void Cmd_playstatchangeanimation(void)
     {
         flags |= STAT_CHANGE_BY_TWO;
         RecordAbilityBattle(battler, ability);
+    }
+    else if (ability == ABILITY_DEFIANT || ability == ABILITY_COMPETITIVE)
+    {
+        defiantCompetitiveAffected = TRUE;
     }
 
     if (flags & STAT_CHANGE_NEGATIVE) // goes down
@@ -6007,6 +6018,8 @@ static void Cmd_playstatchangeanimation(void)
                     {
                         statAnimId = startingStatAnimId + currStat;
                         changeableStatsCount++;
+                        if (defiantCompetitiveAffected) // Force single stat animations
+                            break;
                     }
                 }
             }
@@ -6051,7 +6064,7 @@ static void Cmd_playstatchangeanimation(void)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else if (changeableStatsCount != 0 && !gBattleScripting.statAnimPlayed)
+    else if (changeableStatsCount != 0)
     {
         BtlController_EmitBattleAnimation(battler, B_COMM_TO_CONTROLLER, B_ANIM_STATS_CHANGE, &gDisableStructs[battler], statAnimId);
         MarkBattlerForControllerExec(battler);
@@ -12468,17 +12481,19 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         }
     }
 
+    if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_STAT_WONT_INCREASE) // same as B_MSG_STAT_WONT_DECREASE
+    {
+        if (!(flags & STAT_CHANGE_ALLOW_PTR))
+            return STAT_CHANGE_DIDNT_WORK;
+        gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
+        return STAT_CHANGE_WORKED;
+    }
+
     gBattleMons[battler].statStages[statId] += statValue;
     if (gBattleMons[battler].statStages[statId] < MIN_STAT_STAGE)
         gBattleMons[battler].statStages[statId] = MIN_STAT_STAGE;
     if (gBattleMons[battler].statStages[statId] > MAX_STAT_STAGE)
         gBattleMons[battler].statStages[statId] = MAX_STAT_STAGE;
-
-    if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_STAT_WONT_INCREASE && flags & STAT_CHANGE_ALLOW_PTR)
-        gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
-
-    if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_STAT_WONT_INCREASE && !(flags & STAT_CHANGE_ALLOW_PTR))
-        return STAT_CHANGE_DIDNT_WORK;
 
     return STAT_CHANGE_WORKED;
 }
