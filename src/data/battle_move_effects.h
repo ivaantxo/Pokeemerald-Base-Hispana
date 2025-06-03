@@ -34,6 +34,12 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
+    [EFFECT_MISTY_EXPLOSION] =
+    {
+        .battleScript = BattleScript_EffectExplosion,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
     [EFFECT_DREAM_EATER] =
     {
         .battleScript = BattleScript_EffectDreamEater,
@@ -198,6 +204,12 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     },
 
     [EFFECT_OHKO] =
+    {
+        .battleScript = BattleScript_EffectOHKO,
+        .battleTvScore = 7,
+    },
+
+    [EFFECT_SHEER_COLD] =
     {
         .battleScript = BattleScript_EffectOHKO,
         .battleTvScore = 7,

@@ -8,6 +8,7 @@ enum BattleMoveEffects
     EFFECT_NON_VOLATILE_STATUS,
     EFFECT_ABSORB,
     EFFECT_EXPLOSION,
+    EFFECT_MISTY_EXPLOSION, // Same as EFFECT_EXPLOSION but it's boosted on Misty Terrain
     EFFECT_DREAM_EATER,
     EFFECT_MIRROR_MOVE,
     EFFECT_ATTACK_UP,
@@ -34,6 +35,7 @@ enum BattleMoveEffects
     EFFECT_LIGHT_SCREEN,
     EFFECT_REST,
     EFFECT_OHKO,
+    EFFECT_SHEER_COLD, // Same as EFFECT_OHKO but Ice-types are immune to it and has decreased accuracy for non Ice-type users.
     EFFECT_FUSION_COMBO,
     EFFECT_FIXED_PERCENT_DAMAGE,
     EFFECT_FIXED_HP_DAMAGE,
