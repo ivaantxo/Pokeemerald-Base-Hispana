@@ -173,12 +173,15 @@ static void Task_CloseBerryTagScreen(u8 taskId);
 static void Task_DisplayAnotherBerry(u8 taskId);
 static void TryChangeDisplayedBerry(u8 taskId, s8 toMove);
 static void HandleBagCursorPositionChange(s8 toMove);
+static u8* ConvertBerrySizeToMetricString(u32 height);
+u8* ConvertBerrySizeToString(u32 height);
+static u8* ConvertMeasurementToMetricString(u32 num, u32* index);
 
-static const u8 sText_SizeSlash[] = _("SIZE /");
-static const u8 sText_FirmSlash[] = _("FIRM /");
+static const u8 sText_SizeSlash[] = _("TAMAÑO /");
+static const u8 sText_FirmSlash[] = _("DUREZA /");
 static const u8 sText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
 static const u8 sText_NumberVar1Var2[] = _("Nº{STR_VAR_1} {STR_VAR_2}");
-static const u8 sText_BerryTag[] = _("BERRY TAG");
+static const u8 sText_BerryTag[] = _("FICHA BAYA");
 static const u8 sText_ThreeMarks[] = _("???");
 
 // code
@@ -420,25 +423,69 @@ static void PrintBerryNumberAndName(void)
     PrintTextInBerryTagScreen(WIN_BERRY_NAME, gStringVar4, 0, 1, 0, 0);
 }
 
-// difference FR
+static u8* ConvertMeasurementToMetricString(u32 num, u32* index)
+{
+    u8* string = Alloc(WEIGHT_HEIGHT_STR_MEM);
+    bool32 outputted = FALSE;
+    u32 result;
+
+    result = num / 1000;
+    if (result == 0)
+    {
+        string[(*index)++] = CHAR_SPACER;
+        outputted = FALSE;
+    }
+    else
+    {
+        string[(*index)++] = CHAR_0 + result;
+        outputted = TRUE;
+    }
+
+    result = (num % 1000) / 100;
+    if (result == 0 && !outputted)
+    {
+        string[(*index)++] = CHAR_SPACER;
+        outputted = FALSE;
+    }
+    else
+    {
+        string[(*index)++] = CHAR_0 + result;
+        outputted = TRUE;
+    }
+
+    string[(*index)++] = CHAR_0 + ((num % 1000) % 100) / 10;
+    string[(*index)++] = CHAR_DEC_SEPARATOR;
+    string[(*index)++] = CHAR_0 + ((num % 1000) % 100) % 10;
+    string[(*index)++] = CHAR_SPACE;
+
+    return string;
+}
+
+static u8* ConvertBerrySizeToMetricString(u32 height)
+{
+    u32 index = 0;
+    u8* heightString = ConvertMeasurementToMetricString(height, &index);
+
+    heightString[index++] = CHAR_c;
+    heightString[index++] = CHAR_m;
+    heightString[index++] = EOS;
+    return heightString;
+}
+
+u8* ConvertBerrySizeToString(u32 height)
+{
+    return ConvertBerrySizeToMetricString(height);
+}
+
 static void PrintBerrySize(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
     AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sText_SizeSlash, 0, 1, TEXT_SKIP_DRAW, NULL);
     if (berry->size != 0)
     {
-        u32 inches, fraction;
-
-        inches = 1000 * berry->size / 254;
-        if (inches % 10 > 4)
-            inches += 10;
-        fraction = (inches % 100) / 10;
-        inches /= 100;
-
-        ConvertIntToDecimalStringN(gStringVar1, inches, STR_CONV_MODE_LEFT_ALIGN, 2);
-        ConvertIntToDecimalStringN(gStringVar2, fraction, STR_CONV_MODE_LEFT_ALIGN, 2);
-        StringExpandPlaceholders(gStringVar4, sText_Var1DotVar2);
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, gStringVar4, 0x28, 1, 0, NULL);
+        u8* heightString = ConvertBerrySizeToString(berry->size);
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, heightString, 0x28, 1, 0, NULL);
+        Free(heightString);
     }
     else
     {
@@ -451,7 +498,7 @@ static void PrintBerryFirmness(void)
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
     AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sText_FirmSlash, 0, 0x11, TEXT_SKIP_DRAW, NULL);
     if (berry->firmness != 0)
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sBerryFirmnessStrings[berry->firmness], 0x28, 0x11, 0, NULL);
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sBerryFirmnessStrings[berry->firmness], 0x30, 0x11, 0, NULL);
     else
         AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sText_ThreeMarks, 0x28, 0x11, 0, NULL);
 }
@@ -459,13 +506,13 @@ static void PrintBerryFirmness(void)
 static void PrintBerryDescription1(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description1, 5, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_DESC, GetFontIdToFit(berry->description1, FONT_NORMAL, 0, WindowWidthPx(WIN_DESC) - 9), berry->description1, 0, 1, 0, NULL);
 }
 
 static void PrintBerryDescription2(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description2, 5, 0x11, 0, NULL);
+    AddTextPrinterParameterized(WIN_DESC, GetFontIdToFit(berry->description2, FONT_NORMAL, 0, WindowWidthPx(WIN_DESC) - 9), berry->description2, 0, 0x11, 0, NULL);
 }
 
 static void CreateBerrySprite(void)
