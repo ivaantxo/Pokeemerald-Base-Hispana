@@ -1542,9 +1542,9 @@ void FreeAllSpritePalettes(void)
         sSpritePaletteTags[i] = TAG_NONE;
 }
 
-u8 LoadSpritePalette(const struct SpritePalette *palette)
+u32 LoadSpritePalette(const struct SpritePalette *palette)
 {
-    u8 index = IndexOfSpritePaletteTag(palette->tag);
+    u32 index = IndexOfSpritePaletteTag(palette->tag);
 
     if (index != 0xFF)
         return index;
@@ -1576,9 +1576,9 @@ void DoLoadSpritePalette(const u16 *src, u16 paletteOffset)
     LoadPalette(src, OBJ_PLTT_OFFSET + paletteOffset, PLTT_SIZE_4BPP);
 }
 
-u8 AllocSpritePalette(u16 tag)
+u32 AllocSpritePalette(u16 tag)
 {
-    u8 index = IndexOfSpritePaletteTag(TAG_NONE);
+    u32 index = IndexOfSpritePaletteTag(TAG_NONE);
     if (index == 0xFF)
     {
         return 0xFF;
@@ -1590,7 +1590,7 @@ u8 AllocSpritePalette(u16 tag)
     }
 }
 
-u8 IndexOfSpritePaletteTag(u16 tag)
+u32 IndexOfSpritePaletteTag(u16 tag)
 {
     u32 i;
     for (i = gReservedSpritePaletteCount; i < 16; i++)
@@ -1740,9 +1740,14 @@ u32 GetSpanPerImage(u32 shape, u32 size)
     return sSpanPerImage[shape][size];
 }
 
-u8 LoadUniqueSpritePalette(const struct SpritePalette *palette, struct BoxPokemon *boxMon)
+u32 LoadUniqueSpritePalette(const struct SpritePalette *palette, u32 personality)
 {
-    u8 index = IndexOfSpritePaletteTag(0xFFFF);
+    u32 index = IndexOfSpritePaletteTag(palette->tag);
+
+    if (index != 0xFF)
+        return index;
+
+    index = IndexOfSpritePaletteTag(TAG_NONE);
 
     if (index == 0xFF)
     {
@@ -1752,33 +1757,14 @@ u8 LoadUniqueSpritePalette(const struct SpritePalette *palette, struct BoxPokemo
     {
         sSpritePaletteTags[index] = palette->tag;
         DoLoadSpritePalette(palette->data, PLTT_ID(index));
-        UniquePalette(OBJ_PLTT_ID(index), boxMon);
-        CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(index)], &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);
+        DesplazaTonoPaleta(OBJ_PLTT_ID(index), personality);
         return index;
     }
 }
 
-u8 LoadUniqueSpritePaletteByPersonality(const struct SpritePalette *palette, u16 species, u32 personality)
+u32 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct SpritePalette *palette2)
 {
-    u8 index = IndexOfSpritePaletteTag(0xFFFF);
-
-    if (index == 0xFF)
-    {
-        return 0xFF;
-    }
-    else
-    {
-        sSpritePaletteTags[index] = palette->tag;
-        DoLoadSpritePalette(palette->data, PLTT_ID(index));
-        UniquePaletteByPersonality(OBJ_PLTT_ID(index), species, personality);
-        CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(index)], &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);
-        return index;
-    }
-}
-
-u8 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct SpritePalette *palette2)
-{
-    u8 index = IndexOfSpritePaletteTag(palette1->tag);
+    u32 index = IndexOfSpritePaletteTag(palette1->tag);
 
     if (index != 0xFF)
         return index;

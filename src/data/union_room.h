@@ -439,26 +439,16 @@ ALIGNED(4) static const u8 sText_NobodyHasRegistered[] = _("Nobody has registere
 ALIGNED(4) static const u8 sText_ChooseRequestedMonType[] = _("Elige el tipo de POKéMON que\nte gustaría recibir.\n");
 ALIGNED(4) static const u8 sText_WhichMonWillYouOffer[] = _("¿A qué miembro de tu equipo\nPOKéMON ofreces en el intercambio?\p");
 ALIGNED(4) static const u8 sText_RegistrationCanceled[] = _("Se ha cancelado el registro.\p");
-ALIGNED(4) static const u8 sText_RegistraionCompleted[] = _("Se ha finalizado el registro.\p");
+ALIGNED(4) static const u8 sText_RegistrationCompleted[] = _("Se ha finalizado el registro.\p");
 ALIGNED(4) static const u8 sText_TradeCanceled[] = _("Se ha cancelado el intercambio.\p");
 ALIGNED(4) static const u8 sText_CancelRegistrationOfMon[] = _("¿Cancelas el registro\nde tu {STR_VAR_1} de nivel {STR_VAR_2}?");
 ALIGNED(4) static const u8 sText_CancelRegistrationOfEgg[] = _("¿Cancelas el registro\nde tu HUEVO?");
 ALIGNED(4) static const u8 sText_RegistrationCanceled2[] = _("Se ha cancelado el registro.\p");
-ALIGNED(4) static const u8 sText_TradeTrainersWillBeListed[] = _("TRAINERS wishing to make a trade\nwill be listed.");
-ALIGNED(4) static const u8 sText_ChooseTrainerToTradeWith2[] = _("Please choose the TRAINER with whom\nyou would like to trade POKéMON.");
 ALIGNED(4) static const u8 sText_AskTrainerToMakeTrade[] = _("¿Quieres preguntarle a {STR_VAR_1}\nsi quiere realizar un intercambio?");
-ALIGNED(4) static const u8 sText_AwaitingResponseFromTrainer2[] = _("Awaiting a response from\nthe other TRAINER…");
-ALIGNED(4) static const u8 sText_NotRegisteredAMonForTrade[] = _("You have not registered a POKéMON\nfor trading.\p");
 ALIGNED(4) static const u8 sText_DontHaveTypeTrainerWants[] = _("{STR_VAR_1} quiere un\nPKMN de tipo {STR_VAR_2},\ly no tienes…\p");
 ALIGNED(4) static const u8 sText_DontHaveEggTrainerWants[] = _("{STR_VAR_1} quiere un HUEVO,\ny tú no tienes…\p");
 ALIGNED(4) static const u8 sText_PlayerCantTradeForYourMon[] = _("Ahora mismo, {STR_VAR_1} no\npuede ofrecerte nada\lpor tu POKéMON.\p");
 ALIGNED(4) static const u8 sText_CantTradeForPartnersMon[] = _("Ahora mismo, no puedes hacer\nningún intercambio por el\lPOKéMON de {STR_VAR_1}.\p");
-
-// Unused
-static const u8 *const sCantTradeMonTexts[] = {
-    sText_PlayerCantTradeForYourMon,
-    sText_CantTradeForPartnersMon
-};
 
 ALIGNED(4) static const u8 sText_TradeOfferRejected[] = _("Tu oferta ha sido rechazada.\p");
 ALIGNED(4) static const u8 sText_EggTrade[] = _("INTERCAMBIO DE HUEVO");
@@ -855,7 +845,8 @@ static const struct WindowTemplate sWindowTemplate_TradingBoardRequestType = {
     .baseBlock = 0x0001
 };
 
-static const struct ListMenuItem sTradingBoardTypes[NUMBER_OF_MON_TYPES] = {
+// Subtract two from the total type count to handle in-battle types not for display
+static const struct ListMenuItem sTradingBoardTypes[NUMBER_OF_MON_TYPES - 2] = {
     { gTypesInfo[TYPE_NORMAL].name,   TYPE_NORMAL         },
     { gTypesInfo[TYPE_FIRE].name,     TYPE_FIRE           },
     { gTypesInfo[TYPE_WATER].name,    TYPE_WATER          },

@@ -242,103 +242,74 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u32 blendColor)
     }
 }
 
-void UniquePalette(u16 palOffset, struct BoxPokemon *boxMon)
+#define LIMITADOR_VARIACION_PALETAS 40  // Rango total en grados en HSL (que van desde 0 a 360º). 40 = ± 20
+
+static s32 CalcularDesplazamientoDesdePersonalidad(u32 personalidad)
 {
-    u32 i;
-    u32 value = (GetBoxMonData(boxMon, MON_DATA_PERSONALITY) >> 8) & 0xFFFF;
+    u32 semilla = personalidad & 0xFF; // Solo 8 bits
+    return ((semilla * LIMITADOR_VARIACION_PALETAS) / 255) - (LIMITADOR_VARIACION_PALETAS / 2);
+}
 
-    s8 dr = ((value >> 8) & 0xF) % 5;
-    s8 dg = ((value >> 4) & 0xF) % 5;
-    s8 db = (value & 0xF) % 5;
-
-    for (i = 0; i < 16; i++)
+static void DesplazaTonoPaletaBase(const u16 *src, u16 *dst, s32 desplazamiento)
+{
+    for (u32 i = 0; i < COLORES_POR_PALETA_4BPP; i++)
     {
-        u32 index = i + palOffset;
-        struct PlttData *data1 = (struct PlttData *)&gPlttBufferUnfaded[index];
-        s8 r = data1->r + dr - 2;
-        s8 g = data1->g + dg - 2;
-        s8 b = data1->b + db - 2;
+        u32 color = src[i];
+        s32 r = GET_R(color);
+        s32 g = GET_G(color);
+        s32 b = GET_B(color);
 
-        if (r > 31)
-            r = 31 - dr / 2;
-        if (g > 31)
-            g = 31 - dg / 2;
-        if (b > 31)
-            b = 31 - db / 2;
-        if (r < 0)
-            r = dr / 2;
-        if (g < 0)
-            g = dg / 2;
-        if (b < 0)
-            b = db / 2;
+        s32 max = r > g ? (r > b ? r : b) : (g > b ? g : b);
+        s32 min = r < g ? (r < b ? r : b) : (g < b ? g : b);
+        s32 delta = max - min;
 
-        gPlttBufferFaded[index] = RGB(r, g, b);
+        s32 tono;
+        if (delta == 0)
+            tono = 0;
+        else if (max == r)
+            tono = 60 * (g - b) / delta;
+        else if (max == g)
+            tono = 60 * (b - r) / delta + 120;
+        else
+            tono = 60 * (r - g) / delta + 240;
+
+        if (tono < 0)
+            tono += 360;
+
+        tono = (tono + desplazamiento) % 360;
+        if (tono < 0)
+            tono += 360;
+
+        s32 sat = (max == 0) ? 0 : ((delta * 255) / max);
+        s32 val = max;
+
+        s32 C = (val * sat) / 255;
+        s32 X = (C * (60 - abs((tono % 120) - 60))) / 60;
+        s32 m = val - C;
+
+        s32 r1 = 0, g1 = 0, b1 = 0;
+        if (tono < 60)          { r1 = C; g1 = X; b1 = 0; }
+        else if (tono < 120)    { r1 = X; g1 = C; b1 = 0; }
+        else if (tono < 180)    { r1 = 0; g1 = C; b1 = X; }
+        else if (tono < 240)    { r1 = 0; g1 = X; b1 = C; }
+        else if (tono < 300)    { r1 = X; g1 = 0; b1 = C; }
+        else                    { r1 = C; g1 = 0; b1 = X; }
+
+        s32 R = r1 + m;
+        s32 G = g1 + m;
+        s32 B = b1 + m;
+
+        if (R > RGB_MAXIMO) R = RGB_MAXIMO;
+        if (G > RGB_MAXIMO) G = RGB_MAXIMO;
+        if (B > RGB_MAXIMO) B = RGB_MAXIMO;
+
+        dst[i] = RGB(R, G, B);
     }
 }
 
-void UniquePaletteByPersonality(u16 palOffset, u16 species, u32 personality)
+void DesplazaTonoPaleta(u32 offsetPaleta, u32 personalidad)
 {
-    u32 i;
-    u32 value = (personality >> 8) & 0xFFFF;
-
-    s8 dr = ((value >> 8) & 0xF) % 5;
-    s8 dg = ((value >> 4) & 0xF) % 5;
-    s8 db = (value & 0xF) % 5;
-
-    for (i = 0; i < 16; i++)
-    {
-        u32 index = i + palOffset;
-        struct PlttData *data1 = (struct PlttData *)&gPlttBufferUnfaded[index];
-        s8 r = data1->r + dr - 2;
-        s8 g = data1->g + dg - 2;
-        s8 b = data1->b + db - 2;
-
-        if (r > 31)
-            r = 31 - dr / 2;
-        if (g > 31)
-            g = 31 - dg / 2;
-        if (b > 31)
-            b = 31 - db / 2;
-        if (r < 0)
-            r = dr / 2;
-        if (g < 0)
-            g = dg / 2;
-        if (b < 0)
-            b = db / 2;
-
-        gPlttBufferFaded[index] = RGB(r, g, b);
-    }
-}
-
-void UniquePaletteBuffered(u16 * buffer, u16 species, u32 personality)
-{
-    u32 i;
-    u32 value = (personality >> 8) & 0xFFFF;
-
-    s8 dr = ((value >> 8) & 0xF) % 5;
-    s8 dg = ((value >> 4) & 0xF) % 5;
-    s8 db = (value & 0xF) % 5;
-
-    for (i = 0; i < 16; i++)
-    {
-        struct PlttData *data1 = (struct PlttData *)&buffer[i];
-        s8 r = data1->r + dr - 2;
-        s8 g = data1->g + dg - 2;
-        s8 b = data1->b + db - 2;
-
-        if (r > 31)
-            r = 31 - dr / 2;
-        if (g > 31)
-            g = 31 - dg / 2;
-        if (b > 31)
-            b = 31 - db / 2;
-        if (r < 0)
-            r = dr / 2;
-        if (g < 0)
-            g = dg / 2;
-        if (b < 0)
-            b = db / 2;
-
-        buffer[i] = RGB(r, g, b);
-    }
+    s32 desplazamiento = CalcularDesplazamientoDesdePersonalidad(personalidad);
+    DesplazaTonoPaletaBase(&gPlttBufferUnfaded[offsetPaleta], &gPlttBufferFaded[offsetPaleta], desplazamiento);
+    CpuSmartCopy32(&gPlttBufferFaded[offsetPaleta], &gPlttBufferUnfaded[offsetPaleta], PLTT_SIZE_4BPP);
 }

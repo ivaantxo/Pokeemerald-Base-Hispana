@@ -22,6 +22,12 @@ gText_PkmnTransferredLanettesPCBoxFull::
 	.string "{STR_VAR_2} fue enviado a la CAJA\n"
 	.string "“{STR_VAR_1}”.$"
 
+gText_PkmnSentToPCAfterCatch::
+	.string "{STR_VAR_2} fue enviado\n"
+	.string "a {B_PC_CREATOR_NAME} PC.\p"
+	.string "Fue colcoado en \n"
+	.string "Caja “{STR_VAR_1}”.$"
+
 gText_NoMoreRoomForPokemon::
 	.string "¡No queda sitio para más POKéMON!\p"
 	.string "¡Las CAJAS POKéMON están llenas!$"

@@ -295,7 +295,7 @@ static void VBlankCB_ExpansionIntro(void)
 
 static void ExpansionIntro_InitBgs(void)
 {
-    ResetBgsAndClearDma3BusyFlags(0);
+    ResetBgsAndClearDma3BusyFlags();
     InitBgsFromTemplates(0, sBgTemplates_RhhCopyrightScreen, ARRAY_COUNT(sBgTemplates_RhhCopyrightScreen));
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_EFFECT_DARKEN);

@@ -21,6 +21,7 @@ struct EReaderTaskData
     u8 state;
     u8 textState;
     u8 status;
+    u8 *buffer;
 };
 
 struct EReaderData
@@ -31,9 +32,6 @@ struct EReaderData
 };
 
 static void Task_EReader(u8);
-
-// This belongs in COMMON somewhere between party_menu and ereader_screen, but it's unused so it's unclear where.
-COMMON_DATA UNUSED u8 gUnknownSpace[64] = {0};
 
 COMMON_DATA struct EReaderData gEReaderData = {0};
 
@@ -93,7 +91,6 @@ static u8 EReader_Transfer(struct EReaderData *eReader)
 
 static void OpenEReaderLink(void)
 {
-    memset(gDecompressionBuffer, 0, 0x2000);
     gLinkType = LINKTYPE_EREADER_EM;
     OpenLink();
     SetSuppressLinkErrorMessage(TRUE);
@@ -248,6 +245,7 @@ void CreateEReaderTask(void)
     data->textState = 0;
     data->timer = 0;
     data->status = 0;
+    data->buffer = AllocZeroed(0x2000);
 }
 
 static void ResetTimer(u16 *timer)
@@ -456,7 +454,7 @@ static void Task_EReader(u8 taskId)
         }
         break;
     case ER_STATE_VALIDATE_CARD:
-        data->status = ValidateTrainerHillData((struct EReaderTrainerHillSet *)gDecompressionBuffer);
+        data->status = ValidateTrainerHillData((struct EReaderTrainerHillSet *)data->buffer);
         SetCloseLinkCallbackAndType(data->status);
         data->state = ER_STATE_WAIT_DISCONNECT;
         break;
@@ -470,7 +468,7 @@ static void Task_EReader(u8 taskId)
         }
         break;
     case ER_STATE_SAVE:
-        if (TryWriteTrainerHill((struct EReaderTrainerHillSet *)&gDecompressionBuffer))
+        if (TryWriteTrainerHill((struct EReaderTrainerHillSet *)data->buffer))
         {
             MG_AddMessageTextPrinter(gJPText_ConnectionComplete);
             ResetTimer(&data->timer);
@@ -510,6 +508,7 @@ static void Task_EReader(u8 taskId)
             data->state = ER_STATE_START;
         break;
     case ER_STATE_END:
+        Free(data->buffer);
         DestroyTask(taskId);
         SetMainCallback2(MainCB_FreeAllBuffersAndReturnToInitTitleScreen);
         break;

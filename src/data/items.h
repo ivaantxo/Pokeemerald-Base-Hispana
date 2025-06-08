@@ -13707,6 +13707,8 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Gran diamansfera"),
         .price = 0,
+        .holdEffect = HOLD_EFFECT_ADAMANT_ORB,
+        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Una gema grande y brillante\n"
             "que permite a Dialga\n"
@@ -13723,6 +13725,8 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Gran griseosfera"),
         .price = 0,
+        .holdEffect = HOLD_EFFECT_GRISEOUS_ORB,
+        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Una gema grande y brillante\n"
             "que permite a Giratina\n"
@@ -13739,6 +13743,8 @@ const struct Item gItemsInfo[] =
     {
         .name = _("Gran lustresfera"),
         .price = 0,
+        .holdEffect = HOLD_EFFECT_LUSTROUS_ORB,
+        .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Gran gema resplandeciente\n"
             "que permite a Palkia\n"

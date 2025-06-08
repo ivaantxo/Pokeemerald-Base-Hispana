@@ -17,6 +17,7 @@
                                                 // GEN_1/2/3/4/5/6/7: Yellow, Crystal, RSE, HGSS, B2W2, ORAS, USUM aprendizajes respectivamente.
                                                 // GEN_8: Usa la siguiente prioridad: BDSP para Pokémon de Gen1-4, luego LA para especies introducidas en ese juego, luego SwSh para especies presentes en esos juegos. De lo contrario, usa GEN_7.
                                                 // GEN_9: SV para especies presentes en esos juegos. De lo contrario, usa GEN_8.
+#define P_EVOLUTION_LEVEL_1_LEARN   GEN_LATEST  // En Gen 8+, Pokémon que evolucionen al nivel 1 no aprenden los ataques de ese nivel, mientras que antes sí lo hacían.
 
 // Configuración de evolución
 #define P_FRIENDSHIP_EVO_THRESHOLD   GEN_LATEST  // Desde Gen 8, los Pokémon que evolucionan por amistad evolucionan en o arriba de 160 de amistad en lugar de 220.
@@ -44,6 +45,9 @@
 #define P_ARCEUS_UNIQUE_FORM_ICONS       GEN_LATEST  // Desde Gen 9, Arceus además cambia su ícono para reflejar su forma actual.
 #define P_FOOTPRINTS                     TRUE        // Si es TRUE, los Pokémon tendrán huellas (como era el caso hasta Gen 5 y en BDSP). Deshabilitar esto ahorra algo de espacio en la ROM.
 #define P_TWO_FRAME_FRONT_SPRITES        TRUE        // En Pokémon Esmeralda, los sprites frontales de Pokémon siempre consisten en dos cuadros. Esta configuración puede revertirlo para usar solo el primer cuadro, como en los otros juegos de Gen 3.
+#define P_GBA_STYLE_SPECIES_GFX          FALSE       // Por defecto, los sprites de Pokémon son de estilo NDS. Este config los vuelve al estilo GBA. NOTA: B_ENEMY_MON_SHADOW_STYLE se desactiva cuando usas estos sprites de momento.
+#define P_GBA_STYLE_SPECIES_ICONS        FALSE       // Por defecto, Pokémon tienen sus iconos actualizados. Este config los vuelve al estilo GBA.
+#define P_GBA_STYLE_SPECIES_FOOTPRINTS   FALSE       // Por defecto, Pokémon tienen sus huellas actualizadas. Este config las vuelve al estilo GBA.
 
 // Otras configuraciones
 #define P_CRIES_ENABLED                  TRUE        // Si es TRUE, los Pokémon tendrán llantos. Deshabilitar esto ahorra alrededor de MUCHO espacio en la ROM (¡más del 25%!), pero en su lugar recomendamos deshabilitar familias de Pokémon individuales no utilizadas en include/config/species_enabled.h.
@@ -56,9 +60,6 @@
 #define P_ONLY_OBTAINABLE_SHINIES        FALSE       // Si es TRUE, los Pokémon encontrados en la Pirámide de Batalla no serán shiny.
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // Si es TRUE, los Pokémon encontrados cuando el jugador se queda sin Poké Balls no serán shiny.
 #define P_SHOW_DYNAMIC_TYPES             FALSE       // Si es TRUE, todos los ataques con tipo dinámico se mostrarán así en combate y en la pantalla de sumario.
-#define P_SUMMARY_SCREEN_MOVE_RELEARNER  TRUE        // Si es TRUE, mostrará una opción para recordar movimientos en la pantalla de sumario.
-#define P_SUMMARY_MOVE_RELEARNER_FULL_PP TRUE        // Si es TRUE, el recordador de movimientos de la pantalla de sumario recuperará los PP de los ataques al máximo.
-#define P_SUMMARY_SCREEN_RENAME          TRUE        // Si es TRUE, una opción para cambiar el nombre de los Pokémon sustituirá la opción de cancelar en la pantalla de sumario.
 
 // Configuración de ayudantes de aprendizajes
 #define P_LEARNSET_HELPER_TEACHABLE TRUE        // Si es TRUE, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.

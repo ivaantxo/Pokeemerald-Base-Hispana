@@ -89,6 +89,7 @@
 #define B_CHARGE_SPDEF_RAISE        GEN_LATEST // En Gen5+, Charge aumenta la Defensa Especial del usuario en 1 etapa.
 #define B_MINIMIZE_EVASION          GEN_LATEST // En Gen5+, Reducción aumenta la evasión en 2 etapas en lugar de 1.
 #define B_GROWTH_STAT_RAISE         GEN_LATEST // En Gen5+, Desarrollo aumenta el Ataque además de la Ataque Especial en 1 etapa cada uno. Bajo los efectos del sol, los aumenta en 2 etapas cada uno en su lugar.
+#define B_FOCUS_ENERGY_CRIT_RATIO   GEN_LATEST // En Gen3+, Foco energía aumenta el ratio de golpes críticos en 2 en vez de en 1.
 
 // Otras configuraciones de movimientos
 #define B_INCINERATE_GEMS           GEN_LATEST // En Gen6+, Incinerate puede destruir Gemas.
@@ -125,6 +126,8 @@
 #define B_POWDER_RAIN               GEN_LATEST // En Gen7+, Polvo explosivo no daña al atacante si está lloviendo.
 #define B_AFTER_YOU_TURN_ORDER      GEN_LATEST // En Gen8+, Cede paso no falla si el orden del turno no cambiaría después de usarse.
 #define B_QUASH_TURN_ORDER          GEN_LATEST // En Gen8+, los ataques se ven afectados por Último lugar según su velocidad. Antes de la 8 gen, los que eran afectados por este ataque se movían en el orden en que recibían el movimiento.
+#define B_DESTINY_BOND_FAIL         GEN_LATEST // En Gen7+, Mismodestino falla si lo usas repetidamente.
+#define B_PURSUIT_TARGET            GEN_LATEST // En Gen4+, Persecución ataca al Pokémon que está cambiando aunque no fuera el objetivo original. En generaciones anteriores, Persecución solo ataca al Pokémon que cambia si era el objetivo del movimiento.
 
 // Configuración de habilidades
 #define B_ABILITY_WEATHER           GEN_LATEST // En Gen6+, el clima inducido por habilidades dura 5 turnos. Antes, duraba hasta que terminara la batalla o hasta que fuera cambiado por un movimiento o una habilidad que afecte el clima.
@@ -142,7 +145,7 @@
 #define B_SYMBIOSIS_GEMS            GEN_LATEST // En Gen7+, Symbiosis pasa un objeto después de un ataque potenciado por gema. Anteriormente, los objetos se pasaban antes de que el ataque potenciado por gema golpeara, haciendo que el efecto del objeto se aplicara.
 #define B_ABSORBING_ABILITY_STRING  GEN_LATEST // En Gen5+, las habilidades que absorben movimientos de un tipo específico usan una cadena genérica para aumentos y disminuciones de estadísticas.
 #define B_REDIRECT_ABILITY_IMMUNITY GEN_LATEST // En Gen5+, Pokémon con Lightning Rod/Storm Drain se vuelven inmunes a movimientos de tipo Eléctrico/Agua y aumentan su Sp. Atk en 1 etapa además del efecto de redirección.
-#define B_REDIRECT_ABILITY_ALLIES   GEN_LATEST // En Gen4+, Pararrayos/Colector tambi�n redirigen los movimientos de los aliados.
+#define B_REDIRECT_ABILITY_ALLIES   GEN_LATEST // En Gen4+, Pararrayos/Colector tambi�n redirigen los movimientos de los aliados.
 #define B_LEAF_GUARD_PREVENTS_REST  GEN_LATEST // En Gen5+, Leaf Guard previene el uso de Rest en luz solar intensa.
 #define B_SNOW_WARNING              GEN_LATEST // En Gen9+, Snow Warning convocará nieve en lugar de granizo.
 #define B_TRANSISTOR_BOOST          GEN_LATEST // En Gen9+, Transistor solo aumentará los movimientos de tipo Eléctrico en 1.3x en lugar de 1.5x.
@@ -181,7 +184,9 @@
 #define B_DREAM_BALL_MODIFIER       GEN_LATEST // En Gen8+, el multiplicador de captura de Dream Ball es x4 cuando el objetivo está dormido o tiene la habilidad Comatose.
 #define B_SPORT_BALL_MODIFIER       GEN_LATEST // En Gen8+, el multiplicador de captura de Sport Ball se redujo de x1.5 a x1.
 #define B_SAFARI_BALL_MODIFIER      GEN_LATEST // En Gen8+, el multiplicador de captura de Safari Ball se redujo de x1.5 a x1.
-#define B_SERENE_GRACE_BOOST        GEN_LATEST // En Gen5+, Serene Grace aumenta la probabilidad adicional de flinch de King's Rock y Razor Fang.
+#define B_FRIEND_BALL_MODIFIER      GEN_LATEST // En Gen8+, el aumento de amistad de Amigo Ball se redujo de 200 a 150.
+#define B_SERENE_GRACE_BOOST        GEN_LATEST // En Gen5+, Dicha aumenta la probabilidad adicional de retroceso de Roca del Rey y Colmillo afilado.
+#define B_IRON_BALL                 GEN_LATEST // En Gen5+, Pokémon tipo Volador que lleven Bola férrea reciben daño de Tierra neutro sea cual sea su segundo tipo, excepto en combates invertidos o si el Pokémon está en el suelo por otra razón.
 
 // Configuración de flags
 // Para usar las siguientes características en scripting, reemplaza los 0s con el ID de la flag que le asignas.
@@ -196,6 +201,7 @@
 #define B_FLAG_DYNAMAX_BATTLE       0     // Si esta flag está activada, la habilidad de Dynamax en batalla está habilitada para todos los entrenadores.
 #define B_FLAG_TERA_ORB_CHARGED     0     // Si esta flag está activada, el Tera Orb está cargado. Se activa automáticamente al curar y se borra al Terastalizar una vez configurado.
 #define B_FLAG_TERA_ORB_NO_COST     0     // Si esta flag está activada, el Tera Orb no usa su carga al Terastalizar. En S/V, esto ocurre después de un evento con Terapagos.
+#define B_FLAG_SLEEP_CLAUSE         0     // Si esta flag está activada, clausula de sueño está activada; si el jugador o la IA ha puesto a dormir ya a algún Pokémon, no puede dormir más. IA requiere AI_FLAG_CHECK_BAD_MOVE para entenderlo.
 
 // Configuración de variables
 // Para usar las siguientes características en scripting, reemplaza los 0s con el ID de la variable que le asignas.
@@ -203,6 +209,7 @@
 #define B_VAR_STARTING_STATUS       0     // Si esta variable tiene un valor, asignar un STATUS_FIELD_xx_TERRAIN a ella antes de la batalla hace que la batalla comience con ese terreno activo.
 #define B_VAR_STARTING_STATUS_TIMER 0     // Si esta variable tiene un valor mayor o igual a 1, los terrenos de campo durarán esa cantidad de turnos, de lo contrario durarán hasta que sean sobrescritos.
 #define B_VAR_WILD_AI_FLAGS         0     // Si no es 0, puedes usar esta variable para añadir a los flags de IA salvaje predeterminados. NO usable con las flags anteriores (1 << 15)
+#define B_VAR_DIFFICULTY            0     // Si no es 0, puedes usar esta Var para controlar qué nivel de dificultad tienen los entrenadores. Esto debe ser implementado manualmente por el desarrollador usando Script_SetDifficulty DESPUÉS de que NewGameInitData haya sido llamada.
 
 // Batallas en el cielo
 #define B_FLAG_SKY_BATTLE                 0     // Si esta flag tiene un valor, el jugador podrá participar en Batallas en el Cielo programadas.
@@ -214,6 +221,9 @@
 
 // Configuración de compañero de batalla
 #define B_SHOW_PARTNER_TARGET             FALSE // Si es TRUE, muestra el objetivo del ataque del compañero.
+
+// Descripción de movimientos
+#define B_SHOW_MOVE_DESCRIPTION     TRUE       // Muestra información del movimiento en batalla
 
 // Configuración de Terrenos
 #define B_TERRAIN_BG_CHANGE         TRUE       // Si se establece en TRUE, los movimientos de terreno cambian permanentemente el fondo de batalla predeterminado hasta que el efecto se desvanezca.
@@ -245,6 +255,8 @@
 #define B_LAST_USED_BALL            TRUE       // Si es TRUE, se implementará la característica de "última bola usada" de Gen 7.
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON   // Si se implementa la última bola usada, este botón (o combinación de botones) activará el lanzamiento de la última Poké Ball usada.
 #define B_LAST_USED_BALL_CYCLE      TRUE       // Si es TRUE, mantener presionado B_LAST_USED_BALL_BUTTON mientras se presiona el D-Pad ciclará entre las Poké Balls.
+#define B_CATCH_SWAP_INTO_PARTY     GEN_LATEST // De 7ma Generación en adelante, aparecerá la opción de intercambiar el Pokémon salvaje capturado con uno del equipo, permitiéndote enviar otro Pokémon a la caja.
+#define B_CATCH_SWAP_CHECK_HMS      TRUE       // Si está en TRUE, la función de intercambio al capturar mencionada encima evitará enviar a la caja a los Pokémon que conozcan movimientos MO.
 
 // Otras Configuraciones
 #define B_DOUBLE_WILD_CHANCE            0          // % de probabilidad de encontrar dos Pokémon en un Encuentro Salvaje.
@@ -261,6 +273,7 @@
 #define B_OVERWORLD_FOG                 GEN_LATEST // En Gen8+, la niebla en el mundo exterior invoca Terreno Brumoso en batalla. Solo en Gen4, la niebla en el mundo exterior invoca la condición climática única de niebla en batalla.
 #define B_TOXIC_REVERSAL                GEN_LATEST // En Gen5+, el veneno grave se convierte en veneno normal al final de las batallas.
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // En Gen4+, intentar capturar a un Pokémon de un entrenador no consume la Poké Ball.
+#define B_SLEEP_CLAUSE                  FALSE     //  Si es TRUE, activa la cláusula de sueño siempre, sin importar el B_FLAG_SLEEP_CLAUSE. Usa esto si quieres que sea más fácil de ajustar.
 
 // Configuración de Animaciones
 #define B_NEW_SWORD_PARTICLE            TRUE    // Si se establece en TRUE, actualiza la partícula de Danza espada.
@@ -292,5 +305,16 @@
 
 // Pokémon battle sprite settings
 #define B_ENEMY_MON_SHADOW_STYLE        GEN_LATEST // En Gen4+, todos los rivales tienen sombra.
+
+//  Battle UI settings
+#define B_MOVE_REARRANGEMENT_IN_BATTLE  GEN_LATEST  //  In Gen 4+ move slots cannot be rearranged in battle
+
+#define B_POOL_SETTING_CONSISTENT_RNG       FALSE    // If set to true, the same trainer will always generate the same pool on the same save file
+#define B_POOL_SETTING_USE_FIXED_SEED       FALSE    // If set to true, will use the fixed seed defined in B_POOL_SETTING_FIXED_SEED
+#define B_POOL_SETTING_FIXED_SEED           0x1D4127 // "Random" number, unless a mistake was made, it's へだら in Emerald charmap which should spell he-da-ra
+#define B_POOL_RULE_SPECIES_CLAUSE          FALSE    // Only pick a single pokemon of a unique NatDex number
+#define B_POOL_RULE_EXCLUDE_FORMS           FALSE    // Exclude different forms from the Species Clause
+#define B_POOL_RULE_ITEM_CLAUSE             FALSE    // Only allow each item to be picked once
+#define B_POOL_RULES_USE_ITEM_EXCLUSIONS    FALSE    // Exclude items listed in poolItemClauseExclusions
 
 #endif // GUARD_CONFIG_BATTLE_H

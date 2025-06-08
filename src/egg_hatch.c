@@ -38,14 +38,7 @@
 #include "constants/rgb.h"
 #include "party_menu.h"
 #include "config/pbh.h"
-
-#define GFXTAG_EGG       12345
-#define GFXTAG_EGG_SHARD 23456
-
-#define PALTAG_EGG       54321
-
-#define EGG_X (DISPLAY_WIDTH / 2)
-#define EGG_Y (DISPLAY_HEIGHT / 2 - 5)
+#include "constants/egg_hatch.h"
 
 struct EggHatchData
 {
@@ -435,7 +428,7 @@ static u8 EggHatchCreateMonSprite(u8 state, u8 partyId, u16 *speciesLoc)
                                      gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_LEFT],
                                      species, pid);
             if (PBH_PALETAS_UNICAS)
-                LoadCompressedSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, &mon->box);                
+                LoadCompressedSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, pid);                
             else
                 LoadCompressedSpritePaletteWithTag(GetMonFrontSpritePal(mon), species);
             *speciesLoc = species;
@@ -495,7 +488,7 @@ static void CB2_LoadEggHatch(void)
         gSpecialVar_0x8005 = GetCurrentMapMusic();
 
         ResetTempTileDataBuffers();
-        ResetBgsAndClearDma3BusyFlags(0);
+        ResetBgsAndClearDma3BusyFlags();
         InitBgsFromTemplates(0, sBgTemplates_EggHatch, ARRAY_COUNT(sBgTemplates_EggHatch));
 
         ChangeBgX(1, 0, BG_COORD_SET);

@@ -108,8 +108,10 @@ struct ContestPokemon
     u8 highestRank;
     bool8 gameCleared;
     u8 isShiny:1;
+    u8 unused1:7;
     u32 personality;
     u32 otId;
+    u8 filter;
 };
 
 struct ContestTempSave

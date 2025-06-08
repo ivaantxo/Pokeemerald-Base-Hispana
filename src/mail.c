@@ -537,7 +537,7 @@ static bool8 MailReadBuildGraphics(void)
             SetGpuReg(REG_OFFSET_BLDALPHA, 0);
             break;
         case 6:
-            ResetBgsAndClearDma3BusyFlags(0);
+            ResetBgsAndClearDma3BusyFlags();
             InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
             SetBgTilemapBuffer(1, sMailRead->bg1TilemapBuffer);
             SetBgTilemapBuffer(2, sMailRead->bg2TilemapBuffer);
@@ -747,7 +747,7 @@ static void CB2_ExitMailReadFreeVars(void)
         ResetPaletteFade();
         UnsetBgTilemapBuffer(0);
         UnsetBgTilemapBuffer(1);
-        ResetBgsAndClearDma3BusyFlags(0);
+        ResetBgsAndClearDma3BusyFlags();
         FreeAllWindowBuffers();
         FREE_AND_SET_NULL(sMailRead);
     }

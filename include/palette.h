@@ -73,7 +73,6 @@ void BlendPalettes(u32 selectedPalettes, u8 coeff, u32 color);
 void BlendPalettesUnfaded(u32 selectedPalettes, u8 coeff, u32 color);
 void BlendPalettesGradually(u32 selectedPalettes, s8 delay, u8 coeff, u8 coeffTarget, u16 color, u8 priority, u8 id);
 void TintPalette_GrayScale(u16 *palette, u32 count);
-void TintPalette_GrayScale2(u16 *palette, u32 count);
 void TintPalette_SepiaTone(u16 *palette, u32 count);
 void TintPalette_CustomTone(u16 *palette, u32 count, u16 rTone, u16 gTone, u16 bTone);
 

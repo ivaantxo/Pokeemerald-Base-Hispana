@@ -51,4 +51,6 @@ extern u16 gSpecialVar_Facing;
 extern u16 gSpecialVar_MonBoxId;
 extern u16 gSpecialVar_MonBoxPos;
 
+extern const u16 gBadgeFlags[NUM_BADGES];
+
 #endif // GUARD_EVENT_DATA_H

@@ -406,7 +406,7 @@ static void InitContestResultsDisplay(void)
     int i;
 
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP);
-    ResetBgsAndClearDma3BusyFlags(0);
+    ResetBgsAndClearDma3BusyFlags();
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     for (i = 0; i < (int)ARRAY_COUNT(sContestResults->tilemapBuffers); i++)
         SetBgTilemapBuffer(i, sContestResults->tilemapBuffers[i]);

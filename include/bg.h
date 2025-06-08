@@ -28,17 +28,6 @@ enum {
     BG_COORD_SUB,
 };
 
-// Modes for Unused_AdjustBgMosaic
-enum {
-    BG_MOSAIC_SET_HV,
-    BG_MOSAIC_SET_H,
-    BG_MOSAIC_ADD_H,
-    BG_MOSAIC_SUB_H,
-    BG_MOSAIC_SET_V,
-    BG_MOSAIC_ADD_V,
-    BG_MOSAIC_SUB_V,
-};
-
 struct BgTemplate
 {
     u16 bg:2;                   // 0x1, 0x2 -> 0x3
@@ -56,8 +45,7 @@ void ResetBgControlStructs(void);
 u8 LoadBgVram(u32 bg, const void *src, u16 size, u16 destOffset, u32 mode);
 void SetTextModeAndHideBgs(void);
 bool32 IsInvalidBg(u32 bg);
-int BgTileAllocOp(int bg, int offset, int count, int mode);
-void ResetBgsAndClearDma3BusyFlags(u32 leftoverFireRedLeafGreenVariable);
+void ResetBgsAndClearDma3BusyFlags(void);
 void InitBgsFromTemplates(u32 bgMode, const struct BgTemplate *templates, u8 numTemplates);
 void InitBgFromTemplate(const struct BgTemplate *template);
 void SetBgMode(u32 bgMode);
@@ -77,7 +65,8 @@ void SetBgAffine(u32 bg, s32 srcCenterX, s32 srcCenterY, s16 dispCenterX, s16 di
 void SetBgTilemapBuffer(u32 bg, void *tilemap);
 void UnsetBgTilemapBuffer(u32 bg);
 void *GetBgTilemapBuffer(u32 bg);
-void CopyToBgTilemapBuffer(u32 bg, const void *src, u16 mode, u16 destOffset);
+void CopyToBgTilemapBuffer(u32 bg, const void *src, u32 mode, u32 destOffset);
+void DecompressAndCopyToBgTilemapBuffer(u32 bg, const u32 *src, u32 mode, u32 destOffset);
 void CopyBgTilemapBufferToVram(u32 bg);
 void CopyToBgTilemapBufferRect(u32 bg, const void *src, u8 destX, u8 destY, u8 width, u8 height);
 void CopyToBgTilemapBufferRect_ChangePalette(u32 bg, const void *src, u8 destX, u8 destY, u8 rectWidth, u8 rectHeight, u8 palette);

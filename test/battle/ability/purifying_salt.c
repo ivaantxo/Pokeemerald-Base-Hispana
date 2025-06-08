@@ -7,7 +7,7 @@ SINGLE_BATTLE_TEST("Purifying Salt halves damage from Ghost-type moves", s16 dam
     PARAMETRIZE { ability = ABILITY_STURDY; }
     PARAMETRIZE { ability = ABILITY_PURIFYING_SALT; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SHADOW_BALL].type == TYPE_GHOST);
+        ASSUME(GetMoveType(MOVE_SHADOW_BALL) == TYPE_GHOST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GARGANACL) { Ability(ability); }
     } WHEN {
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Purifying Salt halves damage from dynamic Ghost-type moves",
     PARAMETRIZE { ability = ABILITY_STURDY; }
     PARAMETRIZE { ability = ABILITY_PURIFYING_SALT; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TERA_BLAST].effect == EFFECT_TERA_BLAST);
+        ASSUME(GetMoveEffect(MOVE_TERA_BLAST) == EFFECT_TERA_BLAST);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
         OPPONENT(SPECIES_GARGANACL) { Ability(ability); }
     } WHEN {
@@ -61,10 +61,10 @@ SINGLE_BATTLE_TEST("Purifying Salt grants immunity to status effects")
     PARAMETRIZE { move = MOVE_TOXIC; status = STATUS1_TOXIC_POISON; }
     PARAMETRIZE { move = MOVE_POWDER_SNOW; status = STATUS1_FREEZE; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WILL_O_WISP].effect == EFFECT_WILL_O_WISP);
-        ASSUME(gMovesInfo[MOVE_HYPNOSIS].effect == EFFECT_SLEEP);
-        ASSUME(gMovesInfo[MOVE_THUNDER_WAVE].effect == EFFECT_PARALYZE);
-        ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_WILL_O_WISP);
+        ASSUME(GetMoveEffect(MOVE_HYPNOSIS) == EFFECT_SLEEP);
+        ASSUME(GetMoveEffect(MOVE_THUNDER_WAVE) == EFFECT_PARALYZE);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(MoveHasAdditionalEffect(MOVE_POWDER_SNOW, MOVE_EFFECT_FREEZE_OR_FROSTBITE) == TRUE);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_PURIFYING_SALT); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -98,5 +98,22 @@ SINGLE_BATTLE_TEST("Purifying Salt user can't be poisoned by Toxic Spikes")
         SEND_IN_MESSAGE("Garganacl");
     } THEN {
         EXPECT_EQ(player->status1, STATUS1_NONE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Purifying Salt doesn't prevent pokemon from being poisoned by Toxic Spikes on switch-in if forced in by phazing with Mold Breaker")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_DRAGON_TAIL) == EFFECT_HIT_SWITCH_TARGET);
+        ASSUME(GetMoveEffect(MOVE_TOXIC_SPIKES) == EFFECT_TOXIC_SPIKES);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_GARGANACL) { Ability(ABILITY_PURIFYING_SALT); }
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TOXIC_SPIKES); }
+        TURN { MOVE(opponent, MOVE_DRAGON_TAIL); }
+    } SCENE {
+        STATUS_ICON(player, STATUS1_POISON);
+        HP_BAR(player);
     }
 }

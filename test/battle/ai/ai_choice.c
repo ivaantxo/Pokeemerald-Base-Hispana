@@ -24,21 +24,37 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon switch out after using a status move onc
         PARAMETRIZE { ability = ABILITY_KLUTZ;   heldItem = choiceItems[j]; }
     }
 
+    PASSES_RANDOMLY(SHOULD_SWITCH_CHOICE_LOCKED_PERCENTAGE, 100, RNG_AI_SWITCH_CHOICE_LOCKED);
+
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveCategory(MOVE_YAWN) == DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
-        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(ability); }
+        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_SCRATCH); Item(heldItem); Ability(ability); }
         OPPONENT(SPECIES_SWAMPERT) { Moves(MOVE_WATERFALL); }
     } WHEN {
         TURN { EXPECT_MOVE(opponent, MOVE_YAWN); }
         if (ability == ABILITY_KLUTZ) { // Klutz ignores item
-            TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); }
+            TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); }
         }
         else {
             TURN { EXPECT_SWITCH(opponent, 1); }
         }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("Choiced Pokémon only consider their own status moves when determining if they should switch")
+{
+    GIVEN 
+    {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_RISKY | AI_FLAG_SMART_SWITCHING | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_MON_CHOICES);
+        PLAYER(SPECIES_ZIGZAGOON) { Speed(4); Moves(MOVE_TAIL_WHIP, MOVE_SCRATCH); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Speed(5); Moves(MOVE_SCRATCH); Item(ITEM_CHOICE_BAND); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Speed(5); Moves(MOVE_SCRATCH); }
+    } WHEN {
+        TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); MOVE(player, MOVE_TAIL_WHIP); }
+        TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); MOVE(player, MOVE_TAIL_WHIP); }
     }
 }
 
@@ -60,17 +76,17 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use stat boosting moves")
     }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SWORDS_DANCE].target == MOVE_TARGET_USER);
+        ASSUME(GetMoveTarget(MOVE_SWORDS_DANCE) == MOVE_TARGET_USER);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
-        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_SWORDS_DANCE, MOVE_TACKLE); Item(heldItem); Ability(ability); }
+        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_SWORDS_DANCE, MOVE_SCRATCH); Item(heldItem); Ability(ability); }
         OPPONENT(SPECIES_SWAMPERT) { Moves(MOVE_WATERFALL); }
     } WHEN {
         if (ability == ABILITY_KLUTZ) { // Klutz ignores item
             TURN { EXPECT_MOVE(opponent, MOVE_SWORDS_DANCE); }
         }
         else {
-            TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); }
+            TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); }
         }
     }
 }
@@ -94,18 +110,18 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they are the on
     }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveCategory(MOVE_YAWN) == DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
-        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(ability); }
+        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_SCRATCH); Item(heldItem); Ability(ability); }
         OPPONENT(SPECIES_SWAMPERT) { HP(isAlive); Moves(MOVE_WATERFALL); }
     } WHEN {
         if (isAlive == 1 || ability == ABILITY_KLUTZ) {
             TURN { EXPECT_MOVE(opponent, MOVE_YAWN); }
         }
         else {
-            TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); }
+            TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); }
         }
     }
 }
@@ -129,18 +145,18 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they don't have
     }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveCategory(MOVE_YAWN) == DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_RHYDON)
-        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(ability); }
+        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_SCRATCH); Item(heldItem); Ability(ability); }
         OPPONENT(species) { Moves(move); }
     } WHEN {
         if (species == SPECIES_SWAMPERT || ability == ABILITY_KLUTZ) {
             TURN { EXPECT_MOVE(opponent, MOVE_YAWN); }
         }
         else {
-            TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); }
+            TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); }
         }
     }
 }
@@ -164,18 +180,18 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they are trappe
     }
 
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_YAWN].category == DAMAGE_CATEGORY_STATUS);
-        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(GetMoveCategory(MOVE_YAWN) == DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(species) { Ability(playerAbility); }
-        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_TACKLE); Item(heldItem); Ability(aiAbility); }
+        OPPONENT(SPECIES_LOPUNNY) { Moves(MOVE_YAWN, MOVE_SCRATCH); Item(heldItem); Ability(aiAbility); }
         OPPONENT(SPECIES_SWAMPERT) { Moves(MOVE_WATERFALL); }
     } WHEN {
         if (playerAbility != ABILITY_ARENA_TRAP || aiAbility == ABILITY_KLUTZ) {
             TURN { EXPECT_MOVE(opponent, MOVE_YAWN); }
         }
         else {
-            TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); }
+            TURN { EXPECT_MOVE(opponent, MOVE_SCRATCH); }
         }
     }
 }

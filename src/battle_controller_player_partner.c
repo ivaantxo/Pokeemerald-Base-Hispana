@@ -265,7 +265,7 @@ static void PlayerPartnerBufferExecCompleted(u32 battler)
     {
         u8 playerId = GetMultiplayerId();
 
-        PrepareBufferDataTransferLink(battler, 2, 4, &playerId);
+        PrepareBufferDataTransferLink(battler, B_COMM_CONTROLLER_IS_DONE, 4, &playerId);
         gBattleResources->bufferA[battler][0] = CONTROLLER_TERMINATOR_NOP;
     }
     else
@@ -293,9 +293,11 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
     s16 xPos, yPos;
     u32 trainerPicId;
 
+    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
+
     if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
     {
-        trainerPicId = gBattlePartners[gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic;
+        trainerPicId = gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic;
         xPos = 90;
         yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
@@ -349,10 +351,11 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
 
     chosenMoveId = gBattleStruct->aiMoveOrAction[battler];
     gBattlerTarget = gBattleStruct->aiChosenTarget[battler];
+    u32 moveTarget = GetBattlerMoveTargetType(battler, moveInfo->moves[chosenMoveId]);
 
-    if (gMovesInfo[moveInfo->moves[chosenMoveId]].target & (MOVE_TARGET_USER | MOVE_TARGET_USER_OR_SELECTED))
+    if (moveTarget & MOVE_TARGET_USER)
         gBattlerTarget = battler;
-    else if (gMovesInfo[moveInfo->moves[chosenMoveId]].target & MOVE_TARGET_BOTH)
+    else if (moveTarget & MOVE_TARGET_BOTH)
     {
         gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         if (gAbsentBattlerFlags & (1u << gBattlerTarget))
@@ -363,11 +366,11 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
         && !(gBattleStruct->gimmick.usableGimmick[battler] == GIMMICK_Z_MOVE
         && !ShouldUseZMove(battler, gBattlerTarget, moveInfo->moves[chosenMoveId])))
     {
-        BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (RET_GIMMICK) | (gBattlerTarget << 8));
+        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, 10, (chosenMoveId) | (RET_GIMMICK) | (gBattlerTarget << 8));
     }
     else
     {
-        BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));
+        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, 10, (chosenMoveId) | (gBattlerTarget << 8));
     }
 
     PlayerPartnerBufferExecCompleted(battler);
@@ -384,7 +387,7 @@ static void PlayerPartnerHandleChoosePokemon(u32 battler)
     // Switching out
     else if (gBattleStruct->monToSwitchIntoId[battler] >= PARTY_SIZE || !IsValidForBattle(&gPlayerParty[gBattleStruct->monToSwitchIntoId[battler]]))
     {
-        chosenMonId = GetMostSuitableMonToSwitchInto(battler, TRUE);
+        chosenMonId = GetMostSuitableMonToSwitchInto(battler, SWITCH_AFTER_KO);
 
         if (chosenMonId == PARTY_SIZE || !IsValidForBattle(&gPlayerParty[chosenMonId])) // just switch to the next mon
         {
@@ -402,7 +405,7 @@ static void PlayerPartnerHandleChoosePokemon(u32 battler)
                 }
             }
         }
-        *(gBattleStruct->monToSwitchIntoId + battler) = chosenMonId;
+        gBattleStruct->monToSwitchIntoId[battler] = chosenMonId;
     }
     else // Mon to switch out has been already chosen.
     {
@@ -410,7 +413,7 @@ static void PlayerPartnerHandleChoosePokemon(u32 battler)
         gBattleStruct->AI_monToSwitchIntoId[battler] = PARTY_SIZE;
         gBattleStruct->monToSwitchIntoId[battler] = chosenMonId;
     }
-    BtlController_EmitChosenMonReturnValue(battler, BUFFER_B, chosenMonId, NULL);
+    BtlController_EmitChosenMonReturnValue(battler, B_COMM_TO_ENGINE, chosenMonId, NULL);
     PlayerPartnerBufferExecCompleted(battler);
 }
 
@@ -422,9 +425,10 @@ static void PlayerPartnerHandleHealthBarUpdate(u32 battler)
 static void PlayerPartnerHandleIntroTrainerBallThrow(u32 battler)
 {
     const u32 *trainerPal;
+    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(gPartnerTrainerId);
 
     if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-        trainerPal = gTrainerBacksprites[gBattlePartners[gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic].palette.data;
+        trainerPal = gTrainerBacksprites[gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic].palette.data;
     else if (IsAiVsAiBattle())
         trainerPal = gTrainerSprites[GetTrainerPicFromId(gPartnerTrainerId)].palette.data;
     else

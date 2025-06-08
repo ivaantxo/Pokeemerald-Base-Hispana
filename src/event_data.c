@@ -26,7 +26,26 @@ EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA static u8 sSpecialFlags[SPECIAL_FLAGS_SIZE] = {0};
 
+#if TESTING
+#define TEST_FLAGS_SIZE     1
+#define TEST_VARS_SIZE      8
+EWRAM_DATA static u8 sTestFlags[TEST_FLAGS_SIZE] = {0};
+EWRAM_DATA static u16 sTestVars[TEST_VARS_SIZE] = {0};
+#endif // TESTING
+
 extern u16 *const gSpecialVars[];
+
+const u16 gBadgeFlags[NUM_BADGES] =
+{
+    FLAG_BADGE01_GET,
+    FLAG_BADGE02_GET,
+    FLAG_BADGE03_GET,
+    FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET,
+    FLAG_BADGE06_GET,
+    FLAG_BADGE07_GET,
+    FLAG_BADGE08_GET,
+};
 
 void InitEventData(void)
 {
@@ -167,6 +186,10 @@ u16 *GetVarPointer(u16 id)
         return NULL;
     else if (id < SPECIAL_VARS_START)
         return &gSaveBlock1Ptr->vars[id - VARS_START];
+#if TESTING
+    else if (id >= TESTING_VARS_START)
+        return &sTestVars[id - TESTING_VARS_START];
+#endif // TESTING
     else
         return gSpecialVars[id - SPECIAL_VARS_START];
 }
@@ -207,6 +230,10 @@ u8 *GetFlagPointer(u16 id)
         return NULL;
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
+#if TESTING
+    else if (id >= TESTING_FLAGS_START)
+        return &sTestFlags[(id - TESTING_FLAGS_START) / 8];
+#endif // TESTING
     else
         return &sSpecialFlags[(id - SPECIAL_FLAGS_START) / 8];
 }
@@ -230,7 +257,7 @@ u8 TrainerFlagSet(u16 id)
 {
     u8 *ptr = GetTrainerFlagPointer(id);
     if (ptr)
-        *ptr |= 1 << (id % 8);
+        *ptr |= 1 << (id & 7);
     return 0;
 }
 
@@ -254,7 +281,7 @@ u8 TrainerFlagClear(u16 id)
 {
     u8 *ptr = GetTrainerFlagPointer(id);
     if (ptr)
-        *ptr &= ~(1 << (id % 8));
+        *ptr &= ~(1 << (id & 7));
     return 0;
 }
 
@@ -276,7 +303,7 @@ bool8 TrainerFlagGet(u16 id)
     u8 *ptr = GetTrainerFlagPointer(id);
     if (!ptr)
         return FALSE;
-    if (!(((*ptr) >> (id % 8)) & 1))
+    if (!(((*ptr) >> (id & 7)) & 1))
         return FALSE;
     return TRUE;
 }

@@ -83,7 +83,7 @@ void CB2_InitMysteryEventMenu(void)
     FreeAllSpritePalettes();
     ResetTasks();
     SetVBlankCallback(VBlankCB);
-    ResetBgsAndClearDma3BusyFlags(0);
+    ResetBgsAndClearDma3BusyFlags();
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     if (InitWindows(sWindowTemplates))
     {
@@ -255,10 +255,14 @@ static void CB2_MysteryEventMenu(void)
     case 11:
         if (gReceivedRemoteLinkPlayers == 0)
         {
+            // No clue what is going on here, and from where gDecompressionBuffer gets actually populated with mystery event script.
+            /*
             u16 status = RunMysteryEventScript(gDecompressionBuffer);
             CpuFill32(0, gDecompressionBuffer, 0x7D4);
+
             if (!GetEventLoadMessage(gStringVar4, status))
                 TrySavingData(SAVE_NORMAL);
+            */
             gMain.state++;
         }
         break;
@@ -268,9 +272,7 @@ static void CB2_MysteryEventMenu(void)
         break;
     case 13:
         if (!IsTextPrinterActive(WIN_MSG))
-        {
             gMain.state++;
-        }
         break;
     case 14:
         if (JOY_NEW(A_BUTTON))

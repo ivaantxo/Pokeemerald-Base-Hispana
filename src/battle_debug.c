@@ -218,7 +218,7 @@ enum
     LIST_AI_CHECK_BAD_MOVE,
     LIST_AI_TRY_TO_FAINT,
     LIST_AI_CHECK_VIABILITY,
-    LIST_AI_SETUP_FIRST_TURN,
+    LIST_AI_FORCE_SETUP_FIRST_TURN,
     LIST_AI_RISKY,
     LIST_AI_TRY_TO_2HKO,
     LIST_AI_PREFER_BATON_PASS,
@@ -227,13 +227,20 @@ enum
     LIST_AI_POWERFUL_STATUS,
     LIST_AI_NEGATE_UNAWARE,
     LIST_AI_WILL_SUICIDE,
-    LIST_AI_HELP_PARTNER,
     LIST_AI_PREFER_STATUS_MOVES,
     LIST_AI_STALL,
     LIST_AI_SMART_SWITCHING,
     LIST_AI_ACE_POKEMON,
     LIST_AI_OMNISCIENT,
     LIST_AI_SMART_MON_CHOICES,
+    LIST_AI_CONSERVATIVE,
+    LIST_AI_SEQUENCE_SWITCHING,
+    LIST_AI_DOUBLE_ACE_POKEMON,
+    LIST_AI_WEIGH_ABILITY_PREDICTION,
+    LIST_AI_PREFER_HIGHEST_DAMAGE_MOVE,
+    LIST_AI_PREDICT_SWITCH,
+    LIST_AI_PREDICT_INCOMING_MON,
+    LIST_AI_DYNAMIC_FUNC,
     LIST_AI_ROAMING,
     LIST_AI_SAFARI,
     LIST_AI_FIRST_BATTLE,
@@ -274,139 +281,147 @@ enum
 static const u8 *GetHoldEffectName(u16 holdEffect);
 
 // const rom data
-static const u8 sText_Moves[] = _("Moves");
-static const u8 sText_Ability[] = _("Ability");
-static const u8 sText_HeldItem[] = _("Held Item");
-static const u8 sText_HoldEffect[] = _("Hold Effect");
+static const u8 sText_Moves[] = _("Ataques");
+static const u8 sText_Ability[] = _("Habilidad");
+static const u8 sText_HeldItem[] = _("Obj. Equipado");
+static const u8 sText_HoldEffect[] = _("Efecto Equipado");
 static const u8 sText_PP[] = _("PP");
-static const u8 sText_Types[] = _("Types");
-static const u8 sText_Stats[] = _("Stats");
-static const u8 sText_StatStages[] = _("Stat Stages");
-static const u8 sText_Status1[] = _("Status1");
-static const u8 sText_Status2[] = _("Status2");
-static const u8 sText_Status3[] = _("Status3");
-static const u8 sText_Status4[] = _("Status4");
-static const u8 sText_SideStatus[] = _("Side Status");
-static const u8 sText_AI[] = _("AI");
-static const u8 sText_AIMovePts[] = _("AI Pts/Dmg");
-static const u8 sText_AiKnowledge[] = _("AI Info");
-static const u8 sText_AiParty[] = _("AI Party");
-static const u8 sText_Various[] = _("Various");
-static const u8 sText_CurrHp[] = _("HP Current");
-static const u8 sText_MaxHp[] = _("HP Max");
-static const u8 sText_Attack[] = _("Attack");
-static const u8 sText_Defense[] = _("Defense");
-static const u8 sText_Speed[] = _("Speed");
-static const u8 sText_SpAtk[] = _("Sp. Atk");
-static const u8 sText_SpDef[] = _("Sp. Def");
-static const u8 sText_Sleep[] = _("Sleep");
-static const u8 sText_Poison[] = _("Poison");
-static const u8 sText_Burn[] = _("Burn");
-static const u8 sText_Freeze[] = _("Freeze");
-static const u8 sText_Paralysis[] = _("Paralysis");
-static const u8 sText_ToxicPoison[] = _("Toxic Poison");
-static const u8 sText_ToxicCounter[] = _("Toxic Counter");
-static const u8 sText_Frostbite[] = _("Frostbite");
-static const u8 sText_Confusion[] = _("Confusion");
-static const u8 sText_Flinched[] = _("Flinched");
-static const u8 sText_Uproar[] = _("Uproar");
-static const u8 sText_Torment[] = _("Torment");
-static const u8 sText_Bide[] = _("Bide");
-static const u8 sText_LockConfuse[] = _("Lock Confuse");
-static const u8 sText_MultipleTurns[] = _("Multiple Turns");
-static const u8 sText_Wrapped[] = _("Wrapped");
-static const u8 sText_Powder[] = _("Powder");
-static const u8 sText_Infatuation[] = _("Infatuation");
-static const u8 sText_DefenseCurl[] = _("Defense Curl");
-static const u8 sText_Transformed[] = _("Transformed");
-static const u8 sText_Recharge[] = _("Recharge");
-static const u8 sText_Rage[] = _("Rage");
-static const u8 sText_Substitute[] = _("Substitute");
-static const u8 sText_DestinyBond[] = _("Destiny Bond");
-static const u8 sText_EscapePrevention[] = _("Escape Prevention");
-static const u8 sText_Nightmare[] = _("Nightmare");
-static const u8 sText_Cursed[] = _("Cursed");
-static const u8 sText_Foresight[] = _("Foresight");
-static const u8 sText_DragonCheer[] = _("Dragon Cheer");
-static const u8 sText_FocusEnergy[] = _("Focus Energy");
-static const u8 sText_LeechSeedHealer[] = _("Leech Seed Healer");
-static const u8 sText_LeechSeeded[] = _("Leech Seeded");
-static const u8 sText_AlwaysHits[] = _("Always Hits");
-static const u8 sText_PerishSong[] = _("Perish Song");
-static const u8 sText_OnAir[] = _("On Air");
-static const u8 sText_Underground[] = _("Underground");
-static const u8 sText_Minimized[] = _("Minimized");
-static const u8 sText_ChargedUp[] = _("Charged Up");
-static const u8 sText_Rooted[] = _("Rooted");
-static const u8 sText_Yawn[] = _("Yawn");
-static const u8 sText_ImprisonedOthers[] = _("Imprisoned Others");
-static const u8 sText_Grudge[] = _("Grudge");
-static const u8 sText_GastroAcid[] = _("Gastro Acid");
+static const u8 sText_Types[] = _("Tipos");
+static const u8 sText_Stats[] = _("Estadísticas");
+static const u8 sText_StatStages[] = _("Fases de estadísticas");
+static const u8 sText_Status1[] = _("Estado1");
+static const u8 sText_Status2[] = _("Estado2");
+static const u8 sText_Status3[] = _("Estado3");
+static const u8 sText_Status4[] = _("Estado4");
+static const u8 sText_SideStatus[] = _("Estados por lado");
+static const u8 sText_AI[] = _("IA");
+static const u8 sText_AIMovePts[] = _("Pts/Daño IA");
+static const u8 sText_AiKnowledge[] = _("Info IA");
+static const u8 sText_AiParty[] = _("Equipo IA");
+static const u8 sText_Various[] = _("Varios");
+static const u8 sText_CurrHp[] = _("PS Actual");
+static const u8 sText_MaxHp[] = _("PS Max");
+static const u8 sText_Attack[] = _("Ataque");
+static const u8 sText_Defense[] = _("Defensa");
+static const u8 sText_Speed[] = _("Velocidad");
+static const u8 sText_SpAtk[] = _("Atq Esp.");
+static const u8 sText_SpDef[] = _("Def Esp.");
+static const u8 sText_Sleep[] = _("Dormido");
+static const u8 sText_Poison[] = _("Envenenado");
+static const u8 sText_Burn[] = _("Quemado");
+static const u8 sText_Freeze[] = _("Congelado");
+static const u8 sText_Paralysis[] = _("Paralizado");
+static const u8 sText_ToxicPoison[] = _("Veneno tóxico");
+static const u8 sText_ToxicCounter[] = _("Contador tóxico");
+static const u8 sText_Frostbite[] = _("Congelación");
+static const u8 sText_Confusion[] = _("Confusión");
+static const u8 sText_Flinched[] = _("Retrocedió");
+static const u8 sText_Uproar[] = _("Alboroto");
+static const u8 sText_Torment[] = _("Tormento");
+static const u8 sText_Bide[] = _("Venganza"); 
+static const u8 sText_LockConfuse[] = _("Bloquea Confusión");
+static const u8 sText_MultipleTurns[] = _("Varios turnos");
+static const u8 sText_Wrapped[] = _("Atrapado");
+static const u8 sText_Powder[] = _("Polvo");
+static const u8 sText_Infatuation[] = _("Enamoramiento");
+static const u8 sText_DefenseCurl[] = _("Rizo Defensa");
+static const u8 sText_Transformed[] = _("Transformado");
+static const u8 sText_Recharge[] = _("Recargar");
+static const u8 sText_Rage[] = _("Furia");
+static const u8 sText_Substitute[] = _("Substituto");
+static const u8 sText_DestinyBond[] = _("Mismo Destino");
+static const u8 sText_EscapePrevention[] = _("Impide Escapar");
+static const u8 sText_Nightmare[] = _("Pesadilla");
+static const u8 sText_Cursed[] = _("Maldito");
+static const u8 sText_Foresight[] = _("Visión Futura");
+static const u8 sText_DragonCheer[] = _("Ánimo Dragón"); 
+static const u8 sText_FocusEnergy[] = _("Foco Energía");
+static const u8 sText_LeechSeedHealer[] = _("Curación por drenadoras"); 
+static const u8 sText_LeechSeeded[] = _("Afectado por drenadoras");
+static const u8 sText_AlwaysHits[] = _("Siempre Golpea");
+static const u8 sText_PerishSong[] = _("Canto Mortal");
+static const u8 sText_OnAir[] = _("En el aire");
+static const u8 sText_Underground[] = _("Bajo Tierra");
+static const u8 sText_Minimized[] = _("Minimizado");
+static const u8 sText_ChargedUp[] = _("Cargando");
+static const u8 sText_Rooted[] = _("Enraizado");
+static const u8 sText_Yawn[] = _("Bostezo");
+static const u8 sText_ImprisonedOthers[] = _("Atrapó al Rival"); 
+static const u8 sText_Grudge[] = _("Rabia");
+static const u8 sText_GastroAcid[] = _("Bilis");
 static const u8 sText_Embargo[] = _("Embargo");
-static const u8 sText_Underwater[] = _("Underwater");
-static const u8 sText_Trace[] = _("Trace");
-static const u8 sText_SmackedDown[] = _("Smacked Down");
-static const u8 sText_MeFirst[] = _("Me First");
-static const u8 sText_Telekinesis[] = _("Telekinesis");
-static const u8 sText_PhantomForce[] = _("Phantom Force");
-static const u8 sText_MiracleEyed[] = _("Miracle Eyed");
-static const u8 sText_MagnetRise[] = _("Magnet Rise");
-static const u8 sText_HealBlock[] = _("Heal Block");
-static const u8 sText_AquaRing[] = _("Aqua Ring");
-static const u8 sText_LaserFocus[] = _("Laser Focus");
-static const u8 sText_PowerTrick[] = _("Power Trick");
-static const u8 sText_SkyDropped[] = _("Sky Dropped");
-static const u8 sText_Electrified[] = _("Electrified");
-static const u8 sText_MudSport[] = _("Mud Sport");
-static const u8 sText_WaterSport[] = _("Water Sport");
-static const u8 sText_InfiniteConfusion[] = _("Infinite Confusion");
-static const u8 sText_SaltCure[] = _("Salt Cure");
-static const u8 sText_SyrupBomb[] = _("Syrup Bomb");
-static const u8 sText_GlaiveRush[] = _("Glaive Rush");
-static const u8 sText_Reflect[] = _("Reflect");
-static const u8 sText_LightScreen[] = _("Light Screen");
-static const u8 sText_StickyWeb[] = _("Sticky Web");
-static const u8 sText_Spikes[] = _("Spikes");
-static const u8 sText_Safeguard[] = _("Safeguard");
-static const u8 sText_FutureAttack[] = _("Future Attack");
-static const u8 sText_Mist[] = _("Mist");
-static const u8 sText_Tailwind[] = _("Tailwind");
-static const u8 sText_AuroraVeil[] = _("Aurora Veil");
-static const u8 sText_LuckyChant[] = _("Lucky Chant");
-static const u8 sText_ToxicSpikes[] = _("Toxic Spikes");
-static const u8 sText_StealthRock[] = _("Stealth Rock");
-static const u8 sText_Steelsurge[] = _("Steelsurge");
-static const u8 sText_DamageNonTypes[] = _("Damage Non-Types");
-static const u8 sText_Rainbow[] = _("Rainbow");
-static const u8 sText_SeaOfFire[] = _("Sea of Fire");
-static const u8 sText_Swamp[] = _("Swamp");
-static const u8 sText_CheckBadMove[] = _("Check Bad Move");
-static const u8 sText_TryToFaint[] = _("Try to Faint");
-static const u8 sText_CheckViability[] = _("Check Viability");
-static const u8 sText_SetUpFirstTurn[] = _("Setup First Turn");
-static const u8 sText_Risky[] = _("Risky");
-static const u8 sText_TryTo2HKO[] = _("Try to 2HKO");
-static const u8 sText_PreferBatonPass[] = _("Prefer Baton Pass");
-static const u8 sText_DoubleBattle[] = _("Double Battle");
-static const u8 sText_HpAware[] = _("HP Aware");
-static const u8 sText_PowerfulStatus[] = _("Powerful Status");
-static const u8 sText_NegateUnaware[] = _("Negate Unaware");
-static const u8 sText_WillSuicide[] = _("Will Suicide");
-static const u8 sText_HelpPartner[] = _("Help Partner");
-static const u8 sText_PreferStatusMoves[] = _("Prefer Status Moves");
-static const u8 sText_Stall[] = _("Stall");
-static const u8 sText_SmartSwitching[] = _("Smart Switching");
-static const u8 sText_AcePokemon[] = _("Ace Pokemon");
-static const u8 sText_Omniscient[] = _("Omniscient");
-static const u8 sText_SmartMonChoices[] = _("Smart Mon Choices");
-static const u8 sText_Roaming[] = _("Roaming");
+static const u8 sText_Underwater[] = _("Bajo el Agua");
+static const u8 sText_Trace[] = _("Rastro");
+static const u8 sText_SmackedDown[] = _("Derribó");
+static const u8 sText_MeFirst[] = _("Yo Primero");
+static const u8 sText_Telekinesis[] = _("Telequinesis");
+static const u8 sText_PhantomForce[] = _("Fuerza Fantasma");
+static const u8 sText_MiracleEyed[] = _("Indentificó"); 
+static const u8 sText_MagnetRise[] = _("Levitón");
+static const u8 sText_HealBlock[] = _("Anticura");
+static const u8 sText_AquaRing[] = _("Acua Aro");
+static const u8 sText_LaserFocus[] = _("Aguzar");
+static const u8 sText_PowerTrick[] = _("Truco Fuerza");
+static const u8 sText_SkyDropped[] = _("Caída Libre");
+static const u8 sText_Electrified[] = _("Electrificado");
+static const u8 sText_MudSport[] = _("Chapoteo Lodo");
+static const u8 sText_WaterSport[] = _("Hidrochorro");
+static const u8 sText_InfiniteConfusion[] = _("Confusión Infinita");
+static const u8 sText_SaltCure[] = _("Salazón");
+static const u8 sText_SyrupBomb[] = _("Bomba Caramelo");
+static const u8 sText_GlaiveRush[] = _("Asalto espadón");
+static const u8 sText_Reflect[] = _("Reflejo");
+static const u8 sText_LightScreen[] = _("Pantalla Luz");
+static const u8 sText_StickyWeb[] = _("Red Viscosa");
+static const u8 sText_Spikes[] = _("Púas");
+static const u8 sText_Safeguard[] = _("Velo Sagrado");
+static const u8 sText_FutureAttack[] = _("Premonición");
+static const u8 sText_Mist[] = _("Niebla");
+static const u8 sText_Tailwind[] = _("Viento Afín");
+static const u8 sText_AuroraVeil[] = _("Velo Aurora");
+static const u8 sText_LuckyChant[] = _("Conjuro");
+static const u8 sText_ToxicSpikes[] = _("Púas Tóxicas");
+static const u8 sText_StealthRock[] = _("Trampa Rocas");
+static const u8 sText_Steelsurge[] = _("Gigatrampa acero"); 
+static const u8 sText_DamageNonTypes[] = _("Daño a No Tipos");
+static const u8 sText_Rainbow[] = _("Arcoíris");
+static const u8 sText_SeaOfFire[] = _("Mar Llamas");
+static const u8 sText_Swamp[] = _("Pantano");
+static const u8 sText_CheckBadMove[] = _("Comprobar mov. malo");
+static const u8 sText_TryToFaint[] = _("Intenta debilitar");
+static const u8 sText_CheckViability[] = _("Comprobar viabilidad");
+static const u8 sText_ForceSetupFirstTurn[] = _("Obliga a Prepararse el 1er Turno");
+static const u8 sText_Risky[] = _("Arriesgado");
+static const u8 sText_TryTo2HKO[] = _("Intenta KO 2 golpes");
+static const u8 sText_PreferBatonPass[] = _("Elige Relevo");
+static const u8 sText_DoubleBattle[] = _("Dobles");
+static const u8 sText_HpAware[] = _("Aviso de PS");
+static const u8 sText_PowerfulStatus[] = _("Estado Poderoso");
+static const u8 sText_NegateUnaware[] = _("Ignorar Desconocimiento");
+static const u8 sText_WillSuicide[] = _("Se Suicidará");
+static const u8 sText_PreferStatusMoves[] = _("Prefiere Movimientos de Estado");
+static const u8 sText_Stall[] = _("Rezagado");
+static const u8 sText_SmartSwitching[] = _("Cambio Inteligente");
+static const u8 sText_AcePokemon[] = _("Pokémon As");
+static const u8 sText_Omniscient[] = _("Omnisciente");
+static const u8 sText_SmartMonChoices[] = _("Elecciones Inteligentes de Pokémon");
+static const u8 sText_Conservative[] = _("Conservador");
+static const u8 sText_SequenceSwitching[] = _("Cambio en Secuencia");
+static const u8 sText_DoubleAcePokemon[] = _("Doble Pokémon As");
+static const u8 sText_WeighAbilityPrediction[] = _("Evaluar Predicción de Habilidad");
+static const u8 sText_PreferHighestDamageMove[] = _("Prefiere Movimiento con Mayor Daño");
+static const u8 sText_PredictSwitch[] = _("Predecir Cambio");
+static const u8 sText_PredictIncomingMon[] = _("Predecir Pokémon Entrante");
+static const u8 sText_DynamicFunc[] = _("Función Dinámica");
+static const u8 sText_Roaming[] = _("Errante");
 static const u8 sText_Safari[] = _("Safari");
-static const u8 sText_FirstBattle[] = _("First Battle");
-static const u8 sText_ShowHP[] = _("Show HP");
-static const u8 sText_SubstituteHp[] = _("Substitute HP");
-static const u8 sText_InLove[] = _("In Love");
-static const u8 sText_Unknown[] = _("Unknown");
+static const u8 sText_FirstBattle[] = _("Primera batalla");
+static const u8 sText_ShowHP[] = _("Mostrar PS");
+static const u8 sText_SubstituteHp[] = _("PS sustituto");
+static const u8 sText_InLove[] = _("Enamorado");
+static const u8 sText_Unknown[] = _("Desconocido");
 static const u8 sText_EmptyString[] = _("");
+static const u8 sText_IsSwitching[] = _("Cambiar a ");
 
 static const struct BitfieldInfo sStatus1Bitfield[] =
 {
@@ -479,7 +494,7 @@ static const struct BitfieldInfo sAIBitfield[] =
     {/*Check Bad Move*/ 1, 0},
     {/*Try to Faint*/ 1, 1},
     {/*Check Viability*/ 1, 2},
-    {/*Setup First Turn*/ 1, 3},
+    {/*Force Setup First Turn*/ 1, 3},
     {/*Risky*/ 1, 4},
     {/*Prefer Strongest Move*/ 1, 5},
     {/*Prefer Baton Pass*/ 1, 6},
@@ -488,16 +503,20 @@ static const struct BitfieldInfo sAIBitfield[] =
     {/*Powerful Status*/ 1, 9},
     {/*Negate Unaware*/ 1, 10},
     {/*Will Suicide*/ 1, 11},
-    {/*Help Partner*/ 1, 12},
-    {/*Prefer Status Moves*/ 1, 13},
-    {/*Stall*/ 1, 14},
-    {/*Smart Switching*/ 1, 15},
-    {/*Ace Pokemon*/ 1, 16},
-    {/*Omniscient*/ 1, 17},
-    {/*Smart Mon Choices*/ 1, 18},
-    {/*Ace Pokemon*/ 1, 16},
-    {/*Omniscient*/ 1, 17},
-    {/*Smart Mon Choices*/ 1, 18},
+    {/*Prefer Status Moves*/ 1, 12},
+    {/*Stall*/ 1, 13},
+    {/*Smart Switching*/ 1, 14},
+    {/*Ace Pokemon*/ 1, 15},
+    {/*Omniscient*/ 1, 16},
+    {/*Smart Mon Choices*/ 1, 17},
+    {/*Conservative*/ 1, 18},
+    {/*Sequence Switching*/ 1, 19},
+    {/*Double Ace Pokemon*/ 1, 20},
+    {/*Weigh Ability Prediction*/ 1, 21},
+    {/*Prefer Highest Damage Move*/ 1, 22},
+    {/*Predict Switch*/ 1, 23},
+    {/*Predict Incoming Mon*/ 1, 24},
+    {/*Dynamic Func*/ 1, 28},
     {/*Roaming*/ 1, 29},
     {/*Safari*/ 1, 30},
     {/*First Battle*/ 1, 31},
@@ -626,7 +645,7 @@ static const struct ListMenuItem sAIListItems[] =
     {sText_CheckBadMove, LIST_AI_CHECK_BAD_MOVE},
     {sText_TryToFaint, LIST_AI_TRY_TO_FAINT},
     {sText_CheckViability, LIST_AI_CHECK_VIABILITY},
-    {sText_SetUpFirstTurn, LIST_AI_SETUP_FIRST_TURN},
+    {sText_ForceSetupFirstTurn, LIST_AI_FORCE_SETUP_FIRST_TURN},
     {sText_Risky, LIST_AI_RISKY},
     {sText_TryTo2HKO, LIST_AI_TRY_TO_2HKO},
     {sText_PreferBatonPass, LIST_AI_PREFER_BATON_PASS},
@@ -635,13 +654,20 @@ static const struct ListMenuItem sAIListItems[] =
     {sText_PowerfulStatus, LIST_AI_POWERFUL_STATUS},
     {sText_NegateUnaware, LIST_AI_NEGATE_UNAWARE},
     {sText_WillSuicide, LIST_AI_WILL_SUICIDE},
-    {sText_HelpPartner, LIST_AI_HELP_PARTNER},
     {sText_PreferStatusMoves, LIST_AI_PREFER_STATUS_MOVES},
     {sText_Stall, LIST_AI_STALL},
     {sText_SmartSwitching, LIST_AI_SMART_SWITCHING},
     {sText_AcePokemon, LIST_AI_ACE_POKEMON},
     {sText_Omniscient, LIST_AI_OMNISCIENT},
     {sText_SmartMonChoices, LIST_AI_SMART_MON_CHOICES},
+    {sText_Conservative, LIST_AI_CONSERVATIVE},
+    {sText_SequenceSwitching, LIST_AI_SEQUENCE_SWITCHING},
+    {sText_DoubleAcePokemon, LIST_AI_DOUBLE_ACE_POKEMON},
+    {sText_WeighAbilityPrediction, LIST_AI_WEIGH_ABILITY_PREDICTION},
+    {sText_PreferHighestDamageMove, LIST_AI_PREFER_HIGHEST_DAMAGE_MOVE},
+    {sText_PredictSwitch, LIST_AI_PREDICT_SWITCH},
+    {sText_PredictIncomingMon, LIST_AI_PREDICT_INCOMING_MON},
+    {sText_DynamicFunc, LIST_AI_DYNAMIC_FUNC},
     {sText_Roaming, LIST_AI_ROAMING},
     {sText_Safari, LIST_AI_SAFARI},
     {sText_FirstBattle, LIST_AI_FIRST_BATTLE},
@@ -818,7 +844,7 @@ static void PrintDigitChars(struct BattleDebugMenu *data);
 static void SetUpModifyArrows(struct BattleDebugMenu *data);
 static void UpdateBattlerValue(struct BattleDebugMenu *data);
 static void UpdateMonData(struct BattleDebugMenu *data);
-static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue);
+static u16 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue);
 static bool32 TryMoveDigit(struct BattleDebugModifyArrows *modArrows, bool32 moveUp);
 static void SwitchToDebugView(u8 taskId);
 static void SwitchToDebugViewFromAiParty(u8 taskId);
@@ -872,7 +898,7 @@ void CB2_BattleDebugMenu(void)
     case 1:
         ResetVramOamAndBgCntRegs();
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
-        ResetBgsAndClearDma3BusyFlags(0);
+        ResetBgsAndClearDma3BusyFlags();
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         ResetAllBgsCoordinates();
         FreeAllWindowBuffers();
@@ -952,6 +978,14 @@ static void PutMovesPointsText(struct BattleDebugMenu *data)
 
             count++;
         }
+    }
+
+    if (AI_DATA->shouldSwitch & (1u << data->aiBattlerId))
+    {
+        u32 switchMon = GetMonData(&gEnemyParty[AI_DATA->mostSuitableMonId[data->aiBattlerId]], MON_DATA_SPECIES);
+
+        AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, sText_IsSwitching, 74, 64, 0, NULL);
+        AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, gSpeciesInfo[switchMon].speciesName, 74 + 68, 64, 0, NULL);
     }
 
     CopyWindowToVram(data->aiMovesWindowId, COPYWIN_FULL);
@@ -1852,7 +1886,7 @@ static void ValueToCharDigits(u8 *charDigits, u32 newValue, u8 maxDigits)
         charDigits[i] = valueDigits[i] + CHAR_0;
 }
 
-static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
+static u16 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
 {
     struct SideTimer *sideTimer = &gSideTimers[GetBattlerSide(data->battlerId)];
 
@@ -1982,7 +2016,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_DAMAGE_NON_TYPES;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_DAMAGE_NON_TYPES;
-            sideTimer->damageNonTypesType = gMovesInfo[gCurrentMove].type;
+            sideTimer->damageNonTypesType = GetMoveType(gCurrentMove);
         }
         return &sideTimer->damageNonTypesTimer;
     case LIST_SIDE_RAINBOW:
@@ -2580,8 +2614,8 @@ static const u8 *const sHoldEffectNames[] =
     [HOLD_EFFECT_COVERT_CLOAK] = sText_HoldEffectCovertCloak,
     [HOLD_EFFECT_LOADED_DICE] = sText_HoldEffectLoadedDice,
     [HOLD_EFFECT_BOOSTER_ENERGY] = sText_HoldEffectBoosterEnergy,
-    [HOLD_EFFECT_BERSERK_GENE] = sText_HoldEffectBerserkGene,
     [HOLD_EFFECT_OGERPON_MASK] = sText_HoldEffectOgerponMask,
+    [HOLD_EFFECT_BERSERK_GENE] = sText_HoldEffectBerserkGene,
 };
 static const u8 *GetHoldEffectName(u16 holdEffect)
 {

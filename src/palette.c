@@ -2,6 +2,8 @@
 #include "palette.h"
 #include "util.h"
 #include "decompress.h"
+#include "malloc.h"
+#include "menu.h"
 #include "gpu_regs.h"
 #include "task.h"
 #include "constants/rgb.h"
@@ -28,21 +30,11 @@ ALIGNED(4) EWRAM_DATA u16 gPlttBufferFaded[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
 static EWRAM_DATA u32 sPlttBufferTransferPending = 0;
 
-static const u8 sRoundedDownGrayscaleMap[] = {
-     0,  0,  0,  0,  0,
-     5,  5,  5,  5,  5,
-    11, 11, 11, 11, 11,
-    16, 16, 16, 16, 16,
-    21, 21, 21, 21, 21,
-    27, 27, 27, 27, 27,
-    31, 31
-};
-
 void LoadCompressedPalette(const u32 *src, u32 offset, u32 size)
 {
-    LZDecompressWram(src, gDecompressionBuffer);
-    CpuCopy16(gDecompressionBuffer, &gPlttBufferUnfaded[offset], size);
-    CpuCopy16(gDecompressionBuffer, &gPlttBufferFaded[offset], size);
+    void *buffer = malloc_and_decompress(src, NULL);
+    LoadPalette(buffer, offset, size);
+    Free(buffer);
 }
 
 void LoadPalette(const void *src, u32 offset, u32 size)
@@ -610,28 +602,6 @@ void TintPalette_GrayScale(u16 *palette, u32 count)
         b = GET_B(*palette);
 
         gray = (r * Q_8_8(0.3) + g * Q_8_8(0.59) + b * Q_8_8(0.1133)) >> 8;
-
-        *palette++ = RGB2(gray, gray, gray);
-    }
-}
-
-void TintPalette_GrayScale2(u16 *palette, u32 count)
-{
-    s32 r, g, b;
-    u32 i, gray;
-
-    for (i = 0; i < count; i++)
-    {
-        r = GET_R(*palette);
-        g = GET_G(*palette);
-        b = GET_B(*palette);
-
-        gray = (r * Q_8_8(0.3) + g * Q_8_8(0.59) + b * Q_8_8(0.1133)) >> 8;
-
-        if (gray > 31)
-            gray = 31;
-
-        gray = sRoundedDownGrayscaleMap[gray];
 
         *palette++ = RGB2(gray, gray, gray);
     }

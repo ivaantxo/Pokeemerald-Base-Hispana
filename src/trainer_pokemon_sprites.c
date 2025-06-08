@@ -84,16 +84,13 @@ static void LoadPicPaletteByTagOrSlot(u16 species, bool8 isShiny, u32 personalit
             sCreatingSpriteTemplate.paletteTag = TAG_NONE;
             LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), OBJ_PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
             if (PBH_PALETAS_UNICAS)
-            {
-                UniquePaletteByPersonality(OBJ_PLTT_ID(paletteSlot), species, personality);
-                CpuCopy32(&gPlttBufferFaded[OBJ_PLTT_ID(paletteSlot)], &gPlttBufferUnfaded[OBJ_PLTT_ID(paletteSlot)], PLTT_SIZE_4BPP);
-            }
+                DesplazaTonoPaleta(OBJ_PLTT_ID(paletteSlot), personality);
         }
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
             if (PBH_PALETAS_UNICAS)
-                LoadCompressedSpritePaletteWithTagHueShiftedByPersonality(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species, personality);
+                LoadCompressedSpritePaletteWithTagHueShifted(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species, personality);
             else
                 LoadCompressedSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species);
         }
@@ -119,10 +116,7 @@ static void LoadPicPaletteBySlot(u16 species, bool8 isShiny, u32 personality, u8
     {
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
         if (PBH_PALETAS_UNICAS)
-        {
-            UniquePaletteByPersonality(PLTT_ID(paletteSlot), species, personality);
-            CpuCopy32(&gPlttBufferFaded[PLTT_ID(paletteSlot)], &gPlttBufferUnfaded[PLTT_ID(paletteSlot)], PLTT_SIZE_4BPP);
-        }
+            DesplazaTonoPaleta(PLTT_ID(paletteSlot), personality);
     }
     else
         LoadCompressedPalette(gTrainerSprites[species].palette.data, PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
@@ -133,7 +127,7 @@ static void AssignSpriteAnimsTable(bool8 isTrainer)
     if (!isTrainer)
         sCreatingSpriteTemplate.anims = gAnims_MonPic;
     else
-        sCreatingSpriteTemplate.anims = sAnims_Trainer;
+        sCreatingSpriteTemplate.anims = gAnims_Trainer;
 }
 
 static u16 CreatePicSprite(u16 species, bool8 isShiny, u32 personality, bool8 isFrontPic, s16 x, s16 y, u8 paletteSlot, u16 paletteTag, bool8 isTrainer)

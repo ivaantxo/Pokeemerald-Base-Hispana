@@ -3,22 +3,21 @@
 
 #include "sprite.h"
 
-extern u8 ALIGNED(4) gDecompressionBuffer[16384];
+#define MAX_DECOMPRESSION_BUFFER_SIZE 0x4000
 
 void LZDecompressWram(const u32 *src, void *dest);
 void LZDecompressVram(const u32 *src, void *dest);
 
 u32 IsLZ77Data(const void *ptr, u32 minSize, u32 maxSize);
 
-u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src);
-u16 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s32 offset);
-void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
+u32 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src);
+u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s32 offset);
+u32 LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
 bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src);
 
-void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
-void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
-void LoadCompressedSpritePaletteWithTagHueShifted(const u32 *pal, u16 tag, struct BoxPokemon *boxMon);
-void LoadCompressedSpritePaletteWithTagHueShiftedByPersonality(const u32 *pal, u16 tag, u32 personality);
+u32 LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
+u32 LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
+u32 LoadCompressedSpritePaletteWithTagHueShifted(const u32 *pal, u16 tag, u32 personality);
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer);
 bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src);
 void LoadCompressedEggSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2);

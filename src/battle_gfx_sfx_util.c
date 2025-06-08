@@ -6,6 +6,7 @@
 #include "constants/battle_anim.h"
 #include "battle_interface.h"
 #include "main.h"
+#include "menu.h"
 #include "dma3.h"
 #include "malloc.h"
 #include "graphics.h"
@@ -202,7 +203,7 @@ u16 ChooseMoveAndTargetInBattlePalace(u32 battler)
         gBattleStruct->palaceFlags &= (1 << MAX_BATTLERS_COUNT) - 1;
         gBattleStruct->palaceFlags |= (selectedMoves << MAX_BATTLERS_COUNT);
         BattleAI_SetupAIData(selectedMoves, battler);
-        chosenMoveId = BattleAI_ChooseMoveOrAction();
+        chosenMoveId = BattleAI_ChooseMoveOrAction(battler);
     }
 
     // If no moves matched the selected group, pick a new move from groups the Pokémon has
@@ -329,11 +330,11 @@ static u8 GetBattlePalaceMoveGroup(u8 battler, u16 move)
     switch (GetBattlerMoveTargetType(battler, move))
     {
     case MOVE_TARGET_SELECTED:
-    case MOVE_TARGET_USER_OR_SELECTED:
+    case MOVE_TARGET_OPPONENT:
     case MOVE_TARGET_RANDOM:
     case MOVE_TARGET_BOTH:
     case MOVE_TARGET_FOES_AND_ALLY:
-        if (IS_MOVE_STATUS(move))
+        if (IsBattleMoveStatus(move))
             return PALACE_MOVE_GROUP_SUPPORT;
         else
             return PALACE_MOVE_GROUP_ATTACK;
@@ -646,16 +647,15 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
     else
         lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personalityValue);
 
-    LZDecompressWram(lzPaletteData, gDecompressionBuffer);
-    LoadPalette(gDecompressionBuffer, paletteOffset, PLTT_SIZE_4BPP);
-    LoadPalette(gDecompressionBuffer, BG_PLTT_ID(8) + BG_PLTT_ID(battler), PLTT_SIZE_4BPP);
+    void *buffer = malloc_and_decompress(lzPaletteData, NULL);
+    LoadPalette(buffer, paletteOffset, PLTT_SIZE_4BPP);
+    LoadPalette(buffer, BG_PLTT_ID(8) + BG_PLTT_ID(battler), PLTT_SIZE_4BPP);
     if (PBH_PALETAS_UNICAS)
     {
-        UniquePalette(paletteOffset, &mon->box);
-        CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZE_4BPP);
-        UniquePalette(BG_PLTT_ID(8) + BG_PLTT_ID(battler), &mon->box);
-        CpuCopy32(&gPlttBufferFaded[BG_PLTT_ID(8) + BG_PLTT_ID(battler)], &gPlttBufferUnfaded[BG_PLTT_ID(8) + BG_PLTT_ID(battler)], PLTT_SIZE_4BPP);
+        DesplazaTonoPaleta(paletteOffset, personalityValue);
+        DesplazaTonoPaleta(BG_PLTT_ID(8) + BG_PLTT_ID(battler), personalityValue);
     }
+    Free(buffer);
     // transform's pink color
     if (gBattleSpritesDataPtr->battlerData[battler].transformSpecies != SPECIES_NONE)
     {
@@ -736,11 +736,11 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             }
             else if (state == 4)
             {
-                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(0)]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_0)]);
             }
             else if (state == 5)
             {
-                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(1)]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_1)]);
             }
             else
             {
@@ -763,13 +763,13 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             else if (state == 5)
                 LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
             else if (state == 6)
-                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(0)]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_0)]);
             else if (state == 7)
-                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(1)]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_1)]);
             else if (state == 8)
-                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(2)]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_2)]);
             else if (state == 9)
-                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(3)]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_3)]);
             else
                 retVal = TRUE;
         }
@@ -946,13 +946,12 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
     DmaCopy32(3, src, dst, MON_PIC_SIZE);
     paletteOffset = OBJ_PLTT_ID(battlerAtk);
     lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(targetSpecies, isShiny, personalityValue);
-    LZDecompressWram(lzPaletteData, gDecompressionBuffer);
-    LoadPalette(gDecompressionBuffer, paletteOffset, PLTT_SIZE_4BPP);
+    void *buffer = malloc_and_decompress(lzPaletteData, NULL);
+    LoadPalette(buffer, paletteOffset, PLTT_SIZE_4BPP);
     if (PBH_PALETAS_UNICAS)
-    {
-        UniquePaletteByPersonality(paletteOffset, targetSpecies, personalityValue);
-        CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZE_4BPP);
-    }
+        DesplazaTonoPaleta(paletteOffset, personalityValue);
+    Free(buffer);
+
     if (!megaEvo)
     {
         BlendPalette(paletteOffset, 16, 6, RGB_WHITE);
@@ -1031,7 +1030,8 @@ void LoadBattleMonGfxAndAnimate(u8 battler, bool8 loadMonSprite, u8 spriteId)
 
 void TrySetBehindSubstituteSpriteBit(u8 battler, u16 move)
 {
-    if (gMovesInfo[move].effect == EFFECT_SUBSTITUTE || gMovesInfo[move].effect == EFFECT_SHED_TAIL)
+    u32 effect = GetMoveEffect(move);
+    if (effect == EFFECT_SUBSTITUTE || effect == EFFECT_SHED_TAIL)
         gBattleSpritesDataPtr->battlerData[battler].behindSubstitute = 1;
 }
 

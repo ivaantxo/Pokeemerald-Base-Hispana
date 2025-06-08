@@ -51,126 +51,57 @@ BattleFrontier_Lounge5_Text_NatureGirlNoneShown::
 	.string "¡Ay!\n"
 	.string "¡Qué carácter, oye!$"
 
-BattleFrontier_Lounge5_Text_NatureGirlHardy::
+BattleFrontier_Lounge5_Text_NatureGirlAttackHighAttackLow::
 	.string "Mmm…\p"
 	.string "¡Dice que le gusta combatir!\n"
 	.string "¡Aunque le hagan pupa!$"
 
-BattleFrontier_Lounge5_Text_NatureGirlLonely::
+BattleFrontier_Lounge5_Text_NatureGirlAttackHighDefenseLow::
+	.string "Mmm…\p"
+	.string "¡Dice que le gusta combatir!\n"
+	.string "Pero que si le hacen pupa,\l"
+	.string "¡se lo pensará dos veces!$"
+
+BattleFrontier_Lounge5_Text_NatureGirlAttackHighSupportLow::
+	.string "Mmm…\p"
+	.string "¡Dice que le gusta combatir!\n"
+	.string "Pero que si le hacen pupa,\l"
+	.string "¡se reservará!$"
+
+BattleFrontier_Lounge5_Text_NatureGirlDefenseHighAttackLow::
+	.string "Mmm…\p"
+	.string "¡Dice que se cuida mucho!\n"
+	.string "Pero que si le hacen pupa,\l"
+	.string "¡se vengará!$"
+
+BattleFrontier_Lounge5_Text_NatureGirlDefenseHighDefenseLow::
+	.string "Mmm…\p"
+	.string "¡Dice que se cuida mucho,\n"
+	.string "le hagan o no daño!$"
+
+BattleFrontier_Lounge5_Text_NatureGirlDefenseHighSupportLow::
+	.string "Mmm…\p"
+	.string "¡Dice que se cuida mucho!\n"
+	.string "Pero que si le hacen pupa,\l"
+	.string "¡se reservará!$"
+
+BattleFrontier_Lounge5_Text_NatureGirlSupportHighAttackLow::
 	.string "Mmm…\p"
 	.string "¡Dice que le gusta reservarse!\n"
 	.string "¡Y que, si le hacen pupa, no se anda\l"
 	.string "con pamplinas!$"
 
-BattleFrontier_Lounge5_Text_NatureGirlBrave::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Pero que se preocupa si le hacen pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlAdamant::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Aunque le hagan pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlNaughty::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "¡Y que, si le hacen pupa, no se anda\l"
-	.string "con pamplinas!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlBold::
+BattleFrontier_Lounge5_Text_NatureGirlSupportHighDefenseLow::
 	.string "Mmm…\p"
 	.string "¡Dice que le gusta reservarse!\n"
-	.string "¡Pero que se preocupa si le hacen pupa!$"
+	.string "Pero que si le hacen pupa,\l"
+	.string "¡se lo pensará dos veces!$"
 
-BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Aunque le hagan pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlRelaxed::
+BattleFrontier_Lounge5_Text_NatureGirlSupportHighSupportLow::
 	.string "Mmm…\p"
 	.string "¡Dice que le gusta reservarse!\n"
-	.string "¡Y que, si le hacen pupa, no se anda\l"
-	.string "con pamplinas!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlImpish::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Pero que se preocupa si le hacen pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlLax::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta reservarse! ¡Le\n"
-	.string "gusta reservarse aunque le hagan pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlTimid::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Pero que, si le hacen mucha\l"
-	.string "pupa, se lo pensará dos veces!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlHasty::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Aunque le hagan pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlSerious::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta reservarse! ¡Le\n"
-	.string "gusta reservarse aunque le hagan pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlJolly::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta reservarse!\n"
-	.string "¡Pero que se preocupa si le hacen pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlModest::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "Que se preocupa si le hacen pupa,\l"
-	.string "¡y aunque no se la hagan!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlMild::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "¡Pero que, si le hacen mucha\l"
-	.string "pupa, se lo pensará dos veces!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlBashful::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "Que se preocupa si le hacen pupa,\l"
-	.string "¡y aunque no se la hagan!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlRash::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta reservarse! ¡Le\n"
-	.string "gusta reservarse aunque le hagan pupa!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlCalm::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "Que se preocupa si le hacen pupa,\l"
-	.string "¡y aunque no se la hagan!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlGentle::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "¡Y que, si le hacen pupa, no se anda\l"
-	.string "con pamplinas!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlSassy::
-	.string "Mmm…\p"
-	.string "¡Dice que le gusta combatir!\n"
-	.string "¡Pero que, si le hacen mucha\l"
-	.string "pupa, se lo pensará dos veces!$"
-
-BattleFrontier_Lounge5_Text_NatureGirlCareful::
-	.string "Mmm…\p"
-	.string "¡Dice que se cuida mucho!\n"
-	.string "¡Pero que, si le hacen mucha\l"
-	.string "pupa, se lo pensará dos veces!$"
+	.string "Le gusta reservarse, incluso\l"
+	.string "si le hacen mucha pupa.$"
 
 BattleFrontier_Lounge5_Text_NatureGirlEgg::
 	.string "¡Qué tontería! ¡Los HUEVOS duermen!\n"

@@ -238,7 +238,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_RECOIL_IF_MISS] =
     {
-        .battleScript = BattleScript_EffectRecoilIfMiss,
+        .battleScript = BattleScript_EffectHit,
         .battleTvScore = 1,
     },
 
@@ -421,6 +421,27 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_DO_NOTHING] =
     {
         .battleScript = BattleScript_EffectDoNothing,
+        .battleTvScore = 1,
+        .encourageEncore = TRUE,
+    },
+
+    [EFFECT_HOLD_HANDS] =
+    {
+        .battleScript = BattleScript_EffectHoldHands,
+        .battleTvScore = 1,
+        .encourageEncore = TRUE,
+    },
+
+    [EFFECT_CELEBRATE] =
+    {
+        .battleScript = BattleScript_EffectCelebrate,
+        .battleTvScore = 1,
+        .encourageEncore = TRUE,
+    },
+
+    [EFFECT_HAPPY_HOUR] =
+    {
+        .battleScript = BattleScript_EffectHappyHour,
         .battleTvScore = 1,
         .encourageEncore = TRUE,
     },
@@ -1571,7 +1592,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_HIT_SWITCH_TARGET] =
     {
-        .battleScript = BattleScript_EffectHitSwitchTarget,
+        .battleScript = BattleScript_EffectHit,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -1855,9 +1876,9 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_RECOIL_HP_25] =
+    [EFFECT_STRUGGLE] =
     {
-        .battleScript = BattleScript_EffectRecoilHP25,
+        .battleScript = BattleScript_EffectStruggle,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -1871,12 +1892,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_GRAV_APPLE] =
     {
         .battleScript = BattleScript_EffectHit,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
-    [EFFECT_SPARKLY_SWIRL] =
-    {
-        .battleScript = BattleScript_EffectSparklySwirl,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -1894,7 +1909,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_PHOTON_GEYSER] =
     {
-        .battleScript = BattleScript_EffectPhotonGeyser,
+        .battleScript = BattleScript_EffectDynamicCategory,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -2186,13 +2201,13 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_TERA_BLAST] =
     {
-        .battleScript = BattleScript_EffectPhotonGeyser,
+        .battleScript = BattleScript_EffectDynamicCategory,
         .battleTvScore = 0, // TODO: Assign points
     },
 
     [EFFECT_TERA_STARSTORM] =
     {
-        .battleScript = BattleScript_EffectPhotonGeyser,
+        .battleScript = BattleScript_EffectDynamicCategory,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -2223,6 +2238,12 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_RAPID_SPIN] =
     {
         .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_SPECTRAL_THIEF] =
+    {
+        .battleScript = BattleScript_EffectSpectralThief,
         .battleTvScore = 0, // TODO: Assign points
     },
 };

@@ -3,14 +3,14 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_FOCUS_PUNCH].effect == EFFECT_FOCUS_PUNCH);
+    ASSUME(GetMoveEffect(MOVE_FOCUS_PUNCH) == EFFECT_FOCUS_PUNCH);
 }
 
 SINGLE_BATTLE_TEST("Focus Punch activates only if not damaged")
 {
     u32 move;
     bool32 activate;
-    PARAMETRIZE { move = MOVE_TACKLE; activate = FALSE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; activate = FALSE; }
     PARAMETRIZE { move = MOVE_WATER_GUN; activate = FALSE; }
     PARAMETRIZE { move = MOVE_LEER; activate = TRUE; }
 

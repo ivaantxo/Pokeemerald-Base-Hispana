@@ -2391,7 +2391,7 @@ static bool8 LoadPokedexListPage(u8 page)
         sPokedexView->currentPage = page;
         ResetOtherVideoRegisters(0);
         SetGpuReg(REG_OFFSET_BG2VOFS, sPokedexView->initialVOffset);
-        ResetBgsAndClearDma3BusyFlags(0);
+        ResetBgsAndClearDma3BusyFlags();
         InitBgsFromTemplates(0, sPokedex_BgTemplate, ARRAY_COUNT(sPokedex_BgTemplate));
         SetBgTilemapBuffer(3, AllocZeroed(BG_SCREEN_SIZE));
         SetBgTilemapBuffer(2, AllocZeroed(BG_SCREEN_SIZE));
@@ -3738,7 +3738,7 @@ static u8 LoadInfoScreen(struct PokedexListItem *item, u8 monSpriteId)
     gTasks[taskId].tSkipCry = FALSE;
     gTasks[taskId].tMonSpriteId = monSpriteId;
     gTasks[taskId].tTrainerSpriteId = SPRITE_NONE;
-    ResetBgsAndClearDma3BusyFlags(0);
+    ResetBgsAndClearDma3BusyFlags();
     InitBgsFromTemplates(0, sInfoScreen_BgTemplate, ARRAY_COUNT(sInfoScreen_BgTemplate));
     SetBgTilemapBuffer(3, AllocZeroed(BG_SCREEN_SIZE));
     SetBgTilemapBuffer(2, AllocZeroed(BG_SCREEN_SIZE));
@@ -4072,7 +4072,7 @@ void Task_DisplayCaughtMonDexPageHGSS(u8 taskId)
             gPokedexVBlankCB = gMain.vblankCallback;
             SetVBlankCallback(NULL);
             ResetOtherVideoRegisters(DISPCNT_BG0_ON);
-            ResetBgsAndClearDma3BusyFlags(0);
+            ResetBgsAndClearDma3BusyFlags();
             InitBgsFromTemplates(0, sNewEntryInfoScreen_BgTemplate, ARRAY_COUNT(sNewEntryInfoScreen_BgTemplate));
             SetBgTilemapBuffer(3, AllocZeroed(BG_SCREEN_SIZE));
             SetBgTilemapBuffer(2, AllocZeroed(BG_SCREEN_SIZE));
@@ -5092,12 +5092,12 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     //Draw move type icon
     if (gTasks[taskId].data[5] == 0)
     {
-        SetTypeIconPosAndPal(gMovesInfo[move].type, moves_x + 146, moves_y + 17, 0);
+        SetTypeIconPosAndPal(GetMoveType(move), moves_x + 146, moves_y + 17, 0);
         SetSpriteInvisibility(1, TRUE);
     }
     else
     {
-        SetTypeIconPosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[move].contestCategory, moves_x + 146, moves_y + 17, 1);
+        SetTypeIconPosAndPal(NUMBER_OF_MON_TYPES + GetMoveContestCategory(move), moves_x + 146, moves_y + 17, 1);
         SetSpriteInvisibility(0, TRUE);
     }
 
@@ -5153,12 +5153,12 @@ static void PrintStatsScreen_Moves_Description(u8 taskId)
     //Move description
     if (gTasks[taskId].data[5] == 0)
     {
-        StringCopy(gStringVar4, gMovesInfo[move].description);
+        StringCopy(gStringVar4, GetMoveDescription(move));
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
     }
     else
     {
-        StringCopy(gStringVar4, gContestEffectDescriptionPointers[gMovesInfo[move].contestEffect]);
+        StringCopy(gStringVar4, gContestEffectDescriptionPointers[GetMoveContestEffect(move)]);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_DESCRIPTION, gStringVar4, moves_x, moves_y);
     }
 }
@@ -5197,26 +5197,28 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
     if (gTasks[taskId].data[5] == 0)
     {
         //Power
-        if (gMovesInfo[move].power < 2)
+        u32 power = GetMovePower(move);
+        if (power < 2)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1, moves_x + 46, moves_y);
         //Physical/Special/Status Category
         DestroyCategoryIcon();
         ShowCategoryIcon(GetBattleMoveCategory(move));
         //Accuracy
-        if (gMovesInfo[move].accuracy == 0)
+        u32 accuracy = GetMoveAccuracy(move);
+        if (accuracy == 0)
             StringCopy(gStringVar1, gText_ThreeDashes);
         else
-            ConvertIntToDecimalStringN(gStringVar1, gMovesInfo[move].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar1,  moves_x + 114, moves_y);
     }
     else //Appeal + Jam
     {
         DestroyCategoryIcon();
         //Appeal
-        contest_effectValue = gContestEffects[gMovesInfo[move].contestEffect].appeal;
+        contest_effectValue = gContestEffects[GetMoveContestEffect(move)].appeal;
         if (contest_effectValue != 0xFF)
             contest_appeal = contest_effectValue / 10;
         ConvertIntToDecimalStringN(gStringVar1, contest_appeal, STR_CONV_MODE_RIGHT_ALIGN, 1);
@@ -5225,7 +5227,7 @@ static void PrintStatsScreen_Moves_Bottom(u8 taskId)
         PrintStatsScreenTextSmall(WIN_STATS_MOVES_BOTTOM, gStringVar2, moves_x + 45, moves_y);
 
         //Jam
-        contest_effectValue = gContestEffects[gMovesInfo[move].contestEffect].jam;
+        contest_effectValue = gContestEffects[GetMoveContestEffect(move)].jam;
         if (contest_effectValue != 0xFF)
             contest_jam = contest_effectValue / 10;
         ConvertIntToDecimalStringN(gStringVar1, contest_jam, STR_CONV_MODE_RIGHT_ALIGN, 1);
@@ -7686,7 +7688,7 @@ static void Task_LoadSearchMenu(u8 taskId)
         {
             sPokedexView->currentPage = PAGE_SEARCH;
             ResetOtherVideoRegisters(0);
-            ResetBgsAndClearDma3BusyFlags(0);
+            ResetBgsAndClearDma3BusyFlags();
             InitBgsFromTemplates(0, sSearchMenu_BgTemplate, ARRAY_COUNT(sSearchMenu_BgTemplate));
             SetBgTilemapBuffer(3, AllocZeroed(BG_SCREEN_SIZE));
             SetBgTilemapBuffer(2, AllocZeroed(BG_SCREEN_SIZE));

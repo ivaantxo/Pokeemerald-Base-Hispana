@@ -69,7 +69,7 @@ static void CB2_SetUpPartiesAndStartBattle(void)
     }
     IncrementGameStat(GAME_STAT_NUM_UNION_ROOM_BATTLES);
     CalculatePlayerPartyCount();
-    gTrainerBattleOpponent_A = TRAINER_UNION_ROOM;
+    TRAINER_BATTLE_PARAM.opponentA = TRAINER_UNION_ROOM;
     SetMainCallback2(CB2_InitBattle);
 }
 
@@ -120,7 +120,7 @@ void CB2_UnionRoomBattle(void)
         ResetSpriteData();
         FreeAllSpritePalettes();
         ResetTasks();
-        ResetBgsAndClearDma3BusyFlags(0);
+        ResetBgsAndClearDma3BusyFlags();
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         ResetTempTileDataBuffers();
         if (!InitWindows(sWindowTemplates))

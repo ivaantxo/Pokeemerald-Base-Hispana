@@ -329,7 +329,7 @@ void AnimTask_CentredFrozenIceCube(u8 taskId)
     u8 battler1 = gBattleAnimTarget;
     u8 battler2 = BATTLE_PARTNER(battler1);
 
-    if (!IsDoubleBattle() || IsAlly(gBattleAnimAttacker, gBattleAnimTarget))
+    if (!IsDoubleBattle() || IsBattlerAlly(gBattleAnimAttacker, gBattleAnimTarget))
     {
         x = GetBattlerSpriteCoord(battler1, BATTLER_COORD_X_2);
         y = GetBattlerSpriteCoord(battler1, BATTLER_COORD_Y_PIC_OFFSET);
@@ -514,15 +514,15 @@ void AnimTask_StatsChange(u8 taskId)
 
 #undef CASE
 
-void LaunchStatusAnimation(u8 battlerId, u8 statusAnimId)
+void LaunchStatusAnimation(u8 battler, u8 statusAnimId)
 {
     u8 taskId;
 
-    gBattleAnimAttacker = battlerId;
-    gBattleAnimTarget = battlerId;
+    gBattleAnimAttacker = battler;
+    gBattleAnimTarget = battler;
     LaunchBattleAnimation(ANIM_TYPE_STATUS, statusAnimId);
     taskId = CreateTask(Task_DoStatusAnimation, 10);
-    gTasks[taskId].data[0] = battlerId;
+    gTasks[taskId].data[0] = battler;
 }
 
 static void Task_DoStatusAnimation(u8 taskId)

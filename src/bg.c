@@ -3,6 +3,8 @@
 #include "bg.h"
 #include "dma3.h"
 #include "gpu_regs.h"
+#include "malloc.h"
+#include "menu.h"
 
 #define DISPCNT_ALL_BG_AND_MODE_BITS    (DISPCNT_BG_ALL_ON | 0x7)
 
@@ -37,8 +39,6 @@ struct BgConfig2
 static struct BgControl sGpuBgConfigs;
 static struct BgConfig2 sGpuBgConfigs2[NUM_BACKGROUNDS];
 static u32 sDmaBusyBitfield[NUM_BACKGROUNDS];
-
-COMMON_DATA u32 gWindowTileAutoAllocEnabled = 0;
 
 static const struct BgConfig sZeroedBgControlStruct = { 0 };
 
@@ -275,13 +275,7 @@ bool32 IsInvalidBg(u32 bg)
         return FALSE;
 }
 
-// From FRLG. Dummied out.
-int BgTileAllocOp(int bg, int offset, int count, int mode)
-{
-    return 0;
-}
-
-void ResetBgsAndClearDma3BusyFlags(u32 leftoverFireRedLeafGreenVariable)
+void ResetBgsAndClearDma3BusyFlags(void)
 {
     int i;
     ResetBgs();
@@ -290,8 +284,6 @@ void ResetBgsAndClearDma3BusyFlags(u32 leftoverFireRedLeafGreenVariable)
     {
         sDmaBusyBitfield[i] = 0;
     }
-
-    gWindowTileAutoAllocEnabled = leftoverFireRedLeafGreenVariable;
 }
 
 void InitBgsFromTemplates(u32 bgMode, const struct BgTemplate *templates, u8 numTemplates)
@@ -380,9 +372,6 @@ u16 LoadBgTiles(u32 bg, const void *src, u16 size, u16 destOffset)
     }
 
     sDmaBusyBitfield[cursor / 0x20] |= (1 << (cursor % 0x20));
-
-    if (gWindowTileAutoAllocEnabled == TRUE)
-        BgTileAllocOp(bg, tileOffset / 0x20, size / 0x20, 1);
 
     return cursor;
 }
@@ -764,7 +753,7 @@ void *GetBgTilemapBuffer(u32 bg)
         return sGpuBgConfigs2[bg].tilemap;
 }
 
-void CopyToBgTilemapBuffer(u32 bg, const void *src, u16 mode, u16 destOffset)
+void CopyToBgTilemapBuffer(u32 bg, const void *src, u32 mode, u32 destOffset)
 {
     if (!IsInvalidBg(bg) && !IsTileMapOutsideWram(bg))
     {
@@ -773,6 +762,14 @@ void CopyToBgTilemapBuffer(u32 bg, const void *src, u16 mode, u16 destOffset)
         else
             LZ77UnCompWram(src, (void *)(sGpuBgConfigs2[bg].tilemap + (destOffset * 2)));
     }
+}
+
+void DecompressAndCopyToBgTilemapBuffer(u32 bg, const u32 *src, u32 mode, u32 destOffset)
+{
+    void *buffer = malloc_and_decompress(src, NULL);
+
+    CopyToBgTilemapBuffer(bg, buffer, mode, destOffset);
+    Free(buffer);
 }
 
 void CopyBgTilemapBufferToVram(u32 bg)

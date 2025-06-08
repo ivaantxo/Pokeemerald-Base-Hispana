@@ -48,6 +48,7 @@
 #define OW_LARGE_OW_SUPPORT            TRUE       // Si es verdadero, agrega una pequeña cantidad de sobrecarga al código OW para que los OW grandes (48x48, 64x64) se muestren correctamente debajo de puentes, etc.
 #define OW_PKMN_OBJECTS_SHARE_PALETTES FALSE      // [¡WIP! NO TODAS LAS PALETAS SE HAN AJUSTADO PARA ESTO!] Si es TRUE, las paletas de seguidores se toman de los sprites de batalla.
 #define OW_GFX_COMPRESS                TRUE       // Agrega soporte para gráficos OW comprimidos, (También comprime gráficos de seguidores de Pokémon).
+                                                  // IMPORTANTE: Los gráficos se cargan en VRAM para evitar descompresión continua. Si necesitas más VRAM o quieres usar muchos OWs de Pokémon al mismo tiempo, debería desactivar esta config.
                                                   // Los gráficos comprimidos son incompatibles con tamaños de sprites que no son potencias de dos:
                                                   // (No debes usar sprites/tablas de 48x48 para gráficos comprimidos)
                                                   // 16x32, 32x32, 64x64, etc., están bien
@@ -57,6 +58,35 @@
 #define OW_FOLLOWERS_ENABLED           FALSE      // Habilita Pokémon seguidores, al estilo de HGSS. Requiere OW_POKEMON_OBJECT_EVENTS. ¡Nota que puede ser necesaria una programación adicional para que se soporten completamente!
 #define OW_FOLLOWERS_BOBBING           TRUE       // Si es verdadero, los Pokémon seguidores se moverán hacia arriba y hacia abajo durante sus animaciones de inactividad y caminata.
 #define OW_FOLLOWERS_POKEBALLS         TRUE       // Los seguidores emergerán de la Pokébola en la que están almacenados, en lugar de una Pokébola normal
+#define OW_FOLLOWERS_WEATHER_FORMS     FALSE      // Si TRUE, Castform y Cherrim ganan FORM_CHANGE_OVERWORLD_WEATHER, lo que los hace transformarse según el clima.
+#define OW_FOLLOWERS_COPY_WILD_PKMN    FALSE      // Si TRUE, Pokémon followers que conocen Transformación o tienen Ilusión/Impostor copiarán Pokémon salvajes aleatoriamente.
+#define OW_BATTLE_ONLY_FORMS           TRUE       // Si TRUE, carga sprites de OW para Pokémon que son solo formas de batalla, como las Megas. Requiere OW_POKEMON_OBJECT_EVENTS.
+#define B_FLAG_FOLLOWERS_DISABLED      0          // Habilita / Deshabilita followers por flag. Es útil si quieres deshabilitar followers por un período de tiempo.
+
+
+#define OW_FOLLOWERS_SCRIPT_MOVEMENT   TRUE       // TRUE: Colisiones por script esconden al follower, FLAG_SAFE_FOLLOWER_MOVEMENT encendido por defecto.
+                                                  // FALSE: No pasa nada en colisiones por scripts, FLAG_SAFE_FOLLOWER_MOVEMENT apagado por defecto.
+
+// Si están seteados, el único Pokémon que te puede seguir
+// será el que concuerde con la especie, la ubicación,
+// y/o el nivel al que se encontró;
+// Esto acepta VARs también.
+#define OW_MON_ALLOWED_SPECIES (0)
+#define OW_MON_ALLOWED_MET_LVL (0)
+#define OW_MON_ALLOWED_MET_LOC (0)
+// Ejemplos:
+// Pikachu Pokémon Amarillo:
+// #define OW_MON_ALLOWED_SPECIES (SPECIES_PIKACHU)
+// #define OW_MON_ALLOWED_MET_LVL (0)
+// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_PALLET_TOWN)
+// Iniciales Hoenn:
+// #define OW_MON_ALLOWED_SPECIES (0)
+// #define OW_MON_ALLOWED_MET_LVL (5)
+// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_ROUTE_101)
+// Especies en VAR_XXXX:
+// #define OW_MON_ALLOWED_SPECIES (VAR_XXXX)
+// #define OW_MON_ALLOWED_MET_LVL (0)
+// #define OW_MON_ALLOWED_MET_LOC (0)
 
 // Efectos de Habilidad fuera de batalla
 #define OW_SYNCHRONIZE_NATURE       GEN_LATEST // En Gen8+, si un Pokémon con Sincronía lidera el equipo, los Pokémon salvajes siempre tendrán la misma Naturaleza en lugar del 50% de probabilidad en juegos anteriores. Pokémon regalo excluidos.
@@ -77,13 +107,14 @@
 #define OW_USE_FAKE_RTC                 FALSE      // Cuando es TRUE, los segundos en el reloj del juego solo avanzarán una vez cada 60 playTimeVBlanks (cada 60 fotogramas).
 #define OW_ALTERED_TIME_RATIO           GEN_LATEST // En GEN_8_PLA, el tiempo en el juego avanza 60 segundos por cada segundo en el RTC. En GEN_9, son 20 segundos. Esto no tiene efecto si OW_USE_FAKE_RTC es FALSE.
 
-// Banderas del mundo exterior
-// Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la bandera que le estás asignando.
-// Ejemplo: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa bandera para activar la característica.
-#define OW_FLAG_PAUSE_TIME          0  // Si esta bandera está activada y OW_USE_FAKE_RTC está habilitado, los segundos en el reloj del juego no avanzarán.
-#define OW_FLAG_NO_ENCOUNTER        0  // Si esta bandera está activada, los encuentros salvajes estarán deshabilitados.
-#define OW_FLAG_NO_TRAINER_SEE      0  // Si esta bandera está activada, los entrenadores no pelearán con el jugador a menos que se les hable.
-#define OW_FLAG_NO_COLLISION        0  // Si esta bandera está activada, el jugador podrá caminar sobre losetas con colisión. Principalmente destinado para fines de depuración.
+// Flags del mundo exterior
+// Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la flag que le estás asignando.
+// Ejemplo: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa flag para activar la característica.
+#define OW_FLAG_PAUSE_TIME          0  // Si esta flag está activada y OW_USE_FAKE_RTC está habilitado, los segundos en el reloj del juego no avanzarán.
+#define OW_FLAG_NO_ENCOUNTER        0  // Si esta flag está activada, los encuentros salvajes estarán deshabilitados.
+#define OW_FLAG_NO_TRAINER_SEE      0  // Si esta flag está activada, los entrenadores no pelearán con el jugador a menos que se les hable.
+#define OW_FLAG_NO_COLLISION        0  // Si esta flag está activada, el jugador podrá caminar sobre losetas con colisión. Principalmente destinado para fines de depuración.
+#define OW_FLAG_POKE_RIDER          0  // Su esta flag está activada, el jugador podrá usar Vuelo desde el mapa de la Región del Pokenav y desde el Mapa (objeto) pulsando 'R' en un lugar al que el Vuelo esté habilitado.
 
 #define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    FALSE    // Si se establece en TRUE, los Pokémon de la pirámide de batalla se generarán aleatoriamente en función del desafío de la ronda en lugar de estar codificados en src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (o open_level_wild_mons.h)
 
@@ -109,5 +140,8 @@
 #define OW_IGNORE_EGGS_ON_HEAL           GEN_LATEST         // En Gen 4+, la enfermera en el Centro Pokémon no cura los Huevos en la máquina de curación.
 #define OW_UNION_DISABLE_CHECK           FALSE              // Si es TRUE, la enfermera no informará de si hay un entrenador esperando en la Sala Unión. Esto hace más rápida la carga del mapa del Centro Pokémon.
 #define OW_FLAG_MOVE_UNION_ROOM_CHECK    0                  // Si está flag está seteada, el juego solo chequeará si hay jugadores en la Sala Unión cuando se están curando los Pokémon, y no cuando el jugador entra al Centro Pokémon. Esto hace más rápida la carga del mapa del Centro Pokémon. Esto es ignorado si OW_UNION_DISABLE_CHECK es TRUE.
+
+// Berry Blender
+#define BERRY_BLENDER_THROW_ALL_BERRIES_AT_ONCE TRUE        // Esto es una pequeña adición, que básicamente acelera la animación cuando se lanzan todas las bayas a la vez.
 
 #endif // GUARD_CONFIG_OVERWORLD_H

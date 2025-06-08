@@ -12,6 +12,9 @@
 #define EWRAM_INIT __attribute__((section(".ewram")))
 #define COMMON_DATA __attribute__((section("common_data")))
 #define UNUSED __attribute__((unused))
+#define USED __attribute__((used))
+
+#define ARM_FUNC __attribute__((target("arm")))
 
 #if MODERN
 #define NOINLINE __attribute__((noinline))
@@ -97,5 +100,9 @@
 #define PLTT_SIZE_8BPP PLTT_SIZEOF(256)
 
 #define PLTT_OFFSET_4BPP(n) ((n) * PLTT_SIZE_4BPP)
+
+//PBH
+#define COLORES_POR_PALETA_4BPP 16
+#define RGB_MAXIMO  31
 
 #endif // GUARD_GBA_DEFINES_H

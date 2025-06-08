@@ -212,7 +212,6 @@ static void ShowContestPainting(void)
         gMain.state++;
         break;
     case 2:
-        SeedRng(gMain.vblankCounter1);
         InitKeys();
         InitContestPaintingWindow();
         gMain.state++;
@@ -265,7 +264,7 @@ static void HoldContestPainting(void)
 
 static void InitContestPaintingWindow(void)
 {
-    ResetBgsAndClearDma3BusyFlags(0);
+    ResetBgsAndClearDma3BusyFlags();
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     ChangeBgX(1, 0, BG_COORD_SET);
     ChangeBgY(1, 0, BG_COORD_SET);
@@ -595,4 +594,3 @@ static void CreateContestPaintingPicture(u8 contestWinnerId, bool8 isForArtist)
     InitPaintingMonOamData(contestWinnerId);
     LoadContestPaintingFrame(contestWinnerId, isForArtist);
 }
-

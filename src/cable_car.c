@@ -266,7 +266,7 @@ static void CB2_LoadCableCar(void)
 
         InitMapMusic();
         ResetMapMusic();
-        ResetBgsAndClearDma3BusyFlags(0);
+        ResetBgsAndClearDma3BusyFlags();
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         SetBgTilemapBuffer(0, sCableCar->bgTilemapBuffers[0]);
         SetBgTilemapBuffer(1, sCableCar->bgTilemapBuffers[1]);
@@ -387,7 +387,7 @@ static void CB2_EndCableCar(void)
     UnsetBgTilemapBuffer(1);
     UnsetBgTilemapBuffer(2);
     UnsetBgTilemapBuffer(3);
-    ResetBgsAndClearDma3BusyFlags(0);
+    ResetBgsAndClearDma3BusyFlags();
     sCableCar->pylonTopTilemap = NULL;
     FREE_AND_SET_NULL(sCableCar->pylonPoleTilemap);
     FREE_AND_SET_NULL(sCableCar->bgMountainsTilemap);
