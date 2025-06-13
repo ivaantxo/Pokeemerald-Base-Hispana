@@ -2704,7 +2704,7 @@ BattleScript_TryTailwindAbilitiesLoop_WindPower:
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_TryTailwindAbilitiesLoop_Increment
 
-BattleScript_EffectMircleEye::
+BattleScript_EffectMiracleEye::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -7658,7 +7658,7 @@ BattleScript_IntimidateLoopIncrement:
 	destroyabilitypopup
 	restoretarget
 	pause B_WAIT_TIME_MED
-	tryintimidatejectpack
+	tryintimidateejectpack
 	end3
 
 BattleScript_IntimidatePrevented::
@@ -7724,7 +7724,7 @@ BattleScript_SupersweetSyrupLoopIncrement:
 	destroyabilitypopup
 	restoretarget
 	pause B_WAIT_TIME_MED
-	tryintimidatejectpack
+	tryintimidateejectpack
 	end3
 
 BattleScript_SupersweetSyrupWontDecrease:
