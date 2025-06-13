@@ -35,6 +35,7 @@
 #include "task.h"
 #include "text_window.h"
 #include "trainer_pokemon_sprites.h"
+#include "util.h"
 
 #include "constants/global.h"
 #include "constants/items.h"
@@ -1933,6 +1934,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     s16 offset_y;
     u8 front_x = sBattlerCoords[0][1].x;
     u8 front_y;
+    u32 personality = Random32();
 
     DestroySprite(&gSprites[data->frontspriteId]);
     DestroySprite(&gSprites[data->backspriteId]);
@@ -1967,6 +1969,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     front_y = GetBattlerSpriteFinal_YCustom(species, 0, 0);
     data->frontspriteId = CreateSprite(&gMultiuseSpriteTemplate, front_x, front_y, 0);
     gSprites[data->frontspriteId].oam.paletteNum = 1;
+    DesplazaTonoPaleta(OBJ_PLTT_ID(1), personality);
     gSprites[data->frontspriteId].callback = SpriteCallbackDummy;
     gSprites[data->frontspriteId].oam.priority = 0;
     //Front Shadow
@@ -1979,6 +1982,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     offset_y = gSpeciesInfo[species].backPicYOffset;
     data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, VISUALIZER_MON_BACK_X, VISUALIZER_MON_BACK_Y + offset_y, 0);
     gSprites[data->backspriteId].oam.paletteNum = 5;
+    DesplazaTonoPaleta(OBJ_PLTT_ID(5), personality);
     gSprites[data->backspriteId].callback = SpriteCallbackDummy;
     gSprites[data->backspriteId].oam.priority = 0;
 

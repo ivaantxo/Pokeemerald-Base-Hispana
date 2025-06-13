@@ -2945,8 +2945,8 @@ static void Debug_Display_ItemInfo(u32 itemId, u32 digit, u8 subWindowId, u8 des
     FillWindowPixelBuffer(descWindowId, PIXEL_FILL(1));
     AddTextPrinterParameterized(
         descWindowId,
-        GetFontIdToFit(ItemId_GetDescription(itemId), DEBUG_MENU_FONT, 0, WindowWidthPx(descWindowId)),
-        ItemId_GetDescription(itemId),
+        GetFontIdToFit(GetItemDescription(itemId), DEBUG_MENU_FONT, 0, WindowWidthPx(descWindowId)),
+        GetItemDescription(itemId),
         0, 0, 0, NULL);
 }
 

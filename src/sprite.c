@@ -1578,6 +1578,14 @@ u32 LoadSpritePaletteWithTag(const u16 *pal, u16 tag)
     return LoadSpritePalette(&spritePal);
 }
 
+u32 LoadSpritePaletteWithTagHueShifted(const u16 *pal, u16 tag, u32 personality)
+{
+    struct SpritePalette spritePal;
+    spritePal.data = pal;
+    spritePal.tag = tag;
+    return LoadUniqueSpritePalette(&spritePal, personality);
+}
+
 void LoadSpritePalettes(const struct SpritePalette *palettes)
 {
     u32 i;

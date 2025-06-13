@@ -4,7 +4,7 @@
 // ADVERTENCIA: Por alguna razón, usar 1/0 en lugar de TRUE/FALSE causa que los ID de gritos se desplacen.
 // Por favor, usa TRUE/FALSE cuando uses los toggles de familias.
 
-// Modificar la última generación CAMBIARÁ el saveblock debido a las banderas del Dex y requerirá un nuevo archivo guardado.
+// Modificar la última generación CAMBIARÁ el saveblock debido a las flags del Dex y requerirá un nuevo archivo guardado.
 // Las generaciones de Pokémon están definidas por el primer miembro introducido,
 // por lo que Pikachu depende de la configuración de la Gen 1 a pesar de que Pichu sea el miembro más bajo de la cadena evolutiva.
 // Ej: Si P_GEN_2_POKEMON está configurado como FALSE, todos los miembros de la Familia Sneasel serán desactivados

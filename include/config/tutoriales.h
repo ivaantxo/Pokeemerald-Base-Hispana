@@ -19,12 +19,12 @@ En nuestro caso, se han generado "iconos_tipos.4bpp" e "iconos_tipos.gbapal", el
 
 Para la gran mayoría de sprites, este paso de "unión" no será necesario, y podemos directamente identificarlos en src/graphics.c y en include/graphics.h: 
 const u32 gIconosTipos_Gfx[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp.lz");
-const u32 gIconosTipos_Pal[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal.lz");
+const 16 gIconosTipos_Pal[] = INCBIN_U16("graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal");
 
 extern const u32 gIconosTipos_Gfx[];
-extern const u32 gIconosTipos_Pal[];
+extern const u16 gIconosTipos_Pal[];
 
-En el primer caso en src/graphics.c estamos creando un u32 que contiene nuestro sprite que está en graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp, y en el segundo estamos creando un u32 que son nuestras paletas, que están en graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal. ¡OJO! El .lz al final de cada uno significa que están comprimidas, y que para cargarlas deberemos usar LoadCompressedPalette y similares (Si no, se verán pixelados = sin descomprimir).
+En el primer caso en src/graphics.c estamos creando un u32 que contiene nuestro sprite que está en graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp, y en el segundo estamos creando un u32 que son nuestras paletas, que están en graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal. ¡OJO! El .lz al final de cada uno significa que están comprimidas, y que para cargarlas deberemos usar LoadPalette y similares (Si no, se verán pixelados = sin descomprimir).
 En include/graphics.h es donde permitimos que los demás archivos .c que contengan #include "graphics.h" puedan reconocerlos.
 
 Ya tenemos nuestros gráficos adecuados para la GBA, convertidos en código, y reconocidos por los archivos donde queremos que se lean, ahora solo falta el código para que se muestren.
@@ -55,7 +55,7 @@ En el caso de los iconos de tipos, esto se hace directamente en TypesInfo, donde
     if (typeId < NUMBER_OF_MON_TYPES)                           Si el tipo está antes del índice de los tipos de concurso, entonces
         sprite->oam.paletteNum = gTypesInfo[typeId].palette;    el índice de la paleta será el que se indique en el parámetro .palette dentro de la estructura gTypesInfo para el [typeId] que corresponda.
 
-Cuando ya tenemos esto, basta cargar el SpriteSheet mediante LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes), cargar la paleta con LoadCompressedPalette(gIconosTipos_Pal, tal, tal), y crear el sprite finalmente con CreateSprite(&gSpriteTemplate_MoveTypes, tal, tal, tal) en la función que queramos,
+Cuando ya tenemos esto, basta cargar el SpriteSheet mediante LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes), cargar la paleta con LoadPalette(gIconosTipos_Pal, tal, tal), y crear el sprite finalmente con CreateSprite(&gSpriteTemplate_MoveTypes, tal, tal, tal) en la función que queramos,
 y ya tendríamos nuestros nuevos sprites cargados en la pantalla de la GBA, y solo faltaría escribir el código para ver qué hacemos con ellos.
 */
 

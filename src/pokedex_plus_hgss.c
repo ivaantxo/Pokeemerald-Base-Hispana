@@ -6528,7 +6528,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 }
                 break;
             case IF_MIN_FRIENDSHIP:
-                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW_2}friendship"));
+                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW}friendship"));
                 break;
             case IF_ATK_GT_DEF:
                 StringAppend(gStringVar4, COMPOUND_STRING("Atk > Def"));
@@ -6585,19 +6585,19 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 StringAppend(gStringVar4, gStringVar2);
                 break;
             case IF_MIN_BEAUTY:
-                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW_2}beauty"));
+                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW}beauty"));
                 break;
             case IF_MIN_COOLNESS:
-                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW_2}coolness"));
+                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW}coolness"));
                 break;
             case IF_MIN_SMARTNESS:
-                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW_2}smartness"));
+                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW}smartness"));
                 break;
             case IF_MIN_TOUGHNESS:
-                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW_2}toughness"));
+                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW}toughness"));
                 break;
             case IF_MIN_CUTENESS:
-                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW_2}cuteness"));
+                StringAppend(gStringVar4, COMPOUND_STRING("{UP_ARROW}cuteness"));
                 break;
             // Gen 4
             case IF_SPECIES_IN_PARTY:

@@ -2,7 +2,7 @@
 #define GUARD_CONFIG_DEBUG_H
 
 // Depuración en el Mundo Exterior
-#define DEBUG_OVERWORLD_MENU            TRUE                // Habilita un menú de depuración en el mundo exterior para cambiar banderas, variables, otorgar Pokémon y más, accesible manteniendo presionado R y presionando START mientras estás en el mundo exterior por defecto.
+#define DEBUG_OVERWORLD_MENU            TRUE                // Habilita un menú de depuración en el mundo exterior para cambiar flags, variables, otorgar Pokémon y más, accesible manteniendo presionado R y presionando START mientras estás en el mundo exterior por defecto.
 #define DEBUG_OVERWORLD_HELD_KEYS       (R_BUTTON)          // Las teclas que deben mantenerse presionadas para abrir el menú de depuración.
 #define DEBUG_OVERWORLD_TRIGGER_EVENT   pressedStartButton  // El evento que abre el menú al mantener presionada(s) la(s) tecla(s) definidas en DEBUG_OVERWORLD_HELD_KEYS.
 #define DEBUG_OVERWORLD_IN_MENU         FALSE               // Reemplaza la combinación de botones del menú de depuración en el mundo exterior con una entrada en el menú de inicio (por encima del Pokédex).

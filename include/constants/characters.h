@@ -26,6 +26,7 @@
 #define CHAR_a_GRAVE           22
 #define CHAR_a_ACUTE           23
 //#define CHAR_a_CIRCUMFLEX    24 // Is 104 instead
+#define CHAR_CIRCLE_HOLLOW     24
 #define CHAR_c_CEDILLA         25
 #define CHAR_e_GRAVE           26
 #define CHAR_e_ACUTE           27

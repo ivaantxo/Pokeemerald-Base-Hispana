@@ -1051,7 +1051,7 @@ static void Task_FadeOut(u8 taskId)
 
 void CB2_InitMiningGameSetUp(void)
 {
-    u8 i;
+    u32 i;
 
     switch (gMain.state)
     {

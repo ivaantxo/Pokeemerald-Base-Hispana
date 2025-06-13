@@ -2543,7 +2543,6 @@ static void ClearAbilityName(u8 spriteId1, u8 spriteId2)
 static void PrintBattlerOnAbilityPopUp(u8 battler, u8 spriteId1, u8 spriteId2)
 {
     int i;
-    u8* textPtr;
     u8 monName[POKEMON_NAME_LENGTH + 3] = {0};
     struct Pokemon *illusionMon = GetIllusionMonPtr(battler);
     u8 nick[POKEMON_NAME_LENGTH + 1] = {0};
@@ -2560,8 +2559,6 @@ static void PrintBattlerOnAbilityPopUp(u8 battler, u8 spriteId1, u8 spriteId2)
 
         monName[i] = nick[i];
     }
-
-    textPtr = monName + i;
 
     PrintOnAbilityPopUp((const u8 *)monName,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * TILE_SIZE_4BPP),

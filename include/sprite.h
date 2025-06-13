@@ -307,6 +307,7 @@ u16 GetSpriteTileTagByTileStart(u16 start);
 void FreeAllSpritePalettes(void);
 u32 LoadSpritePalette(const struct SpritePalette *palette);
 u32 LoadSpritePaletteWithTag(const u16 *pal, u16 tag);
+u32 LoadSpritePaletteWithTagHueShifted(const u16 *pal, u16 tag, u32 personality);
 u8 LoadSpritePaletteInSlot(const struct SpritePalette *palette, u8 paletteNum);
 void LoadSpritePalettes(const struct SpritePalette *palettes);
 u32 AllocSpritePalette(u16 tag);

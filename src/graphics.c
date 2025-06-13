@@ -454,10 +454,6 @@ const u16 gBattleAnimSpritePal_StealthRock[] = INCBIN_U16("graphics/battle_anims
 const u32 gBattleAnimSpriteGfx_PoisonJab[] = INCBIN_U32("graphics/battle_anims/sprites/poison_jab.4bpp.lz");
 const u16 gBattleAnimSpritePal_PoisonJab[] = INCBIN_U16("graphics/battle_anims/sprites/poison_jab.gbapal");
 
-const u32 gBattleAnimSpriteGfx_SpinningBall[] = INCBIN_U32("graphics/battle_anims/unused/spinning_ball.4bpp.lz");
-const u16 gBattleAnimSpritePal_SpinningBall[] = INCBIN_U16("graphics/battle_anims/unused/spinning_ball.gbapal");
-const u16 gBattleAnimSpritePal_SpinningBall2[] = INCBIN_U16("graphics/battle_anims/unused/spinning_ball_2.gbapal");
-
 const u32 gBattleAnimSpriteGfx_WoodHammerHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer_hammer.4bpp.lz");
 const u16 gBattleAnimSpritePal_WoodHammerHammer[] = INCBIN_U16("graphics/battle_anims/sprites/wood_hammer_hammer.gbapal");
 
@@ -2039,15 +2035,16 @@ const u16 gBattleIcons_Pal2[] = INCBIN_U16("graphics/types/battle_icons2.gbapal"
 //Tutoriales
 #if TUTORIAL_ICONOS_DE_TIPOS == TRUE
 const u32 gIconosTipos_Gfx[] = INCBIN_U32("graphics/tutoriales/iconos_tipos/iconos_tipos.4bpp.lz");
-const u16 gIconosTipos_Pal[] = INCBIN_16("graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal");
+const u16 gIconosTipos_Pal[] = INCBIN_U16("graphics/tutoriales/iconos_tipos/iconos_tipos.gbapal");
 #endif //TUTORIAL_ICONOS_DE_TIPOS
 
 #if TUTORIAL_MINIJUEGO_ZUBAT == TRUE
-//Gráficos de bgs: Aquí se define su ruta (tanto del tileset como del tilemap como de su paleta). Si lleva .lz al final es que está comprimido.
+// Gráficos de bgs: Aquí se define su ruta (tanto del tileset como del tilemap como de su paleta). Si lleva .lz al final es que está comprimido.
 const u32 TutorialBG1_Tileset[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg1_tileset.4bpp.lz");
 const u32 TutorialBG1_Tilemap[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg1_tilemap.bin.lz");
 const u32 TutorialBG2_Tileset[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg2_tileset.4bpp.lz");
 const u32 TutorialBG2_Tilemap[] = INCBIN_U32("graphics/tutoriales/minijuego_zubat/bg2_tilemap.bin.lz");
+// Las paletas deben ser u16 desde que se eliminó el soporte para paletas comprimidas (tampoco pueden llevar .lz al final).
 const u16 TutorialBG_Palette[] = INCBIN_U16("graphics/tutoriales/minijuego_zubat/bg_pal.gbapal");
 
 //Gráficos de sprites

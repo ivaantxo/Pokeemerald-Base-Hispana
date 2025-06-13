@@ -1,11 +1,11 @@
 #ifndef GUARD_CONFIG_POKEDEX_PLUS_HGSS_H
 #define GUARD_CONFIG_POKEDEX_PLUS_HGSS_H
 
-#define POKEDEX_PLUS_HGSS                  FALSE // If TRUE, enables the custom HGSS style Pokedex.
-#define HGSS_DECAPPED                      FALSE // If TRUE, uses decapped gfx and strings.
-#define HGSS_DARK_MODE                     FALSE // If TRUE, enables dark mode.
-#define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES   FALSE // If TRUE, hides evolution mon names.
-#define HGSS_SORT_TMS_BY_NUM               FALSE // If TRUE, sorts the TMS in HGSS Dex by TM number, rather than alphabetically.
-#define HGSS_SHOW_EGG_MOVES_FOR_EVOS       FALSE // If TRUE, shows Egg Moves for evolved Pokémon too.
+#define POKEDEX_PLUS_HGSS                   TRUE    // Si está habilitado, habilita el Pokédex estilo HGSS personalizado.
+#define HGSS_DECAPPED                       FALSE   // Si está habilitado, usa gráficos y textos decapitalizados.
+#define HGSS_DARK_MODE                      FALSE   // Si está habilitado, activa el modo oscuro.
+#define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES    FALSE   // Si está habilitado, esconde el nombre de las evoluciones.
+#define HGSS_SORT_TMS_BY_NUM                FALSE   // Si está habilitado, ordena las MTs y las MOs por el número en vez de alfabéticamente.
+#define HGSS_SHOW_EGG_MOVES_FOR_EVOS        FALSE   // Si está habilitado, muestra los movimientos huevo para los Pokémon evolucionados también.
 
 #endif // GUARD_CONFIG_POKEDEX_PLUS_HGSS_H

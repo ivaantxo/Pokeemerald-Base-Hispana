@@ -11,7 +11,7 @@
 #define I_BERRY_EV_JUMP                 GEN_LATEST  // Solo en Gen4, las Berries que reducen EV bajan el EV de una estadística a 100 si está por encima de 100.
 #define I_GRISEOUS_ORB_FORM_CHANGE      GEN_LATEST  // En Gen9+, el Griseous Orb ya no cambia la forma de Giratina cuando se sostiene.
 #define I_GEM_BOOST_POWER               GEN_LATEST  // En Gen6+, el aumento de poder del Gem se redujo del 50% al 30%.
-#define I_USE_EVO_HELD_ITEMS_FROM_BAG   FALSE       // Si es TRUE, objetos como Razor Claw o Electirizer serán utilizables desde la bolsa para evolucionar un Pokémon al igual que en LA.
+#define I_USE_EVO_HELD_ITEMS_FROM_BAG   FALSE       // Si está habilitado, objetos como Razor Claw o Electirizer serán utilizables desde la bolsa para evolucionar un Pokémon al igual que en LA.
 #define I_TYPE_BOOST_POWER              GEN_LATEST  // En Gen4+, todos los objetos que aumentan el poder de un tipo regular aumentaron su potencia del 10% al 20%. Ej. Charcoal
 #define I_SELL_VALUE_FRACTION           GEN_LATEST  // En Gen9+, los objetos se venden por 1/4 de su valor en lugar de 1/2.
 #define I_PRICE                         GEN_LATEST  // Algunos objetos han variado en valor a lo largo de las generaciones.
@@ -25,18 +25,18 @@
 #define I_REUSABLE_TMS          FALSE       // En Gen5-8, los TMs son reutilizables. Establecer esto en TRUE hará que todos los TMs de la versión estándar sean reutilizables, aunque también se pueden seleccionar individualmente estableciendo su importancia en 1.
 
 // Configuración de Experiencia Compartida
-// Para usar esta función, reemplaza el 0 con el ID de la bandera que estás asignando.
-// Ej: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa bandera para activar la función.
-#define I_EXP_SHARE_FLAG        0           // Si esta bandera está establecida, todos los Pokémon en el equipo ganarán experiencia, independientemente de si participaron en la batalla o no.
+// Para usar esta función, reemplaza el 0 con el ID de la flag que estás asignando.
+// Ej: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa flag para activar la función.
+#define I_EXP_SHARE_FLAG        0           // Si esta flag está establecida, todos los Pokémon en el equipo ganarán experiencia, independientemente de si participaron en la batalla o no.
 #define I_EXP_SHARE_ITEM        GEN_5       // En Gen6+, el Exp. Share se cambió de un objeto en mano a un Objeto Clave que activa el efecto descrito arriba.
 
 // Configuración de Repelentes/Atrayentes
 // Estas dos configuraciones son independientes y complementarias.
 #define VAR_LAST_REPEL_LURE_USED    0       // Si esta variable ha sido asignada, el último Repelente/Atrayente usado se guardará y el jugador será advertido con la opción de repelente estándar SÍ/NO, a menos que I_REPEL_LURE_MENU esté establecido en TRUE.
-#define I_REPEL_LURE_MENU           TRUE    // Si es TRUE, el jugador podrá elegir qué Repelente/Atrayente usar una vez que el anterior se agote. La posición del cursor se guarda mediante VAR_LAST_REPEL_LURE_USED si no es 0.
+#define I_REPEL_LURE_MENU           TRUE    // Si está habilitado, el jugador podrá elegir qué Repelente/Atrayente usar una vez que el anterior se agote. La posición del cursor se guarda mediante VAR_LAST_REPEL_LURE_USED si no es 0.
 
 // Buscapelea (VS seeker)
-#define I_VS_SEEKER_CHARGING        0     // Si esta bandera está asignada, la funcionalidad del Buscador VS se habilitará. Cuando el jugador tenga el Buscador VS, las funciones de rematch de Match Call dejarán de funcionar.
+#define I_VS_SEEKER_CHARGING        0     // Si esta flag está asignada, la funcionalidad del Buscador VS se habilitará. Cuando el jugador tenga el Buscador VS, las funciones de rematch de Match Call dejarán de funcionar.
 
 // Pesca
 #define I_FISHING_BITE_ODDS         GEN_LATEST  // En Gen 1 y Gen 2, la Caña vieja tiene 100% de posibilidades de que pique un Pokémon, Caña buena un 66%, y la Super caña un 50%. En Gen 3, todas tienen un 50%. De Gen 4 en adelante, la Caña vieja tiene un 25%, la Caña buena un 50% y la Super caña un 75%.

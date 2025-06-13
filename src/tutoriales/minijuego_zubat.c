@@ -801,12 +801,6 @@ static void Task_ZubatFall(u8 taskId)
     gSprites[tutorialObj.zubatSpriteId].y += 1;
 }
 
-static void Task_FadeOut(u8 taskId)
-{
-    BeginNormalPaletteFade(PALETTES_ALL, 10, 0, 16, RGB_BLACK);
-    gTasks[taskId].func = Task_FadeOut;
-}
-
 static void Task_EndGame(u8 taskId)
 {
     u16 music = GetCurrLocationDefaultMusic();
