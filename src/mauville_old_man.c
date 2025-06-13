@@ -34,7 +34,7 @@ static u8 sSelectedStory;
 COMMON_DATA struct BardSong gBardSong = {0};
 
 static EWRAM_DATA u16 sUnusedPitchTableIndex = 0;
-static EWRAM_DATA struct MauvilleManStoryteller * sStorytellerPtr = NULL;
+static EWRAM_DATA struct MauvilleManStoryteller *sStorytellerPtr = NULL;
 static EWRAM_DATA u8 sStorytellerWindowId = 0;
 
 static const u16 sDefaultBardSongLyrics[NUM_BARD_SONG_WORDS] = {
@@ -176,7 +176,7 @@ void SaveBardSongLyrics(void)
 static void PrepareSongText(void)
 {
     struct MauvilleManBard *bard = &gSaveBlock1Ptr->oldMan.bard;
-    u16 * lyrics = !gSpecialVar_0x8004 ? bard->songLyrics : bard->newSongLyrics;
+    u16 *lyrics = !gSpecialVar_0x8004 ? bard->songLyrics : bard->newSongLyrics;
     u8 *wordEnd = gStringVar4;
     u8 *str = wordEnd;
     u16 paragraphNum;
@@ -450,7 +450,7 @@ static void EnableTextPrinters(void)
     gDisableTextPrinters = FALSE;
 }
 
-static void DisableTextPrinters(struct TextPrinterTemplate * printer, u16 renderCmd)
+static void DisableTextPrinters(struct TextPrinterTemplate *printer, u16 renderCmd)
 {
     gDisableTextPrinters = TRUE;
 }
@@ -746,7 +746,7 @@ void SetMauvilleOldManObjEventGfx(void)
 
 // Language fixers?
 
-void SanitizeMauvilleOldManForRuby(union OldMan * oldMan)
+void SanitizeMauvilleOldManForRuby(union OldMan *oldMan)
 {
     s32 i;
     u8 playerName[PLAYER_NAME_LENGTH + 1];
@@ -755,7 +755,7 @@ void SanitizeMauvilleOldManForRuby(union OldMan * oldMan)
     {
     case MAUVILLE_MAN_TRADER:
     {
-        struct MauvilleOldManTrader * trader = &oldMan->trader;
+        struct MauvilleOldManTrader *trader = &oldMan->trader;
         for (i = 0; i < NUM_TRADER_ITEMS; i++)
         {
             if (trader->language[i] == LANGUAGE_JAPANESE)
@@ -765,7 +765,7 @@ void SanitizeMauvilleOldManForRuby(union OldMan * oldMan)
     }
     case MAUVILLE_MAN_STORYTELLER:
     {
-        struct MauvilleManStoryteller * storyteller = &oldMan->storyteller;
+        struct MauvilleManStoryteller *storyteller = &oldMan->storyteller;
         for (i = 0; i < NUM_STORYTELLER_TALES; i++)
         {
             if (storyteller->gameStatIDs[i] != 0)
@@ -786,13 +786,13 @@ void SanitizeMauvilleOldManForRuby(union OldMan * oldMan)
     }
 }
 
-void SanitizeReceivedEmeraldOldMan(union OldMan * oldMan, u32 version, u32 language)
+void SanitizeReceivedEmeraldOldMan(union OldMan *oldMan, u32 version, u32 language)
 {
     u8 playerName[PLAYER_NAME_LENGTH + 1];
     s32 i;
     if (oldMan->common.id == MAUVILLE_MAN_STORYTELLER && language == LANGUAGE_JAPANESE)
     {
-        struct MauvilleManStoryteller * storyteller = &oldMan->storyteller;
+        struct MauvilleManStoryteller *storyteller = &oldMan->storyteller;
 
         for (i = 0; i < NUM_STORYTELLER_TALES; i++)
         {
@@ -809,7 +809,7 @@ void SanitizeReceivedEmeraldOldMan(union OldMan * oldMan, u32 version, u32 langu
     }
 }
 
-void SanitizeReceivedRubyOldMan(union OldMan * oldMan, u32 version, u32 language)
+void SanitizeReceivedRubyOldMan(union OldMan *oldMan, u32 version, u32 language)
 {
     bool32 isRuby = (version == VERSION_SAPPHIRE || version == VERSION_RUBY);
 
@@ -817,7 +817,7 @@ void SanitizeReceivedRubyOldMan(union OldMan * oldMan, u32 version, u32 language
     {
     case MAUVILLE_MAN_TRADER:
     {
-        struct MauvilleOldManTrader * trader = &oldMan->trader;
+        struct MauvilleOldManTrader *trader = &oldMan->trader;
         s32 i;
 
         if (isRuby)
@@ -851,7 +851,7 @@ void SanitizeReceivedRubyOldMan(union OldMan * oldMan, u32 version, u32 language
     case MAUVILLE_MAN_STORYTELLER:
     {
 
-        struct MauvilleManStoryteller * storyteller = &oldMan->storyteller;
+        struct MauvilleManStoryteller *storyteller = &oldMan->storyteller;
         s32 i;
 
         if (isRuby)
@@ -866,7 +866,7 @@ void SanitizeReceivedRubyOldMan(union OldMan * oldMan, u32 version, u32 language
     break;
     case MAUVILLE_MAN_BARD:
     {
-        struct MauvilleManBard * bard = &oldMan->bard;
+        struct MauvilleManBard *bard = &oldMan->bard;
 
         if (isRuby)
         {
@@ -876,7 +876,7 @@ void SanitizeReceivedRubyOldMan(union OldMan * oldMan, u32 version, u32 language
     break;
     case MAUVILLE_MAN_HIPSTER:
     {
-        struct MauvilleManHipster * hipster = &oldMan->hipster;
+        struct MauvilleManHipster *hipster = &oldMan->hipster;
 
         if (isRuby)
         {
@@ -886,7 +886,7 @@ void SanitizeReceivedRubyOldMan(union OldMan * oldMan, u32 version, u32 language
     break;
     case MAUVILLE_MAN_GIDDY:
     {
-        struct MauvilleManGiddy * giddy = &oldMan->giddy;
+        struct MauvilleManGiddy *giddy = &oldMan->giddy;
 
         if (isRuby)
         {

@@ -41,28 +41,29 @@
 
 //Configuración de gráficos de especies
 #define P_GENDER_DIFFERENCES             TRUE        // Si TRUE, los Pokémon tendrán diferencias gráficas si son hembras. Pokémon como Meowstic no son afectados por esta configuración.
-#define P_CUSTOM_GENDER_DIFF_ICONS       TRUE        // Si es TRUE, dará a más Pokémon íconos personalizados para sus formas femeninas, es decir, Hippopotas y Hippowdon
+#define P_CUSTOM_GENDER_DIFF_ICONS       TRUE        // Si está habilitado, dará a más Pokémon íconos personalizados para sus formas femeninas, es decir, Hippopotas y Hippowdon
 #define P_ARCEUS_UNIQUE_FORM_ICONS       GEN_LATEST  // Desde Gen 9, Arceus además cambia su ícono para reflejar su forma actual.
-#define P_FOOTPRINTS                     TRUE        // Si es TRUE, los Pokémon tendrán huellas (como era el caso hasta Gen 5 y en BDSP). Deshabilitar esto ahorra algo de espacio en la ROM.
+#define P_FOOTPRINTS                     TRUE        // Si está habilitado, los Pokémon tendrán huellas (como era el caso hasta Gen 5 y en BDSP). Deshabilitar esto ahorra algo de espacio en la ROM.
 #define P_TWO_FRAME_FRONT_SPRITES        TRUE        // En Pokémon Esmeralda, los sprites frontales de Pokémon siempre consisten en dos cuadros. Esta configuración puede revertirlo para usar solo el primer cuadro, como en los otros juegos de Gen 3.
 #define P_GBA_STYLE_SPECIES_GFX          FALSE       // Por defecto, los sprites de Pokémon son de estilo NDS. Este config los vuelve al estilo GBA. NOTA: B_ENEMY_MON_SHADOW_STYLE se desactiva cuando usas estos sprites de momento.
 #define P_GBA_STYLE_SPECIES_ICONS        FALSE       // Por defecto, Pokémon tienen sus iconos actualizados. Este config los vuelve al estilo GBA.
 #define P_GBA_STYLE_SPECIES_FOOTPRINTS   FALSE       // Por defecto, Pokémon tienen sus huellas actualizadas. Este config las vuelve al estilo GBA.
 
 // Otras configuraciones
-#define P_CRIES_ENABLED                  TRUE        // Si es TRUE, los Pokémon tendrán llantos. Deshabilitar esto ahorra alrededor de MUCHO espacio en la ROM (¡más del 25%!), pero en su lugar recomendamos deshabilitar familias de Pokémon individuales no utilizadas en include/config/species_enabled.h.
+#define P_CRIES_ENABLED                  TRUE        // Si está habilitado, los Pokémon tendrán llantos. Deshabilitar esto ahorra alrededor de MUCHO espacio en la ROM (¡más del 25%!), pero en su lugar recomendamos deshabilitar familias de Pokémon individuales no utilizadas en include/config/species_enabled.h.
 #define P_LEGENDARY_PERFECT_IVS          GEN_LATEST  // Desde Gen 6, los Legendarios, Mitológicos y Bestias Ultra encontradas en la naturaleza o recibidas como regalos tienen al menos 3 IVs perfectos.
 #define P_EV_CAP                         GEN_LATEST  // Desde Gen 6, el máximo de EVs por estadística es 252 en lugar de 255.
 #define P_SHOW_TERA_TYPE                 GEN_8       // Desde Gen 9, el Tipo Tera se muestra en la pantalla de resumen.
 #define P_TM_LITERACY                    GEN_LATEST  // Desde Gen 6, Pokémon que no pueden aprender MTs pueden aprender MTs que enseñan movimientos que están en sus aprendizajes por nivel.
-#define P_CAN_FORGET_HIDDEN_MOVE         FALSE       // Si es TRUE, los Pokémon pueden olvidar cualquier movimiento, incluso si es un Movimiento Oculto.
+#define P_CAN_FORGET_HIDDEN_MOVE         FALSE       // Si está habilitado, los Pokémon pueden olvidar cualquier movimiento, incluso si es un Movimiento Oculto.
 #define P_EGG_CYCLE_LENGTH               GEN_LATEST  // Desde Gen 8, los ciclos de huevo toman la mitad de pasos que antes.
-#define P_ONLY_OBTAINABLE_SHINIES        FALSE       // Si es TRUE, los Pokémon encontrados en la Pirámide de Batalla no serán shiny.
-#define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // Si es TRUE, los Pokémon encontrados cuando el jugador se queda sin Poké Balls no serán shiny.
-#define P_SHOW_DYNAMIC_TYPES             FALSE       // Si es TRUE, todos los ataques con tipo dinámico se mostrarán así en combate y en la pantalla de sumario.
+#define P_ONLY_OBTAINABLE_SHINIES        FALSE       // Si está habilitado, los Pokémon encontrados en la Pirámide de Batalla no serán shiny.
+#define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // Si está habilitado, los Pokémon encontrados cuando el jugador se queda sin Poké Balls no serán shiny.
+#define P_SHOW_DYNAMIC_TYPES             FALSE       // Si está habilitado, todos los ataques con tipo dinámico se mostrarán así en combate y en la pantalla de sumario.
 
-// Configuración de ayudantes de aprendizajes
-#define P_LEARNSET_HELPER_TEACHABLE TRUE        // Si es TRUE, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.
+// Configuración de ayuda de aprendizaje de movimientos
+#define P_LEARNSET_HELPER_TEACHABLE      TRUE        // Si está habilitado, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.
+#define P_TUTOR_MOVES_ARRAY              FALSE       // Si está habilitado, genera gTutorMoves automáticamente usando make_teachables.py. (generalmente no se necesita, pero la Pokédex HGSS tiene una opción para usarlo).
 
 // Configuración de flags
 // Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la flag que le estás asignando.

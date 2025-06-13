@@ -30,6 +30,7 @@
 #include "constants/field_tasks.h"
 #include "constants/field_weather.h"
 #include "constants/flags.h"
+#include "constants/follower_npc.h"
 #include "constants/frontier_util.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -45,9 +46,11 @@
 #include "constants/party_menu.h"
 #include "constants/pokedex.h"
 #include "constants/pokemon.h"
+#include "constants/rtc.h"
 #include "constants/roulette.h"
 #include "constants/script_menu.h"
 #include "constants/secret_bases.h"
+#include "constants/siirtc.h"
 #include "constants/songs.h"
 #include "constants/sound.h"
 #include "constants/species.h"
@@ -602,7 +605,7 @@ EventScript_AfterWhiteOutHealMsg::
 
 EventScript_AfterWhiteOutMomHeal::
 	lockall
-	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFasterDown
+	applymovement LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox gText_HadQuiteAnExperienceTakeRest
 	call Common_EventScript_OutOfCenterPartyHeal
@@ -750,12 +753,12 @@ Common_EventScript_PlayGymBadgeFanfare::
 	return
 
 Common_EventScript_OutOfCenterPartyHeal::
-	fadescreen FADE_TO_BLACK
+	fadescreenswapbuffers FADE_TO_BLACK
 	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty
 	callnative UpdateFollowingPokemon
-	fadescreen FADE_FROM_BLACK
+	fadescreenswapbuffers FADE_FROM_BLACK
 	return
 
 EventScript_RegionMap::
@@ -809,8 +812,8 @@ EventScript_HideMrBriney::
 	return
 
 RusturfTunnel_EventScript_SetRusturfTunnelOpen::
-	removeobject LOCALID_WANDAS_BF
-	removeobject LOCALID_WANDA
+	removeobject LOCALID_RUSTURF_TUNNEL_WANDAS_BF
+	removeobject LOCALID_RUSTURF_TUNNEL_WANDA
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
 	setvar VAR_RUSTURF_TUNNEL_STATE, 6
@@ -821,7 +824,7 @@ Common_EventScript_FerryDepartIsland::
 	call_if_eq VAR_FACING, DIR_SOUTH, Ferry_EventScript_DepartIslandSouth
 	call_if_eq VAR_FACING, DIR_WEST, Ferry_EventScript_DepartIslandWest
 	delay 30
-	hideobjectat OBJ_EVENT_ID_PLAYER, 0
+	hideobjectat LOCALID_PLAYER, 0
 	call Common_EventScript_FerryDepart
 	return
 

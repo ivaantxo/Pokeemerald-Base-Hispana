@@ -3,19 +3,20 @@
 
 // Configuración de movimiento
 #define OW_RUNNING_INDOORS          GEN_LATEST  // En Gen4+, los jugadores pueden correr en interiores.
-#define SLOW_MOVEMENT_ON_STAIRS     FALSE       // Si es TRUE, el jugador se moverá más despacio en las escaleras, como en FRLG.
+#define SLOW_MOVEMENT_ON_STAIRS     FALSE       // Si está habilitado, el jugador se moverá más despacio en las escaleras, como en FRLG.
 
 // Otras configuraciones
 #define OW_POISON_DAMAGE                GEN_LATEST // En Gen4, los Pokémon ya no se desmayan por Veneno en el mundo exterior. En Gen5+, no reciben daño en absoluto.
 #define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // Si está habilitado, puedes ser visto por dos entrenadores al mismo tiempo incluso si solo tienes un Pokémon elegible en tu equipo.
 #define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // Si está habilitado, las ventanas emergentes del mapa no aparecerán si entras en un mapa con el mismo Id de Sección del Mapa que el último.
-#define OW_FRLG_WHITEOUT                FALSE      // Si es TRUE, mostrará un mensaje adicional más un evento de curación al ser debilitado, como en FRLG.
+#define OW_FRLG_WHITEOUT                FALSE      // Si está habilitado, mostrará un mensaje adicional más un evento de curación al ser debilitado, como en FRLG.
+#define OW_DEFOG_FIELD_MOVE             FALSE      // Si está habilitado, Despejar puede usarse fuera de batalla como en DPPt.
 
 // Item Obtain Description Box
 #define OW_ITEM_DESCRIPTIONS_OFF        0   // Nunca muestra descripciones
 #define OW_ITEM_DESCRIPTIONS_FIRST_TIME 1   // Solo muestra descripciones la primera vez (** Rompe partidas guardadas - mira struct SaveBlock3 **)
 #define OW_ITEM_DESCRIPTIONS_ALWAYS     2   // Siempre muestra descripciones
-#define OW_SHOW_ITEM_DESCRIPTIONS       OW_ITEM_DESCRIPTIONS_OFF    // Si es TRUE, se mostrarán descripciones de objetos al recibirlos.
+#define OW_SHOW_ITEM_DESCRIPTIONS       OW_ITEM_DESCRIPTIONS_OFF    // Si está habilitado, se mostrarán descripciones de objetos al recibirlos.
 
 // Estas definiciones generacionales solo hacen una distinción para Bayas y el OW_PC_MOVE_ORDER
 #define GEN_6_XY GEN_6
@@ -40,13 +41,13 @@
 #define OW_BERRY_GROWTH_RATE           GEN_3      // Preajustes para cuánto tiempo tarda cada planta de baya en crecer.
 #define OW_BERRY_YIELD_RATE            GEN_3      // Preajustes para cuántas bayas puede producir cada planta.
 #define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // Si OW_BERRY_MOISTURE está habilitado, esta configuración cambia la rapidez con la que se seca el suelo. GEN_4 usa una tasa de drenaje dependiente de la baya, GEN_6_XY se seca en 24 horas (4 horas con el Abono relevante) y GEN_6_ORAS se seca en 4 horas. Otros valores son ilegales.
-#define OW_BERRY_IMMORTAL              FALSE      // Si es TRUE, una vez que un árbol de bayas haya crecido una baya, el árbol no desaparecerá hasta que el jugador la recoja.
+#define OW_BERRY_IMMORTAL              FALSE      // Si está habilitado, una vez que un árbol de bayas haya crecido una baya, el árbol no desaparecerá hasta que el jugador la recoja.
 
 // Pokémon en el mundo exterior
 #define OW_POKEMON_OBJECT_EVENTS       TRUE       // Agrega campos de Evento de Objeto para cada especie. Puede ser utilizado para NPCs usando el macro OBJ_EVENT_GFX_SPECIES (por ejemplo, OBJ_EVENT_GFX_SPECIES(BULBASAUR))
 #define OW_SUBSTITUTE_PLACEHOLDER      TRUE       // Usa un sustituto OW para Pokémon que faltan sprites en el mundo exterior
 #define OW_LARGE_OW_SUPPORT            TRUE       // Si es verdadero, agrega una pequeña cantidad de sobrecarga al código OW para que los OW grandes (48x48, 64x64) se muestren correctamente debajo de puentes, etc.
-#define OW_PKMN_OBJECTS_SHARE_PALETTES FALSE      // [¡WIP! NO TODAS LAS PALETAS SE HAN AJUSTADO PARA ESTO!] Si es TRUE, las paletas de seguidores se toman de los sprites de batalla.
+#define OW_PKMN_OBJECTS_SHARE_PALETTES FALSE      // [¡WIP! NO TODAS LAS PALETAS SE HAN AJUSTADO PARA ESTO!] Si está habilitado, las paletas de seguidores se toman de los sprites de batalla.
 #define OW_GFX_COMPRESS                TRUE       // Agrega soporte para gráficos OW comprimidos, (También comprime gráficos de seguidores de Pokémon).
                                                   // IMPORTANTE: Los gráficos se cargan en VRAM para evitar descompresión continua. Si necesitas más VRAM o quieres usar muchos OWs de Pokémon al mismo tiempo, debería desactivar esta config.
                                                   // Los gráficos comprimidos son incompatibles con tamaños de sprites que no son potencias de dos:
@@ -62,31 +63,15 @@
 #define OW_FOLLOWERS_COPY_WILD_PKMN    FALSE      // Si TRUE, Pokémon followers que conocen Transformación o tienen Ilusión/Impostor copiarán Pokémon salvajes aleatoriamente.
 #define OW_BATTLE_ONLY_FORMS           TRUE       // Si TRUE, carga sprites de OW para Pokémon que son solo formas de batalla, como las Megas. Requiere OW_POKEMON_OBJECT_EVENTS.
 #define B_FLAG_FOLLOWERS_DISABLED      0          // Habilita / Deshabilita followers por flag. Es útil si quieres deshabilitar followers por un período de tiempo.
-
-
 #define OW_FOLLOWERS_SCRIPT_MOVEMENT   TRUE       // TRUE: Colisiones por script esconden al follower, FLAG_SAFE_FOLLOWER_MOVEMENT encendido por defecto.
                                                   // FALSE: No pasa nada en colisiones por scripts, FLAG_SAFE_FOLLOWER_MOVEMENT apagado por defecto.
 
-// Si están seteados, el único Pokémon que te puede seguir
-// será el que concuerde con la especie, la ubicación,
-// y/o el nivel al que se encontró;
-// Esto acepta VARs también.
-#define OW_MON_ALLOWED_SPECIES (0)
-#define OW_MON_ALLOWED_MET_LVL (0)
-#define OW_MON_ALLOWED_MET_LOC (0)
-// Ejemplos:
-// Pikachu Pokémon Amarillo:
-// #define OW_MON_ALLOWED_SPECIES (SPECIES_PIKACHU)
-// #define OW_MON_ALLOWED_MET_LVL (0)
-// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_PALLET_TOWN)
-// Iniciales Hoenn:
-// #define OW_MON_ALLOWED_SPECIES (0)
-// #define OW_MON_ALLOWED_MET_LVL (5)
-// #define OW_MON_ALLOWED_MET_LOC (MAPSEC_ROUTE_101)
-// Especies en VAR_XXXX:
-// #define OW_MON_ALLOWED_SPECIES (VAR_XXXX)
-// #define OW_MON_ALLOWED_MET_LVL (0)
-// #define OW_MON_ALLOWED_MET_LOC (0)
+// Restricciones de followers Pokémon
+// Si están activados, el único Pokémon que te seguirá será la especie, localización de encuentro, y/o nivel del encuentro; Esto acepta vars también, por ejemplo: VAR_TEMP_1, etc
+// Para ejemplos, mira "docs/tutorials/how_to_new_pokemon.md"
+#define OW_FOLLOWERS_ALLOWED_SPECIES (0)
+#define OW_FOLLOWERS_ALLOWED_MET_LVL (0)
+#define OW_FOLLOWERS_ALLOWED_MET_LOC (0)
 
 // Efectos de Habilidad fuera de batalla
 #define OW_SYNCHRONIZE_NATURE       GEN_LATEST // En Gen8+, si un Pokémon con Sincronía lidera el equipo, los Pokémon salvajes siempre tendrán la misma Naturaleza en lugar del 50% de probabilidad en juegos anteriores. Pokémon regalo excluidos.
@@ -101,11 +86,23 @@
 
 // Estas definiciones generacionales solo hacen una distinción para OW_ALTERED_TIME_RATIO
 #define GEN_8_PLA                       GEN_LATEST + 2
+#define TIME_DEBUG                      GEN_LATEST + 3
 
 // Tiempo
-#define OW_TIMES_OF_DAY                 GEN_LATEST // Diferentes generaciones cambian los tiempos del día en diferentes momentos.
-#define OW_USE_FAKE_RTC                 FALSE      // Cuando es TRUE, los segundos en el reloj del juego solo avanzarán una vez cada 60 playTimeVBlanks (cada 60 fotogramas).
-#define OW_ALTERED_TIME_RATIO           GEN_LATEST // En GEN_8_PLA, el tiempo en el juego avanza 60 segundos por cada segundo en el RTC. En GEN_9, son 20 segundos. Esto no tiene efecto si OW_USE_FAKE_RTC es FALSE.
+#define OW_TIMES_OF_DAY                 GEN_LATEST      // Diferentes generaciones cambian los tiempos del día en diferentes momentos.
+#define OW_USE_FAKE_RTC                 FALSE           // Cuando es TRUE, los segundos en el reloj del juego solo avanzarán una vez cada 60 playTimeVBlanks (cada 60 fotogramas).
+#define OW_ALTERED_TIME_RATIO           GEN_LATEST      // En GEN_8_PLA, el tiempo en el juego avanza 60 segundos por cada segundo en el RTC. En GEN_9, son 20 segundos. Esto no tiene efecto si OW_USE_FAKE_RTC es FALSE.
+#define OW_TIME_OF_DAY_ENCOUNTERS       FALSE           // Si está habilitada, permite al usuario utilizar diferentes tablas de encuentros con Pokémon salvajes según la hora del día.
+#define OW_TIME_OF_DAY_DISABLE_FALLBACK FALSE           // Si está habilitada, si la tabla de encuentros con Pokémon salvajas para un mapa y tiempo específicos está vacía, el área no tendrá Pokémon en vez de utilizar las de vanilla.
+#define OW_TIME_OF_DAY_FALLBACK         TIME_MORNING    // La parte del día al que la tabla irá por defecto.
+
+// DNS
+#define OW_SHADOW_INTENSITY             4               // Rangos desde 0 a 16, donde 0 es transparente y 16 es negro.
+#define OW_OBJECT_SUBPRIORITY           148             // Cuanto más alto sea el valor, más atrás estará en comparación con otros sprites. Las sombras deberían estar por debajo de los OWs.
+#define OW_ENABLE_DNS                   TRUE            // Si está habilitada, el OW se tintará según la hora del día.
+
+// Sombras de OWs
+#define OW_OBJECT_VANILLA_SHADOWS      FALSE            // En vanilla las sombras en el OW solo se muestran mientras se salta.
 
 // Flags del mundo exterior
 // Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la flag que le estás asignando.
@@ -138,7 +135,7 @@
 
 // Centro Pokémon
 #define OW_IGNORE_EGGS_ON_HEAL           GEN_LATEST         // En Gen 4+, la enfermera en el Centro Pokémon no cura los Huevos en la máquina de curación.
-#define OW_UNION_DISABLE_CHECK           FALSE              // Si es TRUE, la enfermera no informará de si hay un entrenador esperando en la Sala Unión. Esto hace más rápida la carga del mapa del Centro Pokémon.
+#define OW_UNION_DISABLE_CHECK           FALSE              // Si está habilitado, la enfermera no informará de si hay un entrenador esperando en la Sala Unión. Esto hace más rápida la carga del mapa del Centro Pokémon.
 #define OW_FLAG_MOVE_UNION_ROOM_CHECK    0                  // Si está flag está seteada, el juego solo chequeará si hay jugadores en la Sala Unión cuando se están curando los Pokémon, y no cuando el jugador entra al Centro Pokémon. Esto hace más rápida la carga del mapa del Centro Pokémon. Esto es ignorado si OW_UNION_DISABLE_CHECK es TRUE.
 
 // Berry Blender

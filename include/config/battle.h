@@ -9,7 +9,6 @@
 #define B_MULTI_HIT_CHANCE          GEN_LATEST // En Gen5+, los movimientos de múltiples golpes tienen porcentajes diferentes. Consulta Cmd_setmultihitcounter para los valores.
 #define B_WHITEOUT_MONEY            GEN_LATEST // En Gen4+, la cantidad de dinero perdido al perder una batalla se determina por la cantidad de medallas ganadas. Anteriormente, se reducían los fondos actuales a la mitad. (Aunque este cambio también estuvo en FRLG, por simplicidad, establecer esto en GEN_3 resultará en el comportamiento de RSE.)
 #define B_LIGHT_BALL_ATTACK_BOOST   GEN_LATEST // En Gen4+, la Bola Luz duplica el poder de los movimientos físicos además de los especiales.
-#define B_SANDSTORM_SPDEF_BOOST     GEN_LATEST // En Gen4+, la Tormenta de Arena multiplica la Defensa Esp. de los Pokémon de tipo Roca por 1.5.
 
 // Configuración de experiencia
 #define B_EXP_CATCH                 GEN_LATEST // En Gen6+, los Pokémon obtienen experiencia al capturar.
@@ -17,6 +16,7 @@
 #define B_SPLIT_EXP                 GEN_LATEST // En Gen6+, todos los Pokémon participantes obtienen experiencia completa.
 #define B_SCALED_EXP                GEN_LATEST // En Gen5 y Gen7+, la experiencia se pondera según la diferencia de nivel.
 #define B_UNEVOLVED_EXP_MULTIPLIER  GEN_LATEST // En Gen6+, si el Pokémon está en el nivel o más allá del nivel en el que podría evolucionar, pero no lo ha hecho, obtiene un multiplicador de ~1.2 para la ganancia de EXP. Solo se aplica a los Pokémon con el método EVO_LEVEL.
+#define B_LEVEL_UP_NOTIFICATION     GEN_LATEST // En Gen9+, si el Pokémon obtiene suficiente experiencia para subir de nivel varias veces, el mensaje solo se muestra una vez.
 
 // Configuración de estadísticas
 #define B_BADGE_BOOST               GEN_LATEST // En Gen4+, las Medallas de Gimnasio ya no aumentan las estadísticas de un Pokémon.
@@ -128,9 +128,9 @@
 #define B_QUASH_TURN_ORDER          GEN_LATEST // En Gen8+, los ataques se ven afectados por Último lugar según su velocidad. Antes de la 8 gen, los que eran afectados por este ataque se movían en el orden en que recibían el movimiento.
 #define B_DESTINY_BOND_FAIL         GEN_LATEST // En Gen7+, Mismodestino falla si lo usas repetidamente.
 #define B_PURSUIT_TARGET            GEN_LATEST // En Gen4+, Persecución ataca al Pokémon que está cambiando aunque no fuera el objetivo original. En generaciones anteriores, Persecución solo ataca al Pokémon que cambia si era el objetivo del movimiento.
+#define B_SKIP_RECHARGE             GEN_LATEST // En Gen1, movimientos que requieren recarga como Hiperrayo no lo necesitan si el oponente es debilitado.
 
 // Configuración de habilidades
-#define B_ABILITY_WEATHER           GEN_LATEST // En Gen6+, el clima inducido por habilidades dura 5 turnos. Antes, duraba hasta que terminara la batalla o hasta que fuera cambiado por un movimiento o una habilidad que afecte el clima.
 #define B_GALE_WINGS                GEN_LATEST // En Gen7+ requiere HP completo para activarse.
 #define B_STANCE_CHANGE_FAIL        GEN_LATEST // En Gen7+, Stance Change falla si el Pokémon no puede usar un movimiento debido a confusión, parálisis, etc. En Gen6, no lo hacía.
 #define B_SHADOW_TAG_ESCAPE         GEN_LATEST // En Gen4+, si ambos lados tienen un Pokémon con Shadow Tag, todos los combatientes pueden escapar. Antes, ningún lado podía escapar de esta situación.
@@ -147,7 +147,6 @@
 #define B_REDIRECT_ABILITY_IMMUNITY GEN_LATEST // En Gen5+, Pokémon con Lightning Rod/Storm Drain se vuelven inmunes a movimientos de tipo Eléctrico/Agua y aumentan su Sp. Atk en 1 etapa además del efecto de redirección.
 #define B_REDIRECT_ABILITY_ALLIES   GEN_LATEST // En Gen4+, Pararrayos/Colector tambi�n redirigen los movimientos de los aliados.
 #define B_LEAF_GUARD_PREVENTS_REST  GEN_LATEST // En Gen5+, Leaf Guard previene el uso de Rest en luz solar intensa.
-#define B_SNOW_WARNING              GEN_LATEST // En Gen9+, Snow Warning convocará nieve en lugar de granizo.
 #define B_TRANSISTOR_BOOST          GEN_LATEST // En Gen9+, Transistor solo aumentará los movimientos de tipo Eléctrico en 1.3x en lugar de 1.5x.
 #define B_ILLUMINATE_EFFECT         GEN_LATEST // En Gen9+, Illuminate previene reducciones de precisión e ignora la evasión del objetivo.
 #define B_WEAK_ARMOR_SPEED          GEN_LATEST // En Gen7+, Weak Armor aumenta la Velocidad en 2 etapas en lugar de 1 cuando es golpeado por un movimiento físico.
@@ -160,6 +159,8 @@
                                                // En Gen4, es 30%. En Gen5+ tiene un 11% de probabilidad de dormir, 9% de envenenar y 10% de paralizar.
 #define B_PICKUP_WILD               GEN_LATEST // En Gen9+, Recogida permite al usuario utilizar su propio objeto usado en batallas contra Pokémon salvajes.
 #define B_MAGIC_GUARD               GEN_LATEST // En Gen4+, Guardia mágica ignora la inmovilización causada por la parálisis.
+#define B_BATTLE_BOND               GEN_LATEST // A partir de la Gen 9, la habilidad Fuerte afecto aumenta el Ataque, Ataque Especial y Velocidad en un nivel una vez por combate.
+#define B_ATE_MULTIPLIER            GEN_LATEST // Desde la Gen 7, las habilidades del tipo -ado (Ej.: Piel celeste, Piel eléctrica, Normalidad, Piel feérica, Piel helada) multiplican el daño por 1.2. En generaciones anteriores, el multiplicador es 1.3, excepto para Normalidad, que no aplica bonificación.
 
 // Configuración de ítems
 #define B_HP_BERRIES                GEN_LATEST // En Gen4+, las bayas que restauran HP se activan inmediatamente después de que HP cae a la mitad. En Gen3, el efecto ocurre al final del turno.
@@ -167,7 +168,7 @@
 #define B_CONFUSE_BERRIES_HEAL      GEN_LATEST // Antes de Gen7, Figy y bayas similares restauran 1/8 de HP y se activan a la mitad de HP. En Gen7 restauran la mitad de HP, activándose al 25% de HP. En Gen8 curan 1/3 de HP.
 #define B_X_ITEMS_BUFF              GEN_LATEST // En Gen7+, los X Items aumentan una estadística en 2 etapas en lugar de 1.
 #define B_MENTAL_HERB               GEN_LATEST // En Gen5+, Hierba mental cura Mofa, Otra vez, Tormento, Anticura y Anulación además de Enamoramiento.
-#define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE       // Si es TRUE, los entrenadores pueden robar/intercambiar tus ítems (los ítems no bayas se restauran después de la batalla). En los juegos vanilla, los entrenadores no pueden robar ítems.
+#define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE       // Si está habilitado, los entrenadores pueden robar/intercambiar tus ítems (los ítems no bayas se restauran después de la batalla). En los juegos vanilla, los entrenadores no pueden robar ítems.
 #define B_RETURN_STOLEN_NPC_ITEMS   GEN_LATEST // En Gen5+, Ladrón y Antojo ya no roban ítems de NPCs.
 #define B_STEAL_WILD_ITEMS          GEN_LATEST // En Gen9, Ladrón y Antojo roban el objeto a los Pokémon salvajes y los mandan a la mochila. Antes, este era equipado al usuario del ataque.
 #define B_RESTORE_HELD_BATTLE_ITEMS GEN_LATEST // En Gen9, todos los ítems no bayas se restauran después de la batalla.
@@ -191,6 +192,15 @@
 // Configuración de flags
 // Para usar las siguientes características en scripting, reemplaza los 0s con el ID de la flag que le asignas.
 // Ej: Reemplaza con FLAG_UNUSED_0x264 para que puedas usar esa flag para activar la característica.
+
+// Flags de potenciadores por medallas
+#define B_FLAG_BADGE_BOOST_ATTACK   FLAG_BADGE01_GET // Si esta flag está activada y B_BADGE_BOOST == GEN_3, se multiplicará el Ataque del Pokémon por 1,1.
+#define B_FLAG_BADGE_BOOST_DEFENSE  FLAG_BADGE05_GET // Si esta flag está activada y B_BADGE_BOOST == GEN_3, se multiplicará la Defensa del Pokémon por 1,1.
+#define B_FLAG_BADGE_BOOST_SPEED    FLAG_BADGE03_GET // Si esta flag está activada y B_BADGE_BOOST == GEN_3, se multiplicará la Velocidad del Pokémon por 1,1.
+#define B_FLAG_BADGE_BOOST_SPATK    FLAG_BADGE07_GET // Si esta flag está activada y B_BADGE_BOOST == GEN_3, se multiplicará el Ataque Especial del Pokémon por 1,1.
+#define B_FLAG_BADGE_BOOST_SPDEF    FLAG_BADGE07_GET // Si esta flag está activada y B_BADGE_BOOST == GEN_3, se multiplicará la Defensa Especial del Pokémon por 1,1.
+
+// Otras flags de batalla
 #define B_FLAG_INVERSE_BATTLE       0     // Si esta flag está activada, la efectividad de los tipos en la batalla se invierte. Por ejemplo, fuego es super efectivo contra agua.
 #define B_FLAG_FORCE_DOUBLE_WILD    0     // Si esta flag está activada, todas las batallas salvajes en tierra y en surf serán batallas dobles.
 #define B_SMART_WILD_AI_FLAG        0     // Si no es 0, puedes configurar esta flag en un script para habilitar la IA inteligente de Pokémon salvajes.
@@ -202,38 +212,55 @@
 #define B_FLAG_TERA_ORB_CHARGED     0     // Si esta flag está activada, el Tera Orb está cargado. Se activa automáticamente al curar y se borra al Terastalizar una vez configurado.
 #define B_FLAG_TERA_ORB_NO_COST     0     // Si esta flag está activada, el Tera Orb no usa su carga al Terastalizar. En S/V, esto ocurre después de un evento con Terapagos.
 #define B_FLAG_SLEEP_CLAUSE         0     // Si esta flag está activada, clausula de sueño está activada; si el jugador o la IA ha puesto a dormir ya a algún Pokémon, no puede dormir más. IA requiere AI_FLAG_CHECK_BAD_MOVE para entenderlo.
+#define B_FLAG_NO_WHITEOUT          0     // Si esta flag está activada, el jugador no puede perder contra entrenadores. Ten en cuenta que esto no cura a tu equipo automáticamente.
 
 // Configuración de variables
 // Para usar las siguientes características en scripting, reemplaza los 0s con el ID de la variable que le asignas.
 // Ej: Reemplaza con VAR_UNUSED_0x40F7 para que puedas usar B_VAR_STARTING_STATUS para esa característica.
-#define B_VAR_STARTING_STATUS       0     // Si esta variable tiene un valor, asignar un STATUS_FIELD_xx_TERRAIN a ella antes de la batalla hace que la batalla comience con ese terreno activo.
-#define B_VAR_STARTING_STATUS_TIMER 0     // Si esta variable tiene un valor mayor o igual a 1, los terrenos de campo durarán esa cantidad de turnos, de lo contrario durarán hasta que sean sobrescritos.
-#define B_VAR_WILD_AI_FLAGS         0     // Si no es 0, puedes usar esta variable para añadir a los flags de IA salvaje predeterminados. NO usable con las flags anteriores (1 << 15)
-#define B_VAR_DIFFICULTY            0     // Si no es 0, puedes usar esta Var para controlar qué nivel de dificultad tienen los entrenadores. Esto debe ser implementado manualmente por el desarrollador usando Script_SetDifficulty DESPUÉS de que NewGameInitData haya sido llamada.
+#define B_VAR_STARTING_STATUS               0       // Si esta variable tiene un valor, asignar un STATUS_FIELD_xx_TERRAIN a ella antes de la batalla hace que la batalla comience con ese terreno activo.
+                                                    // Esta var no debería permanecer como un valor distinto de cero el tiempo suficiente para que el jugador guarde.
+#define B_VAR_STARTING_STATUS_TIMER         0       // Si esta variable tiene un valor mayor o igual a 1, los terrenos de campo durarán esa cantidad de turnos, de lo contrario durarán hasta que sean sobrescritos.
+#define B_VAR_WILD_AI_FLAGS                 0       // Si no es 0, puedes usar esta variable para añadir a los flags de IA salvaje predeterminados. NO usable con las flags anteriores (1 << 15)
+                                                    // Esta var no debería permanecer como un valor distinto de cero el tiempo suficiente para que el jugador guarde.
+                                                    // Para controlar mejor la IA de los Pokémon salvajes, edita GetWildAiFlags() en src/battle_ai_main.c
+#define B_VAR_DIFFICULTY                    0       // Si no es 0, puedes usar esta Var para controlar qué nivel de dificultad tienen los entrenadores. Esto debe ser implementado manualmente por el desarrollador usando Script_SetDifficulty DESPUÉS de que NewGameInitData haya sido llamada.
 
 // Batallas en el cielo
-#define B_FLAG_SKY_BATTLE                 0     // Si esta flag tiene un valor, el jugador podrá participar en Batallas en el Cielo programadas.
-#define B_VAR_SKY_BATTLE                  0     // Si esta variable tiene un valor, el juego recordará las posiciones de los Pokémon usados en Batallas en el Cielo.
-#define B_SKY_BATTLE_STRICT_ELIGIBILITY   FALSE // Si es TRUE, las Batallas en el Cielo usarán la elegibilidad de Pokémon XY. Si es FALSE, se permiten todos los tipos Volador o Pokémon con Levitate.
+#define B_FLAG_SKY_BATTLE                   0       // Si esta flag tiene un valor, el jugador podrá participar en Batallas en el Cielo programadas.
+#define B_VAR_SKY_BATTLE                    0       // Si esta variable tiene un valor, el juego recordará las posiciones de los Pokémon usados en Batallas en el Cielo.
+#define B_SKY_BATTLE_STRICT_ELIGIBILITY     FALSE   // Si está habilitado, las Batallas en el Cielo usarán la elegibilidad de Pokémon XY. Si está deshabilitado, se permiten todos los tipos Volador o Pokémon con Levitate.
 
 // Configuración de flags y Variables
-#define B_RESET_FLAGS_VARS_AFTER_WHITEOUT TRUE // Si es TRUE, Overworld_ResetBattleFlagsAndVars reiniciará las flags y variables relacionadas con la batalla cuando el jugador se desmaye.
+#define B_RESET_FLAGS_VARS_AFTER_WHITEOUT   TRUE    // Si está habilitado, Overworld_ResetBattleFlagsAndVars reiniciará las flags y variables relacionadas con la batalla cuando el jugador se desmaye.
 
 // Configuración de compañero de batalla
-#define B_SHOW_PARTNER_TARGET             FALSE // Si es TRUE, muestra el objetivo del ataque del compañero.
+#define B_SHOW_PARTNER_TARGET               FALSE   // Si está habilitado, muestra el objetivo del ataque del compañero.
 
 // Descripción de movimientos
-#define B_SHOW_MOVE_DESCRIPTION     TRUE       // Muestra información del movimiento en batalla
+#define B_SHOW_MOVE_DESCRIPTION             TRUE    // Muestra información del movimiento en batalla
+
+// Weather settings
+// Search for 'rain', 'sunny day', and 'hail' for move-specific or species-specific weather interactions.
+#define B_ICE_WEATHER_BOTH              0
+#define B_ICE_WEATHER_HAIL              1
+#define B_ICE_WEATHER_SNOW              2
+
+#define B_ABILITY_WEATHER               GEN_LATEST // En Gen6+, el clima inducido por habilidades dura 5 turnos. Antes, duraba hasta que terminara la batalla o hasta que fuera cambiado por un movimiento o una habilidad que afecte el clima.
+#define B_SANDSTORM_SPDEF_BOOST         GEN_LATEST // En Gen4+, la Tormenta de Arena multiplica la Defensa Esp. de los Pokémon de tipo Roca por 1.5.
+#define B_OVERWORLD_FOG                 GEN_LATEST // In Gen8+, overworld Fog summons Misty Terrain in battle. In Gen4 only, overworld Fog summons the unique fog weather condition in battle.
+#define B_OVERWORLD_SNOW                GEN_LATEST // In Gen9+, overworld Snow will summon snow instead of hail in battle.
+#define B_SNOW_WARNING                  GEN_LATEST // En Gen9+, Snow Warning convocará nieve en lugar de granizo.
+#define B_PREFERRED_ICE_WEATHER         B_ICE_WEATHER_BOTH // Toggles Hail move effects to Snow and vice versa.
 
 // Configuración de Terrenos
 #define B_TERRAIN_BG_CHANGE         TRUE       // Si se establece en TRUE, los movimientos de terreno cambian permanentemente el fondo de batalla predeterminado hasta que el efecto se desvanezca.
-#define B_THUNDERSTORM_TERRAIN      TRUE       // Si es TRUE, las tormentas eléctricas en el mundo exterior generan Lluvia y Terreno Eléctrico como en Gen 8.
+#define B_THUNDERSTORM_TERRAIN      TRUE       // Si está habilitado, las tormentas eléctricas en el mundo exterior generan Lluvia y Terreno Eléctrico como en Gen 8.
 #define B_TERRAIN_TYPE_BOOST        GEN_LATEST // En Gen8, el daño se aumenta en un 30% en lugar de un 50%.
 #define B_SECRET_POWER_EFFECT       GEN_LATEST // Los efectos de Daño secreto cambian según el terreno y la generación. Consulta el caso de MOVE_EFFECT_SECRET_POWER en `SetMoveEffect`.
 #define B_SECRET_POWER_ANIMATION    GEN_LATEST // Las animaciones de Daño secreto cambian según el terreno y la generación.
 #define B_NATURE_POWER_MOVES        GEN_LATEST // Adaptación llama a diferentes movimientos según el terreno y la generación. Consulta sNaturePowerMoves.
 #define B_CAMOUFLAGE_TYPES          GEN_LATEST // Camuflaje cambia al usuario a diferentes tipos según el terreno y la generación. Consulta sTerrainToType.
-#define B_NEW_TERRAIN_BACKGROUNDS   FALSE      // Si es TRUE, usa nuevos fondos para los Campos.
+#define B_NEW_TERRAIN_BACKGROUNDS   FALSE      // Si está habilitado, usa nuevos fondos para los Campos.
 
 // Configuración de Interfaz
 #define B_ABILITY_POP_UP            TRUE  // En Gen5+, las habilidades de los Pokémon se muestran en una ventana emergente cuando se activan en batalla.
@@ -246,15 +273,21 @@
 #define B_HIDE_HEALTHBOX_IN_ANIMS   TRUE  // Si se establece en TRUE, se ocultan las cajas de salud durante las animaciones de movimiento.
 #define B_WAIT_TIME_MULTIPLIER      16    // Esto determina cuánto duran las pausas de texto en la batalla. En Vanilla es 16. Valores más bajos resultan en batallas más rápidas.
 #define B_QUICK_MOVE_CURSOR_TO_RUN  FALSE // Si se establece en TRUE, presionar B en las opciones de batalla contra un encuentro salvaje moverá el cursor a la opción de huir.
+#define B_RUN_TRAINER_BATTLE        TRUE  // If set to TRUE, players can run from Trainer battles. This is treated as a whiteout.
 #define B_MOVE_DESCRIPTION_BUTTON   L_BUTTON // Si se establece en un botón diferente a B_LAST_USED_BALL_BUTTON, presionar este botón abrirá el menú de descripción del movimiento.
+#define B_SHOW_USELESS_Z_MOVE_INFO  FALSE // If set to TRUE, Z-moves without additional effects like newer gen status moves will say "no additional effect"
+#define B_ANIMATE_MON_AFTER_KO      TRUE // If set to TRUE, if a Pokémon on the opposite site faints, the non-fainted Pokemon will display a victory animation.
+#define B_SHOW_DYNAMAX_MESSAGE      FALSE // If set to TRUE, an additional battle message is shown after completing Dynamaxing/Gigantamaxing.
 
 // Configuración de Captura
 #define B_SEMI_INVULNERABLE_CATCH   GEN_LATEST // En Gen4+, no puedes lanzar una Poké Ball contra un Pokémon que está en un estado semi-invulnerable (excavar/volar/etc).
 #define B_CATCHING_CHARM_BOOST      20         // % de aumento en las probabilidades de Captura Crítica si el jugador tiene el Catching Charm.
 #define B_CRITICAL_CAPTURE          TRUE       // Si se establece en TRUE, la Captura Crítica estará habilitada.
-#define B_LAST_USED_BALL            TRUE       // Si es TRUE, se implementará la característica de "última bola usada" de Gen 7.
+#define B_CRITICAL_CAPTURE_LOCAL_DEX    TRUE       // If set to FALSE, Critical Capture % is based off of the National Pokedex estimated by enabled generations.
+
+#define B_LAST_USED_BALL            TRUE       // Si está habilitado, se implementará la característica de "última bola usada" de Gen 7.
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON   // Si se implementa la última bola usada, este botón (o combinación de botones) activará el lanzamiento de la última Poké Ball usada.
-#define B_LAST_USED_BALL_CYCLE      TRUE       // Si es TRUE, mantener presionado B_LAST_USED_BALL_BUTTON mientras se presiona el D-Pad ciclará entre las Poké Balls.
+#define B_LAST_USED_BALL_CYCLE      TRUE       // Si está habilitado, mantener presionado B_LAST_USED_BALL_BUTTON mientras se presiona el D-Pad ciclará entre las Poké Balls.
 #define B_CATCH_SWAP_INTO_PARTY     GEN_LATEST // De 7ma Generación en adelante, aparecerá la opción de intercambiar el Pokémon salvaje capturado con uno del equipo, permitiéndote enviar otro Pokémon a la caja.
 #define B_CATCH_SWAP_CHECK_HMS      TRUE       // Si está en TRUE, la función de intercambio al capturar mencionada encima evitará enviar a la caja a los Pokémon que conozcan movimientos MO.
 
@@ -269,11 +302,14 @@
 #define B_TRAINER_MON_RANDOM_ABILITY    FALSE      // Si se establece en TRUE, se generará una habilidad legal aleatoria para un Pokémon de entrenador.
 #define B_OBEDIENCE_MECHANICS           GEN_LATEST // En PLA+ (aquí Gen8+), las restricciones de obediencia también se aplican a los Pokémon no extranjeros, aunque basadas en su nivel encontrado en lugar de nivel real.
 #define B_USE_FROSTBITE                 FALSE      // En PLA, Frostbite reemplaza a Freeze. Habilitar esta flag hace lo mismo aquí. Los movimientos aún pueden ser seleccionados para Freeze o Frostbite. Freeze-Dry, Secret Power y Tri Attack dependen de esta configuración.
-#define B_OVERWORLD_SNOW                GEN_LATEST // En Gen9+, la nieve en el mundo exterior invocará nieve en lugar de granizo en batalla.
-#define B_OVERWORLD_FOG                 GEN_LATEST // En Gen8+, la niebla en el mundo exterior invoca Terreno Brumoso en batalla. Solo en Gen4, la niebla en el mundo exterior invoca la condición climática única de niebla en batalla.
 #define B_TOXIC_REVERSAL                GEN_LATEST // En Gen5+, el veneno grave se convierte en veneno normal al final de las batallas.
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // En Gen4+, intentar capturar a un Pokémon de un entrenador no consume la Poké Ball.
-#define B_SLEEP_CLAUSE                  FALSE     //  Si es TRUE, activa la cláusula de sueño siempre, sin importar el B_FLAG_SLEEP_CLAUSE. Usa esto si quieres que sea más fácil de ajustar.
+#define B_SLEEP_CLAUSE                  FALSE     //  Si está habilitado, activa la cláusula de sueño siempre, sin importar el B_FLAG_SLEEP_CLAUSE. Usa esto si quieres que sea más fácil de ajustar.
+
+#define NUM_BEEPS_GEN_LATEST            4                    // Loops 4 times
+#define NUM_BEEPS_GEN_3                 -1                   // Loops infinitely
+#define NUM_BEEPS_OFF                   0                    // Doesn't play at all
+#define B_NUM_LOW_HEALTH_BEEPS          NUM_BEEPS_GEN_LATEST // This controls the number of times the "low health" beep will loop. Setting this value to NUM_BEEPS_OFF will disable the beep, while NUM_BEEPS_GEN_3 will loop infinitely. You can set this to any number you want, the defines listed are just for ease of use.
 
 // Configuración de Animaciones
 #define B_NEW_SWORD_PARTICLE            TRUE    // Si se establece en TRUE, actualiza la partícula de Danza espada.
@@ -298,10 +334,17 @@
 #define B_ENEMY_THROW_BALLS_SOUND    GEN_LATEST  // En GEN_5+, las Poké Balls de los entrenadores enemigos hacen un sonido al ser lanzadas para sacar un Pokémon. Esto solo se puede usar cuando B_ENEMY_THROW_BALLS está configurado en GEN_6 o posterior.
 #define B_PLAYER_THROW_BALLS_SOUND   GEN_LATEST  // En GEN_5+, las Poké Balls del jugador hacen un sonido al ser lanzadas para sacar un Pokémon.
 
-#define SHOW_TYPES_NEVER    0
-#define SHOW_TYPES_ALWAYS   1
-#define SHOW_TYPES_CAUGHT   2
-#define B_SHOW_TYPES        SHOW_TYPES_NEVER // When defined as SHOW_TYPES_ALWAYS, after selecting "Fight" in battle, the types of all Pokemon are revealed. Whe defined as SHOW_TYPES_OWN, types are only revealed if the player owns the mon in question.
+#define SHOW_TYPES_NEVER    0                    // Never shows types in battle
+#define SHOW_TYPES_ALWAYS   1                    // Always show types in battle
+#define SHOW_TYPES_CAUGHT   2                    // Only show types if you've caught a species of the mon.
+#define SHOW_TYPES_SEEN     3                    // Only show types if you've seen a species of the mon.
+#define B_SHOW_TYPES        SHOW_TYPES_NEVER     // When to show type indicators next to Pokémon health bars in battle, while choosing a move after selecting a target Pokémon.
+
+#define SHOW_EFFECTIVENESS_NEVER    0           // Never show effectiveness when selecting moves.
+#define SHOW_EFFECTIVENESS_ALWAYS   1           // Always show effectiveness when selecting moves.
+#define SHOW_EFFECTIVENESS_CAUGHT   2           // Only show effectiveness if you've caught a species of the mon.
+#define SHOW_EFFECTIVENESS_SEEN     3           // Only show effectiveness if you've seen a species of the mon.
+#define B_SHOW_EFFECTIVENESS        SHOW_EFFECTIVENESS_SEEN // If not SHOW_EFFECTIVENESS_NEVER, the PP string is replaced by a type effectiveness indicator based off the moves and the opposing side.
 
 // Pokémon battle sprite settings
 #define B_ENEMY_MON_SHADOW_STYLE        GEN_LATEST // En Gen4+, todos los rivales tienen sombra.

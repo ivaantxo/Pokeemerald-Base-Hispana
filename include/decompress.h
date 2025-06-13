@@ -15,14 +15,6 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
 u32 LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet *src, void *buffer);
 bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src);
 
-u32 LoadCompressedSpritePalette(const struct CompressedSpritePalette *src);
-u32 LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag);
-u32 LoadCompressedSpritePaletteWithTagHueShifted(const u32 *pal, u16 tag, u32 personality);
-void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer);
-bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src);
-void LoadCompressedEggSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2);
-void LoadCompressedEggHatchSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2);
-
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer);
 
 void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality);

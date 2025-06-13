@@ -229,7 +229,7 @@ static const u8 *const sFloorStrings[] =
     gText_TrainerHill4F,
 };
 
-static void (* const sHillFunctions[])(void) =
+static void (*const sHillFunctions[])(void) =
 {
     [TRAINER_HILL_FUNC_START]                 = TrainerHillStartChallenge,
     [TRAINER_HILL_FUNC_GET_OWNER_STATE]       = GetOwnerState,
@@ -271,10 +271,10 @@ static const struct ObjectEventTemplate sTrainerObjectEventTemplate =
 
 static const u32 sNextFloorMapNum[NUM_TRAINER_HILL_FLOORS] =
 {
-    [TRAINER_HILL_1F - 1] = MAP_NUM(TRAINER_HILL_2F),
-    [TRAINER_HILL_2F - 1] = MAP_NUM(TRAINER_HILL_3F),
-    [TRAINER_HILL_3F - 1] = MAP_NUM(TRAINER_HILL_4F),
-    [TRAINER_HILL_4F - 1] = MAP_NUM(TRAINER_HILL_ROOF)
+    [TRAINER_HILL_1F - 1] = MAP_NUM(MAP_TRAINER_HILL_2F),
+    [TRAINER_HILL_2F - 1] = MAP_NUM(MAP_TRAINER_HILL_3F),
+    [TRAINER_HILL_3F - 1] = MAP_NUM(MAP_TRAINER_HILL_4F),
+    [TRAINER_HILL_4F - 1] = MAP_NUM(MAP_TRAINER_HILL_ROOF)
 };
 static const u8 sTrainerPartySlots[HILL_TRAINERS_PER_FLOOR][PARTY_SIZE / 2] =
 {
@@ -379,13 +379,13 @@ static void FreeDataStruct(void)
     TRY_FREE_AND_SET_NULL(sHillData);
 }
 
-void CopyTrainerHillTrainerText(u8 which, u16 trainerId)
+void CopyTrainerHillTrainerText(u8 which, u16 localId)
 {
     u8 id, floorId;
 
     SetUpDataStruct();
     floorId = GetFloorId();
-    id = trainerId - 1;
+    id = localId - 1;
 
     switch (which)
     {
@@ -802,7 +802,7 @@ u8 GetCurrentTrainerHillMapId(void)
 
 const struct WarpEvent* SetWarpDestinationTrainerHill4F(void)
 {
-    const struct MapHeader *header = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(TRAINER_HILL_4F), MAP_NUM(TRAINER_HILL_4F));
+    const struct MapHeader *header = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_TRAINER_HILL_4F), MAP_NUM(MAP_TRAINER_HILL_4F));
 
     return &header->events->warps[1];
 }
@@ -821,7 +821,7 @@ const struct WarpEvent* SetWarpDestinationTrainerHillFinalFloor(u8 warpEventId)
     if (numFloors == 0 || numFloors > NUM_TRAINER_HILL_FLOORS)
         numFloors = NUM_TRAINER_HILL_FLOORS;
 
-    header = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(TRAINER_HILL_4F), sNextFloorMapNum[numFloors - 1]);
+    header = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_TRAINER_HILL_4F), sNextFloorMapNum[numFloors - 1]);
     return &header->events->warps[0];
 }
 
@@ -916,7 +916,7 @@ void FillHillTrainersParties(void)
 // This function is unused, but my best guess is
 // it was supposed to return AI scripts for trainer
 // hill trainers.
-u32 GetTrainerHillAIFlags(void)
+u64 GetTrainerHillAIFlags(void)
 {
     return (AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY);
 }

@@ -280,9 +280,9 @@ struct ContestResources
     struct ContestMoveAnimData *moveAnim;
     struct ContestTV *tv;
     u8 *contestBgTilemaps[CONTESTANT_COUNT];
-    void * boxBlinkTiles1;
-    void * boxBlinkTiles2;
-    void * animBgTileBuffer;
+    void *boxBlinkTiles1;
+    void *boxBlinkTiles2;
+    void *animBgTileBuffer;
 };
 
 #define eContest (*gContestResources->contest)

@@ -194,7 +194,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WONDER_GUARD] =
     {
         .name = _("Superguarda"),
-        .description = COMPOUND_STRING("Cuesta mucho hacerle daño."),
+        .description = COMPOUND_STRING("Solo “super efectivo” le daña."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -2177,7 +2177,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GOOD_AS_GOLD] =
     {
         .name = _("Cuerpo áureo"),
-        .description = COMPOUND_STRING("Evita problemas de estado."),
+        .description = COMPOUND_STRING("Evita movimientos de estado."),
         .aiRating = 8,
         .breakable = TRUE,
     },

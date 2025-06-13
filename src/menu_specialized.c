@@ -1063,7 +1063,7 @@ void GetConditionMenuMonGfx(void *tilesDst, void *palDst, u16 boxId, u16 monId, 
         u32 personality = GetBoxOrPartyMonData(boxId, monId, MON_DATA_PERSONALITY, NULL);
 
         LoadSpecialPokePic(tilesDst, species, personality, TRUE);
-        LZ77UnCompWram(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), palDst);
+        memcpy(palDst, GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), 32);
     }
 }
 
@@ -1181,7 +1181,7 @@ void LoadConditionMonPicTemplate(struct SpriteSheet *sheet, struct SpriteTemplat
     *pal = dataPal;
 }
 
-void LoadConditionSelectionIcons(struct SpriteSheet *sheets, struct SpriteTemplate * template, struct SpritePalette *pals)
+void LoadConditionSelectionIcons(struct SpriteSheet *sheets, struct SpriteTemplate *template, struct SpritePalette *pals)
 {
     u8 i;
 

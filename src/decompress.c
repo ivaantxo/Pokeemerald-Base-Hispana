@@ -87,47 +87,6 @@ u32 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
     return ret;
 }
 
-u32 LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
-{
-    return LoadCompressedSpritePaletteWithTag(src->data, src->tag);
-}
-
-u32 LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag)
-{
-    u32 index;
-    struct SpritePalette dest;
-    void *buffer = malloc_and_decompress(pal, NULL);
-
-    dest.data = buffer;
-    dest.tag = tag;
-    index = LoadSpritePalette(&dest);
-    Free(buffer);
-    return index;
-}
-
-u32 LoadCompressedSpritePaletteWithTagHueShifted(const u32 *pal, u16 tag, u32 personality)
-{
-    u32 index;
-    struct SpritePalette dest;
-    void *buffer = malloc_and_decompress(pal, NULL);
-
-    dest.data = buffer;
-    dest.tag = tag;
-    index = LoadUniqueSpritePalette(&dest, personality);
-    Free(buffer);
-    return index;
-}
-
-void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer)
-{
-    struct SpritePalette dest;
-
-    LZ77UnCompWram(src->data, buffer);
-    dest.data = buffer;
-    dest.tag = src->tag;
-    LoadSpritePalette(&dest);
-}
-
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer)
 {
     LZ77UnCompWram(src->data, buffer);
@@ -197,59 +156,4 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src
     LoadSpriteSheet(&dest);
     Free(buffer);
     return FALSE;
-}
-
-bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette *src)
-{
-    struct SpritePalette dest;
-    void *buffer;
-
-    buffer = AllocZeroed(src->data[0] >> 8);
-    LZ77UnCompWram(src->data, buffer);
-    dest.data = buffer;
-    dest.tag = src->tag;
-
-    LoadSpritePalette(&dest);
-    Free(buffer);
-    return FALSE;
-}
-
-void LoadCompressedEggSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2)
-{
-    void *buffer1 = malloc_and_decompress(src1->data, NULL); // 8 colores
-    void *buffer2 = malloc_and_decompress(src2->data, NULL); // 8 colores
-
-    struct SpritePalette dest1 = {
-        .data = buffer1,
-        .tag = src1->tag
-    };
-    struct SpritePalette dest2 = {
-        .data = buffer2,
-        .tag = src2->tag
-    };
-
-    LoadEggSpritePalette(&dest1, &dest2);
-
-    Free(buffer1);
-    Free(buffer2);
-}
-
-void LoadCompressedEggHatchSpritePalette(const struct CompressedSpritePalette *src1, const struct CompressedSpritePalette *src2)
-{
-    void *buffer1 = malloc_and_decompress(src1->data, NULL); // 8 colores
-    void *buffer2 = malloc_and_decompress(src2->data, NULL); // 8 colores
-
-    struct SpritePalette dest1 = {
-        .data = buffer1,
-        .tag = PALTAG_EGG
-    };
-    struct SpritePalette dest2 = {
-        .data = buffer2,
-        .tag = src2->tag
-    };
-
-    LoadEggSpritePalette(&dest1, &dest2);
-
-    Free(buffer1);
-    Free(buffer2);
 }

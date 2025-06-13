@@ -300,6 +300,54 @@ static const s16 sEggShardVelocities[][2] =
     {Q_8_8(2.5),        Q_8_8(-7.5)},
 };
 
+const struct SpritePalette gEgg1PaletteTable[] =
+{
+    [TYPE_NORMAL]   =   {gMonPalette_Egg_Normal1,   PALTAG_EGG_TIPO_1},
+    [TYPE_FIGHTING] =   {gMonPalette_Egg_Fighting1, PALTAG_EGG_TIPO_1},
+    [TYPE_FLYING]   =   {gMonPalette_Egg_Flying1,   PALTAG_EGG_TIPO_1},
+    [TYPE_POISON]   =   {gMonPalette_Egg_Poison1,   PALTAG_EGG_TIPO_1},
+    [TYPE_GROUND]   =   {gMonPalette_Egg_Ground1,   PALTAG_EGG_TIPO_1},
+    [TYPE_ROCK]     =   {gMonPalette_Egg_Rock1,     PALTAG_EGG_TIPO_1},
+    [TYPE_BUG]      =   {gMonPalette_Egg_Bug1,      PALTAG_EGG_TIPO_1},
+    [TYPE_GHOST]    =   {gMonPalette_Egg_Ghost1,    PALTAG_EGG_TIPO_1},
+    [TYPE_STEEL]    =   {gMonPalette_Egg_Steel1,    PALTAG_EGG_TIPO_1},
+    [TYPE_MYSTERY]  =   {gMonPalette_Egg_Normal1,   PALTAG_EGG_TIPO_1},
+    [TYPE_FIRE]     =   {gMonPalette_Egg_Fire1,     PALTAG_EGG_TIPO_1},
+    [TYPE_WATER]    =   {gMonPalette_Egg_Water1,    PALTAG_EGG_TIPO_1},
+    [TYPE_GRASS]    =   {gMonPalette_Egg_Grass1,    PALTAG_EGG_TIPO_1},
+    [TYPE_ELECTRIC] =   {gMonPalette_Egg_Electric1, PALTAG_EGG_TIPO_1},
+    [TYPE_PSYCHIC]  =   {gMonPalette_Egg_Psychic1,  PALTAG_EGG_TIPO_1},
+    [TYPE_ICE]      =   {gMonPalette_Egg_Ice1,      PALTAG_EGG_TIPO_1},
+    [TYPE_DRAGON]   =   {gMonPalette_Egg_Dragon1,   PALTAG_EGG_TIPO_1},
+    [TYPE_DARK]     =   {gMonPalette_Egg_Dark1,     PALTAG_EGG_TIPO_1},
+    [TYPE_FAIRY]    =   {gMonPalette_Egg_Fairy1,    PALTAG_EGG_TIPO_1},
+    [TYPE_NONE]     =   {gMonPalette_Egg_Normal1,   PALTAG_EGG_TIPO_1}
+};
+
+const struct SpritePalette gEgg2PaletteTable[] =
+{
+    [TYPE_NORMAL]   =   {gMonPalette_Egg_Normal2,   PALTAG_EGG_TIPO_2},
+    [TYPE_FIGHTING] =   {gMonPalette_Egg_Fighting2, PALTAG_EGG_TIPO_2},
+    [TYPE_FLYING]   =   {gMonPalette_Egg_Flying2,   PALTAG_EGG_TIPO_2},
+    [TYPE_POISON]   =   {gMonPalette_Egg_Poison2,   PALTAG_EGG_TIPO_2},
+    [TYPE_GROUND]   =   {gMonPalette_Egg_Ground2,   PALTAG_EGG_TIPO_2},
+    [TYPE_ROCK]     =   {gMonPalette_Egg_Rock2,     PALTAG_EGG_TIPO_2},
+    [TYPE_BUG]      =   {gMonPalette_Egg_Bug2,      PALTAG_EGG_TIPO_2},
+    [TYPE_GHOST]    =   {gMonPalette_Egg_Ghost2,    PALTAG_EGG_TIPO_2},
+    [TYPE_STEEL]    =   {gMonPalette_Egg_Steel2,    PALTAG_EGG_TIPO_2},
+    [TYPE_MYSTERY]  =   {gMonPalette_Egg_Normal2,   PALTAG_EGG_TIPO_2},
+    [TYPE_FIRE]     =   {gMonPalette_Egg_Fire2,     PALTAG_EGG_TIPO_2},
+    [TYPE_WATER]    =   {gMonPalette_Egg_Water2,    PALTAG_EGG_TIPO_2},
+    [TYPE_GRASS]    =   {gMonPalette_Egg_Grass2,    PALTAG_EGG_TIPO_2},
+    [TYPE_ELECTRIC] =   {gMonPalette_Egg_Electric2, PALTAG_EGG_TIPO_2},
+    [TYPE_PSYCHIC]  =   {gMonPalette_Egg_Psychic2,  PALTAG_EGG_TIPO_2},
+    [TYPE_ICE]      =   {gMonPalette_Egg_Ice2,      PALTAG_EGG_TIPO_2},
+    [TYPE_DRAGON]   =   {gMonPalette_Egg_Dragon2,   PALTAG_EGG_TIPO_2},
+    [TYPE_DARK]     =   {gMonPalette_Egg_Dark2,     PALTAG_EGG_TIPO_2},
+    [TYPE_FAIRY]    =   {gMonPalette_Egg_Fairy2,    PALTAG_EGG_TIPO_2},
+    [TYPE_NONE]     =   {gMonPalette_Egg_Normal2,   PALTAG_EGG_TIPO_2}
+};
+
 static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
 {
     u16 species;
@@ -428,9 +476,9 @@ static u8 EggHatchCreateMonSprite(u8 state, u8 partyId, u16 *speciesLoc)
                                      gMonSpritesGfxPtr->spritesGfx[B_POSITION_OPPONENT_LEFT],
                                      species, pid);
             if (PBH_PALETAS_UNICAS)
-                LoadCompressedSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, pid);                
+                LoadSpritePaletteWithTagHueShifted(GetMonFrontSpritePal(mon), species, pid);                
             else
-                LoadCompressedSpritePaletteWithTag(GetMonFrontSpritePal(mon), species);
+                LoadSpritePaletteWithTag(GetMonFrontSpritePal(mon), species);
             *speciesLoc = species;
         }
         break;
@@ -472,7 +520,7 @@ static void Task_EggHatch(u8 taskId)
 
 static void CB2_LoadEggHatch(void)
 {
-    const struct CompressedSpritePalette *pal1, *pal2;
+    const struct SpritePalette *pal1, *pal2;
 
     switch (gMain.state)
     {
@@ -517,7 +565,7 @@ static void CB2_LoadEggHatch(void)
     case 2:
         DecompressAndLoadBgGfxUsingHeap(0, gBattleTextboxTiles, 0, 0, 0);
         CopyToBgTilemapBuffer(0, gBattleTextboxTilemap, 0, 0);
-        LoadCompressedPalette(gBattleTextboxPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+        LoadPalette(gBattleTextboxPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
         gMain.state++;
         break;
     case 3:
@@ -527,7 +575,7 @@ static void CB2_LoadEggHatch(void)
         {
             pal1 = &gEgg1PaletteTable[gSpeciesInfo[GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES)].types[0]];
             pal2 = &gEgg2PaletteTable[gSpeciesInfo[GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES)].types[1]];
-            LoadCompressedEggHatchSpritePalette(pal1, pal2);
+            LoadEggSpritePalette(pal1, pal2);
         }
         else
             LoadSpritePalette(&sEgg_SpritePalette);
