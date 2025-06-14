@@ -1229,5 +1229,5 @@ const u8 gText_MaleSymbolPokeNav[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_RED}{WHIT
 const u8 gText_FemaleSymbolPokeNav[] = _("{COLOR_HIGHLIGHT_SHADOW}{LIGHT_GREEN}{WHITE}{BLUE}♀{COLOR_HIGHLIGHT_SHADOW}{DARK_GRAY}{WHITE}{LIGHT_GRAY}");
 const u8 gText_NoGenderSymbolPokeNav[] = _(" ");
 const u8 gText_Relearn[] = _("{START_BUTTON} RECORDAR"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
-const u8 gText_Rename[] = _("RENOMBRAR");
+const u8 gText_Rename[] = _("MOTE");
 const u8 gText_CannotSendMonToBoxHM[] = _("No puedes enviarlo a la caja,\nporque conoce una MT.{PAUSE_UNTIL_PRESS}");
