@@ -1447,10 +1447,6 @@
 	callnative BS_SetGlaiveRush
 	.endm
 
-	.macro tryrelicsong
-	callnative BS_TryRelicSong
-	.endm
-
 	.macro setpledge jumpInstr:req
 	callnative BS_SetPledge
 	.4byte \jumpInstr
