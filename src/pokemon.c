@@ -4380,8 +4380,9 @@ static void BufferStatRoseMessage(s32 statIdx)
     StringCopy(gBattleTextBuff1, gStatNamesTable[sStatsToRaise[statIdx]]);
     if (B_X_ITEMS_BUFF >= GEN_7)
     {
-        StringCopy(gBattleTextBuff2, gText_StatSharply);
-        StringAppend(gBattleTextBuff2, gText_StatRose);
+        // Swap order in spanish
+        StringCopy(gBattleTextBuff2, gText_StatRose);
+        StringAppend(gBattleTextBuff2, gText_StatSharply);
     }
     else
     {
