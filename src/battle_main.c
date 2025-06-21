@@ -360,7 +360,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_FACTORY_HEAD] = { _("JEFE FÁBRICA") },
     [TRAINER_CLASS_PIKE_QUEEN] = { _("REINA SIERPE") },
     [TRAINER_CLASS_PYRAMID_KING] = { _("REY PIRÁMIDE") },
-    [TRAINER_CLASS_RS_PROTAG] = { _("ENTRENADOR POKéMON") },
+    [TRAINER_CLASS_RS_PROTAG] = { _("ENTRENADOR") },
 };
 
 static void (*const sTurnActionsFuncsTable[])(void) =
