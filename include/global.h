@@ -204,11 +204,11 @@ struct Time
     /*0x04*/ s8 seconds;
 };
 
-struct NPCFollowerMapData
+struct NPCFollowerPadding
 {
-    u8 id;
-    u8 number;
-    u8 group;
+    u8 padding1;
+    u8 padding2;
+    u8 padding3;
 };
 
 struct NPCFollower
@@ -220,7 +220,7 @@ struct NPCFollower
     u8 objId;
     u8 currentSprite;
     u8 delayedState;
-    struct NPCFollowerMapData map;
+    struct NPCFollowerPadding padding;
     struct Coords16 log;
     const u8 *script;
     u16 flag;
