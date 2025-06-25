@@ -33,6 +33,7 @@
 #include "naming_screen.h"
 #include "pokemon_storage_system.h"
 #include "field_screen_effect.h"
+#include "trade.h"
 #include "data.h"
 #include "battle.h"
 #include "constants/rgb.h"
@@ -53,7 +54,6 @@ struct EggHatchData
     u8 textColor[3];
 };
 
-extern const u32 gTradePlatform_Tilemap[];
 extern const u8 gText_HatchedFromEgg[];
 extern const u8 gText_NicknameHatchPrompt[];
 
