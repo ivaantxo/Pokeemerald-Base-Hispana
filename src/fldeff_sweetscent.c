@@ -6,6 +6,7 @@
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fldeff.h"
+#include "malloc.h"
 #include "mirage_tower.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -50,13 +51,19 @@ bool8 FldEff_SweetScent(void)
 static void StartSweetScentFieldEffect(void)
 {
     u8 taskId;
+    u32 palettes = ~(1 << (gSprites[GetPlayerAvatarSpriteId()].oam.paletteNum + 16) | (1 << 13) | (1 << 14) | (1 << 15));
+    u32 *buffer = Alloc(PLTT_SIZE);
 
     PlaySE(SE_M_SWEET_SCENT);
-    CpuFastCopy(gPlttBufferUnfaded, gPaletteDecompressionBuffer, PLTT_SIZE);
-    CpuFastCopy(gPlttBufferFaded, gPlttBufferUnfaded, PLTT_SIZE);
-    BeginNormalPaletteFade(~(1 << (gSprites[GetPlayerAvatarSpriteId()].oam.paletteNum + 16)), 4, 0, 8, RGB_RED);
+    if (buffer) {
+        CpuFastCopy(gPlttBufferUnfaded, buffer, PLTT_SIZE);
+        CpuFastCopy(gPlttBufferFaded, gPlttBufferUnfaded, PLTT_SIZE);
+    }
+    BeginNormalPaletteFade(palettes, 4, 0, 8, RGB_RED);
     taskId = CreateTask(TrySweetScentEncounter, 0);
     gTasks[taskId].data[0] = 0;
+    gTasks[taskId].data[1] = (u32) buffer >> 16;
+    gTasks[taskId].data[2] = (u32) buffer;
     FieldEffectActiveListRemove(FLDEFF_SWEET_SCENT);
 }
 
@@ -71,6 +78,8 @@ static void TrySweetScentEncounter(u8 taskId)
             gTasks[taskId].data[0] = 0;
             if (SweetScentWildEncounter() == TRUE)
             {
+                u32 *buffer = (u32*)(((u16)gTasks[taskId].data[1] << 16) | (u16)gTasks[taskId].data[2]);
+                TRY_FREE_AND_SET_NULL(buffer);
                 DestroyTask(taskId);
             }
             else
@@ -91,7 +100,11 @@ static void FailSweetScentEncounter(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        CpuFastCopy(gPaletteDecompressionBuffer, gPlttBufferUnfaded, PLTT_SIZE);
+        u32 *buffer = (u32*)(((u16)gTasks[taskId].data[1] << 16) | (u16)gTasks[taskId].data[2]);
+        if (buffer) {
+            CpuFastCopy(buffer, gPlttBufferUnfaded, PLTT_SIZE);
+            Free(buffer);
+        }
         SetWeatherPalStateIdle();
         ScriptContext_SetupScript(EventScript_FailSweetScent);
         DestroyTask(taskId);
