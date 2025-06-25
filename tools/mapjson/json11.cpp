@@ -20,9 +20,11 @@
 #include "json11.h"
 #include <cassert>
 #include <cmath>
+#include <cstdint>
 #include <cstdlib>
 #include <cstdio>
 #include <limits>
+#include <cstdint>
 
 namespace json11 {
 
