@@ -2863,7 +2863,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "El agresor mengua para\n"
         #if B_MINIMIZE_EVASION >= GEN_5
             "aumentar mucho la evasión."),
-        #else 
+        #else
             "aumentar la evasión."),
         #endif
         .effect = EFFECT_MINIMIZE,
@@ -3701,7 +3701,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .description = COMPOUND_STRING(
         #if B_UPDATED_MOVE_DATA >= GEN_5
             "Envuelve a rivales en gas\n"
-        #else 
+        #else
             "Envuelve a rival en gas\n"
         #endif
             "tóxico para envenenar."),
@@ -6048,7 +6048,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Ataque giratorio que quita\n"
         #if B_SPEED_BUFFING_RAPID_SPIN >= GEN_8
             "trampas y sube velocidad."),
-        #else 
+        #else
             "trampas."),
         #endif
         .effect = EFFECT_RAPID_SPIN,
@@ -6275,7 +6275,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "Tipo y potencia cambian\n"
             "según el usuario."),
-        #endif 
+        #endif
         .power = B_HIDDEN_POWER_DMG >= GEN_6 ? 60 : 1,
         .effect = EFFECT_HIDDEN_POWER,
         .type = TYPE_NORMAL,
@@ -9613,7 +9613,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Sopla un viento que dobla\n"
         #if B_TAILWIND_TURNS >= GEN_5
             "velocidad de equipo por 4 turnos."),
-        #else 
+        #else
             "velocidad de equipo por 3 turnos."),
         #endif
         .effect = EFFECT_TAILWIND,
@@ -18434,7 +18434,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .description = COMPOUND_STRING(
             "Destruye el campo. Falla si\n"
             "no hay un campo activo."),
-        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .effect = EFFECT_STEEL_ROLLER,
         .power = 130,
         .type = TYPE_STEEL,
         .accuracy = 100,
@@ -18443,7 +18443,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-        .argument = { .moveProperty = ARG_TRY_REMOVE_TERRAIN_FAIL }, // Remove a field terrain if there is one and hit, otherwise fail.
         .skyBattleBanned = TRUE,
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
@@ -19869,7 +19868,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .description = COMPOUND_STRING(
             "Golpea al rival y\n"
             "rompe el terreno."),
-        .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .effect = EFFECT_ICE_SPINNER,
         .power = 80,
         .type = TYPE_ICE,
         .accuracy = 100,
@@ -19878,7 +19877,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-        .argument = { .moveProperty = ARG_TRY_REMOVE_TERRAIN_HIT }, // Remove the active field terrain if there is one.
         .skyBattleBanned = B_EXTRAPOLATED_MOVE_FLAGS,
         .battleAnimScript = gBattleAnimMove_IceSpinner,
     },
@@ -21521,7 +21519,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     .description = COMPOUND_STRING(
         "Mew ataca con fuerza total\n"
         "y activa campo psíquico."),
-    .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .effect = EFFECT_HIT_SET_TERRAIN,
     .power = 185,
     .type = TYPE_PSYCHIC,
     .accuracy = 0,
@@ -21529,7 +21527,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     .target = MOVE_TARGET_SELECTED,
     .priority = 0,
     .category = DAMAGE_CATEGORY_SPECIAL,
-    .argument = { .moveProperty = ARG_SET_PSYCHIC_TERRAIN },
+        .argument = { .moveProperty = STATUS_FIELD_PSYCHIC_TERRAIN },
     .battleAnimScript = gBattleAnimMove_GenesisSupernova,
     },
 
@@ -21590,7 +21588,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     .description = COMPOUND_STRING(
         "Lycanroc ataca con fuerza y\n"
         "elimina el campo activo."),
-    .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
+        .effect = EFFECT_ICE_SPINNER,
     .power = 190,
     .type = TYPE_ROCK,
     .accuracy = 0,
@@ -21598,7 +21596,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     .target = MOVE_TARGET_SELECTED,
     .priority = 0,
     .category = DAMAGE_CATEGORY_PHYSICAL,
-    .argument = { .moveProperty = ARG_TRY_REMOVE_TERRAIN_HIT },
     .battleAnimScript = gBattleAnimMove_SplinteredStormshards,
     },
 
