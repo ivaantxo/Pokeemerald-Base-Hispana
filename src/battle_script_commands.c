@@ -15393,9 +15393,9 @@ static void Cmd_settypebasedhalvers(void)
         }
         else
         {
-            if (!(gStatuses4[gBattlerAttacker] & STATUS4_MUD_SPORT))
+            if (!gBattleMons[gBattlerAttacker].volatiles.waterSport)
             {
-                gStatuses4[gBattlerAttacker] |= STATUS4_MUD_SPORT;
+                gBattleMons[gBattlerAttacker].volatiles.waterSport = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_ELECTRIC;
                 worked = TRUE;
             }
@@ -15415,9 +15415,9 @@ static void Cmd_settypebasedhalvers(void)
         }
         else
         {
-            if (!(gStatuses4[gBattlerAttacker] & STATUS4_WATER_SPORT))
+            if (!gBattleMons[gBattlerAttacker].volatiles.mudSport)
             {
-                gStatuses4[gBattlerAttacker] |= STATUS4_WATER_SPORT;
+                gBattleMons[gBattlerAttacker].volatiles.mudSport = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_FIRE;
                 worked = TRUE;
             }
