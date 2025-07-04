@@ -1081,7 +1081,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         {
             isShiny = TRUE;
         }
-        else if (P_ONLY_OBTAINABLE_SHINIES && InBattlePyramid())
+        else if (P_ONLY_OBTAINABLE_SHINIES && (InBattlePyramid() || (B_FLAG_NO_CATCHING != 0 && FlagGet(B_FLAG_NO_CATCHING))))
         {
             isShiny = FALSE;
         }
