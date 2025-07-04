@@ -442,4 +442,3 @@ SlateportCity_OceanicMuseum_2F_Text_SSAnneReplica:
 	.string "S.S. ANNE\p"
 	.string "“Una réplica de un transatlántico de\n"
 	.string "lujo que navega por todo el mundo.”$"
-

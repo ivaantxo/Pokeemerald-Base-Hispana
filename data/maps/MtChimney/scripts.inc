@@ -653,4 +653,3 @@ MtChimney_Text_SawyerRematchDefeat:
 MtChimney_Text_SawyerPostRematch:
 	.string "Va a ser que me he abrigado demasiado\n"
 	.string "para el calor que hace por aquí.$"
-
