@@ -61,6 +61,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_slide.h"
 #include "constants/trainers.h"
+#include "test/battle.h"
 #include "battle_util.h"
 #include "constants/pokemon.h"
 #include "config/battle.h"
@@ -2397,7 +2398,7 @@ static inline bool32 TryTeraShellDistortTypeMatchups(u32 battlerDef)
 
 // According to Gen5 Weakness berry activation happens after the attackanimation.
 // It doesn't have any impact on gameplay and is only a visual thing which can be adjusted later.
-static inline bool32 TryActivateWeakenessBerry(u32 battlerDef)
+static inline bool32 TryActivateWeaknessBerry(u32 battlerDef)
 {
     if (gSpecialStatuses[battlerDef].berryReduced && gBattleMons[battlerDef].item != ITEM_NONE)
     {
@@ -2440,7 +2441,7 @@ static bool32 ProcessPreAttackAnimationFuncs(void)
 
             if (TryTeraShellDistortTypeMatchups(battlerDef))
                 return TRUE;
-            if (TryActivateWeakenessBerry(battlerDef))
+            if (TryActivateWeaknessBerry(battlerDef))
                 return TRUE;
         }
     }
@@ -2450,7 +2451,7 @@ static bool32 ProcessPreAttackAnimationFuncs(void)
             return TRUE;
         if (TryTeraShellDistortTypeMatchups(gBattlerTarget))
             return TRUE;
-        if (TryActivateWeakenessBerry(gBattlerTarget))
+        if (TryActivateWeaknessBerry(gBattlerTarget))
             return TRUE;
     }
 
@@ -7430,6 +7431,11 @@ static void Cmd_getswitchedmondata(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     if (gBattleControllerExecFlags)
         return;
+
+    if (TESTING
+     && gBattlerPartyIndexes[battler] == gBattleStruct->monToSwitchIntoId[battler]
+     && gBattleStruct->hpBefore[battler] != 0) // battler is alive
+        Test_ExitWithResult(TEST_RESULT_ERROR, 0, ":L:%s:%d: battler is trying to switch to themself", __FILE__, __LINE__);
 
     gBattlerPartyIndexes[battler] = gBattleStruct->monToSwitchIntoId[battler];
 
@@ -14269,7 +14275,7 @@ static void Cmd_halvehp(void)
 // Psych Up
 static void Cmd_copyfoestats(void)
 {
-    CMD_ARGS(const u8 *unused);
+    CMD_ARGS();
 
     s32 i;
 
@@ -14277,8 +14283,9 @@ static void Cmd_copyfoestats(void)
     {
         gBattleMons[gBattlerAttacker].statStages[i] = gBattleMons[gBattlerTarget].statStages[i];
     }
+    gBattleScripting.battler = gBattlerTarget;
 
-    gBattlescriptCurrInstr = cmd->nextInstr; // Has an unused jump ptr(possibly for a failed attempt) parameter.
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_rapidspinfree(void)
