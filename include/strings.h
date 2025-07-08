@@ -16,6 +16,18 @@ extern const u8 gText_ExpandedPlaceholder_Kyogre[];
 extern const u8 gText_ExpandedPlaceholder_Groudon[];
 extern const u8 gText_ExpandedPlaceholder_Brendan[];
 extern const u8 gText_ExpandedPlaceholder_May[];
+// Género
+extern const u8 gText_ExpandedPlaceholder_O[];
+extern const u8 gText_ExpandedPlaceholder_A[];
+extern const u8 gText_ExpandedPlaceholder_E[];
+extern const u8 gText_ExpandedPlaceholder_EL[];
+extern const u8 gText_ExpandedPlaceholder_LA[];
+extern const u8 gText_ExpandedPlaceholder_El[];
+extern const u8 gText_ExpandedPlaceholder_La[];
+extern const u8 gText_ExpandedPlaceholder_ITA[];
+extern const u8 gText_ExpandedPlaceholder_ITO[];
+extern const u8 gText_ExpandedPlaceholder_COLOR_MALE[];
+extern const u8 gText_ExpandedPlaceholder_COLOR_FEMALE[];
 
 extern const u8 gText_FromSpace[];
 

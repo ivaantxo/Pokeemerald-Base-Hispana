@@ -18,6 +18,20 @@ const u8 gText_ExpandedPlaceholder_Kyogre[] = _("Kyogre");
 const u8 gText_ExpandedPlaceholder_Groudon[] = _("Groudon");
 const u8 gText_ExpandedPlaceholder_Brendan[] = _("Bruno");
 const u8 gText_ExpandedPlaceholder_May[] = _("Aura");
+
+// Género
+const u8 gText_ExpandedPlaceholder_O[] = _("o");
+const u8 gText_ExpandedPlaceholder_A[] = _("a");
+const u8 gText_ExpandedPlaceholder_E[] = _("e");
+const u8 gText_ExpandedPlaceholder_EL[] = _("el");
+const u8 gText_ExpandedPlaceholder_LA[] = _("la");
+const u8 gText_ExpandedPlaceholder_El[] = _("El");
+const u8 gText_ExpandedPlaceholder_La[] = _("La");
+const u8 gText_ExpandedPlaceholder_ITA[] = _("ita");
+const u8 gText_ExpandedPlaceholder_ITO[] = _("ito");
+const u8 gText_ExpandedPlaceholder_COLOR_MALE[] = _("{COLOR BLUE}");
+const u8 gText_ExpandedPlaceholder_COLOR_FEMALE[] = _("{COLOR RED}");
+
 const u8 gText_EggNickname[] = _("Huevo");
 const u8 gText_Pokemon[] = _("Pokémon");
 const u8 gText_Time[] = _("Tiempo de juego");

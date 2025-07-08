@@ -351,6 +351,19 @@ MAXIE          = FD 0B
 KYOGRE         = FD 0C
 GROUDON        = FD 0D
 
+@ Semantica del género gramatical
+OA            = FD 0E
+A             = FD 0F
+ELLA          = FD 10
+ElLa          = FD 11
+ITA           = FD 12
+ITOITA        = FD 13
+EA            = FD 14
+
+@ Colores según género
+COLOR_PLAYER  = FD 15
+COLOR_RIVAL   = FD 16
+
 @ battle string placeholders
 
 B_BUFF1 = FD 00
