@@ -570,6 +570,9 @@ void SetBattlerAiData(u32 battler, struct AiLogicData *aiData)
 
     if (IsAiBattlerAssumingStab())
         RecordMovesBasedOnStab(battler);
+
+    if (IsAiBattlerAssumingPowerfulStatus())
+        RecordPowerfulStatusMoves(battler);
 }
 
 #define BYPASSES_ACCURACY_CALC 101 // 101 indicates for ai that the move will always hit
