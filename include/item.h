@@ -2,6 +2,7 @@
 #define GUARD_ITEM_H
 
 #include "constants/item.h"
+#include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/tms_hms.h"
@@ -187,7 +188,7 @@ u8 GetItemBattleUsage(u16 itemId);
 u32 GetItemSecondaryId(u32 itemId);
 u32 GetItemFlingPower(u32 itemId);
 u32 GetItemStatus1Mask(u16 itemId);
-u32 GetItemStatus2Mask(u16 itemId);
+bool32 ItemHasVolatileFlag(u16 itemId, enum Volatile volatile);
 u32 GetItemSellPrice(u32 itemId);
 
 #endif // GUARD_ITEM_H
