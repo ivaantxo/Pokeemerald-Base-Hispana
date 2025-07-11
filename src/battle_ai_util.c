@@ -249,6 +249,96 @@ void SaveBattlerData(u32 battlerId)
     gAiThinkingStruct->saved[battlerId].types[1] = gBattleMons[battlerId].types[1];
 }
 
+bool32 ShouldRecordStatusMove(u32 move)
+{
+    u32 rand = Random() % 100;
+
+    if (rand >= ASSUME_POWERFUL_STATUS_HIGH_ODDS)
+        return FALSE;
+
+    switch (GetMoveEffect(move))
+    {
+    // variable odds by additional effect
+    case EFFECT_NON_VOLATILE_STATUS:
+        if (GetMoveNonVolatileStatus(move) == MOVE_EFFECT_SLEEP)
+            return TRUE;
+        else if (rand < ASSUME_POWERFUL_STATUS_MEDIUM_ODDS)
+            return TRUE;
+        break;
+    // High odds
+    case EFFECT_AURORA_VEIL:
+    case EFFECT_CHILLY_RECEPTION:
+    case EFFECT_CONVERSION:
+    case EFFECT_FIRST_TURN_ONLY:
+    case EFFECT_FOLLOW_ME:
+    case EFFECT_INSTRUCT:
+    case EFFECT_JUNGLE_HEALING:
+    case EFFECT_REVIVAL_BLESSING:
+    case EFFECT_SHED_TAIL:
+    case EFFECT_STICKY_WEB:
+        return TRUE;
+    // Medium odds
+    case EFFECT_AFTER_YOU:
+    case EFFECT_DEFOG:
+    case EFFECT_ENCORE:
+    case EFFECT_HAZE:
+    case EFFECT_HEAL_BELL:
+    case EFFECT_HEALING_WISH:
+    case EFFECT_LIFE_DEW:
+    case EFFECT_MEMENTO:
+    case EFFECT_PARTING_SHOT:
+    case EFFECT_PROTECT:
+    case EFFECT_RESTORE_HP:
+    case EFFECT_ROAR:
+    case EFFECT_TAUNT:
+    case EFFECT_TAILWIND:
+    case EFFECT_TELEPORT:
+    case EFFECT_TRICK:
+    // defoggables / screens and hazards
+    case EFFECT_LIGHT_SCREEN:
+    case EFFECT_REFLECT:
+    case EFFECT_SPIKES:
+    case EFFECT_STEALTH_ROCK:
+    case EFFECT_TOXIC_SPIKES:
+    // field status
+    case EFFECT_HAIL:
+    case EFFECT_RAIN_DANCE:
+    case EFFECT_SANDSTORM:
+    case EFFECT_SNOWSCAPE:
+    case EFFECT_SUNNY_DAY:
+    case EFFECT_TRICK_ROOM:
+    case EFFECT_ELECTRIC_TERRAIN:
+    case EFFECT_GRASSY_TERRAIN:
+    case EFFECT_MISTY_TERRAIN:
+    case EFFECT_PSYCHIC_TERRAIN:
+        if (rand < ASSUME_POWERFUL_STATUS_MEDIUM_ODDS)
+            return TRUE;
+        break;
+    // Low odds
+    case EFFECT_COURT_CHANGE:
+    case EFFECT_DOODLE:
+    case EFFECT_ENTRAINMENT:
+    case EFFECT_FIXED_PERCENT_DAMAGE:
+    case EFFECT_GASTRO_ACID:
+    case EFFECT_GUARD_SPLIT:
+    case EFFECT_IMPRISON:
+    case EFFECT_PERISH_SONG:
+    case EFFECT_POWER_SPLIT:
+    case EFFECT_QUASH:
+    case EFFECT_ROLE_PLAY:
+    case EFFECT_SKILL_SWAP:
+    case EFFECT_SPEED_SWAP:
+    case EFFECT_WORRY_SEED:
+        if (rand < ASSUME_POWERFUL_STATUS_LOW_ODDS)
+            return TRUE;
+        break;
+    default:
+        break;
+    }
+
+    return FALSE;
+}
+
 static bool32 ShouldFailForIllusion(u32 illusionSpecies, u32 battlerId)
 {
     u32 i, j;

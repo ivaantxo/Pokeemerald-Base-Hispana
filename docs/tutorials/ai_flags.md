@@ -147,6 +147,10 @@ AI has full knowledge of player moves, abilities, and hold items, and can use th
 ## `AI_FLAG_ASSUME_STAB`
 A significantly more restricted version of `AI_FLAG_OMNISCIENT`, the AI only knows the player's STAB moves, as their existence would be reasonable to assume in almost any case.
 
+## `AI_FLAG_ASSUME_POWERFUL_STATUS`
+A more restricted version of `AI_FLAG_OMNISCIENT`. The AI has a _chance_ to know if the player has certain iconic status moves, plus also Fake Out and fixed percentage moves like Super Fang.
+
+
 ## `AI_FLAG_SMART_MON_CHOICES`
 Affects what the AI chooses to send out after a switch. AI will make smarter decisions when choosing which mon to send out mid-battle and after a KO, which are handled separately. Automatically included when `AI_FLAG_SMART_SWITCHING` is enabled.
 
