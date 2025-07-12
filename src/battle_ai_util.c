@@ -290,12 +290,18 @@ bool32 ShouldRecordStatusMove(u32 move)
     case EFFECT_HEALING_WISH:
     case EFFECT_LIFE_DEW:
     case EFFECT_MEMENTO:
+    case EFFECT_MOONLIGHT:
+    case EFFECT_MORNING_SUN:
     case EFFECT_PARTING_SHOT:
     case EFFECT_PROTECT:
     case EFFECT_REST:
     case EFFECT_RESTORE_HP:
     case EFFECT_ROAR:
+    case EFFECT_ROOST:
+    case EFFECT_SHORE_UP:
     case EFFECT_SLEEP_TALK:
+    case EFFECT_SOFTBOILED:
+    case EFFECT_SYNTHESIS:
     case EFFECT_TAUNT:
     case EFFECT_TAILWIND:
     case EFFECT_TELEPORT:
