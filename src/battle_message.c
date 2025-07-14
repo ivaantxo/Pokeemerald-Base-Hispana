@@ -1379,11 +1379,6 @@ const u16 gStatusConditionsStringIds[] =
     STRINGID_PKMNWASPOISONED, STRINGID_PKMNBADLYPOISONED, STRINGID_PKMNWASBURNED, STRINGID_PKMNWASPARALYZED, STRINGID_PKMNFELLASLEEP, STRINGID_PKMNGOTFROSTBITE
 };
 
-const u16 gStatus2StringIds[] =
-{
-    STRINGID_PKMNWASCONFUSED, STRINGID_PKMNFELLINLOVE, STRINGID_TARGETCANTESCAPENOW, STRINGID_PKMNSUBJECTEDTOTORMENT
-};
-
 const u16 gDamageNonTypesStartStringIds[] =
 {
     [B_MSG_TRAPPED_WITH_VINES]  = STRINGID_TEAMTRAPPEDWITHVINES,
@@ -3203,7 +3198,7 @@ static void IllusionNickHack(u32 battler, u32 partyId, u8 *dst)
         else
             partnerMon = mon;
 
-        id = GetIllusionMonPartyId(gEnemyParty, mon, partnerMon);
+        id = GetIllusionMonPartyId(gEnemyParty, mon, partnerMon, battler);
     }
 
     if (id != PARTY_SIZE)
