@@ -141,7 +141,7 @@ bool32 IsAiBattlerAssumingStab()
     return FALSE;
 }
 
-bool32 IsAiBattlerAssumingPowerfulStatus()
+bool32 IsAiBattlerAssumingStatusMoves()
 {
     if (gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_ASSUME_STATUS_MOVES
      || gAiThinkingStruct->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_ASSUME_STATUS_MOVES)
