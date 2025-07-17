@@ -2063,9 +2063,7 @@ void StartSendOutAnim(u32 battler, bool32 dontClearTransform, bool32 dontClearSu
 
     ClearTemporarySpeciesSpriteData(battler, dontClearTransform, dontClearSubstituteBit);
     gBattlerPartyIndexes[battler] = gBattleResources->bufferA[battler][1];
-    species = GetIllusionMonSpecies(battler);
-    if (species == SPECIES_NONE)
-        species = GetMonData(mon, MON_DATA_SPECIES);
+    species = GetBattlerVisualSpecies(battler);
     gBattleControllerData[battler] = CreateInvisibleSpriteWithCallback(SpriteCB_WaitForBattlerBallReleaseAnim);
     // Load sprite for opponent only, player sprite is expected to be already loaded.
     if (!IsOnPlayerSide(battler))
@@ -2381,7 +2379,7 @@ void BtlController_HandleSetRawMonData(u32 battler)
 void BtlController_HandleLoadMonSprite(u32 battler, void (*controllerCallback)(u32 battler))
 {
     struct Pokemon *mon = GetBattlerMon(battler);
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 species = GetBattlerVisualSpecies(battler);
 
     BattleLoadMonSpriteGfx(mon, battler);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battler));
@@ -3044,7 +3042,7 @@ void TrySetBattlerShadowSpriteCallback(u32 battler)
     if (gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary].callback == SpriteCallbackDummy
      && (B_ENEMY_MON_SHADOW_STYLE <= GEN_3 || P_GBA_STYLE_SPECIES_GFX == TRUE
       || gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary].callback == SpriteCallbackDummy))
-        SetBattlerShadowSpriteCallback(battler, GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES));
+        SetBattlerShadowSpriteCallback(battler, GetBattlerVisualSpecies(battler));
 }
 
 bool32 TryShinyAnimAfterMonAnimUtil(u32 battler)
@@ -3147,7 +3145,7 @@ bool32 SwitchIn_TryShinyAnimUtil(u32 battler)
     DestroySprite(&gSprites[gBattleControllerData[battler]]);
 
     if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
-        SetBattlerShadowSpriteCallback(battler, GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES));
+        SetBattlerShadowSpriteCallback(battler, GetBattlerVisualSpecies(battler));
 
     return TRUE;
 }
