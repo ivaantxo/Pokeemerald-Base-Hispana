@@ -846,7 +846,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_SWAMPENVELOPEDSIDE]                   = COMPOUND_STRING("Un pantano envolvió al equipo {B_DEF_TEAM2}."),
     [STRINGID_THESWAMPDISAPPEARED]                  = COMPOUND_STRING("El pantano alrededor del equipo {B_ATK_TEAM2} desapareció."),
     [STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE]        = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} se prepara para contar un chiste escalofriantemente malo."),
-    [STRINGID_HOSPITALITYRESTORATION]               = COMPOUND_STRING("¡{B_ATK_PARTNER_NAME} se bebió todo el té que Sinistea preparó!"),
+    [STRINGID_HOSPITALITYRESTORATION]               = COMPOUND_STRING("¡{B_ATK_PARTNER_NAME} se bebió todo el té que {B_SCR_NAME_WITH_PREFIX2} preparó!"),
     [STRINGID_ELECTROSHOTCHARGING]                  = COMPOUND_STRING("¡{B_ATK_NAME_WITH_PREFIX} absorbió la electricidad!"),
     [STRINGID_ITEMWASUSEDUP]                        = COMPOUND_STRING("{B_LAST_ITEM} ya no quedan..."),
     [STRINGID_ATTACKERLOSTITSTYPE]                  = COMPOUND_STRING("¡{B_ATK_NAME_WITH_PREFIX} perdió su tipo {B_BUFF1}!"),
@@ -3042,14 +3042,14 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 else
                     toCpy = sText_Opposing2;
                 break;
-            case B_TXT_SCR_TEAM1:
-                if (IsOnPlayerSide(gBattleScripting.battler))
+            case B_TXT_EFF_TEAM1:
+                if (IsOnPlayerSide(gEffectBattler))
                     toCpy = sText_Your1;
                 else
                     toCpy = sText_Opposing1;
                 break;
-            case B_TXT_SCR_TEAM2:
-                if (IsOnPlayerSide(gBattleScripting.battler))
+            case B_TXT_EFF_TEAM2:
+                if (IsOnPlayerSide(gEffectBattler))
                     toCpy = sText_Your2;
                 else
                     toCpy = sText_Opposing2;
