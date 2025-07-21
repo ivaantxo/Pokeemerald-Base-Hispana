@@ -788,7 +788,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     }
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, 106, 25, TEXT_SKIP_DRAW, NULL);
 
-    if (GetMoveAccuracy(chosenMove) == 0)
+     if (GetMoveAccuracy(chosenMove) == 0)
     {
         str = gText_ThreeDashes;
     }
@@ -798,7 +798,10 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
         str = buffer;
     }
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, 106, 41, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, GetFontIdToFit(str, FONT_NARROW, 0, WindowWidthPx(RELEARNERWIN_DESC_BATTLE)), str, 0, 65, 0, NULL);
+
+    // Ahora sí usamos la descripción correcta del movimiento
+    str = gMovesInfo[chosenMove].description;
+    AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, GetFontIdToFit(str, FONT_NARROW, 0, WindowWidthPx(RELEARNERWIN_DESC_BATTLE)),str, 0, 65, 0, NULL);
 }
 
 static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
