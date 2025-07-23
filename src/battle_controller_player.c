@@ -1741,7 +1741,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     {
         ListMenuLoadStdPalAt(BG_PLTT_ID(6), 1);
         FillWindowPixelBuffer(B_WIN_MOVE_TYPE, PIXEL_FILL(15));
-        BlitMenuInfoIcon(B_WIN_MOVE_TYPE, type, 0, 2);
+        BlitMenuInfoIcon(B_WIN_MOVE_TYPE, type + 1, 0, 2);
         BlitMenuInfoIcon(B_WIN_MOVE_TYPE, MENU_INFO_ICON_FISICO + category, 36, 3);
         switch (effectiveness)
         {
