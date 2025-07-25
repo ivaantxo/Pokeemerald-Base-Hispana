@@ -2559,6 +2559,7 @@ static void PrintBattlerOnAbilityPopUp(u8 battler, u8 spriteId1, u8 spriteId2)
 
         monName[i] = nick[i];
     }
+    monName[i] = EOS; // Asegura terminador de string
 
     PrintOnAbilityPopUp((const u8 *)monName,
                         (void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * TILE_SIZE_4BPP),
