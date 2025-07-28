@@ -675,11 +675,7 @@
     },
     {
       "id": "MAPSEC_INSIDE_OF_TRUCK",
-      "name": "Dentro del camión",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Dentro del camión"
     },
     {
       "id": "MAPSEC_SKY_PILLAR",
@@ -691,897 +687,453 @@
     },
     {
       "id": "MAPSEC_SECRET_BASE",
-      "name": "Base secreta",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Base secreta"
     },
     {
       "id": "MAPSEC_DYNAMIC",
-      "name": "",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": ""
     },
     {
       "id": "MAPSEC_PALLET_TOWN",
-      "name": "Pueblo Paleta",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Pueblo Paleta"
     },
     {
       "id": "MAPSEC_VIRIDIAN_CITY",
-      "name": "Ciudad Verde",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Verde"
     },
     {
       "id": "MAPSEC_PEWTER_CITY",
-      "name": "Ciudad Plateada",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Plateada"
     },
     {
       "id": "MAPSEC_CERULEAN_CITY",
-      "name": "Ciudad Celeste",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Celeste"
     },
     {
       "id": "MAPSEC_LAVENDER_TOWN",
-      "name": "Pueblo Lavanda",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Pueblo Lavanda"
     },
     {
       "id": "MAPSEC_VERMILION_CITY",
-      "name": "Ciudad Carmín",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Carmín"
     },
     {
       "id": "MAPSEC_CELADON_CITY",
-      "name": "Ciudad Azulona",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Azulona"
     },
     {
       "id": "MAPSEC_FUCHSIA_CITY",
-      "name": "Ciudad Fucsia",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Fucsia"
     },
     {
       "id": "MAPSEC_CINNABAR_ISLAND",
-      "name": "Isla Canela",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Canela"
     },
     {
       "id": "MAPSEC_INDIGO_PLATEAU",
-      "name": "Meseta Añil",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Meseta Añil"
     },
     {
       "id": "MAPSEC_SAFFRON_CITY",
-      "name": "Ciudad Azafrán",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ciudad Azafrán"
     },
     {
       "id": "MAPSEC_ROUTE_4_POKECENTER",
       "name": "Ruta 4",
-      "name_clone": true,
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name_clone": true
     },
     {
       "id": "MAPSEC_ROUTE_10_POKECENTER",
       "name": "Ruta 10",
-      "name_clone": true,
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name_clone": true
     },
     {
       "id": "MAPSEC_ROUTE_1",
-      "name": "Ruta 1",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 1"
     },
     {
       "id": "MAPSEC_ROUTE_2",
-      "name": "Ruta 2",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 2"
     },
     {
       "id": "MAPSEC_ROUTE_3",
-      "name": "Ruta 3",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 3"
     },
     {
       "id": "MAPSEC_ROUTE_4",
-      "name": "Ruta 4",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 4"
     },
     {
       "id": "MAPSEC_ROUTE_5",
-      "name": "Ruta 5",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 5"
     },
     {
       "id": "MAPSEC_ROUTE_6",
-      "name": "Ruta 6",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 6"
     },
     {
       "id": "MAPSEC_ROUTE_7",
-      "name": "Ruta 7",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 7"
     },
     {
       "id": "MAPSEC_ROUTE_8",
-      "name": "Ruta 8",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 8"
     },
     {
       "id": "MAPSEC_ROUTE_9",
-      "name": "Ruta 9",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 9"
     },
     {
       "id": "MAPSEC_ROUTE_10",
-      "name": "Ruta 10",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 10"
     },
     {
       "id": "MAPSEC_ROUTE_11",
-      "name": "Ruta 11",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 11"
     },
     {
       "id": "MAPSEC_ROUTE_12",
-      "name": "Ruta 12",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 12"
     },
     {
       "id": "MAPSEC_ROUTE_13",
-      "name": "Ruta 13",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 13"
     },
     {
       "id": "MAPSEC_ROUTE_14",
-      "name": "Ruta 14",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 14"
     },
     {
       "id": "MAPSEC_ROUTE_15",
-      "name": "Ruta 15",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 15"
     },
     {
       "id": "MAPSEC_ROUTE_16",
-      "name": "Ruta 16",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 16"
     },
     {
       "id": "MAPSEC_ROUTE_17",
-      "name": "Ruta 17",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 17"
     },
     {
       "id": "MAPSEC_ROUTE_18",
-      "name": "Ruta 18",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 18"
     },
     {
       "id": "MAPSEC_ROUTE_19",
-      "name": "Ruta 19",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 19"
     },
     {
       "id": "MAPSEC_ROUTE_20",
-      "name": "Ruta 20",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 20"
     },
     {
       "id": "MAPSEC_ROUTE_21",
-      "name": "Ruta 21",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 21"
     },
     {
       "id": "MAPSEC_ROUTE_22",
-      "name": "Ruta 22",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 22"
     },
     {
       "id": "MAPSEC_ROUTE_23",
-      "name": "Ruta 23",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 23"
     },
     {
       "id": "MAPSEC_ROUTE_24",
-      "name": "Ruta 24",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 24"
     },
     {
       "id": "MAPSEC_ROUTE_25",
-      "name": "Ruta 25",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruta 25"
     },
     {
       "id": "MAPSEC_VIRIDIAN_FOREST",
-      "name": "Bosque Verde",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Bosque Verde"
     },
     {
       "id": "MAPSEC_MT_MOON",
-      "name": "Monte Moon",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Monte Moon"
     },
     {
       "id": "MAPSEC_S_S_ANNE",
-      "name": "S.S. Anne",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "S.S. Anne"
     },
     {
       "id": "MAPSEC_UNDERGROUND_PATH",
-      "name": "Vía subterránea",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Vía subterránea"
     },
     {
       "id": "MAPSEC_UNDERGROUND_PATH_2",
       "name": "Vía subterránea",
-      "name_clone": true,
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name_clone": true
     },
     {
       "id": "MAPSEC_DIGLETTS_CAVE",
-      "name": "Cueva Diglett",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Diglett"
     },
     {
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
       "name": "Calle Victoria",
-      "name_clone": true,
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name_clone": true
     },
     {
       "id": "MAPSEC_ROCKET_HIDEOUT",
-      "name": "Guarida Rocket",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Guarida Rocket"
     },
     {
       "id": "MAPSEC_SILPH_CO",
-      "name": "Silph S.A.",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Silph S.A."
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "Mansión Pokémon",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Mansión Pokémon"
     },
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
       "name": "Zona Safari",
-      "name_clone": true,
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name_clone": true
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "Liga Pokémon",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Liga Pokémon"
     },
     {
       "id": "MAPSEC_ROCK_TUNNEL",
-      "name": "Túnel Roca",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Túnel Roca"
     },
     {
       "id": "MAPSEC_SEAFOAM_ISLANDS",
-      "name": "Islas Espuma",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Islas Espuma"
     },
     {
       "id": "MAPSEC_POKEMON_TOWER",
-      "name": "Torre Pokémon",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Torre Pokémon"
     },
     {
       "id": "MAPSEC_CERULEAN_CAVE",
-      "name": "Cueva Celeste",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Celeste"
     },
     {
       "id": "MAPSEC_POWER_PLANT",
-      "name": "Central de energía",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Central de energía"
     },
     {
       "id": "MAPSEC_ONE_ISLAND",
-      "name": "Isla Prima",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Prima"
     },
     {
       "id": "MAPSEC_TWO_ISLAND",
-      "name": "Isla Secunda",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Secunda"
     },
     {
       "id": "MAPSEC_THREE_ISLAND",
-      "name": "Isla Tera",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Tera"
     },
     {
       "id": "MAPSEC_FOUR_ISLAND",
-      "name": "Isla Quarta",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Quarta"
     },
     {
       "id": "MAPSEC_FIVE_ISLAND",
-      "name": "Isla Inta",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Inta"
     },
     {
       "id": "MAPSEC_SEVEN_ISLAND",
-      "name": "Isla Sétima",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Sétima"
     },
     {
       "id": "MAPSEC_SIX_ISLAND",
-      "name": "Isla Exta",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Exta"
     },
     {
       "id": "MAPSEC_KINDLE_ROAD",
-      "name": "Camino Candente",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Camino Candente"
     },
     {
       "id": "MAPSEC_TREASURE_BEACH",
-      "name": "Playa Tesoro",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Playa Tesoro"
     },
     {
       "id": "MAPSEC_CAPE_BRINK",
-      "name": "Cabo Extremo",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cabo Extremo"
     },
     {
       "id": "MAPSEC_BOND_BRIDGE",
-      "name": "Puente Unión",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Puente Unión"
     },
     {
       "id": "MAPSEC_THREE_ISLE_PORT",
-      "name": "Puerto de Isla Tera",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Puerto de Isla Tera"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_6",
-      "name": "SEVII ISLE 6",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 6"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_7",
-      "name": "SEVII ISLE 7",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 7"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_8",
-      "name": "SEVII ISLE 8",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 8"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_9",
-      "name": "SEVII ISLE 9",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 9"
     },
     {
       "id": "MAPSEC_RESORT_GORGEOUS",
-      "name": "Lugar de recreo",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Lugar de recreo"
     },
     {
       "id": "MAPSEC_WATER_LABYRINTH",
-      "name": "Aquarinto",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Aquarinto"
     },
     {
       "id": "MAPSEC_FIVE_ISLE_MEADOW",
-      "name": "Prado de Isla Inta",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Prado de Isla Inta"
     },
     {
       "id": "MAPSEC_MEMORIAL_PILLAR",
-      "name": "Pilar Recuerdo",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Pilar Recuerdo"
     },
     {
       "id": "MAPSEC_OUTCAST_ISLAND",
-      "name": "Isla Aislada",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Aislada"
     },
     {
       "id": "MAPSEC_GREEN_PATH",
-      "name": "Vía Verde",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Vía Verde"
     },
     {
       "id": "MAPSEC_WATER_PATH",
-      "name": "Vía Acuática",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Vía Acuática"
     },
     {
       "id": "MAPSEC_RUIN_VALLEY",
-      "name": "Valle Ruinas",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Valle Ruinas"
     },
     {
       "id": "MAPSEC_TRAINER_TOWER",
-      "name": "Torre Desafío",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Torre Desafío"
     },
     {
       "id": "MAPSEC_CANYON_ENTRANCE",
-      "name": "Entrada al Cañón",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Entrada al Cañón"
     },
     {
       "id": "MAPSEC_SEVAULT_CANYON",
-      "name": "Cañón Sétano",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cañón Sétano"
     },
     {
       "id": "MAPSEC_TANOBY_RUINS",
-      "name": "Ruinas Sete",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Ruinas Sete"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_22",
-      "name": "SEVII ISLE 22",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 22"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_23",
-      "name": "SEVII ISLE 23",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 23"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_24",
-      "name": "SEVII ISLE 24",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "SEVII ISLE 24"
     },
     {
       "id": "MAPSEC_NAVEL_ROCK_FRLG",
-      "name": "Roca Ombligo",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Roca Ombligo"
     },
     {
       "id": "MAPSEC_MT_EMBER",
-      "name": "Monte Ascuas",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Monte Ascuas"
     },
     {
       "id": "MAPSEC_BERRY_FOREST",
-      "name": "Bosque Baya",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Bosque Baya"
     },
     {
       "id": "MAPSEC_ICEFALL_CAVE",
-      "name": "Cueva Glaciada",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Glaciada"
     },
     {
       "id": "MAPSEC_ROCKET_WAREHOUSE",
-      "name": "Almacén Rocket",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Almacén Rocket"
     },
     {
       "id": "MAPSEC_TRAINER_TOWER_2",
       "name": "Torre Desafío",
-      "name_clone": true,
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name_clone": true
     },
     {
       "id": "MAPSEC_DOTTED_HOLE",
-      "name": "Cueva Punteada",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Punteada"
     },
     {
       "id": "MAPSEC_LOST_CAVE",
-      "name": "Cueva Perdida",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Perdida"
     },
     {
       "id": "MAPSEC_PATTERN_BUSH",
-      "name": "Bosquejo",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Bosquejo"
     },
     {
       "id": "MAPSEC_ALTERING_CAVE_FRLG",
-      "name": "Cueva Cambiante",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Cambiante"
     },
     {
       "id": "MAPSEC_TANOBY_CHAMBERS",
-      "name": "Cámaras Sete",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámaras Sete"
     },
     {
       "id": "MAPSEC_THREE_ISLE_PATH",
-      "name": "Camino de Isla Tera",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Camino de Isla Tera"
     },
     {
       "id": "MAPSEC_TANOBY_KEY",
-      "name": "Llave Sete",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Llave Sete"
     },
     {
       "id": "MAPSEC_BIRTH_ISLAND_FRLG",
-      "name": "Isla Origen",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Origen"
     },
     {
       "id": "MAPSEC_MONEAN_CHAMBER",
-      "name": "Cámara Anémuna",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Anémuna"
     },
     {
       "id": "MAPSEC_LIPTOO_CHAMBER",
-      "name": "Cámara Tulipdos",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Tulipdos"
     },
     {
       "id": "MAPSEC_WEEPTH_CHAMBER",
-      "name": "Cámara Tristante",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Tristante"
     },
     {
       "id": "MAPSEC_DILFORD_CHAMBER",
-      "name": "Cámara Quarciso",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Quarciso"
     },
     {
       "id": "MAPSEC_SCUFIB_CHAMBER",
-      "name": "Cámara Hibinca",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Hibinca"
     },
     {
       "id": "MAPSEC_RIXY_CHAMBER",
-      "name": "Cámara Seiris",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Seiris"
     },
     {
       "id": "MAPSEC_VIAPOIS_CHAMBER",
-      "name": "Cámara Pasiete",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cámara Pasiete"
     },
     {
       "id": "MAPSEC_EMBER_SPA",
-      "name": "Balneario Ascuas",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Balneario Ascuas"
     },
     {
       "id": "MAPSEC_SPECIAL_AREA",
-      "name": "Área especial",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Área especial"
     },
     {
       "id": "MAPSEC_AQUA_HIDEOUT",
@@ -1609,19 +1161,11 @@
     },
     {
       "id": "MAPSEC_BIRTH_ISLAND",
-      "name": "Isla Origen",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Origen"
     },
     {
       "id": "MAPSEC_FARAWAY_ISLAND",
-      "name": "Isla Suprema",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Isla Suprema"
     },
     {
       "id": "MAPSEC_ARTISAN_CAVE",
@@ -1633,27 +1177,15 @@
     },
     {
       "id": "MAPSEC_MARINE_CAVE",
-      "name": "Cueva Marina",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Marina"
     },
     {
       "id": "MAPSEC_UNDERWATER_MARINE_CAVE",
-      "name": "Bajo el agua",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Bajo el agua"
     },
     {
       "id": "MAPSEC_TERRA_CAVE",
-      "name": "Cueva Terrena",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Cueva Terrena"
     },
     {
       "id": "MAPSEC_UNDERWATER_105",
@@ -1697,11 +1229,7 @@
     },
     {
       "id": "MAPSEC_NAVEL_ROCK",
-      "name": "Roca Ombligo",
-      "x": 0,
-      "y": 0,
-      "width": 1,
-      "height": 1
+      "name": "Roca Ombligo"
     },
     {
       "id": "MAPSEC_TRAINER_HILL",

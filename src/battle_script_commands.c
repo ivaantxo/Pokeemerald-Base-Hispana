@@ -2222,7 +2222,7 @@ static void Cmd_adjustdamage(void)
         holdEffect = GetBattlerHoldEffect(battlerDef, TRUE);
         param = GetBattlerHoldEffectParam(battlerDef);
         affectionScore = GetBattlerAffectionHearts(battlerDef);
-        
+
         gPotentialItemEffectBattler = battlerDef;
 
         if (moveEffect == EFFECT_FALSE_SWIPE)
@@ -15458,7 +15458,7 @@ static void Cmd_pickup(void)
 
     if (!InBattlePike()) // No items in Battle Pike.
     {
-        bool32 isInPyramid = InBattlePyramid_();
+        bool32 isInPyramid = CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE;
         for (i = 0; i < PARTY_SIZE; i++)
         {
             species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
