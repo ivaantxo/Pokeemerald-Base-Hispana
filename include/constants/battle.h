@@ -700,4 +700,11 @@ enum MonState
     MON_OUTSIDE_BATTLE,
 };
 
+enum __attribute__((packed)) CalcDamageState
+{
+    CAN_DAMAGE,
+    WILL_FAIL,
+    CHECK_ACCURACY,
+};
+
 #endif // GUARD_CONSTANTS_BATTLE_H
