@@ -7613,6 +7613,7 @@ BattleScript_HospitalityActivates::
 	printstring STRINGID_HOSPITALITYRESTORATION
 	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+ 	playanimation BS_EFFECT_BATTLER, B_ANIM_SIMPLE_HEAL
 	healthbarupdate BS_EFFECT_BATTLER
 	datahpupdate BS_EFFECT_BATTLER
 	end3
