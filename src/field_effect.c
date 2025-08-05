@@ -259,10 +259,6 @@ static bool8 RockClimb_WaitStopRockClimb(struct Task *task, struct ObjectEvent *
 static bool8 RockClimb_StopRockClimbInit(struct Task *task, struct ObjectEvent *objectEvent);
 // Static RAM declarations
 
-#if FOLLOW_ME_IMPLEMENTED
-static void TryAttachFollowerToPlayer(void);
-#endif
-
 static u8 sActiveList[32];
 
 // External declarations

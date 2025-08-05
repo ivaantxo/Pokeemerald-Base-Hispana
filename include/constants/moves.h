@@ -1,10 +1,6 @@
 #ifndef GUARD_CONSTANTS_MOVES_H
 #define GUARD_CONSTANTS_MOVES_H
 
-#ifndef BATTLE_ENGINE
-    #define MOVE_ROCK_CLIMB 1
-#endif
-
 #define MOVE_NONE 0
 #define MOVE_POUND 1
 #define MOVE_KARATE_CHOP 2
