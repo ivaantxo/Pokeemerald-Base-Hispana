@@ -1639,6 +1639,9 @@ bool32 DoesBattlerIgnoreAbilityChecks(u32 battlerAtk, u32 atkAbility, u32 move)
     if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
+    if (atkAbility == ABILITY_MYCELIUM_MIGHT && IsBattleMoveStatus(move))
+        return TRUE;
+
     if (IsMoldBreakerTypeAbility(battlerAtk, atkAbility) || MoveIgnoresTargetAbility(move))
         return TRUE;
 
@@ -1750,10 +1753,12 @@ bool32 IsHazardMove(u32 move)
     u32 i, moveEffect = GetMoveEffect(move);
     switch (moveEffect)
     {
+    case EFFECT_CEASELESS_EDGE:
     case EFFECT_SPIKES:
-    case EFFECT_TOXIC_SPIKES:
-    case EFFECT_STICKY_WEB:
     case EFFECT_STEALTH_ROCK:
+    case EFFECT_STICKY_WEB:
+    case EFFECT_STONE_AXE:
+    case EFFECT_TOXIC_SPIKES:
         return TRUE;
     }
 
@@ -1763,6 +1768,7 @@ bool32 IsHazardMove(u32 move)
         const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, i);
         switch (additionalEffect->moveEffect)
         {
+        case MOVE_EFFECT_STEALTH_ROCK:
         case MOVE_EFFECT_STEELSURGE:
             return TRUE;
         default:
@@ -4967,17 +4973,32 @@ bool32 AI_ShouldCopyStatChanges(u32 battlerAtk, u32 battlerDef)
 }
 
 //TODO - track entire opponent party data to determine hazard effectiveness
-bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData)
+bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData)
 {
-    if (aiData->abilities[battlerDef] == ABILITY_MAGIC_BOUNCE
-     || CountUsablePartyMons(battlerDef) == 0
-     || HasMoveWithEffect(battlerDef, EFFECT_RAPID_SPIN)
-     || HasMoveWithEffect(battlerDef, EFFECT_TIDY_UP)
-     || HasMoveWithEffect(battlerDef, EFFECT_DEFOG)
-     || HasMoveWithAdditionalEffect(battlerDef, MOVE_EFFECT_DEFOG)
-     || HasMoveWithEffect(battlerDef, EFFECT_MAGIC_COAT))
+    if (CountUsablePartyMons(battlerDef) == 0
+     || HasBattlerSideMoveWithEffect(battlerDef, EFFECT_COURT_CHANGE)
+     || HasBattlerSideMoveWithEffect(battlerDef, EFFECT_DEFOG)
+     || HasBattlerSideMoveWithEffect(battlerDef, EFFECT_RAPID_SPIN)
+     || HasBattlerSideMoveWithEffect(battlerDef, EFFECT_TIDY_UP)
+     || HasBattlerSideMoveWithEffect(battlerDef, MOVE_EFFECT_DEFOG))
         return FALSE;
 
+    if (IsBattleMoveStatus(move))
+    {
+        if (HasMoveWithEffect(battlerDef, EFFECT_MAGIC_COAT))
+            return FALSE;
+        if (DoesBattlerIgnoreAbilityChecks(battlerAtk, aiData->abilities[battlerAtk], move))
+            return TRUE;
+        if (aiData->abilities[battlerDef] == ABILITY_MAGIC_BOUNCE)
+            return FALSE;
+    }
+    else
+    {
+        if (DoesBattlerIgnoreAbilityChecks(battlerAtk, aiData->abilities[battlerAtk], move))
+            return TRUE;
+        if (aiData->abilities[battlerDef] == ABILITY_SHIELD_DUST)
+            return FALSE;
+    }
     return TRUE;
 }
 

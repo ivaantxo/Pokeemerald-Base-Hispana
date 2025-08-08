@@ -4416,11 +4416,13 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 ADJUST_SCORE(GOOD_EFFECT);
         }
         break;
+    case EFFECT_CEASELESS_EDGE:
     case EFFECT_SPIKES:
     case EFFECT_STEALTH_ROCK:
     case EFFECT_STICKY_WEB:
+    case EFFECT_STONE_AXE:
     case EFFECT_TOXIC_SPIKES:
-        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData))
+        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, move, aiData))
         {
             if (gDisableStructs[battlerAtk].isFirstTurn)
                 ADJUST_SCORE(BEST_EFFECT);
@@ -5319,16 +5321,6 @@ case EFFECT_GUARD_SPLIT:
             break;
         }
         break;
-    case EFFECT_STONE_AXE:
-    case EFFECT_CEASELESS_EDGE:
-        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData));
-        {
-            if (gDisableStructs[battlerAtk].isFirstTurn)
-                ADJUST_SCORE(BEST_EFFECT);
-            else
-                ADJUST_SCORE(DECENT_EFFECT);
-        }
-        break;
     default:
         break;
     } // move effect checks
@@ -5473,7 +5465,7 @@ case EFFECT_GUARD_SPLIT:
                     ADJUST_SCORE(DECENT_EFFECT);
                 break;
             case MOVE_EFFECT_STEALTH_ROCK:
-                if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData));
+                if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, move, aiData));
                 {
                     if (gDisableStructs[battlerAtk].isFirstTurn)
                         ADJUST_SCORE(BEST_EFFECT);
@@ -6062,7 +6054,7 @@ static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     case EFFECT_STEALTH_ROCK:
     case EFFECT_STICKY_WEB:
     case EFFECT_TOXIC_SPIKES:
-        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, gAiLogicData))
+        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, move, gAiLogicData))
             ADJUST_SCORE(POWERFUL_STATUS_MOVE);
         break;
     case EFFECT_GRASSY_TERRAIN:
