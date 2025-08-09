@@ -6061,10 +6061,13 @@ static void Cmd_moveend(void)
             switch (moveEffect)
             {
             case EFFECT_ABSORB:
-                if (!(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK) && IsBattlerAlive(gBattlerAttacker))
+                if (!(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
+                     && gBattleStruct->moveDamage[gBattlerTarget] > 0
+                     && IsBattlerAlive(gBattlerAttacker))
                 {
                     gBattleStruct->moveDamage[gBattlerAttacker] = max(1, (gBattleStruct->moveDamage[gBattlerTarget] * GetMoveAbsorbPercentage(gCurrentMove) / 100));
                     gBattleStruct->moveDamage[gBattlerAttacker] = GetDrainedBigRootHp(gBattlerAttacker, gBattleStruct->moveDamage[gBattlerAttacker]);
+
                     gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE;
                     effect = TRUE;
                     if (GetBattlerAbility(gBattlerTarget) == ABILITY_LIQUID_OOZE)
