@@ -3114,7 +3114,7 @@ BattleScript_AlreadyPoisoned::
 
 BattleScript_ImmunityProtected::
 	call BattleScript_AbilityPopUp
-	goto BattleScript_ButItFailed
+	goto BattleScript_DoesntAffectTargetAtkString
 
 BattleScript_EffectAuroraVeil::
 	attackcanceler
