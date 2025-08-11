@@ -2548,7 +2548,6 @@ void CloseQueueGroup(u32 sourceLine)
 
 void QueueAbility(u32 sourceLine, struct BattlePokemon *battler, struct AbilityEventContext ctx)
 {
-#if B_ABILITY_POP_UP
     s32 battlerId = battler - gBattleMons;
     INVALID_IF(!STATE->runScene, "ABILITY_POPUP outside of SCENE");
     if (DATA.queuedEventsCount == MAX_QUEUED_EVENTS)
@@ -2563,7 +2562,6 @@ void QueueAbility(u32 sourceLine, struct BattlePokemon *battler, struct AbilityE
             .ability = ctx.ability,
         }},
     };
-#endif
 }
 
 void QueueAnimation(u32 sourceLine, u32 type, u32 id, struct AnimationEventContext ctx)
