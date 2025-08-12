@@ -429,13 +429,13 @@ static enum FieldEffectOutcome BenefitsFromPsychicTerrain(u32 battler)
 static enum FieldEffectOutcome BenefitsFromTrickRoom(u32 battler)
 {
     // If we're in singles, we literally only care about speed.
-    if (!IsDoubleBattle())
+    if (IsBattle1v1())
     {
-        if (GetBattlerSideSpeedAverage(battler) < GetBattlerSideSpeedAverage(FOE(battler)))
+        if (gAiLogicData->speedStats[battler] < gAiLogicData->speedStats[FOE(battler)])
             return FIELD_EFFECT_POSITIVE;
         // If we tie, we shouldn't change trick room state.
-        else if (GetBattlerSideSpeedAverage(battler) == GetBattlerSideSpeedAverage(FOE(battler)))
-            return FIELD_EFFECT_NEUTRAL;
+        else if (gAiLogicData->speedStats[battler] == gAiLogicData->speedStats[FOE(battler)])
+            return FIELD_EFFECT_NEUTRAL; 
         else
             return FIELD_EFFECT_NEGATIVE;
     }

@@ -340,6 +340,24 @@ AI_SINGLE_BATTLE_TEST("AI uses Skill Swap against Poison Heal")
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI uses Trick Room (singles)")
+{
+    u32 speed;
+    PARAMETRIZE { speed = 10; }
+    PARAMETRIZE { speed = 20; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(11); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(speed); Moves(MOVE_TACKLE, MOVE_TRICK_ROOM); }
+    } WHEN {
+        if (speed == 10)
+            TURN { EXPECT_MOVE(opponent, MOVE_TRICK_ROOM); }
+        else
+            TURN { NOT_EXPECT_MOVE(opponent, MOVE_TRICK_ROOM); }
+    }
+}
+
 AI_SINGLE_BATTLE_TEST("AI uses Quick Guard against Quick Attack when opponent would take poison damage")
 {
     PASSES_RANDOMLY(PREDICT_MOVE_CHANCE, 100, RNG_AI_PREDICT_MOVE);
