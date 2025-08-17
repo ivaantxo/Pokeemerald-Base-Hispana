@@ -68,7 +68,6 @@
 
 // Configuraciones generales
 #define EXPANSION_INTRO              TRUE    // Si está habilitado, se reproducirá una introducción personalizada de RHH después de la pantalla de derechos de autor original.
-#define SUMMARY_SCREEN_NATURE_COLORS TRUE    // Si está habilitado, los aumentos y reducciones basados en la naturaleza se mostrarán en rojo y azul en la pantalla de resumen.
 #define HQ_RANDOM                    TRUE    // Si está habilitado, reemplaza el RNG predeterminado con una implementación del RNG SFC32. Puede romper el código que depende del RNG.
 #define COMPETITIVE_PARTY_SYNTAX     TRUE    // Si está habilitado, los equipos se definen en "sintaxis competitiva".
 #define AUTO_SCROLL_TEXT             TRUE    // Si está habilitado, el texto automáticamente pasará a la siguiente línea después de NUM_FRAMES_AUTO_SCROLL_DELAY. El jugador todavía podrá pulsar A_BUTTON o B_BUTTON para pasar a la siguiente línea por sí mismo.

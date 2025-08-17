@@ -4,6 +4,7 @@
 // Configuraciones
 #define P_SUMMARY_SCREEN_MOVE_RELEARNER  TRUE   // Si está habilitado, mostrará una opción para recordar movimientos en la pantalla de sumario.
 #define P_SUMMARY_MOVE_RELEARNER_FULL_PP TRUE   // Si está habilitado, el recordador de movimientos de la pantalla de sumario recuperará los PP de los ataques al máximo.
+#define P_SUMMARY_SCREEN_NATURE_COLORS   TRUE   // Si está habilitado, los aumentos y reducciones basados en la naturaleza se mostrarán en rojo y azul en la pantalla de resumen.
 #define P_SUMMARY_SCREEN_RENAME          TRUE   // Si está habilitado, una opción para cambiar el nombre de los Pokémon sustituirá la opción de cancelar en la pantalla de sumario.
 #define P_SUMMARY_SCREEN_IV_EV_INFO      FALSE  // Si está habilitado, permitirá al jugador rotar Estadísticas, IVs, y EVs en la página de habilidades en la pantalla de sumario.
 #define P_SUMMARY_SCREEN_IV_EV_BOX_ONLY  FALSE  // Si está habilitado, permitirá al jugador rotar Estadísticas, IVs, y EVs en la página de habilidades en la pantalla de sumario, pero solo en la caja Pokémon.
