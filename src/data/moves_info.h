@@ -2665,10 +2665,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     [MOVE_TELEPORT] =
     {
         .name = COMPOUND_STRING("Teletransporte"),
-        #if B_TELEPORT_BEHAVIOUR >= GEN_8
+        #if B_TELEPORT_BEHAVIOR >= GEN_8
         .description = COMPOUND_STRING(
             "Cambia al usuario el último.\n"
-            "Salvajes huyen si lo usan.")
+            "Huye contra pokémon salvajes."),
         #else
         .description = COMPOUND_STRING(
             "A psychic move for fleeing\n"
