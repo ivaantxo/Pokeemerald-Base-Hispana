@@ -932,7 +932,7 @@ static bool8 LoadBerryBlenderGfx(void)
     {
     case 0:
         sBerryBlender->tilesBuffer = AllocZeroed(GetDecompressedDataSize(gBerryBlenderCenter_Gfx) + 100);
-        LZDecompressWram(gBerryBlenderCenter_Gfx, sBerryBlender->tilesBuffer);
+        DecompressDataWithHeaderWram(gBerryBlenderCenter_Gfx, sBerryBlender->tilesBuffer);
         sBerryBlender->loadGfxState++;
         break;
     case 1:
@@ -946,7 +946,7 @@ static bool8 LoadBerryBlenderGfx(void)
         sBerryBlender->loadGfxState++;
         break;
     case 3:
-        LZDecompressWram(gBerryBlenderOuter_Gfx, sBerryBlender->tilesBuffer);
+        DecompressDataWithHeaderWram(gBerryBlenderOuter_Gfx, sBerryBlender->tilesBuffer);
         sBerryBlender->loadGfxState++;
         break;
     case 4:
@@ -954,7 +954,7 @@ static bool8 LoadBerryBlenderGfx(void)
         sBerryBlender->loadGfxState++;
         break;
     case 5:
-        LZDecompressWram(gBerryBlenderOuter_Tilemap, sBerryBlender->tilesBuffer);
+        DecompressDataWithHeaderWram(gBerryBlenderOuter_Tilemap, sBerryBlender->tilesBuffer);
         sBerryBlender->loadGfxState++;
         break;
     case 6:
@@ -1041,7 +1041,7 @@ static void CB2_LoadBerryBlender(void)
         ResetSpriteData();
         FreeAllSpritePalettes();
         SetVBlankCallback(NULL);
-        ResetBgsAndClearDma3BusyFlags();
+        ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(1, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         SetBgTilemapBuffer(1, sBerryBlender->tilemapBuffers[0]);
         SetBgTilemapBuffer(2, sBerryBlender->tilemapBuffers[1]);
@@ -1492,7 +1492,7 @@ static void InitBlenderBgs(void)
 
     SetVBlankCallback(VBlankCB_BerryBlender);
 
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(1, sBgTemplates, ARRAY_COUNT(sBgTemplates));
 
     SetBgTilemapBuffer(1, sBerryBlender->tilemapBuffers[0]);

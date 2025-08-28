@@ -400,7 +400,7 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
 static void AddHatchedMonToParty(u8 id)
 {
     u8 isEgg = 0x46; // ?
-    u16 species;
+    enum NationalDexOrder species;
     u8 name[POKEMON_NAME_LENGTH + 1];
     u16 metLevel;
     u8 metLocation;
@@ -536,7 +536,7 @@ static void CB2_LoadEggHatch(void)
         gSpecialVar_0x8005 = GetCurrentMapMusic();
 
         ResetTempTileDataBuffers();
-        ResetBgsAndClearDma3BusyFlags();
+        ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(0, sBgTemplates_EggHatch, ARRAY_COUNT(sBgTemplates_EggHatch));
 
         ChangeBgX(1, 0, BG_COORD_SET);

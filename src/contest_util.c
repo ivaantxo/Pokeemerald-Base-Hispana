@@ -406,7 +406,7 @@ static void InitContestResultsDisplay(void)
     int i;
 
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP);
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     for (i = 0; i < (int)ARRAY_COUNT(sContestResults->tilemapBuffers); i++)
         SetBgTilemapBuffer(i, sContestResults->tilemapBuffers[i]);
@@ -452,7 +452,7 @@ static void LoadContestResultsBgGfx(void)
     s8 numStars, round2Points;
     u16 tile1, tile2;
 
-    LZDecompressVram(gContestResults_Gfx, (void *)BG_CHAR_ADDR(0));
+    DecompressDataWithHeaderVram(gContestResults_Gfx, (void *)BG_CHAR_ADDR(0));
     CopyToBgTilemapBuffer(3, gContestResults_Bg_Tilemap, 0, 0);
     CopyToBgTilemapBuffer(2, gContestResults_Interface_Tilemap, 0, 0);
     CopyToBgTilemapBuffer(0, gContestResults_WinnerBanner_Tilemap, 0, 0);
@@ -964,7 +964,8 @@ static void Task_ShowWinnerMonBanner(u8 taskId)
 
 static void Task_SetSeenWinnerMon(u8 taskId)
 {
-    int i, nationalDexNum;
+    int i;
+    enum NationalDexOrder nationalDexNum;
 
     if (JOY_NEW(A_BUTTON))
     {

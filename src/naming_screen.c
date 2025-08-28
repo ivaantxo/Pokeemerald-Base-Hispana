@@ -27,6 +27,7 @@
 #include "overworld.h"
 #include "walda_phrase.h"
 #include "main.h"
+#include "decompress.h"
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
 
@@ -500,7 +501,7 @@ static void NamingScreen_InitBGs(void)
     DmaClear16(3, (void *)PLTT, PLTT_SIZE);
 
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0);
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
 
     ChangeBgX(0, 0, BG_COORD_SET);
@@ -1856,7 +1857,7 @@ static void SaveInputText(void)
 
 static void LoadGfx(void)
 {
-    LZ77UnCompWram(gNamingScreenMenu_Gfx, sNamingScreen->tileBuffer);
+    DecompressDataWithHeaderWram(gNamingScreenMenu_Gfx, sNamingScreen->tileBuffer);
     LoadBgTiles(1, sNamingScreen->tileBuffer, sizeof(sNamingScreen->tileBuffer), 0);
     LoadBgTiles(2, sNamingScreen->tileBuffer, sizeof(sNamingScreen->tileBuffer), 0);
     LoadBgTiles(3, sNamingScreen->tileBuffer, sizeof(sNamingScreen->tileBuffer), 0);

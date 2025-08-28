@@ -752,10 +752,10 @@ static const struct MenuAction sKeyboardPageTitleTexts[UNION_ROOM_KB_PAGE_COUNT 
 };
 
 static const u16 sUnionRoomChatInterfacePal[] = INCBIN_U16("graphics/union_room_chat/interface.gbapal");
-static const u32 sKeyboardCursorTiles[] = INCBIN_U32("graphics/union_room_chat/keyboard_cursor.4bpp.lz");
-static const u32 sTextEntryCursorTiles[] = INCBIN_U32("graphics/union_room_chat/text_entry_cursor.4bpp.lz");
-static const u32 sTextEntryArrowTiles[] = INCBIN_U32("graphics/union_room_chat/text_entry_arrow.4bpp.lz");
-static const u32 sRButtonGfxTiles[] = INCBIN_U32("graphics/union_room_chat/r_button.4bpp.lz");
+static const u32 sKeyboardCursorTiles[] = INCBIN_U32("graphics/union_room_chat/keyboard_cursor.4bpp.smol");
+static const u32 sTextEntryCursorTiles[] = INCBIN_U32("graphics/union_room_chat/text_entry_cursor.4bpp.smol");
+static const u32 sTextEntryArrowTiles[] = INCBIN_U32("graphics/union_room_chat/text_entry_arrow.4bpp.smol");
+static const u32 sRButtonGfxTiles[] = INCBIN_U32("graphics/union_room_chat/r_button.4bpp.smol");
 
 static const struct CompressedSpriteSheet sSpriteSheets[] = {
     {.data = sKeyboardCursorTiles,         .size = 0x1000, .tag = GFXTAG_KEYBOARD_CURSOR},
@@ -2158,7 +2158,7 @@ static bool8 TryAllocDisplay(void)
     sDisplay = Alloc(sizeof(*sDisplay));
     if (sDisplay && TryAllocSprites())
     {
-        ResetBgsAndClearDma3BusyFlags();
+        ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         InitWindows(sWinTemplates);
         ResetTempTileDataBuffers();

@@ -116,7 +116,7 @@ static void MCB2_InitRegionMapRegisters(void)
     SetGpuReg(REG_OFFSET_BG3VOFS, 0);
     ResetSpriteData();
     FreeAllSpritePalettes();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(1, sFieldRegionMapBgTemplates, ARRAY_COUNT(sFieldRegionMapBgTemplates));
     InitWindows(sFieldRegionMapWindowTemplates);
     DeactivateAllTextPrinters();

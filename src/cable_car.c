@@ -126,11 +126,11 @@ static const struct BgTemplate sBgTemplates[4] = {
     },
 };
 
-static const u16 sGround_Tilemap[] = INCBIN_U16("graphics/cable_car/ground.bin.lz");
-static const u16 sTrees_Tilemap[] = INCBIN_U16("graphics/cable_car/trees.bin.lz");
-static const u16 sBgMountains_Tilemap[] = INCBIN_U16("graphics/cable_car/bg_mountains.bin.lz");
+static const u16 sGround_Tilemap[] = INCBIN_U16("graphics/cable_car/ground.bin.smolTM");
+static const u16 sTrees_Tilemap[] = INCBIN_U16("graphics/cable_car/trees.bin.smolTM");
+static const u16 sBgMountains_Tilemap[] = INCBIN_U16("graphics/cable_car/bg_mountains.bin.smolTM");
 static const u16 sPylonTop_Tilemap[] = INCBIN_U16("graphics/cable_car/pylon_top.bin");
-static const u16 sPylonPole_Tilemap[] = INCBIN_U16("graphics/cable_car/pylon_pole.bin.lz");
+static const u16 sPylonPole_Tilemap[] = INCBIN_U16("graphics/cable_car/pylon_pole.bin.smolTM");
 
 static const struct CompressedSpriteSheet sSpriteSheets[] = {
     { gCableCar_Gfx,      0x800, TAG_CABLE_CAR },
@@ -266,7 +266,7 @@ static void CB2_LoadCableCar(void)
 
         InitMapMusic();
         ResetMapMusic();
-        ResetBgsAndClearDma3BusyFlags();
+        ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         SetBgTilemapBuffer(0, sCableCar->bgTilemapBuffers[0]);
         SetBgTilemapBuffer(1, sCableCar->bgTilemapBuffers[1]);
@@ -387,7 +387,7 @@ static void CB2_EndCableCar(void)
     UnsetBgTilemapBuffer(1);
     UnsetBgTilemapBuffer(2);
     UnsetBgTilemapBuffer(3);
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     sCableCar->pylonTopTilemap = NULL;
     FREE_AND_SET_NULL(sCableCar->pylonPoleTilemap);
     FREE_AND_SET_NULL(sCableCar->bgMountainsTilemap);

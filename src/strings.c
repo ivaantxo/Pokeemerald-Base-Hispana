@@ -18,6 +18,8 @@ const u8 gText_ExpandedPlaceholder_Kyogre[] = _("Kyogre");
 const u8 gText_ExpandedPlaceholder_Groudon[] = _("Groudon");
 const u8 gText_ExpandedPlaceholder_Brendan[] = _("Bruno");
 const u8 gText_ExpandedPlaceholder_May[] = _("Aura");
+const u8 gText_EggNickname[POKEMON_NAME_LENGTH + 1] = _("HUEVO");
+const u8 gText_Pokemon[POKEMON_NAME_LENGTH + 1] = _("POKéMON");
 
 // Género
 const u8 gText_ExpandedPlaceholder_O[] = _("o");
@@ -32,8 +34,6 @@ const u8 gText_ExpandedPlaceholder_ITO[] = _("ito");
 const u8 gText_ExpandedPlaceholder_COLOR_MALE[] = _("{COLOR BLUE}");
 const u8 gText_ExpandedPlaceholder_COLOR_FEMALE[] = _("{COLOR RED}");
 
-const u8 gText_EggNickname[] = _("Huevo");
-const u8 gText_Pokemon[] = _("Pokémon");
 const u8 gText_Time[] = _("Tiempo de juego");
 ALIGNED(4) const u8 gText_PickNextCancel[] = _("{DPAD_UPDOWN}Sel. {A_BUTTON}Sig. {B_BUTTON}Atrás");
 ALIGNED(4) const u8 gText_PickCancel[] = _("{DPAD_UPDOWN}Sel. {A_BUTTON}{B_BUTTON}Atrás");
@@ -188,11 +188,11 @@ const u8 gText_ReturnToVar1[] = _("Volver\n{STR_VAR_1}.");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
-    [ITEMS_POCKET] =    COMPOUND_STRING("Objetos"),
-    [BALLS_POCKET] =    COMPOUND_STRING("Poké Balls"),
-    [TMHM_POCKET]  =    COMPOUND_STRING("MT / MO"),
-    [BERRIES_POCKET] =  COMPOUND_STRING("Bayas"),
-    [KEYITEMS_POCKET] = COMPOUND_STRING("Obj. clave")
+    [POCKET_ITEMS] =    COMPOUND_STRING("Objetos"),
+    [POCKET_POKE_BALLS] =    COMPOUND_STRING("Poké Balls"),
+    [POCKET_TM_HM]  =    COMPOUND_STRING("MT / MO"),
+    [POCKET_BERRIES] =  COMPOUND_STRING("Bayas"),
+    [POCKET_KEY_ITEMS] = COMPOUND_STRING("Obj. clave")
 };
 
 const u8 gText_NumberItem_TMBerry[] = _("Nº{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");

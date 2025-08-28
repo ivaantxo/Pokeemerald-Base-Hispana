@@ -129,6 +129,10 @@
 #define B_DESTINY_BOND_FAIL         GEN_LATEST // En Gen7+, Mismodestino falla si lo usas repetidamente.
 #define B_PURSUIT_TARGET            GEN_LATEST // En Gen4+, Persecución ataca al Pokémon que está cambiando aunque no fuera el objetivo original. En generaciones anteriores, Persecución solo ataca al Pokémon que cambia si era el objetivo del movimiento.
 #define B_SKIP_RECHARGE             GEN_LATEST // En Gen1, movimientos que requieren recarga como Hiperrayo no lo necesitan si el oponente es debilitado.
+#define B_ENCORE_TARGET             GEN_LATEST // In Gen5+, encored moves are allowed to choose a target
+#define B_TIME_OF_DAY_HEALING_MOVES GEN_LATEST // In Gen2, Morning Sun, Moonlight, and Synthesis heal twice as much HP based off the time of day. Also changes how much they heal. Evening affects Moonlight.
+                                               // If OW_TIMES_OF_DAY is set to Gen 3, then Morning Sun is boosted during the day.
+#define B_DREAM_EATER_LIQUID_OOZE   GEN_LATEST // In Gen5+, Dream Eater is affected by Liquid Ooze.
 
 // Configuración de habilidades
 #define B_GALE_WINGS                GEN_LATEST // En Gen7+ requiere HP completo para activarse.
@@ -161,6 +165,7 @@
 #define B_MAGIC_GUARD               GEN_LATEST // En Gen4+, Guardia mágica ignora la inmovilización causada por la parálisis.
 #define B_BATTLE_BOND               GEN_LATEST // A partir de la Gen 9, la habilidad Fuerte afecto aumenta el Ataque, Ataque Especial y Velocidad en un nivel una vez por combate.
 #define B_ATE_MULTIPLIER            GEN_LATEST // Desde la Gen 7, las habilidades del tipo -ado (Ej.: Piel celeste, Piel eléctrica, Normalidad, Piel feérica, Piel helada) multiplican el daño por 1.2. En generaciones anteriores, el multiplicador es 1.3, excepto para Normalidad, que no aplica bonificación.
+#define B_DEFIANT_STICKY_WEB        GEN_LATEST // In Gen9+, Defiant activates on Sticky Web regardless of who set it up. In Gen8, Defiant does not activate on Sticky Web set up by an ally after Court Change swaps its side.
 
 // Configuración de ítems
 #define B_HP_BERRIES                GEN_LATEST // En Gen4+, las bayas que restauran HP se activan inmediatamente después de que HP cae a la mitad. En Gen3, el efecto ocurre al final del turno.
@@ -273,11 +278,12 @@
 #define B_HIDE_HEALTHBOX_IN_ANIMS   TRUE  // Si se establece en TRUE, se ocultan las cajas de salud durante las animaciones de movimiento.
 #define B_WAIT_TIME_MULTIPLIER      16    // Esto determina cuánto duran las pausas de texto en la batalla. En Vanilla es 16. Valores más bajos resultan en batallas más rápidas.
 #define B_QUICK_MOVE_CURSOR_TO_RUN  FALSE // Si se establece en TRUE, presionar B en las opciones de batalla contra un encuentro salvaje moverá el cursor a la opción de huir.
-#define B_RUN_TRAINER_BATTLE        TRUE  // If set to TRUE, players can run from Trainer battles. This is treated as a whiteout.
+#define B_RUN_TRAINER_BATTLE                TRUE  // If set to TRUE, players can run from Trainer battles. This is treated as a whiteout.
 #define B_MOVE_DESCRIPTION_BUTTON   L_BUTTON // Si se establece en un botón diferente a B_LAST_USED_BALL_BUTTON, presionar este botón abrirá el menú de descripción del movimiento.
-#define B_SHOW_USELESS_Z_MOVE_INFO  FALSE // If set to TRUE, Z-moves without additional effects like newer gen status moves will say "no additional effect"
-#define B_ANIMATE_MON_AFTER_KO      TRUE // If set to TRUE, if a Pokémon on the opposite site faints, the non-fainted Pokemon will display a victory animation.
-#define B_SHOW_DYNAMAX_MESSAGE      FALSE // If set to TRUE, an additional battle message is shown after completing Dynamaxing/Gigantamaxing.
+#define B_SHOW_USELESS_Z_MOVE_INFO          FALSE // If set to TRUE, Z-moves without additional effects like newer gen status moves will say "no additional effect"
+#define B_ANIMATE_MON_AFTER_KO              TRUE // If set to TRUE, if a Pokémon on the opposite site faints, the non-fainted Pokemon will display a victory animation.
+#define B_ANIMATE_MON_AFTER_FAILED_POKEBALL TRUE  // If set to TRUE, if a Pokémon on the opposite side breaks out of a thrown Poké Ball, the wild Pokémon will display its animation.
+#define B_SHOW_DYNAMAX_MESSAGE              FALSE // If set to TRUE, an additional battle message is shown after completing Dynamaxing/Gigantamaxing.
 
 // Configuración de Captura
 #define B_SEMI_INVULNERABLE_CATCH   GEN_LATEST // En Gen4+, no puedes lanzar una Poké Ball contra un Pokémon que está en un estado semi-invulnerable (excavar/volar/etc).

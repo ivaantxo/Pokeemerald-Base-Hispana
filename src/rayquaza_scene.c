@@ -1574,7 +1574,7 @@ static void VBlankCB_DuoFight(void)
 static void InitDuoFightSceneBgs(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates_DuoFight, ARRAY_COUNT(sBgTemplates_DuoFight));
     SetBgTilemapBuffer(0, sRayScene->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, sRayScene->tilemapBuffers[1]);
@@ -1596,9 +1596,9 @@ static void LoadDuoFightSceneGfx(void)
     DecompressAndCopyTileDataToVram(0, gRaySceneDuoFight_Clouds_Gfx, 0, 0, 0);
     while (FreeTempTileDataBuffersIfPossible())
         ;
-    LZDecompressWram(gRaySceneDuoFight_Clouds2_Tilemap, sRayScene->tilemapBuffers[0]);
-    LZDecompressWram(gRaySceneDuoFight_Clouds1_Tilemap, sRayScene->tilemapBuffers[1]);
-    LZDecompressWram(gRaySceneDuoFight_Clouds3_Tilemap, sRayScene->tilemapBuffers[2]);
+    DecompressDataWithHeaderWram(gRaySceneDuoFight_Clouds2_Tilemap, sRayScene->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gRaySceneDuoFight_Clouds1_Tilemap, sRayScene->tilemapBuffers[1]);
+    DecompressDataWithHeaderWram(gRaySceneDuoFight_Clouds3_Tilemap, sRayScene->tilemapBuffers[2]);
     LoadPalette(gRaySceneDuoFight_Clouds_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadCompressedSpriteSheet(&sSpriteSheet_DuoFight_Groudon);
     LoadCompressedSpriteSheet(&sSpriteSheet_DuoFight_GroudonShoulder);
@@ -2012,7 +2012,7 @@ static void DuoFight_SlideKyogreDown(struct Sprite *sprite)
 static void InitTakesFlightSceneBgs(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(1, sBgTemplates_TakesFlight, ARRAY_COUNT(sBgTemplates_TakesFlight));
     SetBgTilemapBuffer(0, sRayScene->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, sRayScene->tilemapBuffers[1]);
@@ -2036,9 +2036,9 @@ static void LoadTakesFlightSceneGfx(void)
     DecompressAndCopyTileDataToVram(2, gRaySceneTakesFlight_Rayquaza_Gfx, 0, 0, 0);
     while (FreeTempTileDataBuffersIfPossible())
         ;
-    LZDecompressWram(gRaySceneDuoFight_Clouds2_Tilemap, sRayScene->tilemapBuffers[0]);
-    LZDecompressWram(gRaySceneTakesFlight_Bg_Tilemap, sRayScene->tilemapBuffers[1]);
-    LZDecompressWram(gRaySceneTakesFlight_Rayquaza_Tilemap, sRayScene->tilemapBuffers[2]);
+    DecompressDataWithHeaderWram(gRaySceneDuoFight_Clouds2_Tilemap, sRayScene->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gRaySceneTakesFlight_Bg_Tilemap, sRayScene->tilemapBuffers[1]);
+    DecompressDataWithHeaderWram(gRaySceneTakesFlight_Rayquaza_Tilemap, sRayScene->tilemapBuffers[2]);
     LoadPalette(gRaySceneTakesFlight_Rayquaza_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadCompressedSpriteSheet(&sSpriteSheet_TakesFlight_Smoke);
     LoadSpritePalette(&sSpritePal_TakesFlight_Smoke);
@@ -2213,7 +2213,7 @@ static void SpriteCB_TakesFlight_Smoke(struct Sprite *sprite)
 static void InitDescendsSceneBgs(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates_Descends, ARRAY_COUNT(sBgTemplates_Descends));
     SetBgTilemapBuffer(0, sRayScene->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, sRayScene->tilemapBuffers[1]);
@@ -2239,8 +2239,8 @@ static void LoadDescendsSceneGfx(void)
     DecompressAndCopyTileDataToVram(1, gRaySceneDescends_Bg_Gfx, 0, 0, 0);
     while (FreeTempTileDataBuffersIfPossible())
         ;
-    LZDecompressWram(gRaySceneDescends_Light_Tilemap, sRayScene->tilemapBuffers[0]);
-    LZDecompressWram(gRaySceneDescends_Bg_Tilemap, sRayScene->tilemapBuffers[3]);
+    DecompressDataWithHeaderWram(gRaySceneDescends_Light_Tilemap, sRayScene->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gRaySceneDescends_Bg_Tilemap, sRayScene->tilemapBuffers[3]);
     CpuFastFill16(0, sRayScene->tilemapBuffers[2], BG_SCREEN_SIZE);
     CpuFastCopy(sRayScene->tilemapBuffers[3], sRayScene->tilemapBuffers[1], BG_SCREEN_SIZE);
     CpuFastFill16(0, &sRayScene->tilemapBuffers[1][0x100], 0x340);
@@ -2463,7 +2463,7 @@ static void SpriteCB_Descends_Rayquaza(struct Sprite *sprite)
 static void InitChargesSceneBgs(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates_Charges, ARRAY_COUNT(sBgTemplates_Charges));
     SetBgTilemapBuffer(0, sRayScene->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, sRayScene->tilemapBuffers[1]);
@@ -2490,10 +2490,10 @@ static void LoadChargesSceneGfx(void)
     DecompressAndCopyTileDataToVram(3, gRaySceneCharges_Bg_Gfx, 0, 0, 0);
     while (FreeTempTileDataBuffersIfPossible())
         ;
-    LZDecompressWram(gRaySceneCharges_Orbs_Tilemap, sRayScene->tilemapBuffers[0]);
-    LZDecompressWram(gRaySceneCharges_Rayquaza_Tilemap, sRayScene->tilemapBuffers[1]);
-    LZDecompressWram(gRaySceneCharges_Streaks_Tilemap, sRayScene->tilemapBuffers[2]);
-    LZDecompressWram(gRaySceneCharges_Bg_Tilemap, sRayScene->tilemapBuffers[3]);
+    DecompressDataWithHeaderWram(gRaySceneCharges_Orbs_Tilemap, sRayScene->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gRaySceneCharges_Rayquaza_Tilemap, sRayScene->tilemapBuffers[1]);
+    DecompressDataWithHeaderWram(gRaySceneCharges_Streaks_Tilemap, sRayScene->tilemapBuffers[2]);
+    DecompressDataWithHeaderWram(gRaySceneCharges_Bg_Tilemap, sRayScene->tilemapBuffers[3]);
     LoadPalette(gRaySceneCharges_Bg_Pal, BG_PLTT_ID(0), 4 * PLTT_SIZE_4BPP);
 }
 
@@ -2652,7 +2652,7 @@ static void Task_RayChargesEnd(u8 taskId)
 static void InitChasesAwaySceneBgs(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(1, sBgTemplates_ChasesAway, ARRAY_COUNT(sBgTemplates_ChasesAway));
     SetBgTilemapBuffer(0, sRayScene->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, sRayScene->tilemapBuffers[1]);
@@ -2675,9 +2675,9 @@ static void LoadChasesAwaySceneGfx(void)
     DecompressAndCopyTileDataToVram(0, gRaySceneChasesAway_Light_Gfx, 0, 0, 0);
     while (FreeTempTileDataBuffersIfPossible())
         ;
-    LZDecompressWram(gRaySceneChasesAway_Bg_Tilemap, sRayScene->tilemapBuffers[1]);
-    LZDecompressWram(gRaySceneChasesAway_Light_Tilemap, sRayScene->tilemapBuffers[0]);
-    LZDecompressWram(gRaySceneChasesAway_Ring_Tilemap, sRayScene->tilemapBuffers[2]);
+    DecompressDataWithHeaderWram(gRaySceneChasesAway_Bg_Tilemap, sRayScene->tilemapBuffers[1]);
+    DecompressDataWithHeaderWram(gRaySceneChasesAway_Light_Tilemap, sRayScene->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gRaySceneChasesAway_Ring_Tilemap, sRayScene->tilemapBuffers[2]);
     LoadPalette(gRaySceneChasesAway_Bg_Pal, BG_PLTT_ID(0), 3 * PLTT_SIZE_4BPP);
     LoadCompressedSpriteSheet(&sSpriteSheet_ChasesAway_Groudon);
     LoadCompressedSpriteSheet(&sSpriteSheet_ChasesAway_GroudonTail);

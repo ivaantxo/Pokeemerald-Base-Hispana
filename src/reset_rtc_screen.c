@@ -618,7 +618,7 @@ void CB2_InitResetRtcScreen(void)
 static void InitResetRtcScreenBgAndWindows(void)
 {
     ClearScheduledBgCopiesToVram();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     ScheduleBgCopyTilemapToVram(0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);

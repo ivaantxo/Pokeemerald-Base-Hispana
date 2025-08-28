@@ -133,7 +133,7 @@ static const u8 sClockFrames[8][3] =
 };
 
 static const u8 sSaveFailedClockPal[] = INCBIN_U8("graphics/misc/clock_small.gbapal");
-static const u32 sSaveFailedClockGfx[] = INCBIN_U32("graphics/misc/clock_small.4bpp.lz");
+static const u32 sSaveFailedClockGfx[] = INCBIN_U32("graphics/misc/clock_small.4bpp.smol");
 
 static void CB2_SaveFailedScreen(void);
 static void CB2_WipeSave(void);
@@ -205,11 +205,11 @@ static void CB2_SaveFailedScreen(void)
         DmaFill16(3, 0, VRAM, VRAM_SIZE);
         DmaFill32(3, 0, OAM, OAM_SIZE);
         DmaFill16(3, 0, PLTT, PLTT_SIZE);
-        LZ77UnCompVram(gBirchBagGrass_Gfx, (void *)VRAM);
-        LZ77UnCompVram(gBirchBagTilemap, (void *)(BG_SCREEN_ADDR(14)));
-        LZ77UnCompVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(15)));
-        LZ77UnCompVram(sSaveFailedClockGfx, (void *)(OBJ_VRAM0 + 0x20));
-        ResetBgsAndClearDma3BusyFlags();
+        DecompressDataWithHeaderVram(gBirchBagGrass_Gfx, (void *)VRAM);
+        DecompressDataWithHeaderVram(gBirchBagTilemap, (void *)(BG_SCREEN_ADDR(14)));
+        DecompressDataWithHeaderVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(15)));
+        DecompressDataWithHeaderVram(sSaveFailedClockGfx, (void *)(OBJ_VRAM0 + 0x20));
+        ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
         SetBgTilemapBuffer(0, sSaveFailedBuffers->tilemapBuffer);
         CpuFill32(0, sSaveFailedBuffers->tilemapBuffer, BG_SCREEN_SIZE);
@@ -438,7 +438,7 @@ void CB2_FlashNotDetectedScreen(void)
     DmaFill16(3, 0, VRAM, VRAM_SIZE);
     DmaFill32(3, 0, OAM, OAM_SIZE);
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     LoadBgTiles(0, gTextWindowFrame1_Gfx, 0x120, 0x214);
     DeactivateAllTextPrinters();

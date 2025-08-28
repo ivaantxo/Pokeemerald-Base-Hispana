@@ -79,8 +79,8 @@ static const u16 sPalettes[][16] = {
     INCBIN_U16("graphics/wireless_status_screen/anim_12.gbapal"),
     INCBIN_U16("graphics/wireless_status_screen/anim_13.gbapal")
 };
-static const u32 sBgTiles_Gfx[] = INCBIN_U32("graphics/wireless_status_screen/bg.4bpp.lz");
-static const u32 sBgTiles_Tilemap[] = INCBIN_U32("graphics/wireless_status_screen/bg.bin.lz");
+static const u32 sBgTiles_Gfx[] = INCBIN_U32("graphics/wireless_status_screen/bg.4bpp.smol");
+static const u32 sBgTiles_Tilemap[] = INCBIN_U32("graphics/wireless_status_screen/bg.bin.smolTM");
 
 static const struct BgTemplate sBgTemplates[] = {
     {
@@ -200,7 +200,7 @@ static void CB2_InitWirelessCommunicationScreen(void)
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     sStatusScreen = AllocZeroed(sizeof(struct WirelessCommunicationStatusScreen));
     SetVBlankCallback(NULL);
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     SetBgTilemapBuffer(1, Alloc(BG_SCREEN_SIZE));
     SetBgTilemapBuffer(0, Alloc(BG_SCREEN_SIZE));

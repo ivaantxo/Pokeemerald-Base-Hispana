@@ -621,7 +621,7 @@ static void HandleInitBackgrounds(void)
 {
     ResetVramOamAndBgCntRegs();
 
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBackgroundTemplates, ARRAY_COUNT(sBackgroundTemplates));
     SetBgTilemapBuffer(1, sPokeblockFeed->tilemapBuffer);
     ResetAllBgsCoordinates();
@@ -684,7 +684,7 @@ static bool8 LoadMonAndSceneGfx(struct Pokemon *mon)
     case 7:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            LZDecompressWram(gPokeblockFeedBg_Tilemap, sPokeblockFeed->tilemapBuffer);
+            DecompressDataWithHeaderWram(gPokeblockFeedBg_Tilemap, sPokeblockFeed->tilemapBuffer);
             sPokeblockFeed->loadGfxState++;
         }
         break;

@@ -86,6 +86,7 @@ EWRAM_DATA bool8 gHasHallOfFameRecords = 0;
 static EWRAM_DATA struct CreditsData *sCreditsData = {0};
 
 static const u16 sCredits_Pal[] = INCBIN_U16("graphics/credits/credits.gbapal");
+static const u32 sCreditsCopyrightEnd_Gfx[] = INCBIN_U32("graphics/credits/the_end_copyright.4bpp.smol");
 
 static void SpriteCB_CreditsMonBg(struct Sprite *);
 static void Task_WaitPaletteFade(u8);
@@ -304,7 +305,7 @@ static void CB2_Credits(void)
 
 static void InitCreditsBgsAndWindows(void)
 {
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBackgroundTemplates, ARRAY_COUNT(sBackgroundTemplates));
     SetBgTilemapBuffer(0, AllocZeroed(BG_SCREEN_SIZE));
     LoadPalette(sCredits_Pal, BG_PLTT_ID(8), 2 * PLTT_SIZE_4BPP);
@@ -492,8 +493,8 @@ static void Task_LoadShowMons(u8 taskId)
         ResetAllPicSprites();
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 8;
-        LZ77UnCompVram(gBirchBagGrass_Gfx, (void *)VRAM);
-        LZ77UnCompVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
+        DecompressDataWithHeaderVram(gBirchBagGrass_Gfx, (void *)VRAM);
+        DecompressDataWithHeaderVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
         LoadPalette(gBirchBagGrass_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(2 * 16 - 1));
 
         for (i = 0; i < MON_PIC_SIZE; i++)
@@ -1236,7 +1237,7 @@ static void LoadTheEndScreen(u16 tileOffsetLoad, u16 tileOffsetWrite, u16 palOff
     u16 baseTile;
     u16 i;
 
-    LZ77UnCompVram(gCreditsCopyrightEnd_Gfx, (void *)(VRAM + tileOffsetLoad));
+    DecompressDataWithHeaderVram(sCreditsCopyrightEnd_Gfx, (void *)(VRAM + tileOffsetLoad));
     LoadPalette(gIntroCopyright_Pal, palOffset, sizeof(gIntroCopyright_Pal));
 
     baseTile = (palOffset / 16) << 12;
@@ -1489,7 +1490,7 @@ static void SpriteCB_CreditsMonBg(struct Sprite *sprite)
 
 static void DeterminePokemonToShow(void)
 {
-    u16 starter = SpeciesToNationalPokedexNum(GetStarterPokemon(VarGet(VAR_STARTER_MON)));
+    enum NationalDexOrder starter = SpeciesToNationalPokedexNum(GetStarterPokemon(VarGet(VAR_STARTER_MON)));
     u16 page;
     u16 dexNum;
     u16 j;

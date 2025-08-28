@@ -49,7 +49,7 @@ EWRAM_DATA static u8 sDownArrowCounterAndYCoordIdx[8] = {};
 EWRAM_DATA bool8 gGiftIsFromEReader = FALSE;
 
 static const u16 sTextboxBorder_Pal[] = INCBIN_U16("graphics/interface/mystery_gift_textbox_border.gbapal");
-static const u32 sTextboxBorder_Gfx[] = INCBIN_U32("graphics/interface/mystery_gift_textbox_border.4bpp.lz");
+static const u32 sTextboxBorder_Gfx[] = INCBIN_U32("graphics/interface/mystery_gift_textbox_border.4bpp.smol");
 
 struct MysteryGiftTaskData
 {
@@ -387,7 +387,7 @@ static bool32 HandleMysteryGiftOrEReaderSetup(s32 isEReader)
         FreeAllSpritePalettes();
         ResetTasks();
         ScanlineEffect_Stop();
-        ResetBgsAndClearDma3BusyFlags();
+        ResetBgsAndClearDma3BusyFlags(0);
 
         InitBgsFromTemplates(0, sBGTemplates, ARRAY_COUNT(sBGTemplates));
         ChangeBgX(0, 0, BG_COORD_SET);

@@ -326,5 +326,6 @@ u32 LoadUniqueSpritePalette(const struct SpritePalette *palette, u32 personality
 u32 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct SpritePalette *palette2);
 void RequestSpriteFrameImageCopy(u16 index, u16 tileNum, const struct SpriteFrameImage *images);
 void SetSpriteOamFlipBits(struct Sprite *sprite, u8 hFlip, u8 vFlip);
+u8 IndexOfSpriteTileTag(u16 tag);
 
 #endif //GUARD_SPRITE_H

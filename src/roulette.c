@@ -397,8 +397,8 @@ static void SpriteCB_Shroomish(struct Sprite *);
 static void SpriteCB_Taillow(struct Sprite *);
 
 static const u16 sWheel_Pal[] = INCBIN_U16("graphics/roulette/wheel.gbapal"); // also palette for grid
-static const u32 sGrid_Tilemap[] = INCBIN_U32("graphics/roulette/grid.bin.lz");
-static const u32 sWheel_Tilemap[] = INCBIN_U32("graphics/roulette/wheel.bin.lz");
+static const u32 sGrid_Tilemap[] = INCBIN_U32("graphics/roulette/grid.bin.smolTM");
+static const u32 sWheel_Tilemap[] = INCBIN_U32("graphics/roulette/wheel.bin.smolTM");
 static const struct BgTemplate sBgTemplates[] =
 {
     // Text box
@@ -985,7 +985,7 @@ static void InitRouletteBgAndWindows(void)
     u32 size = 0;
 
     sRoulette = AllocZeroed(sizeof(*sRoulette));
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(1, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     SetBgTilemapBuffer(0, sRoulette->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, sRoulette->tilemapBuffers[2]);
@@ -1003,7 +1003,7 @@ static void FreeRoulette(void)
     UnsetBgTilemapBuffer(0);
     UnsetBgTilemapBuffer(1);
     UnsetBgTilemapBuffer(2);
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     memset(sRoulette, 0, sizeof(*sRoulette));
     FREE_AND_SET_NULL(sRoulette);
 }
@@ -2214,13 +2214,13 @@ static void UpdateWheelPosition(void)
     SetGpuReg(REG_OFFSET_BG2Y_H, (bg2y & 0x0fff0000) >> 16);
 }
 
-static const u32 sBall_Gfx[] = INCBIN_U32("graphics/roulette/ball.4bpp.lz");
-static const u32 sBallCounter_Gfx[] = INCBIN_U32("graphics/roulette/ball_counter.4bpp.lz");
-static const u32 sShroomishTaillow_Gfx[] = INCBIN_U32("graphics/roulette/roulette_tilt.4bpp.lz");
-static const u32 sGridIcons_Gfx[] = INCBIN_U32("graphics/roulette/grid_icons.4bpp.lz");
-static const u32 sWheelIcons_Gfx[] = INCBIN_U32("graphics/roulette/wheel_icons.4bpp.lz");
-static const u32 sShadow_Gfx[] = INCBIN_U32("graphics/roulette/shadow.4bpp.lz");
-static const u32 sCursor_Gfx[] = INCBIN_U32("graphics/roulette/cursor.4bpp.lz");
+static const u32 sBall_Gfx[] = INCBIN_U32("graphics/roulette/ball.4bpp.smol");
+static const u32 sBallCounter_Gfx[] = INCBIN_U32("graphics/roulette/ball_counter.4bpp.smol");
+static const u32 sShroomishTaillow_Gfx[] = INCBIN_U32("graphics/roulette/roulette_tilt.4bpp.smol");
+static const u32 sGridIcons_Gfx[] = INCBIN_U32("graphics/roulette/grid_icons.4bpp.smol");
+static const u32 sWheelIcons_Gfx[] = INCBIN_U32("graphics/roulette/wheel_icons.4bpp.smol");
+static const u32 sShadow_Gfx[] = INCBIN_U32("graphics/roulette/shadow.4bpp.smol");
+static const u32 sCursor_Gfx[] = INCBIN_U32("graphics/roulette/cursor.4bpp.smol");
 
 static const struct SpritePalette sSpritePalettes[] =
 {
@@ -3644,9 +3644,7 @@ static void SpriteCB_GridSquare(struct Sprite *sprite)
 static void CreateWheelCenterSprite(void)
 {
     u8 spriteId;
-
     LoadCompressedSpriteSheet(&sSpriteSheet_WheelCenter);
-
     // This sprite id isn't saved because it doesn't need to be referenced again
     // but by virtue of creation order it's SPR_WHEEL_CENTER
     spriteId = CreateSprite(&sSpriteTemplate_WheelCenter, 116, 80, 81);

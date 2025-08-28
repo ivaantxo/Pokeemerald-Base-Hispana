@@ -722,7 +722,7 @@ static void BuyMenuRemoveItemIcon(u16 item, u8 iconSlot)
 
 static void BuyMenuInitBgs(void)
 {
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sShopBuyMenuBgTemplates, ARRAY_COUNT(sShopBuyMenuBgTemplates));
     SetBgTilemapBuffer(1, sShopData->tilemapBuffers[1]);
     SetBgTilemapBuffer(2, sShopData->tilemapBuffers[3]);
@@ -746,7 +746,7 @@ static void BuyMenuInitBgs(void)
 static void BuyMenuDecompressBgGraphics(void)
 {
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
-    LZDecompressWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
     LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
 }
 

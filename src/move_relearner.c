@@ -447,7 +447,7 @@ static void CB2_InitLearnMoveReturnFromSelectMove(void)
 static void InitMoveRelearnerBackgroundLayers(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sMoveRelearnerMenuBackgroundTemplates, ARRAY_COUNT(sMoveRelearnerMenuBackgroundTemplates));
     ResetAllBgsCoordinates();
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
@@ -603,7 +603,21 @@ static void DoMoveRelearnerMain(void)
             }
             else if (selection == MENU_B_PRESSED || selection == 1)
             {
-                sMoveRelearnerStruct->state = MENU_STATE_PRINT_STOP_TEACHING;
+                if (P_ASK_MOVE_CONFIRMATION)
+                {
+                    sMoveRelearnerStruct->state = MENU_STATE_PRINT_STOP_TEACHING;
+                }
+                else
+                {
+                    if (sMoveRelearnerMenuState.showContestInfo == FALSE)
+                    {
+                        sMoveRelearnerStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
+                    }
+                    else if (sMoveRelearnerMenuState.showContestInfo == TRUE)
+                    {
+                        sMoveRelearnerStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
+                    }
+                }
             }
         }
         break;

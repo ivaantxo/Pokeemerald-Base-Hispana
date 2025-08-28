@@ -9,8 +9,9 @@
 #define OW_POISON_DAMAGE                GEN_LATEST // En Gen4, los Pokémon ya no se desmayan por Veneno en el mundo exterior. En Gen5+, no reciben daño en absoluto.
 #define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // Si está habilitado, puedes ser visto por dos entrenadores al mismo tiempo incluso si solo tienes un Pokémon elegible en tu equipo.
 #define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // Si está habilitado, las ventanas emergentes del mapa no aparecerán si entras en un mapa con el mismo Id de Sección del Mapa que el último.
-#define OW_FRLG_WHITEOUT                FALSE      // Si está habilitado, mostrará un mensaje adicional más un evento de curación al ser debilitado, como en FRLG.
+#define OW_WHITEOUT_CUTSCENE            GEN_LATEST // In Gen4+, whiting out shows an additional message and post whiteout event script cutscene with a healing NPC. (While this change was also in FRLG, for the sake of simplicity, setting this to GEN_3 will result in RSE behavior.)
 #define OW_DEFOG_FIELD_MOVE             FALSE      // Si está habilitado, Despejar puede usarse fuera de batalla como en DPPt.
+#define OW_ROCK_CLIMB_FIELD_MOVE        FALSE      // If enabled, Rock Climb can be used as a Field Move as seen in DPPt.
 
 // Item Obtain Description Box
 #define OW_ITEM_DESCRIPTIONS_OFF        0   // Nunca muestra descripciones

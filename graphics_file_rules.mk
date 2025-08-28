@@ -281,6 +281,9 @@ $(BATINTGFXDIR)/battle_bar.4bpp: $(BATINTGFXDIR)/numbers1.4bpp \
                                  $(BATINTGFXDIR)/numbers2.4bpp
 	@cat $^ >$@
 
+$(BATINTGFXDIR)/ability_pop_up.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
 $(BTLANMSPRGFXDIR)/ice_crystals.4bpp: $(BTLANMSPRGFXDIR)/ice_crystals_0.4bpp \
                                       $(BTLANMSPRGFXDIR)/ice_crystals_1.4bpp \
                                       $(BTLANMSPRGFXDIR)/ice_crystals_2.4bpp \

@@ -69,9 +69,9 @@
 // Configuraciones generales
 #define EXPANSION_INTRO              TRUE    // Si está habilitado, se reproducirá una introducción personalizada de RHH después de la pantalla de derechos de autor original.
 #define HQ_RANDOM                    TRUE    // Si está habilitado, reemplaza el RNG predeterminado con una implementación del RNG SFC32. Puede romper el código que depende del RNG.
-#define COMPETITIVE_PARTY_SYNTAX     TRUE    // Si está habilitado, los equipos se definen en "sintaxis competitiva".
 #define AUTO_SCROLL_TEXT             TRUE    // Si está habilitado, el texto automáticamente pasará a la siguiente línea después de NUM_FRAMES_AUTO_SCROLL_DELAY. El jugador todavía podrá pulsar A_BUTTON o B_BUTTON para pasar a la siguiente línea por sí mismo.
 #define NUM_FRAMES_AUTO_SCROLL_DELAY 49
+#define PHONEMES_SHARED              FALSE   // If TRUE, bard phonemes all reference the same sound (sound/direct_sound_samples/phonemes/shared.bin) to save ROM space.
 
 // Constantes del sistema de medidas para usar con UNITS
 #define UNITS_IMPERIAL               0       // Pulgadas, pies, libras

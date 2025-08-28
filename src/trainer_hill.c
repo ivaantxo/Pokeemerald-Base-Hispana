@@ -308,7 +308,7 @@ static u8 GetFloorId(void)
     return gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F;
 }
 
-u8 GetTrainerHillOpponentClass(u16 trainerId)
+enum TrainerClassID GetTrainerHillOpponentClass(u16 trainerId)
 {
     u8 id = trainerId - 1;
 

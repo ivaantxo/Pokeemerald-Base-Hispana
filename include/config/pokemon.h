@@ -56,9 +56,11 @@
 #define P_SHOW_TERA_TYPE                 GEN_8       // Desde Gen 9, el Tipo Tera se muestra en la pantalla de resumen.
 #define P_TM_LITERACY                    GEN_LATEST  // Desde Gen 6, Pokémon que no pueden aprender MTs pueden aprender MTs que enseñan movimientos que están en sus aprendizajes por nivel.
 #define P_CAN_FORGET_HIDDEN_MOVE         FALSE       // Si está habilitado, los Pokémon pueden olvidar cualquier movimiento, incluso si es un Movimiento Oculto.
+#define P_ASK_MOVE_CONFIRMATION          FALSE       // If FALSE, when a player decides not to learn a Move, the game does not ask the player for confirmation.
 #define P_EGG_CYCLE_LENGTH               GEN_LATEST  // Desde Gen 8, los ciclos de huevo toman la mitad de pasos que antes.
 #define P_ONLY_OBTAINABLE_SHINIES        FALSE       // Si está habilitado, los Pokémon encontrados en la Pirámide de Batalla no serán shiny.
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // Si está habilitado, los Pokémon encontrados cuando el jugador se queda sin Poké Balls no serán shiny.
+#define P_ONLY_OBTAINABLE_SHINIES        FALSE       // If TRUE, Pokémon encountered in the Battle Pyramid or while catching is disabled won't be shiny.
 #define P_SHOW_DYNAMIC_TYPES             FALSE       // Si está habilitado, todos los ataques con tipo dinámico se mostrarán así en combate y en la pantalla de sumario.
 
 // Configuración de ayuda de aprendizaje de movimientos

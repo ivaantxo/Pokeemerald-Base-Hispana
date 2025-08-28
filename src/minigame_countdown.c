@@ -49,7 +49,7 @@ static void Task_StaticCountdown_Start(u8 taskId);
 static void Task_StaticCountdown_Run(u8 taskId);
 
 static const u16 s321Start_Static_Pal[] = INCBIN_U16("graphics/link/321start_static.gbapal");
-static const u32 s321Start_Static_Gfx[] = INCBIN_U32("graphics/link/321start_static.4bpp.lz");
+static const u32 s321Start_Static_Gfx[] = INCBIN_U32("graphics/link/321start_static.4bpp.smol");
 
 static const struct CompressedSpriteSheet sSpriteSheet_321Start_Static[] =
 {

@@ -45,7 +45,7 @@ void ResetBgControlStructs(void);
 u8 LoadBgVram(u32 bg, const void *src, u16 size, u16 destOffset, u32 mode);
 void SetTextModeAndHideBgs(void);
 bool32 IsInvalidBg(u32 bg);
-void ResetBgsAndClearDma3BusyFlags(void);
+void ResetBgsAndClearDma3BusyFlags(u32 leftoverFireRedLeafGreenVariable);
 void InitBgsFromTemplates(u32 bgMode, const struct BgTemplate *templates, u8 numTemplates);
 void InitBgFromTemplate(const struct BgTemplate *template);
 void SetBgMode(u32 bgMode);

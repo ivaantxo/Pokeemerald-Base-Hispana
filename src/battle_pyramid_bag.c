@@ -541,7 +541,7 @@ static bool8 LoadPyramidBagMenu(void)
 static void InitPyramidBagBgs(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     SetBgTilemapBuffer(2, gPyramidBagMenu->tilemapBuffer);
     ResetAllBgsCoordinates();
@@ -567,7 +567,7 @@ static bool8 LoadPyramidBagGfx(void)
     case 1:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            LZDecompressWram(gBattlePyramidBagTilemap, gPyramidBagMenu->tilemapBuffer);
+            DecompressDataWithHeaderWram(gBattlePyramidBagTilemap, gPyramidBagMenu->tilemapBuffer);
             gPyramidBagMenu->state++;
         }
         break;

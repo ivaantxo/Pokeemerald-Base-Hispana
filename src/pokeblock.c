@@ -626,7 +626,7 @@ static bool8 InitPokeblockMenu(void)
 static void HandleInitBackgrounds(void)
 {
     ResetVramOamAndBgCntRegs();
-    ResetBgsAndClearDma3BusyFlags();
+    ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplatesForPokeblockMenu, ARRAY_COUNT(sBgTemplatesForPokeblockMenu));
     SetBgTilemapBuffer(2, sPokeblockMenu->tilemap);
     ResetAllBgsCoordinates();
@@ -653,7 +653,7 @@ static bool8 LoadPokeblockMenuGfx(void)
     case 1:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            LZDecompressWram(gMenuPokeblock_Tilemap, sPokeblockMenu->tilemap);
+            DecompressDataWithHeaderWram(gMenuPokeblock_Tilemap, sPokeblockMenu->tilemap);
             sPokeblockMenu->gfxState++;
         }
         break;
