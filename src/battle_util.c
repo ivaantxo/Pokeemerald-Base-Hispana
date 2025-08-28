@@ -8872,7 +8872,6 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
     uq4_12_t modifier;
     u32 battlerDef = ctx->battlerDef;
     u32 move = ctx->move;
-    u32 moveType = ctx->moveType;
     enum BattleMoveEffects moveEffect = GetMoveEffect(move);
 
     def = gBattleMons[battlerDef].defense;
