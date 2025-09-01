@@ -4119,12 +4119,14 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2));
         break;
     case EFFECT_DEFENSE_UP:
-    case EFFECT_DEFENSE_UP_3:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF));
         break;
     case EFFECT_STUFF_CHEEKS:
     case EFFECT_DEFENSE_UP_2:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF_2));
+        break;
+    case EFFECT_DEFENSE_UP_3:
+        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF_3));
         break;
     case EFFECT_SPEED_UP:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED));
@@ -4137,8 +4139,10 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK));
         break;
     case EFFECT_SPECIAL_ATTACK_UP_2:
-    case EFFECT_SPECIAL_ATTACK_UP_3:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK_2));
+        break;
+    case EFFECT_SPECIAL_ATTACK_UP_3:
+        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK_3));
         break;
     case EFFECT_SPECIAL_DEFENSE_UP:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF));
@@ -4188,7 +4192,10 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
     case EFFECT_BIDE:
         if (aiData->hpPercents[battlerAtk] < 90)
             ADJUST_SCORE(-2); // Should be either removed or turned into increasing score
+    // treat as offense booster
     case EFFECT_ACUPRESSURE:
+        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2));
+        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK_2));
         break;
     case EFFECT_GEAR_UP:
         if (aiData->abilities[battlerAtk] == ABILITY_PLUS || aiData->abilities[battlerAtk] == ABILITY_MINUS)
@@ -5686,6 +5693,18 @@ case EFFECT_GUARD_SPLIT:
                 u32 statId = STAT_ATK + additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_2;
                 if (CanLowerStat(battlerAtk, battlerDef, aiData, statId))
                     ADJUST_SCORE(IncreaseStatDownScore(battlerAtk, battlerDef, statId));
+                break;
+            }
+            case MOVE_EFFECT_RAISE_TEAM_ATTACK:
+            case MOVE_EFFECT_RAISE_TEAM_DEFENSE:
+            case MOVE_EFFECT_RAISE_TEAM_SPEED:
+            case MOVE_EFFECT_RAISE_TEAM_SP_ATK:
+            case MOVE_EFFECT_RAISE_TEAM_SP_DEF:
+            {
+                enum StatChange StageStatId = STAT_CHANGE_ATK + additionalEffect->moveEffect - MOVE_EFFECT_RAISE_TEAM_ATTACK;
+                ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, StageStatId));
+                if (hasPartner)
+                    ADJUST_SCORE(IncreaseStatUpScore(BATTLE_PARTNER(battlerAtk), battlerDef, StageStatId));
                 break;
             }
             case MOVE_EFFECT_LOWER_ATTACK_SIDE:
