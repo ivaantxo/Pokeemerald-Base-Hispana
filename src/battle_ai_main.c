@@ -5685,11 +5685,20 @@ case EFFECT_GUARD_SPLIT:
                 if (CanLowerStat(battlerAtk, battlerDef, aiData, STAT_SPEED))
                     ADJUST_SCORE(IncreaseStatDownScore(battlerAtk, battlerDef, STAT_SPEED));
                 break;
+            case MOVE_EFFECT_ACC_MINUS_1:
+            case MOVE_EFFECT_ACC_MINUS_2:
+                if (CanLowerStat(battlerAtk, battlerDef, aiData, STAT_ACC))
+                {
+                    u32 scoreIncrease = IncreaseStatDownScore(battlerAtk, battlerDef, STAT_ACC);
+                    if (scoreIncrease == WEAK_EFFECT)
+                        scoreIncrease = DECENT_EFFECT;
+                    ADJUST_SCORE(scoreIncrease);
+                }
+                break;
             case MOVE_EFFECT_ATK_MINUS_1:
             case MOVE_EFFECT_DEF_MINUS_1:
             case MOVE_EFFECT_SP_ATK_MINUS_1:
             case MOVE_EFFECT_SP_DEF_MINUS_1:
-            case MOVE_EFFECT_ACC_MINUS_1:
             case MOVE_EFFECT_EVS_MINUS_1:
             {
                 u32 statId = STAT_ATK + additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_1;
@@ -5701,7 +5710,6 @@ case EFFECT_GUARD_SPLIT:
             case MOVE_EFFECT_DEF_MINUS_2:
             case MOVE_EFFECT_SP_ATK_MINUS_2:
             case MOVE_EFFECT_SP_DEF_MINUS_2:
-            case MOVE_EFFECT_ACC_MINUS_2:
             case MOVE_EFFECT_EVS_MINUS_2:
             {
                 u32 statId = STAT_ATK + additionalEffect->moveEffect - MOVE_EFFECT_ATK_MINUS_2;
