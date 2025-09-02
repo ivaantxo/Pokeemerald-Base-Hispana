@@ -4879,6 +4879,7 @@ const struct Item gItemsInfo[] =
             "Cambia ataque Tecno shock\n"
             "de Genesect a tipo Agua."),
         .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_DRIVE,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_WATER,
