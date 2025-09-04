@@ -4,7 +4,6 @@
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI will tera if it enables a ko")
 {
-    KNOWN_FAILING; // Tests don't currently give the AI the capability to tera, even with a tera type set.
     GIVEN {
         ASSUME(GetMovePower(MOVE_SEED_BOMB) == 80);
         ASSUME(GetMovePower(MOVE_AQUA_TAIL) == 90);
@@ -14,9 +13,9 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI will tera if it enables a ko")
         OPPONENT(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_AQUA_TAIL, MOVE_SEED_BOMB); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(100); TeraType(TYPE_FIRE); }
     } WHEN {
-        TURN { EXPECT_MOVE(opponent, MOVE_SEED_BOMB); }
+        TURN { EXPECT_MOVE(opponent, MOVE_SEED_BOMB, gimmick: GIMMICK_TERA); SEND_OUT(player, 1); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet terastilized into the Grass type!");
+        MESSAGE("The opposing Wobbuffet terastallized into the Grass type!");
         MESSAGE("Wobbuffet fainted!");
     }
 }
@@ -34,7 +33,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI will not tera if it gets outsped a
     } WHEN {
         TURN { }
     } SCENE {
-        NOT MESSAGE("The opposing Wobbuffet terastilized into the Grass type!");
+        NOT MESSAGE("The opposing Wobbuffet terastallized into the Grass type!");
     }
 }
 
@@ -50,7 +49,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI will not tera if it gets ko'd by p
     } WHEN {
         TURN {  }
     } SCENE {
-        NOT MESSAGE("The opposing Wobbuffet terastilized into the Grass type!");
+        NOT MESSAGE("The opposing Wobbuffet terastallized into the Grass type!");
     }
 }
 
@@ -68,6 +67,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI will not tera if it gets ko'd by p
 //     } WHEN {
 //         TURN { MOVE(player, MOVE_SEED_BOMB); }
 //     } SCENE {
-//         MESSAGE("The opposing Wobbuffet terastilized into the Fire type!");
+//         MESSAGE("The opposing Wobbuffet terastallized into the Fire type!");
 //     }
 // }
