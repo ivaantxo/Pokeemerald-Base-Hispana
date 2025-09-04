@@ -53,20 +53,19 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI will not tera if it gets ko'd by p
     }
 }
 
-// AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI might tera if it gets saved from a ko")
-// {
-//     KNOWN_FAILING; // Tests don't currently give the AI the capability to tera, even with a tera type set.
-//     PASSES_RANDOMLY(90, 100, RNG_AI_CONSERVE_TERA);
-//     GIVEN {
-//         ASSUME(GetMovePower(MOVE_SEED_BOMB) == 80);
-//         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_TERA | AI_FLAG_OMNISCIENT );
-//         PLAYER(SPECIES_WOBBUFFET) { HP(47); Speed(100); Moves(MOVE_SEED_BOMB); }
-//         PLAYER(SPECIES_WOBBUFFET) { Speed(100); }
-//         OPPONENT(SPECIES_WOBBUFFET) { Speed(100); HP(30); Moves(MOVE_SEED_BOMB); TeraType(TYPE_FIRE); }
-//         OPPONENT(SPECIES_WOBBUFFET) { Speed(100); TeraType(TYPE_FIRE); }
-//     } WHEN {
-//         TURN { MOVE(player, MOVE_SEED_BOMB); }
-//     } SCENE {
-//         MESSAGE("The opposing Wobbuffet terastallized into the Fire type!");
-//     }
-// }
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_TERA: AI might tera if it gets saved from a ko")
+{
+    PASSES_RANDOMLY(90, 100, RNG_AI_CONSERVE_TERA);
+    GIVEN {
+        ASSUME(GetMovePower(MOVE_SEED_BOMB) == 80);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_TERA | AI_FLAG_OMNISCIENT );
+        PLAYER(SPECIES_WOBBUFFET) { HP(47); Speed(100); Moves(MOVE_SEED_BOMB); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(100); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); HP(30); Moves(MOVE_SEED_BOMB); TeraType(TYPE_FIRE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); TeraType(TYPE_FIRE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SEED_BOMB); }
+    } SCENE {
+        MESSAGE("The opposing Wobbuffet terastallized into the Fire type!");
+    }
+}
