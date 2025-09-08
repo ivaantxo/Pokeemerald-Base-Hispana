@@ -1024,7 +1024,6 @@ static bool32 HandleEndTurnYawn(u32 battler)
          && !UproarWakeUpCheck(battler)
          && !IsLeafGuardProtected(battler, ability))
         {
-            CancelMultiTurnMoves(battler, SKY_DROP_STATUS_YAWN);
             gEffectBattler = gBattlerTarget = battler;
             if (IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
             {
@@ -1038,7 +1037,15 @@ static bool32 HandleEndTurnYawn(u32 battler)
             }
             else if (IsSleepClauseActiveForSide(GetBattlerSide(battler)))
             {
-                BattleScriptExecute(BattleScript_SleepClausePreventsEnd);
+                BattleScriptExecute(BattleScript_SleepClausePreventsEnd2);
+            }
+            else if ((gBattleScripting.battler = IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)))
+            {
+                gBattleScripting.battler--;
+                gLastUsedAbility = ABILITY_SWEET_VEIL;
+                gBattlerAbility = gBattleScripting.battler;
+                RecordAbilityBattle(gBattleScripting.battler, ABILITY_SWEET_VEIL);
+                BattleScriptExecute(BattleScript_ImmunityProtectedEnd2);
             }
             else
             {
@@ -1047,10 +1054,11 @@ static bool32 HandleEndTurnYawn(u32 battler)
                 else
                     gBattleMons[battler].status1 |= ((Random() % 4) + 3);
 
+                CancelMultiTurnMoves(battler, SKY_DROP_STATUS_YAWN);
                 TryActivateSleepClause(battler, gBattlerPartyIndexes[battler]);
                 BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                 MarkBattlerForControllerExec(battler);
-                BattleScriptExecute(BattleScript_YawnMakesAsleep);
+                BattleScriptExecute(BattleScript_YawnMakesAsleepEnd2);
             }
             effect = TRUE;
         }
