@@ -13674,9 +13674,13 @@ static void Cmd_handleballthrow(void)
 
             if (shakes == maxShakes) // mon caught, copy of the code above
             {
-                if (IsCriticalCapture())
+                enum NationalDexOrder natDexNo = SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species);
+                if ((B_CRITICAL_CAPTURE_IF_OWNED >= GEN_9 && GetSetPokedexFlag(natDexNo, FLAG_GET_CAUGHT))
+                 || IsCriticalCapture())
+                {
+                    gBattleSpritesDataPtr->animationData->isCriticalCapture = TRUE;
                     gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = TRUE;
-
+                }
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
