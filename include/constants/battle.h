@@ -162,7 +162,7 @@ enum VolatileFlags
     F(VOLATILE_RECHARGE,                    recharge,                      (u32, 1)) \
     F(VOLATILE_RAGE,                        rage,                          (u32, 1)) \
     F(VOLATILE_SUBSTITUTE,                  substitute,                    (u32, 1), V_BATON_PASSABLE) \
-    F(VOLATILE_DESTINY_BOND,                destinyBond,                   (u32, 1)) \
+    F(VOLATILE_DESTINY_BOND,                destinyBond,                   (u32, 2)) \
     F(VOLATILE_ESCAPE_PREVENTION,           escapePrevention,              (u32, 1), V_BATON_PASSABLE) \
     F(VOLATILE_NIGHTMARE,                   nightmare,                     (u32, 1)) \
     F(VOLATILE_CURSED,                      cursed,                        (u32, 1), V_BATON_PASSABLE) \
@@ -196,6 +196,7 @@ enum VolatileFlags
     F(VOLATILE_AQUA_RING,                   aquaRing,                      (u32, 1), V_BATON_PASSABLE) \
     F(VOLATILE_LASER_FOCUS,                 laserFocus,                    (u32, 1)) \
     F(VOLATILE_POWER_TRICK,                 powerTrick,                    (u32, 1), V_BATON_PASSABLE) \
+    F(VOLATILE_NO_RETREAT,                  noRetreat,                     (u32, 1), V_BATON_PASSABLE) \
     F(VOLATILE_VESSEL_OF_RUIN,              vesselOfRuin,                  (u32, 1)) \
     F(VOLATILE_SWORD_OF_RUIN,               swordOfRuin,                   (u32, 1)) \
     F(VOLATILE_TABLETS_OF_RUIN,             tabletsOfRuin,                 (u32, 1)) \
