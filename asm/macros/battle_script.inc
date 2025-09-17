@@ -1046,7 +1046,7 @@
 	.byte 0xc3
 	.endm
 
-	.macro trydobeatup endInstr, failInstr
+	.macro trydobeatup endInstr:req, failInstr:req
 	.byte 0xc4
 	.4byte \endInstr
 	.4byte \failInstr
