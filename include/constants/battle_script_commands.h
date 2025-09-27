@@ -156,14 +156,14 @@ enum MoveEndEffects
     MOVEEND_ABILITY_BLOCK,
     MOVEEND_SHEER_FORCE, // If move is Sheer Force affected, skip until Opportunist
     MOVEEND_COLOR_CHANGE, // Color Change / Berserk / Anger Shell
-    MOVEEND_RED_CARD, // Red Card triggers before Eject Pack
+    MOVEEND_RED_CARD, 
     MOVEEND_EJECT_BUTTON,
-    MOVEEND_LIFEORB_SHELLBELL, // Shell Bell / Life Orb / Throat Spray
+    MOVEEND_LIFEORB_SHELLBELL, 
     MOVEEND_FORM_CHANGE,
     MOVEEND_EMERGENCY_EXIT,
     MOVEEND_EJECT_PACK,
     MOVEEND_HIT_ESCAPE,
-    MOVEEND_OPPORTUNIST, // Occurs after other stat change items/abilities to try and copy the boosts
+    MOVEEND_OPPORTUNIST,
     MOVEEND_MIRROR_HERB,
     MOVEEND_PICKPOCKET,
     MOVEEND_WHITE_HERB,
