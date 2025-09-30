@@ -2861,7 +2861,8 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     BtlController_EmitSetMonData(battlerItem, B_COMM_TO_CONTROLLER, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].item), &gBattleMons[battlerItem].item);  // remove target item
     MarkBattlerForControllerExec(battlerItem);
 
-    gBattleStruct->choicedMove[battlerItem] = 0;
+    if (GetBattlerAbility(gBattlerTarget) != ABILITY_GORILLA_TACTICS)
+        gBattleStruct->choicedMove[gBattlerTarget] = MOVE_NONE;
 
     TrySaveExchangedItem(battlerItem, gLastUsedItem);
 }
@@ -5705,7 +5706,7 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
             gBattleMons[gBattlerTarget].item = 0;
             if (gBattleMons[gBattlerTarget].ability != ABILITY_GORILLA_TACTICS)
-                gBattleStruct->choicedMove[gBattlerTarget] = 0;
+                gBattleStruct->choicedMove[gBattlerTarget] = MOVE_NONE;
             CheckSetUnburden(gBattlerTarget);
 
             // In Gen 5+, Knock Off removes the target's item rather than rendering it unusable.
@@ -6494,8 +6495,28 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ITEM_EFFECTS_ATTACKER:
+            // ITEMEFFECT_MOVE_END loops over all battlers, not just attacker.
+            // It will executre only the first mon with an applicable item.
+            // So presumably it is a bug
             if (ItemBattleEffects(ITEMEFFECT_MOVE_END, gBattlerAttacker))
                 effect = TRUE;
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_ITEM_THROAT_SPRAY:
+            if (IsSoundMove(gCurrentMove)
+             && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+             && GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_THROAT_SPRAY
+             && IsBattlerAlive(gBattlerAttacker)
+             && IsAnyTargetAffected(gBattlerAttacker)
+             && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)
+             && !NoAliveMonsForEitherParty())   // Don't activate if battle will end
+            {
+                gLastUsedItem = gBattleMons[gBattlerAttacker].item;
+                gBattleScripting.battler = gBattlerAttacker;
+                SET_STATCHANGER(STAT_SPATK, 1, FALSE);
+                effect = TRUE;
+                BattleScriptCall(BattleScript_AttackerItemStatRaise);
+            }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITY_BLOCK:
@@ -6881,20 +6902,19 @@ static void Cmd_moveend(void)
 
             if (gBattleStruct->savedAttackerCount > 0)
             {
-                // #if TESTING
-                // Test_ExitWithResult(TEST_RESULT_ERROR,  "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
-                // #else
-                DebugPrintfLevel(MGBA_LOG_WARN, "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
-                // #endif
+                if (TESTING)
+                    Test_ExitWithResult(TEST_RESULT_ERROR, 0, "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!", __FILE__, __LINE__);
+                else
+                    DebugPrintfLevel(MGBA_LOG_WARN, "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
             }
             if (gBattleStruct->savedTargetCount > 0)
             {
-                // #if TESTING
-                // Test_ExitWithResult(TEST_RESULT_ERROR, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
-                // #else
-                DebugPrintfLevel(MGBA_LOG_WARN, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
-                // #endif
+                if (TESTING)
+                    Test_ExitWithResult(TEST_RESULT_ERROR, 0, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!", __FILE__, __LINE__);
+                else
+                    DebugPrintfLevel(MGBA_LOG_WARN, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
             }
+
             gProtectStructs[gBattlerAttacker].shellTrap = FALSE;
             gBattleStruct->battlerState[gBattlerAttacker].ateBoost = FALSE;
             gSpecialStatuses[gBattlerAttacker].gemBoost = FALSE;
@@ -7176,13 +7196,7 @@ static void Cmd_switchinanim(void)
 
     battler = GetBattlerForBattleScript(cmd->battler);
 
-    if (!IsOnPlayerSide(battler)
-        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
-                                 | BATTLE_TYPE_EREADER_TRAINER
-                                 | BATTLE_TYPE_RECORDED_LINK
-                                 | BATTLE_TYPE_TRAINER_HILL
-                                 | BATTLE_TYPE_FRONTIER)))
-        HandleSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[battler].species), FLAG_SET_SEEN, gBattleMons[battler].personality);
+    GetBattlerPartyState(battler)->sentOut = TRUE;
 
     gAbsentBattlerFlags &= ~(1u << battler);
 
@@ -12871,8 +12885,10 @@ static void Cmd_tryswapitems(void)
             BtlController_EmitSetMonData(gBattlerTarget, B_COMM_TO_CONTROLLER, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].item), &gBattleMons[gBattlerTarget].item);
             MarkBattlerForControllerExec(gBattlerTarget);
 
-            gBattleStruct->choicedMove[gBattlerTarget] = MOVE_NONE;
-            gBattleStruct->choicedMove[gBattlerAttacker] = MOVE_NONE;
+            if (GetBattlerAbility(gBattlerTarget) != ABILITY_GORILLA_TACTICS)
+                gBattleStruct->choicedMove[gBattlerTarget] = MOVE_NONE;
+            if (GetBattlerAbility(gBattlerTarget) != ABILITY_GORILLA_TACTICS)
+                gBattleStruct->choicedMove[gBattlerAttacker] = MOVE_NONE;
 
             gBattlescriptCurrInstr = cmd->nextInstr;
 

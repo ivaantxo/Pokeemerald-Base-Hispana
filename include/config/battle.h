@@ -311,6 +311,7 @@
 #define B_TOXIC_REVERSAL                GEN_LATEST // En Gen5+, el veneno grave se convierte en veneno normal al final de las batallas.
 #define B_TRY_CATCH_TRAINER_BALL        GEN_LATEST // En Gen4+, intentar capturar a un Pokémon de un entrenador no consume la Poké Ball.
 #define B_SLEEP_CLAUSE                  FALSE     //  Si está habilitado, activa la cláusula de sueño siempre, sin importar el B_FLAG_SLEEP_CLAUSE. Usa esto si quieres que sea más fácil de ajustar.
+#define B_PARTNER_MONS_MARKED_SEEN      FALSE      // If TRUE, if your double battle partner sends out a Pokémon you haven't encountered yet, it will be marked as SEEN in your Pokédex.
 
 #define NUM_BEEPS_GEN_LATEST            4                    // Loops 4 times
 #define NUM_BEEPS_GEN_3                 -1                   // Loops infinitely
