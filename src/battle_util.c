@@ -10397,21 +10397,21 @@ u32 TryImmunityAbilityHealStatus(u32 battler, u32 caseID)
     case ABILITY_PASTEL_VEIL:
         if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | STATUS1_TOXIC_COUNTER))
         {
-            StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+            StringCopy(gBattleTextBuff1, gStatusConditionStringsTable[0]); // Poison
             effect = 1;
         }
         break;
     case ABILITY_OWN_TEMPO:
         if (gBattleMons[battler].volatiles.confusionTurns > 0)
         {
-            StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
+            StringCopy(gBattleTextBuff1, gStatusConditionStringsTable[5]); // Confusion
             effect = 2;
         }
         break;
     case ABILITY_LIMBER:
         if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
         {
-            StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+            StringCopy(gBattleTextBuff1, gStatusConditionStringsTable[2]); // Paralysis
             effect = 1;
         }
         break;
@@ -10421,7 +10421,7 @@ u32 TryImmunityAbilityHealStatus(u32 battler, u32 caseID)
         {
             TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
             gBattleMons[battler].volatiles.nightmare = FALSE;
-            StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+            StringCopy(gBattleTextBuff1, gStatusConditionStringsTable[1]); // Sleep
             effect = 1;
         }
         break;
@@ -10430,20 +10430,20 @@ u32 TryImmunityAbilityHealStatus(u32 battler, u32 caseID)
     case ABILITY_THERMAL_EXCHANGE:
         if (gBattleMons[battler].status1 & STATUS1_BURN)
         {
-            StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+            StringCopy(gBattleTextBuff1, gStatusConditionStringsTable[3]); // Burn
             effect = 1;
         }
         break;
     case ABILITY_MAGMA_ARMOR:
         if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
         {
-            StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+            StringCopy(gBattleTextBuff1, gStatusConditionStringsTable[4]); // Ice/Freeze
             effect = 1;
         }
         break;
     case ABILITY_OBLIVIOUS:
         if (gBattleMons[battler].volatiles.infatuation)
-            effect = 3;
+            effect = 3; // Love/Infatuation handled later
         else if (gDisableStructs[battler].tauntTimer != 0)
             effect = 4;
         break;
