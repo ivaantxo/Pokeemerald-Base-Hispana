@@ -40,6 +40,28 @@ AI_SINGLE_BATTLE_TEST("AI switches if Perish Song is about to kill")
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI sees on-field player ability correctly and does not see previous Pokémon's ability after player uses a pivot move when choosing a post-KO switch")
+{
+    u32 testAbility;
+    PARAMETRIZE { testAbility = ABILITY_WATER_ABSORB; }
+    PARAMETRIZE { testAbility = ABILITY_VOLT_ABSORB; }
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_PIKACHU) {Level(100); Moves(MOVE_VOLT_SWITCH, MOVE_SPARKLY_SWIRL); Ability(ABILITY_LIGHTNING_ROD); };
+        PLAYER(SPECIES_LANTURN) {Level(44); Moves(MOVE_SCALD); Ability(testAbility); };
+        OPPONENT(SPECIES_SOBBLE) {Level(44); Moves(MOVE_SCRATCH); }
+        OPPONENT(SPECIES_BOMBIRDIER) {Level(42); Moves(MOVE_ROCK_SLIDE); }
+        OPPONENT(SPECIES_IRON_THORNS) {Level(43); Moves(MOVE_SUPERCELL_SLAM, MOVE_ICE_PUNCH); }
+    } WHEN {
+        TURN { 
+            MOVE(player, MOVE_VOLT_SWITCH);
+            SEND_OUT(player, 1);
+            EXPECT_MOVE(opponent, MOVE_SCRATCH);
+            testAbility == ABILITY_WATER_ABSORB ? EXPECT_SEND_OUT(opponent, 2) : EXPECT_SEND_OUT(opponent, 1);
+        }
+    }
+}
+
 AI_DOUBLE_BATTLE_TEST("AI will not try to switch for the same Pokémon for 2 spots in a double battle (all bad moves)")
 {
     u32 flags;
