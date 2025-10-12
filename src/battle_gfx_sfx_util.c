@@ -335,6 +335,7 @@ static u8 GetBattlePalaceMoveGroup(u8 battler, u16 move)
     case MOVE_TARGET_RANDOM:
     case MOVE_TARGET_BOTH:
     case MOVE_TARGET_FOES_AND_ALLY:
+    case MOVE_TARGET_ALL_BATTLERS:
         if (IsBattleMoveStatus(move))
             return PALACE_MOVE_GROUP_SUPPORT;
         else
@@ -342,6 +343,7 @@ static u8 GetBattlePalaceMoveGroup(u8 battler, u16 move)
         break;
     case MOVE_TARGET_DEPENDS:
     case MOVE_TARGET_OPPONENTS_FIELD:
+    case MOVE_TARGET_ALLY:
         return PALACE_MOVE_GROUP_SUPPORT;
     case MOVE_TARGET_USER:
         return PALACE_MOVE_GROUP_DEFENSE;
