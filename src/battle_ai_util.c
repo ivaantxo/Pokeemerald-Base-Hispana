@@ -2027,6 +2027,9 @@ bool32 ShouldRaiseAnyStat(u32 battlerAtk, u32 battlerDef)
 
 bool32 ShouldSetWeather(u32 battler, u32 weather)
 {
+    if (AI_GetWeather() & weather)
+        return FALSE;
+
     return WeatherChecker(battler, weather, FIELD_EFFECT_POSITIVE);
 }
 
@@ -2037,6 +2040,15 @@ bool32 ShouldClearWeather(u32 battler, u32 weather)
 
 bool32 ShouldSetFieldStatus(u32 battler, u32 fieldStatus)
 {
+    if (gFieldStatuses & fieldStatus)
+    {
+        if (!(fieldStatus & STATUS_FIELD_TRICK_ROOM))
+            return FALSE;
+        // DOUBLE_TRICK_ROOM_ON_LAST_TURN_CHANCE
+        else if (gFieldTimers.trickRoomTimer != (gBattleTurnCounter + 1))
+            return FALSE;
+    }
+
     return FieldStatusChecker(battler, fieldStatus, FIELD_EFFECT_POSITIVE);
 }
 
