@@ -6239,7 +6239,7 @@ BattleScript_PowderMoveNoEffectWaitMsg:
 BattleScript_MoveUsedFlinched::
 	printstring STRINGID_PKMNFLINCHED
 	waitmessage B_WAIT_TIME_LONG
-	waitmessage B_WAIT_TIME_LONG
+	jumpifability BS_ATTACKER, ABILITY_STEADFAST, BattleScript_TryActivateSteadFast
 BattleScript_MoveUsedFlinchedEnd:
 	goto BattleScript_MoveEnd
 BattleScript_TryActivateSteadFast:
@@ -6249,7 +6249,7 @@ BattleScript_TryActivateSteadFast:
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_MoveUsedFlinchedEnd
-	setbyte gBattleCommunication STAT_SPEED
+	setbyte gBattleCommunication, STAT_SPEED
 	stattextbuffer
 	printstring STRINGID_ATTACKERABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
@@ -7993,7 +7993,7 @@ BattleScript_ArenaTurnBeginning::
 	playse SE_ARENA_TIMEUP1
 	drawarenareftextbox
 	arenajudgmentstring B_MSG_REF_COMMENCE_BATTLE
-	arenawaitmessage B_MSG_REF_COMMENCE_BATTLE
+	arenawaitmessage
 	pause B_WAIT_TIME_LONG
 	erasearenareftextbox
 	volumeup
@@ -8011,26 +8011,26 @@ BattleScript_ArenaDoJudgment::
 	pause B_WAIT_TIME_LONG
 	drawarenareftextbox
 	arenajudgmentstring B_MSG_REF_THATS_IT
-	arenawaitmessage B_MSG_REF_THATS_IT
+	arenawaitmessage
 	pause B_WAIT_TIME_LONG
 	setbyte gBattleCommunication, 0  @ Reset state for arenajudgmentwindow
 	arenajudgmentwindow
 	pause B_WAIT_TIME_LONG
 	arenajudgmentwindow
 	arenajudgmentstring B_MSG_REF_JUDGE_MIND
-	arenawaitmessage B_MSG_REF_JUDGE_MIND
+	arenawaitmessage
 	arenajudgmentwindow
 	arenajudgmentstring B_MSG_REF_JUDGE_SKILL
-	arenawaitmessage B_MSG_REF_JUDGE_SKILL
+	arenawaitmessage
 	arenajudgmentwindow
 	arenajudgmentstring B_MSG_REF_JUDGE_BODY
-	arenawaitmessage B_MSG_REF_JUDGE_BODY
+	arenawaitmessage
 	arenajudgmentwindow
 	jumpifbyte CMP_EQUAL, gBattleCommunication + 1, ARENA_RESULT_PLAYER_LOST, BattleScript_ArenaJudgmentPlayerLoses
 	jumpifbyte CMP_EQUAL, gBattleCommunication + 1, ARENA_RESULT_TIE, BattleScript_ArenaJudgmentDraw
 @ ARENA_RESULT_PLAYER_WON
 	arenajudgmentstring B_MSG_REF_PLAYER_WON
-	arenawaitmessage B_MSG_REF_PLAYER_WON
+	arenawaitmessage
 	arenajudgmentwindow
 	erasearenareftextbox
 	printstring STRINGID_DEFEATEDOPPONENTBYREFEREE
@@ -8045,7 +8045,7 @@ BattleScript_ArenaDoJudgment::
 
 BattleScript_ArenaJudgmentPlayerLoses:
 	arenajudgmentstring B_MSG_REF_OPPONENT_WON
-	arenawaitmessage B_MSG_REF_OPPONENT_WON
+	arenawaitmessage
 	arenajudgmentwindow
 	erasearenareftextbox
 	printstring STRINGID_LOSTTOOPPONENTBYREFEREE
@@ -8060,11 +8060,12 @@ BattleScript_ArenaJudgmentPlayerLoses:
 
 BattleScript_ArenaJudgmentDraw:
 	arenajudgmentstring B_MSG_REF_DRAW
-	arenawaitmessage B_MSG_REF_DRAW
+	arenawaitmessage
 	arenajudgmentwindow
 	erasearenareftextbox
 	printstring STRINGID_TIEDOPPONENTBYREFEREE
 	waitmessage B_WAIT_TIME_LONG
+	arenabothmonslost
 	playfaintcry BS_PLAYER1
 	waitcry
 	dofaintanimation BS_PLAYER1
@@ -8075,7 +8076,6 @@ BattleScript_ArenaJudgmentDraw:
 	dofaintanimation BS_OPPONENT1
 	cleareffectsonfaint BS_OPPONENT1
 	waitanimation
-	arenabothmonslost
 	end2
 
 BattleScript_AskIfWantsToForfeitMatch::
