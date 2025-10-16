@@ -9070,7 +9070,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Placaje de alto riesgo que\n"
             "hiere un poco al atacante."),
         #endif
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
