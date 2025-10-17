@@ -64,6 +64,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://metin2.dev/index.php"><img src="https://avatars.githubusercontent.com/u/42327659?v=4?s=100" width="100px;" alt="Enrico Drago"/><br /><sub><b>Enrico Drago</b></sub></a><br /><a href="https://github.com/rh-hideout/pokeemerald-expansion/commits?author=Syreldar" title="Documentation">📖</a> <a href="#userTesting-Syreldar" title="User Testing">📓</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Pyredrid"><img src="https://avatars.githubusercontent.com/u/8324784?v=4?s=100" width="100px;" alt="Pyredrid"/><br /><sub><b>Pyredrid</b></sub></a><br /><a href="#userTesting-Pyredrid" title="User Testing">📓</a> <a href="#maintenance-Pyredrid" title="Maintenance">🚧</a></td>     
     </tr>
   </tbody>
   <tfoot>
