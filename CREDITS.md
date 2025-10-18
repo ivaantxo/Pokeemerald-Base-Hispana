@@ -70,6 +70,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Doesnty"><img src="https://avatars.githubusercontent.com/u/6163136?v=4?s=100" width="100px;" alt="Doesnty"/><br /><sub><b>Doesnty</b></sub></a><br /><a href="#design-Doesnty" title="Design">🎨</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/FosterProgramming"><img src="https://avatars.githubusercontent.com/u/178871164?v=4?s=100" width="100px;" alt="FosterProgramming"/><br /><sub><b>FosterProgramming</b></sub></a><br /><a href="https://github.com/rh-hideout/pokeemerald-expansion/commits?author=FosterProgramming" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Squeetz"><img src="https://avatars.githubusercontent.com/u/21145213?v=4?s=100" width="100px;" alt="Squeetz"/><br /><sub><b>Squeetz</b></sub></a><br /><a href="#maintenance-Squeetz" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ghostyboyy97"><img src="https://avatars.githubusercontent.com/u/106448956?v=4?s=100" width="100px;" alt="ghostyboyy97"/><br /><sub><b>ghostyboyy97</b></sub></a><br /><a href="https://github.com/rh-hideout/pokeemerald-expansion/commits?author=ghostyboyy97" title="Code">💻</a></td>
     </tr>
   </tbody>
   <tfoot>
