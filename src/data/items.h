@@ -9514,7 +9514,7 @@ const struct Item gItemsInfo[] =
             "tener y que cura la\n"
             "confusión en batalla."),
         .pocket = POCKET_BERRIES,
-        .type = ITEM_USE_BAG_MENU,
+        .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
         .effect = gItemEffect_PersimBerry,
