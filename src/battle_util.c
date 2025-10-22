@@ -8074,10 +8074,10 @@ static inline u32 CalcMoveBasePower(struct DamageContext *ctx)
             break;
         }
     case EFFECT_ECHOED_VOICE:
-        // gBattleStruct->sameMoveTurns incremented in ppreduce
-        if (gBattleStruct->sameMoveTurns[battlerAtk] != 0 && GetMoveEffect(gLastResultingMoves[battlerAtk]) == EFFECT_ECHOED_VOICE)
+        // gBattleStruct->echoedVoiceCounter incremented in EndTurnVarious called by DoEndTurnEffects
+        if (gBattleStruct->echoedVoiceCounter != 0)
         {
-            basePower += (basePower * gBattleStruct->sameMoveTurns[battlerAtk]);
+            basePower += (basePower * gBattleStruct->echoedVoiceCounter);
             if (basePower > 200)
                 basePower = 200;
         }
@@ -9207,7 +9207,7 @@ static inline uq4_12_t GetAttackerItemsModifier(u32 battlerAtk, uq4_12_t typeEff
     {
     case HOLD_EFFECT_METRONOME:
         metronomeBoostBase = PercentToUQ4_12(GetBattlerHoldEffectParam(battlerAtk));
-        metronomeTurns = min(gBattleStruct->sameMoveTurns[battlerAtk], 5);
+        metronomeTurns = min(gBattleStruct->metronomeItemCounter[battlerAtk], 5);
         // according to bulbapedia this is the "correct" way to calculate the metronome boost
         // due to the limited domain of damage numbers it will never really matter whether this is off by one
         return uq4_12_add(UQ_4_12(1.0), metronomeBoostBase * metronomeTurns);
