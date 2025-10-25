@@ -158,7 +158,8 @@ struct DamageContext
     u32 isCrit:1;
     u32 randomFactor:1;
     u32 updateFlags:1;
-    u32 padding1:2;
+    u32 isAnticipation:1;
+    u32 padding1:1;
     u32 weather:16;
     u32 fixedBasePower:8;
     u32 padding2:8;
@@ -251,7 +252,8 @@ bool32 HandleFaintedMonActions(void);
 void TryClearRageAndFuryCutter(void);
 enum MoveCanceller AtkCanceller_MoveSuccessOrder(struct BattleContext *ctx);
 bool32 HasNoMonsToSwitch(u32 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2);
-bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, bool32 viaAbility);
+bool32 TryChangeBattleWeather(u32 battler, u32 battleWeatherId, u32 ability);
+bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag);
 bool32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, enum Ability abilityAtk, enum Ability abilityDef, u32 move, enum FunctionCallOption option);
 bool32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, enum Ability abilityDef, u32 move, u32 moveType, enum FunctionCallOption option);
 u32 AbilityBattleEffects(enum AbilityEffect caseID, u32 battler, enum Ability ability, u32 special, u32 moveArg);
@@ -320,6 +322,7 @@ u32 GetIllusionMonPartyId(struct Pokemon *party, struct Pokemon *mon, struct Pok
 bool32 SetIllusionMon(struct Pokemon *mon, u32 battler);
 u32 TryImmunityAbilityHealStatus(u32 battler, enum AbilityEffect caseID);
 bool32 ShouldGetStatBadgeBoost(u16 flagId, u32 battler);
+uq4_12_t GetBadgeBoostModifier(void);
 enum DamageCategory GetBattleMoveCategory(u32 move);
 void SetDynamicMoveCategory(u32 battlerAtk, u32 battlerDef, u32 move);
 bool32 CanFling(u32 battler);
