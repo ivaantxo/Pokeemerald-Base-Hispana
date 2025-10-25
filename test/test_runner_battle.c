@@ -2079,6 +2079,8 @@ void Item_(u32 sourceLine, u32 item)
     case HOLD_EFFECT_Z_CRYSTAL:
         SetGimmick(sourceLine, DATA.currentPosition, DATA.currentPartyIndex, GIMMICK_Z_MOVE);
         break;
+    default:
+        break;
     }
 }
 

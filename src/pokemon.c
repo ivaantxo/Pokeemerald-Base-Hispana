@@ -852,7 +852,7 @@ static const u8 sGetMonDataEVConstants[] =
 };
 
 // For stat-raising items
-static const u8 sStatsToRaise[] =
+static const enum Stat sStatsToRaise[] =
 {
     STAT_ATK, STAT_ATK, STAT_DEF, STAT_SPEED, STAT_SPATK, STAT_SPDEF, STAT_ACC
 };
@@ -1042,8 +1042,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 value;
     u16 checksum;
     u8 i;
-    u8 availableIVs[NUM_STATS];
-    u8 selectedIvs[NUM_STATS];
+    enum Stat availableIVs[NUM_STATS];
+    enum Stat selectedIvs[NUM_STATS];
     bool32 isShiny;
 
     ZeroBoxMonData(boxMon);
@@ -1199,6 +1199,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                     break;
                 case STAT_SPDEF:
                     SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+                    break;
+                default:
                     break;
                 }
             }
@@ -3743,9 +3745,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     u8 itemEffectParam = ITEM_EFFECT_ARG_START;
     u32 temp1, temp2;
     s8 friendshipChange = 0;
-    u8 holdEffect;
+    enum HoldEffect holdEffect;
     u8 battler = MAX_BATTLERS_COUNT;
-    u32 friendshipOnly = FALSE;
+    bool32 friendshipOnly = FALSE;
     u16 heldItem;
     u8 effectFlags;
     s8 evChange;
@@ -4329,7 +4331,7 @@ u8 GetItemEffectParamOffset(u32 battler, u16 itemId, u8 effectByte, u8 effectBit
     return offset;
 }
 
-static void BufferStatRoseMessage(s32 statIdx)
+static void BufferStatRoseMessage(enum Stat statIdx)
 {
     gBattlerTarget = gBattlerInMenuId;
     StringCopy(gBattleTextBuff1, gStatNamesTable[sStatsToRaise[statIdx]]);
@@ -4470,7 +4472,7 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
     for (i = 0; params != NULL && params[i].condition != CONDITIONS_END; i++)
     {
         enum EvolutionConditions condition = params[i].condition;
-        u32 currentCondition = FALSE;
+        bool32 currentCondition = FALSE;
 
         switch(condition)
         {
@@ -4761,7 +4763,7 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    u32 holdEffect;
+    enum HoldEffect holdEffect;
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     if (evolutions == NULL)
@@ -5204,7 +5206,7 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
         return gTrainers[difficulty][sanitizedTrainerId].encounterMusic_gender & (F_TRAINER_FEMALE - 1);
 }
 
-u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
+u16 ModifyStatByNature(u8 nature, u16 stat, enum Stat statIndex)
 {
     // Don't modify HP, Accuracy, or Evasion by nature
     if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS || gNaturesInfo[nature].statUp == gNaturesInfo[nature].statDown)
@@ -5220,7 +5222,7 @@ u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
 void AdjustFriendship(struct Pokemon *mon, u8 event)
 {
     u16 species, heldItem;
-    u8 holdEffect;
+    enum HoldEffect holdEffect;
     s8 mod;
 
     if (ShouldSkipFriendshipChange())
@@ -5302,8 +5304,9 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     u16 evIncrease = 0;
     u16 totalEVs = 0;
     u16 heldItem;
-    u8 holdEffect;
-    int i, multiplier;
+    enum HoldEffect holdEffect;
+    enum Stat i;
+    int multiplier;
     u8 stat;
     u8 bonus;
     u32 currentEVCap = GetCurrentEVCap();
@@ -5381,6 +5384,8 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
                 evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_SpDefense + bonus) * multiplier;
             else
                 evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpDefense * multiplier;
+            break;
+        default:
             break;
         }
 
