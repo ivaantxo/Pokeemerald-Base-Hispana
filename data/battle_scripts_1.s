@@ -7723,7 +7723,7 @@ BattleScript_ItemHealHP_End2::
 	call BattleScript_ItemHealHP_Ret
 	end2
 
-BattleScript_AirBaloonMsgIn::
+BattleScript_AirBalloonMsgIn::
 	printstring STRINGID_AIRBALLOONFLOAT
 	waitmessage B_WAIT_TIME_LONG
 	end3
@@ -7733,7 +7733,7 @@ BattleScript_AirBalloonMsgInRet::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
-BattleScript_AirBaloonMsgPop::
+BattleScript_AirBalloonMsgPop::
 	printstring STRINGID_AIRBALLOONPOP
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_TARGET

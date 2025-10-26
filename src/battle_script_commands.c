@@ -6124,7 +6124,7 @@ static void Cmd_moveend(void)
                 if (AbilityBattleEffects(ABILITYEFFECT_IMMUNITY, battler, 0, 0, 0))
                     effect = TRUE;
             }
-            if(!effect)
+            if (!effect)
                 gBattleScripting.moveendState++;
             break;
         case MOVEEND_SYNCHRONIZE_ATTACKER: // attacker synchronize
@@ -9129,16 +9129,18 @@ static void Cmd_useitemonopponent(void)
 
 bool32 CanUseLastResort(u8 battler)
 {
-    u32 knownMovesCount = 0, usedMovesCount = 0;
-
-    for (u32 i = 0; i < MAX_MON_MOVES; i++)
+    u32 moveIndex;
+    for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
-        if (gBattleMons[battler].moves[i] != MOVE_NONE)
-            knownMovesCount++;
-        if (GetMoveEffect(gBattleMons[battler].moves[i]) != EFFECT_LAST_RESORT && gDisableStructs[battler].usedMoves & (1u << i)) // Increment used move count for all moves except current Last Resort.
-            usedMovesCount++;
+        u32 move = gBattleMons[battler].moves[moveIndex];
+        // Assumes that an empty slot cannot have a non-empty slot after it
+        if (move == MOVE_NONE)
+            break;
+        // If not Last Resort and has not been used, can't use Last Resort
+        if (GetMoveEffect(move) != EFFECT_LAST_RESORT && !(gDisableStructs[battler].usedMoves & (1u << moveIndex)))
+            return FALSE;
     }
-    return (knownMovesCount >= 2 && usedMovesCount >= knownMovesCount - 1);
+    return moveIndex >= 2; // At least two usable moves that are either Last Resort or have been used
 }
 
 static void RemoveAllWeather(void)
@@ -17075,7 +17077,7 @@ void BS_TryActivateReceiver(void)
     u32 partnerAbility = GetBattlerAbility(gBattlerAbility);
     if (IsBattlerAlive(gBattlerAbility)
         && (partnerAbility == ABILITY_RECEIVER || partnerAbility == ABILITY_POWER_OF_ALCHEMY)
-        && GetBattlerHoldEffect(battler) != HOLD_EFFECT_ABILITY_SHIELD
+        && GetBattlerHoldEffectIgnoreAbility(battler) != HOLD_EFFECT_ABILITY_SHIELD
         && !gAbilitiesInfo[gBattleMons[battler].ability].cantBeCopied)
     {
         gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[battler].ability; // re-using the variable for trace
