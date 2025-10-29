@@ -935,6 +935,7 @@ struct TestAIScoreStruct
     bool8 explicitTarget;
 };
 
+// Party data at the beginning of the test. Shouldn't be confused with the party data changed during the test.
 #define PLAYER_PARTY (gBattleTestRunnerState->data.recordedBattle.playerParty)
 #define OPPONENT_PARTY (gBattleTestRunnerState->data.recordedBattle.opponentParty)
 
