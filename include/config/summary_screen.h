@@ -8,6 +8,7 @@
 #define P_SUMMARY_SCREEN_RENAME          TRUE   // Si está habilitado, una opción para cambiar el nombre de los Pokémon sustituirá la opción de cancelar en la pantalla de sumario.
 #define P_SUMMARY_SCREEN_IV_EV_INFO      FALSE  // Si está habilitado, permitirá al jugador rotar Estadísticas, IVs, y EVs en la página de habilidades en la pantalla de sumario.
 #define P_SUMMARY_SCREEN_IV_EV_BOX_ONLY  FALSE  // Si está habilitado, permitirá al jugador rotar Estadísticas, IVs, y EVs en la página de habilidades en la pantalla de sumario, pero solo en la caja Pokémon.
+#define P_SUMMARY_SCREEN_IV_HYPERTRAIN   TRUE   // If TRUE, stats that have been hyper trained will show as 31/S when viewing them in the summary screen
 #define P_SUMMARY_SCREEN_IV_EV_TILESET   FALSE  // Si está habilitado, cargará un tileset alternativo para permitir cambiar la etiqueta "Estadísticas" en la página de habilidades en la pantalla de sumario. Nota: puede ser que requiera un make clean.
 #define P_SUMMARY_SCREEN_IV_EV_VALUES    FALSE  // Si está habilitado, mostrará el valor de IV en vez de la letra.
 /* 
