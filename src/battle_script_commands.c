@@ -12124,18 +12124,19 @@ static void Cmd_tryactivateitem(void)
     CMD_ARGS(u8 battler, u8 flag);
     u32 battler = GetBattlerForBattleScript(cmd->battler);
 
-    switch (cmd->flag)
+    switch ((enum ItemActivationState)cmd->flag)
     {
-    case ON_ITEM_USABLE_AGAIN:
-    case ON_ITEM_PICK_UP:
-        if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsActivationForceTriggerItem))
+    case ACTIVATION_ON_USABLE_AGAIN:
+    case ACTIVATION_ON_PICK_UP:
+        if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsForceTriggerItemActivation))
             return;
         break;
-    case ON_BERRY_HARVEST:
-        if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsActivationOnBerry))
+    case ACTIVATION_ON_HARVEST:
+        gLastUsedItem = gBattleMons[battler].item;
+        if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsOnBerryActivation))
             return;
         break;
-    case ON_ITEM_HP_THRESHOLD:
+    case ACTIVATION_ON_HP_THRESHOLD:
         if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsOnHpThresholdActivation))
             return;
         break;
@@ -16432,16 +16433,17 @@ void BS_TryBoosterEnergy(void)
 
     for (u32 orderNum = 0; orderNum < gBattlersCount; orderNum++)
     {
-        u32 battlerByTurnOrder = gBattlerByTurnOrder[orderNum];
-        if (GetBattlerHoldEffect(battlerByTurnOrder) != HOLD_EFFECT_BOOSTER_ENERGY)
+        u32 battler = gBattlerByTurnOrder[orderNum];
+        enum HoldEffect holdEffect = GetBattlerHoldEffect(battler);
+        if (holdEffect != HOLD_EFFECT_BOOSTER_ENERGY)
             continue;
 
-        enum Ability ability = GetBattlerAbility(battlerByTurnOrder);
+        enum Ability ability = GetBattlerAbility(battler);
         if (!(ability == ABILITY_PROTOSYNTHESIS && cmd->onFieldStatus != ON_TERRAIN)
          && !(ability == ABILITY_QUARK_DRIVE && cmd->onFieldStatus != ON_WEATHER))
             continue;
 
-        if (TryBoosterEnergy(battlerByTurnOrder, ability, IsOnEffectActivation))
+        if (ItemBattleEffects(battler, 0, holdEffect, IsOnEffectActivation))
             return;
     }
 
@@ -17600,7 +17602,7 @@ void BS_ActivateItemEffects(void)
         if (!IsBattlerAlive(battler))
             continue;
 
-        if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsActivationForceTriggerItem))
+        if (ItemBattleEffects(battler, 0, GetBattlerHoldEffect(battler), IsForceTriggerItemActivation))
             return;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -17620,29 +17622,9 @@ void BS_TryTerrainSeed(void)
 {
     NATIVE_ARGS(u8 battler, const u8 *failInstr);
     u32 battler = GetBattlerForBattleScript(cmd->battler);
-    if (GetBattlerHoldEffect(battler) == HOLD_EFFECT_TERRAIN_SEED)
-    {
-        enum ItemEffect effect = ITEM_NO_EFFECT;
-        u16 item = gBattleMons[battler].item;
-        switch (GetBattlerHoldEffectParam(battler))
-        {
-        case HOLD_EFFECT_PARAM_ELECTRIC_TERRAIN:
-            effect = TryHandleSeed(battler, STATUS_FIELD_ELECTRIC_TERRAIN, STAT_DEF, item, IsOnEffectActivation);
-            break;
-        case HOLD_EFFECT_PARAM_GRASSY_TERRAIN:
-            effect = TryHandleSeed(battler, STATUS_FIELD_GRASSY_TERRAIN, STAT_DEF, item, IsOnEffectActivation);
-            break;
-        case HOLD_EFFECT_PARAM_MISTY_TERRAIN:
-            effect = TryHandleSeed(battler, STATUS_FIELD_MISTY_TERRAIN, STAT_SPDEF, item, IsOnEffectActivation);
-            break;
-        case HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN:
-            effect = TryHandleSeed(battler, STATUS_FIELD_PSYCHIC_TERRAIN, STAT_SPDEF, item, IsOnEffectActivation);
-            break;
-        }
-
-        if (effect != ITEM_NO_EFFECT)
-            return;
-    }
+    enum HoldEffect holdEffect = GetBattlerHoldEffect(battler);
+    if (holdEffect == HOLD_EFFECT_TERRAIN_SEED && ItemBattleEffects(battler, 0, holdEffect, IsOnEffectActivation))
+        return;
     gBattlescriptCurrInstr = cmd->failInstr;
 }
 
@@ -17890,7 +17872,7 @@ void BS_ConsumeBerry(void)
 
     gBattleScripting.overrideBerryRequirements = 1;
     GetBattlerPartyState(battler)->ateBerry = TRUE;
-    if (ItemBattleEffects(battler, 0, GetItemHoldEffect(gLastUsedItem), IsActivationOnBerry))
+    if (ItemBattleEffects(battler, 0, GetItemHoldEffect(gLastUsedItem), IsOnBerryActivation))
     {
         gBattleScripting.overrideBerryRequirements = 2;
         return;
