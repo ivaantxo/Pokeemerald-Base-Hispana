@@ -6,17 +6,18 @@ ASSUMPTIONS
     ASSUME(GetItemHoldEffect(ITEM_STICKY_BARB) == HOLD_EFFECT_STICKY_BARB);
 }
 
-SINGLE_BATTLE_TEST("Sticky Barb hurts its holder at the end of the turn", s16 damage)
+SINGLE_BATTLE_TEST("Sticky Barb hurts its holder at the end of the turn")
 {
+    s16 damage;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_STICKY_BARB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { }
     } SCENE {
-        HP_BAR(player, captureDamage: &results[i].damage);
+        HP_BAR(player, captureDamage: &damage);
     } THEN {
-        EXPECT_EQ(results[0].damage, player->maxHP / 8);
+        EXPECT_EQ(damage, player->maxHP / 8);
     }
 }
 
