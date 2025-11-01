@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gItemsInfo[ITEM_STICKY_BARB].holdEffect == HOLD_EFFECT_STICKY_BARB);
+    ASSUME(GetItemHoldEffect(ITEM_STICKY_BARB) == HOLD_EFFECT_STICKY_BARB);
 }
 
 SINGLE_BATTLE_TEST("Sticky Barb hurts its holder at the end of the turn", s16 damage)
@@ -28,6 +28,8 @@ SINGLE_BATTLE_TEST("Sticky Barb gets transferred if its holder is hit by a conta
     PARAMETRIZE { move = MOVE_HYPER_VOICE; }
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
+        ASSUME(!MoveMakesContact(MOVE_GROWL));
+        ASSUME(!MoveMakesContact(MOVE_HYPER_VOICE));
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_STICKY_BARB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
