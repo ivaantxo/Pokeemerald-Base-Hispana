@@ -531,7 +531,6 @@
     {
       "id": "MAPSEC_AQUA_HIDEOUT_OLD",
       "name": "Guarida {AQUA}",
-      "name_clone": true,
       "x": 19,
       "y": 3,
       "width": 1,
@@ -690,8 +689,7 @@
       "name": "Base secreta"
     },
     {
-      "id": "MAPSEC_DYNAMIC",
-      "name": ""
+      "id": "MAPSEC_DYNAMIC"
     },
     {
       "id": "MAPSEC_PALLET_TOWN",
@@ -739,13 +737,11 @@
     },
     {
       "id": "MAPSEC_ROUTE_4_POKECENTER",
-      "name": "Ruta 4",
-      "name_clone": true
+      "name": "Ruta 4"
     },
     {
       "id": "MAPSEC_ROUTE_10_POKECENTER",
-      "name": "Ruta 10",
-      "name_clone": true
+      "name": "Ruta 10"
     },
     {
       "id": "MAPSEC_ROUTE_1",
@@ -865,8 +861,7 @@
     },
     {
       "id": "MAPSEC_UNDERGROUND_PATH_2",
-      "name": "Vía subterránea",
-      "name_clone": true
+      "name": "Vía subterránea"
     },
     {
       "id": "MAPSEC_DIGLETTS_CAVE",
@@ -874,8 +869,7 @@
     },
     {
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
-      "name": "Calle Victoria",
-      "name_clone": true
+      "name": "Calle Victoria"
     },
     {
       "id": "MAPSEC_ROCKET_HIDEOUT",
@@ -891,8 +885,7 @@
     },
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
-      "name": "Zona Safari",
-      "name_clone": true
+      "name": "Zona Safari"
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
@@ -1064,8 +1057,7 @@
     },
     {
       "id": "MAPSEC_TRAINER_TOWER_2",
-      "name": "Torre Desafío",
-      "name_clone": true
+      "name": "Torre Desafío"
     },
     {
       "id": "MAPSEC_DOTTED_HOLE",

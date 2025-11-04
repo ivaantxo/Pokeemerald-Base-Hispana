@@ -92,6 +92,11 @@ static bool32 IsFieldMoveUnlocked_Defog(void)
 }
 #endif
 
+static bool32 IsFieldMoveUnlocked_Headbutt(void)
+{
+    return TRUE;
+}
+
 const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
 {
     [FIELD_MOVE_CUT] =
@@ -223,4 +228,11 @@ const struct FieldMoveInfo gFieldMoveInfo[FIELD_MOVES_COUNT] =
         .partyMsgID = PARTY_MSG_CANT_USE_HERE,
     },
 #endif
+    [FIELD_MOVE_HEADBUTT] =
+    {
+    .fieldMoveFunc = SetUpFieldMove_Headbutt,   // función que llama al script de campo
+    .isUnlockedFunc = IsFieldMoveUnlocked_Headbutt,
+    .moveID = MOVE_HEADBUTT,
+    .partyMsgID = PARTY_MSG_CANT_USE_HERE,      // o el mensaje que quieras
+    },
 };

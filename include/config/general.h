@@ -6,7 +6,7 @@
 // aún los tiene en el ROM. Esto se debe a que los desarrolladores olvidaron
 // definir NDEBUG antes del lanzamiento; sin embargo, esto se ha cambiado ya que
 // la compilación de depuración de Ruby no usa las funciones AGBPrint.
-#define NDEBUG
+//#define NDEBUG
 
 // Para habilitar la depuración con printf, comenta "#define NDEBUG". Esto permite
 // usar las diversas funciones AGBPrint. (Consulta include/gba/isagbprint.h).
