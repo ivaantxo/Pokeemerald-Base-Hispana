@@ -2295,7 +2295,6 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
             break;
         }
     }
-
     return FALSE;
 }
 
