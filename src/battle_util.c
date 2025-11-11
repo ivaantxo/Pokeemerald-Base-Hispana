@@ -357,7 +357,7 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
     if (effect == EFFECT_PURSUIT && IsPursuitTargetSet())
         return FALSE;
 
-    if (gSideTimers[defSide].followmePowder && !IsAffectedByPowder(battlerAtk, ability, GetBattlerHoldEffect(battlerAtk)))
+    if (gSideTimers[defSide].followmePowder && !IsAffectedByPowderMove(battlerAtk, ability, GetBattlerHoldEffect(battlerAtk)))
         return FALSE;
 
     return TRUE;
@@ -448,7 +448,7 @@ void HandleAction_UseMove(void)
         gCurrentMove = gChosenMove = MOVE_STRUGGLE;
         gBattleStruct->moveTarget[gBattlerAttacker] = GetBattleMoveTarget(MOVE_STRUGGLE, NO_TARGET_OVERRIDE);
     }
-    else if (gBattleMons[gBattlerAttacker].volatiles.multipleTurns || gBattleMons[gBattlerAttacker].volatiles.recharge)
+    else if (gBattleMons[gBattlerAttacker].volatiles.multipleTurns || gDisableStructs[gBattlerAttacker].rechargeTimer > 0)
     {
         gCurrentMove = gChosenMove = gLockedMoves[gBattlerAttacker];
     }
@@ -1973,10 +1973,8 @@ static enum MoveCanceller CancellerSkyDrop(struct BattleContext *ctx)
 
 static enum MoveCanceller CancellerRecharge(struct BattleContext *ctx)
 {
-    if (gBattleMons[ctx->battlerAtk].volatiles.recharge)
+    if (gDisableStructs[ctx->battlerAtk].rechargeTimer > 0)
     {
-        gBattleMons[ctx->battlerAtk].volatiles.recharge = TRUE;
-        gDisableStructs[ctx->battlerAtk].rechargeTimer = 0;
         CancelMultiTurnMoves(ctx->battlerAtk, SKY_DROP_ATTACKCANCELLER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedMustRecharge;
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -5023,9 +5021,8 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, u32 battler, enum Ability ab
         case ABILITY_EFFECT_SPORE:
         {
             enum Ability abilityAtk = GetBattlerAbility(gBattlerAttacker);
-            if ((GetGenConfig(GEN_CONFIG_POWDER_GRASS) < GEN_6 || !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS))
-             && abilityAtk != ABILITY_OVERCOAT
-             && GetBattlerHoldEffect(gBattlerAttacker) != HOLD_EFFECT_SAFETY_GOGGLES)
+            enum HoldEffect holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker);
+            if (IsAffectedByPowderMove(gBattlerAttacker, abilityAtk, holdEffectAtk))
             {
                 u32 poison, paralysis, sleep;
 
@@ -5052,7 +5049,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, u32 battler, enum Ability ab
                  && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
                  && IsBattlerTurnDamaged(gBattlerTarget)
                  && CanBeSlept(gBattlerTarget, gBattlerAttacker, abilityAtk, NOT_BLOCKED_BY_SLEEP_CLAUSE)
-                 && !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerAttacker), GetBattlerHoldEffect(gBattlerAttacker), move))
+                 && !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, abilityAtk, holdEffectAtk, move))
                 {
                     if (IsSleepClauseEnabled())
                         gBattleStruct->battlerState[gBattlerAttacker].sleepClauseEffectExempt = TRUE;
@@ -10787,6 +10784,15 @@ static bool32 IsOpposingSideEmpty(u32 battler)
         return TRUE;
 
     if (IsBattlerAlive(BATTLE_PARTNER(oppositeBattler)))
+        return FALSE;
+    return TRUE;
+}
+
+bool32 IsAffectedByPowderMove(u32 battler, u32 ability, enum HoldEffect holdEffect)
+{
+    if ((GetGenConfig(GEN_CONFIG_POWDER_OVERCOAT) >= GEN_6 && ability == ABILITY_OVERCOAT)
+        || (GetGenConfig(GEN_CONFIG_POWDER_GRASS) >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
+        || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
     return TRUE;
 }
