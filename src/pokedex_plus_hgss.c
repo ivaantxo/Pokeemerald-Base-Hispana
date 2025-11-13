@@ -4388,17 +4388,20 @@ static void PrintCurrentSpeciesTypeInfo(u8 newEntry, u16 species)
     }
 
 }
+
 static void CreateTypeIconSprites(void)
 {
     u8 i;
+    u32 paletteNum;
 
     LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes);
-    if (TUTORIAL_ICONOS_DE_TIPOS)
+    if (TUTORIAL_ICONOS_DE_TIPOS){
         LoadPalette(gIconosTipos_Pal, OBJ_PLTT_ID(11), 5 * PLTT_SIZE_4BPP);
-    else
-        u32 paletteNum = gTypesInfo[TYPE_NORMAL].palette + TYPE_INFO_PALETTE_NUM_OFFSET;
+    }else{
+        paletteNum = gTypesInfo[TYPE_NORMAL].palette + TYPE_INFO_PALETTE_NUM_OFFSET;
         LoadPalette(gMoveTypes_Pal, OBJ_PLTT_ID(paletteNum), 3 * PLTT_SIZE_4BPP);
-
+    }
+    
     for (i = 0; i < 2; i++)
     {
         if (sPokedexView->typeIconSpriteIds[i] == 0xFF)
