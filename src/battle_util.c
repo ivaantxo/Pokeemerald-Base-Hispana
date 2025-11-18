@@ -2029,6 +2029,7 @@ static enum MoveCanceler CancelerObedience(void)
             ctx.isCrit = FALSE;
             ctx.randomFactor = FALSE;
             ctx.updateFlags = TRUE;
+            ctx.isSelfInflicted = TRUE;
             ctx.fixedBasePower = 40;
             gBattleStruct->moveDamage[gBattlerAttacker] = CalculateMoveDamage(&ctx);
             gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
@@ -2181,6 +2182,7 @@ static enum MoveCanceler CancelerConfused(void)
                 ctx.isCrit = FALSE;
                 ctx.randomFactor = FALSE;
                 ctx.updateFlags = TRUE;
+                ctx.isSelfInflicted = TRUE;
                 ctx.fixedBasePower = 40;
                 gBattleStruct->moveDamage[gBattlerAttacker] = CalculateMoveDamage(&ctx);
                 gProtectStructs[gBattlerAttacker].confusionSelfDmg = TRUE;
@@ -8499,6 +8501,24 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     return uq4_12_multiply_by_int_half_down(modifier, basePower);
 }
 
+static inline uq4_12_t ApplyOffensiveBadgeBoost(uq4_12_t modifier, u32 battler, u32 move)
+{
+    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_ATTACK, battler) && IsBattleMovePhysical(move))
+        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
+    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_SPATK, battler) && IsBattleMoveSpecial(move))
+        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
+    return modifier;
+}
+
+static inline uq4_12_t ApplyDefensiveBadgeBoost(uq4_12_t modifier, u32 battler, u32 move)
+{
+    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_DEFENSE, battler) && IsBattleMovePhysical(move))
+        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
+    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_SPDEF, battler) && IsBattleMoveSpecial(move))
+        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
+    return modifier;
+}
+
 static inline u32 CalcAttackStat(struct DamageContext *ctx)
 {
     u8 atkStage;
@@ -8569,6 +8589,9 @@ static inline u32 CalcAttackStat(struct DamageContext *ctx)
 
     // apply attack stat modifiers
     modifier = UQ_4_12(1.0);
+
+    if (ctx->isSelfInflicted)
+        return uq4_12_multiply_by_int_half_down(ApplyOffensiveBadgeBoost(modifier, battlerAtk, move), atkStat);
 
     // attacker's abilities
     switch (ctx->abilityAtk)
@@ -8764,11 +8787,7 @@ static inline u32 CalcAttackStat(struct DamageContext *ctx)
         break;
     }
 
-    // The offensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the corresponding flags set (eg. Badges)
-    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_ATTACK, battlerAtk) && IsBattleMovePhysical(move))
-        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
-    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_SPATK, battlerAtk) && IsBattleMoveSpecial(move))
-        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
+    modifier = ApplyOffensiveBadgeBoost(modifier, battlerAtk, move);
 
     return uq4_12_multiply_by_int_half_down(modifier, atkStat);
 }
@@ -8852,6 +8871,9 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
 
     // apply defense stat modifiers
     modifier = UQ_4_12(1.0);
+
+    if (ctx->isSelfInflicted)
+        return uq4_12_multiply_by_int_half_down(ApplyDefensiveBadgeBoost(modifier, battlerDef, move), defStat);
 
     // target's abilities
     switch (ctx->abilityDef)
@@ -8942,11 +8964,7 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
     if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE) && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SNOW) && usesDefStat)
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
 
-    // The defensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the corresponding flags set (eg. Badges)
-    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_DEFENSE, battlerDef) && IsBattleMovePhysical(move))
-        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
-    if (ShouldGetStatBadgeBoost(B_FLAG_BADGE_BOOST_SPDEF, battlerDef) && IsBattleMoveSpecial(move))
-        modifier = uq4_12_multiply_half_down(modifier, GetBadgeBoostModifier());
+    modifier = ApplyDefensiveBadgeBoost(modifier, battlerDef, move);
 
     return uq4_12_multiply_by_int_half_down(modifier, defStat);
 }
