@@ -1171,7 +1171,26 @@ static void Cmd_attackcanceler(void)
     }
 
     u32 isBounceable = MoveCanBeBouncedBack(gCurrentMove);
-    if (gProtectStructs[gBattlerTarget].bounceMove
+    bool32 bounceActive = (gProtectStructs[gBattlerTarget].bounceMove && IsBattlerAlive(gBattlerTarget));
+
+    if (!bounceActive
+        && !gBattleStruct->bouncedMoveIsUsed
+        && isBounceable
+        && GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove) == MOVE_TARGET_OPPONENTS_FIELD)
+    {
+        u32 partner = BATTLE_PARTNER(gBattlerTarget);
+
+        if (partner < gBattlersCount
+            && GetBattlerSide(partner) == GetBattlerSide(gBattlerTarget)
+            && gProtectStructs[partner].bounceMove
+            && IsBattlerAlive(partner))
+        {
+            gBattlerTarget = partner;
+            bounceActive = TRUE;
+        }
+    }
+
+    if (bounceActive
         && isBounceable
         && !gBattleStruct->bouncedMoveIsUsed)
     {
@@ -6309,9 +6328,10 @@ static void Cmd_moveend(void)
 
             // Set ShellTrap to activate after the attacker's turn if target was hit by a physical move.
             if (GetMoveEffect(gChosenMoveByBattler[gBattlerTarget]) == EFFECT_SHELL_TRAP
+                && IsBattleMovePhysical(gCurrentMove)
+                && IsBattlerTurnDamaged(gBattlerTarget)
                 && gBattlerTarget != gBattlerAttacker
                 && !IsBattlerAlly(gBattlerTarget, gBattlerAttacker)
-                && gProtectStructs[gBattlerTarget].physicalDmg
                 && gProtectStructs[gBattlerTarget].physicalBattlerId == gBattlerAttacker
                 && !TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove))
             {
@@ -6444,7 +6464,6 @@ static void Cmd_moveend(void)
                     gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = nextTarget; // Fix for moxie spread moves
                     gBattleScripting.moveendState = 0;
                     MoveValuesCleanUp();
-                    gBattleScripting.moveEffect = gBattleScripting.savedMoveEffect;
 
                     // Edge cases for moves that shouldn't repeat their own script
                     if (moveEffect == EFFECT_EXPLOSION
@@ -6497,7 +6516,7 @@ static void Cmd_moveend(void)
             if (!(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
              && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
              && gMultiHitCounter
-             && !(moveEffect == EFFECT_PRESENT && gBattleStruct->presentBasePower == 0)) // Silly edge case
+             && !(moveEffect == EFFECT_PRESENT && gBattleStruct->presentBasePower == 0)) // Parental Bond edge case
             {
                 gMultiHitCounter--;
                 if (!IsBattlerAlive(gBattlerTarget) && moveEffect != EFFECT_DRAGON_DARTS)
@@ -6506,7 +6525,9 @@ static void Cmd_moveend(void)
                 gBattleScripting.multihitString[4]++;
                 if (gMultiHitCounter == 0)
                 {
-                    if (GetMoveEffectArg_MoveProperty(gCurrentMove) == MOVE_EFFECT_SCALE_SHOT && !NoAliveMonsForEitherParty())
+                    if (moveEffect == EFFECT_MULTI_HIT
+                     && GetMoveEffectArg_MoveProperty(gCurrentMove) == MOVE_EFFECT_SCALE_SHOT
+                     && !NoAliveMonsForEitherParty())
                         BattleScriptCall(BattleScript_ScaleShot);
                     else
                         BattleScriptCall(BattleScript_MultiHitPrintStrings);
@@ -11402,27 +11423,32 @@ static void Cmd_trysetencore(void)
     }
 
     if ((IsMoveEncoreBanned(gLastMoves[gBattlerTarget]))
+     || i == MAX_MON_MOVES
      || gLastMoves[gBattlerTarget] == MOVE_NONE
-     || gLastMoves[gBattlerTarget] == MOVE_UNAVAILABLE)
+     || gLastMoves[gBattlerTarget] == MOVE_UNAVAILABLE
+     || gBattleMons[gBattlerTarget].pp[i] == 0
+     || gDisableStructs[gBattlerTarget].encoredMove != MOVE_NONE
+     || GetMoveEffect(gChosenMoveByBattler[gBattlerTarget]) == EFFECT_SHELL_TRAP)
     {
-        i = MAX_MON_MOVES;
+        gBattlescriptCurrInstr = cmd->failInstr;
     }
-
-    if (gDisableStructs[gBattlerTarget].encoredMove == MOVE_NONE
-        && i != MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
+    else
     {
         gDisableStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
         gDisableStructs[gBattlerTarget].encoredMovePos = i;
+
+        // If the target's selected move is not the same as the move being Encored into,
+        // the target will select a random opposing target
+        // Redirection such as Follow Me is already covered in HandleAction_UseMove of battle_util.c
+        if (gDisableStructs[gBattlerTarget].encoredMove != GetChosenMoveFromPosition(gBattlerTarget))
+            gBattleStruct->moveTarget[gBattlerTarget] = SetRandomTarget(gBattlerTarget);
+
         // Encore always lasts 3 turns, but we need to account for a scenario where Encore changes the move during the same turn.
         if (HasBattlerActedThisTurn(gBattlerTarget))
             gDisableStructs[gBattlerTarget].encoreTimer = 4;
         else
             gDisableStructs[gBattlerTarget].encoreTimer = 3;
         gBattlescriptCurrInstr = cmd->nextInstr;
-    }
-    else
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
     }
 }
 
@@ -14024,13 +14050,16 @@ static void Cmd_displaydexinfo(void)
 {
     CMD_ARGS();
 
-    struct Pokemon *mon = GetBattlerMon(GetCatchingBattler());
+    u32 caughtBattler = GetCatchingBattler();
+    struct Pokemon *mon = GetBattlerMon(caughtBattler);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
     switch (gBattleCommunication[0])
     {
     case 0:
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        ClearTemporarySpeciesSpriteData(caughtBattler, FALSE, FALSE);
+        BattleLoadMonSpriteGfx(mon, caughtBattler);
         gBattleCommunication[0]++;
         break;
     case 1:
@@ -17903,7 +17932,7 @@ void BS_JumpIfAbilityPreventsRest(void)
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     u32 ability = GetBattlerAbility(battler);
-    if (B_LEAF_GUARD_PREVENTS_REST >= GEN_5 && IsLeafGuardProtected(battler, ability))
+    if (GetGenConfig(GEN_CONFIG_LEAF_GUARD_PREVENTS_REST) >= GEN_5 && IsLeafGuardProtected(battler, ability))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else if (IsShieldsDownProtected(battler, ability))
         gBattlescriptCurrInstr = cmd->jumpInstr;
