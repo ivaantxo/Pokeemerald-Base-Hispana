@@ -18,6 +18,7 @@ Makefile text eol=lf
 *.md text eol=lf
 *.ps1 text eol=crlf
 *.yml text eol=lf
+*.party text eol=lf
 
 *.png binary
 *.bin binary
