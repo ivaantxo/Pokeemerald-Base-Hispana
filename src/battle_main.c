@@ -3861,9 +3861,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
         {
             i = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++];
-            if (AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS_FIRST_TURN, i, gBattleMons[i].ability, 0, 0) != 0)
-                return;
-            if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN_IMMUNITIES, i, 0, 0, 0) != 0)
+            if (AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS_FIRST_TURN, i, 0, 0, 0) != 0)
                 return;
         }
         gBattleStruct->switchInBattlerCounter = 0;
@@ -3879,6 +3877,8 @@ static void TryDoEventsBeforeFirstTurn(void)
             if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0))
                 return;
             if (TryClearIllusion(battler, ABILITYEFFECT_ON_SWITCHIN))
+                return;
+            if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN_IMMUNITIES, battler, 0, 0, 0) != 0)
                 return;
         }
         gBattleStruct->switchInBattlerCounter = 0;
@@ -4342,7 +4342,7 @@ static void HandleTurnActionSelectionState(void)
                 case B_ACTION_SWITCH:
                     gBattleStruct->battlerPartyIndexes[battler] = gBattlerPartyIndexes[battler];
                     if (gBattleTypeFlags & BATTLE_TYPE_ARENA
-                        || !CanBattlerEscape(battler))
+                        || (!CanBattlerEscape(battler) && GetBattlerHoldEffect(battler) != HOLD_EFFECT_SHED_SHELL))
                     {
                         BtlController_EmitChoosePokemon(battler, B_COMM_TO_CONTROLLER, PARTY_ACTION_CANT_SWITCH, PARTY_SIZE, ABILITY_NONE, 0, gBattleStruct->battlerPartyOrders[battler]);
                     }
