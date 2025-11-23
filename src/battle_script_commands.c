@@ -4862,8 +4862,6 @@ static void Cmd_getexp(void)
             // not sure why gf clears the item and ability here
             gBattleStruct->expOrderId = 0;
             gBattleStruct->teamGotExpMsgPrinted = FALSE;
-            gBattleMons[gBattlerFainted].item = ITEM_NONE;
-            gBattleMons[gBattlerFainted].ability = ABILITY_NONE;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         break;
@@ -15192,12 +15190,14 @@ void BS_ItemRestoreHP(void)
             hp += healAmount;
             SetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_HP, &hp);
 
-            // Revived battlers on the field need to be brought back.
-            if (IsDoubleBattle() && battler != MAX_BATTLERS_COUNT)
+            u32 partner = BATTLE_PARTNER(gBattlerAttacker);
+            // Absent battlers on the field need to be replaced
+            if (IsDoubleBattle() && (gAbsentBattlerFlags & (1u << partner)))
             {
-                gAbsentBattlerFlags &= ~(1u << battler);
-                gBattleMons[battler].hp = hp;
+                gAbsentBattlerFlags &= ~(1u << partner);
                 gBattleCommunication[MULTIUSE_STATE] = TRUE;
+                gBattleScripting.battler = partner;
+                BtlController_EmitChosenMonReturnValue(partner, B_COMM_TO_ENGINE, gBattleStruct->itemPartyIndex[gBattlerAttacker], NULL);
             }
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
