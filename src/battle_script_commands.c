@@ -15202,37 +15202,49 @@ void BS_ItemRestoreHP(void)
 
 void BS_ItemCureStatus(void)
 {
-    NATIVE_ARGS(const u8 *noStatusInstr);
-    u32 battler = gBattlerAttacker;
+    NATIVE_ARGS(const u8 *noStatusInstr, const u8 *restoreBattlerInstr);
+    u32 targetBattler = MAX_BATTLERS_COUNT;
     bool32 statusChanged = FALSE;
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 
     // Heal volatile conditions if battler is active.
     if (gBattleStruct->itemPartyIndex[gBattlerAttacker] == gBattlerPartyIndexes[gBattlerAttacker])
-        statusChanged = ItemHealMonVolatile(battler, gLastUsedItem);
+    {
+        statusChanged = ItemHealMonVolatile(gBattlerAttacker, gLastUsedItem);
+        targetBattler = gBattlerAttacker;
+    }
     else if (IsDoubleBattle()
      && gBattleStruct->itemPartyIndex[gBattlerAttacker] == gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)])
+    {
         statusChanged = ItemHealMonVolatile(BATTLE_PARTNER(gBattlerAttacker), gLastUsedItem);
+        targetBattler = BATTLE_PARTNER(gBattlerAttacker);
+    }
 
     // Heal Status1 conditions.
-    if (!HealStatusConditions(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], GetItemStatus1Mask(gLastUsedItem), battler))
+    if (!HealStatusConditions(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], GetItemStatus1Mask(gLastUsedItem), targetBattler))
     {
         statusChanged = TRUE;
         if (GetItemStatus1Mask(gLastUsedItem) & STATUS1_SLEEP)
-            gBattleMons[battler].volatiles.nightmare = FALSE;
+            gBattleMons[targetBattler].volatiles.nightmare = FALSE;
         if (ItemHasVolatileFlag(gLastUsedItem, VOLATILE_CONFUSION))
-            gBattleMons[battler].volatiles.infiniteConfusion = FALSE;
+            gBattleMons[targetBattler].volatiles.infiniteConfusion = FALSE;
     }
 
-    if (statusChanged)
+    if (!statusChanged)
     {
-        gBattleScripting.battler = battler;
-        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_SPECIES));
+        gBattlescriptCurrInstr = cmd->noStatusInstr;
+        return;
+    }
+
+    PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_SPECIES));
+    if (targetBattler == MAX_BATTLERS_COUNT)
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
     {
-        gBattlescriptCurrInstr = cmd->noStatusInstr;
+        gBattleScripting.battler = targetBattler;
+        gBattlescriptCurrInstr = cmd->restoreBattlerInstr;
     }
 }
 
