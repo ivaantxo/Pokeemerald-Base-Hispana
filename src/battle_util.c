@@ -270,10 +270,32 @@ bool32 EndOrContinueWeather(void)
     return FALSE;
 }
 
+// Gen5+
 static u32 CalcBeatUpPower(void)
 {
     u32 species = gBattleStruct->beatUpSpecies[gBattleStruct->beatUpSlot++];
     return (GetSpeciesBaseAttack(species) / 10) + 5;
+}
+
+static s32 CalcBeatUpDamage(struct DamageContext *ctx)
+{
+    u32 partyIndex = gBattleStruct->beatUpSpecies[gBattleStruct->beatUpSlot++];
+    struct Pokemon *party = GetBattlerParty(ctx->battlerAtk);
+    u32 species = GetMonData(&party[partyIndex], MON_DATA_SPECIES);
+    u32 levelFactor = GetMonData(&party[partyIndex], MON_DATA_LEVEL) * 2 / 5 + 2;
+    s32 dmg = GetSpeciesBaseAttack(species);
+
+    dmg *= GetMovePower(ctx->move);
+    dmg *= levelFactor;
+    dmg /= GetSpeciesBaseDefense(gBattleMons[ctx->battlerDef].species);
+    dmg = (dmg / 50) + 2;
+
+    if (gProtectStructs[ctx->battlerAtk].helpingHand)
+        dmg = dmg * 15 / 10;
+    if (ctx->isCrit)
+        dmg *= 2;
+
+    return dmg;
 }
 
 static bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef, u32 abilityDef)
@@ -2480,11 +2502,13 @@ static enum MoveCanceler CancelerMultihitMoves(void)
 
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 3, 0)
     }
-    else if (B_BEAT_UP >= GEN_5 && GetMoveEffect(gCurrentMove) == EFFECT_BEAT_UP)
+    else if (GetMoveEffect(gCurrentMove) == EFFECT_BEAT_UP)
     {
         struct Pokemon* party = GetBattlerParty(gBattlerAttacker);
         int i;
         gBattleStruct->beatUpSlot = 0;
+        gMultiHitCounter = 0;
+        memset(gBattleStruct->beatUpSpecies, 0xFF, sizeof(gBattleStruct->beatUpSpecies));
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
@@ -2494,12 +2518,14 @@ static enum MoveCanceler CancelerMultihitMoves(void)
              && !GetMonData(&party[i], MON_DATA_IS_EGG)
              && !GetMonData(&party[i], MON_DATA_STATUS))
             {
-                gBattleStruct->beatUpSpecies[gBattleStruct->beatUpSlot++] = species;
+                if (GetGenConfig(GEN_CONFIG_BEAT_UP) >= GEN_5)
+                    gBattleStruct->beatUpSpecies[gMultiHitCounter] = species;
+                else
+                    gBattleStruct->beatUpSpecies[gMultiHitCounter] = i;
                 gMultiHitCounter++;
             }
         }
 
-        gBattleStruct->beatUpSlot = 0;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
     }
     else
@@ -8267,7 +8293,7 @@ static inline u32 CalcMoveBasePower(struct DamageContext *ctx)
             basePower *= 2;
         break;
     case EFFECT_BEAT_UP:
-        if (B_BEAT_UP >= GEN_5)
+        if (GetGenConfig(GEN_CONFIG_BEAT_UP) >= GEN_5)
             basePower = CalcBeatUpPower();
         break;
     case EFFECT_PSYBLADE:
@@ -9507,6 +9533,12 @@ s32 DoFixedDamageMoveCalc(struct DamageContext *ctx)
         break;
     case EFFECT_FINAL_GAMBIT:
         dmg = GetNonDynamaxHP(ctx->battlerAtk);
+        break;
+    case EFFECT_BEAT_UP:
+        if (GetGenConfig(GEN_CONFIG_BEAT_UP) < GEN_5)
+            dmg = CalcBeatUpDamage(ctx);
+        else
+            return INT32_MAX;
         break;
     default:
         return INT32_MAX;
