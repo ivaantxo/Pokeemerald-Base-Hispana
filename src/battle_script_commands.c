@@ -6383,8 +6383,9 @@ static void Cmd_moveend(void)
                 }
             }
             enum BattleMoveEffects originalEffect = GetMoveEffect(originallyUsedMove);
-            if (!(gAbsentBattlerFlags & (1u << gBattlerAttacker))
-                && originalEffect != EFFECT_BATON_PASS && originalEffect != EFFECT_HEALING_WISH)
+            if (IsBattlerAlive(gBattlerAttacker)
+             && originalEffect != EFFECT_BATON_PASS
+             && originalEffect != EFFECT_HEALING_WISH)
             {
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
@@ -6918,19 +6919,17 @@ static void Cmd_moveend(void)
                 gBattleScripting.moveendState++;
             break;
         case MOVEEND_THIRD_MOVE_BLOCK:
-            // Special case for Steel Roller since it has to check the chosen move
-            if (GetMoveEffect(gChosenMove) == EFFECT_STEEL_ROLLER && IsBattlerTurnDamaged(gBattlerTarget))
-            {
-                BattleScriptCall(BattleScript_RemoveTerrain);
-                effect = TRUE;
-                gBattleScripting.moveendState++;
-                break;
-            }
-
             switch (moveEffect)
             {
+            case EFFECT_STEEL_ROLLER:
+                if (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && IsBattlerTurnDamaged(gBattlerTarget))
+                {
+                    BattleScriptCall(BattleScript_RemoveTerrain);
+                    effect = TRUE;
+                }
             case EFFECT_ICE_SPINNER:
                 if (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY
+                 && gLastPrintedMoves[gBattlerAttacker] == gCurrentMove
                  && IsBattlerAlive(gBattlerAttacker)
                  && IsBattlerTurnDamaged(gBattlerTarget))
                 {
@@ -7062,11 +7061,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_DANCER:
-            if (gCurrentMove == MOVE_NONE)
-                originallyUsedMove = gChosenMove; // Fallback to chosen move in case attacker is switched out in the middle of an attack resolution (eg red card)
-            else
-                originallyUsedMove = gCurrentMove;
-            if (IsDanceMove(originallyUsedMove) && !gBattleStruct->snatchedMoveIsUsed)
+            if (IsDanceMove(gCurrentMove) && !gBattleStruct->snatchedMoveIsUsed)
             {
                 u32 battler, nextDancer = 0;
                 bool32 hasDancerTriggered = FALSE;
@@ -7100,7 +7095,7 @@ static void Cmd_moveend(void)
                                 nextDancer = battler | 0x4;
                         }
                     }
-                    if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, originallyUsedMove))
+                    if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, gCurrentMove))
                         effect = TRUE;
                 }
             }
