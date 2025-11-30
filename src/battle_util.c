@@ -2238,7 +2238,7 @@ static enum MoveCanceler CancelerConfused(void)
     return MOVE_STEP_SUCCESS;
 }
 
-static enum MoveCanceler CancelerParalysed(void)
+static enum MoveCanceler CancelerParalyzed(void)
 {
     if (!gBattleStruct->isAtkCancelerForCalledMove
         && (gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS)
@@ -2636,7 +2636,7 @@ static enum MoveCanceler (*const sMoveSuccessOrderCancelers[])(void) =
     [CANCELER_TAUNTED] = CancelerTaunted,
     [CANCELER_IMPRISONED] = CancelerImprisoned,
     [CANCELER_CONFUSED] = CancelerConfused,
-    [CANCELER_PARALYSED] = CancelerParalysed,
+    [CANCELER_PARALYZED] = CancelerParalyzed,
     [CANCELER_BIDE] = CancelerBide,
     [CANCELER_THAW] = CancelerThaw,
     [CANCELER_STANCE_CHANGE_2] = CancelerStanceChangeTwo,
