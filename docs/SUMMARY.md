@@ -40,6 +40,7 @@
   - [Vs. Seeker](tutorials/vs_seeker.md)
 - [Changelog](./CHANGELOG.md)
     - [1.13.x]()
+        - [Version 1.13.4](changelogs/1.13.x/1.13.4.md)
         - [Version 1.13.3](changelogs/1.13.x/1.13.3.md)
         - [Version 1.13.2](changelogs/1.13.x/1.13.2.md)
         - [Version 1.13.1](changelogs/1.13.x/1.13.1.md)
