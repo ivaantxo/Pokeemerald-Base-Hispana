@@ -360,10 +360,32 @@ EWRAM_DATA u8 gCurContestWinnerSaveIdx = 0;
 // IWRAM common vars.
 COMMON_DATA rng_value_t gContestRngValue = {0};
 
-extern const u8 gText_LinkStandby4[];
+const u8 gText_LinkStandby4[] = COMPOUND_STRING("Link standby!");
 extern const u8 gText_BDot[];
 extern const u8 gText_CDot[];
-extern void (*const gContestEffectFuncs[])(void);
+
+//Text
+const u8 gText_AppealNumWhichMoveWillBePlayed[] = COMPOUND_STRING("Appeal no. {STR_VAR_1}!\nWhich move will be played?");
+const u8 gText_AppealNumButItCantParticipate[] = COMPOUND_STRING("Appeal no. {STR_VAR_1}!\nBut it can't participate!");
+const u8 gText_MonAppealedWithMove[] = COMPOUND_STRING("{STR_VAR_1} appealed with\n{STR_VAR_2}!");
+const u8 gText_MonWasWatchingOthers[] = COMPOUND_STRING("{STR_VAR_1} was watching\nthe others.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_AllOutOfAppealTime[] = COMPOUND_STRING("We're all out of\nAppeal Time!{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_JudgeLookedAtMonExpectantly[] = COMPOUND_STRING("The JUDGE looked at\n{STR_VAR_1} expectantly.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_AppealComboWentOverWell[] = COMPOUND_STRING("The appeal combo went\nover well.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_AppealComboWentOverVeryWell[] = COMPOUND_STRING("The appeal combo went\nover very well.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_AppealComboWentOverExcellently[] = COMPOUND_STRING("The appeal combo went\nover excellently.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonWasTooNervousToMove[] = COMPOUND_STRING("{STR_VAR_1} was too\nnervous to move.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_CouldntImproveItsCondition[] = COMPOUND_STRING("But it couldn't improve\nits condition…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_BadConditionResultedInWeakAppeal[] = COMPOUND_STRING("Its bad condition\nresulted in a weak appeal.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonWasUnaffected[] = COMPOUND_STRING("{STR_VAR_1} was\nunaffected.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_RepeatedAppeal[] = COMPOUND_STRING("{STR_VAR_1} disappointed\nby repeating an appeal.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonsXWentOverGreat[] = COMPOUND_STRING("{STR_VAR_1}'s {STR_VAR_3}\nwent over great.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonsXDidntGoOverWell[] = COMPOUND_STRING("{STR_VAR_1}'s {STR_VAR_3}\ndidn't go over well here…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonsXGotTheCrowdGoing[] = COMPOUND_STRING("{STR_VAR_1}'s {STR_VAR_3}\ngot the crowd going.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonCantAppealNextTurn[] = COMPOUND_STRING("{STR_VAR_1} can't appeal\nnext turn…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_AttractedCrowdsAttention[] = COMPOUND_STRING("It attracted the crowd's\nattention.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_CrowdContinuesToWatchMon[] = COMPOUND_STRING("The crowd continues to\nwatch {STR_VAR_3}.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
+const u8 gText_MonsMoveIsIgnored[] = COMPOUND_STRING("{STR_VAR_1}'s\n{STR_VAR_2} is ignored.{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}");
 
 static const u8 sSliderHeartYPositions[CONTESTANT_COUNT] =
 {
@@ -688,84 +710,57 @@ static const u16 sText_Pal[] = INCBIN_U16("graphics/contest/text.gbapal");
 
 #include "data/contest_text_tables.h"
 
-const u8 *const gContestEffectDescriptionPointers[] =
+const struct ContestCategory gContestCategoryInfo[CONTEST_CATEGORIES_COUNT + 1] =
 {
-    [CONTEST_EFFECT_HIGHLY_APPEALING]                      = COMPOUND_STRING("Resulta muy llamativo."),
-    [CONTEST_EFFECT_USER_MORE_EASILY_STARTLED]             = COMPOUND_STRING("Tras usarlo, será fácil\nque te asusten."),
-    [CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES]        = COMPOUND_STRING("Gusta mucho, pero impide\nseguir participando."),
-    [CONTEST_EFFECT_REPETITION_NOT_BORING]                 = COMPOUND_STRING("Por más que se use, el JUEZ\nno se aburrirá nunca."),
-    [CONTEST_EFFECT_AVOID_STARTLE_ONCE]                    = COMPOUND_STRING("Puede evitar que\nte asusten una vez."),
-    [CONTEST_EFFECT_AVOID_STARTLE]                         = COMPOUND_STRING("Puede evitar\nque te asusten."),
-    [CONTEST_EFFECT_AVOID_STARTLE_SLIGHTLY]                = COMPOUND_STRING("Reduce la probabilidad\nde que te asusten."),
-    [CONTEST_EFFECT_USER_LESS_EASILY_STARTLED]             = COMPOUND_STRING("Tras usarlo, será difícil\nque te asusten."),
-    [CONTEST_EFFECT_STARTLE_FRONT_MON]                     = COMPOUND_STRING("Asusta un poco al POKéMON\nque tengas enfrente."),
-    [CONTEST_EFFECT_SLIGHTLY_STARTLE_PREV_MONS]            = COMPOUND_STRING("Asusta un poco a los que\nya se han exhibido."),
-    [CONTEST_EFFECT_STARTLE_PREV_MON]                      = COMPOUND_STRING("Asusta al POKéMON que se\nha exhibido antes que tú."),
-    [CONTEST_EFFECT_STARTLE_PREV_MONS]                     = COMPOUND_STRING("Asusta a los POKéMON que\nya se han exhibido."),
-    [CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON]               = COMPOUND_STRING("Aterra al último POKéMON\nque se exhibió."),
-    [CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS]               = COMPOUND_STRING("Aterra a los que\nya se han exhibido."),
-    [CONTEST_EFFECT_STARTLE_PREV_MON_2]                    = COMPOUND_STRING("Asusta al POKéMON que se\nha exhibido antes que tú."),
-    [CONTEST_EFFECT_STARTLE_PREV_MONS_2]                   = COMPOUND_STRING("Asusta a los POKéMON que\nse exhibieron antes que tú."),
-    [CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION]                 = COMPOUND_STRING("Hace que el JUEZ deje de\nprestar atención al resto."),
-    [CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION]     = COMPOUND_STRING("Asusta más al POKéMON que\ncapta la atención del JUEZ."),
-    [CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN]         = COMPOUND_STRING("Inhibe a los otros,\npero pierdes un turno."),
-    [CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL]         = COMPOUND_STRING("Asusta más a los que usaron\nrecursos del mismo tipo."),
-    [CONTEST_EFFECT_STARTLE_MONS_COOL_APPEAL]              = COMPOUND_STRING("Aterra a los que han hecho\nalarde de CARISMA."),
-    [CONTEST_EFFECT_STARTLE_MONS_BEAUTY_APPEAL]            = COMPOUND_STRING("Aterra a los que han hecho\nalarde de BELLEZA."),
-    [CONTEST_EFFECT_STARTLE_MONS_CUTE_APPEAL]              = COMPOUND_STRING("Aterra a los que han hecho\nalarde de DULZURA."),
-    [CONTEST_EFFECT_STARTLE_MONS_SMART_APPEAL]             = COMPOUND_STRING("Aterra a los que han hecho\n\nalarde de INGENIO."),
-    [CONTEST_EFFECT_STARTLE_MONS_TOUGH_APPEAL]             = COMPOUND_STRING("Aterra a los que han hecho\n\nalarde de DUREZA."),
-    [CONTEST_EFFECT_MAKE_FOLLOWING_MON_NERVOUS]            = COMPOUND_STRING("Pone nervioso al POKéMON\nque va detrás de ti."),
-    [CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS]           = COMPOUND_STRING("Inquieta a los POKéMON\nque van detrás de ti."),
-    [CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS]         = COMPOUND_STRING("Baja la forma de los que\nse han exhibido."),
-    [CONTEST_EFFECT_BADLY_STARTLES_MONS_IN_GOOD_CONDITION] = COMPOUND_STRING("Aterra a los POKéMON que\nestán en buena forma."),
-    [CONTEST_EFFECT_BETTER_IF_FIRST]                       = COMPOUND_STRING("La exhibición es un éxito\nsi se es el primero."),
-    [CONTEST_EFFECT_BETTER_IF_LAST]                        = COMPOUND_STRING("La exhibición es un éxito\nsi se es el último."),
-    [CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES]           = COMPOUND_STRING("La exhibición es tan buena\ncomo las anteriores."),
-    [CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONE]            = COMPOUND_STRING("La exhibición es tan buena\ncomo la anterior."),
-    [CONTEST_EFFECT_BETTER_WHEN_LATER]                     = COMPOUND_STRING("Causa mayor impacto cuanto\nmás tarde se usa."),
-    [CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING]             = COMPOUND_STRING("El impacto que tenga varía\nsegún cuándo se use."),
-    [CONTEST_EFFECT_BETTER_IF_SAME_TYPE]                   = COMPOUND_STRING("Funciona bien si es del\n\nmismo tipo que el anterior."),
-    [CONTEST_EFFECT_BETTER_IF_DIFF_TYPE]                   = COMPOUND_STRING("Funciona bien si es de tipo\ndistinto que el anterior."),
-    [CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL]               = COMPOUND_STRING("El éxito dependerá de la\nactuación precedente."),
-    [CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS] = COMPOUND_STRING("Mejora tu forma y te ayuda\na mantener la calma."),
-    [CONTEST_EFFECT_BETTER_WITH_GOOD_CONDITION]            = COMPOUND_STRING("Resulta muy lucido\nsi estás en buena forma."),
-    [CONTEST_EFFECT_NEXT_APPEAL_EARLIER]                   = COMPOUND_STRING("En la siguiente ronda, deja\nque te exhibas antes."),
-    [CONTEST_EFFECT_NEXT_APPEAL_LATER]                     = COMPOUND_STRING("En la siguiente ronda, deja\nque te exhibas más tarde."),
-    [CONTEST_EFFECT_MAKE_SCRAMBLING_TURN_ORDER_EASIER]     = COMPOUND_STRING("Puede alterar los turnos\nen la siguiente ronda."),
-    [CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER]              = COMPOUND_STRING("Altera los turnos en la\nsiguiente ronda."),
-    [CONTEST_EFFECT_EXCITE_AUDIENCE_IN_ANY_CONTEST]        = COMPOUND_STRING("Entusiasma al público\nen cualquier CONCURSO."),
-    [CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS]  = COMPOUND_STRING("Aterra a todos los POKéMON\nque se han exhibido bien."),
-    [CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED]          = COMPOUND_STRING("El lucimiento es mayor si\nel público está entregado."),
-    [CONTEST_EFFECT_DONT_EXCITE_AUDIENCE]                  = COMPOUND_STRING("Templa momentáneamente\nel fervor del público."),
-};
+    [CONTEST_CATEGORY_COOL] =
+    {
+        .name = COMPOUND_STRING("COOL"),
+        .condition = COMPOUND_STRING("coolness"),
+        .generic = COMPOUND_STRING("COOL Move"),
+        .negativeTrait = COMPOUND_STRING("shyness"),
+        .palette = 13,
+    },
 
-const u8 *const gContestMoveTypeTextPointers[] =
-{
-    [CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("CARISMA"),
-    [CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("BELLEZA"),
-    [CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("DULZURA"),
-    [CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("INTELIGENCIA"),
-    [CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("DUREZA"),
-};
+    [CONTEST_CATEGORY_BEAUTY] =
+    {
+        .name = COMPOUND_STRING("BEAUTY"),
+        .condition = COMPOUND_STRING("beauty"),
+        .generic = COMPOUND_STRING("BEAUTY Move"),
+        .negativeTrait = COMPOUND_STRING("anxiety"),
+        .palette = 14,
+    },
 
-static const u8 *const sContestConditions[] =
-{
-    [CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("carisma"),
-    [CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("belleza"),
-    [CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("dulzura"),
-    [CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("inteligencia"),
-    [CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("dureza"),
-};
+    [CONTEST_CATEGORY_CUTE] =
+    {
+        .name = COMPOUND_STRING("CUTE"),
+        .condition = COMPOUND_STRING("cuteness"),
+        .generic = COMPOUND_STRING("CUTE Move"),
+        .negativeTrait = COMPOUND_STRING("laziness"),
+        .palette = 14,
+    },
 
-static const u8 *const sInvalidContestMoveNames[] =
-{
-    [CONTEST_CATEGORY_COOL]    = COMPOUND_STRING("Mov CARISMA"),
-    [CONTEST_CATEGORY_BEAUTY]  = COMPOUND_STRING("Mov BELLEZA"),
-    [CONTEST_CATEGORY_CUTE]    = COMPOUND_STRING("Mov DULZURA"),
-    [CONTEST_CATEGORY_SMART]   = COMPOUND_STRING("Mov INTELIGENCIA"),
-    [CONTEST_CATEGORY_TOUGH]   = COMPOUND_STRING("Mov DUREZA"),
-    [CONTEST_CATEGORIES_COUNT] = COMPOUND_STRING("???"),
+    [CONTEST_CATEGORY_SMART] =
+    {
+        .name = COMPOUND_STRING("SMART"),
+        .condition = COMPOUND_STRING("smartness"),
+        .generic = COMPOUND_STRING("SMART Move"),
+        .negativeTrait = COMPOUND_STRING("hesitancy"),
+        .palette = 15,
+    },
+
+    [CONTEST_CATEGORY_TOUGH] =
+    {
+        .name = COMPOUND_STRING("TOUGH"),
+        .condition = COMPOUND_STRING("toughness"),
+        .generic = COMPOUND_STRING("TOUGH Move"),
+        .negativeTrait = COMPOUND_STRING("fear"),
+        .palette = 13,
+    },
+
+    [CONTEST_CATEGORIES_COUNT] =
+    {
+        .generic = COMPOUND_STRING("???"),
+    },
 };
 
 // Takes the .attentionLevel of a contestant as an index.
@@ -1907,7 +1902,7 @@ static void Task_DoAppeals(u8 taskId)
             if (eContestantStatus[contestant].currMove < MOVES_COUNT)
                 StringCopy(gStringVar2, GetMoveName(eContestantStatus[contestant].currMove));
             else
-                StringCopy(gStringVar2, sInvalidContestMoveNames[eContestantStatus[contestant].moveCategory]);
+                StringCopy(gStringVar2, gContestCategoryInfo[eContestantStatus[contestant].moveCategory].generic);
             StringExpandPlaceholders(gStringVar4, gText_MonAppealedWithMove);
             Contest_StartTextPrinter(gStringVar4, TRUE);
             gTasks[taskId].tState = APPEALSTATE_WAIT_USED_MOVE_MSG;
@@ -2303,7 +2298,7 @@ static void Task_DoAppeals(u8 taskId)
             }
             else
             {
-                StringCopy(gStringVar3, sContestConditions[GetMoveContestCategory(eContestantStatus[contestant].currMove)]);
+                StringCopy(gStringVar3, gContestCategoryInfo[GetMoveContestCategory(eContestantStatus[contestant].currMove)].condition);
             }
 
             if (r3 > 0 && eContestantStatus[contestant].repeatedMove)
@@ -3296,7 +3291,7 @@ static void PrintContestMoveDescription(u16 move)
     ContestBG_FillBoxWithTile(0, TILE_FILLED_JAM_HEART, 0x15, 0x20, numHearts, 0x01, 0x11);
 
     FillWindowPixelBuffer(WIN_MOVE_DESCRIPTION, PIXEL_FILL(0));
-    Contest_PrintTextToBg0WindowStd(WIN_MOVE_DESCRIPTION, gContestEffectDescriptionPointers[GetMoveContestEffect(move)]);
+    Contest_PrintTextToBg0WindowStd(WIN_MOVE_DESCRIPTION, gContestEffects[GetMoveContestEffect(move)].description);
     Contest_PrintTextToBg0WindowStd(WIN_SLASH, gText_Slash);
 }
 
@@ -4481,7 +4476,7 @@ static void CalculateAppealMoveImpact(u8 contestant)
         && !AreMovesContestCombo(eContestantStatus[contestant].prevMove, eContestantStatus[contestant].currMove))
         eContestantStatus[contestant].hasJudgesAttention = FALSE;
 
-    gContestEffectFuncs[effect]();
+    gContestEffects[effect].function();
 
     if (eContestantStatus[contestant].conditionMod == CONDITION_GAIN)
         eContestantStatus[contestant].appeal += eContestantStatus[contestant].condition - 10;
@@ -4586,16 +4581,7 @@ static void PrintAppealMoveResultText(u8 contestant, u8 stringId)
 {
     StringCopy(gStringVar1, gContestMons[contestant].nickname);
     StringCopy(gStringVar2, GetMoveName(eContestantStatus[contestant].currMove));
-    if      (GetMoveContestCategory(eContestantStatus[eContestAppealResults.contestant].currMove) == CONTEST_CATEGORY_COOL)
-        StringCopy(gStringVar3, gText_Contest_Shyness);
-    else if (GetMoveContestCategory(eContestantStatus[eContestAppealResults.contestant].currMove) == CONTEST_CATEGORY_BEAUTY)
-        StringCopy(gStringVar3, gText_Contest_Anxiety);
-    else if (GetMoveContestCategory(eContestantStatus[eContestAppealResults.contestant].currMove) == CONTEST_CATEGORY_CUTE)
-        StringCopy(gStringVar3, gText_Contest_Laziness);
-    else if (GetMoveContestCategory(eContestantStatus[eContestAppealResults.contestant].currMove) == CONTEST_CATEGORY_SMART)
-        StringCopy(gStringVar3, gText_Contest_Hesitancy);
-    else
-        StringCopy(gStringVar3, gText_Contest_Fear);
+    StringCopy(gStringVar3, gContestCategoryInfo[GetMoveContestCategory(eContestantStatus[eContestAppealResults.contestant].currMove)].negativeTrait);
     StringExpandPlaceholders(gStringVar4, sAppealResultTexts[stringId]);
     ContestClearGeneralTextWindow();
     Contest_StartTextPrinter(gStringVar4, TRUE);

@@ -184,10 +184,14 @@ BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons::
 
 BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLv50::
 	msgbox BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLv50, MSGBOX_DEFAULT
+	call BattleFrontier_ShowCaughtBannedSpecies
+	msgbox BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
 	goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 
 BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMonsLvOpen::
 	msgbox BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLvOpen, MSGBOX_DEFAULT
+	call BattleFrontier_ShowCaughtBannedSpecies
+	msgbox BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
 	goto BattleFrontier_BattlePyramidLobby_EventScript_EndCancelChallenge
 
 BattleFrontier_BattlePyramidLobby_EventScript_CancelChallengeSaveFailed::
@@ -583,6 +587,10 @@ BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLvOpen:
 	.string "Los HUEVOS{STR_VAR_1} participar.\p"
 	.string "Vuelve cuando cumplas las condiciones\n"
 	.string "para aceptar el desafío.$"
+
+BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsEnd:
+	.string "Cuando te prepares,\n"
+	.string "háblame.$"
 
 BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLv50:
 	.string "Cuánto lo siento…\p"

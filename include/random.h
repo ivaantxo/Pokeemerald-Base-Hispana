@@ -218,6 +218,10 @@ enum RandomTag
     RNG_BALLTHROW_CRITICAL,
     RNG_BALLTHROW_SHAKE,
     RNG_PROTECT_FAIL,
+    RNG_PRESENT,
+    RNG_MAGNITUDE,
+    RNG_FISHING_BITE,
+    RNG_FISHING_GEN3_STICKY,
 };
 
 #define RandomWeighted(tag, ...) \
@@ -268,5 +272,14 @@ const void *RandomElementArrayDefault(enum RandomTag, const void *array, size_t 
 u8 RandomWeightedIndex(u8 *weights, u8 length);
 void ShuffleList(u16 *list, u8 count);
 u8 RandomMinMax(u8 min, u8 max) ;
+
+#if TESTING
+u32 RandomUniformTrials(enum RandomTag tag, u32 lo, u32 hi, bool32 (*reject)(u32), void *caller);
+u32 RandomUniformDefaultValue(enum RandomTag tag, u32 lo, u32 hi, bool32 (*reject)(u32), void *caller);
+u32 RandomWeightedArrayTrials(enum RandomTag tag, u32 sum, u32 n, const u8 *weights, void *caller);
+u32 RandomWeightedArrayDefaultValue(enum RandomTag tag, u32 n, const u8 *weights, void *caller);
+const void *RandomElementArrayTrials(enum RandomTag tag, const void *array, size_t size, size_t count, void *caller);
+const void *RandomElementArrayDefaultValue(enum RandomTag tag, const void *array, size_t size, size_t count, void *caller);
+#endif
 
 #endif // GUARD_RANDOM_H

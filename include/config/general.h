@@ -6,11 +6,16 @@
 // aún los tiene en el ROM. Esto se debe a que los desarrolladores olvidaron
 // definir NDEBUG antes del lanzamiento; sin embargo, esto se ha cambiado ya que
 // la compilación de depuración de Ruby no usa las funciones AGBPrint.
-//#define NDEBUG
+//
+// Use `make release` to automatically enable NDEBUG.
+#ifdef RELEASE
+#define NDEBUG
+#endif
 
-// Para habilitar la depuración con printf, comenta "#define NDEBUG". Esto permite
-// usar las diversas funciones AGBPrint. (Consulta include/gba/isagbprint.h).
-// Consulta a continuación para habilitar diferentes versiones de impresión bonita.
+// printf debugging is now enabled by default. This allows
+// the various AGBPrint functions to be used. (See include/gba/isagbprint.h).
+// See below for enabling different pretty printing versions.
+// To disable printf debugging, build a release build using `make release`.
 
 #ifndef NDEBUG
 
@@ -69,8 +74,6 @@
 // Configuraciones generales
 #define EXPANSION_INTRO              TRUE    // Si está habilitado, se reproducirá una introducción personalizada de RHH después de la pantalla de derechos de autor original.
 #define HQ_RANDOM                    TRUE    // Si está habilitado, reemplaza el RNG predeterminado con una implementación del RNG SFC32. Puede romper el código que depende del RNG.
-#define AUTO_SCROLL_TEXT             TRUE    // Si está habilitado, el texto automáticamente pasará a la siguiente línea después de NUM_FRAMES_AUTO_SCROLL_DELAY. El jugador todavía podrá pulsar A_BUTTON o B_BUTTON para pasar a la siguiente línea por sí mismo.
-#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
 #define PHONEMES_SHARED              FALSE   // If TRUE, bard phonemes all reference the same sound (sound/direct_sound_samples/phonemes/shared.bin) to save ROM space.
 
 // Constantes del sistema de medidas para usar con UNITS
@@ -83,5 +86,4 @@
 // Pantalla de Nombres
 #define AUTO_LOWERCASE_KEYBOARD      GEN_LATEST  // A partir de GEN_6, después de ingresar el primer carácter en mayúsculas, el teclado cambia a letras minúsculas.
 
-#define SAVE_TYPE_ERROR_SCREEN              FALSE   // When enabled, this shows an error message when the game is loaded on a cart without a flash chip or on an emulator with the wrong save type setting instead of crashing.
 #endif // GUARD_CONFIG_GENERAL_H

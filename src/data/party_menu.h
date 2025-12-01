@@ -118,6 +118,7 @@ static const u8 sFontColorTable[][3] =
     {TEXT_COLOR_WHITE,       TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_LIGHT_GRAY}, // Selection actions
     {TEXT_COLOR_WHITE,       TEXT_COLOR_BLUE,       TEXT_COLOR_LIGHT_BLUE}, // Field moves
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_DARK_GRAY},  // Unused
+    {TEXT_COLOR_WHITE,       TEXT_COLOR_RED,        TEXT_COLOR_LIGHT_RED},  // Move relearner
 };
 
 static const struct WindowTemplate sSinglePartyMenuWindowTemplate[] =
@@ -670,7 +671,7 @@ struct
     [MENU_CANCEL1]          = {gText_Cancel2,                           CursorCb_Cancel1},
     [MENU_ITEM]             = {COMPOUND_STRING("Objeto"),               CursorCb_Item},
     [MENU_GIVE]             = {gMenuText_Give,                          CursorCb_Give},
-    [MENU_MOVE_ITEM]       = {COMPOUND_STRING("Mover"),            CursorCb_MoveItem},
+    [MENU_MOVE_ITEM]        = {COMPOUND_STRING("Mover"),            CursorCb_MoveItem},
     [MENU_TAKE_ITEM]        = {COMPOUND_STRING("Recoger"),              CursorCb_TakeItem},
     [MENU_MAIL]             = {COMPOUND_STRING("Correo"),               CursorCb_Mail},
     [MENU_TAKE_MAIL]        = {COMPOUND_STRING("Recoger"),              CursorCb_TakeMail},
@@ -685,6 +686,11 @@ struct
     [MENU_TRADE1]           = {COMPOUND_STRING("Intercambiar"),         CursorCb_Trade1},
     [MENU_TRADE2]           = {COMPOUND_STRING("Intercambiar"),         CursorCb_Trade2},
     [MENU_TOSS]             = {gMenuText_Toss,                          CursorCb_Toss},
+    [MENU_LEVEL_UP_MOVES]   = {COMPOUND_STRING("Mov. por nivel"),       CursorCb_ChangeLevelUpMoves},
+	[MENU_EGG_MOVES]        = {COMPOUND_STRING("Mov. huevo"),           CursorCb_ChangeEggMoves},
+	[MENU_TM_MOVES]         = {COMPOUND_STRING("Mov. MTs"),             CursorCb_ChangeTMMoves},
+	[MENU_TUTOR_MOVES]      = {COMPOUND_STRING("Mov. tutor"),           CursorCb_ChangeTutorMoves},
+    [MENU_SUB_MOVES]        = {COMPOUND_STRING("Aprender mov."),        CursorCb_LearnMovesSubMenu},
     [MENU_CATALOG_BULB]     = {COMPOUND_STRING("Bombilla"),             CursorCb_CatalogBulb},
     [MENU_CATALOG_OVEN]     = {COMPOUND_STRING("Microondas"),           CursorCb_CatalogOven},
     [MENU_CATALOG_WASHING]  = {COMPOUND_STRING("Lavadora"),             CursorCb_CatalogWashing},
@@ -1025,16 +1031,6 @@ const struct SpriteTemplate gSpriteTemplate_StatusIcons =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
-};
-
-static const u8 *const sUnused_StatStrings[] =
-{
-    gText_HP4,
-    gText_Attack3,
-    gText_Defense3,
-    gText_SpAtk4,
-    gText_SpDef4,
-    gText_Speed2
 };
 
 #define ROTOM_BASE_MOVE  MOVE_THUNDER_SHOCK

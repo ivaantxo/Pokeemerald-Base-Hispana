@@ -169,8 +169,6 @@
 #define B_POWDER_OVERCOAT           GEN_LATEST // In Gen6+, Overcoat blocks powder and spore moves from affecting the user.
 
 // Configuración de ítems
-#define B_HP_BERRIES                GEN_LATEST // En Gen4+, las bayas que restauran HP se activan inmediatamente después de que HP cae a la mitad. En Gen3, el efecto ocurre al final del turno.
-#define B_BERRIES_INSTANT           GEN_LATEST // En Gen4+, la mayoría de las bayas se activan al inicio de la batalla/cambio si es aplicable. En Gen3, solo se activan al final del movimiento o al final del turno.
 #define B_CONFUSE_BERRIES_HEAL      GEN_LATEST // Antes de Gen7, Figy y bayas similares restauran 1/8 de HP y se activan a la mitad de HP. En Gen7 restauran la mitad de HP, activándose al 25% de HP. En Gen8 curan 1/3 de HP.
 #define B_X_ITEMS_BUFF              GEN_LATEST // En Gen7+, los X Items aumentan una estadística en 2 etapas en lugar de 1.
 #define B_MENTAL_HERB               GEN_LATEST // En Gen5+, Hierba mental cura Mofa, Otra vez, Tormento, Anticura y Anulación además de Enamoramiento.
@@ -231,6 +229,13 @@
                                                     // Para controlar mejor la IA de los Pokémon salvajes, edita GetWildAiFlags() en src/battle_ai_main.c
 #define B_VAR_DIFFICULTY                    0       // Si no es 0, puedes usar esta Var para controlar qué nivel de dificultad tienen los entrenadores. Esto debe ser implementado manualmente por el desarrollador usando Script_SetDifficulty DESPUÉS de que NewGameInitData haya sido llamada.
 
+// No bag settings
+#define NO_BAG_RESTRICTION       0
+#define NO_BAG_AGAINST_TRAINER   1
+#define NO_BAG_IN_BATTLE         2
+
+#define B_VAR_NO_BAG_USE         0     // If 1, the ability to use the bag in battle is disabled in trainer battles. If 2, it is also disabled in wild battles.
+
 // Batallas en el cielo
 #define B_FLAG_SKY_BATTLE                   0       // Si esta flag tiene un valor, el jugador podrá participar en Batallas en el Cielo programadas.
 #define B_VAR_SKY_BATTLE                    0       // Si esta variable tiene un valor, el juego recordará las posiciones de los Pokémon usados en Batallas en el Cielo.
@@ -269,7 +274,6 @@
 #define B_NEW_TERRAIN_BACKGROUNDS   FALSE      // Si está habilitado, usa nuevos fondos para los Campos.
 
 // Configuración de Interfaz
-#define B_ABILITY_POP_UP            TRUE  // En Gen5+, las habilidades de los Pokémon se muestran en una ventana emergente cuando se activan en batalla.
 #define B_FAST_INTRO_PKMN_TEXT      TRUE  // Si se establece en TRUE, los textos de introducción de la batalla se imprimen al mismo tiempo que la animación de un Pokémon, en lugar de esperar a que termine la animación.
 #define B_FAST_INTRO_NO_SLIDE       FALSE // Si se establece en TRUE, se saltará la animación de deslizamiento que se produce al entrar en combate.
 #define B_FAST_HP_DRAIN             TRUE  // Si se establece en TRUE, las barras de HP se moverán más rápido.
@@ -288,9 +292,10 @@
 
 // Configuración de Captura
 #define B_SEMI_INVULNERABLE_CATCH   GEN_LATEST // En Gen4+, no puedes lanzar una Poké Ball contra un Pokémon que está en un estado semi-invulnerable (excavar/volar/etc).
-#define B_CATCHING_CHARM_BOOST      20         // % de aumento en las probabilidades de Captura Crítica si el jugador tiene el Catching Charm.
+#define B_CATCHING_CHARM_BOOST      100         // % de aumento en las probabilidades de Captura Crítica si el jugador tiene el Catching Charm.
 #define B_CRITICAL_CAPTURE          TRUE       // Si se establece en TRUE, la Captura Crítica estará habilitada.
 #define B_CRITICAL_CAPTURE_LOCAL_DEX    TRUE       // If set to FALSE, Critical Capture % is based off of the National Pokedex estimated by enabled generations.
+#define B_CRITICAL_CAPTURE_IF_OWNED     GEN_LATEST // In Gen9, a capture appear critical if the pokemon you are trying to catch already has a dex entry (has already been caught)
 
 #define B_LAST_USED_BALL            TRUE       // Si está habilitado, se implementará la característica de "última bola usada" de Gen 7.
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON   // Si se implementa la última bola usada, este botón (o combinación de botones) activará el lanzamiento de la última Poké Ball usada.
@@ -367,5 +372,7 @@
 #define B_POOL_RULE_EXCLUDE_FORMS           FALSE    // Exclude different forms from the Species Clause
 #define B_POOL_RULE_ITEM_CLAUSE             FALSE    // Only allow each item to be picked once
 #define B_POOL_RULES_USE_ITEM_EXCLUSIONS    FALSE    // Exclude items listed in poolItemClauseExclusions
+#define B_POOL_RULE_MEGA_STONE_CLAUSE       FALSE    // Pick only 1 mon with mega stone
+#define B_POOL_RULE_Z_CRYSTAL_CLAUSE        FALSE    // Pick only 1 mon with Z-crystal
 
 #endif // GUARD_CONFIG_BATTLE_H
