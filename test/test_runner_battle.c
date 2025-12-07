@@ -650,7 +650,7 @@ static u32 BattleTest_RandomUniform(enum RandomTag tag, u32 lo, u32 hi, bool32 (
         }
     }
     //trials
-    if (tag == STATE->rngTag)
+    if (tag && tag == STATE->rngTag)
         return RandomUniformTrials(tag, lo, hi, reject, caller);
 
     //default
@@ -670,7 +670,7 @@ static u32 BattleTest_RandomWeightedArray(enum RandomTag tag, u32 sum, u32 n, co
     }
 
     //trials
-    if (tag == STATE->rngTag)
+    if (tag && tag == STATE->rngTag)
         return RandomWeightedArrayTrials(tag, sum, n, weights, caller);
 
     //default
@@ -725,7 +725,7 @@ static const void *BattleTest_RandomElementArray(enum RandomTag tag, const void 
 
 
     //trials
-    if (tag == STATE->rngTag)
+    if (tag && tag == STATE->rngTag)
         return RandomElementArrayTrials(tag, array, size, count, caller);
 
     //default
