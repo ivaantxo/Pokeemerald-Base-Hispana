@@ -69,6 +69,7 @@
 #define GEN_8 7
 #define GEN_9 8
 // Cambiar el valor de GEN_LATEST a una Generación diferente cambiará todas las configuraciones predeterminadas que lo usan a la vez.
+#define GEN_COUNT 9
 #define GEN_LATEST GEN_9
 
 // Configuraciones generales
