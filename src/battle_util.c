@@ -1216,6 +1216,26 @@ bool32 WasUnableToUseMove(u32 battler)
     return FALSE;
 }
 
+// Returns TRUE if no other battler after this one in turn order will use a move
+bool32 IsLastMonToMove(u32 battler)
+{
+    u32 i;
+    u32 battlerTurnOrderNum = GetBattlerTurnOrderNum(battler);
+
+    if (battlerTurnOrderNum >= gBattlersCount - 1)
+        return TRUE;
+
+    for (i = battlerTurnOrderNum + 1; i < gBattlersCount; i++)
+    {
+        u32 otherBattler = gBattlerByTurnOrder[i];
+        if (!IsBattlerAlive(otherBattler))
+            continue;
+        if (gActionsByTurnOrder[i] == B_ACTION_USE_MOVE)
+            return FALSE;
+    }
+    return TRUE;
+}
+
 bool32 ShouldDefiantCompetitiveActivate(u32 battler, enum Ability ability)
 {
     u32 side = GetBattlerSide(battler);
@@ -7358,7 +7378,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.75));
         break;
     case ABILITY_ANALYTIC:
-        if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
+        if (IsLastMonToMove(battlerAtk) && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_TOUGH_CLAWS:

@@ -9711,7 +9711,7 @@ static void Cmd_setprotectlike(void)
 
     TryResetProtectUseCounter(gBattlerAttacker);
 
-    if (gCurrentTurnActionNumber == (gBattlersCount - 1))
+    if (IsLastMonToMove(gBattlerAttacker))
         notLastTurn = FALSE;
 
     if ((sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] >= RandomUniform(RNG_PROTECT_FAIL, 0, USHRT_MAX) && notLastTurn)
@@ -13136,7 +13136,7 @@ static void Cmd_trysetmagiccoat(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gCurrentTurnActionNumber == gBattlersCount - 1) // moves last turn
+    if (IsLastMonToMove(gBattlerAttacker)) // fails if moving last
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -13152,7 +13152,7 @@ static void Cmd_trysetsnatch(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gCurrentTurnActionNumber == gBattlersCount - 1) // moves last turn
+    if (IsLastMonToMove(gBattlerAttacker)) // fails if moving last
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
