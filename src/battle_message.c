@@ -109,8 +109,8 @@ static const u8 sText_Trainer1WithdrewPkmn[] = _("¡Retirada de {B_BUFF1} por {B
 static const u8 sText_Trainer2WithdrewPkmn[] = _("{B_TRAINER2_NAME_WITH_CLASS} withdrew {B_BUFF1}!");
 static const u8 sText_LinkTrainer1WithdrewPkmn[] = _("¡{B_LINK_OPPONENT1_NAME} retiró a {B_BUFF1}!");
 static const u8 sText_LinkTrainer2WithdrewPkmn[] = _("¡{B_LINK_SCR_TRAINER_NAME} retiró a {B_BUFF1}!");
-static const u8 sText_WildPkmnPrefix[] = _(" salvaje");
-static const u8 sText_FoePkmnPrefix[] = _(" enemigo");
+static const u8 sText_WildPkmnPrefix[] = _("salvaje");
+static const u8 sText_FoePkmnPrefix[] = _("enemigo");
 static const u8 sText_EmptyString8[] = _("");
 static const u8 sText_FoePkmnPrefix2[] = _("enemigo");
 static const u8 sText_AllyPkmnPrefix[] = _("amigo");
@@ -119,11 +119,6 @@ static const u8 sText_AllyPkmnPrefix2[] = _("amigo");
 static const u8 sText_FoePkmnPrefix4[] = _("enemigo");
 static const u8 sText_AllyPkmnPrefix3[] = _("amigo");
 static const u8 sText_AttackerUsedX[] = _("¡{B_ATK_NAME_WITH_PREFIX} usó {B_BUFF3}!");
-static const u8 sText_ExclamationMark[] = _("!");
-static const u8 sText_ExclamationMark2[] = _("!");
-static const u8 sText_ExclamationMark3[] = _("!");
-static const u8 sText_ExclamationMark4[] = _("!");
-static const u8 sText_ExclamationMark5[] = _("!");
 static const u8 sText_HP[] = _("PS");
 static const u8 sText_Attack[] = _("Ataque");
 static const u8 sText_Defense[] = _("Defensa");
@@ -183,6 +178,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_STATSWONTINCREASE2]                   = COMPOUND_STRING("¡Las características de {B_ATK_NAME_WITH_PREFIX} no subirán más!"),
     [STRINGID_AVOIDEDDAMAGE]                        = COMPOUND_STRING("¡{B_DEF_NAME_WITH_PREFIX} se protegió con {B_DEF_ABILITY}!"), //not in gen 5+, ability popup
     [STRINGID_ITDOESNTAFFECT]                       = COMPOUND_STRING("No afecta a {B_DEF_NAME_WITH_PREFIX}…"),
+    [STRINGID_BATTLERFAINTED]                       = COMPOUND_STRING("¡{B_SCR_NAME_WITH_PREFIX} se debilitó!\p"),
     [STRINGID_PLAYERGOTMONEY]                       = COMPOUND_STRING("¡{B_PLAYER_NAME} ganó ¥{B_BUFF1}!\p"),
     [STRINGID_PLAYERWHITEOUT]                       = COMPOUND_STRING("¡A {B_PLAYER_NAME} no le quedan Pokémon!\p"),
     [STRINGID_PLAYERWHITEOUT2_WILD]                 = COMPOUND_STRING("Saliste corriendo y perdiste ¥{B_BUFF1}…"),
@@ -2406,10 +2402,9 @@ static void GetBattlerNick(u32 battler, u8 *dst)
     {                                                                   \
         while (*toCpy != EOS)                                           \
         {                                                               \
-            dst[dstID] = *toCpy;                                        \
-            dstID++;                                                    \
-            toCpy++;                                                    \
+            dst[dstID++] = *toCpy++;                                    \
         }                                                               \
+        dst[dstID++] = CHAR_SPACE; /* un solo espacio */                \
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)                     \
             toCpy = sText_FoePkmnPrefix;                                \
         else                                                            \

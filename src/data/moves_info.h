@@ -372,9 +372,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     [MOVE_SCRATCH] =
     {
         .name = COMPOUND_STRING("AraÃ±azo"),
-        .description = COMPOUND_STRING(
-            "AraÃ±a con afiladas\n"
-            "garras."),
+        .description = COMPOUND_STRING("AraÃ±a con afiladas garras."),
         .effect = EFFECT_HIT,
         .power = 40,
         .type = TYPE_NORMAL,
@@ -3963,7 +3961,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             .description = COMPOUND_STRING(
                 "El objetivo es golpeado\n"
-                "por golpes rítmicos."),
+                "por golpes rï¿½tmicos."),
         #endif
         .effect = EFFECT_HIT,
         .power = 70,
@@ -4363,7 +4361,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
                 #endif
         #else
             .description = COMPOUND_STRING(
-                "Crea un campo de energía\n"
+                "Crea un campo de energï¿½a\n"
                 "triangular y lo lanza.");
         #endif
         .effect = EFFECT_HIT,
