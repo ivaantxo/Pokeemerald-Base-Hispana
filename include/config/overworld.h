@@ -21,7 +21,7 @@
 
 // Estas definiciones generacionales solo hacen una distinción para Bayas y el OW_PC_MOVE_ORDER
 #define GEN_6_XY GEN_6
-#define GEN_6_ORAS GEN_LATEST + 1
+#define GEN_6_ORAS GEN_COUNT + 1
 
 // Configuración del PC
 #define OW_PC_PRESS_B               GEN_LATEST // En Gen4, presionar B mientras sostienes un Pokémon es equivalente a colocarlo. En Gen3, da el error "¡Estás sosteniendo un Pokémon!"
@@ -86,8 +86,8 @@
 #define OW_FLASH_FIRE               GEN_LATEST // En Gen8+, si un Pokémon con Absorbe Fuego está liderando el equipo, hay un 50% de probabilidad de encontrar un Pokémon de tipo Fuego.
 
 // Estas definiciones generacionales solo hacen una distinción para OW_ALTERED_TIME_RATIO
-#define GEN_8_PLA                       GEN_LATEST + 2
-#define TIME_DEBUG                      GEN_LATEST + 3
+#define GEN_8_PLA                       GEN_COUNT + 2
+#define TIME_DEBUG                      GEN_COUNT + 3
 
 // Tiempo
 #define OW_TIMES_OF_DAY                 GEN_LATEST      // Diferentes generaciones cambian los tiempos del día en diferentes momentos.
