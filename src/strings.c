@@ -195,7 +195,7 @@ const u8 *const gPocketNamesStringsTable[] =
     [POCKET_KEY_ITEMS] = COMPOUND_STRING("Obj. clave")
 };
 
-const u8 gText_NumberItem_TMBerry[] = _("Nº{STR_VAR_1}{CLEAR 0x03}{STR_VAR_2}");
+const u8 gText_NumberItem_TMBerry[] = _("NÂº{STR_VAR_1}{CLEAR 0x03}{STR_VAR_2}");
 const u8 gText_NumberItem_HM[] = _("{CLEAR_TO 0x11}{STR_VAR_1}{CLEAR 0x05}{STR_VAR_2}");
 const u8 gText_ShopBuy[] = _("Comprar");
 const u8 gText_ShopSell[] = _("Vender");

@@ -3049,7 +3049,7 @@ void SetMoveEffect(u32 battler, u32 effectBattler, enum MoveEffect moveEffect, c
     if (!primary && !affectsUser && IsMoveEffectBlockedByTarget(battlerAbility))
         moveEffect = MOVE_EFFECT_NONE;
     else if (!primary
-          && TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove)
+          && IsSheerForceAffected(gCurrentMove, GetBattlerAbility(battler))
           && !(GetMoveEffect(gCurrentMove) == EFFECT_ORDER_UP && gBattleStruct->battlerState[gBattlerAttacker].commanderSpecies != SPECIES_NONE))
         moveEffect = MOVE_EFFECT_NONE;
     else if (!IsBattlerAlive(gEffectBattler) && !activateAfterFaint)
@@ -3213,9 +3213,9 @@ void SetMoveEffect(u32 battler, u32 effectBattler, enum MoveEffect moveEffect, c
         else
         {
             if (GetBattlerHoldEffect(gBattlerAttacker) == HOLD_EFFECT_GRIP_CLAW)
-                gDisableStructs[gEffectBattler].wrapTurns = B_BINDING_TURNS >= GEN_5 ? 7 : 5;
+                gDisableStructs[gEffectBattler].wrapTurns = GetConfig(CONFIG_BINDING_TURNS) >= GEN_5 ? 7 : 5;
             else
-                gDisableStructs[gEffectBattler].wrapTurns = B_BINDING_TURNS >= GEN_5 ? RandomUniform(RNG_WRAP, 4, 5) : RandomUniform(RNG_WRAP, 2, 5);
+                gDisableStructs[gEffectBattler].wrapTurns = GetConfig(CONFIG_BINDING_TURNS) >= GEN_5 ? RandomUniform(RNG_WRAP, 4, 5) : RandomUniform(RNG_WRAP, 2, 5);
             gBattleMons[gEffectBattler].volatiles.wrapped = TRUE;
             gBattleMons[gEffectBattler].volatiles.wrappedMove = gCurrentMove;
             gBattleMons[gEffectBattler].volatiles.wrappedBy = gBattlerAttacker;
@@ -3975,7 +3975,7 @@ void SetMoveEffect(u32 battler, u32 effectBattler, enum MoveEffect moveEffect, c
             {
                 gBattleMons[battler].volatiles.wrapped = TRUE;
                 if (GetBattlerHoldEffect(gBattlerAttacker) == HOLD_EFFECT_GRIP_CLAW)
-                    gDisableStructs[battler].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                    gDisableStructs[battler].wrapTurns = (GetConfig(CONFIG_BINDING_TURNS) >= GEN_5) ? 7 : 5;
                 else
                     gDisableStructs[battler].wrapTurns = (Random() % 2) + 4;
                 // The Wrap effect does not expire when the user switches, so here's some cheese.
@@ -6400,7 +6400,7 @@ static void Cmd_moveend(void)
                 && gBattlerTarget != gBattlerAttacker
                 && !IsBattlerAlly(gBattlerTarget, gBattlerAttacker)
                 && gProtectStructs[gBattlerTarget].physicalBattlerId == gBattlerAttacker
-                && !TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove))
+                && !IsSheerForceAffected(gCurrentMove, GetBattlerAbility(gBattlerAttacker)))
             {
                 gProtectStructs[gBattlerTarget].shellTrap = TRUE;
                 // Change move order in double battles, so the hit mon with shell trap moves immediately after being hit.
@@ -6660,7 +6660,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_SHEER_FORCE:
-            if (TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove))
+            if (IsSheerForceAffected(gCurrentMove, GetBattlerAbility(gBattlerAttacker)))
                 gBattleScripting.moveendState = MOVEEND_EJECT_PACK;
             else
                 gBattleScripting.moveendState++;
@@ -11736,7 +11736,7 @@ static void Cmd_settailwind(void)
     if (!(gSideStatuses[side] & SIDE_STATUS_TAILWIND))
     {
         gSideStatuses[side] |= SIDE_STATUS_TAILWIND;
-        gSideTimers[side].tailwindTimer = (B_TAILWIND_TURNS >= GEN_5 ? 4 : 3);
+        gSideTimers[side].tailwindTimer = (GetConfig(CONFIG_TAILWIND_TURNS) >= GEN_5 ? 4 : 3);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
