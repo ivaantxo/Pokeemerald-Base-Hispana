@@ -151,18 +151,22 @@ BrendanIntroText:
 BrendanLoseText:
     .string "Efectivamente, palmamos.$"
 
+BrendanPocosPokemon:
+    .string "Anda usted con pocos Pokémon.$"
+
 Debug_EventScript_Script_1::
-trainerbattle_single TRAINER_BRENDAN_PLACEHOLDER, BrendanIntroText, BrendanLoseText
-	dowildbattle
+	trainerbattle_single TRAINER_BRENDAN_PLACEHOLDER, BrendanIntroText, BrendanLoseText
 	release
 	end
 
 Debug_EventScript_Script_2::
+	trainerbattle_double TRAINER_MAY_PLACEHOLDER, BrendanIntroText, BrendanLoseText, BrendanPocosPokemon
 	release
 	end
 
 Debug_EventScript_Script_3::
-	release
+	trainerbattle_double TRAINER_RELI_AND_IAN, Route131_Text_ReliIntro, Route131_Text_ReliDefeat, Route131_Text_ReliNotEnoughMons
+	msgbox Route131_Text_ReliPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Debug_EventScript_Script_4::
