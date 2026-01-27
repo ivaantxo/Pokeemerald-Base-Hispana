@@ -1374,7 +1374,6 @@ const u8 gText_SafariZoneMenu[] = _("Ball{CLEAR_TO 56}Pokécubo\n+ Cerca{CLEAR_T
 const u8 gText_MoveInterfacePP[] = _("PP ");
 const u8 gText_MoveInterfacePower[] = _("Pot.\nPrecis. ");
 const u8 gText_MoveInterfaceType[] = _("Tipo/");
-const u8 gText_MoveInterfacePpType[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}PP\nTipo/");
 const u8 gText_MoveInterfaceDynamicColors[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}");
 const u8 gText_WhichMoveToForget4[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}¿Qué movimiento debería\nolvidar?");
 
@@ -1383,7 +1382,6 @@ const u8 gText_BattleSwitchWhich[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAM
 const u8 gText_BattleSwitchWhich2[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNAMIC_COLOR4 DYNAMIC_COLOR5 DYNAMIC_COLOR6}");
 const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
-const u8 gText_BattleSwitchWhich5[] = _("-");
 
 const u8 gText_SafariBalls[] = _("{HIGHLIGHT DARK_GRAY}Safari Balls");
 const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT DARK_GRAY}Tienes: $" "{HIGHLIGHT DARK_GRAY}");
