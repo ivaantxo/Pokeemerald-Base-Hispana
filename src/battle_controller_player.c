@@ -1619,23 +1619,51 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
 
 u32 GetMoveEffectiveness(u32 battler)
 {
-    uq4_12_t effectiveness1, effectiveness2;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-    u32 move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    u32 moveIndex = gMoveSelectionCursor[battler];
+    u32 move = moveInfo->moves[moveIndex];
+
+    struct DamageContext ctx = {0};
+    ctx.battlerAtk = battler;
+    ctx.updateFlags = FALSE;
+    ctx.abilityAtk = gAiLogicData->abilities[battler];
+    ctx.holdEffectAtk = gAiLogicData->holdEffects[battler];
+    ctx.move = ctx.chosenMove = move;
+    ctx.moveType = GetBattleMoveType(move);
+
+    uq4_12_t effLeft, effRight;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
-        effectiveness1 = AI_GetMoveEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_LEFT));
-        effectiveness2 = AI_GetMoveEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_RIGHT));
-        if (effectiveness1 == effectiveness2)
-            return effectiveness1;
-        else
-            return UQ_4_12(1.0);
-    }
-    else
-        effectiveness1 = AI_GetMoveEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_LEFT));
+        ctx.battlerDef = GetBattlerPosition(B_POSITION_OPPONENT_LEFT);
+        ctx.abilityDef = gAiLogicData->abilities[ctx.battlerDef];
+        ctx.holdEffectDef = gAiLogicData->holdEffects[ctx.battlerDef];
+        effLeft = CalcTypeEffectivenessMultiplier(&ctx);
 
-    return effectiveness1;
+        ctx.battlerDef = GetBattlerPosition(B_POSITION_OPPONENT_RIGHT);
+        ctx.abilityDef = gAiLogicData->abilities[ctx.battlerDef];
+        ctx.holdEffectDef = gAiLogicData->holdEffects[ctx.battlerDef];
+        effRight = CalcTypeEffectivenessMultiplier(&ctx);
+
+        if (IsBattleMoveStatus(move))
+        {
+            return (effLeft == UQ_4_12(0.0) || effRight == UQ_4_12(0.0)) ? UQ_4_12(0.0) : UQ_4_12(1.0);
+        }
+
+        return (effLeft == effRight) ? effLeft : UQ_4_12(1.0);
+    }
+
+    ctx.battlerDef = GetBattlerPosition(B_POSITION_OPPONENT_LEFT);
+    ctx.abilityDef = gAiLogicData->abilities[ctx.battlerDef];
+    ctx.holdEffectDef = gAiLogicData->holdEffects[ctx.battlerDef];
+    effLeft = CalcTypeEffectivenessMultiplier(&ctx);
+
+    if (IsBattleMoveStatus(move))
+    {
+        return (effLeft == UQ_4_12(0.0)) ? UQ_4_12(0.0) : UQ_4_12(1.0);
+    }
+
+    return effLeft;
 }
 
 static void MoveSelectionDisplayMoveType(u32 battler)
