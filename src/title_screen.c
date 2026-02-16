@@ -36,6 +36,11 @@ enum {
 #define VERSION_BANNER_Y_GOAL 68
 #define START_BANNER_X 128
 
+#define LOGO_PBH_TILEOFFSET_1 0
+#define LOGO_PBH_TILEOFFSET_2 64
+#define LOGO_PBH_TILEOFFSET_3 128
+#define LOGO_PBH_TILEOFFSET_4 192
+
 #define CLEAR_SAVE_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_UP)
 #define RESET_RTC_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_LEFT)
 #define BERRY_UPDATE_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON)
@@ -180,14 +185,86 @@ static const struct SpriteTemplate sVersionBannerRightSpriteTemplate =
     .callback = SpriteCB_VersionBannerRight,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_EmeraldVersion[] =
+static const struct OamData sLogoPBHOamData =
 {
-    {
-        .data = gTitleScreenEmeraldVersionGfx,
-        .size = 0x1000,
-        .tag = TAG_VERSION
-    },
-    {},
+    .bpp = ST_OAM_8BPP,
+    .shape = SPRITE_SHAPE(64x32),
+    .size = SPRITE_SIZE(64x32),
+    .priority = 0,
+    .paletteNum = 0,
+};
+
+static const union AnimCmd sLogoPBHAnim1[] = { ANIMCMD_FRAME(LOGO_PBH_TILEOFFSET_1, 0), ANIMCMD_END };
+static const union AnimCmd sLogoPBHAnim2[] = { ANIMCMD_FRAME(LOGO_PBH_TILEOFFSET_2, 0), ANIMCMD_END };
+static const union AnimCmd sLogoPBHAnim3[] = { ANIMCMD_FRAME(LOGO_PBH_TILEOFFSET_3, 0), ANIMCMD_END };
+static const union AnimCmd sLogoPBHAnim4[] = { ANIMCMD_FRAME(LOGO_PBH_TILEOFFSET_4, 0), ANIMCMD_END };
+
+static const union AnimCmd *const sLogoPBHAnimTable1[] =
+{
+    sLogoPBHAnim1,
+};
+static const union AnimCmd *const sLogoPBHAnimTable2[] =
+{
+    sLogoPBHAnim2,
+};
+static const union AnimCmd *const sLogoPBHAnimTable3[] =
+{
+    sLogoPBHAnim3,
+};
+static const union AnimCmd *const sLogoPBHAnimTable4[] =
+{
+    sLogoPBHAnim4,
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_LogoPBH =
+{
+    .data = gTitleScreenEmeraldVersionGfx,
+    .size = 256 * 32, // En 8bpp, no se divide entre 2
+    .tag = TAG_VERSION
+};
+
+static const struct SpriteTemplate sLogoPBHSpriteTemplate1 =
+{
+    .tileTag = TAG_VERSION,
+    .paletteTag = TAG_VERSION,
+    .oam = &sLogoPBHOamData,
+    .anims = sLogoPBHAnimTable1,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+static const struct SpriteTemplate sLogoPBHSpriteTemplate2 =
+{
+    .tileTag = TAG_VERSION,
+    .paletteTag = TAG_VERSION,
+    .oam = &sLogoPBHOamData,
+    .anims = sLogoPBHAnimTable2,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+static const struct SpriteTemplate sLogoPBHSpriteTemplate3 =
+{
+    .tileTag = TAG_VERSION,
+    .paletteTag = TAG_VERSION,
+    .oam = &sLogoPBHOamData,
+    .anims = sLogoPBHAnimTable3,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+static const struct SpriteTemplate sLogoPBHSpriteTemplate4 =
+{
+    .tileTag = TAG_VERSION,
+    .paletteTag = TAG_VERSION,
+    .oam = &sLogoPBHOamData,
+    .anims = sLogoPBHAnimTable4,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
 };
 
 static const struct OamData sOamData_CopyrightBanner =
@@ -607,7 +684,8 @@ void CB2_InitTitleScreen(void)
         ResetSpriteData();
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 9;
-        LoadCompressedSpriteSheet(&sSpriteSheet_EmeraldVersion[0]);
+        //LoadCompressedSpriteSheet(&sSpriteSheet_EmeraldVersion[0]);
+        LoadCompressedSpriteSheet(&sSpriteSheet_LogoPBH);
         LoadCompressedSpriteSheet(&sSpriteSheet_PressStart[0]);
         LoadCompressedSpriteSheet(&sPokemonLogoShineSpriteSheet[0]);
         LoadPalette(gTitleScreenEmeraldVersionPal, OBJ_PLTT_ID(0), PLTT_SIZE_4BPP);
@@ -710,7 +788,7 @@ static void Task_TitleScreenPhase1(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
         SetGpuReg(REG_OFFSET_BLDY, 0);
 
-        // Create left side of version banner
+        /*// Create left side of version banner
         spriteId = CreateSprite(&sVersionBannerLeftSpriteTemplate, VERSION_BANNER_LEFT_X, VERSION_BANNER_Y, 0);
         gSprites[spriteId].sAlphaBlendIdx = ARRAY_COUNT(gTitleScreenAlphaBlend);
         gSprites[spriteId].sParentTaskId = taskId;
@@ -718,6 +796,12 @@ static void Task_TitleScreenPhase1(u8 taskId)
         // Create right side of version banner
         spriteId = CreateSprite(&sVersionBannerRightSpriteTemplate, VERSION_BANNER_RIGHT_X, VERSION_BANNER_Y, 0);
         gSprites[spriteId].sParentTaskId = taskId;
+        */
+
+        CreateSprite(&sLogoPBHSpriteTemplate1, 25, 68, 0);
+        CreateSprite(&sLogoPBHSpriteTemplate2, 25 + 64, 68, 0);
+        CreateSprite(&sLogoPBHSpriteTemplate3, 25 + 128, 68, 0);
+        CreateSprite(&sLogoPBHSpriteTemplate4, 25 + 192, 68, 0);
 
         gTasks[taskId].tCounter = 144;
         gTasks[taskId].func = Task_TitleScreenPhase2;
