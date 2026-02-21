@@ -8,6 +8,7 @@
 #include "field_poison.h"
 #include "fldeff_misc.h"
 #include "frontier_util.h"
+#include "palette.h"
 #include "party_menu.h"
 #include "pokenav.h"
 #include "script.h"
@@ -15,9 +16,11 @@
 #include "strings.h"
 #include "task.h"
 #include "trainer_hill.h"
+#include "util.h"
 #include "constants/field_poison.h"
 #include "constants/form_change_types.h"
 #include "constants/party_menu.h"
+#include "constants/rgb.h"
 
 static bool32 IsMonValidSpecies(struct Pokemon *pokemon)
 {
@@ -122,6 +125,36 @@ void TryFieldPoisonWhiteOut(void)
     ScriptContext_Stop();
 }
 
+static void Task_FollowerPoisonBlend(u8 taskId)
+{
+    struct ObjectEvent *followerObj = GetFollowerObject();
+    if (!followerObj)
+    {
+        DestroyTask(taskId);
+        return;
+    }
+
+    struct Sprite *sprite = &gSprites[followerObj->spriteId];
+    u32 palId = OBJ_PLTT_ID(sprite->oam.paletteNum);
+
+    if (gTasks[taskId].data[0] < 16)
+    {
+        BlendPalette(palId, 16, gTasks[taskId].data[0], RGB_PURPLE);
+        gTasks[taskId].data[0]++;
+    }
+    else
+    {
+        LoadPalette(&gPlttBufferUnfaded[palId], palId,PLTT_SIZE_4BPP);
+        DestroyTask(taskId);
+    }
+}
+
+void StartFollowerPoisonBlend(void)
+{
+    if (FindTaskIdByFunc(Task_FollowerPoisonBlend) == TASK_NONE)
+        CreateTask(Task_FollowerPoisonBlend, 0);
+}
+
 s32 DoPoisonFieldEffect(void)
 {
     int i;
@@ -129,6 +162,8 @@ s32 DoPoisonFieldEffect(void)
     struct Pokemon *pokemon = gPlayerParty;
     u32 numPoisoned = 0;
     u32 numFainted = 0;
+    struct Pokemon *followerMon = GetFirstLiveMon();
+    bool32 followerDamaged = FALSE;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -143,12 +178,16 @@ s32 DoPoisonFieldEffect(void)
             }
             else if (OW_POISON_DAMAGE >= GEN_4 && (hp == 1 || --hp == 1))
                 numFainted++;
-
+            else if (pokemon == followerMon)
+                followerDamaged = TRUE;
             SetMonData(pokemon, MON_DATA_HP, &hp);
             numPoisoned++;
         }
         pokemon++;
     }
+
+    if (followerDamaged)
+        StartFollowerPoisonBlend();
 
     // Do screen flash effect
     if (numFainted != 0 || numPoisoned != 0)
