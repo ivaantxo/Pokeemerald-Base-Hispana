@@ -678,6 +678,10 @@ enum SpeciesGfxChange
     SPECIES_GFX_CHANGE_ILLUSION_OFF,
 };
 
+// Surf wave palettes
+#define ANIM_SURF_PAL_SURF           0
+#define ANIM_SURF_PAL_MUDDY_WATER    1
+
 // Flags given to various functions to indicate which palettes to consider.
 // Handled by UnpackSelectedBattlePalettes
 #define F_PAL_BG                  (1 << 0)
