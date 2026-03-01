@@ -127,6 +127,10 @@ static const struct WindowTemplate sSearchResultListMenuWindowTemplate =
     .baseBlock = 20
 };
 
+static const u8 sText_MaleSymbol[] = _("{TEXT_COLORS LIGHT_RED GREEN WHITE}{BACKGROUND WHITE}♂{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
+static const u8 sText_FemaleSymbol[] = _("{TEXT_COLORS LIGHT_GREEN BLUE WHITE}{BACKGROUND WHITE}♀{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
+static const u8 sText_NoGenderSymbol[] = _("{UNK_SPACER}");
+
 bool32 PokenavCallback_Init_ConditionSearch(void)
 {
     struct Pokenav_SearchResults *menu = AllocSubstruct(POKENAV_SUBSTRUCT_CONDITION_SEARCH_RESULTS, sizeof(struct Pokenav_SearchResults));

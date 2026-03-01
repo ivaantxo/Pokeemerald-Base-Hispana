@@ -20,6 +20,7 @@
 #define I_PREMIER_BALL_BONUS            GEN_LATEST  // En LGPE a partir de (Gen8+ aquí), se te da una Premier Ball por cada 10 Poké Balls de cualquier tipo y en la misma compra. Anteriormente, solo se aplicaba a Poké Balls regulares y solo se podía obtener 1 por compra.
 #define I_ROTOM_CATALOG_THUNDER_SHOCK   GEN_LATEST  // En Gen9+, retornar a Rotom a su forma base hará que aprenda Impactrueno aunque ya sepa otro movimiento.
 #define I_REPEL_INCLUDE_FAINTED         GEN_LATEST  // En Gen1 y Gen6+, los repelentes siempre usan el nivel del primer miembro del equipo para comprobar el nivel de los Pokémon salvajes, aunque estén debilitados.En Gen2-5, usa el nivel del primer Pokémon no debilitado.
+#define I_LAX_INCENSE_BOOST             GEN_LATEST  // In Gen4+, Lax Incense increases evasion by 10% instead of 5%.
 
 // Configuración de TM
 #define I_REUSABLE_TMS          FALSE       // En Gen5-8, los TMs son reutilizables. Establecer esto en TRUE hará que todos los TMs de la versión estándar sean reutilizables, aunque también se pueden seleccionar individualmente estableciendo su importancia en 1.
@@ -37,6 +38,7 @@
 
 // Buscapelea (VS seeker)
 #define I_VS_SEEKER_CHARGING        0     // Si esta flag está asignada, la funcionalidad del Buscador VS se habilitará. Cuando el jugador tenga el Buscador VS, las funciones de rematch de Match Call dejarán de funcionar.
+#define I_SHOW_NO_ID_TRAINER        DISABLED_ON_RELEASE   // If TRUE, object events with a trainer type but no visible trainer id will be shown with a question mark. You may want to add vsseeker_rematchid TRAINER_ID as the top of the script to let the VS seeker know what reaction it's supposed to show.
 
 // Pesca
 #define I_FISHING_BITE_ODDS         GEN_LATEST  // En Gen 1 y Gen 2, la Caña vieja tiene 100% de posibilidades de que pique un Pokémon, Caña buena un 66%, y la Super caña un 50%. En Gen 3, todas tienen un 50%. De Gen 4 en adelante, la Caña vieja tiene un 25%, la Caña buena un 50% y la Super caña un 75%.

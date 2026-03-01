@@ -29,7 +29,7 @@ static const u16 sTradePartyBoxTilemap[] = INCBIN_U16("graphics/trade/party_box_
 static const u8 sTradeStripesBG2Tilemap[] = INCBIN_U8("graphics/trade/stripes_bg2_map.bin");
 static const u8 sTradeStripesBG3Tilemap[] = INCBIN_U8("graphics/trade/stripes_bg3_map.bin");
 static const u8 sText_EmptyString[] = _("");
-static const u8 sText_UnusedTextFormat[] = _("{COLOR WHITE}{HIGHLIGHT TRANSPARENT}{SHADOW DARK_GRAY}");
+static const u8 sText_UnusedTextFormat[] = _("{BACKGROUND TRANSPARENT}{TEXT_COLORS WHITE DARK_GRAY TRANSPARENT}");
 const u8 gText_MaleSymbol4[] = _("♂");
 const u8 gText_GenderlessSymbol[] = _("");
 static const u8 sText_SpaceMove[] = _(" MOVER");
@@ -48,10 +48,10 @@ static const u8 sText_CancelTrade[] = _("¿Cancelas el intercambio?");
 static const u8 sJPText_PressBButtonToQuit[] = _("Bボタン　で　もどります");
 static const u8 sText_Summary2[] = _("RESUMEN");
 static const u8 sText_Trade2[] = _("INTERCAMBIAR");
-static const u8 sText_CommunicationStandby[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}Esperando para\nrealizar conexión…");
-static const u8 sText_TheTradeHasBeenCanceled[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}El intercambio\nha sido cancelado.");
+static const u8 sText_CommunicationStandby[] = _("{BACKGROUND WHITE}{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}Esperando para\nrealizar conexión…");
+static const u8 sText_TheTradeHasBeenCanceled[] = _("{BACKGROUND WHITE}{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}El intercambio\nha sido cancelado.");
 static const u8 sText_OnlyPkmnForBattle[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}Es el único con el\nque puedes luchar.");
-static const u8 sText_WaitingForYourFriend[] = _("{COLOR 2}{HIGHLIGHT 1}{SHADOW 3}Espera un momento\na que termine.");
+static const u8 sText_WaitingForYourFriend[] = _("{BACKGROUND WHITE}{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}Espera un momento\na que termine.");
 static const u8 sText_YourFriendWantsToTrade[] = _("Quiere intercambiar POKéMON\ncontigo.");
 
 static const struct OamData sOamData_MenuText =
@@ -157,9 +157,6 @@ static const struct SpriteTemplate sSpriteTemplate_Cursor =
     .paletteTag = PALTAG_CURSOR,
     .oam = &sOamData_Cursor,
     .anims = sAnims_Cursor,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
 };
 
 static const struct SpriteTemplate sSpriteTemplate_MenuText =
@@ -168,9 +165,6 @@ static const struct SpriteTemplate sSpriteTemplate_MenuText =
     .paletteTag = PALTAG_MENU_TEXT,
     .oam = &sOamData_MenuText,
     .anims = sAnims_MenuText,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
 };
 
 static const u16 sMenuText_Pal[] = INCBIN_U16("graphics/trade/text.gbapal");
@@ -739,7 +733,6 @@ static const struct SpriteTemplate sSpriteTemplate_Pokeball =
     .paletteTag = PALTAG_POKEBALL,
     .oam = &sOamData_Pokeball,
     .anims = sAnims_Pokeball,
-    .images = NULL,
     .affineAnims = sAffineAnims_Pokeball,
     .callback = SpriteCB_BouncingPokeball
 };
@@ -801,7 +794,6 @@ static const struct SpriteTemplate sSpriteTemplate_LinkMonGlow =
     .paletteTag = PALTAG_LINK_MON,
     .oam = &sOamData_LinkMonGlow,
     .anims = sAnims_LinkMonGlow,
-    .images = NULL,
     .affineAnims = sAffineAnims_LinkMonGlow,
     .callback = SpriteCB_LinkMonGlow
 };
@@ -849,8 +841,6 @@ static const struct SpriteTemplate sSpriteTemplate_LinkMonShadow =
     .paletteTag = PALTAG_LINK_MON,
     .oam = &sOamData_LinkMonShadow,
     .anims = sAnims_LinkMonShadow,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_LinkMonShadow
 };
 
@@ -885,8 +875,6 @@ static const struct SpriteTemplate sSpriteTemplate_CableEnd =
     .paletteTag = PALTAG_GBA,
     .oam = &sOamData_CableEnd,
     .anims = sAnims_CableEnd,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_CableEndSending
 };
 
@@ -946,8 +934,6 @@ static const struct SpriteTemplate sSpriteTemplate_GbaScreenFlash_Long =
     .paletteTag = PALTAG_GBA,
     .oam = &sOamData_GbaScreen,
     .anims = sAnims_GbaScreen_Long,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_GbaScreen
 };
 
@@ -957,8 +943,6 @@ static const struct SpriteTemplate sSpriteTemplate_GbaScreenFlash_Short =
     .paletteTag = PALTAG_GBA,
     .oam = &sOamData_GbaScreen,
     .anims = sAnims_GbaScreen_Short,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_GbaScreen
 };
 
@@ -1040,6 +1024,186 @@ const struct InGameTrade sIngameTrades[] =
         .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
+    },
+    [INGAME_TRADE_MR_MIME] = 
+    {
+        .nickname = _("MIMIEN"),
+        .species = SPECIES_MR_MIME,
+        .ivs = {20, 15, 17, 24, 23, 22},
+        .abilityNum = 0,
+        .otId = 1985,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0x00009cae,
+        .heldItem = ITEM_NONE,
+        .mailNum = MAIL_NONE,
+        .otName = _("REYLEY"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_ABRA
+    },
+    [INGAME_TRADE_JYNX] = 
+    {
+        .nickname = _("ZYNX"),
+        .species = SPECIES_JYNX,
+        .ivs = {18, 17, 18, 22, 25, 21},
+        .abilityNum = 0,
+        .otId = 36728,
+        .conditions = {5, 30, 5, 5, 5},
+        .personality = 0x498a2e1d,
+        .heldItem = ITEM_FAB_MAIL,
+        .mailNum = 3,
+        .otName = _("DONTAE"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_POLIWHIRL
+    },
+    [INGAME_TRADE_NIDORAN] = 
+    {
+#if defined(FIRERED)
+        .nickname = _("MS. NIDO"),
+        .species = SPECIES_NIDORAN_F,
+        .ivs = {22, 18, 25, 19, 15, 22},
+        .abilityNum = 0,
+        .otId = 63184,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x4c970b89,
+        .heldItem = ITEM_TINY_MUSHROOM,
+        .mailNum = MAIL_NONE,
+        .otName = _("SAIGE"),
+        .otGender = FEMALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_NIDORAN_M
+#else
+        .nickname = _("MR. NIDO"),
+        .species = SPECIES_NIDORAN_M,
+        .ivs = {19, 25, 18, 22, 22, 15},
+        .abilityNum = 0,
+        .otId = 63184,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x4c970b9e,
+        .heldItem = ITEM_TINY_MUSHROOM,
+        .mailNum = MAIL_NONE,
+        .otName = _("SAIGE"),
+        .otGender = FEMALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_NIDORAN_F
+#endif
+    },
+    [INGAME_TRADE_FARFETCHD] = 
+    {
+        .nickname = _("CH'DING"),
+        .species = SPECIES_FARFETCHD,
+        .ivs = {20, 25, 21, 24, 15, 20},
+        .abilityNum = 0,
+        .otId = 8810,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x151943d7,
+        .heldItem = ITEM_STICK,
+        .mailNum = MAIL_NONE,
+        .otName = _("ELYSSA"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_SPEAROW
+    },
+    [INGAME_TRADE_NIDORINOA] = 
+    {
+#if defined(FIRERED)
+        .nickname = _("NINA"),
+        .species = SPECIES_NIDORINA,
+        .ivs = {22, 25, 18, 19, 22, 15},
+        .abilityNum = 0,
+        .otId = 13637,
+        .conditions = {5, 5, 30, 5, 5},
+        .personality = 0x00eeca15,
+        .heldItem = ITEM_NONE,
+        .mailNum = 255,
+        .otName = _("TURNER"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_NIDORINO
+#else
+        .nickname = _("NINO"),
+        .species = SPECIES_NIDORINO,
+        .ivs = {19, 18, 25, 22, 15, 22},
+        .abilityNum = 0,
+        .otId = 13637,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x00eeca19,
+        .heldItem = ITEM_NONE,
+        .mailNum = MAIL_NONE,
+        .otName = _("TURNER"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_NIDORINA
+#endif
+    },
+    [INGAME_TRADE_LICKITUNG] = 
+    {
+        .nickname = _("MARC"),
+        .species = SPECIES_LICKITUNG,
+        .ivs = {24, 19, 21, 15, 23, 21},
+        .abilityNum = 0,
+        .otId = 1239,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x451308ab,
+        .heldItem = ITEM_NONE,
+        .mailNum = MAIL_NONE,
+        .otName = _("HADEN"),
+        .otGender = MALE,
+        .sheen = 10,
+#if defined(FIRERED)
+        .requestedSpecies = SPECIES_GOLDUCK
+#else
+        .requestedSpecies = SPECIES_SLOWBRO
+#endif
+    },
+    [INGAME_TRADE_ELECTRODE] = 
+    {
+        .nickname = _("ESPHERE"),
+        .species = SPECIES_ELECTRODE,
+        .ivs = {19, 16, 18, 25, 25, 19},
+        .abilityNum = 1,
+        .otId = 50298,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x06341016,
+        .heldItem = ITEM_NONE,
+        .mailNum = 255,
+        .otName = _("CLIFTON"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_RAICHU
+    },
+    [INGAME_TRADE_TANGELA] = 
+    {
+        .nickname = _("TANGENY"),
+        .species = SPECIES_TANGELA,
+        .ivs = {22, 17, 25, 16, 23, 20},
+        .abilityNum = 0,
+        .otId = 60042,
+        .conditions = {5, 5, 30, 5, 5},
+        .personality = 0x5c77ecfa,
+        .heldItem = ITEM_STARDUST,
+        .mailNum = 255,
+        .otName = _("NORMA"),
+        .otGender = FEMALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_VENONAT
+    },
+    [INGAME_TRADE_SEEL] = 
+    {
+        .nickname = _("SEELOR"),
+        .species = SPECIES_SEEL,
+        .ivs = {24, 15, 22, 16, 23, 22},
+        .abilityNum = 0,
+        .otId = 9853,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x482cac89,
+        .heldItem = ITEM_NONE,
+        .mailNum = 255,
+        .otName = _("GARETT"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_PONYTA
     }
 };
 
@@ -1079,6 +1243,16 @@ const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
          EC_EMPTY_WORD,
          EC_POKEMON(NONE)
     },
+    {
+        EC_WORD_THAT_S,
+        EC_WORD_A,
+        EC_WORD_HEALTHY,
+        EC_POKEMON(JYNX),
+        EC_WORD_EXCL,
+        EC_WORD_BE,
+        EC_WORD_KIND,
+        EC_WORD_TO,
+        EC_WORD_IT
 };
 
 static const struct WindowTemplate sTradeSequenceWindowTemplates[] =

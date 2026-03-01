@@ -866,6 +866,10 @@ static void AddRibbonSummaryMonNameWindow(struct Pokenav_RibbonsSummaryMenu *men
     PrintRibbbonsSummaryMonInfo(menu);
 }
 
+static const u8 sMaleIconString[] = _("{TEXT_COLORS LIGHT_RED GREEN WHITE}{BACKGROUND WHITE}♂{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
+static const u8 sFemaleIconString[] = _("{TEXT_COLORS LIGHT_GREEN BLUE WHITE}{BACKGROUND WHITE}♀{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
+static const u8 sGenderlessIconString[] = _("{UNK_SPACER}");
+
 static void PrintRibbbonsSummaryMonInfo(struct Pokenav_RibbonsSummaryMenu *menu)
 {
     const u8 *genderTxt;
@@ -1203,10 +1207,7 @@ static const struct SpriteTemplate sSpriteTemplate_RibbonIconBig =
     .tileTag = GFXTAG_RIBBON_ICONS_BIG,
     .paletteTag = PALTAG_RIBBON_ICONS_1,
     .oam = &sOamData_RibbonIconBig,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
     .affineAnims = sAffineAnims_RibbonIconBig,
-    .callback = SpriteCallbackDummy,
 };
 
 // Create dummy sprite to be used for the zoomed in version of the selected ribbon

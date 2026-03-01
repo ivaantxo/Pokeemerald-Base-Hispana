@@ -12,6 +12,7 @@
 #define OW_WHITEOUT_CUTSCENE            GEN_LATEST // In Gen4+, whiting out shows an additional message and post whiteout event script cutscene with a healing NPC. (While this change was also in FRLG, for the sake of simplicity, setting this to GEN_3 will result in RSE behavior.)
 #define OW_DEFOG_FIELD_MOVE             FALSE      // Si está habilitado, Despejar puede usarse fuera de batalla como en DPPt.
 #define OW_ROCK_CLIMB_FIELD_MOVE        FALSE      // If enabled, Rock Climb can be used as a Field Move as seen in DPPt.
+#define OW_CHOOSE_FROM_PC_AND_PARTY     TRUE       // If enabled, NPCs like move tutors or trainers asking for trade will let you pick a pokemon from your PC or party instead of just your party
 
 // Item Obtain Description Box
 #define OW_ITEM_DESCRIPTIONS_OFF        0   // Nunca muestra descripciones
@@ -43,6 +44,7 @@
 #define OW_BERRY_YIELD_RATE            GEN_3      // Preajustes para cuántas bayas puede producir cada planta.
 #define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // Si OW_BERRY_MOISTURE está habilitado, esta configuración cambia la rapidez con la que se seca el suelo. GEN_4 usa una tasa de drenaje dependiente de la baya, GEN_6_XY se seca en 24 horas (4 horas con el Abono relevante) y GEN_6_ORAS se seca en 4 horas. Otros valores son ilegales.
 #define OW_BERRY_IMMORTAL              FALSE      // Si está habilitado, una vez que un árbol de bayas haya crecido una baya, el árbol no desaparecerá hasta que el jugador la recoja.
+#define OW_BERRY_COLORS                GEN_6_ORAS // If set to GEN_6_XY or GEN_6_ORAS, the Chesto, Wiki, Bluk, Cornn, Pamtre, Belue, Ganlon, Watmel, Qualot, Spelon, Kasib, Colbur, Lansat, Kee, Payapa, Roseli, Liechi, Enigma, and Maranga will use their colors from the stated game. Other values are illegal.
 
 // Pokémon en el mundo exterior
 #define OW_POKEMON_OBJECT_EVENTS       TRUE       // Agrega campos de Evento de Objeto para cada especie. Puede ser utilizado para NPCs usando el macro OBJ_EVENT_GFX_SPECIES (por ejemplo, OBJ_EVENT_GFX_SPECIES(BULBASAUR))

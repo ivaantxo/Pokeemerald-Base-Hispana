@@ -295,7 +295,7 @@ PlayersHouse_2F_Text_Notebook:
 
 Common_Text_LookCloserAtMap:
 	.string "{PLAYER} miró más de cerca el mapa\n"
-	.string "de la región de HOENN.$"
+	.string "de {REGION}.$"
 
 PlayersHouse_2F_Text_ItsAGameCube:
 	.string "Es una consola Nintendo GameCube.\p"

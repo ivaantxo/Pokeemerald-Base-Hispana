@@ -250,9 +250,6 @@ static const struct SpriteTemplate sOptionsCursorSpriteTemplate =
     .tileTag = GFXTAG_CURSOR,
     .paletteTag = PALTAG_CURSOR,
     .oam = &sOptionsCursorOamData,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_OptionsCursor,
 };
 
@@ -275,10 +272,6 @@ static const struct SpriteTemplate sTrainerPicSpriteTemplate =
     .tileTag = GFXTAG_TRAINER_PIC,
     .paletteTag = PALTAG_TRAINER_PIC,
     .oam = &sTrainerPicOamData,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
 };
 
 bool32 OpenMatchCall(void)
@@ -1124,7 +1117,7 @@ static void PrintCallingDots(struct Pokenav_MatchCallGfx *gfx)
 static bool32 WaitForCallingDotsText(struct Pokenav_MatchCallGfx *gfx)
 {
     RunTextPrinters();
-    return IsTextPrinterActive(gfx->msgBoxWindowId);
+    return IsTextPrinterActiveOnWindow(gfx->msgBoxWindowId);
 }
 
 static void PrintTrainerIsCloseBy(struct Pokenav_MatchCallGfx *gfx)
@@ -1135,7 +1128,7 @@ static void PrintTrainerIsCloseBy(struct Pokenav_MatchCallGfx *gfx)
 static bool32 WaitForTrainerIsCloseByText(struct Pokenav_MatchCallGfx *gfx)
 {
     RunTextPrinters();
-    return IsTextPrinterActive(gfx->msgBoxWindowId);
+    return IsTextPrinterActiveOnWindow(gfx->msgBoxWindowId);
 }
 
 static void PrintMatchCallMessage(struct Pokenav_MatchCallGfx *gfx)
@@ -1154,7 +1147,7 @@ static bool32 WaitForMatchCallMessageText(struct Pokenav_MatchCallGfx *gfx)
         gTextFlags.canABSpeedUpPrint = FALSE;
 
     RunTextPrinters();
-    return IsTextPrinterActive(gfx->msgBoxWindowId);
+    return IsTextPrinterActiveOnWindow(gfx->msgBoxWindowId);
 }
 
 static void EraseCallMessageBox(struct Pokenav_MatchCallGfx *gfx)
@@ -1246,7 +1239,7 @@ static struct Sprite *CreateTrainerPicSprite(void)
 static void LoadCheckPageTrainerPic(struct Pokenav_MatchCallGfx *gfx)
 {
     u16 cursor;
-    int trainerPic = GetMatchCallTrainerPic(PokenavList_GetSelectedIndex());
+    enum TrainerPicID trainerPic = GetMatchCallTrainerPic(PokenavList_GetSelectedIndex());
     if (trainerPic >= 0)
     {
         DecompressPicFromTable(&gTrainerSprites[trainerPic].frontPic, gfx->trainerPicGfx);

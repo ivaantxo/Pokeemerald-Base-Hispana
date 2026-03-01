@@ -362,8 +362,8 @@ static void Task_LinkupExchangeDataWithLeader(u8 taskId)
         SaveLinkPlayers(gFieldLinkPlayerCount);
         card = (struct TrainerCard *)gBlockSendBuffer;
         TrainerCard_GenerateCardForLinkPlayer(card);
-        card->monSpecies[0] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[0] - 1], MON_DATA_SPECIES, NULL);
-        card->monSpecies[1] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[1] - 1], MON_DATA_SPECIES, NULL);
+        card->monSpecies[0] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[0] - 1], MON_DATA_SPECIES);
+        card->monSpecies[1] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[1] - 1], MON_DATA_SPECIES);
         gTasks[taskId].func = Task_LinkupAwaitTrainerCardData;
     }
 }
@@ -410,8 +410,8 @@ static void Task_LinkupCheckStatusAfterConfirm(u8 taskId)
         SaveLinkPlayers(gFieldLinkPlayerCount);
         card = (struct TrainerCard *)gBlockSendBuffer;
         TrainerCard_GenerateCardForLinkPlayer(card);
-        card->monSpecies[0] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[0] - 1], MON_DATA_SPECIES, NULL);
-        card->monSpecies[1] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[1] - 1], MON_DATA_SPECIES, NULL);
+        card->monSpecies[0] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[0] - 1], MON_DATA_SPECIES);
+        card->monSpecies[1] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[1] - 1], MON_DATA_SPECIES);
         gTasks[taskId].func = Task_LinkupAwaitTrainerCardData;
         SendBlockRequest(BLOCK_REQ_SIZE_100);
     }
@@ -640,8 +640,8 @@ static void Task_ValidateMixingGameLanguage(u8 taskId)
             playerCount = GetLinkPlayerCount();
             for (i = 0; i < playerCount; i++)
             {
-                u32 version = (u8)gLinkPlayers[i].version;
-                u32 language = gLinkPlayers[i].language;
+                enum GameVersion version = (u8)gLinkPlayers[i].version;
+                enum Language language = gLinkPlayers[i].language;
 
                 if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
                 {
@@ -946,7 +946,7 @@ static void CB2_ReturnFromUnionRoomBattle(void)
         linkedWithFRLG = FALSE;
         for (i = 0; i < playerCount; i++)
         {
-            u32 version = (u8)gLinkPlayers[i].version;
+            enum GameVersion version = (u8)gLinkPlayers[i].version;
             if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
             {
                 linkedWithFRLG = TRUE;
