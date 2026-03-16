@@ -63,8 +63,7 @@
 #define P_SHOW_DYNAMIC_TYPES             FALSE       // If TRUE, all moves with dynamic type changes will be reflected as their current type in battle/summary screens instead of just select ones like in vanilla.
 
 // Configuración de ayuda de aprendizaje de movimientos
-#define P_LEARNSET_HELPER_TEACHABLE      TRUE        // Si está habilitado, teachable_learnsets.h será poblado por tools/learnset_helpers/teachable.py usando los archivos JSON incluidos basados en las MTs y tutores disponibles.
-#define P_TUTOR_MOVES_ARRAY              FALSE       // Si está habilitado, genera gTutorMoves automáticamente usando make_teachables.py. (generalmente no se necesita, pero la Pokédex HGSS tiene una opción para usarlo).
+#define P_LEARNSET_HELPER_TEACHABLE      TRUE   // If FALSE, make sure to remove teachable_learnset.h from your .gitignore file. If TRUE, teachable_learnsets.h will be populated by tools/learnset_helpers/make_teachables.py using the included JSON files based on available TMs and tutors.
 
 // Configuración de flags
 // Para usar las siguientes características en la programación, reemplaza los 0s con el ID de la flag que le estás asignando.
@@ -74,5 +73,11 @@
 
 // Ve aquí si deseas deshabilitar familias específicas de Pokémon.
 #include "config/species_enabled.h"
+
+#include "constants/sound.h"
+
+// Sound related settings
+#define P_MODIFIED_MEGA_CRIES            P_MEGA_EVOLUTIONS  // If TRUE, will use the extra separate Mega Cries (approx. 3% space of ROM). if FALSE, will use the same cry for all Mega Evolutions except modified with P_MODIFIED_MEGA_CRY_MODE. By default, this is set based on if mega evolutions are enabled.
+#define P_MODIFIED_MEGA_CRY_MODE         CRY_MODE_HIGH_PITCH
 
 #endif // GUARD_CONFIG_POKEMON_H

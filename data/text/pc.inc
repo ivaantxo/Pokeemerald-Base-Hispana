@@ -16,3 +16,6 @@ gText_AccessedPlayersPC::
 
 gText_AccessedLanettesPC::
 	.string "Accedió al PC de AREDIA.$"
+
+gText_AccessedBillsPC::
+	.string "Accessed BILL's PC.$"

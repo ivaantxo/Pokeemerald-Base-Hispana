@@ -6,9 +6,13 @@ gText_PkmnTransferredSomeonesPC::
 
 gText_PkmnTransferredLanettesPC::
 	.string "{STR_VAR_2} fue enviado al PC\n"
+#if IS_FRLG
+	.string "de BILL.\p"
+#else
 	.string "de AREDIA.\p"
-	.string "Se ha guardado en la CAJA\n"
-	.string "“{STR_VAR_1}”.$"
+#endif
+	.string "Se ha guardado en la CAJA \n"
+	.string "“{STR_VAR_1}.”$"
 
 gText_PkmnTransferredSomeonesPCBoxFull::
 	.string "La CAJA “{STR_VAR_3}” del PC\n"
@@ -18,15 +22,23 @@ gText_PkmnTransferredSomeonesPCBoxFull::
 
 gText_PkmnTransferredLanettesPCBoxFull::
 	.string "La CAJA “{STR_VAR_3}” del PC\n"
-	.string "de AREDIA estaba llena.\p"
-	.string "{STR_VAR_2} fue enviado a la CAJA\n"
-	.string "“{STR_VAR_1}”.$"
+#if IS_FRLG
+	.string "de BILL esta llena.\p"
+#else
+	.string "de AREDIA esta llena.\p"
+#endif
+	.string "{STR_VAR_2} ha sido enviado a la CAJA\n"
+	.string "“{STR_VAR_1}.”$"
 
 gText_PkmnSentToPCAfterCatch::
 	.string "{STR_VAR_2} fue enviado\n"
 	.string "a {B_PC_CREATOR_NAME} PC.\p"
 	.string "Fue colcoado en \n"
 	.string "Caja “{STR_VAR_1}”.$"
+
+gText_PlayerObtainedTheMon::
+	.string "{PLAYER} obtained\n"
+	.string "the {STR_VAR_1}!$"
 
 gText_NoMoreRoomForPokemon::
 	.string "¡No queda sitio para más POKéMON!\p"

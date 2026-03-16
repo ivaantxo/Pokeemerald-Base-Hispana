@@ -1,9 +1,9 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS 
+ASSUMPTIONS
 {
-    ASSUME(GetMoveEffect(MOVE_PSYBLADE) == EFFECT_PSYBLADE);
+    ASSUME(GetMoveEffect(MOVE_PSYBLADE) == EFFECT_TERRAIN_BOOST);
 }
 
 SINGLE_BATTLE_TEST("Psyblade's power increases by 50% on Electric Terrain even if the user is not grounded", s16 damage)
@@ -18,7 +18,8 @@ SINGLE_BATTLE_TEST("Psyblade's power increases by 50% on Electric Terrain even i
     GIVEN {
         ASSUME(gItemsInfo[ITEM_AIR_BALLOON].holdEffect == HOLD_EFFECT_AIR_BALLOON);
         ASSUME(GetMoveEffect(MOVE_ELECTRIC_TERRAIN) == EFFECT_ELECTRIC_TERRAIN);
-        ASSUME(GetMoveEffect(MOVE_PSYBLADE) == EFFECT_PSYBLADE);
+        ASSUME(GetMoveTerrainBoost_Terrain(MOVE_PSYBLADE) == STATUS_FIELD_ELECTRIC_TERRAIN);
+        ASSUME(GetMoveTerrainBoost_GroundCheck(MOVE_PSYBLADE) == GROUND_CHECK_NONE);
         PLAYER(SPECIES_SLOWKING) { Moves(MOVE_ELECTRIC_TERRAIN, MOVE_PSYBLADE); Item(airBalloon ? ITEM_AIR_BALLOON : ITEM_NONE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

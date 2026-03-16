@@ -24,6 +24,8 @@
 #include "event_data.h"
 #include "random.h"
 
+#if !IS_FRLG
+
 #define COLOR_DARK_GREEN RGB(7, 11, 6)
 #define COLOR_LIGHT_GREEN RGB(13, 20, 12)
 
@@ -273,8 +275,6 @@ static const struct SpriteTemplate sSpriteTemplate_CreditsMonBg =
     .paletteTag = TAG_MON_BG,
     .oam = &sOamData_MonBg,
     .anims = sAnims_MonBg,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_CreditsMonBg,
 };
 
@@ -1571,3 +1571,5 @@ static void DeterminePokemonToShow(void)
     }
     sCreditsData->numMonToShow = NUM_MON_SLIDES;
 }
+
+#endif // !IS_FRLG

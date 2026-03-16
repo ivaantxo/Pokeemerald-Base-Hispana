@@ -81,6 +81,9 @@
 #define FLDEFF_ROCK_CLIMB_DUST           76
 #define FLDEFF_USE_HEADBUTT              77
 #define FLDEFF_ORAS_DOWSE                78
+#define FLDEFF_SMILEY_FACE_ICON          79
+#define FLDEFF_HALL_OF_FAME_RECORD_FRLG  80
+#define FLDEFF_PHOTO_FLASH               81
 
 #define FLDEFFOBJ_SHADOW_S              0
 #define FLDEFFOBJ_SHADOW_M              1

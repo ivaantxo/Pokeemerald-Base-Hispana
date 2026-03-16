@@ -1,6 +1,9 @@
 #ifndef GUARD_CONFIG_SAVE_H
 #define GUARD_CONFIG_SAVE_H
 
+// Menu configs
+#define SKIP_SAVE_CONFIRMATION              FALSE   // If TRUE, skips the "There is already a saved file" confirmation when overwriting a save.
+
 // Configuraciones de SaveBlock1
 #define FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1    FALSE   // Libera las flags de Pokédex vistas no utilizadas (52 bytes).
 #define FREE_TRAINER_HILL                   FALSE   // Libera los datos de Trainer Hill (28 bytes).
