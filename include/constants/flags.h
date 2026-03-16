@@ -1338,7 +1338,7 @@
 
 // System Flags
 
-#define SYSTEM_FLAGS                                   (FLAG_UNUSED_0x4FF + 1) // 0x500
+#define SYSTEM_FLAGS                                 (FLAG_UNUSED_0x4FF + 1) // 0x500
 
 #define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x0) // FLAG_0x500
 #define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)

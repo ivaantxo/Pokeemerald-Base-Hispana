@@ -877,12 +877,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
         text[0] = CHAR_SPACE;
         text[1] = CHAR_LV;
 
-<<<<<<< HEAD
-        objVram = ConvertIntToDecimalStringN(text + 2, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
-        xPos = 5 * (3 - (objVram - (text + 2))) - 1;
-=======
         ConvertIntToDecimalStringN(text + 2, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
         UpdateIndicatorVisibilityAndType(healthboxSpriteId, TRUE);
     }
 
@@ -890,23 +885,6 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
 
     if (IsOnPlayerSide(battler))
     {
-<<<<<<< HEAD
-        objVram = (void *)(OBJ_VRAM0);
-        switch (GetBattlerCoordsIndex(battler))
-        {
-        case BATTLE_COORDS_SINGLES:
-            objVram += spriteTileNum + 2080;
-            break;
-        default:
-            objVram += spriteTileNum + 1056;
-            break;
-        }
-    }
-    else
-    {
-        objVram = (void *)(OBJ_VRAM0);
-        objVram += spriteTileNum + 1024;
-=======
         FillSpriteRectColor(spriteId, 8, 5, 24, 11, HEALTHBOX_BG_INDEX);
         AddSpriteTextPrinterParameterized6(spriteId, FONT_SMALL, 32 - width, 3, 0, 0, sHealthBoxTextColor, 0, text);
     }
@@ -914,7 +892,6 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     {
         FillSpriteRectColor(spriteId, 0, 5, 24, 11, HEALTHBOX_BG_INDEX);
         AddSpriteTextPrinterParameterized6(spriteId, FONT_SMALL, 24 - width, 3, 0, 0, sHealthBoxTextColor, 0, text);
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
     }
 }
 
@@ -949,17 +926,10 @@ static void PrintHpOnHealthbox(u32 spriteId, s16 currHp, s16 maxHp, u32 bgColor,
     if (width < 32)
         AddSpriteTextPrinterParameterized6(spriteId2, HP_FONT, 32 - width, yOffset + 5, 0, 0, sHealthBoxTextColor, 0, text);
     else
-<<<<<<< HEAD
-        x = 6, tilesCount = 2, leftTile += 32;
-    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, x, 5, bgColor, &windowId);
-    HpTextIntoHealthboxObject(objVram + leftTile, windowTileData, tilesCount);
-    RemoveWindowOnHealthbox(windowId);
-=======
         AddSpriteTextPrinterParameterized6(spriteId, HP_FONT, 64 - (width - 32), yOffset + 5, 0, 0, sHealthBoxTextColor, 0, text);
 
     gSprites[spriteId].data[1] = savedValue1;
     gSprites[spriteId2].data[1] = savedValue2;
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
 }
 
 // Note: this is only possible to trigger via debug, it was an unused GF function.

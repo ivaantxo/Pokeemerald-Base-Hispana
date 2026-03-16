@@ -868,23 +868,16 @@ enum TrainerFlags
     TRAINER_BRENDAN_PLACEHOLDER,
     TRAINER_MAY_PLACEHOLDER,
 
-<<<<<<< HEAD
-    TRAINERS_COUNT
+    TRAINERS_COUNT_EMERALD
 };
 
-#define TRAINER_PARTNER(partner)           (TRAINERS_COUNT + partner)
-=======
-#define TRAINERS_COUNT_EMERALD     855
-#define MAX_TRAINERS_COUNT_EMERALD 864
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG
-#define MAX_TRAINERS_COUNT                  MAX_TRAINERS_COUNT_FRLG
 #else
 #define TRAINERS_COUNT                      TRAINERS_COUNT_EMERALD
-#define MAX_TRAINERS_COUNT                  MAX_TRAINERS_COUNT_EMERALD
 #endif
-#define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
+
+#define TRAINER_PARTNER(partner)           (TRAINERS_COUNT + partner)
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

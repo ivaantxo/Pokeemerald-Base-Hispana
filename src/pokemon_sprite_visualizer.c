@@ -458,20 +458,6 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data);
 static void Exit_PokemonSpriteVisualizer(u8);
 
 //Text handling functions
-<<<<<<< HEAD
-=======
-static void UNUSED PadString(const u8 *src, u8 *dst)
-{
-    u32 i;
-
-    for (i = 0; i < 17 && src[i] != EOS; i++)
-        dst[i] = src[i];
-
-    for (; i < 17; i++)
-        dst[i] = CHAR_SPACE;
-
-    dst[i] = EOS;
-}
 
 static const struct SubmenuText sSubmenuText[] =
 {
@@ -519,40 +505,14 @@ static const struct SubmenuText sSubmenuText[] =
     },
 };
 
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
 static void PrintInstructionsOnWindow(struct PokemonSpriteVisualizer *data)
 {
     u8 fontId = FONT_SMALL;
     u8 x = 2;
-<<<<<<< HEAD
-    u8 textInstructions[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Salir  {A_BUTTON} Anims y BG$");
-    u8 textInstructionsGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Género\n{B_BUTTON} Salir  {A_BUTTON} Anims y BG$");
-    u8 textInstructionsSubmenuOne[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Atrás  {A_BUTTON} Coords Sprite$");
-    u8 textInstructionsSubmenuOneGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Género\n{B_BUTTON} Atrás  {A_BUTTON} Coords Sprite$");
-#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
-    u8 textInstructionsSubmenuTwo[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Atrás  {A_BUTTON} Coords Sombra$");
-    u8 textInstructionsSubmenuTwoGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Género\n{B_BUTTON} Atrás  {A_BUTTON} Coords Sombra$");
-    u8 textInstructionsSubmenuThree[] = _("{START_BUTTON} Shiny\n{B_BUTTON} Atrás");
-    u8 textInstructionsSubmenuThreeGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Género\n{B_BUTTON} Atrás$");
-#else
-    u8 textInstructionsSubmenuTwo[] = _("{START_BUTTON} Shiny\n{B_BUTTON} BACK$");
-    u8 textInstructionsSubmenuTwoGender[] = _("{START_BUTTON} Shiny {SELECT_BUTTON} Género\n{B_BUTTON} BACK$");
-    u8 textInstructionsSubmenuThree[] = _("$");
-    u8 textInstructionsSubmenuThreeGender[] = _("$");
-#endif
-
-
-    u8 textBottom[] = _("BACK:\nFRONT:\nBG:$");
-    u8 textBottomForms[] = _("BACK:\nFRONT:\nBG:\nFORMAS:$");
-    u8 textBottomSubmenuTwo[] = _("B coords:\nF coords:\nF elev:");
-    u8 textBottomSubmenuThree[] = _("X coords:\nY coords:\nTamaño:");
-    u16 species = data->modifyArrows.currValue;
-=======
     u16 species = data->modifyArrows.currValue;
 
     u8 textBottom[] = _("BACK:\nFRONT:\nBG:$");
     u8 textBottomForms[] = _("BACK:\nFRONT:\nBG:\nFORMS:$");
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
 
     u8 textL[] = _("{L_BUTTON}");
     u8 textR[] = _("{R_BUTTON}");
@@ -1904,11 +1864,7 @@ static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
     }
     else if (data->currentSubmenu == SUBMENU_SPRITE_COORDS)
     {
-<<<<<<< HEAD
-        if (JOY_NEW(A_BUTTON) && B_ENEMY_MON_SHADOW_STYLE >= GEN_4)
-=======
         if (JOY_NEW(A_BUTTON))
->>>>>>> 150649546e909fe96591be707c0fc1810b86480b
         {
             if (B_ENEMY_MON_SHADOW_STYLE >= GEN_4 && P_GBA_STYLE_SPECIES_GFX == FALSE)
                 OpenSubmenu(SUBMENU_SHADOW_COORDS, taskId);
