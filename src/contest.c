@@ -3223,36 +3223,6 @@ static void PrintContestMoveDescription(enum Move move)
     Contest_PrintTextToBg0WindowStd(WIN_SLASH, gText_Slash);
 }
 
-static void DrawMoveEffectSymbol(enum Move move, u8 contestant)
-{
-    u8 contestantOffset = gContestantTurnOrder[contestant] * 5 + 2;
-
-    if (!Contest_IsMonsTurnDisabled(contestant) && move != MOVE_NONE)
-    {
-        u16 tile = GetMoveEffectSymbolTileOffset(move, contestant);
-
-        ContestBG_FillBoxWithIncrementingTile(0, tile,      20, contestantOffset,     2, 1, 17, 1);
-        ContestBG_FillBoxWithIncrementingTile(0, tile + 16, 20, contestantOffset + 1, 2, 1, 17, 1);
-    }
-    else
-    {
-        ContestBG_FillBoxWithTile(0, 0, 20, contestantOffset, 2, 2, 17);
-    }
-}
-
-static void UNUSED DrawMoveEffectSymbols(void)
-{
-    s32 i;
-
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-        DrawMoveEffectSymbol(eContestantStatus[i].currMove, i);
-}
-
-static u16 GetStarTileOffset(void)
-{
-    return 0x2034;
-}
-
 static bool8 UpdateConditionStars(u8 contestantIdx, bool8 resetMod)
 {
     u8 contestantOffset;
@@ -3264,7 +3234,7 @@ static bool8 UpdateConditionStars(u8 contestantIdx, bool8 resetMod)
     numStars = eContestantStatus[contestantIdx].condition / 10;
     if (eContestantStatus[contestantIdx].conditionMod == CONDITION_GAIN)
     {
-        ContestBG_FillBoxWithTile(0, GetStarTileOffset(), 19, contestantOffset, 1, numStars, 17);
+        ContestBG_FillBoxWithTile(0, 0x2034, 19, contestantOffset, 1, numStars, 17);
         if (resetMod)
         {
             PlaySE(SE_EXP_MAX);
@@ -3291,7 +3261,7 @@ static void DrawConditionStars(void)
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
         u8 contestantOffset = gContestantTurnOrder[i] * 5 + 2;
-        u16 starOffset = GetStarTileOffset();
+        u16 starOffset = 0x2034;
 
         numStars = eContestantStatus[i].condition / 10;
         ContestBG_FillBoxWithTile(0, starOffset, 19, contestantOffset, 1, numStars, 17);

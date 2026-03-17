@@ -44,6 +44,8 @@ static u32 sDmaBusyBitfield[NUM_BACKGROUNDS];
 static u8 gpu_tile_allocation_map_bg[0x100];
 #endif
 
+COMMON_DATA u32 gWindowTileAutoAllocEnabled = 0;
+
 static const struct BgConfig sZeroedBgControlStruct = { 0 };
 
 static u32 GetBgType(u32 bg);
@@ -279,6 +281,9 @@ bool32 IsInvalidBg(u32 bg)
         return FALSE;
 }
 
+// From FRLG. Dummied out.
+int BgTileAllocOp(int bg, int offset, int count, int mode)
+{
 #if IS_FRLG
     int start, end;
     int blockSize;
@@ -330,6 +335,9 @@ bool32 IsInvalidBg(u32 bg)
         break;
     }
 #endif
+    return 0;
+}
+
 void ResetBgsAndClearDma3BusyFlags(u32 enableWindowTileAutoAlloc)
 {
     int i;
@@ -442,6 +450,9 @@ u16 LoadBgTiles(u32 bg, const void *src, u16 size, u16 destOffset)
     }
 
     sDmaBusyBitfield[cursor / 0x20] |= (1 << (cursor % 0x20));
+
+    if (gWindowTileAutoAllocEnabled == TRUE)
+        BgTileAllocOp(bg, tileOffset / 0x20, size / 0x20, 1);
 
     return cursor;
 }

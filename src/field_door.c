@@ -311,9 +311,6 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_Shop_Door_Elevator,                           &gTileset_Shop, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_LilycoveDeptStoreElevator, sDoorAnimPalettes_LilycoveDeptStoreElevator},
     {METATILE_Dewford_Door_BattleTower,                     &gTileset_Dewford, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTowerOld, sDoorAnimPalettes_BattleTowerOld},
     {METATILE_BattleFrontier_Door_Elevator,                 &gTileset_BattleFrontier, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTowerElevator, sDoorAnimPalettes_BattleTowerElevator},
-    // The metatile for this door doesn't seem to correspond to a door in any Emerald tileset. Given the surrounding door animations, it was likely cut from the Battle Frontier.
-    // From the palettes array we know it uses palette 9, and the door's shadow looks correct using either the Battle Tent or Battle Frontier Outside's 9th palette.
-    {0x3B0,                                                 NULL, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_UnusedBattleFrontier, sDoorAnimPalettes_UnusedBattleFrontier},
     {METATILE_BattleFrontierOutsideWest_Door_BattleDome,    &gTileset_BattleFrontierOutsideWest, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleDome, sDoorAnimPalettes_BattleDome},
     {METATILE_BattleFrontierOutsideWest_Door_BattleFactory, &gTileset_BattleFrontierOutsideWest, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleFactory, sDoorAnimPalettes_BattleFactory},
     {METATILE_BattleFrontierOutsideEast_Door_BattleTower,   &gTileset_BattleFrontierOutsideEast, DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_BattleTower, sDoorAnimPalettes_BattleTower},

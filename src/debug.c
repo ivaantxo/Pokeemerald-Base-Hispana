@@ -2643,7 +2643,7 @@ static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
 #define tItemId    data[5]
 #define tSpriteId  data[6]
 
-static void Debug_Display_ItemInfo(enum Item itemId, u32 digit, u8 windowId)
+static void Debug_Display_ItemInfo(enum Item itemId, u32 digit, u32 windowId, u32 descWindowId)
 {
     StringCopy(gStringVar2, gText_DigitIndicator[digit]);
     u8* end = CopyItemName(itemId, gStringVar1);

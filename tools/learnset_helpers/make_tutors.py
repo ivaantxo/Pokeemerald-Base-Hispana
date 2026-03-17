@@ -18,7 +18,7 @@ def enabled() -> bool:
     """
     Check if the user has explicitly enabled this opt-in helper.
     """
-    with open("./include/config/pokemon.h", "r") as cfg_pokemon_fp:
+    with open("./include/config/pokemon.h", "r", encoding="utf-8", errors="ignore") as cfg_pokemon_fp:
         cfg_pokemon = cfg_pokemon_fp.read()
         cfg_defined = CONFIG_ENABLED_PAT.search(cfg_pokemon)
         return cfg_defined is not None and cfg_defined.group("cfg_val") in ("TRUE", "1")
@@ -29,7 +29,7 @@ def extract_repo_tutors() -> typing.Generator[str, None, None]:
     foolproof, but it's suitable.
     """
     for inc_fname in chain(glob.glob("./data/scripts/*.inc"), glob.glob("./data/maps/*/scripts.inc")):
-        with open(inc_fname, "r") as inc_fp:
+        with open(inc_fname, "r", encoding="latin-1") as inc_fp:
             incfile = inc_fp.read()
             if not INCFILE_HAS_TUTOR_PAT.search(incfile) and not INCFILE_HAS_TUTOR_PAT2.search(incfile):
                 continue

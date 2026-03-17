@@ -222,66 +222,6 @@ void Task_DestroySelf(u8 taskId)
     DestroyTask(taskId);
 }
 
-static void InitLinkTestBG(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charBaseBlock, u16 baseChar)
-{
-    LoadPalette(sLinkTestDigitsPal, BG_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
-    DmaCopy16(3, sLinkTestDigitsGfx, (u16 *)BG_CHAR_ADDR(charBaseBlock) + (16 * baseChar), sizeof sLinkTestDigitsGfx);
-    gLinkTestBGInfo.screenBaseBlock = screenBaseBlock;
-    gLinkTestBGInfo.paletteNum = paletteNum;
-    gLinkTestBGInfo.baseChar = baseChar;
-    switch (bgNum)
-    {
-    case 1:
-        SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_SCREENBASE(screenBaseBlock) | BGCNT_PRIORITY(1) | BGCNT_CHARBASE(charBaseBlock));
-        break;
-    case 2:
-        SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_SCREENBASE(screenBaseBlock) | BGCNT_PRIORITY(1) | BGCNT_CHARBASE(charBaseBlock));
-        break;
-    case 3:
-        SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_SCREENBASE(screenBaseBlock) | BGCNT_PRIORITY(1) | BGCNT_CHARBASE(charBaseBlock));
-        break;
-    }
-    SetGpuReg(REG_OFFSET_BG0HOFS + bgNum * 4, 0);
-    SetGpuReg(REG_OFFSET_BG0VOFS + bgNum * 4, 0);
-}
-
-static void UNUSED LoadLinkTestBgGfx(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charBaseBlock)
-{
-    LoadPalette(sLinkTestDigitsPal, BG_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
-    DmaCopy16(3, sLinkTestDigitsGfx, (u16 *)BG_CHAR_ADDR(charBaseBlock), sizeof sLinkTestDigitsGfx);
-    gLinkTestBGInfo.screenBaseBlock = screenBaseBlock;
-    gLinkTestBGInfo.paletteNum = paletteNum;
-    gLinkTestBGInfo.baseChar = 0;
-    SetGpuReg(sBGControlRegs[bgNum], BGCNT_SCREENBASE(screenBaseBlock) | BGCNT_CHARBASE(charBaseBlock));
-}
-
-static void UNUSED LinkTestScreen(void)
-{
-    int i;
-
-    ResetSpriteData();
-    FreeAllSpritePalettes();
-    ResetTasks();
-    SetVBlankCallback(VBlankCB_LinkError);
-    ResetBlockSend();
-    gLinkType = LINKTYPE_TRADE;
-    OpenLink();
-    SeedRng(gMain.vblankCounter2);
-    for (i = 0; i < TRAINER_ID_LENGTH; i++)
-        gSaveBlock2Ptr->playerTrainerId[i] = Random() % 256;
-
-    InitLinkTestBG(0, 2, 4, 0, 0);
-    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON);
-    CreateTask(Task_DestroySelf, 0);
-    RunTasks();
-    AnimateSprites();
-    BuildOamBuffer();
-    UpdatePaletteFade();
-    InitLocalLinkPlayer();
-    CreateTask(Task_PrintTestData, 0);
-    SetMainCallback2(CB2_LinkTest);
-}
-
 void SetLocalLinkPlayerId(u8 playerId)
 {
     gLocalLinkPlayer.id = playerId;
@@ -566,7 +506,6 @@ static void BuildSendCmd(u16 command)
         break;
     case LINKCMD_READY_CLOSE_LINK:
         gSendCmd[0] = LINKCMD_READY_CLOSE_LINK;
-        gSendCmd[1] = gReadyCloseLinkType;
         break;
     case LINKCMD_DUMMY_2:
         gSendCmd[0] = LINKCMD_DUMMY_2;
@@ -1384,9 +1323,9 @@ static void CB2_PrintErrorMessage(void)
         break;
     case 130:
         if (gWirelessCommType == 2)
-            AddTextPrinterParameterized3(WIN_LINK_ERROR_TOP, FONT_SHORT_COPY_1, 2, 20, sTextColors, 0, gText_ABtnTitleScreen);
+            AddTextPrinterParameterized3(WIN_LINK_ERROR_TOP, FONT_SHORT, 2, 20, sTextColors, 0, gText_ABtnTitleScreen);
         else if (gWirelessCommType == 1)
-            AddTextPrinterParameterized3(WIN_LINK_ERROR_TOP, FONT_SHORT_COPY_1, 2, 20, sTextColors, 0, gText_ABtnRegistrationCounter);
+            AddTextPrinterParameterized3(WIN_LINK_ERROR_TOP, FONT_SHORT, 2, 20, sTextColors, 0, gText_ABtnRegistrationCounter);
         break;
     }
     if (gMain.state == 160)

@@ -1447,7 +1447,7 @@ static void CB2_EndTrainerBattle(void)
         }
         DowngradeBadPoison();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-        SetBattledTrainerFlag();
+        SetBattledTrainersFlags();
     }
     else if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
     {

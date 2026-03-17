@@ -278,9 +278,9 @@ static const u8 sText_TheLevelIs[] = _("The level is ");
 static const u8 sText_TheFeelIs[] = _(", and the feel is ");
 static const u8 sText_Dot2[] = _(".");
 
-static const u8 sText_SavingDontTurnOff2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
-static const u8 sText_BlenderMaxSpeedRecord[] = _("BERRY BLENDER\nMAXIMUM SPEED RECORD!");
-static const u8 sText_234Players[] = _("2 PLAYERS\n3 PLAYERS\n4 PLAYERS");
+static const u8 sText_SavingDontTurnOff2[] = _("Guardando…\nNo apagues la consola.");
+static const u8 sText_BlenderMaxSpeedRecord[] = _("Licuabayas\n¡Récord de velocidad!");
+static const u8 sText_234Players[] = _("2 Jugad.\n3 Jugad.\n4 Jugad.");
 
 static const struct BgTemplate sBgTemplates[3] =
 {

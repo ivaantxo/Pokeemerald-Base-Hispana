@@ -140,39 +140,6 @@ static const struct FontInfo sFontInfos[] =
         .color.accent = 1,
         .color.shadow = 3,
     },
-    [FONT_SHORT_COPY_1] = {
-        .fontFunction = FontFunc_ShortCopy1,
-        .maxLetterWidth = 6,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .color.foreground = 2,
-        .color.background = 1,
-        .color.accent = 1,
-        .color.shadow = 3,
-    },
-    [FONT_SHORT_COPY_2] = {
-        .fontFunction = FontFunc_ShortCopy2,
-        .maxLetterWidth = 6,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .color.foreground = 2,
-        .color.background = 1,
-        .color.accent = 1,
-        .color.shadow = 3,
-    },
-    [FONT_SHORT_COPY_3] = {
-        .fontFunction = FontFunc_ShortCopy3,
-        .maxLetterWidth = 6,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .color.foreground = 2,
-        .color.background = 1,
-        .color.accent = 1,
-        .color.shadow = 3,
-    },
     [FONT_BRAILLE] = {
         .fontFunction = FontFunc_Braille,
         .maxLetterWidth = 8,
@@ -1037,36 +1004,6 @@ static u16 FontFunc_Short(struct TextPrinter *textPrinter)
     return RenderText(textPrinter);
 }
 
-static u16 FontFunc_ShortCopy1(struct TextPrinter *textPrinter)
-{
-    if (textPrinter->hasFontIdBeenSet == FALSE)
-    {
-        textPrinter->fontId = FONT_SHORT_COPY_1;
-        textPrinter->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
-}
-
-static u16 FontFunc_ShortCopy2(struct TextPrinter *textPrinter)
-{
-    if (textPrinter->hasFontIdBeenSet == FALSE)
-    {
-        textPrinter->fontId = FONT_SHORT_COPY_2;
-        textPrinter->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
-}
-
-static u16 FontFunc_ShortCopy3(struct TextPrinter *textPrinter)
-{
-    if (textPrinter->hasFontIdBeenSet == FALSE)
-    {
-        textPrinter->fontId = FONT_SHORT_COPY_3;
-        textPrinter->hasFontIdBeenSet = TRUE;
-    }
-    return RenderText(textPrinter);
-}
-
 static u16 FontFunc_Narrow(struct TextPrinter *textPrinter)
 {
     if (textPrinter->hasFontIdBeenSet == FALSE)
@@ -1658,10 +1595,6 @@ static u16 RenderText(struct TextPrinter *textPrinter)
 #undef nextX
 #undef nextY
 
-            case EXT_CTRL_CODE_TEXT_COLORS:
-            case EXT_CTRL_CODE_BACKGROUND:
-            case EXT_CTRL_CODE_ACCENT:
-            case EXT_CTRL_CODE_HIGHLIGHT:
 static u32 (*GetFontWidthFunc(u8 fontId))(u16, bool32)
 {
     u32 i;

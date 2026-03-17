@@ -519,7 +519,6 @@ static void SetTitleScreenScene_Init(s16 *data)
     params.dmaDest = (volatile void *)REG_ADDR_BLDY;
     params.dmaControl = SCANLINE_EFFECT_DMACNT_16BIT;
     params.initState = 1;
-    params.unused9 = 0;
 
     CpuFill16(0, gScanlineEffectRegBuffers[0], 0x140);
     CpuFill16(0, gScanlineEffectRegBuffers[1], 0x140);
@@ -568,7 +567,7 @@ static void SetTitleScreenScene_FadeIn(s16 *data)
         data[2]++;
         if (data[2] > 10)
         {
-            TintPalette_GrayScale2(&gPlttBufferUnfaded[BG_PLTT_ID(13)], 16);
+            TintPalette_GrayScale(&gPlttBufferUnfaded[BG_PLTT_ID(13)], 16);
             BeginNormalPaletteFade(1 << 13, 9, 16, 0, RGB_BLACK);
             tState++;
         }
@@ -947,7 +946,7 @@ static void LoadMainTitleScreenPalsAndResetBgs(void)
         DestroyTask(taskId);
 
     DestroyBlendPalettesGraduallyTask();
-    ResetPaletteFadeControl();
+    ResetPaletteFade();
     LoadPalette(gGraphics_TitleScreen_GameTitleLogoPals, BG_PLTT_ID(0), 13 * PLTT_SIZE_4BPP);
     LoadPalette(gGraphics_TitleScreen_BoxArtMonPals, BG_PLTT_ID(13), PLTT_SIZE_4BPP);
     LoadPalette(gGraphics_TitleScreen_BackgroundPals, BG_PLTT_ID(15), PLTT_SIZE_4BPP);

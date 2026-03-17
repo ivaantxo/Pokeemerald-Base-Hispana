@@ -993,8 +993,6 @@
 #define FLAG_MYSTERY_GIFT_14     0x3E6
 #define FLAG_MYSTERY_GIFT_15     0x3E7
 
-#define FLAG_HIDDEN_ITEMS_START 1000 // 0x3E8
-
 #define FLAG_HIDDEN_ITEM_VIRIDIAN_FOREST_POTION                            (FLAG_HIDDEN_ITEMS_START +   0)
 #define FLAG_HIDDEN_ITEM_VIRIDIAN_FOREST_ANTIDOTE                          (FLAG_HIDDEN_ITEMS_START +   1)
 #define FLAG_HIDDEN_ITEM_MT_MOON_B2F_MOON_STONE                            (FLAG_HIDDEN_ITEMS_START +   2)
@@ -2481,10 +2479,6 @@
 #define FLAG_DEFEATED_ELITE_4_PHOEBE                                0
 #define FLAG_DEFEATED_ELITE_4_GLACIA                                0
 #define FLAG_DEFEATED_ELITE_4_DRAKE                                 0
-
-// Trainer Flags
-// Trainer flags occupy 0x500 - 0x85F, the last 9 of which are unused
-// See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
 
 // System Flags
 #define FLAG_SYS_POKENAV_GET                         0

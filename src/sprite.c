@@ -1821,6 +1821,7 @@ u32 LoadEggSpritePalette(const struct SpritePalette *palette1, const struct Spri
         DoLoadSpritePalette(palette2->data, PLTT_ID(index) + 8);
         return index;
     }
+}
 
 #define nextX data[1]
 #define nextY data[2]

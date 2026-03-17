@@ -123,7 +123,7 @@ static const struct WindowTemplate sRibbonsMonListWindowTemplate =
 
 static const u8 sText_MaleSymbol[] = _("{TEXT_COLORS LIGHT_RED GREEN WHITE}{BACKGROUND WHITE}♂{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
 static const u8 sText_FemaleSymbol[] = _("{TEXT_COLORS LIGHT_GREEN BLUE WHITE}{BACKGROUND WHITE}♀{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
-static const u8 sText_NoGenderSymbol[] = _("{UNK_SPACER}");
+static const u8 sText_NoGenderSymbol[] = _("");
 
 bool32 PokenavCallback_Init_MonRibbonList(void)
 {

@@ -45,11 +45,16 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#if IS_FRLG
+#define FLAG_HIDDEN_ITEMS_START_FRLG    0x3E8
+#define FLAG_HIDDEN_ITEMS_START_EMERALD 0x1F4
 
+#if IS_FRLG
+#define FLAG_HIDDEN_ITEMS_START         FLAG_HIDDEN_ITEMS_START_FRLG
 #include "constants/flags_frlg.h"
 
 #else
+
+#define FLAG_HIDDEN_ITEMS_START         FLAG_HIDDEN_ITEMS_START_EMERALD
 
 #define FLAG_UNUSED_0x020    0x20 // Unused Flag
 #define FLAG_UNUSED_0x021    0x21 // Unused Flag
@@ -550,7 +555,6 @@
 #define FLAG_MYSTERY_GIFT_15                 0x1F3
 
 // Hidden Items
-#define FLAG_HIDDEN_ITEMS_START                                                         0x1F4
 #define FLAG_HIDDEN_ITEM_LAVARIDGE_TOWN_ICE_HEAL             (FLAG_HIDDEN_ITEMS_START + 0x00)
 #define FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET                  (FLAG_HIDDEN_ITEMS_START + 0x01)
 #define FLAG_HIDDEN_ITEM_ROUTE_111_STARDUST                  (FLAG_HIDDEN_ITEMS_START + 0x02)

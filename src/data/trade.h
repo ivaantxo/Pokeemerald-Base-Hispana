@@ -1207,41 +1207,38 @@ const struct InGameTrade sIngameTrades[] =
     }
 };
 
-const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
+static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
 {
     {
-        EC_WORD_DOES,
-         EC_WORD_MUCH,
-         EC_WORD_MISS,
-         EC_POKEMON(PLUSLE),
-         EC_POKEMON(VOLBEAT),
-         EC_WORD_IS,
-         EC_WORD_VERY,
-         EC_WORD_ANTICIPATION,
-         EC_EMPTY_WORD,
-         EC_POKEMON(NONE)
+        EC_WORD_BE,
+        EC_WORD_NICE,
+        EC_WORD_TO,
+        EC_POKEMON(PLUSLE),
+        EC_WORD_EXCL,
+        EC_POKEMON(VOLBEAT),
+        EC_WORD_WILL,
+        EC_WORD_BE,
+        EC_WORD_FANTASTIC
     }, {
+        EC_WORD_I,
+        EC_WORD_WILL,
+        EC_WORD_MAKE,
         EC_POKEMON(BAGON),
-         EC_WORD_WERE,
-         EC_WORD_POINTS,
-         EC_EMPTY_WORD,
-         EC_POKEMON(HORSEA),
-         EC_WORD_PRAISE,
-         EC_WORD_NITWIT,
-         EC_WORD_FORGETS,
-         EC_EMPTY_WORD,
-         EC_POKEMON(NONE)
+        EC_WORD_TOUGH,
+        EC_WORD_PLEASE,
+        EC_WORD_TRAIN,
+        EC_POKEMON(HORSEA),
+        EC_WORD_WELL
     }, {
-        EC_WORD_THANKS,
-         EC_WORD_HOWEVER,
-         EC_POKEMON(SKITTY),
-         EC_EMPTY_WORD,
-         EC_POKEMON_NATIONAL(MEOWTH),
-         EC_WORD_IS,
-         EC_WORD_VERY,
-         EC_WORD_CUTENESS,
-         EC_EMPTY_WORD,
-         EC_POKEMON(NONE)
+        EC_WORD_THANK_YOU,
+        EC_WORD_FOR,
+        EC_POKEMON(SKITTY),
+        EC_POKEMON_NATIONAL(MEOWTH),
+        EC_WORD_CRIES,
+        EC_WORD_IN,
+        EC_WORD_A,
+        EC_WORD_CUTE,
+        EC_WORD_WAY
     },
     {
         EC_WORD_THAT_S,
@@ -1253,7 +1250,9 @@ const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
         EC_WORD_KIND,
         EC_WORD_TO,
         EC_WORD_IT
+    }
 };
+
 
 static const struct WindowTemplate sTradeSequenceWindowTemplates[] =
 {

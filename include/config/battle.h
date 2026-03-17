@@ -214,6 +214,7 @@
 // Configuración de ítems
 #define B_CONFUSE_BERRIES_HEAL      GEN_LATEST // Antes de Gen7, Figy y bayas similares restauran 1/8 de HP y se activan a la mitad de HP. En Gen7 restauran la mitad de HP, activándose al 25% de HP. En Gen8 curan 1/3 de HP.
 #define B_X_ITEMS_BUFF              GEN_LATEST // En Gen7+, los X Items aumentan una estadística en 2 etapas en lugar de 1.
+#define B_X_ITEMS_CROSSUSE          TRUE       // In Gen3, you can only use X item on the current battler, but in Gen7 you can use an X item on any friendly battler in double battles (we are not sure in which gen the change occured).
 #define B_MENTAL_HERB               GEN_LATEST // En Gen5+, Hierba mental cura Mofa, Otra vez, Tormento, Anticura y Anulación además de Enamoramiento.
 #define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE       // Si está habilitado, los entrenadores pueden robar/intercambiar tus ítems (los ítems no bayas se restauran después de la batalla). En los juegos vanilla, los entrenadores no pueden robar ítems.
 #define B_RETURN_STOLEN_NPC_ITEMS   GEN_LATEST // En Gen5+, Ladrón y Antojo ya no roban ítems de NPCs.

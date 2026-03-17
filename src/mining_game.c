@@ -1024,6 +1024,33 @@ static void Task_GetItems(u8 taskId)
     }
 }
 
+static void CreateDialogueWindowBorder(u8 bg, u8 x, u8 y, u8 width, u8 height, u8 palNum)
+{
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  1, x-2,       y-1, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  3, x-1,       y-1, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  4, x,         y-1, width,   1, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  5, x+width-1, y-1, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  6, x+width,   y-1, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  7, x-2,       y,   1,       5, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM +  9, x-1,       y,   width+1, 5, palNum);
+    FillBgTilemapBufferRect(bg, BIRCH_DLG_BASE_TILE_NUM + 10, x+width,   y,   1,       5, palNum);
+
+    FillBgTilemapBufferRect(bg, BG_TILE_V_FLIP(BIRCH_DLG_BASE_TILE_NUM + 1), x-2,       y+height, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BG_TILE_V_FLIP(BIRCH_DLG_BASE_TILE_NUM + 3), x-1,       y+height, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BG_TILE_V_FLIP(BIRCH_DLG_BASE_TILE_NUM + 4), x,         y+height, width-1, 1, palNum);
+    FillBgTilemapBufferRect(bg, BG_TILE_V_FLIP(BIRCH_DLG_BASE_TILE_NUM + 5), x+width-1, y+height, 1,       1, palNum);
+    FillBgTilemapBufferRect(bg, BG_TILE_V_FLIP(BIRCH_DLG_BASE_TILE_NUM + 6), x+width,   y+height, 1,       1, palNum);
+}
+
+static void ShowDialogueWindow(u32 windowId, bool32 copyToVram)
+{
+    CallWindowFunction(windowId, CreateDialogueWindowBorder);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    PutWindowTilemap(windowId);
+    if (copyToVram == TRUE)
+        CopyWindowToVram(windowId, COPYWIN_FULL);
+}
+
 static void Task_FadeOut(u8 taskId)
 {
     if (!gPaletteFade.active)
@@ -1035,7 +1062,7 @@ static void Task_FadeOut(u8 taskId)
         gTasks[taskId].tWindowId = AddWindow(&sWindowTemplate_MsgBox);
 
         LoadMessageBoxGfx(gTasks[taskId].tWindowId, 252, BG_PLTT_ID(15));
-        NewGameBirchSpeech_ShowDialogueWindow(gTasks[taskId].tWindowId, TRUE);
+        ShowDialogueWindow(gTasks[taskId].tWindowId, TRUE);
         PutWindowTilemap(gTasks[taskId].tWindowId);
         CopyWindowToVram(gTasks[taskId].tWindowId, COPYWIN_GFX);
         NewGameBirchSpeech_ClearWindow(gTasks[taskId].tWindowId);

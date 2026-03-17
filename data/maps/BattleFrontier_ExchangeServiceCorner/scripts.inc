@@ -360,8 +360,8 @@ BattleFrontier_ExchangeServiceCorner_Text_PleaseChoosePrize:
 	.string "Please choose a prize from this list.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_ConfirmPurchase:
-	.string "You've chosen the {STR_VAR_1}.\n"
-	.string "�Es esto correcto?$"
+	.string "Has elegido {STR_VAR_1}.\n"
+	.string "¿Es esto correcto?$"
 
 BattleFrontier_ExchangeServiceCorner_Text_WellSendItToPC:
 	.string "Estupendo. El envío llegará\n"

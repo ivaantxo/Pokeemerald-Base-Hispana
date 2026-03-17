@@ -726,7 +726,7 @@ static void CreatePCMultichoice(void)
     if (FlagGet(FLAG_SYS_PC_LANETTE))
     {
         if (IS_FRLG)
-            AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_BillsPc, x, 1, TEXT_SKIP_DRAW, NULL);
+            AddTextPrinterParameterized(windowId, FONT_NORMAL, COMPOUND_STRING("PC de Bill"), x, 1, TEXT_SKIP_DRAW, NULL);
         else
             AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_LanettesPC, x, 1, TEXT_SKIP_DRAW, NULL);
     }

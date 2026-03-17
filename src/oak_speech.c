@@ -113,7 +113,6 @@ static void CreateFadeOutTask(u8, u8);
 static void PrintNameChoiceOptions(u8, u8);
 static void GetDefaultName(u8, u8);
 
-extern const u8 gText_Controls[];
 extern const u8 gText_Next[];
 extern const u8 gText_NextBack[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
@@ -728,7 +727,7 @@ static void Task_NewGameScene(u8 taskId)
         break;
     case 1:
         sOakSpeechResources = AllocZeroed(sizeof(*sOakSpeechResources));
-        CreateMonSpritesGfxManager(MON_SPR_GFX_MANAGER_A, MON_SPR_GFX_MODE_NORMAL);
+        CreateMonSpritesGfxManager();
         break;
     case 2:
         SetGpuReg(REG_OFFSET_WIN0H, 0);
@@ -800,7 +799,7 @@ static void Task_NewGameScene(u8 taskId)
 
 static void ControlsGuide_LoadPage1(void)
 {
-    HofPCTopBar_PrintPair(gText_Controls, gText_Next, FALSE, 0, TRUE);
+    HofPCTopBar_PrintPair(COMPOUND_STRING("Controles"), gText_Next, FALSE, 0, TRUE);
     sOakSpeechResources->windowIds[0] = AddWindow(sControlsGuide_WindowTemplates[sOakSpeechResources->currentPage]);
     PutWindowTilemap(sOakSpeechResources->windowIds[0]);
     FillWindowPixelBuffer(sOakSpeechResources->windowIds[0], PIXEL_FILL(0));
@@ -1782,7 +1781,7 @@ static void Task_OakSpeech_WaitForFade(u8 taskId)
 static void Task_OakSpeech_FreeResources(u8 taskId)
 {
     FreeAllWindowBuffers();
-    DestroyMonSpritesGfxManager(MON_SPR_GFX_MANAGER_A);
+    DestroyMonSpritesGfxManager();
     Free(sOakSpeechResources);
     sOakSpeechResources = NULL;
     gTextFlags.canABSpeedUpPrint = FALSE;
@@ -1889,7 +1888,7 @@ static void CreateNidoranFSprite(u8 taskId)
 {
     u8 spriteId;
 
-    LoadSpecialPokePic(MonSpritesGfxManager_GetSpritePtr(MON_SPR_GFX_MANAGER_A, 0), INTRO_SPECIES, 0, TRUE);
+    LoadSpecialPokePic(MonSpritesGfxManager_GetSpritePtr(), INTRO_SPECIES, 0, TRUE);
     LoadSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(INTRO_SPECIES, 0, 0), INTRO_SPECIES);
     SetMultiuseSpriteTemplateToPokemon(INTRO_SPECIES, 0);
     spriteId = CreateSprite(&gMultiuseSpriteTemplate, 96, 96, 1);

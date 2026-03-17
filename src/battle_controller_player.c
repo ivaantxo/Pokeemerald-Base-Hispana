@@ -1665,15 +1665,18 @@ u32 GetMoveEffectiveness(u32 battler)
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
-        effectiveness1 = AI_GetMoveEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_LEFT));
-        effectiveness2 = AI_GetMoveEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_RIGHT));
+        effectiveness1 = AI_GetMoveEffectiveness(move, battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+        effectiveness2 = AI_GetMoveEffectiveness(move, battler, GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
+        
         if (effectiveness1 == effectiveness2)
             return effectiveness1;
         else
             return UQ_4_12(1.0);
     }
     else
-        effectiveness1 = AI_GetMoveEffectiveness(move, battler, GetBattlerPosition(B_POSITION_OPPONENT_LEFT));
+    {
+        effectiveness1 = AI_GetMoveEffectiveness(move, battler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+    }
 
     return effectiveness1;
 }

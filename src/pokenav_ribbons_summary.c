@@ -868,7 +868,7 @@ static void AddRibbonSummaryMonNameWindow(struct Pokenav_RibbonsSummaryMenu *men
 
 static const u8 sMaleIconString[] = _("{TEXT_COLORS LIGHT_RED GREEN WHITE}{BACKGROUND WHITE}♂{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
 static const u8 sFemaleIconString[] = _("{TEXT_COLORS LIGHT_GREEN BLUE WHITE}{BACKGROUND WHITE}♀{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}{BACKGROUND WHITE}");
-static const u8 sGenderlessIconString[] = _("{UNK_SPACER}");
+static const u8 sGenderlessIconString[] = _("");
 
 static void PrintRibbbonsSummaryMonInfo(struct Pokenav_RibbonsSummaryMenu *menu)
 {

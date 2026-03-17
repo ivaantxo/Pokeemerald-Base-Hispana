@@ -6186,7 +6186,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Absolita"),
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
-        .description = sAbsoliteDesc,
+        .description = COMPOUND_STRING(
             "Esta piedra permite\n"
             "que Absol megaevolucione\n"
             "en batalla."),
@@ -6312,7 +6312,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Garchompita"),
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
-        .description = sGarchompiteDesc,
+        .description = COMPOUND_STRING(
             "Esta piedra permite\n"
             "que Garchomp megaevolucione\n"
             "en batalla."),
@@ -6330,7 +6330,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Lucarionita"),
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
-        .description = sLucarioniteDesc,
+        .description = COMPOUND_STRING(
             "Esta piedra permite\n"
             "que Lucario megaevolucione\n"
             "en batalla."),

@@ -544,9 +544,6 @@ enum
     ACTION_INVALID
 };
 
-#define MAIN_MENU_BORDER_TILE   0x1D5
-#define BIRCH_DLG_BASE_TILE_NUM 0xFC
-
 static void CB2_MainMenu(void)
 {
     RunTasks();
@@ -1291,15 +1288,6 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
 #define tLotadSpriteId data[9]
 #define tBrendanSpriteId data[10]
 #define tMaySpriteId data[11]
-
-void NewGameBirchSpeech_ShowDialogueWindow(u8 windowId, bool8 copyToVram)
-{
-    CallWindowFunction(windowId, NewGameBirchSpeech_CreateDialogueWindowBorder);
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
-        CopyWindowToVram(windowId, COPYWIN_FULL);
-}
 
 void NewGameBirchSpeech_ClearWindow(u8 windowId)
 {

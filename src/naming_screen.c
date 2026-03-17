@@ -396,7 +396,7 @@ static void VBlankCB_NamingScreen(void);
 static void NamingScreen_ShowBgs(void);
 static bool8 IsWideLetter(u8);
 
-static const u8 sText_MoveOkBack[] = _("{DPAD_NONE}MOVE  {A_BUTTON}OK  {B_BUTTON}BACK");
+static const u8 sText_MoveOkBack[] = _("{DPAD_NONE}Mover  {A_BUTTON}OK  {B_BUTTON}Volver");
 
 void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback)
 {
@@ -2104,7 +2104,7 @@ static const struct NamingScreenTemplate sPlayerNamingScreenTemplate =
     .iconFunction = 1,
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
-    .title = COMPOUND_STRING("YOUR NAME?"),
+    .title = COMPOUND_STRING("¿Cuál es tu nombre?"),
 };
 
 static const struct NamingScreenTemplate sPCBoxNamingTemplate =
@@ -2145,7 +2145,7 @@ static const struct NamingScreenTemplate sCodeScreenTemplate =
     .iconFunction = 5,
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
-    .title = sText_EnterCode,,
+    .title = sText_EnterCode,
 };
 
 static const struct NamingScreenTemplate sRivalNamingScreenTemplate =
