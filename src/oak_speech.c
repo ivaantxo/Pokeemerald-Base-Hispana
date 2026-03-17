@@ -1890,7 +1890,7 @@ static void CreateNidoranFSprite(u8 taskId)
 
     LoadSpecialPokePic(MonSpritesGfxManager_GetSpritePtr(), INTRO_SPECIES, 0, TRUE);
     LoadSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(INTRO_SPECIES, 0, 0), INTRO_SPECIES);
-    SetMultiuseSpriteTemplateToPokemon(INTRO_SPECIES, 0);
+    SetMultiuseSpriteTemplateToPokemon(INTRO_SPECIES, B_POSITION_OPPONENT_LEFT);
     spriteId = CreateSprite(&gMultiuseSpriteTemplate, 96, 96, 1);
     gSprites[spriteId].callback = SpriteCallbackDummy;
     gSprites[spriteId].oam.priority = 1;

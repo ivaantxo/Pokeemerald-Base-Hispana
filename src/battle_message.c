@@ -2881,18 +2881,21 @@ static void GetBattlerNick(enum BattlerId battler, u8 *dst)
     //toCpy = text;                                                       \
 
 #define HANDLE_NICKNAME_STRING_CASE(battler)                            \
-    if (!IsOnPlayerSide(battler))                                       \
-    {                                                                   \
-        while (*toCpy != EOS)                                           \
-        {                                                               \
-            dst[dstID++] = *toCpy++;                                    \
-        }                                                               \
-        dst[dstID++] = CHAR_SPACE; /* un solo espacio */                \
-        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)                     \
-            toCpy = sText_FoePkmnPrefix;                                \
-        else                                                            \
-            toCpy = sText_WildPkmnPrefix;                               \
-    }
+        GetBattlerNick(battler, text);                                      \
+        toCpy = text;                                                       \
+        if (!IsOnPlayerSide(battler))                                       \
+        {                                                                   \
+            while (*toCpy != EOS)                                           \
+            {                                                               \
+                dst[dstID] = *toCpy;                                        \
+                dstID++;                                                    \
+                toCpy++;                                                    \
+            }                                                               \
+            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)                     \
+                toCpy = sText_FoePkmnPrefix;                                \
+            else                                                            \
+                toCpy = sText_WildPkmnPrefix;                               \
+        }                                              
 
 static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text, u8 multiplayerId, enum BattlerId battler)
 {
